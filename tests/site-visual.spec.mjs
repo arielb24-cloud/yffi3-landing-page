@@ -58,8 +58,9 @@ for (const viewport of viewports) {
       }
 
       if (pageInfo.service) {
-        await expect(page.locator(".service-picture img")).toBeVisible();
-        await expect(page.locator(".service-picture img")).toHaveAttribute("src", /service-.*\.svg/);
+        await expect(page.locator(".service-gallery")).toBeVisible();
+        await expect(page.locator(".service-slide")).toHaveCount(3);
+        await expect(page.locator(".service-gallery-preload img")).toHaveAttribute("src", /service-.*-gallery\.jpg/);
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);

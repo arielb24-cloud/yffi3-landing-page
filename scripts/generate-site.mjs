@@ -17,55 +17,60 @@ const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const serviceVisuals = {
   "auto-insurance": {
-    file: "service-auto-insurance.svg",
+    webp: "service-auto-gallery.webp",
+    fallback: "service-auto-gallery.jpg",
     label: "Auto Insurance",
     shortLabel: "Auto",
     scene: "Miami commute visual",
-    alt: "Premium abstract Miami auto insurance visual showing a car silhouette, roadway lines, and glass light trails",
+    alt: "Photographic Miami auto insurance gallery showing a modern car, coastal roadway details, and refined dashboard lighting",
     icon: "car",
     accent: "#9ADCF7",
     accent2: "#FFA184",
     accent3: "#F4C96B"
   },
   "home-insurance": {
-    file: "service-homeowners-insurance.svg",
+    webp: "service-homeowners-gallery.webp",
+    fallback: "service-homeowners-gallery.jpg",
     label: "Homeowners Insurance",
     shortLabel: "Homeowners",
     scene: "Florida home visual",
-    alt: "Premium abstract homeowners insurance visual showing a Florida home, roofline, palms, and protected-property glass shapes",
+    alt: "Photographic homeowners insurance gallery showing a Florida-style home exterior, roofline details, and warm entry lighting",
     icon: "home",
     accent: "#86CFA0",
     accent2: "#F4C96B",
     accent3: "#9ADCF7"
   },
   "commercial-insurance": {
-    file: "service-commercial-insurance.svg",
+    webp: "service-commercial-gallery.webp",
+    fallback: "service-commercial-gallery.jpg",
     label: "Commercial Insurance",
     shortLabel: "Commercial",
     scene: "Business coverage visual",
-    alt: "Premium abstract commercial insurance visual showing a Miami business building, certificate lines, and protective glass grid",
+    alt: "Photographic commercial insurance gallery showing a Miami office storefront, business desk details, and polished workspace protection",
     icon: "building",
     accent: "#F4C96B",
     accent2: "#9ADCF7",
     accent3: "#FFA184"
   },
   "life-insurance": {
-    file: "service-life-insurance.svg",
+    webp: "service-life-gallery.webp",
+    fallback: "service-life-gallery.jpg",
     label: "Life Insurance",
     shortLabel: "Life",
     scene: "Family planning visual",
-    alt: "Premium abstract life insurance visual showing a heart shield, planning lines, and soft family-protection light paths without people",
+    alt: "Photographic life insurance gallery showing financial planning documents, a warm home interior, and calm legacy-planning details without people",
     icon: "heart",
     accent: "#FFA184",
     accent2: "#F4C96B",
     accent3: "#86CFA0"
   },
   "renters-insurance": {
-    file: "service-renters-insurance.svg",
+    webp: "service-renters-gallery.webp",
+    fallback: "service-renters-gallery.jpg",
     label: "Renters Insurance",
     shortLabel: "Renters",
     scene: "Apartment coverage visual",
-    alt: "Premium abstract renters and condo insurance visual showing an apartment key, room outline, and lease-protection glass panels",
+    alt: "Photographic renters insurance gallery showing apartment keys, a modern rental living room, and personal property details",
     icon: "key",
     accent: "#9ADCF7",
     accent2: "#86CFA0",
@@ -599,7 +604,7 @@ function trustTicker() {
   }).join("");
   const duplicateTrack = tickerItems.map(([label]) => `<span class="ticker-copy">${escapeHtml(label)}</span>`).join("");
   return `
-    <div class="trust-ticker" aria-label="Office highlights and insurance services">
+    <div class="trust-ticker" aria-label="Office highlights and insurance services" data-animate data-in-view="true">
       <div class="trust-track">
         <span>${interactiveTrack}</span>
         <span aria-hidden="true">${duplicateTrack}</span>
@@ -859,9 +864,15 @@ function heroHtml(page) {
       <div class="${isService ? "service-showcase liquid-tilt" : "photo-showcase liquid-tilt"}" data-reveal="right">
         ${
           isService
-            ? `<picture class="service-picture">
-                 <img src="/assets/yffi3/${visual.file}" alt="${escapeHtml(visual.alt)}" width="960" height="720" loading="eager" decoding="async" fetchpriority="high">
-               </picture>
+            ? `<div class="service-picture service-gallery service-gallery-${page.slug}" role="img" aria-label="${escapeHtml(visual.alt)}" data-animate data-in-view="true">
+                 <span class="service-slide" aria-hidden="true"></span>
+                 <span class="service-slide" aria-hidden="true"></span>
+                 <span class="service-slide" aria-hidden="true"></span>
+                 <picture class="service-gallery-preload" aria-hidden="true">
+                   <source srcset="/assets/yffi3/${visual.webp}" type="image/webp">
+                   <img src="/assets/yffi3/${visual.fallback}" alt="${escapeHtml(visual.alt)}" width="1440" height="960" loading="eager" decoding="async" fetchpriority="high">
+                 </picture>
+               </div>
                <div class="service-visual-caption">
                  <span class="service-icon-xl">${iconSvg(page.icon)}</span>
                  <div>
@@ -1243,6 +1254,12 @@ function pageHtml(page) {
 `;
 }
 
+function serviceGalleryCss() {
+  return Object.entries(serviceVisuals).map(([slug, visual]) => {
+    return `.service-gallery-${slug} .service-slide { background-image: image-set(url('/assets/yffi3/${visual.webp}') type('image/webp'), url('/assets/yffi3/${visual.fallback}') type('image/jpeg')); }`;
+  }).join("\n");
+}
+
 function cssSource() {
   return `:root {
   color-scheme: dark;
@@ -1271,6 +1288,8 @@ function cssSource() {
   --glass: rgba(255, 255, 255, 0.075);
   --glass-strong: rgba(255, 255, 255, 0.145);
   --glass-line: rgba(255, 255, 255, 0.24);
+  --glass-blur: 14px;
+  --glass-blur-soft: 10px;
   --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
   --shadow-soft: 0 18px 54px rgba(0, 0, 0, 0.31);
   --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 18px 50px rgba(255, 125, 101, 0.22), 0 0 44px rgba(119, 231, 220, 0.12);
@@ -1298,7 +1317,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -8%;
   pointer-events: none;
   z-index: -2;
   background:
@@ -1307,7 +1326,9 @@ body::before {
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 96px),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 96px);
   background-size: 180% 180%, 220% 220%, auto, auto;
-  animation: page-flow 24s ease-in-out infinite alternate;
+  transform: translate3d(-1%, -1%, 0) scale(1.04);
+  will-change: transform, opacity;
+  animation: page-flow 28s ease-in-out infinite alternate;
 }
 body::after {
   content: "";
@@ -1327,8 +1348,8 @@ body::after {
 }
 
 @keyframes page-flow {
-  from { background-position: 0% 0%, 100% 0%, 0 0, 0 0; }
-  to { background-position: 100% 70%, 0% 100%, 32px 0, 0 32px; }
+  from { opacity: 0.9; transform: translate3d(-1.2%, -1%, 0) scale(1.04); }
+  to { opacity: 1; transform: translate3d(1.2%, 1%, 0) scale(1.04); }
 }
 
 img, picture, svg { display: block; }
@@ -1358,8 +1379,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-bottom: 1px solid var(--glass-line);
   background: rgba(6, 17, 31, 0.78);
   box-shadow: 0 16px 46px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
 }
 .header-shell {
   display: grid;
@@ -1453,8 +1474,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color: var(--clay);
   background: rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 32px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
 }
 .mobile-call .icon { width: 16px; height: 16px; }
 .menu-toggle {
@@ -1469,8 +1490,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-radius: 14px;
   background: var(--glass);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 32px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
 }
 .menu-toggle span {
   width: 18px;
@@ -1490,14 +1511,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 14px 34px rgba(0, 0, 0, 0.22);
   mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34px, #000 calc(100% - 34px), transparent 100%);
-  backdrop-filter: blur(16px) saturate(145%);
-  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(145%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(145%);
 }
 .trust-track {
   display: flex;
   width: max-content;
-  animation: trust-marquee 64s linear infinite;
+  transform: translate3d(0, 0, 0);
+  animation: none;
   will-change: transform;
+}
+.trust-ticker[data-in-view="true"] .trust-track {
+  animation: trust-marquee 64s linear infinite;
 }
 .trust-track span {
   display: inline-flex;
@@ -1518,12 +1543,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-weight: 900;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.055);
-  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  transition: color 180ms ease, background 180ms ease;
 }
 .trust-track a:hover, .trust-track a:focus-visible {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.13);
-  box-shadow: 0 0 24px rgba(154, 220, 247, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 .trust-ticker:hover .trust-track, .trust-ticker:focus-within .trust-track {
   animation-play-state: paused;
@@ -1550,13 +1575,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   line-height: 1.1;
   text-align: center;
   text-decoration: none;
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.32),
     inset 0 -18px 34px rgba(255, 255, 255, 0.04),
     0 18px 44px rgba(0, 0, 0, 0.32);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 .button::before {
   content: "";
@@ -1691,11 +1716,11 @@ h3 {
     linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055)),
     linear-gradient(135deg, rgba(119, 231, 220, 0.10), rgba(255, 161, 132, 0.07));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(22px) saturate(135%);
-  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(135%);
   transform: perspective(1100px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
   transform-style: preserve-3d;
-  transition: transform 260ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition: transform 260ms ease, border-color 220ms ease, background 220ms ease;
 }
 .photo-showcase::before, .service-showcase::before,
 .coverage-card::after, .detail-card::after, .intent-card::after, .quote-form::after, .service-cta::after {
@@ -1707,7 +1732,6 @@ h3 {
   background:
     linear-gradient(115deg, rgba(255,255,255,.18), transparent 26%, rgba(255,255,255,.055) 48%, transparent 72%),
     radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,.24), transparent 22%);
-  mix-blend-mode: screen;
   z-index: 2;
 }
 .photo-showcase:hover, .service-showcase:hover,
@@ -1716,7 +1740,6 @@ h3 {
 .about-media:hover, .franchise-card:hover, .service-cta:hover,
 .trust-strip article:hover, .callout:hover, .qr-card:hover, .faq details:hover, .faq details[open], .intent-card:hover {
   border-color: rgba(154, 220, 247, 0.42);
-  box-shadow: var(--shadow), 0 0 38px rgba(154, 220, 247, 0.12), 0 0 24px rgba(255, 125, 101, 0.08);
   --lift: -2px;
 }
 .photo-showcase { padding: 10px; }
@@ -1757,14 +1780,67 @@ h3 {
   overflow: hidden;
   min-height: 270px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.08);
+  isolation: isolate;
+  contain: paint;
+  background:
+    linear-gradient(135deg, rgba(154, 220, 247, 0.10), rgba(255, 161, 132, 0.07)),
+    rgba(255, 255, 255, 0.08);
 }
-.service-picture img {
-  width: 100%;
-  height: 100%;
-  min-height: 270px;
-  object-fit: cover;
-  transform: scale(1.006);
+.service-gallery::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 11, 18, 0.02), rgba(5, 11, 18, 0.28)),
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 26%);
+  z-index: 2;
+}
+${serviceGalleryCss()}
+.service-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  background-position: 0% center;
+  transform: translate3d(0, 0, 0) scale(1.025);
+  will-change: opacity, transform;
+}
+.service-slide:first-of-type {
+  opacity: 1;
+}
+.service-slide:nth-of-type(2) {
+  background-position: 50% center;
+}
+.service-slide:nth-of-type(3) {
+  background-position: 100% center;
+}
+.service-gallery[data-in-view="true"] .service-slide {
+  animation: service-slide-fade 18s linear infinite;
+}
+.service-gallery[data-in-view="true"] .service-slide:nth-of-type(2) {
+  animation-delay: 6s;
+}
+.service-gallery[data-in-view="true"] .service-slide:nth-of-type(3) {
+  animation-delay: 12s;
+}
+.service-gallery-preload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.service-gallery-preload img {
+  width: 1px;
+  height: 1px;
+}
+@keyframes service-slide-fade {
+  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.025); }
+  34%, 94% { opacity: 0; transform: translate3d(0, 0, 0) scale(1.055); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.025); }
 }
 .service-visual-caption {
   position: relative;
@@ -1778,8 +1854,8 @@ h3 {
   padding: 12px;
   background: rgba(5, 11, 18, 0.46);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(140%);
 }
 .service-icon-xl, .soft-icon {
   display: inline-grid;
@@ -1831,10 +1907,10 @@ h3 {
   padding: 14px 16px 14px 32px;
   background: var(--surface);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
   position: relative;
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
   transform: translateY(var(--lift));
 }
 .trust-strip article span {
@@ -1879,9 +1955,9 @@ h3 {
   padding: 10px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.06));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
 }
 .coverage-section {
@@ -1903,10 +1979,15 @@ h3 {
   border-radius: 18px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
   transform: translateY(var(--lift));
+}
+.coverage-card, .detail-card, .process-grid article, .why-grid article, .notice-card, .intent-card {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .coverage-card::before, .detail-card::before, .process-grid article::before, .why-grid article::before, .quote-form::before, .notice-card::before, .intent-card::before,
 .service-cta::before, .callout::before, .qr-card::before, .faq details::before {
@@ -1964,8 +2045,8 @@ h3 {
   background: rgba(255, 255, 255, 0.07);
   font-size: 0.78rem;
   font-weight: 850;
-  backdrop-filter: blur(12px) saturate(135%);
-  -webkit-backdrop-filter: blur(12px) saturate(135%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 .coverage-link-rail {
   display: flex;
@@ -1986,15 +2067,14 @@ h3 {
   font-size: 0.82rem;
   font-weight: 900;
   text-decoration: none;
-  backdrop-filter: blur(14px) saturate(135%);
-  -webkit-backdrop-filter: blur(14px) saturate(135%);
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 .coverage-link-rail a:hover, .coverage-link-rail a:focus-visible {
   transform: translateY(-2px);
   border-color: rgba(154, 220, 247, 0.44);
   background: rgba(255, 255, 255, 0.14);
-  box-shadow: var(--shadow-soft), 0 0 28px rgba(154, 220, 247, 0.14);
 }
 .process-section {
   border-top: 1px solid var(--glass-line);
@@ -2045,8 +2125,8 @@ h3 {
   border: 1px solid var(--glass-line);
   background: linear-gradient(135deg, rgba(16, 40, 58, 0.92), rgba(9, 28, 45, 0.92) 58%, rgba(15, 52, 38, 0.86));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(22px) saturate(135%);
-  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(135%);
 }
 .why-panel h2, .why-panel h3, .why-panel p { color: var(--ink); }
 .why-panel .kicker { color: #F4B69C; }
@@ -2066,7 +2146,7 @@ h3 {
   --lift: 0px;
   min-height: 230px;
   padding: 20px;
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
 }
 .franchise-logo-stack {
@@ -2103,9 +2183,9 @@ h3 {
   padding: 14px;
   background: linear-gradient(145deg, rgba(154, 220, 247, 0.13), rgba(255, 255, 255, 0.06));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
 }
 .callout .icon {
@@ -2127,9 +2207,9 @@ h3 {
   padding: 14px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
 }
 .qr-card img {
@@ -2163,7 +2243,7 @@ h3 {
   font: inherit;
   outline: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition: border-color 180ms ease, background 180ms ease;
 }
 .quote-form input::placeholder, .quote-form textarea::placeholder {
   color: rgba(233, 241, 250, 0.58);
@@ -2204,9 +2284,9 @@ h3 {
   padding: 26px;
   background: linear-gradient(135deg, rgba(22, 58, 43, 0.82), rgba(12, 36, 54, 0.82));
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(20px) saturate(135%);
-  -webkit-backdrop-filter: blur(20px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(135%);
+  transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
 }
 .related-links { padding-top: 18px; }
@@ -2233,10 +2313,10 @@ h3 {
   border-radius: 16px;
   padding: 16px 18px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045));
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
   transform: translateY(var(--lift));
 }
 .faq summary {
@@ -2337,17 +2417,14 @@ h3 {
 [data-reveal] {
   opacity: 1;
   transform: none;
-  filter: saturate(1);
   transition:
     opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 820ms cubic-bezier(0.16, 1, 0.3, 1),
-    filter 820ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform 820ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 .motion-ready [data-reveal] {
   opacity: 0.82;
   transform: translate3d(0, 28px, 0) scale(0.982);
-  filter: saturate(0.88);
 }
 .motion-ready [data-reveal="card"] {
   opacity: 0.86;
@@ -2364,7 +2441,6 @@ h3 {
 .motion-ready [data-reveal].is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
-  filter: saturate(1);
 }
 
 @media (min-width: 640px) {
@@ -2439,8 +2515,8 @@ h3 {
     line-height: 1;
     background: rgba(255, 255, 255, 0.08);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 12px 30px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(16px) saturate(135%);
-    -webkit-backdrop-filter: blur(16px) saturate(135%);
+    backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+    -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
   }
   .hero {
     grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.9fr);
@@ -2502,6 +2578,10 @@ h3 {
 }
 
 @media (max-width: 430px) {
+  :root {
+    --glass-blur: 9px;
+    --glass-blur-soft: 7px;
+  }
   .header-shell { width: min(100% - 20px, 1180px); gap: 7px; }
   .brand-logo { width: 98px; height: 48px; }
   .mobile-call { padding-inline: 8px; font-size: 0.78rem; }
@@ -2536,7 +2616,6 @@ h3 {
   .motion-ready [data-reveal], .motion-ready [data-reveal="card"], .motion-ready [data-reveal="left"], .motion-ready [data-reveal="right"] {
     opacity: 0.9;
     transform: translate3d(0, 18px, 0) scale(0.99);
-    filter: saturate(0.94);
   }
 }
 
@@ -2551,10 +2630,11 @@ h3 {
   .motion-ready [data-reveal], [data-reveal] {
     opacity: 1;
     transform: none;
-    filter: none;
   }
   .button:hover, .faq details:hover { transform: none; }
   .trust-track { animation: none; }
+  .service-gallery[data-in-view="true"] .service-slide { animation: none; }
+  .service-slide { transform: none; }
 }
 `;
 }
@@ -2594,7 +2674,21 @@ if (revealItems.length) {
   }
 }
 
-if (!reducedMotion) {
+const animatedItems = document.querySelectorAll("[data-animate]");
+if (animatedItems.length) {
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    animatedItems.forEach((item) => item.setAttribute("data-in-view", "true"));
+  } else {
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.setAttribute("data-in-view", String(entry.isIntersecting));
+      });
+    }, { rootMargin: "96px 0px", threshold: 0.01 });
+    animatedItems.forEach((item) => animationObserver.observe(item));
+  }
+}
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   document.querySelectorAll(".liquid-tilt").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
@@ -2953,11 +3047,16 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-principal-agent-ariel-busutil.jpg
 - yffi3-original-franchise-logo.png
 - yffi3-quote-qr.jpeg
-- service-auto-insurance.svg
-- service-homeowners-insurance.svg
-- service-commercial-insurance.svg
-- service-life-insurance.svg
-- service-renters-insurance.svg
+- service-auto-gallery.webp
+- service-auto-gallery.jpg
+- service-homeowners-gallery.webp
+- service-homeowners-gallery.jpg
+- service-commercial-gallery.webp
+- service-commercial-gallery.jpg
+- service-life-gallery.webp
+- service-life-gallery.jpg
+- service-renters-gallery.webp
+- service-renters-gallery.jpg
 
 Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
 `);
@@ -2972,7 +3071,6 @@ function copyPublicAssetsForPreview() {
 }
 
 function generate() {
-  writeServiceVisualAssets();
   for (const page of pages) {
     const html = pageHtml(page);
     const lower = html.toLowerCase();

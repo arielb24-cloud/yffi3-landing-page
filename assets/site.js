@@ -32,7 +32,21 @@ if (revealItems.length) {
   }
 }
 
-if (!reducedMotion) {
+const animatedItems = document.querySelectorAll("[data-animate]");
+if (animatedItems.length) {
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    animatedItems.forEach((item) => item.setAttribute("data-in-view", "true"));
+  } else {
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.setAttribute("data-in-view", String(entry.isIntersecting));
+      });
+    }, { rootMargin: "96px 0px", threshold: 0.01 });
+    animatedItems.forEach((item) => animationObserver.observe(item));
+  }
+}
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   document.querySelectorAll(".liquid-tilt").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
