@@ -53,7 +53,7 @@ dist/
 
 ## Manual Confirmation Before Publishing
 
-- Confirm the listed address is still correct: 11200 W Flagler St #108-109, Miami, FL 33174.
+- Confirm the listed address is still correct: 11200 W Flagler St, Ste 108, Miami, FL 33174.
 - Confirm `305-910-8850` is the correct public office number and SMS use is approved.
 - Confirm the QR code is approved for this office before relying on it.
 - ConsumerRateQuotes account ID `64868` was owner-confirmed as the Office #3 lead route; test one live inquiry after publishing.

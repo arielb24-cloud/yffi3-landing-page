@@ -47,21 +47,52 @@ if (animatedItems.length) {
 }
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
-  document.querySelectorAll(".liquid-tilt").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-      card.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
-      card.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
-      card.style.setProperty("--glare-x", Math.round(x * 100) + "%");
-      card.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+  const hoverSurfaceSelector = [
+    ".liquid-tilt",
+    ".button",
+    ".coverage-card",
+    ".detail-card",
+    ".intent-card",
+    ".quote-form",
+    ".service-cta",
+    ".trust-strip article",
+    ".why-grid article",
+    ".notice-card",
+    ".callout",
+    ".qr-card",
+    ".faq details",
+    ".about-media",
+    ".franchise-card"
+  ].join(",");
+
+  document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
+    let frame = 0;
+    let lastEvent = null;
+
+    surface.addEventListener("pointermove", (event) => {
+      lastEvent = event;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        if (!lastEvent) return;
+        const rect = surface.getBoundingClientRect();
+        const x = (lastEvent.clientX - rect.left) / rect.width;
+        const y = (lastEvent.clientY - rect.top) / rect.height;
+        surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
+        surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+        if (surface.classList.contains("liquid-tilt")) {
+          surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
+          surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
+        }
+      });
     });
-    card.addEventListener("pointerleave", () => {
-      card.style.setProperty("--tilt-x", "0deg");
-      card.style.setProperty("--tilt-y", "0deg");
-      card.style.setProperty("--glare-x", "50%");
-      card.style.setProperty("--glare-y", "0%");
+
+    surface.addEventListener("pointerleave", () => {
+      lastEvent = null;
+      surface.style.setProperty("--tilt-x", "0deg");
+      surface.style.setProperty("--tilt-y", "0deg");
+      surface.style.setProperty("--glare-x", "50%");
+      surface.style.setProperty("--glare-y", "0%");
     });
   });
 }

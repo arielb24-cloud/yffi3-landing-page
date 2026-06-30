@@ -17,8 +17,11 @@ const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const serviceVisuals = {
   "auto-insurance": {
-    webp: "service-auto-gallery.webp",
-    fallback: "service-auto-gallery.jpg",
+    slides: [
+      { webp: "service-auto-slide-1.webp", fallback: "service-auto-slide-1.jpg", alt: "Miami auto insurance visual with a premium car on a palm-lined city street" },
+      { webp: "service-auto-slide-2.webp", fallback: "service-auto-slide-2.jpg", alt: "Auto insurance visual showing refined vehicle keys and console details" },
+      { webp: "service-auto-slide-3.webp", fallback: "service-auto-slide-3.jpg", alt: "Auto insurance visual showing a family vehicle at a Florida-style home" }
+    ],
     label: "Auto Insurance",
     shortLabel: "Auto",
     scene: "Miami commute visual",
@@ -29,8 +32,11 @@ const serviceVisuals = {
     accent3: "#F4C96B"
   },
   "home-insurance": {
-    webp: "service-homeowners-gallery.webp",
-    fallback: "service-homeowners-gallery.jpg",
+    slides: [
+      { webp: "service-homeowners-slide-1.webp", fallback: "service-homeowners-slide-1.jpg", alt: "Homeowners insurance visual showing a Florida home with palm trees and warm exterior lighting" },
+      { webp: "service-homeowners-slide-2.webp", fallback: "service-homeowners-slide-2.jpg", alt: "Homeowners insurance visual showing roofline and exterior details on a modern Florida home" },
+      { webp: "service-homeowners-slide-3.webp", fallback: "service-homeowners-slide-3.jpg", alt: "Homeowners insurance visual showing a calm living room with Miami natural light" }
+    ],
     label: "Homeowners Insurance",
     shortLabel: "Homeowners",
     scene: "Florida home visual",
@@ -41,8 +47,11 @@ const serviceVisuals = {
     accent3: "#9ADCF7"
   },
   "commercial-insurance": {
-    webp: "service-commercial-gallery.webp",
-    fallback: "service-commercial-gallery.jpg",
+    slides: [
+      { webp: "service-commercial-slide-1.webp", fallback: "service-commercial-slide-1.jpg", alt: "Commercial insurance visual showing a polished Miami business storefront" },
+      { webp: "service-commercial-slide-2.webp", fallback: "service-commercial-slide-2.jpg", alt: "Commercial insurance visual showing a professional office conference room" },
+      { webp: "service-commercial-slide-3.webp", fallback: "service-commercial-slide-3.jpg", alt: "Commercial auto insurance visual showing business vehicles at a modern workspace" }
+    ],
     label: "Commercial Insurance",
     shortLabel: "Commercial",
     scene: "Business coverage visual",
@@ -53,8 +62,11 @@ const serviceVisuals = {
     accent3: "#FFA184"
   },
   "life-insurance": {
-    webp: "service-life-gallery.webp",
-    fallback: "service-life-gallery.jpg",
+    slides: [
+      { webp: "service-life-slide-1.webp", fallback: "service-life-slide-1.jpg", alt: "Life insurance visual showing planning notes and a calm home workspace" },
+      { webp: "service-life-slide-2.webp", fallback: "service-life-slide-2.jpg", alt: "Life insurance visual showing keys and personal planning details on a warm table" },
+      { webp: "service-life-slide-3.webp", fallback: "service-life-slide-3.jpg", alt: "Life insurance visual showing a peaceful home hallway and long-term planning mood" }
+    ],
     label: "Life Insurance",
     shortLabel: "Life",
     scene: "Family planning visual",
@@ -65,8 +77,11 @@ const serviceVisuals = {
     accent3: "#86CFA0"
   },
   "renters-insurance": {
-    webp: "service-renters-gallery.webp",
-    fallback: "service-renters-gallery.jpg",
+    slides: [
+      { webp: "service-renters-slide-1.webp", fallback: "service-renters-slide-1.jpg", alt: "Renters insurance visual showing a modern Miami apartment living room" },
+      { webp: "service-renters-slide-2.webp", fallback: "service-renters-slide-2.jpg", alt: "Renters insurance visual showing apartment keys and personal property details" },
+      { webp: "service-renters-slide-3.webp", fallback: "service-renters-slide-3.jpg", alt: "Renters insurance visual showing a luxury apartment corridor and entry area" }
+    ],
     label: "Renters Insurance",
     shortLabel: "Renters",
     scene: "Apartment coverage visual",
@@ -78,7 +93,7 @@ const serviceVisuals = {
   }
 };
 const address = {
-  streetAddress: "11200 W Flagler St #108-109",
+  streetAddress: "11200 W Flagler St, Ste 108",
   addressLocality: "Miami",
   addressRegion: "FL",
   postalCode: "33174",
@@ -215,7 +230,7 @@ const pages = [
     kind: "home",
     keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, condo insurance Miami, life insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     faqs: [
-      ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St #108-109, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
+      ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
       ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, condo, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
       ["How do I get a free insurance quote from Office #3?", "Use the Get My Free Quote buttons, scan the approved QR code, or call 305-910-8850. The website only starts with basic contact details before opening the secure quote intake path."],
       ["Is bilingual insurance help available?", "Yes. Office #3 offers local English and Spanish quote help so Miami families and business owners can ask coverage questions more comfortably."],
@@ -852,6 +867,14 @@ function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
   const visual = serviceVisuals[page.slug];
+  const serviceSlides = isService
+    ? visual.slides.map((slide, index) => [
+      '<picture class="service-slide" aria-hidden="true">',
+      `<source srcset="/assets/yffi3/${slide.webp}" type="image/webp">`,
+      `<img src="/assets/yffi3/${slide.fallback}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}">`,
+      "</picture>"
+    ].join("")).join("")
+    : "";
   return `
     <section class="hero ${isHome ? "home-hero" : "inner-hero"}" data-reveal>
       <div class="hero-content" data-reveal="left">
@@ -865,13 +888,8 @@ function heroHtml(page) {
         ${
           isService
             ? `<div class="service-picture service-gallery service-gallery-${page.slug}" role="img" aria-label="${escapeHtml(visual.alt)}" data-animate data-in-view="true">
-                 <span class="service-slide" aria-hidden="true"></span>
-                 <span class="service-slide" aria-hidden="true"></span>
-                 <span class="service-slide" aria-hidden="true"></span>
-                 <picture class="service-gallery-preload" aria-hidden="true">
-                   <source srcset="/assets/yffi3/${visual.webp}" type="image/webp">
-                   <img src="/assets/yffi3/${visual.fallback}" alt="${escapeHtml(visual.alt)}" width="1440" height="960" loading="eager" decoding="async" fetchpriority="high">
-                 </picture>
+                 ${serviceSlides}
+                 <div class="service-gallery-dots" aria-hidden="true"><span></span><span></span><span></span></div>
                </div>
                <div class="service-visual-caption">
                  <span class="service-icon-xl">${iconSvg(page.icon)}</span>
@@ -1254,12 +1272,6 @@ function pageHtml(page) {
 `;
 }
 
-function serviceGalleryCss() {
-  return Object.entries(serviceVisuals).map(([slug, visual]) => {
-    return `.service-gallery-${slug} .service-slide { background-image: image-set(url('/assets/yffi3/${visual.webp}') type('image/webp'), url('/assets/yffi3/${visual.fallback}') type('image/jpeg')); }`;
-  }).join("\n");
-}
-
 function cssSource() {
   return `:root {
   color-scheme: dark;
@@ -1288,11 +1300,11 @@ function cssSource() {
   --glass: rgba(255, 255, 255, 0.075);
   --glass-strong: rgba(255, 255, 255, 0.145);
   --glass-line: rgba(255, 255, 255, 0.24);
-  --glass-blur: 14px;
-  --glass-blur-soft: 10px;
-  --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
-  --shadow-soft: 0 18px 54px rgba(0, 0, 0, 0.31);
-  --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 18px 50px rgba(255, 125, 101, 0.22), 0 0 44px rgba(119, 231, 220, 0.12);
+  --glass-blur: 10px;
+  --glass-blur-soft: 7px;
+  --shadow: 0 22px 64px rgba(0, 0, 0, 0.46);
+  --shadow-soft: 0 14px 42px rgba(0, 0, 0, 0.30);
+  --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 14px 38px rgba(255, 125, 101, 0.20), 0 0 30px rgba(119, 231, 220, 0.11);
   --radius: 18px;
   --tilt-x: 0deg;
   --tilt-y: 0deg;
@@ -1327,8 +1339,6 @@ body::before {
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 96px);
   background-size: 180% 180%, 220% 220%, auto, auto;
   transform: translate3d(-1%, -1%, 0) scale(1.04);
-  will-change: transform, opacity;
-  animation: page-flow 28s ease-in-out infinite alternate;
 }
 body::after {
   content: "";
@@ -1459,12 +1469,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   white-space: nowrap;
 }
 .site-nav a {
+  position: relative;
   padding: 8px 12px;
+  overflow: hidden;
+  transition: transform 180ms ease, color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 14px 5px;
+  height: 1px;
+  opacity: 0;
+  transform: scaleX(0.45);
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, rgba(255, 224, 161, 0.78), transparent);
+  transition: opacity 180ms ease, transform 220ms ease;
 }
 .site-nav a:hover, .site-nav a[aria-current="page"] {
   color: var(--ink);
   background: var(--glass-strong);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.site-nav a:hover {
+  transform: translate3d(0, -1px, 0);
+}
+.site-nav a:hover::after, .site-nav a[aria-current="page"]::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 .mobile-call {
   flex: 0 0 auto;
@@ -1559,6 +1590,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .button {
+  --shine-x: -46%;
   position: relative;
   display: inline-flex;
   min-height: 48px;
@@ -1581,6 +1613,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     inset 0 1px 0 rgba(255, 255, 255, 0.32),
     inset 0 -18px 34px rgba(255, 255, 255, 0.04),
     0 18px 44px rgba(0, 0, 0, 0.32);
+  transform: translate3d(0, 0, 0) scale(1);
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 .button::before {
@@ -1600,14 +1633,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   position: absolute;
   inset: -40% auto -40% -35%;
   width: 42%;
-  transform: rotate(18deg);
+  transform: translate3d(var(--shine-x), 0, 0) rotate(18deg);
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
   pointer-events: none;
   opacity: 0;
   transition: opacity 180ms ease, transform 520ms ease;
   z-index: -1;
 }
-.button .icon { width: 17px; height: 17px; }
+.button .icon {
+  width: 17px;
+  height: 17px;
+  transition: transform 180ms ease;
+}
 .button.warm {
   color: var(--ink);
   border-color: rgba(255, 205, 180, 0.38);
@@ -1629,7 +1666,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 0.86rem;
 }
 .button:hover {
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0) scale(1.012);
   border-color: rgba(255, 255, 255, 0.34);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.34),
@@ -1638,7 +1675,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .button:hover::after {
   opacity: 1;
-  transform: translateX(360%) rotate(18deg);
+  transform: translate3d(360%, 0, 0) rotate(18deg);
+}
+.button:hover .icon {
+  transform: translate3d(2px, 0, 0);
+}
+.button:active {
+  transform: translate3d(0, 0, 0) scale(0.992);
 }
 
 h1, h2, h3, p { letter-spacing: 0; }
@@ -1732,6 +1775,8 @@ h3 {
   background:
     linear-gradient(115deg, rgba(255,255,255,.18), transparent 26%, rgba(255,255,255,.055) 48%, transparent 72%),
     radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,.24), transparent 22%);
+  transform: translate3d(-1.5%, -1.5%, 0) scale(1.03);
+  transition: opacity 240ms ease, transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
 }
 .photo-showcase:hover, .service-showcase:hover,
@@ -1741,6 +1786,11 @@ h3 {
 .trust-strip article:hover, .callout:hover, .qr-card:hover, .faq details:hover, .faq details[open], .intent-card:hover {
   border-color: rgba(154, 220, 247, 0.42);
   --lift: -2px;
+}
+.photo-showcase:hover::before, .service-showcase:hover::before,
+.coverage-card:hover::after, .detail-card:hover::after, .intent-card:hover::after, .quote-form:hover::after, .service-cta:hover::after {
+  opacity: 0.96;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 .photo-showcase { padding: 10px; }
 .hero-photo, .about-photo {
@@ -1778,7 +1828,8 @@ h3 {
 .service-picture {
   position: relative;
   overflow: hidden;
-  min-height: 270px;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
   border-radius: 14px;
   isolation: isolate;
   contain: paint;
@@ -1796,51 +1847,90 @@ h3 {
     radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 26%);
   z-index: 2;
 }
-${serviceGalleryCss()}
 .service-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  background-repeat: no-repeat;
-  background-size: 300% 100%;
-  background-position: 0% center;
-  transform: translate3d(0, 0, 0) scale(1.025);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0) scale(1.012);
   will-change: opacity, transform;
 }
-.service-slide:first-of-type {
+.service-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: translate3d(0, 0, 0) scale(1.006);
+}
+.service-slide:nth-of-type(1) {
   opacity: 1;
 }
-.service-slide:nth-of-type(2) {
-  background-position: 50% center;
-}
-.service-slide:nth-of-type(3) {
-  background-position: 100% center;
-}
-.service-gallery[data-in-view="true"] .service-slide {
-  animation: service-slide-fade 18s linear infinite;
+.service-gallery[data-in-view="true"] .service-slide:nth-of-type(1) {
+  animation: service-slide-one 18s linear infinite;
 }
 .service-gallery[data-in-view="true"] .service-slide:nth-of-type(2) {
-  animation-delay: 6s;
+  animation: service-slide-two 18s linear infinite;
 }
 .service-gallery[data-in-view="true"] .service-slide:nth-of-type(3) {
-  animation-delay: 12s;
+  animation: service-slide-three 18s linear infinite;
 }
-.service-gallery-preload {
+.service-gallery:hover .service-slide, .service-gallery:focus-within .service-slide,
+.service-gallery:hover .service-gallery-dots span, .service-gallery:focus-within .service-gallery-dots span {
+  animation-play-state: paused;
+}
+.service-gallery-dots {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
+  right: 14px;
+  bottom: 14px;
+  z-index: 4;
+  display: inline-flex;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 7px;
+  background: rgba(5, 11, 18, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
-.service-gallery-preload img {
-  width: 1px;
-  height: 1px;
+.service-gallery-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  opacity: 0.45;
+  transform: scale(0.72);
+  background: var(--ink);
 }
-@keyframes service-slide-fade {
-  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.025); }
-  34%, 94% { opacity: 0; transform: translate3d(0, 0, 0) scale(1.055); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.025); }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(1) { animation: service-dot-one 18s linear infinite; }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(2) { animation: service-dot-two 18s linear infinite; }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(3) { animation: service-dot-three 18s linear infinite; }
+@keyframes service-slide-one {
+  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  34%, 94% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+}
+@keyframes service-slide-two {
+  0%, 28% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
+  34%, 62% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  68%, 100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+}
+@keyframes service-slide-three {
+  0%, 62% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
+  68%, 94% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+}
+@keyframes service-dot-one {
+  0%, 28% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  34%, 94% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  100% { opacity: 1; transform: scale(1); background: var(--champagne); }
+}
+@keyframes service-dot-two {
+  0%, 28% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  34%, 62% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  68%, 100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+}
+@keyframes service-dot-three {
+  0%, 62% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  68%, 94% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
 }
 .service-visual-caption {
   position: relative;
@@ -1865,11 +1955,20 @@ ${serviceGalleryCss()}
   color: var(--miami-blue);
   background: linear-gradient(145deg, rgba(154, 220, 247, 0.16), rgba(255, 255, 255, 0.08));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), color 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 .service-icon-xl { width: 54px; height: 54px; }
 .soft-icon { width: 44px; height: 44px; }
 .service-icon-xl .icon { width: 28px; height: 28px; }
 .soft-icon .icon { width: 22px; height: 22px; }
+.coverage-card:hover .soft-icon, .detail-card:hover .soft-icon, .intent-card:hover .soft-icon,
+.service-showcase:hover .service-icon-xl, .process-grid article:hover span {
+  transform: translate3d(0, -2px, 0) scale(1.055);
+  color: var(--champagne);
+  border-color: rgba(255, 224, 161, 0.42);
+  background: linear-gradient(145deg, rgba(255, 224, 161, 0.16), rgba(154, 220, 247, 0.10));
+}
 .showcase-logo {
   width: min(100%, 330px);
   height: 134px;
@@ -2014,6 +2113,12 @@ ${serviceGalleryCss()}
   padding: 18px;
   scroll-margin-top: 140px;
 }
+.coverage-card h3, .detail-card h3, .intent-card h3, .faq summary, .link-pills a, .coverage-link-rail a {
+  transition: color 180ms ease, transform 180ms ease;
+}
+.coverage-card:hover h3, .detail-card:hover h3, .intent-card:hover h3 {
+  color: var(--champagne);
+}
 .card-top {
   display: flex;
   align-items: center;
@@ -2047,6 +2152,12 @@ ${serviceGalleryCss()}
   font-weight: 850;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+.tag-row span:hover, .link-pills a:hover, .coverage-link-rail a:hover {
+  transform: translate3d(0, -1px, 0);
+  border-color: rgba(255, 224, 161, 0.34);
+  color: var(--champagne);
 }
 .coverage-link-rail {
   display: flex;
@@ -2318,6 +2429,12 @@ ${serviceGalleryCss()}
   -webkit-backdrop-filter: none;
   transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
   transform: translateY(var(--lift));
+}
+.faq details:hover, .faq details[open] {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(154, 220, 247, 0.055));
+}
+.faq details:hover summary, .faq details[open] summary {
+  color: var(--champagne);
 }
 .faq summary {
   display: flex;
@@ -2634,6 +2751,7 @@ ${serviceGalleryCss()}
   .button:hover, .faq details:hover { transform: none; }
   .trust-track { animation: none; }
   .service-gallery[data-in-view="true"] .service-slide { animation: none; }
+  .service-gallery[data-in-view="true"] .service-gallery-dots span { animation: none; }
   .service-slide { transform: none; }
 }
 `;
@@ -2689,21 +2807,52 @@ if (animatedItems.length) {
 }
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
-  document.querySelectorAll(".liquid-tilt").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-      card.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
-      card.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
-      card.style.setProperty("--glare-x", Math.round(x * 100) + "%");
-      card.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+  const hoverSurfaceSelector = [
+    ".liquid-tilt",
+    ".button",
+    ".coverage-card",
+    ".detail-card",
+    ".intent-card",
+    ".quote-form",
+    ".service-cta",
+    ".trust-strip article",
+    ".why-grid article",
+    ".notice-card",
+    ".callout",
+    ".qr-card",
+    ".faq details",
+    ".about-media",
+    ".franchise-card"
+  ].join(",");
+
+  document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
+    let frame = 0;
+    let lastEvent = null;
+
+    surface.addEventListener("pointermove", (event) => {
+      lastEvent = event;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        if (!lastEvent) return;
+        const rect = surface.getBoundingClientRect();
+        const x = (lastEvent.clientX - rect.left) / rect.width;
+        const y = (lastEvent.clientY - rect.top) / rect.height;
+        surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
+        surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+        if (surface.classList.contains("liquid-tilt")) {
+          surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
+          surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
+        }
+      });
     });
-    card.addEventListener("pointerleave", () => {
-      card.style.setProperty("--tilt-x", "0deg");
-      card.style.setProperty("--tilt-y", "0deg");
-      card.style.setProperty("--glare-x", "50%");
-      card.style.setProperty("--glare-y", "0%");
+
+    surface.addEventListener("pointerleave", () => {
+      lastEvent = null;
+      surface.style.setProperty("--tilt-x", "0deg");
+      surface.style.setProperty("--tilt-y", "0deg");
+      surface.style.setProperty("--glare-x", "50%");
+      surface.style.setProperty("--glare-y", "0%");
     });
   });
 }
@@ -3047,16 +3196,16 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-principal-agent-ariel-busutil.jpg
 - yffi3-original-franchise-logo.png
 - yffi3-quote-qr.jpeg
-- service-auto-gallery.webp
-- service-auto-gallery.jpg
-- service-homeowners-gallery.webp
-- service-homeowners-gallery.jpg
-- service-commercial-gallery.webp
-- service-commercial-gallery.jpg
-- service-life-gallery.webp
-- service-life-gallery.jpg
-- service-renters-gallery.webp
-- service-renters-gallery.jpg
+- service-auto-slide-1.webp through service-auto-slide-3.webp
+- service-auto-slide-1.jpg through service-auto-slide-3.jpg
+- service-homeowners-slide-1.webp through service-homeowners-slide-3.webp
+- service-homeowners-slide-1.jpg through service-homeowners-slide-3.jpg
+- service-commercial-slide-1.webp through service-commercial-slide-3.webp
+- service-commercial-slide-1.jpg through service-commercial-slide-3.jpg
+- service-life-slide-1.webp through service-life-slide-3.webp
+- service-life-slide-1.jpg through service-life-slide-3.jpg
+- service-renters-slide-1.webp through service-renters-slide-3.webp
+- service-renters-slide-1.jpg through service-renters-slide-3.jpg
 
 Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
 `);

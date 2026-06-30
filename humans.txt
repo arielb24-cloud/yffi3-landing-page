@@ -3,7 +3,7 @@
 Site: https://yourfamilyfirstinsurance3.com
 Business: Your Family First Insurance Office #3
 Office phone: 305-910-8850
-Location: 11200 W Flagler St #108-109, Miami, FL 33174
+Location: 11200 W Flagler St, Ste 108, Miami, FL 33174
 
 Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express server for GoDaddy Beta Apps.
 Brand note: Official franchise logo/sign must remain unchanged.

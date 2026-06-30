@@ -103,13 +103,16 @@ for (const slug of requiredSlugs) {
   }
   if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug)) {
     const expectedVisual = {
-      "auto-insurance": "service-auto-gallery",
-      "home-insurance": "service-homeowners-gallery",
-      "commercial-insurance": "service-commercial-gallery",
-      "life-insurance": "service-life-gallery",
-      "renters-insurance": "service-renters-gallery"
+      "auto-insurance": "service-auto-slide",
+      "home-insurance": "service-homeowners-slide",
+      "commercial-insurance": "service-commercial-slide",
+      "life-insurance": "service-life-slide",
+      "renters-insurance": "service-renters-slide"
     }[slug];
-    if (!html.includes(`${expectedVisual}.webp`) || !html.includes(`${expectedVisual}.jpg`)) failures.push(`${slug} missing optimized service visual gallery: ${expectedVisual}`);
+    for (const index of [1, 2, 3]) {
+      if (!html.includes(`${expectedVisual}-${index}.webp`) || !html.includes(`${expectedVisual}-${index}.jpg`)) failures.push(`${slug} missing optimized service slide ${index}: ${expectedVisual}`);
+    }
+    if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
     if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);
   }
@@ -205,7 +208,7 @@ if (!fs.existsSync(styles)) {
   for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!css.includes(required)) failures.push(`CSS missing liquid glass styling: ${required}`);
   }
-  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-slide", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
+  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-slide", ".service-gallery-dots", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
     if (!css.includes(required)) failures.push(`CSS missing polish styling: ${required}`);
   }
 }
