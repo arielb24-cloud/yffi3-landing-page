@@ -32,6 +32,26 @@ if (revealItems.length) {
   }
 }
 
+if (!reducedMotion) {
+  document.querySelectorAll(".liquid-tilt").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      card.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
+      card.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
+      card.style.setProperty("--glare-x", Math.round(x * 100) + "%");
+      card.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+      card.style.setProperty("--glare-x", "50%");
+      card.style.setProperty("--glare-y", "0%");
+    });
+  });
+}
+
 function markValidity(field) {
   if (!field || !("checkValidity" in field)) return;
   const shouldMark = field.matches("input, select, textarea") && field.required;

@@ -101,6 +101,17 @@ for (const slug of requiredSlugs) {
   if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug) && !html.includes("Local search guide")) {
     failures.push(`${slug} missing local search-intent panel`);
   }
+  if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug)) {
+    const expectedVisual = {
+      "auto-insurance": "service-auto-insurance.svg",
+      "home-insurance": "service-homeowners-insurance.svg",
+      "commercial-insurance": "service-commercial-insurance.svg",
+      "life-insurance": "service-life-insurance.svg",
+      "renters-insurance": "service-renters-insurance.svg"
+    }[slug];
+    if (!html.includes(expectedVisual)) failures.push(`${slug} missing optimized service visual: ${expectedVisual}`);
+    if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);
+  }
   if (slug === "get-a-quote" && !html.includes("ConsumerRateQuotes intake path")) failures.push("quote FAQ missing secure intake explanation");
 
   for (const asset of approvedAssets) {
@@ -187,10 +198,10 @@ if (!fs.existsSync(styles)) {
   if (!css.includes("prefers-reduced-motion")) failures.push("CSS missing reduced motion support");
   if (/font-size\s*:[^;]*vw/i.test(css)) failures.push("CSS uses viewport-width font sizing");
   if (!css.includes("object-fit: contain")) failures.push("CSS missing logo contain rule");
-  for (const variable of ["--navy: #06111F", "--deep-blue: #7DD3FC", "--miami-blue: #9ADCF7", "--ice: #F3FBFF", "--coral: #FF7D65", "--gold: #F4C96B"]) {
+  for (const variable of ["--navy: #050B12", "--deep-blue: #7DD3FC", "--miami-blue: #9ADCF7", "--aqua: #77E7DC", "--ice: #F3FBFF", "--coral: #FF7D65", "--gold: #F4C96B", "--champagne: #FFE0A1"]) {
     if (!css.includes(variable)) failures.push(`CSS missing palette variable: ${variable}`);
   }
-  for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after"]) {
+  for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!css.includes(required)) failures.push(`CSS missing liquid glass styling: ${required}`);
   }
   for (const required of ["trust-marquee", ".trust-ticker:hover .trust-track", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {

@@ -9,7 +9,10 @@ const pages = [
   { name: "home", path: "/" },
   { name: "quote", path: "/get-a-quote/" },
   { name: "auto", path: "/auto-insurance/", service: true },
-  { name: "homeowners", path: "/home-insurance/", service: true }
+  { name: "homeowners", path: "/home-insurance/", service: true },
+  { name: "commercial", path: "/commercial-insurance/", service: true },
+  { name: "life", path: "/life-insurance/", service: true },
+  { name: "renters", path: "/renters-insurance/", service: true }
 ];
 const viewports = [
   { name: "mobile", width: 390, height: 920 },
@@ -55,6 +58,8 @@ for (const viewport of viewports) {
       }
 
       if (pageInfo.service) {
+        await expect(page.locator(".service-picture img")).toBeVisible();
+        await expect(page.locator(".service-picture img")).toHaveAttribute("src", /service-.*\.svg/);
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);

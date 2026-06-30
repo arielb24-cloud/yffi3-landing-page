@@ -15,6 +15,63 @@ const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
 const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
 const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const serviceVisuals = {
+  "auto-insurance": {
+    file: "service-auto-insurance.svg",
+    label: "Auto Insurance",
+    shortLabel: "Auto",
+    scene: "Miami commute visual",
+    alt: "Premium abstract Miami auto insurance visual showing a car silhouette, roadway lines, and glass light trails",
+    icon: "car",
+    accent: "#9ADCF7",
+    accent2: "#FFA184",
+    accent3: "#F4C96B"
+  },
+  "home-insurance": {
+    file: "service-homeowners-insurance.svg",
+    label: "Homeowners Insurance",
+    shortLabel: "Homeowners",
+    scene: "Florida home visual",
+    alt: "Premium abstract homeowners insurance visual showing a Florida home, roofline, palms, and protected-property glass shapes",
+    icon: "home",
+    accent: "#86CFA0",
+    accent2: "#F4C96B",
+    accent3: "#9ADCF7"
+  },
+  "commercial-insurance": {
+    file: "service-commercial-insurance.svg",
+    label: "Commercial Insurance",
+    shortLabel: "Commercial",
+    scene: "Business coverage visual",
+    alt: "Premium abstract commercial insurance visual showing a Miami business building, certificate lines, and protective glass grid",
+    icon: "building",
+    accent: "#F4C96B",
+    accent2: "#9ADCF7",
+    accent3: "#FFA184"
+  },
+  "life-insurance": {
+    file: "service-life-insurance.svg",
+    label: "Life Insurance",
+    shortLabel: "Life",
+    scene: "Family planning visual",
+    alt: "Premium abstract life insurance visual showing a heart shield, planning lines, and soft family-protection light paths without people",
+    icon: "heart",
+    accent: "#FFA184",
+    accent2: "#F4C96B",
+    accent3: "#86CFA0"
+  },
+  "renters-insurance": {
+    file: "service-renters-insurance.svg",
+    label: "Renters Insurance",
+    shortLabel: "Renters",
+    scene: "Apartment coverage visual",
+    alt: "Premium abstract renters and condo insurance visual showing an apartment key, room outline, and lease-protection glass panels",
+    icon: "key",
+    accent: "#9ADCF7",
+    accent2: "#86CFA0",
+    accent3: "#F4C96B"
+  }
+};
 const address = {
   streetAddress: "11200 W Flagler St #108-109",
   addressLocality: "Miami",
@@ -447,6 +504,94 @@ function principalPicture(className, loading = "lazy") {
   </picture>`;
 }
 
+function svgIconPaths(name) {
+  const paths = {
+    car: '<path d="M268 432h424l-34-112c-12-38-46-64-86-64H388c-40 0-74 26-86 64l-34 112Z"/><path d="M330 432v42M630 432v42"/><path d="M356 344h248"/><path d="M330 506h300"/><circle cx="342" cy="498" r="27"/><circle cx="618" cy="498" r="27"/>',
+    home: '<path d="M256 402 480 218l224 184"/><path d="M316 378v194h328V378"/><path d="M430 572V442h100v130"/><path d="M370 336h220"/><path d="M612 328v-68h64v122"/>',
+    building: '<path d="M306 574V238h214v336"/><path d="M520 356h146v218"/><path d="M354 304h42M432 304h42M354 374h42M432 374h42M354 444h42M432 444h42M566 410h44M566 478h44"/><path d="M258 574h444"/>',
+    heart: '<path d="M480 560s-198-116-198-258c0-74 56-126 122-126 38 0 65 17 76 38 11-21 38-38 76-38 66 0 122 52 122 126 0 142-198 258-198 258Z"/><path d="M396 370h68l28-58 42 116 28-58h76"/>',
+    key: '<circle cx="378" cy="352" r="94"/><circle cx="378" cy="352" r="34"/><path d="M458 404h210v62h-54v54h-66v-54h-90"/><path d="M276 574h408"/><path d="M322 248h312"/>'
+  };
+  return paths[name] || paths.building;
+}
+
+function serviceVisualSvg(asset) {
+  const text = escapeHtml(asset.shortLabel);
+  const label = escapeHtml(asset.label);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-label="${escapeHtml(asset.alt)}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131F"/>
+      <stop offset=".48" stop-color="#10283A"/>
+      <stop offset="1" stop-color="#173426"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".28"/>
+      <stop offset=".52" stop-color="${asset.accent}" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${asset.accent}"/>
+      <stop offset=".55" stop-color="${asset.accent2}"/>
+      <stop offset="1" stop-color="${asset.accent3}"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .42 0"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="26" flood-color="#000000" flood-opacity=".38"/>
+    </filter>
+    <style>
+      .line{fill:none;stroke:#fff;stroke-opacity:.18;stroke-width:2}
+      .fine{fill:none;stroke:#fff;stroke-opacity:.16;stroke-width:1.4}
+      .glyph{fill:none;stroke:url(#accent);stroke-width:18;stroke-linecap:round;stroke-linejoin:round;filter:url(#softGlow)}
+      .chip{fill:rgba(255,255,255,.10);stroke:rgba(255,255,255,.24);stroke-width:2}
+      .copy{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:800;letter-spacing:0;fill:#FFF8EC}
+      .caption{font-size:26px;fill:#E9F1FA;opacity:.82}
+      @keyframes drift{from{transform:translate3d(-10px,0,0)}to{transform:translate3d(10px,-12px,0)}}
+      .float{animation:drift 5.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+    </style>
+  </defs>
+  <rect width="960" height="720" rx="54" fill="url(#bg)"/>
+  <path d="M0 520C180 440 254 580 430 498s284-246 530-154v376H0Z" fill="${asset.accent}" opacity=".08"/>
+  <path d="M58 126C192 42 326 84 448 146c126 64 246 98 454 0" class="line"/>
+  <path d="M82 592C242 524 370 538 518 590c118 42 228 44 360-40" class="fine"/>
+  <g opacity=".54">
+    <path d="M100 186h760M100 250h760M100 314h760M100 378h760M100 442h760M100 506h760" class="fine"/>
+    <path d="M176 112v496M300 112v496M424 112v496M548 112v496M672 112v496M796 112v496" class="fine"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="92" y="84" width="776" height="552" rx="42" fill="url(#glass)" stroke="rgba(255,255,255,.24)" stroke-width="2"/>
+    <path d="M130 116h700" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+  </g>
+  <g class="float">
+    <rect x="148" y="146" width="664" height="386" rx="38" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.20)" stroke-width="2"/>
+    <path d="M190 496C322 408 404 438 508 372c86-55 150-138 258-118" fill="none" stroke="${asset.accent2}" stroke-opacity=".38" stroke-width="6" stroke-linecap="round"/>
+    <g class="glyph">${svgIconPaths(asset.icon)}</g>
+  </g>
+  <g>
+    <rect x="150" y="560" width="260" height="58" rx="22" class="chip"/>
+    <text x="180" y="598" class="copy" font-size="28">${text}</text>
+    <rect x="442" y="560" width="368" height="58" rx="22" class="chip"/>
+    <text x="472" y="597" class="copy caption">${label}</text>
+  </g>
+  <path d="M122 108C210 146 252 120 318 108" stroke="#fff" stroke-opacity=".48" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="812" cy="132" r="7" fill="${asset.accent3}" opacity=".9"/>
+  <circle cx="790" cy="132" r="7" fill="${asset.accent2}" opacity=".75"/>
+</svg>
+`;
+}
+
+function writeServiceVisualAssets() {
+  const assetDir = path.join(root, "public", "assets", "yffi3");
+  fs.mkdirSync(assetDir, { recursive: true });
+  for (const asset of Object.values(serviceVisuals)) {
+    writeFile(path.join(assetDir, asset.file), serviceVisualSvg(asset));
+  }
+}
+
 function trustTicker() {
   const interactiveTrack = tickerItems.map(([label, href]) => {
     const external = href.startsWith("http") ? ' rel="noopener"' : "";
@@ -701,21 +846,29 @@ function ctaRow(extra = "") {
 function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
+  const visual = serviceVisuals[page.slug];
   return `
     <section class="hero ${isHome ? "home-hero" : "inner-hero"}" data-reveal>
-      <div class="hero-content" data-reveal>
+      <div class="hero-content" data-reveal="left">
         ${isHome ? "" : `<p class="kicker">${escapeHtml(page.nav)}</p>`}
         <h1>${escapeHtml(page.h1)}</h1>
         <p class="hero-lead">${escapeHtml(page.intro)}</p>
         ${ctaRow()}
         <p class="trust-line">Local Office #3 <span>/</span> Personalized Quote Help <span>/</span> Miami Families</p>
       </div>
-      <div class="${isService ? "service-showcase" : "photo-showcase"}" data-reveal>
+      <div class="${isService ? "service-showcase liquid-tilt" : "photo-showcase liquid-tilt"}" data-reveal="right">
         ${
           isService
-            ? `<span class="service-icon-xl">${iconSvg(page.icon)}</span>
-               <div class="showcase-logo">${logoImg("lazy")}</div>
-               <p>${escapeHtml(page.service)} quote help from a local West Flagler Miami office.</p>`
+            ? `<picture class="service-picture">
+                 <img src="/assets/yffi3/${visual.file}" alt="${escapeHtml(visual.alt)}" width="960" height="720" loading="eager" decoding="async" fetchpriority="high">
+               </picture>
+               <div class="service-visual-caption">
+                 <span class="service-icon-xl">${iconSvg(page.icon)}</span>
+                 <div>
+                   <strong>${escapeHtml(visual.scene)}</strong>
+                   <p>${escapeHtml(page.service)} quote help from a local West Flagler Miami office.</p>
+                 </div>
+               </div>`
             : `${familyPicture("hero-photo", isHome ? "eager" : "lazy", isHome ? "high" : "auto")}
                <div class="photo-caption"><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></div>`
         }
@@ -1093,46 +1246,89 @@ function pageHtml(page) {
 function cssSource() {
   return `:root {
   color-scheme: dark;
-  --navy: #06111F;
+  --navy: #050B12;
   --deep-blue: #7DD3FC;
   --miami-blue: #9ADCF7;
+  --aqua: #77E7DC;
   --ice: #F3FBFF;
   --white: #FFF8EC;
   --coral: #FF7D65;
   --gold: #F4C96B;
+  --champagne: #FFE0A1;
   --ink: #FFF8EC;
   --ink-soft: #E9F1FA;
   --muted: #B7C7D8;
-  --cream: #07131F;
-  --cream-2: #0A1827;
+  --cream: #050B12;
+  --cream-2: #08131D;
   --powder: #10283A;
   --sage: #173426;
   --sage-strong: #86CFA0;
   --clay: #FFA184;
   --line: rgba(255, 255, 255, 0.16);
   --line-blue: rgba(154, 220, 247, 0.20);
-  --surface: rgba(15, 35, 52, 0.68);
-  --surface-strong: rgba(21, 47, 68, 0.78);
-  --glass: rgba(255, 255, 255, 0.08);
-  --glass-strong: rgba(255, 255, 255, 0.13);
+  --surface: rgba(14, 31, 43, 0.70);
+  --surface-strong: rgba(20, 45, 58, 0.82);
+  --glass: rgba(255, 255, 255, 0.075);
+  --glass-strong: rgba(255, 255, 255, 0.145);
   --glass-line: rgba(255, 255, 255, 0.24);
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
-  --shadow-soft: 0 16px 46px rgba(0, 0, 0, 0.28);
-  --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 18px 50px rgba(255, 125, 101, 0.22);
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --shadow-soft: 0 18px 54px rgba(0, 0, 0, 0.31);
+  --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 18px 50px rgba(255, 125, 101, 0.22), 0 0 44px rgba(119, 231, 220, 0.12);
   --radius: 18px;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glare-x: 50%;
+  --glare-y: 0%;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
+  position: relative;
   margin: 0;
+  min-height: 100vh;
   overflow-x: hidden;
   color: var(--ink-soft);
   background:
-    linear-gradient(180deg, #06111F 0%, #0A1C2C 34%, #081520 62%, #06111F 100%);
+    linear-gradient(180deg, #050B12 0%, #07131F 28%, #061A20 52%, #050B12 100%);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    linear-gradient(115deg, rgba(119, 231, 220, 0.11), transparent 28%, rgba(255, 161, 132, 0.08) 54%, transparent 74%),
+    linear-gradient(245deg, rgba(244, 201, 107, 0.10), transparent 26%, rgba(134, 207, 160, 0.08) 62%, transparent 82%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 96px);
+  background-size: 180% 180%, 220% 220%, auto, auto;
+  animation: page-flow 24s ease-in-out infinite alternate;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.33;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 82%, transparent 100%);
+}
+::selection {
+  color: #050B12;
+  background: var(--champagne);
+}
+
+@keyframes page-flow {
+  from { background-position: 0% 0%, 100% 0%, 0 0, 0 0; }
+  to { background-position: 100% 70%, 0% 100%, 32px 0, 0 32px; }
 }
 
 img, picture, svg { display: block; }
@@ -1466,6 +1662,7 @@ h3 {
   background: linear-gradient(180deg, rgba(6, 17, 31, 0), rgba(6, 17, 31, 0.8));
 }
 .hero-content, .photo-showcase, .service-showcase { position: relative; z-index: 1; }
+.liquid-tilt { touch-action: pan-y; }
 .hero-lead {
   max-width: 650px;
   margin: 18px 0 0;
@@ -1486,14 +1683,32 @@ h3 {
 }
 .trust-line span { color: var(--clay); }
 .photo-showcase, .service-showcase {
+  --lift: 0px;
   overflow: hidden;
   border: 1px solid var(--glass-line);
   border-radius: 18px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.055)),
+    linear-gradient(135deg, rgba(119, 231, 220, 0.10), rgba(255, 161, 132, 0.07));
   box-shadow: var(--shadow);
   backdrop-filter: blur(22px) saturate(135%);
   -webkit-backdrop-filter: blur(22px) saturate(135%);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transform: perspective(1100px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
+  transform-style: preserve-3d;
+  transition: transform 260ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
+.photo-showcase::before, .service-showcase::before,
+.coverage-card::after, .detail-card::after, .intent-card::after, .quote-form::after, .service-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.76;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.18), transparent 26%, rgba(255,255,255,.055) 48%, transparent 72%),
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,.24), transparent 22%);
+  mix-blend-mode: screen;
+  z-index: 2;
 }
 .photo-showcase:hover, .service-showcase:hover,
 .coverage-card:hover, .detail-card:hover, .process-grid article:hover,
@@ -1502,7 +1717,7 @@ h3 {
 .trust-strip article:hover, .callout:hover, .qr-card:hover, .faq details:hover, .faq details[open], .intent-card:hover {
   border-color: rgba(154, 220, 247, 0.42);
   box-shadow: var(--shadow), 0 0 38px rgba(154, 220, 247, 0.12), 0 0 24px rgba(255, 125, 101, 0.08);
-  transform: translateY(-2px);
+  --lift: -2px;
 }
 .photo-showcase { padding: 10px; }
 .hero-photo, .about-photo {
@@ -1532,11 +1747,39 @@ h3 {
 .photo-caption strong { color: var(--ink); }
 .service-showcase {
   display: grid;
-  gap: 18px;
-  align-content: center;
-  justify-items: start;
-  min-height: 280px;
-  padding: 22px;
+  gap: 12px;
+  align-content: stretch;
+  min-height: 360px;
+  padding: 10px;
+}
+.service-picture {
+  position: relative;
+  overflow: hidden;
+  min-height: 270px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.service-picture img {
+  width: 100%;
+  height: 100%;
+  min-height: 270px;
+  object-fit: cover;
+  transform: scale(1.006);
+}
+.service-visual-caption {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(5, 11, 18, 0.46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
 .service-icon-xl, .soft-icon {
   display: inline-grid;
@@ -1556,10 +1799,17 @@ h3 {
   height: 134px;
   padding: 14px;
 }
-.service-showcase p {
+.service-visual-caption p {
   margin: 0;
   color: var(--ink-soft);
-  font-weight: 850;
+  font-size: 0.9rem;
+  font-weight: 780;
+}
+.service-visual-caption strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ink);
+  line-height: 1.2;
 }
 
 .trust-strip {
@@ -1571,6 +1821,7 @@ h3 {
   z-index: 2;
 }
 .trust-strip article {
+  --lift: 0px;
   display: grid;
   min-height: 74px;
   align-content: center;
@@ -1584,6 +1835,7 @@ h3 {
   -webkit-backdrop-filter: blur(18px) saturate(135%);
   position: relative;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transform: translateY(var(--lift));
 }
 .trust-strip article span {
   position: absolute;
@@ -1621,6 +1873,7 @@ h3 {
 }
 .about-copy { max-width: 620px; }
 .about-media {
+  --lift: 0px;
   border: 1px solid var(--glass-line);
   border-radius: 18px;
   padding: 10px;
@@ -1629,6 +1882,7 @@ h3 {
   backdrop-filter: blur(20px) saturate(135%);
   -webkit-backdrop-filter: blur(20px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: translateY(var(--lift));
 }
 .coverage-section {
   width: 100%;
@@ -1641,6 +1895,7 @@ h3 {
   gap: 14px;
 }
 .coverage-card, .detail-card, .process-grid article, .why-grid article, .quote-form, .notice-card, .intent-card {
+  --lift: 0px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1651,6 +1906,7 @@ h3 {
   backdrop-filter: blur(18px) saturate(135%);
   -webkit-backdrop-filter: blur(18px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transform: translateY(var(--lift));
 }
 .coverage-card::before, .detail-card::before, .process-grid article::before, .why-grid article::before, .quote-form::before, .notice-card::before, .intent-card::before,
 .service-cta::before, .callout::before, .qr-card::before, .faq details::before {
@@ -1807,9 +2063,11 @@ h3 {
   align-items: center;
 }
 .franchise-card {
+  --lift: 0px;
   min-height: 230px;
   padding: 20px;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: translateY(var(--lift));
 }
 .franchise-logo-stack {
   grid-template-columns: minmax(0, 1fr) 112px;
@@ -1835,6 +2093,7 @@ h3 {
 }
 .quote-copy { max-width: 580px; }
 .callout {
+  --lift: 0px;
   display: flex;
   gap: 12px;
   align-items: flex-start;
@@ -1847,6 +2106,7 @@ h3 {
   backdrop-filter: blur(16px) saturate(135%);
   -webkit-backdrop-filter: blur(16px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: translateY(var(--lift));
 }
 .callout .icon {
   width: 24px;
@@ -1856,6 +2116,7 @@ h3 {
 }
 .callout p { margin: 0; }
 .qr-card {
+  --lift: 0px;
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
   gap: 18px;
@@ -1869,6 +2130,7 @@ h3 {
   backdrop-filter: blur(16px) saturate(135%);
   -webkit-backdrop-filter: blur(16px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: translateY(var(--lift));
 }
 .qr-card img {
   width: 132px;
@@ -1933,6 +2195,7 @@ h3 {
   overflow: hidden;
 }
 .service-cta {
+  --lift: 0px;
   display: grid;
   gap: 18px;
   align-items: center;
@@ -1944,6 +2207,7 @@ h3 {
   backdrop-filter: blur(20px) saturate(135%);
   -webkit-backdrop-filter: blur(20px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: translateY(var(--lift));
 }
 .related-links { padding-top: 18px; }
 .link-pills {
@@ -1961,6 +2225,7 @@ h3 {
   gap: 10px;
 }
 .faq details {
+  --lift: 0px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -1972,6 +2237,7 @@ h3 {
   backdrop-filter: blur(16px) saturate(135%);
   -webkit-backdrop-filter: blur(16px) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+  transform: translateY(var(--lift));
 }
 .faq summary {
   display: flex;
@@ -2328,6 +2594,26 @@ if (revealItems.length) {
   }
 }
 
+if (!reducedMotion) {
+  document.querySelectorAll(".liquid-tilt").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      card.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
+      card.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
+      card.style.setProperty("--glare-x", Math.round(x * 100) + "%");
+      card.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+      card.style.setProperty("--glare-x", "50%");
+      card.style.setProperty("--glare-y", "0%");
+    });
+  });
+}
+
 function markValidity(field) {
   if (!field || !("checkValidity" in field)) return;
   const shouldMark = field.matches("input, select, textarea") && field.required;
@@ -2667,6 +2953,11 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-principal-agent-ariel-busutil.jpg
 - yffi3-original-franchise-logo.png
 - yffi3-quote-qr.jpeg
+- service-auto-insurance.svg
+- service-homeowners-insurance.svg
+- service-commercial-insurance.svg
+- service-life-insurance.svg
+- service-renters-insurance.svg
 
 Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
 `);
@@ -2681,6 +2972,7 @@ function copyPublicAssetsForPreview() {
 }
 
 function generate() {
+  writeServiceVisualAssets();
   for (const page of pages) {
     const html = pageHtml(page);
     const lower = html.toLowerCase();

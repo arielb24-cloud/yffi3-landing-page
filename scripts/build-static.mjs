@@ -47,6 +47,11 @@ for (const entry of entries) {
 }
 
 copyIfExists(path.join(root, "public"), path.join(dist));
+fs.mkdirSync(path.join(dist, "assets"), { recursive: true });
+fs.copyFileSync(path.join(root, "assets", "styles.css"), path.join(dist, "assets", "styles.css"));
+fs.copyFileSync(path.join(root, "assets", "site.js"), path.join(dist, "assets", "site.js"));
+fs.rmSync(path.join(dist, "assets", "styles 2.css"), { force: true });
+fs.rmSync(path.join(dist, "assets", "site 2.js"), { force: true });
 fs.rmSync(path.join(dist, "assets", "yffi3", "README.md"), { force: true });
 
 run(process.execPath, ["scripts/validate-site.mjs", "--dist"]);
