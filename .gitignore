@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+coverage/
+playwright-report/
+playwright-screenshots/
+audit-screenshots/
+test-results/
+*.zip
+.env
+.env.*
+!.env.example
+.DS_Store
