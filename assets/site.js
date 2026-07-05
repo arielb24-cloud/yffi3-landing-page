@@ -34,15 +34,31 @@ if (revealItems.length) {
 
 const animatedItems = document.querySelectorAll("[data-animate]");
 if (animatedItems.length) {
+  const syncMotionMedia = (item, shouldPlay) => {
+    item.querySelectorAll("video").forEach((video) => {
+      if (shouldPlay && !reducedMotion) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  };
   if (reducedMotion || !("IntersectionObserver" in window)) {
-    animatedItems.forEach((item) => item.setAttribute("data-in-view", "true"));
+    animatedItems.forEach((item) => {
+      item.setAttribute("data-in-view", "true");
+      syncMotionMedia(item, false);
+    });
   } else {
     const animationObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         entry.target.setAttribute("data-in-view", String(entry.isIntersecting));
+        syncMotionMedia(entry.target, entry.isIntersecting);
       });
     }, { rootMargin: "96px 0px", threshold: 0.01 });
-    animatedItems.forEach((item) => animationObserver.observe(item));
+    animatedItems.forEach((item) => {
+      syncMotionMedia(item, item.getAttribute("data-in-view") === "true");
+      animationObserver.observe(item);
+    });
   }
 }
 

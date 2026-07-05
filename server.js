@@ -4,6 +4,16 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 3000;
 const distDir = path.join(__dirname, "dist");
+const canonicalHost = "yourfamilyfirstinsurance3.com";
+const blockedPublicPaths = [
+  /^\/(?:AGENTS|AUDIT_REPORT|DEPLOYMENT|DEPLOYMENT_AUTHORIZATION_REQUESTS|README|SECURITY|SEO_AI_FINDABILITY_NOTES)\.md$/i,
+  /^\/(?:package|pnpm-lock)\.json$/i,
+  /^\/(?:server|playwright\.config)\.(?:js|mjs|ts)$/i,
+  /^\/(?:node_modules|test-results|playwright-report|playwright-screenshots|audit-screenshots)(?:\/|$)/i,
+  /^\/.*\.zip$/i,
+  /^\/\.git(?:\/|$)/i,
+  /^\/\.env/i
+];
 
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
@@ -15,8 +25,27 @@ app.use((req, res, next) => {
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests"
   );
+  next();
+});
+
+app.use((req, res, next) => {
+  const host = req.hostname || "";
+  if (host.toLowerCase() === `www.${canonicalHost}`) {
+    res.redirect(301, `https://${canonicalHost}${req.originalUrl}`);
+    return;
+  }
+  next();
+});
+
+app.use((req, res, next) => {
+  const requestPath = decodeURIComponent(req.path || "/");
+  if (blockedPublicPaths.some((pattern) => pattern.test(requestPath))) {
+    res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+    res.status(404).type("text/plain").send("Not found");
+    return;
+  }
   next();
 });
 
@@ -32,9 +61,11 @@ app.get("/healthz", (_req, res) => {
 
 app.use((req, res) => {
   if (req.accepts("html")) {
-    res.status(404).sendFile(path.join(distDir, "index.html"));
+    res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+    res.status(404).sendFile(path.join(distDir, "404.html"));
     return;
   }
+  res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
   res.status(404).type("text/plain").send("Not found");
 });
 

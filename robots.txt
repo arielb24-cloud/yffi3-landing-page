@@ -1,5 +1,22 @@
 User-agent: *
 Allow: /
+Disallow: /*.zip$
+Disallow: /package.json
+Disallow: /pnpm-lock.yaml
+Disallow: /server.js
+Disallow: /playwright.config.mjs
+Disallow: /AGENTS.md
+Disallow: /AUDIT_REPORT.md
+Disallow: /DEPLOYMENT.md
+Disallow: /DEPLOYMENT_AUTHORIZATION_REQUESTS.md
+Disallow: /README.md
+Disallow: /SECURITY.md
+Disallow: /SEO_AI_FINDABILITY_NOTES.md
+Disallow: /node_modules/
+Disallow: /test-results/
+Disallow: /playwright-report/
+Disallow: /playwright-screenshots/
+Disallow: /audit-screenshots/
 
 User-agent: GPTBot
 Allow: /

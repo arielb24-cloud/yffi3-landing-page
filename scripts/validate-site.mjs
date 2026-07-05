@@ -20,6 +20,20 @@ const requiredSlugs = [
 ];
 const requiredFields = ["name", "phone", "email", "insuranceType", "zip", "bestTime", "notes"];
 const honeypotField = "companyWebsite";
+const forbiddenDistFiles = [
+  "AGENTS.md",
+  "AUDIT_REPORT.md",
+  "DEPLOYMENT.md",
+  "DEPLOYMENT_AUTHORIZATION_REQUESTS.md",
+  "README.md",
+  "SECURITY.md",
+  "SEO_AI_FINDABILITY_NOTES.md",
+  "package.json",
+  "pnpm-lock.yaml",
+  "server.js",
+  "playwright.config.mjs",
+  "yffi3-godaddy-upload.zip"
+];
 const bannedPhrases = [
   "guaranteed " + "cheapest",
   "official " + "cheapest " + "insurance",
@@ -109,9 +123,19 @@ for (const slug of requiredSlugs) {
       "life-insurance": "service-life-slide",
       "renters-insurance": "service-renters-slide"
     }[slug];
+    const expectedMotion = {
+      "auto-insurance": "service-auto-motion",
+      "home-insurance": "service-homeowners-motion",
+      "commercial-insurance": "service-commercial-motion",
+      "life-insurance": "service-life-motion",
+      "renters-insurance": "service-renters-motion"
+    }[slug];
     for (const index of [1, 2, 3]) {
       if (!html.includes(`${expectedVisual}-${index}.webp`) || !html.includes(`${expectedVisual}-${index}.jpg`)) failures.push(`${slug} missing optimized service slide ${index}: ${expectedVisual}`);
     }
+    if (!html.includes(`${expectedMotion}.webm`) || !html.includes(`${expectedMotion}.gif`)) failures.push(`${slug} missing service motion video/GIF assets: ${expectedMotion}`);
+    if (!/<video\b[^>]*class="[^"]*service-motion-video/i.test(html)) failures.push(`${slug} missing service motion video element`);
+    if (!/<img\b[^>]*class="[^"]*service-motion-gif/i.test(html)) failures.push(`${slug} missing service motion GIF image element`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
     if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);
@@ -165,6 +189,9 @@ if (!fs.existsSync(robots)) {
 } else {
   const robotsText = read(robots);
   if (!robotsText.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) failures.push("robots.txt missing sitemap URL");
+  for (const disallowed of ["Disallow: /package.json", "Disallow: /server.js", "Disallow: /DEPLOYMENT.md", "Disallow: /node_modules/"]) {
+    if (!robotsText.includes(disallowed)) failures.push(`robots.txt missing backend artifact disallow: ${disallowed}`);
+  }
   for (const bot of ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "Googlebot", "Bingbot", "PerplexityBot"]) {
     if (!robotsText.includes(`User-agent: ${bot}`)) failures.push(`robots.txt missing ${bot}`);
   }
@@ -183,6 +210,25 @@ if (!fs.existsSync(llms)) {
 const humans = path.join(siteRoot, "humans.txt");
 if (!fs.existsSync(humans)) failures.push("Missing humans.txt");
 
+const notFound = path.join(siteRoot, "404.html");
+if (!fs.existsSync(notFound)) {
+  failures.push("Missing noindex 404.html");
+} else {
+  const notFoundText = read(notFound);
+  if (!/<meta name="description" content="[^"]+">/i.test(notFoundText)) failures.push("404.html missing meta description");
+  if (!/<meta name="robots" content="noindex, nofollow, noarchive">/i.test(notFoundText)) failures.push("404.html missing noindex robots meta");
+  if (countMatches(notFoundText, /<h1[\s>]/gi) !== 1) failures.push("404.html must have exactly one H1");
+}
+
+if (checkDist) {
+  for (const file of forbiddenDistFiles) {
+    if (fs.existsSync(path.join(siteRoot, file))) failures.push(`dist must not expose backend/deployment file: ${file}`);
+  }
+  for (const directory of ["node_modules", "test-results", "playwright-report", "playwright-screenshots", "audit-screenshots"]) {
+    if (fs.existsSync(path.join(siteRoot, directory))) failures.push(`dist must not expose backend/QA directory: ${directory}`);
+  }
+}
+
 const htaccess = path.join(siteRoot, ".htaccess");
 if (!fs.existsSync(htaccess)) {
   failures.push("Missing .htaccess security header file");
@@ -192,6 +238,8 @@ if (!fs.existsSync(htaccess)) {
     if (!htaccessText.includes(header)) failures.push(`.htaccess missing ${header}`);
   }
   if (!htaccessText.includes("https://secure.ConsumerRateQuotes.com")) failures.push(".htaccess CSP missing ConsumerRateQuotes form-action");
+  if (!htaccessText.includes("media-src 'self'")) failures.push(".htaccess CSP missing media-src for local videos");
+  if (!htaccessText.includes("ErrorDocument 404 /404.html")) failures.push(".htaccess missing noindex 404 fallback");
 }
 
 const styles = path.join(siteRoot, "assets", "styles.css");
@@ -208,7 +256,7 @@ if (!fs.existsSync(styles)) {
   for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!css.includes(required)) failures.push(`CSS missing liquid glass styling: ${required}`);
   }
-  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-slide", ".service-gallery-dots", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
+  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-motion-video", ".service-gallery-dots", ".service-motion-gif", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
     if (!css.includes(required)) failures.push(`CSS missing polish styling: ${required}`);
   }
 }
@@ -220,6 +268,7 @@ if (!fs.existsSync(js)) {
   const script = read(js);
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
+  if (!script.includes("syncMotionMedia")) failures.push("JS missing offscreen video pause/play handling");
   if (!script.includes("window.location.assign")) failures.push("JS missing secure quote redirect");
 }
 
@@ -231,6 +280,9 @@ if (!checkDist) {
     const serverText = read(server);
     if (!serverText.includes("process.env.PORT || 3000")) failures.push("server.js must use process.env.PORT || 3000");
     if (!serverText.includes("express.static(distDir")) failures.push("server.js must serve the dist folder with express.static");
+    if (!serverText.includes("blockedPublicPaths")) failures.push("server.js must block backend/deployment-looking public paths");
+    if (!serverText.includes("404.html")) failures.push("server.js must serve noindex 404.html for unknown HTML routes");
+    if (!serverText.includes("media-src 'self'")) failures.push("server.js CSP missing media-src for local videos");
   }
 }
 

@@ -22,6 +22,9 @@ const serviceVisuals = {
       { webp: "service-auto-slide-2.webp", fallback: "service-auto-slide-2.jpg", alt: "Auto insurance visual showing refined vehicle keys and console details" },
       { webp: "service-auto-slide-3.webp", fallback: "service-auto-slide-3.jpg", alt: "Auto insurance visual showing a family vehicle at a Florida-style home" }
     ],
+    motionVideo: "service-auto-motion.webm",
+    motionGif: "service-auto-motion.gif",
+    motionAlt: "Animated auto insurance motion loop showing premium Miami vehicle coverage visuals",
     label: "Auto Insurance",
     shortLabel: "Auto",
     scene: "Miami commute visual",
@@ -37,6 +40,9 @@ const serviceVisuals = {
       { webp: "service-homeowners-slide-2.webp", fallback: "service-homeowners-slide-2.jpg", alt: "Homeowners insurance visual showing roofline and exterior details on a modern Florida home" },
       { webp: "service-homeowners-slide-3.webp", fallback: "service-homeowners-slide-3.jpg", alt: "Homeowners insurance visual showing a calm living room with Miami natural light" }
     ],
+    motionVideo: "service-homeowners-motion.webm",
+    motionGif: "service-homeowners-motion.gif",
+    motionAlt: "Animated homeowners insurance motion loop showing premium Florida home coverage visuals",
     label: "Homeowners Insurance",
     shortLabel: "Homeowners",
     scene: "Florida home visual",
@@ -52,6 +58,9 @@ const serviceVisuals = {
       { webp: "service-commercial-slide-2.webp", fallback: "service-commercial-slide-2.jpg", alt: "Commercial insurance visual showing a professional office conference room" },
       { webp: "service-commercial-slide-3.webp", fallback: "service-commercial-slide-3.jpg", alt: "Commercial auto insurance visual showing business vehicles at a modern workspace" }
     ],
+    motionVideo: "service-commercial-motion.webm",
+    motionGif: "service-commercial-motion.gif",
+    motionAlt: "Animated commercial insurance motion loop showing premium Miami business coverage visuals",
     label: "Commercial Insurance",
     shortLabel: "Commercial",
     scene: "Business coverage visual",
@@ -67,6 +76,9 @@ const serviceVisuals = {
       { webp: "service-life-slide-2.webp", fallback: "service-life-slide-2.jpg", alt: "Life insurance visual showing keys and personal planning details on a warm table" },
       { webp: "service-life-slide-3.webp", fallback: "service-life-slide-3.jpg", alt: "Life insurance visual showing a peaceful home hallway and long-term planning mood" }
     ],
+    motionVideo: "service-life-motion.webm",
+    motionGif: "service-life-motion.gif",
+    motionAlt: "Animated life insurance motion loop showing premium family planning coverage visuals",
     label: "Life Insurance",
     shortLabel: "Life",
     scene: "Family planning visual",
@@ -82,6 +94,9 @@ const serviceVisuals = {
       { webp: "service-renters-slide-2.webp", fallback: "service-renters-slide-2.jpg", alt: "Renters insurance visual showing apartment keys and personal property details" },
       { webp: "service-renters-slide-3.webp", fallback: "service-renters-slide-3.jpg", alt: "Renters insurance visual showing a luxury apartment corridor and entry area" }
     ],
+    motionVideo: "service-renters-motion.webm",
+    motionGif: "service-renters-motion.gif",
+    motionAlt: "Animated renters insurance motion loop showing premium apartment coverage visuals",
     label: "Renters Insurance",
     shortLabel: "Renters",
     scene: "Apartment coverage visual",
@@ -867,9 +882,16 @@ function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
   const visual = serviceVisuals[page.slug];
+  const serviceMotion = isService
+    ? [
+      `<video class="service-media-layer service-motion-video" aria-hidden="true" muted loop playsinline autoplay preload="metadata" poster="/assets/yffi3/${visual.motionGif}">`,
+      `<source src="/assets/yffi3/${visual.motionVideo}" type="video/webm">`,
+      "</video>"
+    ].join("")
+    : "";
   const serviceSlides = isService
     ? visual.slides.map((slide, index) => [
-      '<picture class="service-slide" aria-hidden="true">',
+      `<picture class="service-media-layer service-slide service-slide-${index + 1}" aria-hidden="true">`,
       `<source srcset="/assets/yffi3/${slide.webp}" type="image/webp">`,
       `<img src="/assets/yffi3/${slide.fallback}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}">`,
       "</picture>"
@@ -888,8 +910,9 @@ function heroHtml(page) {
         ${
           isService
             ? `<div class="service-picture service-gallery service-gallery-${page.slug}" role="img" aria-label="${escapeHtml(visual.alt)}" data-animate data-in-view="true">
+                 ${serviceMotion}
                  ${serviceSlides}
-                 <div class="service-gallery-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                 <div class="service-gallery-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
                </div>
                <div class="service-visual-caption">
                  <span class="service-icon-xl">${iconSvg(page.icon)}</span>
@@ -897,6 +920,7 @@ function heroHtml(page) {
                    <strong>${escapeHtml(visual.scene)}</strong>
                    <p>${escapeHtml(page.service)} quote help from a local West Flagler Miami office.</p>
                  </div>
+                 <img class="service-motion-gif" src="/assets/yffi3/${visual.motionGif}" alt="${escapeHtml(visual.motionAlt)}" width="320" height="200" loading="lazy" decoding="async">
                </div>`
             : `${familyPicture("hero-photo", isHome ? "eager" : "lazy", isHome ? "high" : "auto")}
                <div class="photo-caption"><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></div>`
@@ -1265,6 +1289,45 @@ function pageHtml(page) {
   <main id="main">
     ${heroHtml(page)}
     ${bodyFor(page)}
+  </main>
+  ${footerHtml()}
+</body>
+</html>
+`;
+}
+
+function notFoundHtml() {
+  const description = "The requested Your Family First Insurance Office #3 page was not found. Use the main navigation or request local Miami insurance quote help.";
+  return `<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found | Your Family First Insurance Office #3</title>
+    <meta name="description" content="${description}">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#06111F">
+    <link rel="canonical" href="${siteUrl}/404.html">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script src="/assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  ${navHtml("")}
+  <main id="main">
+    <section class="hero inner-hero not-found-hero" data-reveal>
+      <div class="hero-content" data-reveal="left">
+        <h1>Page Not Found</h1>
+        <p class="hero-lead">That page is not available. Your Family First Insurance Office #3 can still help with local Miami auto, homeowners, renters, life, and business insurance quote conversations.</p>
+        ${ctaRow()}
+      </div>
+      <div class="photo-showcase liquid-tilt" data-reveal="right">
+        ${familyPicture("hero-photo", "lazy", "auto")}
+        <div class="photo-caption"><strong>Office #3</strong><span>Miami, Florida</span></div>
+      </div>
+    </section>
   </main>
   ${footerHtml()}
 </body>
@@ -1847,13 +1910,20 @@ h3 {
     radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 26%);
   z-index: 2;
 }
-.service-slide {
+.service-media-layer {
   position: absolute;
   inset: 0;
   opacity: 0;
   overflow: hidden;
   transform: translate3d(0, 0, 0) scale(1.012);
   will-change: opacity, transform;
+}
+.service-motion-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
 }
 .service-slide img {
   width: 100%;
@@ -1862,19 +1932,19 @@ h3 {
   object-position: center;
   transform: translate3d(0, 0, 0) scale(1.006);
 }
-.service-slide:nth-of-type(1) {
-  opacity: 1;
+.service-gallery[data-in-view="true"] .service-motion-video {
+  animation: service-layer-video 24s linear infinite;
 }
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(1) {
-  animation: service-slide-one 18s linear infinite;
+.service-gallery[data-in-view="true"] .service-slide-1 {
+  animation: service-layer-one 24s linear infinite;
 }
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(2) {
-  animation: service-slide-two 18s linear infinite;
+.service-gallery[data-in-view="true"] .service-slide-2 {
+  animation: service-layer-two 24s linear infinite;
 }
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(3) {
-  animation: service-slide-three 18s linear infinite;
+.service-gallery[data-in-view="true"] .service-slide-3 {
+  animation: service-layer-three 24s linear infinite;
 }
-.service-gallery:hover .service-slide, .service-gallery:focus-within .service-slide,
+.service-gallery:hover .service-media-layer, .service-gallery:focus-within .service-media-layer,
 .service-gallery:hover .service-gallery-dots span, .service-gallery:focus-within .service-gallery-dots span {
   animation-play-state: paused;
 }
@@ -1899,44 +1969,55 @@ h3 {
   transform: scale(0.72);
   background: var(--ink);
 }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(1) { animation: service-dot-one 18s linear infinite; }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(2) { animation: service-dot-two 18s linear infinite; }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(3) { animation: service-dot-three 18s linear infinite; }
-@keyframes service-slide-one {
-  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  34%, 94% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(1) { animation: service-dot-video 24s linear infinite; }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(2) { animation: service-dot-one 24s linear infinite; }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(3) { animation: service-dot-two 24s linear infinite; }
+.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(4) { animation: service-dot-three 24s linear infinite; }
+@keyframes service-layer-video {
+  0%, 19% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  25%, 94% { opacity: 0; transform: translate3d(-0.7%, 0, 0) scale(1.035); }
   100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
 }
-@keyframes service-slide-two {
-  0%, 28% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
-  34%, 62% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  68%, 100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+@keyframes service-layer-one {
+  0%, 19% { opacity: 0; transform: translate3d(0.8%, 0, 0) scale(1.035); }
+  25%, 44% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  50%, 100% { opacity: 0; transform: translate3d(-0.8%, 0, 0) scale(1.035); }
 }
-@keyframes service-slide-three {
-  0%, 62% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
-  68%, 94% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
+@keyframes service-layer-two {
+  0%, 44% { opacity: 0; transform: translate3d(0.8%, 0, 0) scale(1.035); }
+  50%, 69% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  75%, 100% { opacity: 0; transform: translate3d(-0.8%, 0, 0) scale(1.035); }
 }
-@keyframes service-dot-one {
-  0%, 28% { opacity: 1; transform: scale(1); background: var(--champagne); }
-  34%, 94% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+@keyframes service-layer-three {
+  0%, 69% { opacity: 0; transform: translate3d(0.8%, 0, 0) scale(1.035); }
+  75%, 94% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
+  100% { opacity: 0; transform: translate3d(-0.8%, 0, 0) scale(1.035); }
+}
+@keyframes service-dot-video {
+  0%, 19% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  25%, 94% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
   100% { opacity: 1; transform: scale(1); background: var(--champagne); }
 }
+@keyframes service-dot-one {
+  0%, 19% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  25%, 44% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  50%, 100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+}
 @keyframes service-dot-two {
-  0%, 28% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-  34%, 62% { opacity: 1; transform: scale(1); background: var(--champagne); }
-  68%, 100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  0%, 44% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  50%, 69% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  75%, 100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
 }
 @keyframes service-dot-three {
-  0%, 62% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-  68%, 94% { opacity: 1; transform: scale(1); background: var(--champagne); }
+  0%, 69% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+  75%, 94% { opacity: 1; transform: scale(1); background: var(--champagne); }
   100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
 }
 .service-visual-caption {
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) 86px;
   gap: 12px;
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -1946,6 +2027,15 @@ h3 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(var(--glass-blur-soft)) saturate(140%);
   -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(140%);
+}
+.service-motion-gif {
+  width: 86px;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
 }
 .service-icon-xl, .soft-icon {
   display: inline-grid;
@@ -2699,10 +2789,11 @@ h3 {
     --glass-blur: 9px;
     --glass-blur-soft: 7px;
   }
-  .header-shell { width: min(100% - 20px, 1180px); gap: 7px; }
-  .brand-logo { width: 98px; height: 48px; }
-  .mobile-call { padding-inline: 8px; font-size: 0.78rem; }
+  .header-shell { width: min(100% - 20px, 1180px); gap: 6px; padding: 8px 0; }
+  .brand-logo { width: 92px; height: 44px; }
+  .mobile-call { min-height: 36px; padding-inline: 8px; font-size: 0.76rem; }
   .mobile-call span { white-space: nowrap; }
+  .menu-toggle { width: 40px; height: 38px; }
   .hero { padding-top: 30px; padding-bottom: 34px; }
   h1 { font-size: 2.34rem; }
   h2 { font-size: 1.7rem; }
@@ -2717,9 +2808,15 @@ h3 {
     mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
   }
-  .trust-track a { font-size: 0.72rem; }
+  .trust-track span { padding: 4px 8px; }
+  .trust-track a, .ticker-copy { min-height: 23px; padding: 2px 9px; font-size: 0.7rem; }
   .qr-card { grid-template-columns: 96px minmax(0, 1fr); }
   .qr-card img { width: 96px; height: 96px; }
+  .service-visual-caption {
+    grid-template-columns: auto minmax(0, 1fr) 62px;
+    gap: 9px;
+  }
+  .service-motion-gif { width: 62px; border-radius: 10px; }
   .franchise-logo-stack { grid-template-columns: minmax(0, 1fr); }
   .franchise-logo-original {
     max-height: 110px;
@@ -2750,9 +2847,10 @@ h3 {
   }
   .button:hover, .faq details:hover { transform: none; }
   .trust-track { animation: none; }
-  .service-gallery[data-in-view="true"] .service-slide { animation: none; }
+  .service-gallery[data-in-view="true"] .service-media-layer { animation: none; }
   .service-gallery[data-in-view="true"] .service-gallery-dots span { animation: none; }
-  .service-slide { transform: none; }
+  .service-media-layer { transform: none; }
+  .service-motion-video { opacity: 1; }
 }
 `;
 }
@@ -2794,15 +2892,31 @@ if (revealItems.length) {
 
 const animatedItems = document.querySelectorAll("[data-animate]");
 if (animatedItems.length) {
+  const syncMotionMedia = (item, shouldPlay) => {
+    item.querySelectorAll("video").forEach((video) => {
+      if (shouldPlay && !reducedMotion) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  };
   if (reducedMotion || !("IntersectionObserver" in window)) {
-    animatedItems.forEach((item) => item.setAttribute("data-in-view", "true"));
+    animatedItems.forEach((item) => {
+      item.setAttribute("data-in-view", "true");
+      syncMotionMedia(item, false);
+    });
   } else {
     const animationObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         entry.target.setAttribute("data-in-view", String(entry.isIntersecting));
+        syncMotionMedia(entry.target, entry.isIntersecting);
       });
     }, { rootMargin: "96px 0px", threshold: 0.01 });
-    animatedItems.forEach((item) => animationObserver.observe(item));
+    animatedItems.forEach((item) => {
+      syncMotionMedia(item, item.getAttribute("data-in-view") === "true");
+      animationObserver.observe(item);
+    });
   }
 }
 
@@ -2894,6 +3008,23 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
 function robotsTxt() {
   return `User-agent: *
 Allow: /
+Disallow: /*.zip$
+Disallow: /package.json
+Disallow: /pnpm-lock.yaml
+Disallow: /server.js
+Disallow: /playwright.config.mjs
+Disallow: /AGENTS.md
+Disallow: /AUDIT_REPORT.md
+Disallow: /DEPLOYMENT.md
+Disallow: /DEPLOYMENT_AUTHORIZATION_REQUESTS.md
+Disallow: /README.md
+Disallow: /SECURITY.md
+Disallow: /SEO_AI_FINDABILITY_NOTES.md
+Disallow: /node_modules/
+Disallow: /test-results/
+Disallow: /playwright-report/
+Disallow: /playwright-screenshots/
+Disallow: /audit-screenshots/
 
 User-agent: GPTBot
 Allow: /
@@ -2989,10 +3120,16 @@ function apacheHtaccess() {
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes
+
+ErrorDocument 404 /404.html
+
+<FilesMatch "^(AGENTS|AUDIT_REPORT|DEPLOYMENT|DEPLOYMENT_AUTHORIZATION_REQUESTS|README|SECURITY|SEO_AI_FINDABILITY_NOTES)\\.md$|^(package|pnpm-lock)\\.json$|^(server|playwright\\.config)\\.(js|mjs|ts)$|\\.zip$">
+  Require all denied
+</FilesMatch>
 
 Redirect 301 /renters-condo-insurance/ /renters-insurance/
 `;
@@ -3198,14 +3335,24 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-quote-qr.jpeg
 - service-auto-slide-1.webp through service-auto-slide-3.webp
 - service-auto-slide-1.jpg through service-auto-slide-3.jpg
+- service-auto-motion.gif
+- service-auto-motion.webm
 - service-homeowners-slide-1.webp through service-homeowners-slide-3.webp
 - service-homeowners-slide-1.jpg through service-homeowners-slide-3.jpg
+- service-homeowners-motion.gif
+- service-homeowners-motion.webm
 - service-commercial-slide-1.webp through service-commercial-slide-3.webp
 - service-commercial-slide-1.jpg through service-commercial-slide-3.jpg
+- service-commercial-motion.gif
+- service-commercial-motion.webm
 - service-life-slide-1.webp through service-life-slide-3.webp
 - service-life-slide-1.jpg through service-life-slide-3.jpg
+- service-life-motion.gif
+- service-life-motion.webm
 - service-renters-slide-1.webp through service-renters-slide-3.webp
 - service-renters-slide-1.jpg through service-renters-slide-3.jpg
+- service-renters-motion.gif
+- service-renters-motion.webm
 
 Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
 `);
@@ -3228,6 +3375,7 @@ function generate() {
     }
     writeFile(pagePath(page.slug), html);
   }
+  writeFile(path.join(root, "404.html"), notFoundHtml());
   writeFile(path.join(root, "assets", "styles.css"), cssSource());
   writeFile(path.join(root, "assets", "site.js"), jsSource());
   writeFile(path.join(root, "robots.txt"), robotsTxt());

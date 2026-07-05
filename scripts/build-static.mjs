@@ -24,6 +24,7 @@ fs.mkdirSync(dist, { recursive: true });
 
 const entries = [
   "index.html",
+  "404.html",
   "favicon.ico",
   "auto-insurance",
   "home-insurance",

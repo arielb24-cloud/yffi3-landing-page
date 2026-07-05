@@ -59,10 +59,14 @@ for (const viewport of viewports) {
 
       if (pageInfo.service) {
         await expect(page.locator(".service-gallery")).toBeVisible();
+        await expect(page.locator(".service-motion-video")).toHaveCount(1);
+        await expect(page.locator(".service-motion-video source")).toHaveAttribute("src", /service-.*-motion\.webm/);
+        await expect(page.locator(".service-motion-gif")).toHaveAttribute("src", /service-.*-motion\.gif/);
+        await expect(page.locator(".service-motion-gif")).toHaveAttribute("alt", /Animated .* insurance motion loop/i);
         await expect(page.locator(".service-slide")).toHaveCount(3);
         await expect(page.locator(".service-slide img")).toHaveCount(3);
         await expect(page.locator(".service-slide img").first()).toHaveAttribute("src", /service-.*-slide-1\.jpg/);
-        await expect(page.locator(".service-gallery-dots span")).toHaveCount(3);
+        await expect(page.locator(".service-gallery-dots span")).toHaveCount(4);
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);
@@ -75,6 +79,26 @@ for (const viewport of viewports) {
     });
   }
 }
+
+test("pages satisfy Bing SEO basics", async ({ page }) => {
+  for (const pageInfo of pages) {
+    await page.goto(pageInfo.path, { waitUntil: "networkidle" });
+    const seo = await page.evaluate(() => ({
+      title: document.title,
+      metaDescription: document.querySelector('meta[name="description"]')?.getAttribute("content") || "",
+      h1Count: document.querySelectorAll("h1").length,
+      missingAlt: [...document.querySelectorAll("img")]
+        .filter((img) => !img.hasAttribute("alt") || !img.getAttribute("alt")?.trim())
+        .map((img) => img.outerHTML),
+      canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href") || ""
+    }));
+    expect(seo.title.length).toBeGreaterThan(10);
+    expect(seo.metaDescription.length).toBeGreaterThan(60);
+    expect(seo.h1Count).toBe(1);
+    expect(seo.missingAlt).toEqual([]);
+    expect(seo.canonical).toContain("https://yourfamilyfirstinsurance3.com");
+  }
+});
 
 for (const pageInfo of pages) {
   test(`${pageInfo.name} has no serious accessibility violations`, async ({ page }) => {
@@ -96,6 +120,30 @@ test("mobile navigation opens cleanly", async ({ page }) => {
     path: path.join(screenshotDir, "home-mobile-nav-open.png"),
     fullPage: true
   });
+});
+
+test("homepage mobile first viewport has no clipping or overflow", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  const metrics = await page.evaluate(() => {
+    const header = document.querySelector(".site-header")?.getBoundingClientRect();
+    const phone = document.querySelector(".mobile-call")?.getBoundingClientRect();
+    const cta = document.querySelector(".hero .button.warm")?.getBoundingClientRect();
+    return {
+      overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
+      headerHeight: header?.height || 0,
+      phoneWidth: phone?.width || 0,
+      phoneRight: phone?.right || 0,
+      ctaTop: cta?.top || 0,
+      ctaBottom: cta?.bottom || 0
+    };
+  });
+  expect(metrics.overflow).toBe(false);
+  expect(metrics.headerHeight).toBeLessThan(170);
+  expect(metrics.phoneWidth).toBeGreaterThan(118);
+  expect(metrics.phoneRight).toBeLessThanOrEqual(390);
+  expect(metrics.ctaTop).toBeGreaterThan(0);
+  expect(metrics.ctaBottom).toBeLessThan(920);
 });
 
 test("mobile homeowners page scroll content stays usable", async ({ page }) => {
@@ -176,4 +224,17 @@ test("header ticker contains trusted links and pauses on hover", async ({ page }
   await ticker.hover();
   const afterHover = await page.locator(".trust-track").evaluate((node) => getComputedStyle(node).animationPlayState);
   expect(afterHover).toBe("paused");
+});
+
+test("backend-looking paths do not render public frontend pages", async ({ page }) => {
+  for (const sourcePath of ["/package.json", "/server.js", "/DEPLOYMENT.md", "/yffi3-godaddy-upload.zip"]) {
+    const response = await page.goto(sourcePath, { waitUntil: "domcontentloaded" });
+    expect(response?.status()).toBe(404);
+    const robots = response?.headers()["x-robots-tag"] || "";
+    expect(robots).toContain("noindex");
+    const body = await page.locator("body").innerText();
+    expect(body).not.toContain("GoDaddy Beta Apps Deployment Guide");
+    expect(body).not.toContain("express");
+    expect(body).not.toContain('"scripts"');
+  }
 });
