@@ -64,6 +64,33 @@ const requiredMotionMedia = [
   "family-protection-planning",
   "bilingual-agent-consult"
 ];
+const serviceMotionExpectations = {
+  "auto-insurance": {
+    slideIds: ["auto", "auto-renewal", "auto-family-drivers"],
+    media: ["auto-miami-drive"],
+    start: 'data-start-slide="auto"'
+  },
+  "home-insurance": {
+    slideIds: ["homeowners", "homeowners-closing", "homeowners-renewal"],
+    media: ["home-miami-sunlight"],
+    start: 'data-start-slide="homeowners"'
+  },
+  "commercial-insurance": {
+    slideIds: ["business", "commercial-liability", "commercial-certificates"],
+    media: ["business-storefront-open", "liability-contractor-checklist"],
+    start: 'data-start-slide="business"'
+  },
+  "life-insurance": {
+    slideIds: ["family", "life-term", "life-final-expense"],
+    media: ["family-protection-planning"],
+    start: 'data-start-slide="family"'
+  },
+  "renters-insurance": {
+    slideIds: ["renters", "renters-lease", "renters-belongings"],
+    media: ["renters-apartment-keys"],
+    start: 'data-start-slide="renters"'
+  }
+};
 
 const failures = [];
 
@@ -126,24 +153,24 @@ for (const slug of requiredSlugs) {
     failures.push(`${slug} missing local search-intent panel`);
   }
   if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug)) {
+    const expectedMotion = serviceMotionExpectations[slug];
     if (!html.includes("data-insurance-carousel")) failures.push(`${slug} missing interactive insurance motion carousel`);
-    if (countMatches(html, /class="motion-slide"/g) < 7) failures.push(`${slug} carousel should include seven coverage slides`);
-    if (countMatches(html, /class="motion-video"/g) < 7) failures.push(`${slug} carousel should include lazy video elements for every slide`);
-    if (countMatches(html, /class="carousel-chip"/g) < 7) failures.push(`${slug} carousel should include category chips`);
-    if (countMatches(html, /class="carousel-dot"/g) < 7) failures.push(`${slug} carousel should include accessible dots`);
+    if (countMatches(html, /class="motion-slide"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused service slides only`);
+    if (countMatches(html, /class="motion-video"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include one lazy video element per focused slide`);
+    if (countMatches(html, /class="carousel-chip"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused category chips`);
+    if (countMatches(html, /class="carousel-dot"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused accessible dots`);
     if (!html.includes('data-carousel-prev') || !html.includes('data-carousel-next')) failures.push(`${slug} carousel missing arrow controls`);
-    for (const mediaName of requiredMotionMedia) {
+    for (const slideId of expectedMotion.slideIds) {
+      if (!html.includes(`data-slide-id="${slideId}"`)) failures.push(`${slug} missing focused carousel slide: ${slideId}`);
+    }
+    for (const mediaName of expectedMotion.media) {
       if (!html.includes(`/media/insurance-slides/${mediaName}.webm`)) failures.push(`${slug} missing carousel WebM reference: ${mediaName}`);
       if (!html.includes(`/media/insurance-slides/posters/${mediaName}-poster.jpg`)) failures.push(`${slug} missing carousel poster reference: ${mediaName}`);
     }
-    const expectedStart = {
-      "auto-insurance": 'data-start-slide="auto"',
-      "home-insurance": 'data-start-slide="homeowners"',
-      "commercial-insurance": 'data-start-slide="business"',
-      "life-insurance": 'data-start-slide="family"',
-      "renters-insurance": 'data-start-slide="renters"'
-    }[slug];
-    if (!html.includes(expectedStart)) failures.push(`${slug} carousel does not prioritize matching first slide`);
+    if (!html.includes(expectedMotion.start)) failures.push(`${slug} carousel does not prioritize matching first slide`);
+    if (html.includes("motion-category")) failures.push(`${slug} carousel still renders cluttered overlay category labels`);
+    if (html.includes("motion-detail")) failures.push(`${slug} carousel still renders cluttered overlay detail text`);
+    if (html.includes("related-links")) failures.push(`${slug} service page should not render unrelated coverage link section`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
     if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);

@@ -21,6 +21,13 @@ const serviceStartSlides = {
   life: "family",
   renters: "renters"
 };
+const serviceSlideSets = {
+  auto: ["auto", "auto-renewal", "auto-family-drivers"],
+  homeowners: ["homeowners", "homeowners-closing", "homeowners-renewal"],
+  commercial: ["business", "commercial-liability", "commercial-certificates"],
+  life: ["family", "life-term", "life-final-expense"],
+  renters: ["renters", "renters-lease", "renters-belongings"]
+};
 const viewports = [
   { name: "mobile", width: 390, height: 920 },
   { name: "tablet", width: 768, height: 1024 },
@@ -67,21 +74,27 @@ for (const viewport of viewports) {
       }
 
       if (pageInfo.service) {
+        const expectedSlides = serviceSlideSets[pageInfo.name];
         await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
-        await expect(page.locator(".motion-slide")).toHaveCount(7);
-        await expect(page.locator(".motion-video")).toHaveCount(7);
-        await expect(page.locator(".motion-poster")).toHaveCount(7);
-        await expect(page.locator(".carousel-chip")).toHaveCount(7);
-        await expect(page.locator(".carousel-dot")).toHaveCount(7);
+        await expect(page.locator(".motion-slide")).toHaveCount(expectedSlides.length);
+        await expect(page.locator(".motion-video")).toHaveCount(expectedSlides.length);
+        await expect(page.locator(".motion-poster")).toHaveCount(expectedSlides.length);
+        await expect(page.locator(".carousel-chip")).toHaveCount(expectedSlides.length);
+        await expect(page.locator(".carousel-dot")).toHaveCount(expectedSlides.length);
         await expect(page.locator("[data-carousel-prev]")).toBeVisible();
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/insurance-slides\/.*\.webm/);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
+        await expect(page.locator(".motion-category")).toHaveCount(0);
+        await expect(page.locator(".motion-detail")).toHaveCount(0);
+        await expect(page.locator(".related-links")).toHaveCount(0);
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
-        await expect(page.locator(".faq-list details")).toHaveCount(8);
+        expect(await page.locator(".faq-list details").count()).toBeGreaterThanOrEqual(8);
+        const renderedSlideIds = await page.locator(".motion-slide").evaluateAll((slides) => slides.map((slide) => slide.getAttribute("data-slide-id")));
+        expect(renderedSlideIds).toEqual(expectedSlides);
       }
 
       await page.screenshot({
@@ -197,18 +210,18 @@ test("insurance carousel supports chips, arrows, keyboard, and lazy videos", asy
   expect(initialVideoState.loaded).toBeLessThanOrEqual(2);
   expect(initialVideoState.inactivePlaying).toBe(0);
 
-  await page.locator('[data-carousel-chip][data-slide-id="liability"]').click();
-  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "liability");
-  await expect(page.locator('[data-carousel-chip][data-slide-id="liability"]')).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator(".motion-slide[data-active='true'] .motion-actions .button.warm")).toHaveAttribute("href", "/commercial-insurance/");
+  await page.locator('[data-carousel-chip][data-slide-id="auto-renewal"]').click();
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto-renewal");
+  await expect(page.locator('[data-carousel-chip][data-slide-id="auto-renewal"]')).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".motion-slide[data-active='true'] .motion-actions .button.warm")).toHaveAttribute("href", "/auto-insurance/");
   await expect(page.locator(".motion-slide[data-active='true'] .motion-actions .button.light")).toHaveAttribute("href", "tel:13059108850");
 
   await page.locator("[data-carousel-next]").click();
-  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "family");
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto-family-drivers");
 
   await page.locator(".carousel-track").focus();
   await page.keyboard.press("ArrowLeft");
-  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "liability");
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto-renewal");
 
   const afterInteractionState = await page.evaluate(() => {
     const videos = [...document.querySelectorAll(".motion-video")];

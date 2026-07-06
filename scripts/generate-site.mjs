@@ -131,7 +131,7 @@ const insuranceSlides = [
   {
     id: "homeowners",
     category: "Homeowners Insurance",
-    chip: "Home",
+    chip: "Homeowners",
     headline: "Protect the Home You Worked For",
     subheadline: "Homeowners coverage options with help from a local West Flagler team.",
     microcopy: "Florida property questions • Lender timing • Local review",
@@ -251,6 +251,189 @@ const serviceSlideStart = {
   "commercial-insurance": "business",
   "life-insurance": "family"
 };
+
+function insuranceSlideVariant(baseId, overrides) {
+  const base = insuranceSlides.find((slide) => slide.id === baseId);
+  if (!base) throw new Error(`Missing base insurance slide: ${baseId}`);
+  return {
+    ...base,
+    ...overrides,
+    id: overrides.id || base.id,
+    chip: overrides.chip || base.chip,
+    category: overrides.category || base.category,
+    cta: overrides.cta || base.cta,
+    href: overrides.href || base.href,
+    video: overrides.video || base.video,
+    videoMp4: overrides.videoMp4 ?? base.videoMp4,
+    poster: overrides.poster || base.poster,
+    alt: overrides.alt || base.alt,
+    icon: overrides.icon || base.icon,
+    objectPosition: overrides.objectPosition || base.objectPosition
+  };
+}
+
+const serviceCarouselSlides = {
+  "auto-insurance": [
+    insuranceSlideVariant("auto", {
+      headline: "Auto Quotes Built for Miami Roads",
+      subheadline: "Compare car insurance options for commutes, family vehicles, new cars, and renewal changes.",
+      cta: "Start Auto Quote",
+      microcopy: "Miami drivers • Vehicle changes • Renewal reviews",
+      trustBadge: "Auto insurance quote help for Miami drivers",
+      detail: "Focused on car insurance questions only: vehicles, drivers, deductibles, lender needs, and renewal timing."
+    }),
+    insuranceSlideVariant("auto", {
+      id: "auto-renewal",
+      chip: "Renewals",
+      headline: "Review Renewals Before You Decide",
+      subheadline: "Talk through premium changes, coverage choices, deductibles, and garaging ZIP code updates.",
+      cta: "Review Auto Quote",
+      microcopy: "Renewals • Deductibles • Garaging ZIP code",
+      trustBadge: "Auto renewal review",
+      detail: "A cleaner quote path for Miami drivers seeing renewal changes or buying a different vehicle."
+    }),
+    insuranceSlideVariant("auto", {
+      id: "auto-family-drivers",
+      chip: "Drivers",
+      headline: "Coverage Help for Household Drivers",
+      subheadline: "Get guidance for family vehicles, added drivers, financed cars, leases, and commute changes.",
+      cta: "Talk Auto Coverage",
+      microcopy: "Family vehicles • Added drivers • Financed cars",
+      trustBadge: "Household auto coverage conversation",
+      detail: "Built around auto-only questions so visitors stay focused on the car insurance quote path."
+    })
+  ],
+  "home-insurance": [
+    insuranceSlideVariant("homeowners", {
+      chip: "Homeowners",
+      headline: "Homeowners Coverage for Miami-Dade",
+      subheadline: "Review home, roof, belongings, liability, lender, wind, and flood questions with local support.",
+      cta: "Get Homeowners Quote",
+      microcopy: "Homes • Lenders • Florida property questions",
+      trustBadge: "Homeowners insurance quote help",
+      detail: "Focused on homeowners insurance questions only, from closing deadlines to renewal changes."
+    }),
+    insuranceSlideVariant("homeowners", {
+      id: "homeowners-closing",
+      chip: "Closing",
+      headline: "Quote Help Before Closing Day",
+      subheadline: "Prepare for lender deadlines, property details, inspection questions, and coverage timing.",
+      cta: "Protect My Home",
+      microcopy: "Closing dates • Lender needs • Property details",
+      trustBadge: "Home closing coverage conversation",
+      detail: "A homeowners-only path for buyers and owners who need clear next steps before a deadline."
+    }),
+    insuranceSlideVariant("homeowners", {
+      id: "homeowners-renewal",
+      chip: "Renewal",
+      headline: "Make Sense of Home Renewal Changes",
+      subheadline: "Ask about roof details, deductibles, wind questions, flood conversations, and documentation.",
+      cta: "Review Homeowners Quote",
+      microcopy: "Renewals • Roof details • Wind questions",
+      trustBadge: "Florida home renewal review",
+      detail: "Keeps the page focused on homeowners insurance without pulling visitors into unrelated policy types."
+    })
+  ],
+  "renters-insurance": [
+    insuranceSlideVariant("renters", {
+      headline: "Renters Coverage Made Simple",
+      subheadline: "Request help for apartment belongings, liability questions, lease requirements, and move-in timing.",
+      cta: "Quote Renters Insurance",
+      microcopy: "Apartments • Belongings • Lease requirements",
+      trustBadge: "Renters insurance quote help",
+      detail: "Focused on renters insurance questions only, from lease requirements to personal belongings."
+    }),
+    insuranceSlideVariant("renters", {
+      id: "renters-lease",
+      chip: "Lease",
+      headline: "Handle Lease Insurance Requirements",
+      subheadline: "Bring the landlord requirement and get guidance on what the renters quote conversation should cover.",
+      cta: "Start Renters Quote",
+      microcopy: "Lease needs • Proof questions • Move-in timing",
+      trustBadge: "Lease requirement quote support",
+      detail: "Designed for renters who need a clean next step before move-in or lease renewal."
+    }),
+    insuranceSlideVariant("renters", {
+      id: "renters-belongings",
+      chip: "Belongings",
+      headline: "Protect the Things That Make It Home",
+      subheadline: "Talk through personal property, liability, deductible questions, and additional living expense topics.",
+      cta: "Quote My Apartment",
+      microcopy: "Personal property • Liability • Apartment living",
+      trustBadge: "Apartment protection conversation",
+      detail: "Keeps attention on renters insurance rather than unrelated coverage categories."
+    })
+  ],
+  "commercial-insurance": [
+    insuranceSlideVariant("business", {
+      category: "Commercial Insurance",
+      chip: "Business",
+      headline: "Protect the Business You’re Building",
+      subheadline: "Get commercial quote help for operations, locations, work vehicles, property, and teams.",
+      cta: "Protect My Business",
+      microcopy: "Miami businesses • Certificates • Operations",
+      trustBadge: "Commercial insurance quote help",
+      detail: "Focused on business insurance conversations for Miami owners and operators."
+    }),
+    insuranceSlideVariant("liability", {
+      id: "commercial-liability",
+      category: "General Liability",
+      chip: "Liability",
+      headline: "Liability Coverage Without the Confusion",
+      subheadline: "Review contract, client, lease, vendor, and certificate requirements before you commit.",
+      cta: "Get Liability Quote",
+      microcopy: "Contracts • Clients • Certificates",
+      trustBadge: "General liability conversation",
+      detail: "Part of the commercial quote path for businesses that need liability guidance."
+    }),
+    insuranceSlideVariant("business", {
+      id: "commercial-certificates",
+      category: "Commercial Insurance",
+      chip: "Certificates",
+      headline: "Quote Help When a Certificate Is Requested",
+      subheadline: "Bring the contract or certificate wording so the office can help identify what to review.",
+      cta: "Review Business Coverage",
+      microcopy: "COI requests • Leases • Job requirements",
+      trustBadge: "Certificate-focused business support",
+      detail: "Keeps the commercial page focused on business coverage triggers and certificate conversations."
+    })
+  ],
+  "life-insurance": [
+    insuranceSlideVariant("family", {
+      category: "Life Insurance",
+      chip: "Life",
+      headline: "Life Insurance Help for Miami Families",
+      subheadline: "Start with family goals, income needs, mortgage questions, final expenses, and long-term planning.",
+      cta: "Plan Family Protection",
+      microcopy: "Family goals • Income needs • Legacy planning",
+      trustBadge: "Life insurance quote help",
+      detail: "Focused on life insurance conversations only, with a privacy-safe first step."
+    }),
+    insuranceSlideVariant("family", {
+      id: "life-term",
+      category: "Term Life Insurance",
+      chip: "Term",
+      headline: "Term Life Questions in Plain Language",
+      subheadline: "Discuss a defined coverage period tied to family responsibilities, income, mortgage, or debt needs.",
+      cta: "Start Term Life Quote",
+      microcopy: "Term life • Income needs • Mortgage planning",
+      trustBadge: "Term life conversation",
+      detail: "A life-only quote path that keeps medical and underwriting details out of the general website form."
+    }),
+    insuranceSlideVariant("family", {
+      id: "life-final-expense",
+      category: "Final Expense Insurance",
+      chip: "Final Expense",
+      headline: "Planning Help Without Pressure",
+      subheadline: "Ask about final expense and family protection options before moving into any secure application.",
+      cta: "Talk Life Insurance",
+      microcopy: "Final expense • Family protection • Secure next step",
+      trustBadge: "Final expense planning conversation",
+      detail: "Keeps the page focused on life insurance and avoids unrelated quote categories."
+    })
+  ]
+};
+
 const address = {
   streetAddress: "11200 W Flagler St, Ste 108",
   addressLocality: "Miami",
@@ -325,7 +508,7 @@ const serviceCards = [
     title: "Condo Insurance",
     short: "Condo",
     icon: "building",
-    href: "/renters-insurance/",
+    href: "/get-a-quote/#quote",
     copy: "Condo conversations for unit coverage, personal property, loss assessment, and liability.",
     tags: ["Condo units", "Association docs", "Liability"]
   },
@@ -361,7 +544,7 @@ const tickerItems = [
   ["Auto Insurance", "/auto-insurance/"],
   ["Homeowners Insurance", "/home-insurance/"],
   ["Renters Insurance", "/renters-insurance/"],
-  ["Condo Insurance", "/renters-insurance/#condo-insurance"],
+  ["Condo Insurance", "/get-a-quote/#quote"],
   ["Flood Insurance", "/#flood-insurance"],
   ["Motorcycle Insurance", "/#motorcycle-insurance"],
   ["Boat Insurance", "/#boat-insurance"],
@@ -414,7 +597,7 @@ const pages = [
       ["Built for Miami drivers", "Talk through liability, comprehensive, collision, uninsured motorist, deductibles, medical payment questions, and other options based on your situation."],
       ["Renewal and new-driver moments", "A quote conversation can help when buying a vehicle, adding a driver, moving to Miami-Dade, financing a car, or seeing a renewal change."],
       ["What to have ready", "Bring vehicle details, garaging ZIP code, current coverage if available, driver information to discuss securely, and any lender or lease requirements."],
-      ["Local household review", "Office #3 can help families review multiple cars, new teen drivers, commute changes, rideshare questions, and related homeowners or renters conversations."]
+      ["Local household driver review", "Office #3 can help review multiple cars, teen drivers, commute changes, rideshare questions, and financed or leased vehicle requirements."]
     ],
     searchTopics: [
       ["Miami auto insurance quote help", "For drivers comparing car insurance options in Miami, West Flagler, Kendall, Hialeah, Doral, Homestead, and Miami-Dade."],
@@ -426,10 +609,10 @@ const pages = [
       ["Can Office #3 help with auto insurance in Miami?", "Yes. Office #3 helps Miami drivers request auto insurance quote help for daily commuting, family vehicles, new drivers, renewals, and vehicle changes."],
       ["What auto insurance topics can I review with the office?", "You can discuss liability, comprehensive, collision, uninsured motorist, deductibles, lender or lease needs, driver changes, garaging ZIP code, and other coverage questions that may apply to your situation."],
       ["When should I compare auto insurance options?", "A review can help before buying a vehicle, adding a driver, moving, changing commute patterns, financing or leasing a car, or seeing a renewal premium change."],
-      ["Can I compare auto insurance with homeowners, renters, or condo coverage?", "Yes. Many Miami families review auto insurance together with homeowners, renters, condo, life, or business coverage for convenience."],
+      ["Can I get help with a financed or leased vehicle?", "Yes. Bring any lender or lease requirements so the office can help you review the auto coverage conversation before you choose a path."],
       ["What information should I prepare for an auto quote conversation?", "Have the vehicle year, make, model, garaging ZIP code, current coverage if available, household driver information to discuss securely, and any lender or lease requirements."],
       ["Can Spanish-speaking drivers request help?", "Yes. Office #3 offers bilingual quote help for Miami drivers who prefer English or Spanish conversations."],
-      ["Can I ask about motorcycle, RV, or boat insurance too?", "Yes. Use the quote form or call Office #3 to ask about motorcycle, RV, boat, and other personal insurance quote paths."],
+      ["Can I ask about deductibles and uninsured motorist coverage?", "Yes. You can ask how deductibles, liability limits, comprehensive, collision, and uninsured motorist questions may affect your auto coverage conversation."],
       ["Does a car insurance quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."]
     ]
   },
@@ -461,7 +644,7 @@ const pages = [
       ["Is flood insurance included with homeowners insurance?", "Flood coverage is often separate from a standard homeowners policy. Office #3 can help you discuss flood insurance questions before you choose coverage."],
       ["What Florida home insurance details may matter?", "A home quote conversation may include roof information, wind or hurricane deductibles, property age, updates, protection features, claims history, occupancy, and lender requirements."],
       ["Can I request homeowners insurance help before closing on a property?", "Yes. Homebuyers commonly request quote help before a closing date, lender deadline, or policy renewal so they can review options early."],
-      ["Can condo owners or renters get help too?", "Yes. Condo and renters questions are handled through the renters and condo coverage page, and Office #3 can help decide which conversation fits your situation."],
+      ["What should I have ready for a homeowners quote conversation?", "Helpful details may include property address, roof information, year built, updates, occupancy, prior coverage, lender requirements, and inspection documents if available."],
       ["Can I ask about hurricane deductibles?", "Yes. You can ask how wind or hurricane deductible questions may affect the coverage conversation. Exact terms vary by carrier and policy."],
       ["Is homeowners insurance approval guaranteed?", "No. Eligibility and approval depend on carrier underwriting, property details, location, applicant information, inspections, and coverage selected."],
       ["Are homeowners insurance savings guaranteed?", "No. Savings are not guaranteed. Pricing varies by underwriting, property details, location, carrier, applicant information, and coverage selected."]
@@ -529,7 +712,7 @@ const pages = [
       ["Is life insurance only for parents?", "No. Life insurance may support spouses, children, business partners, debt planning, final expenses, and other family responsibilities."],
       ["What life insurance options can I ask about?", "You can ask about term life, permanent life, final expense, and other options that may be available depending on carrier rules, underwriting, age, health, and coverage goals."],
       ["When should a family review life insurance?", "A review can help after marriage, a child, home purchase, new business, job change, debt change, or any major family milestone."],
-      ["Can business owners ask about life insurance?", "Yes. Business owners can ask about family protection, business continuity, key person, debt, or partner planning conversations where appropriate."],
+      ["Can I talk through beneficiaries and coverage goals?", "Yes. You can ask general questions about family responsibilities, beneficiary planning, budget, coverage goals, and timing before moving into a secure application path."],
       ["Can I start with a general conversation before applying?", "Yes. You can begin with goals, budget, family responsibilities, and callback preferences before any secure application steps."],
       ["Do I need to send medical or identification details through this website?", "No. Do not send sensitive underwriting, medical, payment, identification, or account information through a general website form."],
       ["Is life insurance approval guaranteed?", "No. Availability, pricing, eligibility, and approval depend on carrier underwriting and applicant information."]
@@ -538,34 +721,35 @@ const pages = [
   {
     slug: "renters-insurance",
     nav: "Renters",
-    title: "Renters and Condo Insurance in Miami | Quote Help | Office #3",
-    description: "Renters insurance and condo insurance quote help in Miami. Discuss apartments, belongings, liability, lease requirements, condo units, and association documents.",
-    h1: "Renters and Condo Insurance Quote Help in Miami",
-    intro: "Get local quote help for apartments, belongings, liability questions, lease requirements, condo units, loss assessment questions, and association documents.",
+    title: "Renters Insurance in Miami | Apartment Quote Help | Office #3",
+    description: "Renters insurance quote help in Miami. Discuss apartments, belongings, liability questions, lease requirements, move-in timing, and proof of coverage.",
+    h1: "Renters Insurance Quote Help in Miami",
+    intro: "Get local quote help for apartments, belongings, liability questions, lease requirements, move-in timing, and proof of coverage requests.",
     kind: "service",
     service: "Renters Insurance",
     icon: "key",
-    keywords: "renters insurance Miami, condo insurance Miami, apartment insurance Miami, Miami renters insurance quote, condo unit insurance Miami, lease insurance requirement",
+    keywords: "renters insurance Miami, apartment insurance Miami, Miami renters insurance quote, renters insurance West Flagler, lease insurance requirement, proof of renters coverage Miami",
     sections: [
       ["Renters conversations", "Review options for personal belongings, liability, additional living expense questions, and lease requirements."],
-      ["Condo conversations", "Discuss unit coverage, personal property, liability, loss assessment, deductibles, association documents, and lender questions."],
-      ["Good timing", "Compare before move-in, lease renewal, condo closing, major purchases, association coverage changes, or roommate changes."],
-      ["Miami apartment support", "Office #3 helps renters and condo owners in Miami-Dade start a simple quote conversation without collecting sensitive details first."]
+      ["Lease and proof requests", "Bring landlord wording or a proof-of-coverage request so the office can help you understand what the renters quote conversation should include."],
+      ["Good timing", "Compare before move-in, lease renewal, major purchases, roommate changes, or after a landlord updates insurance requirements."],
+      ["Miami apartment support", "Office #3 helps Miami renters start a simple quote conversation without collecting sensitive details first."]
     ],
     searchTopics: [
       ["Renters insurance Miami apartments", "For renters comparing apartment coverage, belongings, liability, lease requirements, and move-in timing."],
-      ["Condo insurance Miami", "For condo owners reviewing unit coverage, personal property, loss assessment, deductibles, and association documents."],
       ["Lease requirement quote help", "For renters who need proof of coverage or have a landlord requirement before move-in."],
-      ["Bilingual renters and condo support", "For Miami customers who want English or Spanish help before choosing a quote path."]
+      ["Apartment belongings coverage questions", "For renters reviewing furniture, electronics, clothing, valuables, deductibles, and liability questions."],
+      ["Bilingual renters insurance support", "For Miami renters who want English or Spanish help before choosing a quote path."]
     ],
     faqs: [
       ["Can renters in Miami request insurance quote help?", "Yes. Renters can request quote help for apartments, personal belongings, liability conversations, and lease requirements."],
       ["Why might a renter consider renters insurance?", "Renters insurance can help start a conversation about belongings, liability, and additional living expense questions. Exact coverage depends on the policy and carrier."],
-      ["Can condo owners compare coverage with Office #3?", "Yes. Condo owners can review unit coverage, personal property, liability, loss assessment questions, deductibles, and association documents."],
-      ["Is condo insurance the same as renters insurance?", "No. Condo and renters policies are different. Office #3 can help you identify which quote conversation fits your housing situation."],
-      ["When should I request renters or condo quote help?", "Good times include before move-in, lease renewal, condo closing, major purchases, association coverage changes, or after a renewal notice."],
+      ["What belongings can I discuss during a renters quote conversation?", "You can ask general questions about furniture, electronics, clothing, valuables, liability, deductibles, and additional living expense topics."],
+      ["When should I request renters quote help?", "Good times include before move-in, lease renewal, major purchases, roommate changes, or after a landlord updates insurance requirements."],
       ["Can I ask about lease insurance requirements?", "Yes. Bring the lease or landlord requirement so Office #3 can help you understand what coverage conversation may be needed."],
-      ["Can renters compare auto insurance too?", "Yes. Renters often review auto insurance, life insurance, or other family coverage conversations at the same time."],
+      ["Can I get proof of renters insurance for a landlord?", "Proof of coverage depends on the policy and carrier process. Office #3 can help you discuss the requirement and next steps after coverage is approved."],
+      ["Can Spanish-speaking renters request help?", "Yes. Office #3 offers English and Spanish quote help for Miami renters."],
+      ["Does a renters quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."],
       ["Does this page collect sensitive underwriting data?", "No. The first website form only asks for basic contact details and general quote notes before the secure intake path."]
     ]
   },
@@ -1027,16 +1211,23 @@ function ctaRow(extra = "") {
   `;
 }
 
+function slidesForPage(page) {
+  if (page.kind === "service" && serviceCarouselSlides[page.slug]) return serviceCarouselSlides[page.slug];
+  return insuranceSlides;
+}
+
 function orderedInsuranceSlides(page) {
-  const startId = serviceSlideStart[page.slug] || "auto";
-  const startIndex = insuranceSlides.findIndex((slide) => slide.id === startId);
-  if (startIndex <= 0) return insuranceSlides;
-  return [...insuranceSlides.slice(startIndex), ...insuranceSlides.slice(0, startIndex)];
+  const slides = slidesForPage(page);
+  const startId = serviceSlideStart[page.slug] || slides[0]?.id || "auto";
+  const startIndex = slides.findIndex((slide) => slide.id === startId);
+  if (startIndex <= 0) return slides;
+  return [...slides.slice(startIndex), ...slides.slice(0, startIndex)];
 }
 
 function insuranceMotionCarousel(page) {
   const slides = orderedInsuranceSlides(page);
   const firstSlide = slides[0];
+  const isFocused = page.kind === "service";
   const chipButtons = slides.map((slide, index) => `
     <button class="carousel-chip" type="button" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-carousel-chip>
       <span class="chip-icon">${iconSvg(slide.icon)}</span>
@@ -1053,32 +1244,28 @@ function insuranceMotionCarousel(page) {
         <video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}" data-src="${slide.video}"${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
-        <span class="motion-trust-badge">${escapeHtml(slide.trustBadge)}</span>
       </a>
       <div class="motion-slide-copy">
-        <span class="motion-category">${iconSvg(slide.icon)}${escapeHtml(slide.category)}</span>
         <h2>${escapeHtml(slide.headline)}</h2>
         <p>${escapeHtml(slide.subheadline)}</p>
-        <p class="motion-microcopy">${escapeHtml(slide.microcopy)}</p>
         <div class="motion-actions">
           <a class="button warm magnetic-button" href="${slide.href}">${escapeHtml(slide.cta)} ${iconSvg("arrow")}</a>
           <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
         </div>
-        <p class="motion-detail">${escapeHtml(slide.detail)}</p>
       </div>
     </article>
   `).join("");
 
   return `
-    <div class="motion-carousel liquid-tilt" data-insurance-carousel data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="Interactive insurance coverage carousel">
+    <div class="motion-carousel ${isFocused ? "focused-carousel" : ""} liquid-tilt" data-insurance-carousel data-mode="${isFocused ? "focused" : "broad"}" data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="${isFocused ? `${escapeHtml(page.service)} media carousel` : "Interactive insurance coverage carousel"}">
       <div class="carousel-topline">
         <div>
-          <strong>Interactive coverage studio</strong>
-          <span>Swipe, click, or use arrows to compare local quote paths.</span>
+          <strong>${isFocused ? `${escapeHtml(page.service)} quote focus` : "Interactive coverage studio"}</strong>
+          <span>${isFocused ? "Swipe through focused quote moments." : "Swipe, click, or use arrows to compare local quote paths."}</span>
         </div>
         <a href="${phoneHref}" class="carousel-phone">${iconSvg("phone")} ${phoneDisplay}</a>
       </div>
-      <div class="carousel-chips" role="tablist" aria-label="Insurance categories">${chipButtons}</div>
+      <div class="carousel-chips" role="tablist" aria-label="${isFocused ? `${escapeHtml(page.service)} quote moments` : "Insurance categories"}">${chipButtons}</div>
       <div class="carousel-stage">
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous insurance slide" data-carousel-prev>${iconSvg("arrow")}</button>
         <div class="carousel-track" tabindex="0" aria-live="off">${slideMarkup}</div>
@@ -1088,7 +1275,7 @@ function insuranceMotionCarousel(page) {
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
         <div class="carousel-progress" aria-hidden="true"><span></span></div>
       </div>
-      <p class="carousel-footnote">50+ carriers • Local Miami Office • Bilingual quote help • No guaranteed pricing claims</p>
+      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "50+ carriers • Local Miami Office • Bilingual quote help • No guaranteed pricing claims"}</p>
     </div>
   `;
 }
@@ -1324,13 +1511,24 @@ function homeBody() {
   `;
 }
 
+function serviceAudienceLine(page) {
+  const lines = {
+    "auto-insurance": "Office #3 is listed on West Flagler Street in Miami and helps Miami drivers review auto insurance questions for vehicles, drivers, deductibles, lender needs, and renewals.",
+    "home-insurance": "Office #3 is listed on West Flagler Street in Miami and helps Miami-Dade homeowners review property, roof, lender, wind, flood, and renewal questions.",
+    "commercial-insurance": "Office #3 is listed on West Flagler Street in Miami and helps local business owners review commercial insurance, liability, certificates, work vehicles, and team-related coverage questions.",
+    "life-insurance": "Office #3 is listed on West Flagler Street in Miami and helps families review life insurance goals, income needs, mortgage planning, final expenses, and privacy-safe next steps.",
+    "renters-insurance": "Office #3 is listed on West Flagler Street in Miami and helps renters review apartment belongings, liability questions, lease requirements, proof requests, and move-in timing."
+  };
+  return lines[page.slug] || "Office #3 is listed on West Flagler Street in Miami and helps customers review coverage questions in plain language.";
+}
+
 function serviceBody(page) {
   return `
     <section class="section service-detail" data-reveal>
       <div class="section-heading">
         <p class="kicker">Miami coverage conversation</p>
         <h2>${escapeHtml(page.service)} Guidance Without Pressure</h2>
-        <p>Office #3 is listed on West Flagler Street in Miami and serves Miami-Dade families, drivers, homeowners, renters, condo owners, and businesses.</p>
+        <p>${escapeHtml(serviceAudienceLine(page))}</p>
       </div>
       <div class="detail-grid">
         ${page.sections.map(([title, copy]) => `<article class="detail-card" data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
@@ -1345,7 +1543,6 @@ function serviceBody(page) {
       </div>
       <a class="button light" href="${quoteDestination}" rel="noopener">Start My Quote Request ${iconSvg("arrow")}</a>
     </section>
-    ${relatedLinks(page.slug)}
     ${faqHtml(page)}
   `;
 }
@@ -1568,10 +1765,16 @@ function cssSource() {
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  max-width: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
 body {
   position: relative;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   color: var(--ink-soft);
@@ -1790,7 +1993,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .trust-ticker {
   grid-column: 1 / -1;
   min-width: 0;
+  max-width: 100%;
   overflow: hidden;
+  contain: paint;
   border: 1px solid var(--glass-line);
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(154, 220, 247, 0.07));
@@ -1914,6 +2119,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.24),
     0 16px 38px rgba(0, 0, 0, 0.28);
+}
+.button.light:hover,
+.button.light:focus-visible,
+.carousel-phone:hover,
+.carousel-phone:focus-visible,
+.header-call:hover,
+.header-call:focus-visible,
+.mobile-call:hover,
+.mobile-call:focus-visible,
+.coverage-link-rail a:hover,
+.coverage-link-rail a:focus-visible,
+.link-pills a:hover,
+.link-pills a:focus-visible {
+  color: #06111F;
+  border-color: rgba(255, 224, 161, 0.56);
+  background:
+    linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.82) 58%, rgba(154, 220, 247, 0.68));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 20px 52px rgba(255, 125, 101, 0.18),
+    0 0 34px rgba(154, 220, 247, 0.14);
 }
 .button.small {
   min-height: 40px;
@@ -2295,6 +2521,9 @@ h3 {
   transform-style: preserve-3d;
   transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, background 260ms ease;
 }
+.motion-carousel.focused-carousel {
+  --carousel-duration: 7200ms;
+}
 .motion-carousel::before,
 .motion-carousel::after {
   content: "";
@@ -2430,6 +2659,7 @@ h3 {
   background: rgba(5, 11, 18, 0.42);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   cursor: grab;
+  touch-action: pan-y pinch-zoom;
 }
 .carousel-track:active { cursor: grabbing; }
 .motion-slide {
@@ -2441,7 +2671,7 @@ h3 {
   isolation: isolate;
   align-content: end;
   scroll-snap-align: center;
-  padding: clamp(20px, 4vw, 34px);
+  padding: clamp(18px, 3vw, 30px);
   color: var(--ink);
   background: #07131F;
 }
@@ -2474,15 +2704,15 @@ h3 {
 }
 .motion-slide[data-active="true"] .motion-poster,
 .motion-slide[data-active="true"] .motion-video.is-ready {
-  animation: cinematic-breathe 6800ms ease-in-out infinite alternate;
+  animation: cinematic-breathe var(--carousel-duration) ease-in-out infinite alternate;
 }
 .motion-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(5, 11, 18, 0.78) 0%, rgba(5, 11, 18, 0.52) 44%, rgba(5, 11, 18, 0.12) 100%),
-    linear-gradient(180deg, rgba(5, 11, 18, 0.05) 0%, rgba(5, 11, 18, 0.76) 100%);
+    linear-gradient(90deg, rgba(5, 11, 18, 0.58) 0%, rgba(5, 11, 18, 0.24) 38%, rgba(5, 11, 18, 0.03) 100%),
+    linear-gradient(180deg, rgba(5, 11, 18, 0.02) 0%, rgba(5, 11, 18, 0.66) 100%);
 }
 .motion-sheen {
   position: absolute;
@@ -2516,14 +2746,29 @@ h3 {
 .motion-slide-copy {
   position: relative;
   z-index: 4;
-  max-width: 520px;
+  width: min(100%, 470px);
+  max-width: 470px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: clamp(16px, 2.4vw, 22px);
+  background:
+    linear-gradient(135deg, rgba(5, 11, 18, 0.66), rgba(5, 11, 18, 0.36)),
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(154, 220, 247, 0.16), transparent 28%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 54px rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(10px) saturate(132%);
+  -webkit-backdrop-filter: blur(10px) saturate(132%);
   transform: translate3d(0, 12px, 0);
   opacity: 0.78;
-  transition: opacity 420ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 420ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, background 220ms ease;
 }
 .motion-slide[data-active="true"] .motion-slide-copy {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+}
+.motion-slide:hover .motion-slide-copy,
+.motion-slide:focus-within .motion-slide-copy {
+  border-color: rgba(255, 224, 161, 0.34);
+  transform: translate3d(0, -3px, 0);
 }
 .motion-category {
   display: inline-flex;
@@ -2537,14 +2782,16 @@ h3 {
 }
 .motion-category .icon { width: 17px; height: 17px; }
 .motion-slide h2 {
-  max-width: 560px;
-  margin-bottom: 10px;
+  max-width: 440px;
+  margin-bottom: 8px;
   color: #FFF8EC;
-  font-size: 2.55rem;
-  line-height: 0.93;
+  font-size: 2.35rem;
+  line-height: 0.98;
 }
 .motion-slide p {
   color: rgba(243, 251, 255, 0.86);
+  font-size: 0.96rem;
+  line-height: 1.5;
 }
 .motion-microcopy {
   margin-top: 12px;
@@ -2555,7 +2802,7 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 .motion-actions .button {
   min-height: 44px;
@@ -2863,12 +3110,24 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  padding: 6px 9px;
   color: var(--clay);
+  background: rgba(255, 255, 255, 0.055);
   font-size: 0.82rem;
   font-weight: 950;
   text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
-.card-top a:hover { color: var(--gold); }
+.card-top a:hover,
+.card-top a:focus-visible {
+  color: #06111F;
+  border-color: rgba(255, 224, 161, 0.52);
+  background: linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.82) 58%, rgba(154, 220, 247, 0.68));
+  box-shadow: 0 14px 34px rgba(255, 125, 101, 0.16);
+  transform: translate3d(0, -1px, 0);
+}
 .card-top a .icon { width: 14px; height: 14px; }
 .tag-row {
   display: flex;
@@ -2891,7 +3150,8 @@ h3 {
 .tag-row span:hover, .link-pills a:hover, .coverage-link-rail a:hover {
   transform: translate3d(0, -1px, 0);
   border-color: rgba(255, 224, 161, 0.34);
-  color: var(--champagne);
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.82) 58%, rgba(154, 220, 247, 0.68));
 }
 .coverage-link-rail {
   display: flex;
@@ -2918,8 +3178,10 @@ h3 {
 }
 .coverage-link-rail a:hover, .coverage-link-rail a:focus-visible {
   transform: translateY(-2px);
-  border-color: rgba(154, 220, 247, 0.44);
-  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 224, 161, 0.52);
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.82) 58%, rgba(154, 220, 247, 0.68));
+  box-shadow: 0 16px 38px rgba(255, 125, 101, 0.16);
 }
 .process-section {
   border-top: 1px solid var(--glass-line);
@@ -3382,8 +3644,7 @@ h3 {
   .hero-photo { aspect-ratio: 1.02 / 1; }
   .carousel-arrow { display: grid; }
   .motion-slide { min-height: 560px; }
-  .motion-slide h2 { font-size: 3.5rem; }
-  .motion-slide-copy { padding-inline: 22px; }
+  .motion-carousel.focused-carousel .motion-slide { min-height: 540px; }
   .trust-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: -34px;
@@ -3485,40 +3746,51 @@ h3 {
     transform: translate3d(0, -1px, 0);
   }
   .motion-slide {
-    min-height: 560px;
-    padding: 18px;
+    min-height: 500px;
+    padding: 14px;
   }
+  .focused-carousel .motion-slide { min-height: 480px; }
   .motion-trust-badge {
     top: 13px;
     left: 13px;
     max-width: calc(100% - 26px);
     padding: 7px 9px;
     font-size: 0.66rem;
+    display: none;
   }
   .motion-scrim {
     background:
-      linear-gradient(180deg, rgba(5, 11, 18, 0.16) 0%, rgba(5, 11, 18, 0.22) 28%, rgba(5, 11, 18, 0.86) 100%),
-      linear-gradient(90deg, rgba(5, 11, 18, 0.35), rgba(5, 11, 18, 0.04));
+      linear-gradient(180deg, rgba(5, 11, 18, 0.02) 0%, rgba(5, 11, 18, 0.12) 36%, rgba(5, 11, 18, 0.82) 100%),
+      linear-gradient(90deg, rgba(5, 11, 18, 0.18), rgba(5, 11, 18, 0.02));
+  }
+  .motion-slide-copy {
+    width: 100%;
+    max-width: none;
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(7px) saturate(125%);
+    -webkit-backdrop-filter: blur(7px) saturate(125%);
   }
   .motion-slide h2 {
-    font-size: 2.05rem;
-    line-height: 0.96;
+    font-size: 1.7rem;
+    line-height: 1.02;
   }
-  .motion-slide p { font-size: 0.94rem; }
+  .motion-slide p { font-size: 0.88rem; line-height: 1.42; }
   .motion-actions {
     display: grid;
     grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 12px;
   }
   .motion-actions .button {
     width: 100%;
     justify-content: center;
+    min-height: 42px;
+    padding: 10px 13px;
+    font-size: 0.84rem;
   }
   .motion-detail {
-    max-height: none;
-    margin-top: 10px;
-    opacity: 0.84;
-    transform: none;
-    font-size: 0.82rem !important;
+    display: none;
   }
   .carousel-controls {
     grid-template-columns: 1fr;
