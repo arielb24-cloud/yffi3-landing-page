@@ -9,6 +9,7 @@ Disallow: /AGENTS.md
 Disallow: /AUDIT_REPORT.md
 Disallow: /DEPLOYMENT.md
 Disallow: /DEPLOYMENT_AUTHORIZATION_REQUESTS.md
+Disallow: /MEDIA_TODO.md
 Disallow: /README.md
 Disallow: /SECURITY.md
 Disallow: /SEO_AI_FINDABILITY_NOTES.md

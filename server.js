@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const distDir = path.join(__dirname, "dist");
 const canonicalHost = "yourfamilyfirstinsurance3.com";
 const blockedPublicPaths = [
-  /^\/(?:AGENTS|AUDIT_REPORT|DEPLOYMENT|DEPLOYMENT_AUTHORIZATION_REQUESTS|README|SECURITY|SEO_AI_FINDABILITY_NOTES)\.md$/i,
+  /^\/(?:AGENTS|AUDIT_REPORT|DEPLOYMENT|DEPLOYMENT_AUTHORIZATION_REQUESTS|MEDIA_TODO|README|SECURITY|SEO_AI_FINDABILITY_NOTES)\.md$/i,
   /^\/(?:package|pnpm-lock)\.json$/i,
   /^\/(?:server|playwright\.config)\.(?:js|mjs|ts)$/i,
   /^\/(?:node_modules|test-results|playwright-report|playwright-screenshots|audit-screenshots)(?:\/|$)/i,

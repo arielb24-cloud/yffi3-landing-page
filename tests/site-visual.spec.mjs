@@ -14,6 +14,13 @@ const pages = [
   { name: "life", path: "/life-insurance/", service: true },
   { name: "renters", path: "/renters-insurance/", service: true }
 ];
+const serviceStartSlides = {
+  auto: "auto",
+  homeowners: "homeowners",
+  commercial: "business",
+  life: "family",
+  renters: "renters"
+};
 const viewports = [
   { name: "mobile", width: 390, height: 920 },
   { name: "tablet", width: 768, height: 1024 },
@@ -45,6 +52,8 @@ for (const viewport of viewports) {
 
       if (pageInfo.name === "home") {
         await expect(page.getByRole("link", { name: /Get My Free Quote/i }).first()).toBeVisible();
+        await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
+        await expect(page.locator(".motion-slide")).toHaveCount(7);
         await expect(page.locator('img[alt*="Real family and office photo"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Ariel Busutil"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Original Your Family First Insurance"]').first()).toBeVisible();
@@ -58,15 +67,18 @@ for (const viewport of viewports) {
       }
 
       if (pageInfo.service) {
-        await expect(page.locator(".service-gallery")).toBeVisible();
-        await expect(page.locator(".service-motion-video")).toHaveCount(1);
-        await expect(page.locator(".service-motion-video source")).toHaveAttribute("src", /service-.*-motion\.webm/);
-        await expect(page.locator(".service-motion-gif")).toHaveAttribute("src", /service-.*-motion\.gif/);
-        await expect(page.locator(".service-motion-gif")).toHaveAttribute("alt", /Animated .* insurance motion loop/i);
-        await expect(page.locator(".service-slide")).toHaveCount(3);
-        await expect(page.locator(".service-slide img")).toHaveCount(3);
-        await expect(page.locator(".service-slide img").first()).toHaveAttribute("src", /service-.*-slide-1\.jpg/);
-        await expect(page.locator(".service-gallery-dots span")).toHaveCount(4);
+        await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
+        await expect(page.locator(".motion-slide")).toHaveCount(7);
+        await expect(page.locator(".motion-video")).toHaveCount(7);
+        await expect(page.locator(".motion-poster")).toHaveCount(7);
+        await expect(page.locator(".carousel-chip")).toHaveCount(7);
+        await expect(page.locator(".carousel-dot")).toHaveCount(7);
+        await expect(page.locator("[data-carousel-prev]")).toBeVisible();
+        await expect(page.locator("[data-carousel-next]")).toBeVisible();
+        await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
+        await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/insurance-slides\/.*\.webm/);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);
@@ -165,6 +177,69 @@ test("mobile homeowners page scroll content stays usable", async ({ page }) => {
     path: path.join(screenshotDir, "homeowners-mobile-scroll-faq.png"),
     fullPage: true
   });
+});
+
+test("insurance carousel supports chips, arrows, keyboard, and lazy videos", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/auto-insurance/", { waitUntil: "networkidle" });
+
+  const carousel = page.locator("[data-insurance-carousel]");
+  await expect(carousel).toBeVisible();
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto");
+
+  const initialVideoState = await page.evaluate(() => {
+    const videos = [...document.querySelectorAll(".motion-video")];
+    return {
+      loaded: videos.filter((video) => video.querySelector("source")).length,
+      inactivePlaying: videos.filter((video) => video.closest(".motion-slide")?.dataset.active !== "true" && !video.paused).length
+    };
+  });
+  expect(initialVideoState.loaded).toBeLessThanOrEqual(2);
+  expect(initialVideoState.inactivePlaying).toBe(0);
+
+  await page.locator('[data-carousel-chip][data-slide-id="liability"]').click();
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "liability");
+  await expect(page.locator('[data-carousel-chip][data-slide-id="liability"]')).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".motion-slide[data-active='true'] .motion-actions .button.warm")).toHaveAttribute("href", "/commercial-insurance/");
+  await expect(page.locator(".motion-slide[data-active='true'] .motion-actions .button.light")).toHaveAttribute("href", "tel:13059108850");
+
+  await page.locator("[data-carousel-next]").click();
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "family");
+
+  await page.locator(".carousel-track").focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "liability");
+
+  const afterInteractionState = await page.evaluate(() => {
+    const videos = [...document.querySelectorAll(".motion-video")];
+    return {
+      inactivePlaying: videos.filter((video) => video.closest(".motion-slide")?.dataset.active !== "true" && !video.paused).length,
+      pausedAttr: document.querySelector("[data-insurance-carousel]")?.getAttribute("data-paused")
+    };
+  });
+  expect(afterInteractionState.inactivePlaying).toBe(0);
+  expect(afterInteractionState.pausedAttr).toBe("true");
+});
+
+test("insurance carousel respects reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/auto-insurance/", { waitUntil: "networkidle" });
+
+  await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-paused", "true");
+  const reducedState = await page.evaluate(() => {
+    const activeVideo = document.querySelector(".motion-slide[data-active='true'] .motion-video");
+    const progress = document.querySelector(".carousel-progress span");
+    return {
+      activeVideoPaused: activeVideo ? activeVideo.paused : true,
+      inactivePlaying: [...document.querySelectorAll(".motion-video")]
+        .filter((video) => video.closest(".motion-slide")?.dataset.active !== "true" && !video.paused).length,
+      progressAnimation: progress ? getComputedStyle(progress).animationName : ""
+    };
+  });
+  expect(reducedState.activeVideoPaused).toBe(true);
+  expect(reducedState.inactivePlaying).toBe(0);
+  expect(["none", ""].includes(reducedState.progressAnimation)).toBe(true);
 });
 
 test("quote form validates safe contact fields", async ({ page }) => {

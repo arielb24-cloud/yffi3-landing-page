@@ -25,6 +25,7 @@ const forbiddenDistFiles = [
   "AUDIT_REPORT.md",
   "DEPLOYMENT.md",
   "DEPLOYMENT_AUTHORIZATION_REQUESTS.md",
+  "MEDIA_TODO.md",
   "README.md",
   "SECURITY.md",
   "SEO_AI_FINDABILITY_NOTES.md",
@@ -53,6 +54,15 @@ const approvedAssets = [
   "/assets/yffi3/yffi3-family-office-photo.webp",
   "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg",
   "/assets/yffi3/yffi3-original-franchise-logo.png"
+];
+const requiredMotionMedia = [
+  "auto-miami-drive",
+  "home-miami-sunlight",
+  "renters-apartment-keys",
+  "business-storefront-open",
+  "liability-contractor-checklist",
+  "family-protection-planning",
+  "bilingual-agent-consult"
 ];
 
 const failures = [];
@@ -116,26 +126,24 @@ for (const slug of requiredSlugs) {
     failures.push(`${slug} missing local search-intent panel`);
   }
   if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug)) {
-    const expectedVisual = {
-      "auto-insurance": "service-auto-slide",
-      "home-insurance": "service-homeowners-slide",
-      "commercial-insurance": "service-commercial-slide",
-      "life-insurance": "service-life-slide",
-      "renters-insurance": "service-renters-slide"
-    }[slug];
-    const expectedMotion = {
-      "auto-insurance": "service-auto-motion",
-      "home-insurance": "service-homeowners-motion",
-      "commercial-insurance": "service-commercial-motion",
-      "life-insurance": "service-life-motion",
-      "renters-insurance": "service-renters-motion"
-    }[slug];
-    for (const index of [1, 2, 3]) {
-      if (!html.includes(`${expectedVisual}-${index}.webp`) || !html.includes(`${expectedVisual}-${index}.jpg`)) failures.push(`${slug} missing optimized service slide ${index}: ${expectedVisual}`);
+    if (!html.includes("data-insurance-carousel")) failures.push(`${slug} missing interactive insurance motion carousel`);
+    if (countMatches(html, /class="motion-slide"/g) < 7) failures.push(`${slug} carousel should include seven coverage slides`);
+    if (countMatches(html, /class="motion-video"/g) < 7) failures.push(`${slug} carousel should include lazy video elements for every slide`);
+    if (countMatches(html, /class="carousel-chip"/g) < 7) failures.push(`${slug} carousel should include category chips`);
+    if (countMatches(html, /class="carousel-dot"/g) < 7) failures.push(`${slug} carousel should include accessible dots`);
+    if (!html.includes('data-carousel-prev') || !html.includes('data-carousel-next')) failures.push(`${slug} carousel missing arrow controls`);
+    for (const mediaName of requiredMotionMedia) {
+      if (!html.includes(`/media/insurance-slides/${mediaName}.webm`)) failures.push(`${slug} missing carousel WebM reference: ${mediaName}`);
+      if (!html.includes(`/media/insurance-slides/posters/${mediaName}-poster.jpg`)) failures.push(`${slug} missing carousel poster reference: ${mediaName}`);
     }
-    if (!html.includes(`${expectedMotion}.webm`) || !html.includes(`${expectedMotion}.gif`)) failures.push(`${slug} missing service motion video/GIF assets: ${expectedMotion}`);
-    if (!/<video\b[^>]*class="[^"]*service-motion-video/i.test(html)) failures.push(`${slug} missing service motion video element`);
-    if (!/<img\b[^>]*class="[^"]*service-motion-gif/i.test(html)) failures.push(`${slug} missing service motion GIF image element`);
+    const expectedStart = {
+      "auto-insurance": 'data-start-slide="auto"',
+      "home-insurance": 'data-start-slide="homeowners"',
+      "commercial-insurance": 'data-start-slide="business"',
+      "life-insurance": 'data-start-slide="family"',
+      "renters-insurance": 'data-start-slide="renters"'
+    }[slug];
+    if (!html.includes(expectedStart)) failures.push(`${slug} carousel does not prioritize matching first slide`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
     if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);
@@ -189,7 +197,7 @@ if (!fs.existsSync(robots)) {
 } else {
   const robotsText = read(robots);
   if (!robotsText.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) failures.push("robots.txt missing sitemap URL");
-  for (const disallowed of ["Disallow: /package.json", "Disallow: /server.js", "Disallow: /DEPLOYMENT.md", "Disallow: /node_modules/"]) {
+  for (const disallowed of ["Disallow: /package.json", "Disallow: /server.js", "Disallow: /DEPLOYMENT.md", "Disallow: /MEDIA_TODO.md", "Disallow: /node_modules/"]) {
     if (!robotsText.includes(disallowed)) failures.push(`robots.txt missing backend artifact disallow: ${disallowed}`);
   }
   for (const bot of ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "Googlebot", "Bingbot", "PerplexityBot"]) {
@@ -256,7 +264,7 @@ if (!fs.existsSync(styles)) {
   for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!css.includes(required)) failures.push(`CSS missing liquid glass styling: ${required}`);
   }
-  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-motion-video", ".service-gallery-dots", ".service-motion-gif", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
+  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".motion-carousel", ".carousel-track", "scroll-snap-type: x mandatory", ".motion-video.is-ready", ".carousel-progress", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
     if (!css.includes(required)) failures.push(`CSS missing polish styling: ${required}`);
   }
 }
@@ -269,7 +277,19 @@ if (!fs.existsSync(js)) {
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
   if (!script.includes("syncMotionMedia")) failures.push("JS missing offscreen video pause/play handling");
+  if (!script.includes("data-insurance-carousel")) failures.push("JS missing insurance carousel initialization");
+  if (!script.includes("hydrateVideo")) failures.push("JS missing lazy carousel video hydration");
+  if (!script.includes("data-carousel-chip")) failures.push("JS missing category chip handling");
+  if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("window.location.assign")) failures.push("JS missing secure quote redirect");
+}
+
+const mediaRoot = checkDist
+  ? path.join(siteRoot, "media", "insurance-slides")
+  : path.join(root, "public", "media", "insurance-slides");
+for (const mediaName of requiredMotionMedia) {
+  if (!fs.existsSync(path.join(mediaRoot, `${mediaName}.webm`))) failures.push(`Missing local carousel WebM media: ${mediaName}.webm`);
+  if (!fs.existsSync(path.join(mediaRoot, "posters", `${mediaName}-poster.jpg`))) failures.push(`Missing local carousel poster: ${mediaName}-poster.jpg`);
 }
 
 if (!checkDist) {

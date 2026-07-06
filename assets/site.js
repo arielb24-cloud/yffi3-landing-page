@@ -35,6 +35,7 @@ if (revealItems.length) {
 const animatedItems = document.querySelectorAll("[data-animate]");
 if (animatedItems.length) {
   const syncMotionMedia = (item, shouldPlay) => {
+    if (item.matches("[data-insurance-carousel]")) return;
     item.querySelectorAll("video").forEach((video) => {
       if (shouldPlay && !reducedMotion) {
         video.play().catch(() => {});
@@ -62,9 +63,227 @@ if (animatedItems.length) {
   }
 }
 
+document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
+  const slides = Array.from(carousel.querySelectorAll(".motion-slide"));
+  const track = carousel.querySelector(".carousel-track");
+  const chips = Array.from(carousel.querySelectorAll("[data-carousel-chip]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+  const prev = carousel.querySelector("[data-carousel-prev]");
+  const next = carousel.querySelector("[data-carousel-next]");
+  const delay = 6800;
+  let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
+  let inView = carousel.getAttribute("data-in-view") === "true";
+  let paused = reducedMotion;
+  let interactionHoldUntil = 0;
+  let dragging = false;
+  let didDrag = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let scrollFrame = 0;
+
+  const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
+
+  const hydrateVideo = (slide) => {
+    const video = slide?.querySelector(".motion-video");
+    if (!video || video.dataset.loaded === "true") return video;
+    const webm = video.dataset.src;
+    const mp4 = video.dataset.mp4;
+    if (webm) {
+      const source = document.createElement("source");
+      source.src = webm;
+      source.type = "video/webm";
+      video.append(source);
+    }
+    if (mp4) {
+      const source = document.createElement("source");
+      source.src = mp4;
+      source.type = "video/mp4";
+      video.append(source);
+    }
+    video.dataset.loaded = "true";
+    video.addEventListener("canplay", () => video.classList.add("is-ready"), { once: true });
+    video.load();
+    return video;
+  };
+
+  const syncVideos = () => {
+    slides.forEach((slide, index) => {
+      const video = slide.querySelector(".motion-video");
+      if (index === activeIndex) hydrateVideo(slide);
+      if (!video) return;
+      const shouldPlay = index === activeIndex && inView && !isTemporarilyPaused() && !reducedMotion;
+      if (shouldPlay) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  };
+
+  const setPaused = (value) => {
+    paused = value || reducedMotion;
+    carousel.setAttribute("data-paused", String(paused));
+    syncVideos();
+  };
+
+  const setActive = (index, options = {}) => {
+    if (!slides.length) return;
+    activeIndex = (index + slides.length) % slides.length;
+    const activeSlide = slides[activeIndex];
+    carousel.setAttribute("data-active-slide", activeSlide.dataset.slideId || "");
+    slides.forEach((slide, slideIndex) => {
+      slide.dataset.active = String(slideIndex === activeIndex);
+      if (slideIndex === activeIndex) {
+        slide.removeAttribute("inert");
+      } else {
+        slide.setAttribute("inert", "");
+      }
+    });
+    chips.forEach((chip) => {
+      chip.setAttribute("aria-selected", String(chip.dataset.slideId === activeSlide.dataset.slideId));
+    });
+    dots.forEach((dot) => {
+      dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
+    });
+    hydrateVideo(activeSlide);
+    hydrateVideo(slides[(activeIndex + 1) % slides.length]);
+    syncVideos();
+    if (options.scroll !== false) {
+      activeSlide.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
+    }
+  };
+
+  const holdAfterInteraction = () => {
+    interactionHoldUntil = Date.now() + 9000;
+    carousel.setAttribute("data-paused", "true");
+    syncVideos();
+  };
+
+  const goToSlideId = (slideId) => {
+    const index = slides.findIndex((slide) => slide.dataset.slideId === slideId);
+    if (index >= 0) {
+      holdAfterInteraction();
+      setActive(index);
+    }
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => goToSlideId(chip.dataset.slideId));
+  });
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goToSlideId(dot.dataset.slideId));
+  });
+  prev?.addEventListener("click", () => {
+    holdAfterInteraction();
+    setActive(activeIndex - 1);
+  });
+  next?.addEventListener("click", () => {
+    holdAfterInteraction();
+    setActive(activeIndex + 1);
+  });
+
+  track?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      holdAfterInteraction();
+      setActive(activeIndex + 1);
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      holdAfterInteraction();
+      setActive(activeIndex - 1);
+    }
+  });
+
+  track?.addEventListener("scroll", () => {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = 0;
+      const trackBox = track.getBoundingClientRect();
+      const trackCenter = trackBox.left + trackBox.width / 2;
+      let closestIndex = activeIndex;
+      let closestDistance = Infinity;
+      slides.forEach((slide, index) => {
+        const box = slide.getBoundingClientRect();
+        const distance = Math.abs(box.left + box.width / 2 - trackCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+      if (closestIndex !== activeIndex) {
+        holdAfterInteraction();
+        setActive(closestIndex, { scroll: false });
+      }
+    });
+  }, { passive: true });
+
+  track?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") return;
+    dragging = true;
+    didDrag = false;
+    startX = event.clientX;
+    startScrollLeft = track.scrollLeft;
+    track.setPointerCapture?.(event.pointerId);
+  });
+  track?.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    const delta = event.clientX - startX;
+    if (Math.abs(delta) > 4) didDrag = true;
+    track.scrollLeft = startScrollLeft - delta;
+  });
+  const endDrag = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    track.releasePointerCapture?.(event.pointerId);
+    if (didDrag) holdAfterInteraction();
+  };
+  track?.addEventListener("pointerup", endDrag);
+  track?.addEventListener("pointercancel", endDrag);
+  track?.addEventListener("click", (event) => {
+    if (didDrag) {
+      event.preventDefault();
+      event.stopPropagation();
+      didDrag = false;
+    }
+  }, true);
+
+  carousel.addEventListener("mouseenter", () => setPaused(true));
+  carousel.addEventListener("mouseleave", () => setPaused(false));
+  carousel.addEventListener("focusin", () => setPaused(true));
+  carousel.addEventListener("focusout", () => setPaused(false));
+
+  if ("IntersectionObserver" in window) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        inView = entry.isIntersecting;
+        carousel.setAttribute("data-in-view", String(inView));
+        syncVideos();
+      });
+    }, { rootMargin: "160px 0px", threshold: 0.12 });
+    carouselObserver.observe(carousel);
+  } else {
+    inView = true;
+    carousel.setAttribute("data-in-view", "true");
+  }
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
+      carousel.setAttribute("data-paused", String(shouldHold));
+      if (!shouldHold) setActive(activeIndex + 1);
+      syncVideos();
+    }, delay);
+  }
+
+  setActive(activeIndex, { scroll: false });
+  setPaused(reducedMotion);
+});
+
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   const hoverSurfaceSelector = [
     ".liquid-tilt",
+    ".motion-carousel",
     ".button",
     ".coverage-card",
     ".detail-card",
@@ -100,6 +319,10 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
         }
+        if (surface.classList.contains("motion-carousel")) {
+          surface.style.setProperty("--parallax-x", ((x - 0.5) * 10).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-y", ((y - 0.5) * 8).toFixed(2) + "px");
+        }
       });
     });
 
@@ -109,6 +332,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       surface.style.setProperty("--tilt-y", "0deg");
       surface.style.setProperty("--glare-x", "50%");
       surface.style.setProperty("--glare-y", "0%");
+      surface.style.setProperty("--parallax-x", "0px");
+      surface.style.setProperty("--parallax-y", "0px");
     });
   });
 }

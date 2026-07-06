@@ -107,6 +107,150 @@ const serviceVisuals = {
     accent3: "#F4C96B"
   }
 };
+
+const insuranceSlides = [
+  {
+    id: "auto",
+    category: "Auto Insurance",
+    chip: "Auto",
+    headline: "Compare Auto Insurance Across 50+ Carriers",
+    subheadline: "Local Miami guidance for coverage that fits your car, budget, and family.",
+    microcopy: "Fast quotes • Local guidance • Bilingual support",
+    cta: "Start Auto Quote",
+    href: "/auto-insurance/",
+    video: "/media/insurance-slides/auto-miami-drive.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
+    alt: "Modern car on a Miami-style street for auto insurance coverage comparison",
+    icon: "car",
+    objectPosition: "center 54%",
+    visualMood: "city lights, clean car, premium confidence",
+    trustBadge: "Miami drivers • Family vehicles • Renewal reviews",
+    detail: "Built for Miami commutes, new drivers, financed vehicles, family cars, and renewal questions without fear-heavy sales copy."
+  },
+  {
+    id: "homeowners",
+    category: "Homeowners Insurance",
+    chip: "Home",
+    headline: "Protect the Home You Worked For",
+    subheadline: "Homeowners coverage options with help from a local West Flagler team.",
+    microcopy: "Florida property questions • Lender timing • Local review",
+    cta: "Get Home Quote",
+    href: "/home-insurance/",
+    video: "/media/insurance-slides/home-miami-sunlight.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/home-miami-sunlight-poster.jpg",
+    alt: "Modern Florida home exterior with warm sunlight for homeowners insurance help",
+    icon: "home",
+    objectPosition: "center 52%",
+    visualMood: "sunlit Florida home, palm shadows, stable family protection",
+    trustBadge: "Homeowners • Wind questions • Flood conversations",
+    detail: "Designed for Miami-Dade homeowners comparing property, belongings, liability, lender, wind, and flood-related questions."
+  },
+  {
+    id: "renters",
+    category: "Renters Insurance",
+    chip: "Renters",
+    headline: "Renters Coverage Made Simple",
+    subheadline: "Affordable protection conversations for your apartment, belongings, and peace of mind.",
+    microcopy: "Apartments • Belongings • Lease requirements",
+    cta: "Quote Renters Insurance",
+    href: "/renters-insurance/",
+    video: "/media/insurance-slides/renters-apartment-keys.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/renters-apartment-keys-poster.jpg",
+    alt: "Apartment keys and modern rental interior for renters insurance in Miami",
+    icon: "key",
+    objectPosition: "center 50%",
+    visualMood: "soft apartment light, keys, clean move-in confidence",
+    trustBadge: "Renters • Condo owners • Move-in support",
+    detail: "A simple path for renters and condo owners who want to review belongings, liability, lease, or association questions."
+  },
+  {
+    id: "business",
+    category: "Business Insurance",
+    chip: "Business",
+    headline: "Protect the Business You’re Building",
+    subheadline: "Commercial and business coverage guidance for Miami owners and operators.",
+    microcopy: "Storefronts • Work vehicles • Certificates",
+    cta: "Protect My Business",
+    href: "/commercial-insurance/",
+    video: "/media/insurance-slides/business-storefront-open.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/business-storefront-open-poster.jpg",
+    alt: "Polished Miami small business storefront for commercial insurance help",
+    icon: "briefcase",
+    objectPosition: "center 50%",
+    visualMood: "storefront opening, polished workspace, owner confidence",
+    trustBadge: "Business owners • Commercial auto • Certificates",
+    detail: "For local shops, contractors, professional offices, family businesses, and growing teams reviewing business coverage paths."
+  },
+  {
+    id: "liability",
+    category: "General Liability",
+    chip: "Liability",
+    headline: "Liability Coverage Without the Confusion",
+    subheadline: "Get help comparing coverage for contracts, clients, jobs, and daily business risk.",
+    microcopy: "Contracts • Jobs • Plain-language review",
+    cta: "Get Liability Quote",
+    href: "/commercial-insurance/",
+    video: "/media/insurance-slides/liability-contractor-checklist.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg",
+    alt: "Professional business vehicle and workspace details for general liability coverage",
+    icon: "shield",
+    objectPosition: "center 55%",
+    visualMood: "professional job site, checklist confidence, responsible business",
+    trustBadge: "General liability • Contractors • Client requirements",
+    detail: "Helpful when a lease, contract, vendor portal, or client asks for insurance details or a certificate conversation."
+  },
+  {
+    id: "family",
+    category: "Family Insurance",
+    chip: "Family",
+    headline: "Family Protection With a Local Guide",
+    subheadline: "Life and family insurance conversations that start with goals, not pressure.",
+    microcopy: "Life insurance • Income needs • Family planning",
+    cta: "Plan Family Protection",
+    href: "/life-insurance/",
+    video: "/media/insurance-slides/family-protection-planning.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/family-protection-planning-poster.jpg",
+    alt: "Warm planning workspace for Miami family and life insurance conversations",
+    icon: "heart",
+    objectPosition: "center 50%",
+    visualMood: "warm planning, family-first calm, long-term confidence",
+    trustBadge: "Life • Final expense • Income protection",
+    detail: "A safer first step for families reviewing term life, final expense, mortgage planning, and long-term needs."
+  },
+  {
+    id: "bilingual",
+    category: "Bilingual Local Service",
+    chip: "Español",
+    headline: "Insurance Help in English & Spanish",
+    subheadline: "Call or visit our West Flagler office for fast, local quote help.",
+    microcopy: "Local Miami office • Se habla español • Family owned",
+    cta: "Hablar con un agente",
+    href: "/about-office-3/",
+    video: "/media/insurance-slides/bilingual-agent-consult.webm",
+    videoMp4: "",
+    poster: "/media/insurance-slides/posters/bilingual-agent-consult-poster.jpg",
+    alt: "Real Your Family First Insurance Office #3 team photo for bilingual local service",
+    icon: "map",
+    objectPosition: "center 43%",
+    visualMood: "warm office consultation, local trust, English and Spanish support",
+    trustBadge: "11200 W Flagler St • Office #3 • Bilingual",
+    detail: "A local office signal for visitors who want a real Miami team, clear explanations, and a direct phone path."
+  }
+];
+
+const serviceSlideStart = {
+  "auto-insurance": "auto",
+  "home-insurance": "homeowners",
+  "renters-insurance": "renters",
+  "commercial-insurance": "business",
+  "life-insurance": "family"
+};
 const address = {
   streetAddress: "11200 W Flagler St, Ste 108",
   addressLocality: "Miami",
@@ -497,7 +641,7 @@ function pagePath(slug) {
 
 function writeFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, content, "utf8");
+  fs.writeFileSync(filePath, content.replace(/[ \t]+$/gm, ""), "utf8");
 }
 
 function iconSvg(name) {
@@ -832,7 +976,12 @@ function jsonLd(data) {
 
 function headHtml(page) {
   const schemas = [organizationSchema(), websiteSchema(), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
-  const preloadPhoto = page.kind === "home" ? `<link rel="preload" href="${familyWebpSrc}" as="image" type="image/webp">` : "";
+  const firstMotionSlide = ["home", "service"].includes(page.kind) ? orderedInsuranceSlides(page)[0] : null;
+  const preloadPhoto = firstMotionSlide
+    ? `<link rel="preload" href="${firstMotionSlide.poster}" as="image">`
+    : page.kind === "home"
+      ? `<link rel="preload" href="${familyWebpSrc}" as="image" type="image/webp">`
+      : "";
   const keywords = page.keywords || "Miami insurance agency, West Flagler insurance, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, condo insurance Miami, commercial insurance Miami, life insurance Miami, health insurance Miami, bilingual insurance office";
   return `
     <meta charset="utf-8">
@@ -878,25 +1027,76 @@ function ctaRow(extra = "") {
   `;
 }
 
+function orderedInsuranceSlides(page) {
+  const startId = serviceSlideStart[page.slug] || "auto";
+  const startIndex = insuranceSlides.findIndex((slide) => slide.id === startId);
+  if (startIndex <= 0) return insuranceSlides;
+  return [...insuranceSlides.slice(startIndex), ...insuranceSlides.slice(0, startIndex)];
+}
+
+function insuranceMotionCarousel(page) {
+  const slides = orderedInsuranceSlides(page);
+  const firstSlide = slides[0];
+  const chipButtons = slides.map((slide, index) => `
+    <button class="carousel-chip" type="button" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-carousel-chip>
+      <span class="chip-icon">${iconSvg(slide.icon)}</span>
+      <span>${escapeHtml(slide.chip)}</span>
+    </button>
+  `).join("");
+  const dots = slides.map((slide, index) => `
+    <button class="carousel-dot" type="button" aria-label="Show ${escapeHtml(slide.category)} slide" aria-current="${index === 0 ? "true" : "false"}" data-slide-id="${slide.id}" data-carousel-dot><span></span></button>
+  `).join("");
+  const slideMarkup = slides.map((slide, index) => `
+    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
+      <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
+        <img class="motion-poster" src="${slide.poster}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
+        <video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}" data-src="${slide.video}"${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>
+        <span class="motion-scrim" aria-hidden="true"></span>
+        <span class="motion-sheen" aria-hidden="true"></span>
+        <span class="motion-trust-badge">${escapeHtml(slide.trustBadge)}</span>
+      </a>
+      <div class="motion-slide-copy">
+        <span class="motion-category">${iconSvg(slide.icon)}${escapeHtml(slide.category)}</span>
+        <h2>${escapeHtml(slide.headline)}</h2>
+        <p>${escapeHtml(slide.subheadline)}</p>
+        <p class="motion-microcopy">${escapeHtml(slide.microcopy)}</p>
+        <div class="motion-actions">
+          <a class="button warm magnetic-button" href="${slide.href}">${escapeHtml(slide.cta)} ${iconSvg("arrow")}</a>
+          <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
+        </div>
+        <p class="motion-detail">${escapeHtml(slide.detail)}</p>
+      </div>
+    </article>
+  `).join("");
+
+  return `
+    <div class="motion-carousel liquid-tilt" data-insurance-carousel data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="Interactive insurance coverage carousel">
+      <div class="carousel-topline">
+        <div>
+          <strong>Interactive coverage studio</strong>
+          <span>Swipe, click, or use arrows to compare local quote paths.</span>
+        </div>
+        <a href="${phoneHref}" class="carousel-phone">${iconSvg("phone")} ${phoneDisplay}</a>
+      </div>
+      <div class="carousel-chips" role="tablist" aria-label="Insurance categories">${chipButtons}</div>
+      <div class="carousel-stage">
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous insurance slide" data-carousel-prev>${iconSvg("arrow")}</button>
+        <div class="carousel-track" tabindex="0" aria-live="off">${slideMarkup}</div>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next insurance slide" data-carousel-next>${iconSvg("arrow")}</button>
+      </div>
+      <div class="carousel-controls">
+        <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
+        <div class="carousel-progress" aria-hidden="true"><span></span></div>
+      </div>
+      <p class="carousel-footnote">50+ carriers • Local Miami Office • Bilingual quote help • No guaranteed pricing claims</p>
+    </div>
+  `;
+}
+
 function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
-  const visual = serviceVisuals[page.slug];
-  const serviceMotion = isService
-    ? [
-      `<video class="service-media-layer service-motion-video" aria-hidden="true" muted loop playsinline autoplay preload="metadata" poster="/assets/yffi3/${visual.motionGif}">`,
-      `<source src="/assets/yffi3/${visual.motionVideo}" type="video/webm">`,
-      "</video>"
-    ].join("")
-    : "";
-  const serviceSlides = isService
-    ? visual.slides.map((slide, index) => [
-      `<picture class="service-media-layer service-slide service-slide-${index + 1}" aria-hidden="true">`,
-      `<source srcset="/assets/yffi3/${slide.webp}" type="image/webp">`,
-      `<img src="/assets/yffi3/${slide.fallback}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}">`,
-      "</picture>"
-    ].join("")).join("")
-    : "";
+  const hasMotionCarousel = isHome || isService;
   return `
     <section class="hero ${isHome ? "home-hero" : "inner-hero"}" data-reveal>
       <div class="hero-content" data-reveal="left">
@@ -906,22 +1106,10 @@ function heroHtml(page) {
         ${ctaRow()}
         <p class="trust-line">Local Office #3 <span>/</span> Personalized Quote Help <span>/</span> Miami Families</p>
       </div>
-      <div class="${isService ? "service-showcase liquid-tilt" : "photo-showcase liquid-tilt"}" data-reveal="right">
+      <div class="${hasMotionCarousel ? "motion-showcase" : "photo-showcase liquid-tilt"}" data-reveal="right">
         ${
-          isService
-            ? `<div class="service-picture service-gallery service-gallery-${page.slug}" role="img" aria-label="${escapeHtml(visual.alt)}" data-animate data-in-view="true">
-                 ${serviceMotion}
-                 ${serviceSlides}
-                 <div class="service-gallery-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-               </div>
-               <div class="service-visual-caption">
-                 <span class="service-icon-xl">${iconSvg(page.icon)}</span>
-                 <div>
-                   <strong>${escapeHtml(visual.scene)}</strong>
-                   <p>${escapeHtml(page.service)} quote help from a local West Flagler Miami office.</p>
-                 </div>
-                 <img class="service-motion-gif" src="/assets/yffi3/${visual.motionGif}" alt="${escapeHtml(visual.motionAlt)}" width="320" height="200" loading="lazy" decoding="async">
-               </div>`
+          hasMotionCarousel
+            ? insuranceMotionCarousel(page)
             : `${familyPicture("hero-photo", isHome ? "eager" : "lazy", isHome ? "high" : "auto")}
                <div class="photo-caption"><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></div>`
         }
@@ -957,6 +1145,10 @@ function aboutPreview() {
       <div class="about-media">
         ${principalPicture("about-photo principal-photo")}
         <div class="photo-caption"><strong>Ariel Busutil, Principal Agent</strong><span>Office #3</span></div>
+        <div class="office-proof-strip">
+          ${familyPicture("office-proof-photo")}
+          <p><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></p>
+        </div>
       </div>
     </section>
   `;
@@ -1792,7 +1984,7 @@ h3 {
   pointer-events: none;
   background: linear-gradient(180deg, rgba(6, 17, 31, 0), rgba(6, 17, 31, 0.8));
 }
-.hero-content, .photo-showcase, .service-showcase { position: relative; z-index: 1; }
+.hero-content, .photo-showcase, .service-showcase, .motion-showcase { position: relative; z-index: 1; min-width: 0; }
 .liquid-tilt { touch-action: pan-y; }
 .hero-lead {
   max-width: 650px;
@@ -2077,6 +2269,418 @@ h3 {
   line-height: 1.2;
 }
 
+.motion-showcase {
+  width: 100%;
+}
+.motion-carousel {
+  --lift: 0px;
+  --parallax-x: 0px;
+  --parallax-y: 0px;
+  --carousel-duration: 6800ms;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 12px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(154, 220, 247, 0.18), transparent 22%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.055)),
+    linear-gradient(135deg, rgba(119, 231, 220, 0.10), rgba(255, 161, 132, 0.06));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(var(--glass-blur)) saturate(138%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(138%);
+  transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
+  transform-style: preserve-3d;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, background 260ms ease;
+}
+.motion-carousel::before,
+.motion-carousel::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.motion-carousel::before {
+  inset: -35% -18% auto;
+  height: 58%;
+  background:
+    radial-gradient(circle at 18% 45%, rgba(255, 224, 161, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 8%, rgba(119, 231, 220, 0.16), transparent 26%);
+  transform: translate3d(0, 0, 0);
+}
+.motion-carousel::after {
+  inset: 0;
+  opacity: 0.72;
+  background:
+    linear-gradient(116deg, rgba(255, 255, 255, 0.18), transparent 24%, rgba(255, 255, 255, 0.05) 50%, transparent 76%),
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,.18), transparent 20%);
+  transform: translate3d(-1.2%, -1.2%, 0) scale(1.025);
+  transition: opacity 240ms ease, transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-carousel:hover,
+.motion-carousel:focus-within {
+  --lift: -2px;
+  border-color: rgba(154, 220, 247, 0.46);
+}
+.motion-carousel:hover::after,
+.motion-carousel:focus-within::after {
+  opacity: 0.92;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.carousel-topline,
+.carousel-chips,
+.carousel-stage,
+.carousel-controls,
+.carousel-footnote {
+  position: relative;
+  z-index: 3;
+}
+.carousel-topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 4px 4px 10px;
+}
+.carousel-topline strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 950;
+}
+.carousel-topline span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 760;
+}
+.carousel-phone {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--glass-line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--champagne);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  font-size: 0.82rem;
+  font-weight: 950;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.carousel-phone .icon { width: 16px; height: 16px; color: var(--coral); }
+.carousel-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding: 0 3px 11px;
+  scrollbar-width: none;
+}
+.carousel-chips::-webkit-scrollbar,
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 36px;
+  align-items: center;
+  gap: 7px;
+  scroll-snap-align: start;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 180ms ease, color 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.carousel-chip .icon { width: 15px; height: 15px; }
+.carousel-chip[aria-selected="true"] {
+  color: #06111F;
+  border-color: rgba(255, 224, 161, 0.68);
+  background: linear-gradient(135deg, rgba(255, 224, 161, 0.96), rgba(154, 220, 247, 0.78));
+  box-shadow: 0 0 0 4px rgba(255, 224, 161, 0.10), 0 12px 30px rgba(154, 220, 247, 0.16);
+}
+.carousel-chip:hover,
+.carousel-chip:focus-visible {
+  transform: translate3d(0, -1px, 0);
+  border-color: rgba(154, 220, 247, 0.48);
+}
+.carousel-stage {
+  position: relative;
+}
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(5, 11, 18, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  cursor: grab;
+}
+.carousel-track:active { cursor: grabbing; }
+.motion-slide {
+  position: relative;
+  display: grid;
+  flex: 0 0 100%;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+  align-content: end;
+  scroll-snap-align: center;
+  padding: clamp(20px, 4vw, 34px);
+  color: var(--ink);
+  background: #07131F;
+}
+.motion-media-link {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+.motion-poster,
+.motion-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #07131F;
+  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025);
+  transform-origin: center;
+  transition: opacity 420ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.motion-video {
+  opacity: 0;
+}
+.motion-video.is-ready {
+  opacity: 1;
+}
+.motion-slide[data-active="true"] .motion-poster,
+.motion-slide[data-active="true"] .motion-video.is-ready {
+  animation: cinematic-breathe 6800ms ease-in-out infinite alternate;
+}
+.motion-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(5, 11, 18, 0.78) 0%, rgba(5, 11, 18, 0.52) 44%, rgba(5, 11, 18, 0.12) 100%),
+    linear-gradient(180deg, rgba(5, 11, 18, 0.05) 0%, rgba(5, 11, 18, 0.76) 100%);
+}
+.motion-sheen {
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(112deg, transparent 0%, rgba(255, 255, 255, 0.18) 28%, transparent 46%);
+  transform: translate3d(-34%, 0, 0);
+}
+.motion-slide[data-active="true"] .motion-sheen {
+  animation: soft-sweep 6800ms ease-in-out infinite;
+}
+.motion-trust-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
+  max-width: calc(100% - 36px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: var(--ink);
+  background: rgba(5, 11, 18, 0.44);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 12px 30px rgba(0, 0, 0, 0.24);
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1.2;
+  backdrop-filter: blur(10px) saturate(135%);
+  -webkit-backdrop-filter: blur(10px) saturate(135%);
+}
+.motion-slide-copy {
+  position: relative;
+  z-index: 4;
+  max-width: 520px;
+  transform: translate3d(0, 12px, 0);
+  opacity: 0.78;
+  transition: opacity 420ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-slide[data-active="true"] .motion-slide-copy {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.motion-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--champagne);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.motion-category .icon { width: 17px; height: 17px; }
+.motion-slide h2 {
+  max-width: 560px;
+  margin-bottom: 10px;
+  color: #FFF8EC;
+  font-size: 2.55rem;
+  line-height: 0.93;
+}
+.motion-slide p {
+  color: rgba(243, 251, 255, 0.86);
+}
+.motion-microcopy {
+  margin-top: 12px;
+  color: var(--champagne) !important;
+  font-weight: 900;
+}
+.motion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.motion-actions .button {
+  min-height: 44px;
+}
+.motion-detail {
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition: max-height 260ms ease, opacity 220ms ease, transform 260ms ease, margin 220ms ease;
+}
+.motion-slide:hover .motion-detail,
+.motion-slide:focus-within .motion-detail,
+.motion-slide[data-active="true"] .motion-detail {
+  max-height: 120px;
+  margin-top: 12px;
+  opacity: 0.9;
+  transform: translate3d(0, 0, 0);
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(5, 11, 18, 0.46);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translateY(-50%);
+  cursor: pointer;
+  backdrop-filter: blur(10px) saturate(135%);
+  -webkit-backdrop-filter: blur(10px) saturate(135%);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.carousel-arrow .icon { width: 18px; height: 18px; }
+.carousel-prev { left: 12px; }
+.carousel-prev .icon { transform: rotate(180deg); }
+.carousel-next { right: 12px; }
+.carousel-arrow:hover,
+.carousel-arrow:focus-visible {
+  border-color: rgba(255, 224, 161, 0.46);
+  background: rgba(255, 255, 255, 0.12);
+}
+.carousel-prev:hover,
+.carousel-prev:focus-visible { transform: translate3d(-2px, -50%, 0); }
+.carousel-next:hover,
+.carousel-next:focus-visible { transform: translate3d(2px, -50%, 0); }
+.carousel-controls {
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 12px 4px 4px;
+}
+.carousel-dots {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+}
+.carousel-dot {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+.carousel-dot span {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(243, 251, 255, 0.56);
+  transform: scale(0.82);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.carousel-dot[aria-current="true"] span {
+  background: var(--champagne);
+  box-shadow: 0 0 0 5px rgba(255, 224, 161, 0.12);
+  transform: scale(1);
+}
+.carousel-progress {
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.carousel-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--champagne), var(--miami-blue), var(--aqua));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.motion-carousel[data-in-view="true"]:not([data-paused="true"]) .carousel-progress span {
+  animation: carousel-progress var(--carousel-duration) linear infinite;
+}
+.carousel-footnote {
+  margin: 8px 4px 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+@keyframes cinematic-breathe {
+  from { transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025); }
+  to { transform: translate3d(calc(var(--parallax-x) * 1.2), calc(var(--parallax-y) * 1.2), 0) scale(1.075); }
+}
+@keyframes soft-sweep {
+  0%, 64% { opacity: 0; transform: translate3d(-34%, 0, 0); }
+  76% { opacity: 0.58; }
+  100% { opacity: 0; transform: translate3d(42%, 0, 0); }
+}
+@keyframes carousel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 .trust-strip {
   display: grid;
   gap: 10px;
@@ -2148,6 +2752,46 @@ h3 {
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(135%);
   transition: transform 220ms ease, border-color 220ms ease;
   transform: translateY(var(--lift));
+}
+.office-proof-strip {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 10px;
+  background: rgba(5, 11, 18, 0.36);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.office-proof-photo {
+  width: 86px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.office-proof-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 44%;
+}
+.office-proof-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 780;
+}
+.office-proof-strip strong {
+  display: block;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.office-proof-strip span {
+  display: block;
+  margin-top: 2px;
 }
 .coverage-section {
   width: 100%;
@@ -2736,6 +3380,10 @@ h3 {
   h2 { font-size: 2.65rem; }
   .hero-lead { font-size: 1.18rem; }
   .hero-photo { aspect-ratio: 1.02 / 1; }
+  .carousel-arrow { display: grid; }
+  .motion-slide { min-height: 560px; }
+  .motion-slide h2 { font-size: 3.5rem; }
+  .motion-slide-copy { padding-inline: 22px; }
   .trust-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: -34px;
@@ -2798,6 +3446,89 @@ h3 {
   h1 { font-size: 2.34rem; }
   h2 { font-size: 1.7rem; }
   .hero-lead { font-size: 1rem; }
+  .motion-carousel { border-radius: 18px; padding: 9px; }
+  .carousel-topline {
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 9px;
+  }
+  .carousel-topline span { display: none; }
+  .carousel-phone {
+    width: 100%;
+    justify-content: center;
+    min-height: 36px;
+    font-size: 0.78rem;
+  }
+  .carousel-chips {
+    gap: 6px;
+    padding-bottom: 9px;
+  }
+  .carousel-chip {
+    min-height: 32px;
+    padding: 6px 9px;
+    font-size: 0.72rem;
+  }
+  .carousel-chip .icon { width: 13px; height: 13px; }
+  .carousel-track { border-radius: 14px; }
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    top: -21px;
+    transform: none;
+  }
+  .carousel-arrow .icon { width: 15px; height: 15px; }
+  .carousel-prev { left: auto; right: 52px; }
+  .carousel-next { right: 8px; }
+  .carousel-prev:hover,
+  .carousel-prev:focus-visible,
+  .carousel-next:hover,
+  .carousel-next:focus-visible {
+    transform: translate3d(0, -1px, 0);
+  }
+  .motion-slide {
+    min-height: 560px;
+    padding: 18px;
+  }
+  .motion-trust-badge {
+    top: 13px;
+    left: 13px;
+    max-width: calc(100% - 26px);
+    padding: 7px 9px;
+    font-size: 0.66rem;
+  }
+  .motion-scrim {
+    background:
+      linear-gradient(180deg, rgba(5, 11, 18, 0.16) 0%, rgba(5, 11, 18, 0.22) 28%, rgba(5, 11, 18, 0.86) 100%),
+      linear-gradient(90deg, rgba(5, 11, 18, 0.35), rgba(5, 11, 18, 0.04));
+  }
+  .motion-slide h2 {
+    font-size: 2.05rem;
+    line-height: 0.96;
+  }
+  .motion-slide p { font-size: 0.94rem; }
+  .motion-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .motion-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+  .motion-detail {
+    max-height: none;
+    margin-top: 10px;
+    opacity: 0.84;
+    transform: none;
+    font-size: 0.82rem !important;
+  }
+  .carousel-controls {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .carousel-dots { justify-content: center; }
+  .carousel-footnote {
+    text-align: center;
+    font-size: 0.7rem;
+  }
   .section, .trust-strip, .footer-shell { width: min(100% - 28px, 1180px); }
   .coverage-section { padding-inline: 14px; }
   .coverage-card, .detail-card, .process-grid article, .why-grid article, .quote-form { padding: 18px; }
@@ -2847,6 +3578,13 @@ h3 {
   }
   .button:hover, .faq details:hover { transform: none; }
   .trust-track { animation: none; }
+  .motion-carousel[data-in-view="true"]:not([data-paused="true"]) .carousel-progress span { animation: none; transform: scaleX(1); }
+  .motion-slide[data-active="true"] .motion-poster,
+  .motion-slide[data-active="true"] .motion-video.is-ready,
+  .motion-slide[data-active="true"] .motion-sheen {
+    animation: none;
+  }
+  .carousel-track { scroll-behavior: auto; }
   .service-gallery[data-in-view="true"] .service-media-layer { animation: none; }
   .service-gallery[data-in-view="true"] .service-gallery-dots span { animation: none; }
   .service-media-layer { transform: none; }
@@ -2893,6 +3631,7 @@ if (revealItems.length) {
 const animatedItems = document.querySelectorAll("[data-animate]");
 if (animatedItems.length) {
   const syncMotionMedia = (item, shouldPlay) => {
+    if (item.matches("[data-insurance-carousel]")) return;
     item.querySelectorAll("video").forEach((video) => {
       if (shouldPlay && !reducedMotion) {
         video.play().catch(() => {});
@@ -2920,9 +3659,227 @@ if (animatedItems.length) {
   }
 }
 
+document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
+  const slides = Array.from(carousel.querySelectorAll(".motion-slide"));
+  const track = carousel.querySelector(".carousel-track");
+  const chips = Array.from(carousel.querySelectorAll("[data-carousel-chip]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+  const prev = carousel.querySelector("[data-carousel-prev]");
+  const next = carousel.querySelector("[data-carousel-next]");
+  const delay = 6800;
+  let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
+  let inView = carousel.getAttribute("data-in-view") === "true";
+  let paused = reducedMotion;
+  let interactionHoldUntil = 0;
+  let dragging = false;
+  let didDrag = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let scrollFrame = 0;
+
+  const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
+
+  const hydrateVideo = (slide) => {
+    const video = slide?.querySelector(".motion-video");
+    if (!video || video.dataset.loaded === "true") return video;
+    const webm = video.dataset.src;
+    const mp4 = video.dataset.mp4;
+    if (webm) {
+      const source = document.createElement("source");
+      source.src = webm;
+      source.type = "video/webm";
+      video.append(source);
+    }
+    if (mp4) {
+      const source = document.createElement("source");
+      source.src = mp4;
+      source.type = "video/mp4";
+      video.append(source);
+    }
+    video.dataset.loaded = "true";
+    video.addEventListener("canplay", () => video.classList.add("is-ready"), { once: true });
+    video.load();
+    return video;
+  };
+
+  const syncVideos = () => {
+    slides.forEach((slide, index) => {
+      const video = slide.querySelector(".motion-video");
+      if (index === activeIndex) hydrateVideo(slide);
+      if (!video) return;
+      const shouldPlay = index === activeIndex && inView && !isTemporarilyPaused() && !reducedMotion;
+      if (shouldPlay) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  };
+
+  const setPaused = (value) => {
+    paused = value || reducedMotion;
+    carousel.setAttribute("data-paused", String(paused));
+    syncVideos();
+  };
+
+  const setActive = (index, options = {}) => {
+    if (!slides.length) return;
+    activeIndex = (index + slides.length) % slides.length;
+    const activeSlide = slides[activeIndex];
+    carousel.setAttribute("data-active-slide", activeSlide.dataset.slideId || "");
+    slides.forEach((slide, slideIndex) => {
+      slide.dataset.active = String(slideIndex === activeIndex);
+      if (slideIndex === activeIndex) {
+        slide.removeAttribute("inert");
+      } else {
+        slide.setAttribute("inert", "");
+      }
+    });
+    chips.forEach((chip) => {
+      chip.setAttribute("aria-selected", String(chip.dataset.slideId === activeSlide.dataset.slideId));
+    });
+    dots.forEach((dot) => {
+      dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
+    });
+    hydrateVideo(activeSlide);
+    hydrateVideo(slides[(activeIndex + 1) % slides.length]);
+    syncVideos();
+    if (options.scroll !== false) {
+      activeSlide.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
+    }
+  };
+
+  const holdAfterInteraction = () => {
+    interactionHoldUntil = Date.now() + 9000;
+    carousel.setAttribute("data-paused", "true");
+    syncVideos();
+  };
+
+  const goToSlideId = (slideId) => {
+    const index = slides.findIndex((slide) => slide.dataset.slideId === slideId);
+    if (index >= 0) {
+      holdAfterInteraction();
+      setActive(index);
+    }
+  };
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => goToSlideId(chip.dataset.slideId));
+  });
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => goToSlideId(dot.dataset.slideId));
+  });
+  prev?.addEventListener("click", () => {
+    holdAfterInteraction();
+    setActive(activeIndex - 1);
+  });
+  next?.addEventListener("click", () => {
+    holdAfterInteraction();
+    setActive(activeIndex + 1);
+  });
+
+  track?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      holdAfterInteraction();
+      setActive(activeIndex + 1);
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      holdAfterInteraction();
+      setActive(activeIndex - 1);
+    }
+  });
+
+  track?.addEventListener("scroll", () => {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = 0;
+      const trackBox = track.getBoundingClientRect();
+      const trackCenter = trackBox.left + trackBox.width / 2;
+      let closestIndex = activeIndex;
+      let closestDistance = Infinity;
+      slides.forEach((slide, index) => {
+        const box = slide.getBoundingClientRect();
+        const distance = Math.abs(box.left + box.width / 2 - trackCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+      if (closestIndex !== activeIndex) {
+        holdAfterInteraction();
+        setActive(closestIndex, { scroll: false });
+      }
+    });
+  }, { passive: true });
+
+  track?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") return;
+    dragging = true;
+    didDrag = false;
+    startX = event.clientX;
+    startScrollLeft = track.scrollLeft;
+    track.setPointerCapture?.(event.pointerId);
+  });
+  track?.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    const delta = event.clientX - startX;
+    if (Math.abs(delta) > 4) didDrag = true;
+    track.scrollLeft = startScrollLeft - delta;
+  });
+  const endDrag = (event) => {
+    if (!dragging) return;
+    dragging = false;
+    track.releasePointerCapture?.(event.pointerId);
+    if (didDrag) holdAfterInteraction();
+  };
+  track?.addEventListener("pointerup", endDrag);
+  track?.addEventListener("pointercancel", endDrag);
+  track?.addEventListener("click", (event) => {
+    if (didDrag) {
+      event.preventDefault();
+      event.stopPropagation();
+      didDrag = false;
+    }
+  }, true);
+
+  carousel.addEventListener("mouseenter", () => setPaused(true));
+  carousel.addEventListener("mouseleave", () => setPaused(false));
+  carousel.addEventListener("focusin", () => setPaused(true));
+  carousel.addEventListener("focusout", () => setPaused(false));
+
+  if ("IntersectionObserver" in window) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        inView = entry.isIntersecting;
+        carousel.setAttribute("data-in-view", String(inView));
+        syncVideos();
+      });
+    }, { rootMargin: "160px 0px", threshold: 0.12 });
+    carouselObserver.observe(carousel);
+  } else {
+    inView = true;
+    carousel.setAttribute("data-in-view", "true");
+  }
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
+      carousel.setAttribute("data-paused", String(shouldHold));
+      if (!shouldHold) setActive(activeIndex + 1);
+      syncVideos();
+    }, delay);
+  }
+
+  setActive(activeIndex, { scroll: false });
+  setPaused(reducedMotion);
+});
+
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   const hoverSurfaceSelector = [
     ".liquid-tilt",
+    ".motion-carousel",
     ".button",
     ".coverage-card",
     ".detail-card",
@@ -2958,6 +3915,10 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
         }
+        if (surface.classList.contains("motion-carousel")) {
+          surface.style.setProperty("--parallax-x", ((x - 0.5) * 10).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-y", ((y - 0.5) * 8).toFixed(2) + "px");
+        }
       });
     });
 
@@ -2967,6 +3928,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       surface.style.setProperty("--tilt-y", "0deg");
       surface.style.setProperty("--glare-x", "50%");
       surface.style.setProperty("--glare-y", "0%");
+      surface.style.setProperty("--parallax-x", "0px");
+      surface.style.setProperty("--parallax-y", "0px");
     });
   });
 }
@@ -3017,6 +3980,7 @@ Disallow: /AGENTS.md
 Disallow: /AUDIT_REPORT.md
 Disallow: /DEPLOYMENT.md
 Disallow: /DEPLOYMENT_AUTHORIZATION_REQUESTS.md
+Disallow: /MEDIA_TODO.md
 Disallow: /README.md
 Disallow: /SECURITY.md
 Disallow: /SEO_AI_FINDABILITY_NOTES.md
