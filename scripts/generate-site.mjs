@@ -2495,15 +2495,9 @@ h3 {
 .motion-video.is-ready {
   opacity: 1;
 }
-.motion-slide[data-media-type="image"] .motion-poster {
-  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.035);
-}
 .motion-slide[data-active="true"] .motion-poster,
 .motion-slide[data-active="true"] .motion-video.is-ready {
   animation: cinematic-breathe var(--carousel-duration) ease-in-out infinite alternate;
-}
-.motion-slide[data-media-type="image"][data-active="true"] .motion-poster {
-  animation: still-depth 9600ms ease-in-out infinite alternate;
 }
 .motion-asset-fallback {
   position: absolute;
@@ -2833,10 +2827,6 @@ h3 {
 @keyframes cinematic-breathe {
   from { transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025); }
   to { transform: translate3d(calc(var(--parallax-x) * 1.2), calc(var(--parallax-y) * 1.2), 0) scale(1.075); }
-}
-@keyframes still-depth {
-  from { transform: translate3d(calc(var(--parallax-x) * 0.8), calc(var(--parallax-y) * 0.8), 0) scale(1.035); }
-  to { transform: translate3d(calc(var(--parallax-x) * 1.25 + 10px), calc(var(--parallax-y) * 1.25 - 6px), 0) scale(1.082); }
 }
 @keyframes soft-sweep {
   0%, 64% { opacity: 0; transform: translate3d(-34%, 0, 0); }
@@ -4610,36 +4600,12 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-principal-agent-ariel-busutil.jpg
 - yffi3-original-franchise-logo.png
 - yffi3-quote-qr.jpeg
-- service-auto-slide-1.webp through service-auto-slide-3.webp
-- service-auto-slide-1.jpg through service-auto-slide-3.jpg
-- service-auto-slide-4.jpg
-- service-auto-slide-4-poster.jpg
-- service-auto-motion.gif
-- service-auto-motion.webm
-- service-homeowners-slide-1.webp through service-homeowners-slide-3.webp
-- service-homeowners-slide-1.jpg through service-homeowners-slide-3.jpg
-- service-homeowners-motion.gif
-- service-homeowners-motion.webm
-- service-commercial-slide-1.webp through service-commercial-slide-3.webp
-- service-commercial-slide-1.jpg through service-commercial-slide-3.jpg
-- service-commercial-motion.gif
-- service-commercial-motion.webm
-- service-life-slide-1.webp through service-life-slide-3.webp
-- service-life-slide-1.jpg through service-life-slide-3.jpg
-- service-life-motion.gif
-- service-life-motion.webm
-- service-renters-slide-1.webp through service-renters-slide-3.webp
-- service-renters-slide-1.jpg through service-renters-slide-3.jpg
-- service-renters-motion.gif
-- service-renters-motion.webm
 
-Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
+Do not replace the official franchise assets with generated images or a redesigned logo.
 
-The carousel inventory lives in \`/src/data/carouselMedia.js\`. Update that manifest first whenever replacing media, then run \`pnpm run build\` so \`scripts/validate-carousel-assets.mjs\` can catch duplicate paths, missing alt text, missing license notes, or page-off-topic slides.
+The carousel inventory lives in \`/src/data/carouselMedia.js\`. Update that manifest first whenever replacing media, then run \`pnpm run build\` so \`scripts/validate-carousel-assets.mjs\` can catch duplicate paths, missing alt text, missing license notes, page-off-topic slides, or any static carousel slide.
 
-\`service-auto-slide-4.jpg\` and \`service-auto-slide-4-poster.jpg\` are local production fallback assets for the auto carousel. They replace the older car-key still in rendered pages so the auto insurance experience stays motion-led and less cluttered.
-
-The auto carousel also uses \`/public/media/insurance-slides/auto-palm-street-drive.mp4\`, a compressed local Pexels-style car-under-palm-trees loop. Keep it local and optimized; do not hotlink external media in production.
+Service-page carousel videos now live under \`/public/media/carousel/\`. Keep them local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.
 `);
 }
 

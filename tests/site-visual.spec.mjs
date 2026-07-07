@@ -92,7 +92,8 @@ for (const viewport of viewports) {
         const expectedSlides = serviceSlideSets[pageInfo.name];
         await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
         await expect(page.locator(".motion-slide")).toHaveCount(expectedSlides.length);
-        expect(await page.locator(".motion-video").count()).toBeGreaterThanOrEqual(1);
+        await expect(page.locator(".motion-slide[data-media-type='image']")).toHaveCount(0);
+        await expect(page.locator(".motion-video")).toHaveCount(expectedSlides.length);
         await expect(page.locator(".motion-poster")).toHaveCount(expectedSlides.length);
         const posterSrcs = await page.locator(".motion-poster").evaluateAll((images) => images.map((img) => img.getAttribute("src")));
         expect(new Set(posterSrcs).size).toBe(expectedSlides.length);
@@ -102,11 +103,9 @@ for (const viewport of viewports) {
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
-        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /(\/assets\/yffi3\/service-|\/media\/insurance-slides\/).*\.(webm|mp4)/);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/carousel\/.*\.mp4/);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
-        if (pageInfo.name === "auto") {
-          await expect(page.locator('img[src="/assets/yffi3/service-auto-slide-2.jpg"]')).toHaveCount(0);
-        }
+        await expect(page.locator('img[src*="/assets/yffi3/service-"][src*="-slide"]')).toHaveCount(0);
         const focusedLayout = await page.evaluate(() => {
           const media = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-media-link")?.getBoundingClientRect();
           const copy = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-slide-copy")?.getBoundingClientRect();

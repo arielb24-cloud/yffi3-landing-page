@@ -84,6 +84,9 @@ for (const slide of carouselMedia) {
   knownIds.add(`${slide.page}:${slide.id}`);
 
   if (!allowedTypes.has(slide.type)) failures.push(`${name} has unsupported type: ${slide.type}`);
+  if (slide.type !== "video") {
+    failures.push(`${name} must be a moving video slide; static image/lottie/rive carousel slides are not allowed for this site`);
+  }
   if (!["high", "normal"].includes(slide.priority)) failures.push(`${name} priority must be high or normal`);
   if (slide.type === "video" && !slide.poster) failures.push(`${name} video slide must include a poster`);
   if (slide.type !== "video" && slide.fallbackMp4) failures.push(`${name} non-video slide should not include fallbackMp4`);

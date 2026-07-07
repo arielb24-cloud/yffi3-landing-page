@@ -75,7 +75,7 @@ const serviceMotionExpectations = Object.fromEntries(
       videoRefs: slides
         .filter((slide) => slide.type === "video")
         .flatMap((slide) => [slide.src, slide.fallbackMp4].filter(Boolean)),
-      posterRefs: slides.map((slide) => (slide.type === "image" ? slide.src : slide.poster)),
+      posterRefs: slides.map((slide) => slide.poster),
       start: `data-start-slide="${slides[0]?.id || ""}"`
     }];
   })
@@ -153,7 +153,7 @@ for (const slug of requiredSlugs) {
     const expectedMotion = serviceMotionExpectations[slug];
     if (!html.includes("data-insurance-carousel")) failures.push(`${slug} missing interactive insurance motion carousel`);
     if (countMatches(html, /class="motion-slide"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused service slides only`);
-    if (countMatches(html, /class="motion-video"/g) < 1) failures.push(`${slug} carousel should include at least one lazy video element`);
+    if (countMatches(html, /class="motion-video"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include one lazy video element per focused slide`);
     if (countMatches(html, /class="motion-poster"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include one poster per focused slide`);
     if (countMatches(html, /class="carousel-chip"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused category chips`);
     if (countMatches(html, /class="carousel-dot"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused accessible dots`);
@@ -170,7 +170,10 @@ for (const slug of requiredSlugs) {
     if (!html.includes(expectedMotion.start)) failures.push(`${slug} carousel does not prioritize matching first slide`);
     if (html.includes("motion-category")) failures.push(`${slug} carousel still renders cluttered overlay category labels`);
     if (html.includes("motion-detail")) failures.push(`${slug} carousel still renders cluttered overlay detail text`);
-    if (slug === "auto-insurance" && html.includes("/assets/yffi3/service-auto-slide-2.jpg")) failures.push("auto page should not render the car-key still in the carousel");
+    if (html.includes('data-media-type="image"')) failures.push(`${slug} carousel should not render static image slides`);
+    if (html.includes("/assets/yffi3/service-auto-slide") || html.includes("/assets/yffi3/service-homeowners-slide") || html.includes("/assets/yffi3/service-renters-slide") || html.includes("/assets/yffi3/service-commercial-slide") || html.includes("/assets/yffi3/service-life-slide")) {
+      failures.push(`${slug} carousel should not render old static service slide assets`);
+    }
     if (html.includes("related-links")) failures.push(`${slug} service page should not render unrelated coverage link section`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
