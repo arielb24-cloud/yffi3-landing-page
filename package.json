@@ -6,9 +6,9 @@
   "description": "GoDaddy Beta Apps Node.js site for Your Family First Insurance Office #3.",
   "scripts": {
     "generate": "node scripts/generate-site.mjs",
-    "lint": "node scripts/validate-site.mjs",
-    "test": "node scripts/validate-site.mjs",
-    "build": "node scripts/build-static.mjs",
+    "lint": "node scripts/validate-carousel-assets.mjs && node scripts/validate-site.mjs",
+    "test": "node scripts/validate-carousel-assets.mjs && node scripts/validate-site.mjs",
+    "build": "node scripts/validate-carousel-assets.mjs && node scripts/build-static.mjs",
     "start": "node server.js",
     "preview": "PORT=4174 node server.js",
     "qa": "playwright test",

@@ -975,9 +975,21 @@ h3 {
 .motion-video.is-ready {
   opacity: 1;
 }
+.motion-slide[data-media-type="image"] .motion-poster {
+  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.035);
+}
 .motion-slide[data-active="true"] .motion-poster,
 .motion-slide[data-active="true"] .motion-video.is-ready {
   animation: cinematic-breathe var(--carousel-duration) ease-in-out infinite alternate;
+}
+.motion-slide[data-media-type="image"][data-active="true"] .motion-poster {
+  animation: still-depth 9600ms ease-in-out infinite alternate;
+}
+.motion-asset-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 .motion-scrim {
   position: absolute;
@@ -1301,6 +1313,10 @@ h3 {
 @keyframes cinematic-breathe {
   from { transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025); }
   to { transform: translate3d(calc(var(--parallax-x) * 1.2), calc(var(--parallax-y) * 1.2), 0) scale(1.075); }
+}
+@keyframes still-depth {
+  from { transform: translate3d(calc(var(--parallax-x) * 0.8), calc(var(--parallax-y) * 0.8), 0) scale(1.035); }
+  to { transform: translate3d(calc(var(--parallax-x) * 1.25 + 10px), calc(var(--parallax-y) * 1.25 - 6px), 0) scale(1.082); }
 }
 @keyframes soft-sweep {
   0%, 64% { opacity: 0; transform: translate3d(-34%, 0, 0); }

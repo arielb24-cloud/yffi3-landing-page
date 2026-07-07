@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import carouselMediaModule from "../src/data/carouselMedia.js";
 
 const screenshotDir = path.resolve("playwright-screenshots");
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
@@ -15,20 +16,20 @@ const pages = [
   { name: "life", path: "/life-insurance/", service: true },
   { name: "renters", path: "/renters-insurance/", service: true }
 ];
-const serviceStartSlides = {
-  auto: "auto",
-  homeowners: "homeowners",
-  commercial: "business",
-  life: "family",
-  renters: "renters"
+const { carouselMediaByPage } = carouselMediaModule;
+const servicePageSlugs = {
+  auto: "auto-insurance",
+  homeowners: "home-insurance",
+  commercial: "commercial-insurance",
+  life: "life-insurance",
+  renters: "renters-insurance"
 };
-const serviceSlideSets = {
-  auto: ["auto", "auto-renewal", "auto-family-drivers"],
-  homeowners: ["homeowners", "homeowners-closing", "homeowners-renewal"],
-  commercial: ["business", "commercial-liability", "commercial-certificates"],
-  life: ["family", "life-term", "life-final-expense"],
-  renters: ["renters", "renters-lease", "renters-belongings"]
-};
+const serviceStartSlides = Object.fromEntries(
+  Object.entries(servicePageSlugs).map(([name, slug]) => [name, carouselMediaByPage[slug]?.[0]?.id])
+);
+const serviceSlideSets = Object.fromEntries(
+  Object.entries(servicePageSlugs).map(([name, slug]) => [name, (carouselMediaByPage[slug] || []).map((slide) => slide.id)])
+);
 const viewports = [
   { name: "mobile", width: 390, height: 920 },
   { name: "tablet", width: 768, height: 1024 },
@@ -223,7 +224,7 @@ test("insurance carousel supports chips, arrows, keyboard, and lazy videos", asy
 
   const carousel = page.locator("[data-insurance-carousel]");
   await expect(carousel).toBeVisible();
-  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto");
+  await expect(carousel.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", "auto-drive");
 
   const initialVideoState = await page.evaluate(() => {
     const videos = [...document.querySelectorAll(".motion-video")];

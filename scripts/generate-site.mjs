@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import carouselMediaModule from "../src/data/carouselMedia.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const { carouselMediaByPage } = carouselMediaModule;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const phoneDisplay = "305-910-8850";
 const phoneHref = "tel:13059108850";
@@ -109,394 +111,6 @@ const serviceVisuals = {
   }
 };
 
-const insuranceSlides = [
-  {
-    id: "auto",
-    category: "Auto Insurance",
-    chip: "Auto",
-    headline: "Auto Insurance Quote Help for Miami Roads",
-    subheadline: "Local guidance for daily drivers, family vehicles, financed cars, and renewals.",
-    microcopy: "Luxury-car confidence • Local guidance • Bilingual support",
-    cta: "Start Auto Quote",
-    href: "/auto-insurance/",
-    video: "",
-    videoMp4: "/media/insurance-slides/auto-palm-street-drive.mp4",
-    poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
-    alt: "Car driving beneath palm trees for Miami auto insurance coverage comparison",
-    icon: "car",
-    objectPosition: "center 58%",
-    visualMood: "city lights, clean car, premium confidence",
-    trustBadge: "Miami drivers • Family vehicles • Renewal reviews",
-    detail: "Built for Miami commutes, new drivers, financed vehicles, family cars, and renewal questions without fear-heavy sales copy."
-  },
-  {
-    id: "homeowners",
-    category: "Homeowners Insurance",
-    chip: "Homeowners",
-    headline: "Homeowners Quote Help for Miami Homes",
-    subheadline: "Review property, roof, lender, wind, flood, and renewal questions with a local West Flagler office.",
-    microcopy: "Florida property questions • Lender timing • Local review",
-    cta: "Get Home Quote",
-    href: "/home-insurance/",
-    video: "/media/insurance-slides/home-miami-sunlight.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/home-miami-sunlight-poster.jpg",
-    alt: "Modern Florida home exterior with warm sunlight for homeowners insurance help",
-    icon: "home",
-    objectPosition: "center 52%",
-    visualMood: "sunlit Florida home, palm shadows, stable family protection",
-    trustBadge: "Homeowners • Wind questions • Flood conversations",
-    detail: "Designed for Miami-Dade homeowners comparing property, belongings, liability, lender, wind, and flood-related questions."
-  },
-  {
-    id: "renters",
-    category: "Renters Insurance",
-    chip: "Renters",
-    headline: "Renters Insurance for Miami Apartments",
-    subheadline: "A focused quote path for belongings, lease requirements, liability questions, and move-in timing.",
-    microcopy: "Apartments • Belongings • Lease requirements",
-    cta: "Quote Renters Insurance",
-    href: "/renters-insurance/",
-    video: "/media/insurance-slides/renters-apartment-keys.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/renters-apartment-keys-poster.jpg",
-    alt: "Apartment keys and modern rental interior for renters insurance in Miami",
-    icon: "key",
-    objectPosition: "center 50%",
-    visualMood: "soft apartment light, keys, clean move-in confidence",
-    trustBadge: "Renters • Apartments • Move-in support",
-    detail: "A simple path for renters who want to review belongings, liability, lease, or proof-of-coverage questions."
-  },
-  {
-    id: "business",
-    category: "Business Insurance",
-    chip: "Business",
-    headline: "Business Insurance Help for Miami Owners",
-    subheadline: "Commercial quote guidance for operations, storefronts, work vehicles, contracts, and certificates.",
-    microcopy: "Storefronts • Work vehicles • Certificates",
-    cta: "Protect My Business",
-    href: "/commercial-insurance/",
-    video: "/media/insurance-slides/business-storefront-open.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/business-storefront-open-poster.jpg",
-    alt: "Polished Miami small business storefront for commercial insurance help",
-    icon: "briefcase",
-    objectPosition: "center 50%",
-    visualMood: "storefront opening, polished workspace, owner confidence",
-    trustBadge: "Business owners • Commercial auto • Certificates",
-    detail: "For local shops, contractors, professional offices, family businesses, and growing teams reviewing business coverage paths."
-  },
-  {
-    id: "liability",
-    category: "General Liability",
-    chip: "Liability",
-    headline: "General Liability Quote Help",
-    subheadline: "Discuss contract, lease, vendor, client, job-site, and certificate requirements in plain language.",
-    microcopy: "Contracts • Jobs • Plain-language review",
-    cta: "Get Liability Quote",
-    href: "/commercial-insurance/",
-    video: "/media/insurance-slides/liability-contractor-checklist.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg",
-    alt: "Professional business vehicle and workspace details for general liability coverage",
-    icon: "shield",
-    objectPosition: "center 55%",
-    visualMood: "professional job site, checklist confidence, responsible business",
-    trustBadge: "General liability • Contractors • Client requirements",
-    detail: "Helpful when a lease, contract, vendor portal, or client asks for insurance details or a certificate conversation."
-  },
-  {
-    id: "family",
-    category: "Family Insurance",
-    chip: "Family",
-    headline: "Life Insurance Planning for Miami Families",
-    subheadline: "Start with income needs, family responsibilities, final expenses, mortgage questions, and long-term goals.",
-    microcopy: "Life insurance • Income needs • Family planning",
-    cta: "Plan Family Protection",
-    href: "/life-insurance/",
-    video: "/media/insurance-slides/family-protection-planning.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/family-protection-planning-poster.jpg",
-    alt: "Warm planning workspace for Miami family and life insurance conversations",
-    icon: "heart",
-    objectPosition: "center 50%",
-    visualMood: "warm planning, family-first calm, long-term confidence",
-    trustBadge: "Life • Final expense • Income protection",
-    detail: "A safer first step for families reviewing term life, final expense, mortgage planning, and long-term needs."
-  },
-  {
-    id: "bilingual",
-    category: "Bilingual Local Service",
-    chip: "Español",
-    headline: "Insurance Help in English and Spanish",
-    subheadline: "Call or visit Office #3 on West Flagler for local quote help that feels clear and human.",
-    microcopy: "Local Miami office • Se habla español • Family owned",
-    cta: "Hablar con un agente",
-    href: "/about-office-3/",
-    video: "/media/insurance-slides/bilingual-agent-consult.webm",
-    videoMp4: "",
-    poster: "/media/insurance-slides/posters/bilingual-agent-consult-poster.jpg",
-    alt: "Real Your Family First Insurance Office #3 team photo for bilingual local service",
-    icon: "map",
-    objectPosition: "center 43%",
-    visualMood: "warm office consultation, local trust, English and Spanish support",
-    trustBadge: "11200 W Flagler St • Office #3 • Bilingual",
-    detail: "A local office signal for visitors who want a real Miami team, clear explanations, and a direct phone path."
-  }
-];
-
-const serviceSlideStart = {
-  "auto-insurance": "auto",
-  "home-insurance": "homeowners",
-  "renters-insurance": "renters",
-  "commercial-insurance": "business",
-  "life-insurance": "family"
-};
-
-function insuranceSlideVariant(baseId, overrides) {
-  const base = insuranceSlides.find((slide) => slide.id === baseId);
-  if (!base) throw new Error(`Missing base insurance slide: ${baseId}`);
-  return {
-    ...base,
-    ...overrides,
-    id: overrides.id || base.id,
-    chip: overrides.chip || base.chip,
-    category: overrides.category || base.category,
-    cta: overrides.cta || base.cta,
-    href: overrides.href || base.href,
-    video: overrides.video ?? base.video,
-    videoMp4: overrides.videoMp4 ?? base.videoMp4,
-    poster: overrides.poster || base.poster,
-    alt: overrides.alt || base.alt,
-    icon: overrides.icon || base.icon,
-    objectPosition: overrides.objectPosition || base.objectPosition
-  };
-}
-
-const serviceCarouselSlides = {
-  "auto-insurance": [
-    insuranceSlideVariant("auto", {
-      headline: "Auto Quotes Built for Miami Roads",
-      subheadline: "Compare car insurance options for commutes, family vehicles, new cars, financed cars, and renewals.",
-      cta: "Start Auto Quote",
-      microcopy: "Miami drivers • Vehicle changes • Renewal reviews",
-      trustBadge: "Auto insurance quote help for Miami drivers",
-      detail: "Focused on car insurance questions only: vehicles, drivers, deductibles, lender needs, and renewal timing.",
-      video: "",
-      videoMp4: "/media/insurance-slides/auto-palm-street-drive.mp4",
-      poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
-      alt: "Premium Miami auto insurance visual with a car driving beneath palm trees",
-      objectPosition: "center 58%"
-    }),
-    insuranceSlideVariant("auto", {
-      id: "auto-renewal",
-      chip: "Renewals",
-      headline: "Review Renewals Before You Decide",
-      subheadline: "Talk through premium changes, coverage choices, deductibles, and garaging ZIP code updates.",
-      cta: "Review Auto Quote",
-      microcopy: "Renewals • Deductibles • Garaging ZIP code",
-      trustBadge: "Auto renewal review",
-      detail: "A cleaner quote path for Miami drivers seeing renewal changes or buying a different vehicle.",
-      video: "",
-      videoMp4: "",
-      poster: "/assets/yffi3/service-auto-slide-1.jpg",
-      alt: "Premium car driving through a palm-lined Miami street for auto insurance renewal quote help",
-      objectPosition: "center 58%"
-    }),
-    insuranceSlideVariant("auto", {
-      id: "auto-family-drivers",
-      chip: "Drivers",
-      headline: "Coverage Help for Household Drivers",
-      subheadline: "Get guidance for family vehicles, added drivers, financed cars, leases, and commute changes.",
-      cta: "Talk Auto Coverage",
-      microcopy: "Family vehicles • Added drivers • Financed cars",
-      trustBadge: "Household auto coverage conversation",
-      detail: "Built around auto-only questions so visitors stay focused on the car insurance quote path.",
-      video: "",
-      videoMp4: "",
-      poster: "/assets/yffi3/service-auto-slide-4.jpg",
-      alt: "Sunset palm-lined street with cars for Miami household auto insurance quote help",
-      objectPosition: "center 58%"
-    })
-  ],
-  "home-insurance": [
-    insuranceSlideVariant("homeowners", {
-      chip: "Homeowners",
-      headline: "Homeowners Coverage for Miami-Dade",
-      subheadline: "Review home, roof, belongings, liability, lender, wind, and flood questions with local support.",
-      cta: "Get Homeowners Quote",
-      microcopy: "Homes • Lenders • Florida property questions",
-      trustBadge: "Homeowners insurance quote help",
-      detail: "Focused on homeowners insurance questions only, from closing deadlines to renewal changes.",
-      video: "/media/insurance-slides/home-miami-sunlight.webm",
-      poster: "/media/insurance-slides/posters/home-miami-sunlight-poster.jpg",
-      alt: "Florida home exterior with palm trees for Miami homeowners insurance quote help",
-      objectPosition: "center 56%"
-    }),
-    insuranceSlideVariant("homeowners", {
-      id: "homeowners-closing",
-      chip: "Closing",
-      headline: "Quote Help Before Closing Day",
-      subheadline: "Prepare for lender deadlines, property details, inspection questions, and coverage timing.",
-      cta: "Protect My Home",
-      microcopy: "Closing dates • Lender needs • Property details",
-      trustBadge: "Home closing coverage conversation",
-      detail: "A homeowners-only path for buyers and owners who need clear next steps before a deadline.",
-      video: "",
-      poster: "/assets/yffi3/service-homeowners-slide-2.jpg",
-      alt: "Modern Florida home roofline and exterior details for homeowners insurance",
-      objectPosition: "center 50%"
-    }),
-    insuranceSlideVariant("homeowners", {
-      id: "homeowners-renewal",
-      chip: "Renewal",
-      headline: "Make Sense of Home Renewal Changes",
-      subheadline: "Ask about roof details, deductibles, wind questions, flood conversations, and documentation.",
-      cta: "Review Homeowners Quote",
-      microcopy: "Renewals • Roof details • Wind questions",
-      trustBadge: "Florida home renewal review",
-      detail: "Keeps the page focused on homeowners insurance without pulling visitors into unrelated policy types.",
-      video: "",
-      poster: "/assets/yffi3/service-homeowners-slide-3.jpg",
-      alt: "Warm Miami living room sunlight for homeowners insurance renewal questions",
-      objectPosition: "center 50%"
-    })
-  ],
-  "renters-insurance": [
-    insuranceSlideVariant("renters", {
-      headline: "Renters Coverage Made Simple",
-      subheadline: "Request help for apartment belongings, liability questions, lease requirements, and move-in timing.",
-      cta: "Quote Renters Insurance",
-      microcopy: "Apartments • Belongings • Lease requirements",
-      trustBadge: "Renters insurance quote help",
-      detail: "Focused on renters insurance questions only, from lease requirements to personal belongings.",
-      video: "/media/insurance-slides/renters-apartment-keys.webm",
-      poster: "/media/insurance-slides/posters/renters-apartment-keys-poster.jpg",
-      alt: "Modern Miami apartment living room for renters insurance quote help",
-      objectPosition: "center 55%"
-    }),
-    insuranceSlideVariant("renters", {
-      id: "renters-lease",
-      chip: "Lease",
-      headline: "Handle Lease Insurance Requirements",
-      subheadline: "Bring the landlord requirement and get guidance on what the renters quote conversation should cover.",
-      cta: "Start Renters Quote",
-      microcopy: "Lease needs • Proof questions • Move-in timing",
-      trustBadge: "Lease requirement quote support",
-      detail: "Designed for renters who need a clean next step before move-in or lease renewal.",
-      video: "",
-      poster: "/assets/yffi3/service-renters-slide-2.jpg",
-      alt: "Apartment keys and personal property details for renters insurance lease requirements",
-      objectPosition: "center 50%"
-    }),
-    insuranceSlideVariant("renters", {
-      id: "renters-belongings",
-      chip: "Belongings",
-      headline: "Protect the Things That Make It Home",
-      subheadline: "Talk through personal property, liability, deductible questions, and additional living expense topics.",
-      cta: "Quote My Apartment",
-      microcopy: "Personal property • Liability • Apartment living",
-      trustBadge: "Apartment protection conversation",
-      detail: "Keeps attention on renters insurance rather than unrelated coverage categories.",
-      video: "",
-      poster: "/assets/yffi3/service-renters-slide-3.jpg",
-      alt: "Luxury apartment corridor and entry area for renters insurance in Miami",
-      objectPosition: "center 50%"
-    })
-  ],
-  "commercial-insurance": [
-    insuranceSlideVariant("business", {
-      category: "Commercial Insurance",
-      chip: "Business",
-      headline: "Protect the Business You’re Building",
-      subheadline: "Get commercial quote help for operations, locations, work vehicles, property, and teams.",
-      cta: "Protect My Business",
-      microcopy: "Miami businesses • Certificates • Operations",
-      trustBadge: "Commercial insurance quote help",
-      detail: "Focused on business insurance conversations for Miami owners and operators.",
-      video: "/media/insurance-slides/business-storefront-open.webm",
-      poster: "/media/insurance-slides/posters/business-storefront-open-poster.jpg",
-      alt: "Polished Miami business storefront for commercial insurance quote help",
-      objectPosition: "center 52%"
-    }),
-    insuranceSlideVariant("liability", {
-      id: "commercial-liability",
-      category: "General Liability",
-      chip: "Liability",
-      headline: "Liability Coverage Without the Confusion",
-      subheadline: "Review contract, client, lease, vendor, and certificate requirements before you commit.",
-      cta: "Get Liability Quote",
-      microcopy: "Contracts • Clients • Certificates",
-      trustBadge: "General liability conversation",
-      detail: "Part of the commercial quote path for businesses that need liability guidance.",
-      video: "/media/insurance-slides/liability-contractor-checklist.webm",
-      poster: "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg",
-      alt: "Contractor checklist and professional workspace for general liability insurance in Miami",
-      objectPosition: "center 55%"
-    }),
-    insuranceSlideVariant("business", {
-      id: "commercial-certificates",
-      category: "Commercial Insurance",
-      chip: "Certificates",
-      headline: "Quote Help When a Certificate Is Requested",
-      subheadline: "Bring the contract or certificate wording so the office can help identify what to review.",
-      cta: "Review Business Coverage",
-      microcopy: "COI requests • Leases • Job requirements",
-      trustBadge: "Certificate-focused business support",
-      detail: "Keeps the commercial page focused on business coverage triggers and certificate conversations.",
-      video: "",
-      poster: "/assets/yffi3/service-commercial-slide-3.jpg",
-      alt: "Business vehicles at a modern workspace for commercial insurance certificate requests",
-      objectPosition: "center 54%"
-    })
-  ],
-  "life-insurance": [
-    insuranceSlideVariant("family", {
-      category: "Life Insurance",
-      chip: "Life",
-      headline: "Life Insurance Help for Miami Families",
-      subheadline: "Start with family goals, income needs, mortgage questions, final expenses, and long-term planning.",
-      cta: "Plan Family Protection",
-      microcopy: "Family goals • Income needs • Legacy planning",
-      trustBadge: "Life insurance quote help",
-      detail: "Focused on life insurance conversations only, with a privacy-safe first step.",
-      video: "/media/insurance-slides/family-protection-planning.webm",
-      poster: "/media/insurance-slides/posters/family-protection-planning-poster.jpg",
-      alt: "Calm home planning workspace for life insurance quote help in Miami",
-      objectPosition: "center 52%"
-    }),
-    insuranceSlideVariant("family", {
-      id: "life-term",
-      category: "Term Life Insurance",
-      chip: "Term",
-      headline: "Term Life Questions in Plain Language",
-      subheadline: "Discuss a defined coverage period tied to family responsibilities, income, mortgage, or debt needs.",
-      cta: "Start Term Life Quote",
-      microcopy: "Term life • Income needs • Mortgage planning",
-      trustBadge: "Term life conversation",
-      detail: "A life-only quote path that keeps medical and underwriting details out of the general website form.",
-      video: "",
-      poster: "/assets/yffi3/service-life-slide-2.jpg",
-      alt: "Warm table with keys and planning details for term life insurance questions",
-      objectPosition: "center 52%"
-    }),
-    insuranceSlideVariant("family", {
-      id: "life-final-expense",
-      category: "Final Expense Insurance",
-      chip: "Final Expense",
-      headline: "Planning Help Without Pressure",
-      subheadline: "Ask about final expense and family protection options before moving into any secure application.",
-      cta: "Talk Life Insurance",
-      microcopy: "Final expense • Family protection • Secure next step",
-      trustBadge: "Final expense planning conversation",
-      detail: "Keeps the page focused on life insurance and avoids unrelated quote categories.",
-      video: "",
-      poster: "/assets/yffi3/service-life-slide-3.jpg",
-      alt: "Peaceful home hallway and long-term planning mood for final expense insurance",
-      objectPosition: "center 50%"
-    })
-  ]
-};
 
 const address = {
   streetAddress: "11200 W Flagler St, Ste 108",
@@ -1318,16 +932,29 @@ function ctaRow(extra = "") {
 }
 
 function slidesForPage(page) {
-  if (page.kind === "service" && serviceCarouselSlides[page.slug]) return serviceCarouselSlides[page.slug];
-  return insuranceSlides;
+  const key = page.kind === "service" ? page.slug : "home";
+  return carouselMediaByPage[key] || carouselMediaByPage.home || [];
 }
 
 function orderedInsuranceSlides(page) {
-  const slides = slidesForPage(page);
-  const startId = serviceSlideStart[page.slug] || slides[0]?.id || "auto";
-  const startIndex = slides.findIndex((slide) => slide.id === startId);
-  if (startIndex <= 0) return slides;
-  return [...slides.slice(startIndex), ...slides.slice(0, startIndex)];
+  return slidesForPage(page);
+}
+
+function carouselImageSrc(slide) {
+  return slide.type === "image" ? slide.src : slide.poster;
+}
+
+function carouselVideoMarkup(slide) {
+  if (slide.type !== "video") return "";
+  const primaryWebm = slide.src?.endsWith(".webm") ? slide.src : "";
+  const primaryMp4 = slide.src?.endsWith(".mp4") ? slide.src : "";
+  const mp4 = slide.fallbackMp4 || primaryMp4;
+  return `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}"${primaryWebm ? ` data-src="${primaryWebm}"` : ""}${mp4 ? ` data-mp4="${mp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>`;
+}
+
+function carouselMotionAssetMarkup(slide) {
+  if (!["lottie", "rive"].includes(slide.type)) return "";
+  return `<span class="motion-asset-fallback" aria-hidden="true" data-motion-type="${escapeHtml(slide.type)}" data-motion-src="${escapeHtml(slide.src)}"></span>`;
 }
 
 function insuranceMotionCarousel(page) {
@@ -1344,10 +971,11 @@ function insuranceMotionCarousel(page) {
     <button class="carousel-dot" type="button" aria-label="Show ${escapeHtml(slide.category)} slide" aria-current="${index === 0 ? "true" : "false"}" data-slide-id="${slide.id}" data-carousel-dot><span></span></button>
   `).join("");
   const slideMarkup = slides.map((slide, index) => `
-    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
+    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
       <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
-        <img class="motion-poster" src="${slide.poster}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
-        ${slide.video || slide.videoMp4 ? `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}"${slide.video ? ` data-src="${slide.video}"` : ""}${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>` : ""}
+        <img class="motion-poster" src="${carouselImageSrc(slide)}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
+        ${carouselVideoMarkup(slide)}
+        ${carouselMotionAssetMarkup(slide)}
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
       </a>
@@ -2867,9 +2495,21 @@ h3 {
 .motion-video.is-ready {
   opacity: 1;
 }
+.motion-slide[data-media-type="image"] .motion-poster {
+  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.035);
+}
 .motion-slide[data-active="true"] .motion-poster,
 .motion-slide[data-active="true"] .motion-video.is-ready {
   animation: cinematic-breathe var(--carousel-duration) ease-in-out infinite alternate;
+}
+.motion-slide[data-media-type="image"][data-active="true"] .motion-poster {
+  animation: still-depth 9600ms ease-in-out infinite alternate;
+}
+.motion-asset-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 .motion-scrim {
   position: absolute;
@@ -3193,6 +2833,10 @@ h3 {
 @keyframes cinematic-breathe {
   from { transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025); }
   to { transform: translate3d(calc(var(--parallax-x) * 1.2), calc(var(--parallax-y) * 1.2), 0) scale(1.075); }
+}
+@keyframes still-depth {
+  from { transform: translate3d(calc(var(--parallax-x) * 0.8), calc(var(--parallax-y) * 0.8), 0) scale(1.035); }
+  to { transform: translate3d(calc(var(--parallax-x) * 1.25 + 10px), calc(var(--parallax-y) * 1.25 - 6px), 0) scale(1.082); }
 }
 @keyframes soft-sweep {
   0%, 64% { opacity: 0; transform: translate3d(-34%, 0, 0); }
@@ -4968,6 +4612,8 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-quote-qr.jpeg
 - service-auto-slide-1.webp through service-auto-slide-3.webp
 - service-auto-slide-1.jpg through service-auto-slide-3.jpg
+- service-auto-slide-4.jpg
+- service-auto-slide-4-poster.jpg
 - service-auto-motion.gif
 - service-auto-motion.webm
 - service-homeowners-slide-1.webp through service-homeowners-slide-3.webp
@@ -4988,6 +4634,12 @@ Place the approved Office #3 assets in this folder before publishing:
 - service-renters-motion.webm
 
 Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
+
+The carousel inventory lives in \`/src/data/carouselMedia.js\`. Update that manifest first whenever replacing media, then run \`pnpm run build\` so \`scripts/validate-carousel-assets.mjs\` can catch duplicate paths, missing alt text, missing license notes, or page-off-topic slides.
+
+\`service-auto-slide-4.jpg\` and \`service-auto-slide-4-poster.jpg\` are local production fallback assets for the auto carousel. They replace the older car-key still in rendered pages so the auto insurance experience stays motion-led and less cluttered.
+
+The auto carousel also uses \`/public/media/insurance-slides/auto-palm-street-drive.mp4\`, a compressed local Pexels-style car-under-palm-trees loop. Keep it local and optimized; do not hotlink external media in production.
 `);
 }
 

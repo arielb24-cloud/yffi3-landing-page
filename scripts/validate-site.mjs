@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import carouselMediaModule from "../src/data/carouselMedia.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const { carouselMediaByPage } = carouselMediaModule;
 const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : root;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
@@ -65,38 +67,19 @@ const requiredMotionMedia = [
   "family-protection-planning",
   "bilingual-agent-consult"
 ];
-const serviceMotionExpectations = {
-  "auto-insurance": {
-    slideIds: ["auto", "auto-renewal", "auto-family-drivers"],
-    videoRefs: ["/media/insurance-slides/auto-palm-street-drive.mp4"],
-    posterRefs: ["/media/insurance-slides/posters/auto-miami-drive-poster.jpg", "/assets/yffi3/service-auto-slide-1.jpg", "/assets/yffi3/service-auto-slide-4.jpg"],
-    start: 'data-start-slide="auto"'
-  },
-  "home-insurance": {
-    slideIds: ["homeowners", "homeowners-closing", "homeowners-renewal"],
-    videoRefs: ["/media/insurance-slides/home-miami-sunlight.webm"],
-    posterRefs: ["/media/insurance-slides/posters/home-miami-sunlight-poster.jpg", "/assets/yffi3/service-homeowners-slide-2.jpg", "/assets/yffi3/service-homeowners-slide-3.jpg"],
-    start: 'data-start-slide="homeowners"'
-  },
-  "commercial-insurance": {
-    slideIds: ["business", "commercial-liability", "commercial-certificates"],
-    videoRefs: ["/media/insurance-slides/business-storefront-open.webm", "/media/insurance-slides/liability-contractor-checklist.webm"],
-    posterRefs: ["/media/insurance-slides/posters/business-storefront-open-poster.jpg", "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg", "/assets/yffi3/service-commercial-slide-3.jpg"],
-    start: 'data-start-slide="business"'
-  },
-  "life-insurance": {
-    slideIds: ["family", "life-term", "life-final-expense"],
-    videoRefs: ["/media/insurance-slides/family-protection-planning.webm"],
-    posterRefs: ["/media/insurance-slides/posters/family-protection-planning-poster.jpg", "/assets/yffi3/service-life-slide-2.jpg", "/assets/yffi3/service-life-slide-3.jpg"],
-    start: 'data-start-slide="family"'
-  },
-  "renters-insurance": {
-    slideIds: ["renters", "renters-lease", "renters-belongings"],
-    videoRefs: ["/media/insurance-slides/renters-apartment-keys.webm"],
-    posterRefs: ["/media/insurance-slides/posters/renters-apartment-keys-poster.jpg", "/assets/yffi3/service-renters-slide-2.jpg", "/assets/yffi3/service-renters-slide-3.jpg"],
-    start: 'data-start-slide="renters"'
-  }
-};
+const serviceMotionExpectations = Object.fromEntries(
+  ["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].map((slug) => {
+    const slides = carouselMediaByPage[slug] || [];
+    return [slug, {
+      slideIds: slides.map((slide) => slide.id),
+      videoRefs: slides
+        .filter((slide) => slide.type === "video")
+        .flatMap((slide) => [slide.src, slide.fallbackMp4].filter(Boolean)),
+      posterRefs: slides.map((slide) => (slide.type === "image" ? slide.src : slide.poster)),
+      start: `data-start-slide="${slides[0]?.id || ""}"`
+    }];
+  })
+);
 
 const failures = [];
 
