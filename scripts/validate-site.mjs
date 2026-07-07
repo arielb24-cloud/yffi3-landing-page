@@ -6,6 +6,7 @@ const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : root;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJD3Bodbu_2YgR8IRb5h7i-kw&source=g.page.m._&laa=merchant-review-solicitation";
 const requiredSlugs = [
   "",
   "auto-insurance",
@@ -67,8 +68,8 @@ const requiredMotionMedia = [
 const serviceMotionExpectations = {
   "auto-insurance": {
     slideIds: ["auto", "auto-renewal", "auto-family-drivers"],
-    videoRefs: ["/media/insurance-slides/auto-miami-drive.webm"],
-    posterRefs: ["/media/insurance-slides/posters/auto-miami-drive-poster.jpg", "/assets/yffi3/service-auto-slide-2.jpg", "/assets/yffi3/service-auto-slide-3.jpg"],
+    videoRefs: ["/media/insurance-slides/auto-palm-street-drive.mp4"],
+    posterRefs: ["/media/insurance-slides/posters/auto-miami-drive-poster.jpg", "/assets/yffi3/service-auto-slide-1.jpg", "/assets/yffi3/service-auto-slide-4.jpg"],
     start: 'data-start-slide="auto"'
   },
   "home-insurance": {
@@ -154,6 +155,7 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes('id="general-liability-insurance"')) failures.push("home missing General Liability coverage card");
   if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
   if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
+  if (slug === "" && !html.includes(googleReviewUrl)) failures.push("home Google review CTA must use the Office #3 Google review URL");
   if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing Spanish local SEO section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
@@ -185,6 +187,7 @@ for (const slug of requiredSlugs) {
     if (!html.includes(expectedMotion.start)) failures.push(`${slug} carousel does not prioritize matching first slide`);
     if (html.includes("motion-category")) failures.push(`${slug} carousel still renders cluttered overlay category labels`);
     if (html.includes("motion-detail")) failures.push(`${slug} carousel still renders cluttered overlay detail text`);
+    if (slug === "auto-insurance" && html.includes("/assets/yffi3/service-auto-slide-2.jpg")) failures.push("auto page should not render the car-key still in the carousel");
     if (html.includes("related-links")) failures.push(`${slug} service page should not render unrelated coverage link section`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);

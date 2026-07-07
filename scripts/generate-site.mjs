@@ -15,12 +15,12 @@ const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
 const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
 const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
-const googleReviewUrl = "https://www.google.com/search?q=Your+Family+First+Insurance+Office+%233+11200+W+Flagler+St+Ste+108+Miami+FL+Google+reviews";
+const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJD3Bodbu_2YgR8IRb5h7i-kw&source=g.page.m._&laa=merchant-review-solicitation";
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
       { webp: "service-auto-slide-1.webp", fallback: "service-auto-slide-1.jpg", alt: "Miami auto insurance visual with a premium car on a palm-lined city street" },
-      { webp: "service-auto-slide-2.webp", fallback: "service-auto-slide-2.jpg", alt: "Auto insurance visual showing refined vehicle keys and console details" },
+      { webp: "service-auto-slide-4.jpg", fallback: "service-auto-slide-4.jpg", alt: "Auto insurance visual showing a warm palm-lined street with cars at sunset" },
       { webp: "service-auto-slide-3.webp", fallback: "service-auto-slide-3.jpg", alt: "Auto insurance visual showing a family vehicle at a Florida-style home" }
     ],
     motionVideo: "service-auto-motion.webm",
@@ -114,17 +114,17 @@ const insuranceSlides = [
     id: "auto",
     category: "Auto Insurance",
     chip: "Auto",
-    headline: "Compare Auto Insurance Across 50+ Carriers",
-    subheadline: "Local Miami guidance for coverage that fits your car, budget, and family.",
-    microcopy: "Fast quotes • Local guidance • Bilingual support",
+    headline: "Auto Insurance Quote Help for Miami Roads",
+    subheadline: "Local guidance for daily drivers, family vehicles, financed cars, and renewals.",
+    microcopy: "Luxury-car confidence • Local guidance • Bilingual support",
     cta: "Start Auto Quote",
     href: "/auto-insurance/",
-    video: "/media/insurance-slides/auto-miami-drive.webm",
-    videoMp4: "",
+    video: "",
+    videoMp4: "/media/insurance-slides/auto-palm-street-drive.mp4",
     poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
-    alt: "Modern car on a Miami-style street for auto insurance coverage comparison",
+    alt: "Car driving beneath palm trees for Miami auto insurance coverage comparison",
     icon: "car",
-    objectPosition: "center 54%",
+    objectPosition: "center 58%",
     visualMood: "city lights, clean car, premium confidence",
     trustBadge: "Miami drivers • Family vehicles • Renewal reviews",
     detail: "Built for Miami commutes, new drivers, financed vehicles, family cars, and renewal questions without fear-heavy sales copy."
@@ -133,8 +133,8 @@ const insuranceSlides = [
     id: "homeowners",
     category: "Homeowners Insurance",
     chip: "Homeowners",
-    headline: "Protect the Home You Worked For",
-    subheadline: "Homeowners coverage options with help from a local West Flagler team.",
+    headline: "Homeowners Quote Help for Miami Homes",
+    subheadline: "Review property, roof, lender, wind, flood, and renewal questions with a local West Flagler office.",
     microcopy: "Florida property questions • Lender timing • Local review",
     cta: "Get Home Quote",
     href: "/home-insurance/",
@@ -152,8 +152,8 @@ const insuranceSlides = [
     id: "renters",
     category: "Renters Insurance",
     chip: "Renters",
-    headline: "Renters Coverage Made Simple",
-    subheadline: "Affordable protection conversations for your apartment, belongings, and peace of mind.",
+    headline: "Renters Insurance for Miami Apartments",
+    subheadline: "A focused quote path for belongings, lease requirements, liability questions, and move-in timing.",
     microcopy: "Apartments • Belongings • Lease requirements",
     cta: "Quote Renters Insurance",
     href: "/renters-insurance/",
@@ -171,8 +171,8 @@ const insuranceSlides = [
     id: "business",
     category: "Business Insurance",
     chip: "Business",
-    headline: "Protect the Business You’re Building",
-    subheadline: "Commercial and business coverage guidance for Miami owners and operators.",
+    headline: "Business Insurance Help for Miami Owners",
+    subheadline: "Commercial quote guidance for operations, storefronts, work vehicles, contracts, and certificates.",
     microcopy: "Storefronts • Work vehicles • Certificates",
     cta: "Protect My Business",
     href: "/commercial-insurance/",
@@ -190,8 +190,8 @@ const insuranceSlides = [
     id: "liability",
     category: "General Liability",
     chip: "Liability",
-    headline: "Liability Coverage Without the Confusion",
-    subheadline: "Get help comparing coverage for contracts, clients, jobs, and daily business risk.",
+    headline: "General Liability Quote Help",
+    subheadline: "Discuss contract, lease, vendor, client, job-site, and certificate requirements in plain language.",
     microcopy: "Contracts • Jobs • Plain-language review",
     cta: "Get Liability Quote",
     href: "/commercial-insurance/",
@@ -209,8 +209,8 @@ const insuranceSlides = [
     id: "family",
     category: "Family Insurance",
     chip: "Family",
-    headline: "Family Protection With a Local Guide",
-    subheadline: "Life and family insurance conversations that start with goals, not pressure.",
+    headline: "Life Insurance Planning for Miami Families",
+    subheadline: "Start with income needs, family responsibilities, final expenses, mortgage questions, and long-term goals.",
     microcopy: "Life insurance • Income needs • Family planning",
     cta: "Plan Family Protection",
     href: "/life-insurance/",
@@ -228,8 +228,8 @@ const insuranceSlides = [
     id: "bilingual",
     category: "Bilingual Local Service",
     chip: "Español",
-    headline: "Insurance Help in English & Spanish",
-    subheadline: "Call or visit our West Flagler office for fast, local quote help.",
+    headline: "Insurance Help in English and Spanish",
+    subheadline: "Call or visit Office #3 on West Flagler for local quote help that feels clear and human.",
     microcopy: "Local Miami office • Se habla español • Family owned",
     cta: "Hablar con un agente",
     href: "/about-office-3/",
@@ -277,14 +277,15 @@ const serviceCarouselSlides = {
   "auto-insurance": [
     insuranceSlideVariant("auto", {
       headline: "Auto Quotes Built for Miami Roads",
-      subheadline: "Compare car insurance options for commutes, family vehicles, new cars, and renewal changes.",
+      subheadline: "Compare car insurance options for commutes, family vehicles, new cars, financed cars, and renewals.",
       cta: "Start Auto Quote",
       microcopy: "Miami drivers • Vehicle changes • Renewal reviews",
       trustBadge: "Auto insurance quote help for Miami drivers",
       detail: "Focused on car insurance questions only: vehicles, drivers, deductibles, lender needs, and renewal timing.",
-      video: "/media/insurance-slides/auto-miami-drive.webm",
+      video: "",
+      videoMp4: "/media/insurance-slides/auto-palm-street-drive.mp4",
       poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
-      alt: "Premium Miami auto insurance visual with a modern car outside a Florida home",
+      alt: "Premium Miami auto insurance visual with a car driving beneath palm trees",
       objectPosition: "center 58%"
     }),
     insuranceSlideVariant("auto", {
@@ -297,9 +298,10 @@ const serviceCarouselSlides = {
       trustBadge: "Auto renewal review",
       detail: "A cleaner quote path for Miami drivers seeing renewal changes or buying a different vehicle.",
       video: "",
-      poster: "/assets/yffi3/service-auto-slide-2.jpg",
-      alt: "Auto insurance renewal visual showing refined vehicle keys and dashboard detail",
-      objectPosition: "center 52%"
+      videoMp4: "",
+      poster: "/assets/yffi3/service-auto-slide-1.jpg",
+      alt: "Premium car driving through a palm-lined Miami street for auto insurance renewal quote help",
+      objectPosition: "center 58%"
     }),
     insuranceSlideVariant("auto", {
       id: "auto-family-drivers",
@@ -311,9 +313,10 @@ const serviceCarouselSlides = {
       trustBadge: "Household auto coverage conversation",
       detail: "Built around auto-only questions so visitors stay focused on the car insurance quote path.",
       video: "",
-      poster: "/assets/yffi3/service-auto-slide-3.jpg",
-      alt: "Family vehicle at a Florida-style home for Miami auto insurance quote help",
-      objectPosition: "center 54%"
+      videoMp4: "",
+      poster: "/assets/yffi3/service-auto-slide-4.jpg",
+      alt: "Sunset palm-lined street with cars for Miami household auto insurance quote help",
+      objectPosition: "center 58%"
     })
   ],
   "home-insurance": [
@@ -651,8 +654,14 @@ const pages = [
       ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
       ["How do I get a free insurance quote from Office #3?", "Use the Get My Free Quote buttons, scan the approved QR code, or call 305-910-8850. The website only starts with basic contact details before opening the secure quote intake path."],
       ["Is bilingual insurance help available?", "Yes. Office #3 offers local English and Spanish quote help so Miami families and business owners can ask coverage questions more comfortably."],
+      ["Does Office #3 help with insurance in Spanish in Miami?", "Yes. Spanish-speaking customers can call 305-910-8850 or request a quote and ask for help with seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance, and general liability in clear Miami Spanish."],
+      ["What Miami areas can Office #3 help from West Flagler?", "Office #3 is based in West Flagler and can help customers in Miami, Miami-Dade, Kendall, Doral, Hialeah, Homestead, Cutler Bay, and nearby Florida communities start quote conversations."],
+      ["Why compare insurance through a local Miami office?", "A local office can help you organize the quote conversation, explain next steps, review documents you may need, and keep the process centered on your family, vehicle, home, apartment, or business instead of a generic online form."],
+      ["Can Office #3 help compare 50+ insurance carriers?", "The site highlights access to 50+ insurance carriers for quote conversations. Availability, eligibility, pricing, and coverage still vary by carrier, underwriting, location, and applicant information."],
       ["What should I have ready before requesting a quote?", "Have your ZIP code, the type of insurance you want to review, preferred callback time, and general coverage goals. Do not send SSNs, dates of birth, driver license numbers, VINs, payment details, medical records, passwords, or carrier login credentials through a general website form."],
       ["Can one office help me review more than one policy type?", "Yes. Many customers review auto with homeowners, renters, life, health, general liability, or business coverage so the conversation is easier to manage in one local office."],
+      ["How does the secure quote path work?", "The Get My Free Quote buttons open the Office #3 ConsumerRateQuotes intake path for account ID 64868. Use the website form only for safe contact details and continue sensitive information through a secure approved process."],
+      ["Can I leave a Google review for Your Family First Insurance Office #3?", "Yes. The Google review button opens the Office #3 Google review page so customers can leave feedback through Google after a quote, call, office visit, or service experience."],
       ["Does a website quote request start or change insurance coverage?", "No. Submitting a quote request does not bind, change, renew, cancel, or reinstate insurance coverage. Coverage is only active after carrier approval, written confirmation, and any required payment steps."],
       ["Are prices, savings, or carrier approvals guaranteed?", "No. Coverage options, availability, pricing, eligibility, and savings depend on carrier rules, underwriting, location, applicant information, and the coverage selected."]
     ]
@@ -684,8 +693,11 @@ const pages = [
       ["Can Office #3 help with auto insurance in Miami?", "Yes. Office #3 helps Miami drivers request auto insurance quote help for daily commuting, family vehicles, new drivers, renewals, and vehicle changes."],
       ["What auto insurance topics can I review with the office?", "You can discuss liability, comprehensive, collision, uninsured motorist, deductibles, lender or lease needs, driver changes, garaging ZIP code, and other coverage questions that may apply to your situation."],
       ["When should I compare auto insurance options?", "A review can help before buying a vehicle, adding a driver, moving, changing commute patterns, financing or leasing a car, or seeing a renewal premium change."],
+      ["Can Office #3 help with Miami luxury cars or financed vehicles?", "Yes. Drivers can ask about quote conversations for financed cars, leased vehicles, family SUVs, premium vehicles, new purchases, and lender requirements. The final coverage path depends on carrier rules and vehicle details."],
       ["Can I get help with a financed or leased vehicle?", "Yes. Bring any lender or lease requirements so the office can help you review the auto coverage conversation before you choose a path."],
       ["What information should I prepare for an auto quote conversation?", "Have the vehicle year, make, model, garaging ZIP code, current coverage if available, household driver information to discuss securely, and any lender or lease requirements."],
+      ["How can Miami drivers lower confusion before renewal?", "Bring your current declaration page if available, renewal notice, vehicle changes, driver changes, garaging ZIP code, and deductible questions so the office can help you compare the auto quote conversation clearly."],
+      ["Can Office #3 help if I moved to Miami-Dade?", "Yes. If you recently moved, changed ZIP codes, changed commute patterns, or need Florida quote help, Office #3 can help start a local auto insurance conversation."],
       ["Can Spanish-speaking drivers request help?", "Yes. Office #3 offers bilingual quote help for Miami drivers who prefer English or Spanish conversations."],
       ["Can I ask about deductibles and uninsured motorist coverage?", "Yes. You can ask how deductibles, liability limits, comprehensive, collision, and uninsured motorist questions may affect your auto coverage conversation."],
       ["Does a car insurance quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."]
@@ -719,8 +731,11 @@ const pages = [
       ["Is flood insurance included with homeowners insurance?", "Flood coverage is often separate from a standard homeowners policy. Office #3 can help you discuss flood insurance questions before you choose coverage."],
       ["What Florida home insurance details may matter?", "A home quote conversation may include roof information, wind or hurricane deductibles, property age, updates, protection features, claims history, occupancy, and lender requirements."],
       ["Can I request homeowners insurance help before closing on a property?", "Yes. Homebuyers commonly request quote help before a closing date, lender deadline, or policy renewal so they can review options early."],
+      ["What homeowners insurance documents can help in Miami?", "Helpful documents may include a prior policy, lender requirements, inspection reports, roof details, wind mitigation details if available, updates, occupancy details, and association documents when applicable."],
       ["What should I have ready for a homeowners quote conversation?", "Helpful details may include property address, roof information, year built, updates, occupancy, prior coverage, lender requirements, and inspection documents if available."],
       ["Can I ask about hurricane deductibles?", "Yes. You can ask how wind or hurricane deductible questions may affect the coverage conversation. Exact terms vary by carrier and policy."],
+      ["Can Office #3 help with Miami home insurance renewal questions?", "Yes. Homeowners can ask about renewal changes, roof questions, deductible questions, property updates, lender requests, and whether a flood insurance conversation should be reviewed separately."],
+      ["Does homeowners insurance cover every Florida property risk?", "No. Coverage terms, exclusions, flood coverage, wind questions, limits, and deductibles vary by policy and carrier. Review written documents before making a decision."],
       ["Is homeowners insurance approval guaranteed?", "No. Eligibility and approval depend on carrier underwriting, property details, location, applicant information, inspections, and coverage selected."],
       ["Are homeowners insurance savings guaranteed?", "No. Savings are not guaranteed. Pricing varies by underwriting, property details, location, carrier, applicant information, and coverage selected."]
     ]
@@ -752,9 +767,12 @@ const pages = [
       ["Can Miami small businesses request commercial insurance help?", "Yes. Office #3 helps local businesses, contractors, and companies request quote help for commercial insurance conversations."],
       ["What business insurance topics can Office #3 discuss?", "Depending on operations, you can discuss general liability, commercial auto, business property, professional liability, workers compensation, certificates of insurance, and other coverage questions."],
       ["Can the office help when a contract asks for a certificate of insurance?", "Yes. Bring the contract or certificate requirements so the office can help you understand what coverage details may need to be reviewed."],
+      ["Can Office #3 help with general liability insurance in Miami?", "Yes. Contractors, service businesses, vendors, offices, and local operators can start a general liability quote conversation for contracts, leases, client requirements, and certificate requests."],
       ["What information helps with a commercial insurance quote?", "Helpful details can include business activity, location, payroll or revenue estimates, number of employees, work vehicles, equipment, prior coverage, and certificate requirements."],
       ["Can contractors request general liability insurance help?", "Yes. Contractors and service businesses can request quote help and discuss general liability, commercial auto, tools, certificates, and contract requirements."],
       ["Can business owners ask about workers compensation?", "Yes. If your business has employees or is adding team members, Office #3 can help start a workers compensation quote conversation."],
+      ["Can commercial auto be discussed on this page?", "Yes. Business owners using company cars, vans, trucks, delivery vehicles, or work vehicles can ask about commercial auto quote conversations as part of the business insurance review."],
+      ["What should I bring when a landlord or client asks for insurance?", "Bring the lease, contract, vendor portal wording, certificate request, additional insured wording if provided, and a plain description of your business operations."],
       ["Can every business qualify for the same coverage?", "No. Coverage options and eligibility depend on underwriting, operations, location, payroll, vehicles, prior loss history, and other business details."],
       ["Does this website promise special carrier access?", "No. The site does not promise or imply special carrier access, guaranteed placement, or unapproved carrier relationship claims."]
     ]
@@ -787,8 +805,11 @@ const pages = [
       ["Is life insurance only for parents?", "No. Life insurance may support spouses, children, business partners, debt planning, final expenses, and other family responsibilities."],
       ["What life insurance options can I ask about?", "You can ask about term life, permanent life, final expense, and other options that may be available depending on carrier rules, underwriting, age, health, and coverage goals."],
       ["When should a family review life insurance?", "A review can help after marriage, a child, home purchase, new business, job change, debt change, or any major family milestone."],
+      ["Can life insurance help with mortgage or income planning?", "Life insurance conversations often include income replacement, mortgage protection, final expenses, family responsibilities, and business continuity questions. Exact options depend on underwriting and carrier rules."],
       ["Can I talk through beneficiaries and coverage goals?", "Yes. You can ask general questions about family responsibilities, beneficiary planning, budget, coverage goals, and timing before moving into a secure application path."],
       ["Can I start with a general conversation before applying?", "Yes. You can begin with goals, budget, family responsibilities, and callback preferences before any secure application steps."],
+      ["Can Spanish-speaking families request life insurance help?", "Yes. Office #3 can explain life insurance quote conversations in English or Spanish before any secure application or underwriting process begins."],
+      ["Will the website ask for medical records for life insurance?", "No. Do not send medical records, dates of birth, Social Security numbers, payment details, or sensitive underwriting information through the general website form."],
       ["Do I need to send medical or identification details through this website?", "No. Do not send sensitive underwriting, medical, payment, identification, or account information through a general website form."],
       ["Is life insurance approval guaranteed?", "No. Availability, pricing, eligibility, and approval depend on carrier underwriting and applicant information."]
     ]
@@ -820,9 +841,12 @@ const pages = [
       ["Can renters in Miami request insurance quote help?", "Yes. Renters can request quote help for apartments, personal belongings, liability conversations, and lease requirements."],
       ["Why might a renter consider renters insurance?", "Renters insurance can help start a conversation about belongings, liability, and additional living expense questions. Exact coverage depends on the policy and carrier."],
       ["What belongings can I discuss during a renters quote conversation?", "You can ask general questions about furniture, electronics, clothing, valuables, liability, deductibles, and additional living expense topics."],
+      ["Does renters insurance help with landlord proof requirements?", "If a landlord requests proof of renters coverage, Office #3 can help you understand the quote conversation and what may be needed after coverage is approved."],
       ["When should I request renters quote help?", "Good times include before move-in, lease renewal, major purchases, roommate changes, or after a landlord updates insurance requirements."],
       ["Can I ask about lease insurance requirements?", "Yes. Bring the lease or landlord requirement so Office #3 can help you understand what coverage conversation may be needed."],
       ["Can I get proof of renters insurance for a landlord?", "Proof of coverage depends on the policy and carrier process. Office #3 can help you discuss the requirement and next steps after coverage is approved."],
+      ["Can roommates share one renters insurance conversation?", "Roommate situations can be different by policy and carrier. Bring the lease arrangement and ask what should be reviewed before choosing a path."],
+      ["Can renters in high-rise or luxury apartments request help?", "Yes. Miami apartment renters can ask about personal property, liability, lease requirements, building address details, deductibles, and move-in timing."],
       ["Can Spanish-speaking renters request help?", "Yes. Office #3 offers English and Spanish quote help for Miami renters."],
       ["Does a renters quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."],
       ["Does this page collect sensitive underwriting data?", "No. The first website form only asks for basic contact details and general quote notes before the secure intake path."]
@@ -841,6 +865,9 @@ const pages = [
       ["Who is shown in the About Office #3 photo?", "The About section uses the approved principal agent photo for Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3."],
       ["Does the site use real approved office imagery?", "Yes. The website uses approved Office #3 assets, the official franchise sign, the original franchise logo, the real family and office photo, and the principal agent photo provided for the project."],
       ["Is Spanish-speaking insurance help available?", "Yes. Office #3 offers bilingual service for customers who prefer English or Spanish quote conversations."],
+      ["How do I leave a Google review for Office #3?", "Use the Office #3 Google review button on this website to open the Google review page for the listing connected to Your Family First Insurance Office #3."],
+      ["What is the Office #3 phone number?", "Call 305-910-8850 for local quote help, bilingual service, and questions about the secure quote path."],
+      ["What does family-owned service mean for Office #3?", "It means the site emphasizes real local conversations, Office #3 imagery, bilingual support, clear next steps, and family-first quote guidance instead of anonymous lead forms."],
       ["What trust points are highlighted for Office #3?", "The site highlights 50+ insurance carriers, family-owned service, a local Miami office, bilingual help, free quotes, and fast, friendly service while avoiding fake ratings or price promises."],
       ["Can I call instead of using the form?", "Yes. Call 305-910-8850 for direct Office #3 quote help."]
     ]
@@ -855,8 +882,10 @@ const pages = [
     kind: "quote",
     faqs: [
       ["Where does the Office #3 quote form go?", "The quote request opens the secure ConsumerRateQuotes intake path provided for Office #3 using account ID 64868."],
+      ["Is ConsumerRateQuotes ID 64868 connected to Office #3?", "Yes. The website routes Get My Free Quote buttons to the Office #3 ConsumerRateQuotes path using account ID 64868, as provided for this project."],
       ["Does the quote form bind insurance coverage?", "No. Submitting a form does not bind, change, renew, cancel, or reinstate insurance coverage."],
       ["What information should I enter first?", "Enter your name, phone, email, insurance type, ZIP code, best time to call, and brief general notes so the office knows how to follow up."],
+      ["Can I choose a specific insurance type?", "Yes. Choose auto, homeowners, renters, life, health, general liability, business, commercial, or another quote path so Office #3 can follow up with the right conversation."],
       ["What should I avoid sending through the website?", "Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment card details, claim files, medical records, passwords, or carrier login credentials through regular forms."],
       ["Can I call if I do not want to use the form?", "Yes. Call 305-910-8850 if you prefer to speak directly with Office #3."],
       ["Can the QR code be used for quote help?", "Yes, use the QR code only if it is approved for the Office #3 quote intake path and you are comfortable continuing through that route."]
@@ -1318,7 +1347,7 @@ function insuranceMotionCarousel(page) {
     <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
       <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
         <img class="motion-poster" src="${slide.poster}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
-        ${slide.video ? `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}" data-src="${slide.video}"${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>` : ""}
+        ${slide.video || slide.videoMp4 ? `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}"${slide.video ? ` data-src="${slide.video}"` : ""}${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>` : ""}
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
       </a>
@@ -1334,7 +1363,7 @@ function insuranceMotionCarousel(page) {
   `).join("");
 
   return `
-    <div class="motion-carousel ${isFocused ? "focused-carousel" : ""} liquid-tilt" data-insurance-carousel data-mode="${isFocused ? "focused" : "broad"}" data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="${isFocused ? `${escapeHtml(page.service)} media carousel` : "Interactive insurance coverage carousel"}">
+    <div class="motion-carousel ${isFocused ? "focused-carousel" : "story-carousel"} liquid-tilt" data-insurance-carousel data-mode="${isFocused ? "focused" : "broad"}" data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="${isFocused ? `${escapeHtml(page.service)} media carousel` : "Interactive insurance coverage carousel"}">
       <div class="carousel-topline">
         <div>
           <strong>${isFocused ? `${escapeHtml(page.service)} quote focus` : "Interactive coverage studio"}</strong>
@@ -1511,19 +1540,19 @@ function spanishTrustSection() {
 
 function reviewTrustSection() {
   const signals = [
-    ["Local Miami Office", "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174."],
-    ["Google Review Path", "Read or leave public feedback directly on Google so review content stays current."],
-    ["Bilingual Quote Help", "English and Spanish support for Miami families, drivers, renters, and business owners."]
+    ["Official Office #3 Listing", "Your Family First Insurance Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174."],
+    ["Leave a Google Review", "Open the Office #3 Google review page after your quote, call, visit, or service experience."],
+    ["Local Bilingual Support", "English and Spanish quote help for Miami drivers, homeowners, renters, families, and business owners."]
   ];
   return `
     <section class="section review-panel" id="google-reviews" data-reveal>
       <div class="review-copy">
-        <p class="kicker">Google reviews and local trust</p>
-        <h2>Real Feedback Should Stay Connected to the Source</h2>
-        <p>For trust and accuracy, this site links customers to Google instead of hardcoding unsourced review quotes, ratings, or testimonial snippets.</p>
-        <p>That keeps the website contract-safe while still giving visitors a clear path to read current public feedback or leave a review for ${businessName}.</p>
+        <p class="kicker">Google reviews for Office #3</p>
+        <h2>Review Your Family First Insurance Office #3 on Google</h2>
+        <p>Customers can use the official Google review path for ${businessName} at 11200 W Flagler St, Ste 108, Miami, FL 33174.</p>
+        <p>The link opens Google directly, so visitors can leave feedback from the current Office #3 listing and Google can keep the review experience current.</p>
         <div class="review-actions">
-          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
+          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Open Office #3 Google Review ${iconSvg("arrow")}</a>
           <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
         </div>
       </div>
@@ -2959,6 +2988,7 @@ h3 {
   opacity: 0.9;
   transform: translate3d(0, 0, 0);
 }
+.story-carousel .motion-slide,
 .focused-carousel .motion-slide {
   min-height: 0;
   grid-template-rows: minmax(320px, 1fr) auto;
@@ -2969,6 +2999,7 @@ h3 {
     radial-gradient(circle at 18% 8%, rgba(154, 220, 247, 0.12), transparent 30%),
     linear-gradient(145deg, rgba(9, 24, 36, 0.98), rgba(5, 11, 18, 0.98));
 }
+.story-carousel .motion-media-link,
 .focused-carousel .motion-media-link {
   position: relative;
   inset: auto;
@@ -2981,6 +3012,7 @@ h3 {
   background: #07131F;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 22px 48px rgba(0, 0, 0, 0.28);
 }
+.story-carousel .motion-media-link::before,
 .focused-carousel .motion-media-link::before {
   content: "";
   position: absolute;
@@ -2992,6 +3024,7 @@ h3 {
   pointer-events: none;
   background: linear-gradient(180deg, rgba(7, 19, 31, 0), rgba(7, 19, 31, 0.94));
 }
+.story-carousel .motion-media-link::after,
 .focused-carousel .motion-media-link::after {
   content: "";
   position: absolute;
@@ -3006,20 +3039,25 @@ h3 {
   transform: translate3d(-1%, -1%, 0) scale(1.02);
   transition: opacity 220ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
 }
+.story-carousel .motion-slide:hover .motion-media-link::after,
+.story-carousel .motion-slide:focus-within .motion-media-link::after,
 .focused-carousel .motion-slide:hover .motion-media-link::after,
 .focused-carousel .motion-slide:focus-within .motion-media-link::after {
   opacity: 0.96;
   transform: translate3d(0, 0, 0) scale(1);
 }
+.story-carousel .motion-scrim,
 .focused-carousel .motion-scrim {
   background:
     linear-gradient(90deg, rgba(5, 11, 18, 0.26), rgba(5, 11, 18, 0.02) 44%, rgba(5, 11, 18, 0.24)),
     linear-gradient(180deg, rgba(5, 11, 18, 0.02), rgba(5, 11, 18, 0.20));
 }
+.story-carousel .motion-video,
 .focused-carousel .motion-video {
   inset: -38% 0 auto;
   height: 170%;
 }
+.story-carousel .motion-slide-copy,
 .focused-carousel .motion-slide-copy {
   position: relative;
   z-index: 2;
@@ -3036,18 +3074,28 @@ h3 {
   opacity: 1;
   transform: none;
 }
+.story-carousel .motion-slide-copy {
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(154, 220, 247, 0.10), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.118), rgba(255, 255, 255, 0.050));
+}
+.story-carousel .motion-slide:hover .motion-slide-copy,
+.story-carousel .motion-slide:focus-within .motion-slide-copy,
 .focused-carousel .motion-slide:hover .motion-slide-copy,
 .focused-carousel .motion-slide:focus-within .motion-slide-copy {
   transform: translate3d(0, -2px, 0);
 }
+.story-carousel .motion-slide h2,
 .focused-carousel .motion-slide h2 {
   max-width: 100%;
   font-size: 1.72rem;
   line-height: 1.04;
 }
+.story-carousel .motion-slide p,
 .focused-carousel .motion-slide p {
   max-width: 680px;
 }
+.story-carousel .motion-actions,
 .focused-carousel .motion-actions {
   margin-top: 13px;
 }
@@ -3964,8 +4012,10 @@ h3 {
   .hero-photo { aspect-ratio: 1.02 / 1; }
   .carousel-arrow { display: grid; }
   .motion-slide { min-height: 560px; }
-  .motion-carousel.focused-carousel .motion-slide { min-height: 0; }
-  .focused-carousel .motion-media-link { min-height: 360px; }
+  .motion-carousel.focused-carousel .motion-slide,
+  .motion-carousel.story-carousel .motion-slide { min-height: 0; }
+  .focused-carousel .motion-media-link,
+  .story-carousel .motion-media-link { min-height: 360px; }
   .trust-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: -34px;
@@ -4075,12 +4125,14 @@ h3 {
     min-height: 500px;
     padding: 14px;
   }
+  .story-carousel .motion-slide,
   .focused-carousel .motion-slide {
     min-height: 0;
     grid-template-rows: minmax(245px, 1fr) auto;
     gap: 10px;
     padding: 10px;
   }
+  .story-carousel .motion-media-link,
   .focused-carousel .motion-media-link {
     min-height: 245px;
     border-radius: 13px;
@@ -4110,6 +4162,7 @@ h3 {
     font-size: 1.7rem;
     line-height: 1.02;
   }
+  .story-carousel .motion-slide h2,
   .focused-carousel .motion-slide h2 {
     font-size: 1.28rem;
     line-height: 1.08;

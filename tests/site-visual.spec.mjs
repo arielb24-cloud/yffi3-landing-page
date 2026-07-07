@@ -5,6 +5,7 @@ import { expect, test } from "@playwright/test";
 
 const screenshotDir = path.resolve("playwright-screenshots");
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJD3Bodbu_2YgR8IRb5h7i-kw&source=g.page.m._&laa=merchant-review-solicitation";
 const pages = [
   { name: "home", path: "/" },
   { name: "quote", path: "/get-a-quote/" },
@@ -66,11 +67,18 @@ for (const viewport of viewports) {
         await expect(page.locator("#general-liability-insurance")).toBeVisible();
         await expect(page.locator("#health-insurance")).toBeVisible();
         await expect(page.locator("#google-reviews")).toBeVisible();
+        await expect(page.getByRole("link", { name: /Open Office #3 Google Review/i })).toHaveAttribute("href", googleReviewUrl);
         await expect(page.locator("#seguros-en-espanol")).toBeVisible();
         await expect(page.locator('img[alt*="Real family and office photo"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Ariel Busutil"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Original Your Family First Insurance"]').first()).toBeVisible();
         await expect(page.locator(".trust-ticker")).toBeVisible();
+        const storyLayout = await page.evaluate(() => {
+          const media = document.querySelector(".story-carousel .motion-slide[data-active='true'] .motion-media-link")?.getBoundingClientRect();
+          const copy = document.querySelector(".story-carousel .motion-slide[data-active='true'] .motion-slide-copy")?.getBoundingClientRect();
+          return media && copy ? copy.top >= media.bottom - 2 : false;
+        });
+        expect(storyLayout).toBe(true);
       }
 
       if (pageInfo.name === "quote") {
@@ -85,14 +93,19 @@ for (const viewport of viewports) {
         await expect(page.locator(".motion-slide")).toHaveCount(expectedSlides.length);
         expect(await page.locator(".motion-video").count()).toBeGreaterThanOrEqual(1);
         await expect(page.locator(".motion-poster")).toHaveCount(expectedSlides.length);
+        const posterSrcs = await page.locator(".motion-poster").evaluateAll((images) => images.map((img) => img.getAttribute("src")));
+        expect(new Set(posterSrcs).size).toBe(expectedSlides.length);
         await expect(page.locator(".carousel-chip")).toHaveCount(expectedSlides.length);
         await expect(page.locator(".carousel-dot")).toHaveCount(expectedSlides.length);
         await expect(page.locator("[data-carousel-prev]")).toBeVisible();
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
-        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /(\/assets\/yffi3\/service-|\/media\/insurance-slides\/).*\.webm/);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /(\/assets\/yffi3\/service-|\/media\/insurance-slides\/).*\.(webm|mp4)/);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
+        if (pageInfo.name === "auto") {
+          await expect(page.locator('img[src="/assets/yffi3/service-auto-slide-2.jpg"]')).toHaveCount(0);
+        }
         const focusedLayout = await page.evaluate(() => {
           const media = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-media-link")?.getBoundingClientRect();
           const copy = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-slide-copy")?.getBoundingClientRect();
