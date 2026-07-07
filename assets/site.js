@@ -292,6 +292,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".service-cta",
     ".trust-strip article",
     ".why-grid article",
+    ".language-grid article",
+    ".review-signal-grid article",
     ".notice-card",
     ".callout",
     ".qr-card",

@@ -67,27 +67,32 @@ const requiredMotionMedia = [
 const serviceMotionExpectations = {
   "auto-insurance": {
     slideIds: ["auto", "auto-renewal", "auto-family-drivers"],
-    media: ["auto-miami-drive"],
+    videoRefs: ["/media/insurance-slides/auto-miami-drive.webm"],
+    posterRefs: ["/media/insurance-slides/posters/auto-miami-drive-poster.jpg", "/assets/yffi3/service-auto-slide-2.jpg", "/assets/yffi3/service-auto-slide-3.jpg"],
     start: 'data-start-slide="auto"'
   },
   "home-insurance": {
     slideIds: ["homeowners", "homeowners-closing", "homeowners-renewal"],
-    media: ["home-miami-sunlight"],
+    videoRefs: ["/media/insurance-slides/home-miami-sunlight.webm"],
+    posterRefs: ["/media/insurance-slides/posters/home-miami-sunlight-poster.jpg", "/assets/yffi3/service-homeowners-slide-2.jpg", "/assets/yffi3/service-homeowners-slide-3.jpg"],
     start: 'data-start-slide="homeowners"'
   },
   "commercial-insurance": {
     slideIds: ["business", "commercial-liability", "commercial-certificates"],
-    media: ["business-storefront-open", "liability-contractor-checklist"],
+    videoRefs: ["/media/insurance-slides/business-storefront-open.webm", "/media/insurance-slides/liability-contractor-checklist.webm"],
+    posterRefs: ["/media/insurance-slides/posters/business-storefront-open-poster.jpg", "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg", "/assets/yffi3/service-commercial-slide-3.jpg"],
     start: 'data-start-slide="business"'
   },
   "life-insurance": {
     slideIds: ["family", "life-term", "life-final-expense"],
-    media: ["family-protection-planning"],
+    videoRefs: ["/media/insurance-slides/family-protection-planning.webm"],
+    posterRefs: ["/media/insurance-slides/posters/family-protection-planning-poster.jpg", "/assets/yffi3/service-life-slide-2.jpg", "/assets/yffi3/service-life-slide-3.jpg"],
     start: 'data-start-slide="family"'
   },
   "renters-insurance": {
     slideIds: ["renters", "renters-lease", "renters-belongings"],
-    media: ["renters-apartment-keys"],
+    videoRefs: ["/media/insurance-slides/renters-apartment-keys.webm"],
+    posterRefs: ["/media/insurance-slides/posters/renters-apartment-keys-poster.jpg", "/assets/yffi3/service-renters-slide-2.jpg", "/assets/yffi3/service-renters-slide-3.jpg"],
     start: 'data-start-slide="renters"'
   }
 };
@@ -145,8 +150,15 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes("Get My Free Quote")) failures.push("home missing quote CTA");
   if (slug === "" && !html.includes("trust-ticker")) failures.push("home missing header trust ticker");
   if (slug === "" && !html.includes("50+ Insurance Carriers")) failures.push("home missing 50+ carriers trust block");
+  if (slug === "" && html.includes('id="condo-insurance"')) failures.push("home should replace Condo Insurance card with General Liability");
+  if (slug === "" && !html.includes('id="general-liability-insurance"')) failures.push("home missing General Liability coverage card");
+  if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
+  if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
+  if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing Spanish local SEO section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
+  if (slug === "about-office-3" && !html.includes('id="google-reviews"')) failures.push("about page missing Google reviews trust section");
+  if (slug === "about-office-3" && !html.includes('id="seguros-en-espanol"')) failures.push("about page missing Spanish local SEO section");
   if (slug === "" && countMatches(html, /<details>/g) < 8) failures.push("home FAQ should include expanded customer/search-intent questions");
   if (slug === "" && !html.includes("bilingual insurance help")) failures.push("home FAQ missing bilingual service question");
   if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug) && !html.includes("Local search guide")) {
@@ -156,16 +168,19 @@ for (const slug of requiredSlugs) {
     const expectedMotion = serviceMotionExpectations[slug];
     if (!html.includes("data-insurance-carousel")) failures.push(`${slug} missing interactive insurance motion carousel`);
     if (countMatches(html, /class="motion-slide"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused service slides only`);
-    if (countMatches(html, /class="motion-video"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include one lazy video element per focused slide`);
+    if (countMatches(html, /class="motion-video"/g) < 1) failures.push(`${slug} carousel should include at least one lazy video element`);
+    if (countMatches(html, /class="motion-poster"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include one poster per focused slide`);
     if (countMatches(html, /class="carousel-chip"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused category chips`);
     if (countMatches(html, /class="carousel-dot"/g) !== expectedMotion.slideIds.length) failures.push(`${slug} carousel should include focused accessible dots`);
     if (!html.includes('data-carousel-prev') || !html.includes('data-carousel-next')) failures.push(`${slug} carousel missing arrow controls`);
     for (const slideId of expectedMotion.slideIds) {
       if (!html.includes(`data-slide-id="${slideId}"`)) failures.push(`${slug} missing focused carousel slide: ${slideId}`);
     }
-    for (const mediaName of expectedMotion.media) {
-      if (!html.includes(`/media/insurance-slides/${mediaName}.webm`)) failures.push(`${slug} missing carousel WebM reference: ${mediaName}`);
-      if (!html.includes(`/media/insurance-slides/posters/${mediaName}-poster.jpg`)) failures.push(`${slug} missing carousel poster reference: ${mediaName}`);
+    for (const videoRef of expectedMotion.videoRefs) {
+      if (!html.includes(videoRef)) failures.push(`${slug} missing focused carousel video reference: ${videoRef}`);
+    }
+    for (const posterRef of expectedMotion.posterRefs) {
+      if (!html.includes(posterRef)) failures.push(`${slug} missing focused carousel poster reference: ${posterRef}`);
     }
     if (!html.includes(expectedMotion.start)) failures.push(`${slug} carousel does not prioritize matching first slide`);
     if (html.includes("motion-category")) failures.push(`${slug} carousel still renders cluttered overlay category labels`);

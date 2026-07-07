@@ -61,6 +61,12 @@ for (const viewport of viewports) {
         await expect(page.getByRole("link", { name: /Get My Free Quote/i }).first()).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
         await expect(page.locator(".motion-slide")).toHaveCount(7);
+        await expect(page.locator(".coverage-card")).toHaveCount(8);
+        await expect(page.locator("#condo-insurance")).toHaveCount(0);
+        await expect(page.locator("#general-liability-insurance")).toBeVisible();
+        await expect(page.locator("#health-insurance")).toBeVisible();
+        await expect(page.locator("#google-reviews")).toBeVisible();
+        await expect(page.locator("#seguros-en-espanol")).toBeVisible();
         await expect(page.locator('img[alt*="Real family and office photo"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Ariel Busutil"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Original Your Family First Insurance"]').first()).toBeVisible();
@@ -77,7 +83,7 @@ for (const viewport of viewports) {
         const expectedSlides = serviceSlideSets[pageInfo.name];
         await expect(page.locator("[data-insurance-carousel]")).toBeVisible();
         await expect(page.locator(".motion-slide")).toHaveCount(expectedSlides.length);
-        await expect(page.locator(".motion-video")).toHaveCount(expectedSlides.length);
+        expect(await page.locator(".motion-video").count()).toBeGreaterThanOrEqual(1);
         await expect(page.locator(".motion-poster")).toHaveCount(expectedSlides.length);
         await expect(page.locator(".carousel-chip")).toHaveCount(expectedSlides.length);
         await expect(page.locator(".carousel-dot")).toHaveCount(expectedSlides.length);
@@ -85,8 +91,14 @@ for (const viewport of viewports) {
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
-        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/insurance-slides\/.*\.webm/);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /(\/assets\/yffi3\/service-|\/media\/insurance-slides\/).*\.webm/);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
+        const focusedLayout = await page.evaluate(() => {
+          const media = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-media-link")?.getBoundingClientRect();
+          const copy = document.querySelector(".focused-carousel .motion-slide[data-active='true'] .motion-slide-copy")?.getBoundingClientRect();
+          return media && copy ? copy.top >= media.bottom - 2 : false;
+        });
+        expect(focusedLayout).toBe(true);
         await expect(page.locator(".motion-category")).toHaveCount(0);
         await expect(page.locator(".motion-detail")).toHaveCount(0);
         await expect(page.locator(".related-links")).toHaveCount(0);

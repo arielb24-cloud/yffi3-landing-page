@@ -1096,6 +1096,98 @@ h3 {
   opacity: 0.9;
   transform: translate3d(0, 0, 0);
 }
+.focused-carousel .motion-slide {
+  min-height: 0;
+  grid-template-rows: minmax(320px, 1fr) auto;
+  align-content: stretch;
+  gap: 14px;
+  padding: clamp(12px, 1.8vw, 18px);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(154, 220, 247, 0.12), transparent 30%),
+    linear-gradient(145deg, rgba(9, 24, 36, 0.98), rgba(5, 11, 18, 0.98));
+}
+.focused-carousel .motion-media-link {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  display: block;
+  min-height: clamp(300px, 35vw, 430px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #07131F;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 22px 48px rgba(0, 0, 0, 0.28);
+}
+.focused-carousel .motion-media-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: 48px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 19, 31, 0), rgba(7, 19, 31, 0.94));
+}
+.focused-carousel .motion-media-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.11), transparent 22%, rgba(154, 220, 247, 0.06) 58%, transparent 82%),
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.13), transparent 24%);
+  opacity: 0.72;
+  transform: translate3d(-1%, -1%, 0) scale(1.02);
+  transition: opacity 220ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.focused-carousel .motion-slide:hover .motion-media-link::after,
+.focused-carousel .motion-slide:focus-within .motion-media-link::after {
+  opacity: 0.96;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.focused-carousel .motion-scrim {
+  background:
+    linear-gradient(90deg, rgba(5, 11, 18, 0.26), rgba(5, 11, 18, 0.02) 44%, rgba(5, 11, 18, 0.24)),
+    linear-gradient(180deg, rgba(5, 11, 18, 0.02), rgba(5, 11, 18, 0.20));
+}
+.focused-carousel .motion-video {
+  inset: -38% 0 auto;
+  height: 170%;
+}
+.focused-carousel .motion-slide-copy {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  padding: 16px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.10), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.052));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 16px 38px rgba(0, 0, 0, 0.22);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  transform: none;
+}
+.focused-carousel .motion-slide:hover .motion-slide-copy,
+.focused-carousel .motion-slide:focus-within .motion-slide-copy {
+  transform: translate3d(0, -2px, 0);
+}
+.focused-carousel .motion-slide h2 {
+  max-width: 100%;
+  font-size: 1.72rem;
+  line-height: 1.04;
+}
+.focused-carousel .motion-slide p {
+  max-width: 680px;
+}
+.focused-carousel .motion-actions {
+  margin-top: 13px;
+}
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -1199,6 +1291,10 @@ h3 {
 @keyframes carousel-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+@keyframes review-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -5px, 0); }
 }
 
 .trust-strip {
@@ -1366,6 +1462,14 @@ h3 {
   gap: 12px;
   padding: 18px;
   scroll-margin-top: 140px;
+  background:
+    radial-gradient(circle at 12% 10%, var(--card-accent, rgba(154, 220, 247, 0.18)), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+}
+.coverage-card:hover {
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), var(--card-accent, rgba(154, 220, 247, 0.28)), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.065));
 }
 .coverage-card h3, .detail-card h3, .intent-card h3, .faq summary, .link-pills a, .coverage-link-rail a {
   transition: color 180ms ease, transform 180ms ease;
@@ -1516,6 +1620,86 @@ h3 {
   box-shadow: none;
 }
 .why-grid p { opacity: 0.84; }
+
+.spanish-panel,
+.review-panel {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid var(--glass-line);
+  border-radius: 22px;
+  padding: 32px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 224, 161, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(119, 231, 220, 0.10), transparent 32%),
+    linear-gradient(135deg, rgba(14, 37, 55, 0.92), rgba(7, 20, 32, 0.92));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.spanish-panel h2,
+.review-panel h2,
+.spanish-panel h3,
+.review-panel h3 { color: var(--ink); }
+.spanish-copy,
+.review-copy {
+  max-width: 670px;
+}
+.spanish-copy p,
+.review-copy p {
+  color: var(--ink-soft);
+}
+.language-grid,
+.review-signal-grid {
+  display: grid;
+  gap: 12px;
+}
+.language-grid article,
+.review-signal-grid article {
+  --lift: 0px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.10), transparent 28%),
+    rgba(255, 255, 255, 0.075);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(var(--lift));
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+.language-grid article:hover,
+.review-signal-grid article:hover {
+  --lift: -3px;
+  border-color: rgba(255, 224, 161, 0.38);
+}
+.language-grid span,
+.review-signal-grid span {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 13px;
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 224, 161, 0.95), rgba(154, 220, 247, 0.72));
+}
+.language-grid .icon,
+.review-signal-grid .icon {
+  width: 18px;
+  height: 18px;
+}
+.review-signal-grid article {
+  animation: review-float 6200ms ease-in-out infinite;
+  animation-delay: var(--review-delay);
+}
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
 
 .franchise-panel {
   display: grid;
@@ -1917,13 +2101,19 @@ h3 {
   .hero-photo { aspect-ratio: 1.02 / 1; }
   .carousel-arrow { display: grid; }
   .motion-slide { min-height: 560px; }
-  .motion-carousel.focused-carousel .motion-slide { min-height: 540px; }
+  .motion-carousel.focused-carousel .motion-slide { min-height: 0; }
+  .focused-carousel .motion-media-link { min-height: 360px; }
   .trust-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: -34px;
   }
   .about-panel, .quote-panel, .franchise-panel {
     grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1fr);
+  }
+  .spanish-panel,
+  .review-panel {
+    grid-template-columns: minmax(0, 0.9fr) minmax(430px, 1fr);
+    padding: 42px;
   }
   .quote-panel {
     grid-template-columns: minmax(0, 0.82fr) minmax(440px, 1fr);
@@ -2022,7 +2212,16 @@ h3 {
     min-height: 500px;
     padding: 14px;
   }
-  .focused-carousel .motion-slide { min-height: 480px; }
+  .focused-carousel .motion-slide {
+    min-height: 0;
+    grid-template-rows: minmax(245px, 1fr) auto;
+    gap: 10px;
+    padding: 10px;
+  }
+  .focused-carousel .motion-media-link {
+    min-height: 245px;
+    border-radius: 13px;
+  }
   .motion-trust-badge {
     top: 13px;
     left: 13px;
@@ -2047,6 +2246,10 @@ h3 {
   .motion-slide h2 {
     font-size: 1.7rem;
     line-height: 1.02;
+  }
+  .focused-carousel .motion-slide h2 {
+    font-size: 1.28rem;
+    line-height: 1.08;
   }
   .motion-slide p { font-size: 0.88rem; line-height: 1.42; }
   .motion-actions {
@@ -2079,6 +2282,9 @@ h3 {
   .coverage-card, .detail-card, .process-grid article, .why-grid article, .quote-form { padding: 18px; }
   .intent-card { padding: 18px; min-height: 0; }
   .why-panel { padding: 24px; }
+  .spanish-panel, .review-panel { padding: 22px; }
+  .review-actions { display: grid; }
+  .review-actions .button { width: 100%; justify-content: center; }
   .trust-ticker {
     margin-top: 2px;
     mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);

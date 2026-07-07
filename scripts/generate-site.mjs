@@ -15,6 +15,7 @@ const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
 const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
 const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const googleReviewUrl = "https://www.google.com/search?q=Your+Family+First+Insurance+Office+%233+11200+W+Flagler+St+Ste+108+Miami+FL+Google+reviews";
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -163,8 +164,8 @@ const insuranceSlides = [
     icon: "key",
     objectPosition: "center 50%",
     visualMood: "soft apartment light, keys, clean move-in confidence",
-    trustBadge: "Renters • Condo owners • Move-in support",
-    detail: "A simple path for renters and condo owners who want to review belongings, liability, lease, or association questions."
+    trustBadge: "Renters • Apartments • Move-in support",
+    detail: "A simple path for renters who want to review belongings, liability, lease, or proof-of-coverage questions."
   },
   {
     id: "business",
@@ -263,7 +264,7 @@ function insuranceSlideVariant(baseId, overrides) {
     category: overrides.category || base.category,
     cta: overrides.cta || base.cta,
     href: overrides.href || base.href,
-    video: overrides.video || base.video,
+    video: overrides.video ?? base.video,
     videoMp4: overrides.videoMp4 ?? base.videoMp4,
     poster: overrides.poster || base.poster,
     alt: overrides.alt || base.alt,
@@ -280,7 +281,11 @@ const serviceCarouselSlides = {
       cta: "Start Auto Quote",
       microcopy: "Miami drivers • Vehicle changes • Renewal reviews",
       trustBadge: "Auto insurance quote help for Miami drivers",
-      detail: "Focused on car insurance questions only: vehicles, drivers, deductibles, lender needs, and renewal timing."
+      detail: "Focused on car insurance questions only: vehicles, drivers, deductibles, lender needs, and renewal timing.",
+      video: "/media/insurance-slides/auto-miami-drive.webm",
+      poster: "/media/insurance-slides/posters/auto-miami-drive-poster.jpg",
+      alt: "Premium Miami auto insurance visual with a modern car outside a Florida home",
+      objectPosition: "center 58%"
     }),
     insuranceSlideVariant("auto", {
       id: "auto-renewal",
@@ -290,7 +295,11 @@ const serviceCarouselSlides = {
       cta: "Review Auto Quote",
       microcopy: "Renewals • Deductibles • Garaging ZIP code",
       trustBadge: "Auto renewal review",
-      detail: "A cleaner quote path for Miami drivers seeing renewal changes or buying a different vehicle."
+      detail: "A cleaner quote path for Miami drivers seeing renewal changes or buying a different vehicle.",
+      video: "",
+      poster: "/assets/yffi3/service-auto-slide-2.jpg",
+      alt: "Auto insurance renewal visual showing refined vehicle keys and dashboard detail",
+      objectPosition: "center 52%"
     }),
     insuranceSlideVariant("auto", {
       id: "auto-family-drivers",
@@ -300,7 +309,11 @@ const serviceCarouselSlides = {
       cta: "Talk Auto Coverage",
       microcopy: "Family vehicles • Added drivers • Financed cars",
       trustBadge: "Household auto coverage conversation",
-      detail: "Built around auto-only questions so visitors stay focused on the car insurance quote path."
+      detail: "Built around auto-only questions so visitors stay focused on the car insurance quote path.",
+      video: "",
+      poster: "/assets/yffi3/service-auto-slide-3.jpg",
+      alt: "Family vehicle at a Florida-style home for Miami auto insurance quote help",
+      objectPosition: "center 54%"
     })
   ],
   "home-insurance": [
@@ -311,7 +324,11 @@ const serviceCarouselSlides = {
       cta: "Get Homeowners Quote",
       microcopy: "Homes • Lenders • Florida property questions",
       trustBadge: "Homeowners insurance quote help",
-      detail: "Focused on homeowners insurance questions only, from closing deadlines to renewal changes."
+      detail: "Focused on homeowners insurance questions only, from closing deadlines to renewal changes.",
+      video: "/media/insurance-slides/home-miami-sunlight.webm",
+      poster: "/media/insurance-slides/posters/home-miami-sunlight-poster.jpg",
+      alt: "Florida home exterior with palm trees for Miami homeowners insurance quote help",
+      objectPosition: "center 56%"
     }),
     insuranceSlideVariant("homeowners", {
       id: "homeowners-closing",
@@ -321,7 +338,11 @@ const serviceCarouselSlides = {
       cta: "Protect My Home",
       microcopy: "Closing dates • Lender needs • Property details",
       trustBadge: "Home closing coverage conversation",
-      detail: "A homeowners-only path for buyers and owners who need clear next steps before a deadline."
+      detail: "A homeowners-only path for buyers and owners who need clear next steps before a deadline.",
+      video: "",
+      poster: "/assets/yffi3/service-homeowners-slide-2.jpg",
+      alt: "Modern Florida home roofline and exterior details for homeowners insurance",
+      objectPosition: "center 50%"
     }),
     insuranceSlideVariant("homeowners", {
       id: "homeowners-renewal",
@@ -331,7 +352,11 @@ const serviceCarouselSlides = {
       cta: "Review Homeowners Quote",
       microcopy: "Renewals • Roof details • Wind questions",
       trustBadge: "Florida home renewal review",
-      detail: "Keeps the page focused on homeowners insurance without pulling visitors into unrelated policy types."
+      detail: "Keeps the page focused on homeowners insurance without pulling visitors into unrelated policy types.",
+      video: "",
+      poster: "/assets/yffi3/service-homeowners-slide-3.jpg",
+      alt: "Warm Miami living room sunlight for homeowners insurance renewal questions",
+      objectPosition: "center 50%"
     })
   ],
   "renters-insurance": [
@@ -341,7 +366,11 @@ const serviceCarouselSlides = {
       cta: "Quote Renters Insurance",
       microcopy: "Apartments • Belongings • Lease requirements",
       trustBadge: "Renters insurance quote help",
-      detail: "Focused on renters insurance questions only, from lease requirements to personal belongings."
+      detail: "Focused on renters insurance questions only, from lease requirements to personal belongings.",
+      video: "/media/insurance-slides/renters-apartment-keys.webm",
+      poster: "/media/insurance-slides/posters/renters-apartment-keys-poster.jpg",
+      alt: "Modern Miami apartment living room for renters insurance quote help",
+      objectPosition: "center 55%"
     }),
     insuranceSlideVariant("renters", {
       id: "renters-lease",
@@ -351,7 +380,11 @@ const serviceCarouselSlides = {
       cta: "Start Renters Quote",
       microcopy: "Lease needs • Proof questions • Move-in timing",
       trustBadge: "Lease requirement quote support",
-      detail: "Designed for renters who need a clean next step before move-in or lease renewal."
+      detail: "Designed for renters who need a clean next step before move-in or lease renewal.",
+      video: "",
+      poster: "/assets/yffi3/service-renters-slide-2.jpg",
+      alt: "Apartment keys and personal property details for renters insurance lease requirements",
+      objectPosition: "center 50%"
     }),
     insuranceSlideVariant("renters", {
       id: "renters-belongings",
@@ -361,7 +394,11 @@ const serviceCarouselSlides = {
       cta: "Quote My Apartment",
       microcopy: "Personal property • Liability • Apartment living",
       trustBadge: "Apartment protection conversation",
-      detail: "Keeps attention on renters insurance rather than unrelated coverage categories."
+      detail: "Keeps attention on renters insurance rather than unrelated coverage categories.",
+      video: "",
+      poster: "/assets/yffi3/service-renters-slide-3.jpg",
+      alt: "Luxury apartment corridor and entry area for renters insurance in Miami",
+      objectPosition: "center 50%"
     })
   ],
   "commercial-insurance": [
@@ -373,7 +410,11 @@ const serviceCarouselSlides = {
       cta: "Protect My Business",
       microcopy: "Miami businesses • Certificates • Operations",
       trustBadge: "Commercial insurance quote help",
-      detail: "Focused on business insurance conversations for Miami owners and operators."
+      detail: "Focused on business insurance conversations for Miami owners and operators.",
+      video: "/media/insurance-slides/business-storefront-open.webm",
+      poster: "/media/insurance-slides/posters/business-storefront-open-poster.jpg",
+      alt: "Polished Miami business storefront for commercial insurance quote help",
+      objectPosition: "center 52%"
     }),
     insuranceSlideVariant("liability", {
       id: "commercial-liability",
@@ -384,7 +425,11 @@ const serviceCarouselSlides = {
       cta: "Get Liability Quote",
       microcopy: "Contracts • Clients • Certificates",
       trustBadge: "General liability conversation",
-      detail: "Part of the commercial quote path for businesses that need liability guidance."
+      detail: "Part of the commercial quote path for businesses that need liability guidance.",
+      video: "/media/insurance-slides/liability-contractor-checklist.webm",
+      poster: "/media/insurance-slides/posters/liability-contractor-checklist-poster.jpg",
+      alt: "Contractor checklist and professional workspace for general liability insurance in Miami",
+      objectPosition: "center 55%"
     }),
     insuranceSlideVariant("business", {
       id: "commercial-certificates",
@@ -395,7 +440,11 @@ const serviceCarouselSlides = {
       cta: "Review Business Coverage",
       microcopy: "COI requests • Leases • Job requirements",
       trustBadge: "Certificate-focused business support",
-      detail: "Keeps the commercial page focused on business coverage triggers and certificate conversations."
+      detail: "Keeps the commercial page focused on business coverage triggers and certificate conversations.",
+      video: "",
+      poster: "/assets/yffi3/service-commercial-slide-3.jpg",
+      alt: "Business vehicles at a modern workspace for commercial insurance certificate requests",
+      objectPosition: "center 54%"
     })
   ],
   "life-insurance": [
@@ -407,7 +456,11 @@ const serviceCarouselSlides = {
       cta: "Plan Family Protection",
       microcopy: "Family goals • Income needs • Legacy planning",
       trustBadge: "Life insurance quote help",
-      detail: "Focused on life insurance conversations only, with a privacy-safe first step."
+      detail: "Focused on life insurance conversations only, with a privacy-safe first step.",
+      video: "/media/insurance-slides/family-protection-planning.webm",
+      poster: "/media/insurance-slides/posters/family-protection-planning-poster.jpg",
+      alt: "Calm home planning workspace for life insurance quote help in Miami",
+      objectPosition: "center 52%"
     }),
     insuranceSlideVariant("family", {
       id: "life-term",
@@ -418,7 +471,11 @@ const serviceCarouselSlides = {
       cta: "Start Term Life Quote",
       microcopy: "Term life • Income needs • Mortgage planning",
       trustBadge: "Term life conversation",
-      detail: "A life-only quote path that keeps medical and underwriting details out of the general website form."
+      detail: "A life-only quote path that keeps medical and underwriting details out of the general website form.",
+      video: "",
+      poster: "/assets/yffi3/service-life-slide-2.jpg",
+      alt: "Warm table with keys and planning details for term life insurance questions",
+      objectPosition: "center 52%"
     }),
     insuranceSlideVariant("family", {
       id: "life-final-expense",
@@ -429,7 +486,11 @@ const serviceCarouselSlides = {
       cta: "Talk Life Insurance",
       microcopy: "Final expense • Family protection • Secure next step",
       trustBadge: "Final expense planning conversation",
-      detail: "Keeps the page focused on life insurance and avoids unrelated quote categories."
+      detail: "Keeps the page focused on life insurance and avoids unrelated quote categories.",
+      video: "",
+      poster: "/assets/yffi3/service-life-slide-3.jpg",
+      alt: "Peaceful home hallway and long-term planning mood for final expense insurance",
+      objectPosition: "center 50%"
     })
   ]
 };
@@ -443,7 +504,7 @@ const address = {
 };
 
 const serviceAreas = ["West Flagler Miami", "Miami", "Kendall", "Hialeah", "Cutler Bay", "Homestead", "Miami-Dade", "Florida"];
-const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Condo insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
+const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
 const redFlagPhrases = [
   "guaranteed " + "cheapest",
   "official " + "cheapest " + "insurance",
@@ -464,8 +525,9 @@ const serviceCards = [
     short: "Auto",
     icon: "car",
     href: "/auto-insurance/",
-    copy: "Coverage conversations for Miami commutes, family vehicles, new drivers, and renewal reviews.",
-    tags: ["Liability", "Comp and collision", "Family vehicles"]
+    copy: "Miami auto insurance quote help for daily drivers, family vehicles, new drivers, financed cars, and renewal reviews.",
+    tags: ["Car insurance Miami", "Family vehicles", "Renewal review"],
+    accent: "rgba(154, 220, 247, 0.30)"
   },
   {
     id: "home-insurance",
@@ -473,8 +535,9 @@ const serviceCards = [
     short: "Homeowners",
     icon: "home",
     href: "/home-insurance/",
-    copy: "Quote help for Miami homeowners, belongings, liability, lender needs, and Florida property questions.",
-    tags: ["Homeowners", "Property", "Florida risks"]
+    copy: "Homeowners insurance quote help for Miami-Dade properties, roof details, wind questions, lender needs, and flood conversations.",
+    tags: ["Miami-Dade homes", "Roof details", "Lender needs"],
+    accent: "rgba(134, 207, 160, 0.30)"
   },
   {
     id: "life-insurance",
@@ -482,8 +545,9 @@ const serviceCards = [
     short: "Life",
     icon: "heart",
     href: "/life-insurance/",
-    copy: "Family-first conversations around income protection, final expenses, and long-term planning.",
-    tags: ["Family planning", "Income needs", "Final expense"]
+    copy: "Life insurance quote help for term life, final expense, income protection, mortgage planning, and family responsibilities.",
+    tags: ["Term life", "Income needs", "Final expense"],
+    accent: "rgba(255, 161, 132, 0.30)"
   },
   {
     id: "business-insurance",
@@ -491,8 +555,9 @@ const serviceCards = [
     short: "Business",
     icon: "briefcase",
     href: "/commercial-insurance/",
-    copy: "Support for local operations, contracts, certificates, work vehicles, property, and liability.",
-    tags: ["Certificates", "Liability", "Commercial auto"]
+    copy: "Business insurance quote help for Miami owners reviewing BOP, property, commercial auto, certificates, and operations.",
+    tags: ["BOP questions", "Certificates", "Operations"],
+    accent: "rgba(244, 201, 107, 0.30)"
   },
   {
     id: "renters-insurance",
@@ -500,17 +565,19 @@ const serviceCards = [
     short: "Renters",
     icon: "key",
     href: "/renters-insurance/",
-    copy: "Help for apartments, belongings, liability questions, and lease requirements.",
-    tags: ["Apartments", "Belongings", "Lease needs"]
+    copy: "Renters insurance quote help for Miami apartments, belongings, lease requirements, liability questions, and move-in timing.",
+    tags: ["Miami apartments", "Belongings", "Lease proof"],
+    accent: "rgba(119, 231, 220, 0.26)"
   },
   {
-    id: "condo-insurance",
-    title: "Condo Insurance",
-    short: "Condo",
-    icon: "building",
-    href: "/get-a-quote/#quote",
-    copy: "Condo conversations for unit coverage, personal property, loss assessment, and liability.",
-    tags: ["Condo units", "Association docs", "Liability"]
+    id: "general-liability-insurance",
+    title: "General Liability Insurance",
+    short: "Liability",
+    icon: "shield",
+    href: "/commercial-insurance/#general-liability-insurance",
+    copy: "General liability quote help for contractors, vendors, offices, leases, client requirements, certificates, and job-site risk conversations.",
+    tags: ["Contractors", "Certificates", "Client needs"],
+    accent: "rgba(154, 220, 247, 0.28)"
   },
   {
     id: "commercial-insurance",
@@ -518,8 +585,19 @@ const serviceCards = [
     short: "Commercial",
     icon: "shield",
     href: "/commercial-insurance/",
-    copy: "Coverage conversations for contractors, fleets, local businesses, locations, and certificates.",
-    tags: ["Contractors", "Fleets", "Small business"]
+    copy: "Commercial insurance quote help for contractors, fleets, work vehicles, local businesses, locations, and certificate requests.",
+    tags: ["Contractors", "Fleets", "Small business"],
+    accent: "rgba(244, 201, 107, 0.28)"
+  },
+  {
+    id: "health-insurance",
+    title: "Health Insurance",
+    short: "Health",
+    icon: "health",
+    href: "/get-a-quote/#quote",
+    copy: "Health insurance quote help for individuals, families, self-employed customers, and small-business benefit conversations.",
+    tags: ["Families", "Self-employed", "Benefit questions"],
+    accent: "rgba(134, 207, 160, 0.30)"
   }
 ];
 
@@ -528,9 +606,7 @@ const specialtyCoverageLinks = [
   ["motorcycle-insurance", "Motorcycle Insurance", "/get-a-quote/#quote"],
   ["boat-insurance", "Boat Insurance", "/get-a-quote/#quote"],
   ["rv-insurance", "RV Insurance", "/get-a-quote/#quote"],
-  ["general-liability-insurance", "General Liability Insurance", "/commercial-insurance/"],
-  ["workers-compensation", "Workers' Compensation", "/commercial-insurance/"],
-  ["health-insurance", "Health Insurance", "/get-a-quote/#quote"]
+  ["workers-compensation", "Workers' Compensation", "/commercial-insurance/"]
 ];
 
 const tickerItems = [
@@ -544,7 +620,6 @@ const tickerItems = [
   ["Auto Insurance", "/auto-insurance/"],
   ["Homeowners Insurance", "/home-insurance/"],
   ["Renters Insurance", "/renters-insurance/"],
-  ["Condo Insurance", "/get-a-quote/#quote"],
   ["Flood Insurance", "/#flood-insurance"],
   ["Motorcycle Insurance", "/#motorcycle-insurance"],
   ["Boat Insurance", "/#boat-insurance"],
@@ -566,18 +641,18 @@ const pages = [
     slug: "",
     nav: "Home",
     title: "Your Family First Insurance Office #3 | Miami Insurance Quote Help",
-    description: "Your Family First Insurance Office #3 helps Miami families compare auto, homeowners, life, business, renters, condo, and commercial insurance options.",
+    description: "Your Family First Insurance Office #3 helps Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
     h1: "Florida Insurance Made Simple for Your Family",
-    intro: "Local Office #3 helping Miami families compare auto, homeowners, life, business, renters, condo, and commercial insurance options.",
+    intro: "Local Office #3 helping Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
     kind: "home",
-    keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, condo insurance Miami, life insurance Miami, commercial insurance Miami, bilingual insurance Miami",
+    keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     faqs: [
       ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
-      ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, condo, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
+      ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
       ["How do I get a free insurance quote from Office #3?", "Use the Get My Free Quote buttons, scan the approved QR code, or call 305-910-8850. The website only starts with basic contact details before opening the secure quote intake path."],
       ["Is bilingual insurance help available?", "Yes. Office #3 offers local English and Spanish quote help so Miami families and business owners can ask coverage questions more comfortably."],
       ["What should I have ready before requesting a quote?", "Have your ZIP code, the type of insurance you want to review, preferred callback time, and general coverage goals. Do not send SSNs, dates of birth, driver license numbers, VINs, payment details, medical records, passwords, or carrier login credentials through a general website form."],
-      ["Can one office help me review more than one policy type?", "Yes. Many customers review auto with home, renters, condo, life, or business coverage so the conversation is easier to manage in one local office."],
+      ["Can one office help me review more than one policy type?", "Yes. Many customers review auto with homeowners, renters, life, health, general liability, or business coverage so the conversation is easier to manage in one local office."],
       ["Does a website quote request start or change insurance coverage?", "No. Submitting a quote request does not bind, change, renew, cancel, or reinstate insurance coverage. Coverage is only active after carrier approval, written confirmation, and any required payment steps."],
       ["Are prices, savings, or carrier approvals guaranteed?", "No. Coverage options, availability, pricing, eligibility, and savings depend on carrier rules, underwriting, location, applicant information, and the coverage selected."]
     ]
@@ -759,7 +834,7 @@ const pages = [
     title: "About Office #3 | Your Family First Insurance Miami",
     description: "Learn about Your Family First Insurance Office #3, a local West Flagler Miami insurance office helping families and businesses compare coverage options.",
     h1: "About Your Family First Insurance Office #3",
-    intro: "A local West Flagler Miami office focused on clear, family-first quote help for drivers, homeowners, renters, condo owners, families, and businesses.",
+    intro: "A local West Flagler Miami office focused on clear, family-first quote help for drivers, homeowners, renters, families, health coverage shoppers, contractors, and businesses.",
     kind: "about",
     faqs: [
       ["What makes Your Family First Insurance Office #3 local?", "Office #3 is listed on West Flagler Street in Miami and serves Miami-Dade families, drivers, renters, homeowners, and business owners."],
@@ -774,7 +849,7 @@ const pages = [
     slug: "get-a-quote",
     nav: "Get Quote",
     title: "Get My Free Quote | Your Family First Insurance Office #3",
-    description: "Request personalized quote help from Your Family First Insurance Office #3 for auto, homeowners, life, business, renters, condo, or commercial insurance.",
+    description: "Request personalized quote help from Your Family First Insurance Office #3 for auto, homeowners, renters, life, health, general liability, business, or commercial insurance.",
     h1: "Get My Free Quote",
     intro: "Tell Office #3 what type of insurance you want to compare and when it is best to call. Do not send sensitive personal documents through this form.",
     kind: "quote",
@@ -837,11 +912,13 @@ function iconSvg(name) {
     key: '<path d="M14.5 10.5a4 4 0 1 1-1.4-3"/><path d="M14 9h6v3h-2v2h-3v-2h-1"/>',
     building: '<path d="M6 19V5h8v14"/><path d="M14 9h4v10"/><path d="M9 8h2M9 11h2M9 14h2"/><path d="M4 19h16"/>',
     shield: '<path d="M12 4 18 6v5c0 4.1-2.4 6.8-6 8-3.6-1.2-6-3.9-6-8V6l6-2Z"/><path d="M9.3 12.1 11.2 14l3.7-4"/>',
+    health: '<path d="M12 21s7-4.5 7-10.2A4.8 4.8 0 0 0 12 6.6a4.8 4.8 0 0 0-7 4.2C5 16.5 12 21 12 21Z"/><path d="M12 9v6M9 12h6"/>',
     phone: '<path d="M8 5.5 10 9l-1.5 1.5a11 11 0 0 0 5 5L15 14l3.5 2v2.5c0 .8-.7 1.5-1.5 1.5A13.5 13.5 0 0 1 3.5 6.5C3.5 5.7 4.2 5 5 5h3Z"/>',
     arrow: '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
     clock: '<path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="8"/>',
     lock: '<rect x="6" y="10" width="12" height="9" rx="2"/><path d="M9 10V8a3 3 0 0 1 6 0v2"/>',
-    map: '<path d="M9 18 4 20V6l5-2 6 2 5-2v14l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/>'
+    map: '<path d="M9 18 4 20V6l5-2 6 2 5-2v14l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/>',
+    star: '<path d="m12 4 2.2 4.7 5.1.6-3.8 3.5 1 5-4.5-2.6-4.5 2.6 1-5-3.8-3.5 5.1-.6L12 4Z"/>'
   };
   return `<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${icons[name] || icons.shield}</svg>`;
 }
@@ -1020,8 +1097,8 @@ function footerHtml() {
       <div class="footer-shell">
         <div class="footer-brand">
           <div class="footer-logo-pair">
-            <span class="footer-logo footer-logo-banner">${logoImg("lazy")}</span>
-            <span class="footer-logo footer-logo-original">${originalFranchiseLogoImg()}</span>
+            <span class="footer-logo footer-logo-banner">${logoImg("eager")}</span>
+            <span class="footer-logo footer-logo-original">${originalFranchiseLogoImg("eager")}</span>
           </div>
           <p><strong>${businessName}</strong></p>
           <p>${address.streetAddress}<br>${address.addressLocality}, ${address.addressRegion} ${address.postalCode}</p>
@@ -1033,7 +1110,7 @@ function footerHtml() {
         </div>
         <div>
           <h2>Local Office</h2>
-          <p>Office #3 serving West Flagler Miami, Miami-Dade families, drivers, homeowners, renters, condo owners, and local businesses.</p>
+          <p>Office #3 serving West Flagler Miami, Miami-Dade families, drivers, homeowners, renters, health coverage shoppers, contractors, and local businesses.</p>
           <p class="footer-note">Coverage options, availability, pricing, and eligibility vary by carrier, underwriting, location, and applicant information. Savings are not guaranteed.</p>
         </div>
       </div>
@@ -1166,7 +1243,7 @@ function headHtml(page) {
     : page.kind === "home"
       ? `<link rel="preload" href="${familyWebpSrc}" as="image" type="image/webp">`
       : "";
-  const keywords = page.keywords || "Miami insurance agency, West Flagler insurance, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, condo insurance Miami, commercial insurance Miami, life insurance Miami, health insurance Miami, bilingual insurance office";
+  const keywords = page.keywords || "Miami insurance agency, West Flagler insurance, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, commercial insurance Miami, life insurance Miami, health insurance Miami, bilingual insurance office";
   return `
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1241,7 +1318,7 @@ function insuranceMotionCarousel(page) {
     <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
       <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
         <img class="motion-poster" src="${slide.poster}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
-        <video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}" data-src="${slide.video}"${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>
+        ${slide.video ? `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}" data-src="${slide.video}"${slide.videoMp4 ? ` data-mp4="${slide.videoMp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>` : ""}
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
       </a>
@@ -1351,7 +1428,7 @@ function coverageCards() {
       </div>
       <div class="coverage-grid">
         ${serviceCards.map((card) => `
-          <article class="coverage-card" id="${card.id}" data-reveal>
+          <article class="coverage-card" id="${card.id}" style="--card-accent: ${card.accent || "rgba(154, 220, 247, 0.26)"}" data-reveal>
             <div class="card-top"><span class="soft-icon">${iconSvg(card.icon)}</span><a href="${card.href}">${escapeHtml(card.short)} ${iconSvg("arrow")}</a></div>
             <h3>${escapeHtml(card.title)}</h3>
             <p>${escapeHtml(card.copy)}</p>
@@ -1410,6 +1487,53 @@ function whyChooseSection() {
   `;
 }
 
+function spanishTrustSection() {
+  const points = [
+    ["Cotizaciones en español", "Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial insurance y general liability explicado claro."],
+    ["Oficina local en West Flagler", "Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Ste 108, Miami, FL 33174."],
+    ["Sin presión", "Empezamos con una conversación sencilla y datos básicos antes de cualquier solicitud segura o información sensible."]
+  ];
+  return `
+    <section class="section spanish-panel" id="seguros-en-espanol" data-reveal>
+      <div class="spanish-copy">
+        <p class="kicker">Se habla español</p>
+        <h2>Seguros en Miami Explicados Claro, en Español</h2>
+        <p>Hablamos español. Te ayudamos con cotizaciones de seguro en Miami sin vueltas, sin presión, y con una explicación clara para que sepas cuál es el próximo paso.</p>
+        <p>Si prefieres hablar en español, Office #3 puede ayudarte a revisar preguntas sobre seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance y general liability.</p>
+        <a class="button light magnetic-button" href="${phoneHref}">Llamar ${phoneDisplay}</a>
+      </div>
+      <div class="language-grid">
+        ${points.map(([title, copy]) => `<article><span>${iconSvg("map")}</span><h3>${title}</h3><p>${copy}</p></article>`).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function reviewTrustSection() {
+  const signals = [
+    ["Local Miami Office", "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174."],
+    ["Google Review Path", "Read or leave public feedback directly on Google so review content stays current."],
+    ["Bilingual Quote Help", "English and Spanish support for Miami families, drivers, renters, and business owners."]
+  ];
+  return `
+    <section class="section review-panel" id="google-reviews" data-reveal>
+      <div class="review-copy">
+        <p class="kicker">Google reviews and local trust</p>
+        <h2>Real Feedback Should Stay Connected to the Source</h2>
+        <p>For trust and accuracy, this site links customers to Google instead of hardcoding unsourced review quotes, ratings, or testimonial snippets.</p>
+        <p>That keeps the website contract-safe while still giving visitors a clear path to read current public feedback or leave a review for ${businessName}.</p>
+        <div class="review-actions">
+          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
+          <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
+        </div>
+      </div>
+      <div class="review-signal-grid" aria-label="Office #3 review trust signals">
+        ${signals.map(([title, copy], index) => `<article style="--review-delay: ${index * 220}ms"><span>${iconSvg(index === 1 ? "star" : "shield")}</span><h3>${title}</h3><p>${copy}</p></article>`).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function franchiseBadgeSection() {
   return `
     <section class="section franchise-panel" aria-labelledby="franchise-title" data-reveal>
@@ -1438,11 +1562,16 @@ function quoteForm(formId = "quote-form") {
           <option value="">Select one</option>
           <option>Auto</option>
           <option>Homeowners</option>
-          <option>Life</option>
-          <option>Business</option>
           <option>Renters</option>
-          <option>Condo</option>
+          <option>Life</option>
+          <option>Health</option>
+          <option>Business</option>
+          <option>General Liability</option>
           <option>Commercial</option>
+          <option>Workers' Compensation</option>
+          <option>Flood</option>
+          <option>Motorcycle</option>
+          <option>Boat / RV</option>
         </select>
       </label>
       <label>ZIP code<input required name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" maxlength="5"></label>
@@ -1501,9 +1630,11 @@ function homeBody() {
   return `
     ${trustStrip()}
     ${aboutPreview()}
+    ${spanishTrustSection()}
     ${coverageCards()}
     ${processSection()}
     ${whyChooseSection()}
+    ${reviewTrustSection()}
     ${franchiseBadgeSection()}
     ${quoteSection("Get My Free Quote")}
     ${faqHtml(pages[0])}
@@ -1557,7 +1688,10 @@ function serviceSearchPanel(page) {
         <p>These are the real questions customers often bring to Office #3 when comparing insurance options in West Flagler, Miami, Kendall, Hialeah, Doral, Homestead, and Miami-Dade.</p>
       </div>
       <div class="intent-grid">
-        ${page.searchTopics.map(([title, copy]) => `<article class="intent-card" data-reveal="card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.searchTopics.map(([title, copy]) => {
+          const anchor = title.toLowerCase().includes("general liability") ? ' id="general-liability-insurance"' : "";
+          return `<article class="intent-card"${anchor} data-reveal="card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`;
+        }).join("")}
       </div>
     </section>
   `;
@@ -1581,7 +1715,9 @@ function aboutBody() {
   return `
     ${trustStrip()}
     ${aboutPreview()}
+    ${spanishTrustSection()}
     ${whyChooseSection()}
+    ${reviewTrustSection()}
     ${franchiseBadgeSection()}
     ${relatedLinks("about-office-3")}
     ${faqHtml(pages.find((page) => page.slug === "about-office-3"))}
@@ -2823,6 +2959,98 @@ h3 {
   opacity: 0.9;
   transform: translate3d(0, 0, 0);
 }
+.focused-carousel .motion-slide {
+  min-height: 0;
+  grid-template-rows: minmax(320px, 1fr) auto;
+  align-content: stretch;
+  gap: 14px;
+  padding: clamp(12px, 1.8vw, 18px);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(154, 220, 247, 0.12), transparent 30%),
+    linear-gradient(145deg, rgba(9, 24, 36, 0.98), rgba(5, 11, 18, 0.98));
+}
+.focused-carousel .motion-media-link {
+  position: relative;
+  inset: auto;
+  z-index: 1;
+  display: block;
+  min-height: clamp(300px, 35vw, 430px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #07131F;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 22px 48px rgba(0, 0, 0, 0.28);
+}
+.focused-carousel .motion-media-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: 48px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 19, 31, 0), rgba(7, 19, 31, 0.94));
+}
+.focused-carousel .motion-media-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.11), transparent 22%, rgba(154, 220, 247, 0.06) 58%, transparent 82%),
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.13), transparent 24%);
+  opacity: 0.72;
+  transform: translate3d(-1%, -1%, 0) scale(1.02);
+  transition: opacity 220ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.focused-carousel .motion-slide:hover .motion-media-link::after,
+.focused-carousel .motion-slide:focus-within .motion-media-link::after {
+  opacity: 0.96;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.focused-carousel .motion-scrim {
+  background:
+    linear-gradient(90deg, rgba(5, 11, 18, 0.26), rgba(5, 11, 18, 0.02) 44%, rgba(5, 11, 18, 0.24)),
+    linear-gradient(180deg, rgba(5, 11, 18, 0.02), rgba(5, 11, 18, 0.20));
+}
+.focused-carousel .motion-video {
+  inset: -38% 0 auto;
+  height: 170%;
+}
+.focused-carousel .motion-slide-copy {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  padding: 16px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.10), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.052));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 16px 38px rgba(0, 0, 0, 0.22);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  transform: none;
+}
+.focused-carousel .motion-slide:hover .motion-slide-copy,
+.focused-carousel .motion-slide:focus-within .motion-slide-copy {
+  transform: translate3d(0, -2px, 0);
+}
+.focused-carousel .motion-slide h2 {
+  max-width: 100%;
+  font-size: 1.72rem;
+  line-height: 1.04;
+}
+.focused-carousel .motion-slide p {
+  max-width: 680px;
+}
+.focused-carousel .motion-actions {
+  margin-top: 13px;
+}
 .carousel-arrow {
   position: absolute;
   top: 50%;
@@ -2926,6 +3154,10 @@ h3 {
 @keyframes carousel-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+@keyframes review-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -5px, 0); }
 }
 
 .trust-strip {
@@ -3093,6 +3325,14 @@ h3 {
   gap: 12px;
   padding: 18px;
   scroll-margin-top: 140px;
+  background:
+    radial-gradient(circle at 12% 10%, var(--card-accent, rgba(154, 220, 247, 0.18)), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
+}
+.coverage-card:hover {
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), var(--card-accent, rgba(154, 220, 247, 0.28)), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.065));
 }
 .coverage-card h3, .detail-card h3, .intent-card h3, .faq summary, .link-pills a, .coverage-link-rail a {
   transition: color 180ms ease, transform 180ms ease;
@@ -3243,6 +3483,86 @@ h3 {
   box-shadow: none;
 }
 .why-grid p { opacity: 0.84; }
+
+.spanish-panel,
+.review-panel {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid var(--glass-line);
+  border-radius: 22px;
+  padding: 32px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 224, 161, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 18%, rgba(119, 231, 220, 0.10), transparent 32%),
+    linear-gradient(135deg, rgba(14, 37, 55, 0.92), rgba(7, 20, 32, 0.92));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.spanish-panel h2,
+.review-panel h2,
+.spanish-panel h3,
+.review-panel h3 { color: var(--ink); }
+.spanish-copy,
+.review-copy {
+  max-width: 670px;
+}
+.spanish-copy p,
+.review-copy p {
+  color: var(--ink-soft);
+}
+.language-grid,
+.review-signal-grid {
+  display: grid;
+  gap: 12px;
+}
+.language-grid article,
+.review-signal-grid article {
+  --lift: 0px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.10), transparent 28%),
+    rgba(255, 255, 255, 0.075);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(var(--lift));
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+.language-grid article:hover,
+.review-signal-grid article:hover {
+  --lift: -3px;
+  border-color: rgba(255, 224, 161, 0.38);
+}
+.language-grid span,
+.review-signal-grid span {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 13px;
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 224, 161, 0.95), rgba(154, 220, 247, 0.72));
+}
+.language-grid .icon,
+.review-signal-grid .icon {
+  width: 18px;
+  height: 18px;
+}
+.review-signal-grid article {
+  animation: review-float 6200ms ease-in-out infinite;
+  animation-delay: var(--review-delay);
+}
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
 
 .franchise-panel {
   display: grid;
@@ -3644,13 +3964,19 @@ h3 {
   .hero-photo { aspect-ratio: 1.02 / 1; }
   .carousel-arrow { display: grid; }
   .motion-slide { min-height: 560px; }
-  .motion-carousel.focused-carousel .motion-slide { min-height: 540px; }
+  .motion-carousel.focused-carousel .motion-slide { min-height: 0; }
+  .focused-carousel .motion-media-link { min-height: 360px; }
   .trust-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: -34px;
   }
   .about-panel, .quote-panel, .franchise-panel {
     grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1fr);
+  }
+  .spanish-panel,
+  .review-panel {
+    grid-template-columns: minmax(0, 0.9fr) minmax(430px, 1fr);
+    padding: 42px;
   }
   .quote-panel {
     grid-template-columns: minmax(0, 0.82fr) minmax(440px, 1fr);
@@ -3749,7 +4075,16 @@ h3 {
     min-height: 500px;
     padding: 14px;
   }
-  .focused-carousel .motion-slide { min-height: 480px; }
+  .focused-carousel .motion-slide {
+    min-height: 0;
+    grid-template-rows: minmax(245px, 1fr) auto;
+    gap: 10px;
+    padding: 10px;
+  }
+  .focused-carousel .motion-media-link {
+    min-height: 245px;
+    border-radius: 13px;
+  }
   .motion-trust-badge {
     top: 13px;
     left: 13px;
@@ -3774,6 +4109,10 @@ h3 {
   .motion-slide h2 {
     font-size: 1.7rem;
     line-height: 1.02;
+  }
+  .focused-carousel .motion-slide h2 {
+    font-size: 1.28rem;
+    line-height: 1.08;
   }
   .motion-slide p { font-size: 0.88rem; line-height: 1.42; }
   .motion-actions {
@@ -3806,6 +4145,9 @@ h3 {
   .coverage-card, .detail-card, .process-grid article, .why-grid article, .quote-form { padding: 18px; }
   .intent-card { padding: 18px; min-height: 0; }
   .why-panel { padding: 24px; }
+  .spanish-panel, .review-panel { padding: 22px; }
+  .review-actions { display: grid; }
+  .review-actions .button { width: 100%; justify-content: center; }
   .trust-ticker {
     margin-top: 2px;
     mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
@@ -4160,6 +4502,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".service-cta",
     ".trust-strip article",
     ".why-grid article",
+    ".language-grid article",
+    ".review-signal-grid article",
     ".notice-card",
     ".callout",
     ".qr-card",
@@ -4322,7 +4666,7 @@ Primary local area: West Flagler Miami and Miami-Dade, Florida
 
 ## Safe Summary
 
-Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, condo, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. The site uses official franchise identification and real Office #3 imagery supplied for the project.
+Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. The site uses official franchise identification and real Office #3 imagery supplied for the project.
 
 ## Important Boundaries
 
@@ -4470,7 +4814,7 @@ function seoNotes() {
 
 - Dark liquid-glass Lovable-style mobile-first static website with direct first screen, visible phone number, and quote CTAs.
 - Local copy for West Flagler Miami and Miami-Dade.
-- Dedicated pages for home, auto insurance, homeowners insurance, commercial insurance, life insurance, renters and condo insurance, about, quote, privacy, and terms.
+- Dedicated pages for home, auto insurance, homeowners insurance, commercial insurance, life insurance, renters insurance, about, quote, privacy, and terms.
 - Service pages include Miami search-intent topic panels and expanded customer-facing FAQs for local, product-specific searches.
 - InsuranceAgency, Service, FAQPage, and BreadcrumbList schema where appropriate.
 - Robots.txt allows Google, Bing, OpenAI, and Perplexity crawler user agents.
@@ -4488,7 +4832,7 @@ function seoNotes() {
 5. Add real, permissioned customer review snippets only if they are sourced and allowed by platform rules.
 6. Add original local content over time: West Flagler insurance FAQs, hurricane-season insurance preparation, business certificate guidance, and Miami-Dade driver/homeowner guides.
 7. Submit the sitemap in Google Search Console and Bing Webmaster Tools after GoDaddy Beta Apps deployment.
-8. Monitor Search Console queries for Miami, West Flagler, auto, homeowners, commercial, life, renters, condo, and business insurance terms.
+8. Monitor Search Console queries for Miami, West Flagler, auto, homeowners, commercial, general liability, health, life, renters, and business insurance terms.
 `;
 }
 
