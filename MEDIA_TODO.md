@@ -1,77 +1,73 @@
-# Insurance Carousel Media Replacement Guide
+# Premium Carousel Media Replacement Guide
 
-The carousel system is production-ready and currently uses local optimized placeholder WebM loops and poster images in `public/media/insurance-slides/`.
+The carousel now uses real locally hosted MP4 motion clips from `public/media/premium-carousel/` plus the approved family beach clip at `public/media/carousel/life/life-family-beach.mp4`.
 
-Replace the placeholder media with licensed final footage using the same filenames so no code changes are required.
+Do not replace carousel slots with static photos, still-image pans, or fake GIF-like animations. Carousel media must be true moving video.
+
+## Rules
+
+- Update `src/data/carouselMedia.js` first.
+- Every `src` and `poster` path must be unique across the manifest.
+- Keep media page-specific: auto videos on auto, homes on homeowners, move-in/apartment videos on renters, business/worksite videos on commercial, family/planning videos on life.
+- Keep all media local in production. Do not hotlink Pexels, Pixabay, Mixkit, Coverr, or any other source.
+- Keep official franchise/logo assets unchanged and separate from stock carousel media.
+- Run `pnpm run build`; it runs `scripts/validate-carousel-assets.mjs`.
 
 ## Technical Targets
 
-- Format: WebM first. Add MP4 fallback only if available and update the matching `videoMp4` field in `scripts/generate-site.mjs`.
+- Format: MP4, muted, loopable, no audio.
 - Duration: 5 to 8 seconds.
-- Audio: none.
-- Desktop size: 1280x720 or 1600x900, compressed.
+- Desktop size: 1280x720 or similar.
 - Mobile-safe crop: important subject centered inside the middle 60% of the frame.
-- File target: ideally under 2 MB per WebM, never 4K.
-- Motion: ambient, slow, trustworthy, no fear-heavy scenes.
-- Avoid: crashes, storms as the main focus, emergency lights, fake carrier logos, fake people, fake awards, or anything that implies unauthorized partnerships.
+- File target: ideally 3 to 5 MB per clip, acceptable up to about 6.5 MB for richer motion.
+- Avoid: crashes, emergency lights, fear-heavy storm footage, obvious luxury brand-logo focus, watermarks, editorial-only footage, fake carrier logos, fake people, fake awards, or anything implying unauthorized partnerships.
 
-## Required Files
+## Strong Future Upgrade Searches
 
 ### Auto Insurance
-
-- File: `auto-miami-drive.webm`
-- Poster: `posters/auto-miami-drive-poster.jpg`
-- Search terms: `Miami car driving night`, `car driving city lights`, `luxury car road close up`, `driver hands steering wheel city`, `Miami street car palm trees`
-- Best visual: clean road movement, city light reflections, dashboard detail, or premium street scene.
+- `Miami car driving night`
+- `luxury car driving city`
+- `driver hands steering wheel city`
+- `city drive sunset`
 
 ### Homeowners Insurance
-
-- File: `home-miami-sunlight.webm`
-- Poster: `posters/home-miami-sunlight-poster.jpg`
-- Search terms: `modern Florida home exterior`, `sunlight living room family home`, `front door home keys`, `palm shadow house`, `Miami home exterior`
-- Best visual: warm home exterior, sunlight through windows, palm shadows, or slow entry detail.
+- `modern Florida home exterior`
+- `luxury home exterior drone`
+- `sunlit home walkthrough`
+- `palm trees home exterior`
 
 ### Renters Insurance
+- `moving boxes apartment`
+- `couple apartment keys`
+- `modern apartment move in`
+- `renters lifestyle apartment`
 
-- File: `renters-apartment-keys.webm`
-- Poster: `posters/renters-apartment-keys-poster.jpg`
-- Search terms: `modern apartment keys`, `apartment interior sunlight`, `young renter moving apartment`, `cozy apartment living room`, `city apartment interior`
-- Best visual: keys, move-in moment, apartment light, belongings, or calm interior.
+### Commercial Insurance
+- `small business owner storefront`
+- `office client meeting`
+- `contractor worksite`
+- `certificate of insurance contractor`
 
-### Business Insurance
-
-- File: `business-storefront-open.webm`
-- Poster: `posters/business-storefront-open-poster.jpg`
-- Search terms: `small business owner storefront`, `restaurant owner opening`, `barber shop owner`, `contractor small business`, `office client meeting`
-- Best visual: open sign, storefront prep, owner getting ready, restaurant/barber/office details.
-
-### General Liability
-
-- File: `liability-contractor-checklist.webm`
-- Poster: `posters/liability-contractor-checklist-poster.jpg`
-- Search terms: `contractor clipboard`, `small business service worker`, `worker checking equipment`, `insured contractor job site`, `professional workspace checklist`
-- Best visual: responsible jobsite detail, clipboard/checklist, tools in motion, service professional.
-
-### Family / Life Insurance
-
-- File: `family-protection-planning.webm`
-- Poster: `posters/family-protection-planning-poster.jpg`
-- Search terms: `family financial planning table`, `life insurance family planning`, `mortgage protection planning`, `final expense planning documents`, `warm home planning`
-- Best visual: warm planning details, family home context, papers/keys, calm protection mood.
+### Life Insurance
+- `family walking beach`
+- `family coming home`
+- `family planning documents`
+- `parents child home`
 
 ### Bilingual Local Service
+- `advisor client meeting`
+- `insurance consultation office`
+- `Miami local office meeting`
+- `Spanish speaking consultation`
 
-- File: `bilingual-agent-consult.webm`
-- Poster: `posters/bilingual-agent-consult-poster.jpg`
-- Search terms: `insurance agent client meeting`, `Spanish speaking agent consultation`, `Miami family office`, `local business consultation`, `advisor meeting client office`
-- Best visual: real office consultation, agent greeting, document review, phone consultation, bilingual/local warmth.
+## Sources To Inspect
 
-## Suggested Sources To Inspect
-
+Preferred free/commercial-friendly sources:
 - Pexels Videos
-- Coverr
+- Pixabay Videos
 - Mixkit
-- Unsplash for poster stills
-- Existing approved Office #3 assets when real local imagery is available
+- Coverr
+- Splitshire
+- Mazwai
 
-Download and optimize final files locally. Do not hotlink external stock media in production.
+If using sources that require attribution, add the credit to `docs/carousel-media-credits.md` before publishing.

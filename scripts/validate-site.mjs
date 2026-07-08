@@ -58,15 +58,6 @@ const approvedAssets = [
   "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg",
   "/assets/yffi3/yffi3-original-franchise-logo.png"
 ];
-const requiredMotionMedia = [
-  "auto-miami-drive",
-  "home-miami-sunlight",
-  "renters-apartment-keys",
-  "business-storefront-open",
-  "liability-contractor-checklist",
-  "family-protection-planning",
-  "bilingual-agent-consult"
-];
 const serviceMotionExpectations = Object.fromEntries(
   ["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].map((slug) => {
     const slides = carouselMediaByPage[slug] || [];
@@ -313,14 +304,6 @@ if (!fs.existsSync(js)) {
   if (!script.includes("data-carousel-chip")) failures.push("JS missing category chip handling");
   if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("window.location.assign")) failures.push("JS missing secure quote redirect");
-}
-
-const mediaRoot = checkDist
-  ? path.join(siteRoot, "media", "insurance-slides")
-  : path.join(root, "public", "media", "insurance-slides");
-for (const mediaName of requiredMotionMedia) {
-  if (!fs.existsSync(path.join(mediaRoot, `${mediaName}.webm`))) failures.push(`Missing local carousel WebM media: ${mediaName}.webm`);
-  if (!fs.existsSync(path.join(mediaRoot, "posters", `${mediaName}-poster.jpg`))) failures.push(`Missing local carousel poster: ${mediaName}-poster.jpg`);
 }
 
 if (!checkDist) {

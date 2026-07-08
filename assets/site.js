@@ -2,6 +2,9 @@ const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("#site-nav");
 
 if (menuToggle && siteNav) {
+  siteNav.querySelectorAll("a").forEach((link, index) => {
+    link.style.setProperty("--nav-delay", Math.min(index * 24, 160) + "ms");
+  });
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.getAttribute("data-open") === "true";
     siteNav.setAttribute("data-open", String(!isOpen));
@@ -11,6 +14,34 @@ if (menuToggle && siteNav) {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealItems = document.querySelectorAll("[data-reveal]");
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const cursorOrb = document.createElement("span");
+  cursorOrb.className = "cursor-orb";
+  cursorOrb.setAttribute("aria-hidden", "true");
+  document.body.append(cursorOrb);
+
+  let cursorFrame = 0;
+  let cursorX = -80;
+  let cursorY = -80;
+  const syncCursor = () => {
+    cursorFrame = 0;
+    cursorOrb.style.transform = "translate3d(" + (cursorX - 11) + "px, " + (cursorY - 11) + "px, 0)";
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    cursorOrb.classList.add("is-visible");
+    if (!cursorFrame) cursorFrame = window.requestAnimationFrame(syncCursor);
+  }, { passive: true });
+  window.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-visible", "is-active"));
+
+  document.querySelectorAll("a, button, input, select, textarea, summary, .motion-media-link, .coverage-card, .detail-card, .intent-card").forEach((target) => {
+    target.addEventListener("pointerenter", () => cursorOrb.classList.add("is-active"));
+    target.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-active"));
+  });
+}
 
 if (revealItems.length) {
   if (reducedMotion || !("IntersectionObserver" in window)) {
@@ -61,6 +92,49 @@ if (animatedItems.length) {
       animationObserver.observe(item);
     });
   }
+}
+
+if (!reducedMotion && "IntersectionObserver" in window) {
+  const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
+  const visibleDepthSurfaces = new Set();
+  let depthFrame = 0;
+
+  const syncDepth = () => {
+    depthFrame = 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+    visibleDepthSurfaces.forEach((surface) => {
+      const rect = surface.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / viewportHeight));
+      const scrollDepth = normalized * -18;
+      surface.style.setProperty("--scroll-depth", scrollDepth.toFixed(2) + "px");
+      surface.style.setProperty("--media-scroll-y", (scrollDepth * -0.26).toFixed(2) + "px");
+      surface.style.setProperty("--depth-y", (scrollDepth * -0.18).toFixed(2) + "px");
+      surface.style.setProperty("--media-rotate-x", (normalized * -1.35).toFixed(2) + "deg");
+    });
+  };
+
+  const requestDepthSync = () => {
+    if (!depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
+  };
+
+  const depthObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleDepthSurfaces.add(entry.target);
+      else {
+        visibleDepthSurfaces.delete(entry.target);
+        entry.target.style.setProperty("--scroll-depth", "0px");
+        entry.target.style.setProperty("--media-scroll-y", "0px");
+        entry.target.style.setProperty("--depth-y", "0px");
+        entry.target.style.setProperty("--media-rotate-x", "0deg");
+      }
+    });
+    requestDepthSync();
+  }, { rootMargin: "180px 0px", threshold: 0.01 });
+
+  depthSurfaces.forEach((surface) => depthObserver.observe(surface));
+  window.addEventListener("scroll", requestDepthSync, { passive: true });
+  window.addEventListener("resize", requestDepthSync, { passive: true });
 }
 
 document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
@@ -322,8 +396,14 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
         }
         if (surface.classList.contains("motion-carousel")) {
-          surface.style.setProperty("--parallax-x", ((x - 0.5) * 10).toFixed(2) + "px");
-          surface.style.setProperty("--parallax-y", ((y - 0.5) * 8).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-x", ((x - 0.5) * 16).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-y", ((y - 0.5) * 12).toFixed(2) + "px");
+          surface.style.setProperty("--depth-x", ((x - 0.5) * -5).toFixed(2) + "px");
+          surface.style.setProperty("--media-rotate-y", ((x - 0.5) * 1.6).toFixed(2) + "deg");
+        }
+        if (surface.classList.contains("magnetic-button")) {
+          surface.style.setProperty("--magnet-x", ((x - 0.5) * 5).toFixed(2) + "px");
+          surface.style.setProperty("--magnet-y", ((y - 0.5) * 4).toFixed(2) + "px");
         }
       });
     });
@@ -336,6 +416,10 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       surface.style.setProperty("--glare-y", "0%");
       surface.style.setProperty("--parallax-x", "0px");
       surface.style.setProperty("--parallax-y", "0px");
+      surface.style.setProperty("--depth-x", "0px");
+      surface.style.setProperty("--media-rotate-y", "0deg");
+      surface.style.setProperty("--magnet-x", "0px");
+      surface.style.setProperty("--magnet-y", "0px");
     });
   });
 }

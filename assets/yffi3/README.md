@@ -13,4 +13,4 @@ Do not replace the official franchise assets with generated images or a redesign
 
 The carousel inventory lives in `/src/data/carouselMedia.js`. Update that manifest first whenever replacing media, then run `pnpm run build` so `scripts/validate-carousel-assets.mjs` can catch duplicate paths, missing alt text, missing license notes, page-off-topic slides, or any static carousel slide.
 
-Service-page carousel videos now live under `/public/media/carousel/`. Keep them local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.
+Most carousel videos now live under `/public/media/premium-carousel/`; the approved family beach life clip remains under `/public/media/carousel/life/`. Keep carousel media local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.

@@ -1603,6 +1603,34 @@ body::after {
   mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 82%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 82%, transparent 100%);
 }
+.cursor-orb {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 224, 161, 0.34);
+  border-radius: 999px;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.72), transparent 18%),
+    radial-gradient(circle, rgba(154, 220, 247, 0.25), rgba(255, 125, 101, 0.08) 54%, transparent 70%);
+  box-shadow: 0 0 26px rgba(154, 220, 247, 0.18), 0 0 18px rgba(255, 224, 161, 0.12);
+  mix-blend-mode: screen;
+  transform: translate3d(-80px, -80px, 0) scale(1);
+  transition: opacity 180ms ease, width 180ms ease, height 180ms ease, border-color 180ms ease;
+  will-change: transform;
+  contain: layout style paint;
+}
+.cursor-orb.is-visible { opacity: 0.48; }
+.cursor-orb.is-active {
+  width: 44px;
+  height: 44px;
+  border-color: rgba(255, 224, 161, 0.58);
+  opacity: 0.68;
+}
 ::selection {
   color: #050B12;
   background: var(--champagne);
@@ -1707,6 +1735,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding-top: 10px;
 }
 .site-nav[data-open="true"] { display: grid; }
+.site-nav[data-open="true"] a {
+  animation: nav-rise 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--nav-delay, 0ms);
+}
 .site-nav a, .header-call, .mobile-call {
   display: inline-flex;
   min-height: 40px;
@@ -1774,13 +1806,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 32px rgba(0, 0, 0, 0.24);
   backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
   -webkit-backdrop-filter: blur(var(--glass-blur-soft)) saturate(135%);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 .menu-toggle span {
   width: 18px;
   height: 2px;
   border-radius: 99px;
   background: var(--ink);
+  transform-origin: center;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease;
 }
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  transform: translate3d(0, -1px, 0);
+  border-color: rgba(255, 224, 161, 0.44);
+  background: rgba(255, 255, 255, 0.13);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translate3d(0, 6px, 0) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0.35); }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translate3d(0, -6px, 0) rotate(-45deg); }
 .header-actions { display: none; }
 
 .trust-ticker {
@@ -1841,9 +1885,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(-50%, 0, 0); }
 }
+@keyframes nav-rise {
+  from { opacity: 0; transform: translate3d(0, 8px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
 
 .button {
   --shine-x: -46%;
+  --magnet-x: 0px;
+  --magnet-y: 0px;
   position: relative;
   display: inline-flex;
   min-height: 48px;
@@ -1866,8 +1916,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     inset 0 1px 0 rgba(255, 255, 255, 0.32),
     inset 0 -18px 34px rgba(255, 255, 255, 0.04),
     0 18px 44px rgba(0, 0, 0, 0.32);
-  transform: translate3d(0, 0, 0) scale(1);
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  transform: translate3d(var(--magnet-x), var(--magnet-y), 0) scale(1);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 .button::before {
   content: "";
@@ -1940,7 +1990,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: 0.86rem;
 }
 .button:hover {
-  transform: translate3d(0, -2px, 0) scale(1.012);
+  transform: translate3d(var(--magnet-x), calc(var(--magnet-y) - 2px), 0) scale(1.012);
   border-color: rgba(255, 255, 255, 0.34);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.34),
@@ -1955,7 +2005,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transform: translate3d(2px, 0, 0);
 }
 .button:active {
-  transform: translate3d(0, 0, 0) scale(0.992);
+  transform: translate3d(var(--magnet-x), var(--magnet-y), 0) scale(0.992);
 }
 
 h1, h2, h3, p { letter-spacing: 0; }
@@ -2295,6 +2345,12 @@ h3 {
   --lift: 0px;
   --parallax-x: 0px;
   --parallax-y: 0px;
+  --depth-x: 0px;
+  --depth-y: 0px;
+  --media-rotate-x: 0deg;
+  --media-rotate-y: 0deg;
+  --scroll-depth: 0px;
+  --media-scroll-y: 0px;
   --carousel-duration: 6800ms;
   position: relative;
   overflow: hidden;
@@ -2310,7 +2366,7 @@ h3 {
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(var(--glass-blur)) saturate(138%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(138%);
-  transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
+  transform: perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translate3d(0, calc(var(--lift) + var(--scroll-depth)), 0);
   transform-style: preserve-3d;
   transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, background 260ms ease;
 }
@@ -2340,6 +2396,9 @@ h3 {
     radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255,255,255,.18), transparent 20%);
   transform: translate3d(-1.2%, -1.2%, 0) scale(1.025);
   transition: opacity 240ms ease, transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-carousel[data-in-view="true"]::before {
+  animation: carousel-aurora 12000ms ease-in-out infinite alternate;
 }
 .motion-carousel:hover,
 .motion-carousel:focus-within {
@@ -2467,6 +2526,8 @@ h3 {
   padding: clamp(18px, 3vw, 30px);
   color: var(--ink);
   background: #07131F;
+  transform-style: preserve-3d;
+  contain: layout paint;
 }
 .motion-media-link {
   position: absolute;
@@ -2475,6 +2536,9 @@ h3 {
   overflow: hidden;
   color: inherit;
   text-decoration: none;
+  transform: perspective(900px) rotateX(var(--media-rotate-x)) rotateY(var(--media-rotate-y)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .motion-poster,
 .motion-video {
@@ -2484,7 +2548,7 @@ h3 {
   height: 100%;
   object-fit: cover;
   background: #07131F;
-  transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025);
+  transform: translate3d(calc(var(--parallax-x) + var(--depth-x)), calc(var(--parallax-y) + var(--depth-y)), 0) scale(1.04);
   transform-origin: center;
   transition: opacity 420ms ease, transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
@@ -2556,18 +2620,18 @@ h3 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 54px rgba(0, 0, 0, 0.30);
   backdrop-filter: blur(10px) saturate(132%);
   -webkit-backdrop-filter: blur(10px) saturate(132%);
-  transform: translate3d(0, 12px, 0);
+  transform: translate3d(0, 12px, 28px);
   opacity: 0.78;
   transition: opacity 420ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, background 220ms ease;
 }
 .motion-slide[data-active="true"] .motion-slide-copy {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 32px);
 }
 .motion-slide:hover .motion-slide-copy,
 .motion-slide:focus-within .motion-slide-copy {
   border-color: rgba(255, 224, 161, 0.34);
-  transform: translate3d(0, -3px, 0);
+  transform: translate3d(0, -3px, 38px);
 }
 .motion-category {
   display: inline-flex;
@@ -2645,6 +2709,7 @@ h3 {
   overflow: hidden;
   background: #07131F;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 22px 48px rgba(0, 0, 0, 0.28);
+  transform: perspective(960px) rotateX(var(--media-rotate-x)) rotateY(var(--media-rotate-y)) translate3d(0, var(--media-scroll-y), 0);
 }
 .story-carousel .motion-media-link::before,
 .focused-carousel .motion-media-link::before {
@@ -2688,8 +2753,9 @@ h3 {
 }
 .story-carousel .motion-video,
 .focused-carousel .motion-video {
-  inset: -38% 0 auto;
-  height: 170%;
+  inset: -32% -2% auto;
+  width: 104%;
+  height: 164%;
 }
 .story-carousel .motion-slide-copy,
 .focused-carousel .motion-slide-copy {
@@ -2706,7 +2772,7 @@ h3 {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   opacity: 1;
-  transform: none;
+  transform: translate3d(0, 0, 18px);
 }
 .story-carousel .motion-slide-copy {
   background:
@@ -2717,7 +2783,7 @@ h3 {
 .story-carousel .motion-slide:focus-within .motion-slide-copy,
 .focused-carousel .motion-slide:hover .motion-slide-copy,
 .focused-carousel .motion-slide:focus-within .motion-slide-copy {
-  transform: translate3d(0, -2px, 0);
+  transform: translate3d(0, -2px, 24px);
 }
 .story-carousel .motion-slide h2,
 .focused-carousel .motion-slide h2 {
@@ -2825,13 +2891,17 @@ h3 {
   font-weight: 850;
 }
 @keyframes cinematic-breathe {
-  from { transform: translate3d(var(--parallax-x), var(--parallax-y), 0) scale(1.025); }
-  to { transform: translate3d(calc(var(--parallax-x) * 1.2), calc(var(--parallax-y) * 1.2), 0) scale(1.075); }
+  from { transform: translate3d(calc(var(--parallax-x) + var(--depth-x)), calc(var(--parallax-y) + var(--depth-y)), 0) scale(1.04); }
+  to { transform: translate3d(calc(var(--parallax-x) + var(--depth-x)), calc(var(--parallax-y) + var(--depth-y)), 0) scale(1.09); }
 }
 @keyframes soft-sweep {
   0%, 64% { opacity: 0; transform: translate3d(-34%, 0, 0); }
   76% { opacity: 0.58; }
   100% { opacity: 0; transform: translate3d(42%, 0, 0); }
+}
+@keyframes carousel-aurora {
+  from { transform: translate3d(-1.8%, -1.2%, 0) scale(1.03); opacity: 0.82; }
+  to { transform: translate3d(1.4%, 1.1%, 0) scale(1.04); opacity: 1; }
 }
 @keyframes carousel-progress {
   from { transform: scaleX(0); }
@@ -3867,6 +3937,7 @@ h3 {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .cursor-orb { display: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
@@ -3899,6 +3970,9 @@ function jsSource() {
 const siteNav = document.querySelector("#site-nav");
 
 if (menuToggle && siteNav) {
+  siteNav.querySelectorAll("a").forEach((link, index) => {
+    link.style.setProperty("--nav-delay", Math.min(index * 24, 160) + "ms");
+  });
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.getAttribute("data-open") === "true";
     siteNav.setAttribute("data-open", String(!isOpen));
@@ -3908,6 +3982,34 @@ if (menuToggle && siteNav) {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealItems = document.querySelectorAll("[data-reveal]");
+
+if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const cursorOrb = document.createElement("span");
+  cursorOrb.className = "cursor-orb";
+  cursorOrb.setAttribute("aria-hidden", "true");
+  document.body.append(cursorOrb);
+
+  let cursorFrame = 0;
+  let cursorX = -80;
+  let cursorY = -80;
+  const syncCursor = () => {
+    cursorFrame = 0;
+    cursorOrb.style.transform = "translate3d(" + (cursorX - 11) + "px, " + (cursorY - 11) + "px, 0)";
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    cursorOrb.classList.add("is-visible");
+    if (!cursorFrame) cursorFrame = window.requestAnimationFrame(syncCursor);
+  }, { passive: true });
+  window.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-visible", "is-active"));
+
+  document.querySelectorAll("a, button, input, select, textarea, summary, .motion-media-link, .coverage-card, .detail-card, .intent-card").forEach((target) => {
+    target.addEventListener("pointerenter", () => cursorOrb.classList.add("is-active"));
+    target.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-active"));
+  });
+}
 
 if (revealItems.length) {
   if (reducedMotion || !("IntersectionObserver" in window)) {
@@ -3958,6 +4060,49 @@ if (animatedItems.length) {
       animationObserver.observe(item);
     });
   }
+}
+
+if (!reducedMotion && "IntersectionObserver" in window) {
+  const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
+  const visibleDepthSurfaces = new Set();
+  let depthFrame = 0;
+
+  const syncDepth = () => {
+    depthFrame = 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+    visibleDepthSurfaces.forEach((surface) => {
+      const rect = surface.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / viewportHeight));
+      const scrollDepth = normalized * -18;
+      surface.style.setProperty("--scroll-depth", scrollDepth.toFixed(2) + "px");
+      surface.style.setProperty("--media-scroll-y", (scrollDepth * -0.26).toFixed(2) + "px");
+      surface.style.setProperty("--depth-y", (scrollDepth * -0.18).toFixed(2) + "px");
+      surface.style.setProperty("--media-rotate-x", (normalized * -1.35).toFixed(2) + "deg");
+    });
+  };
+
+  const requestDepthSync = () => {
+    if (!depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
+  };
+
+  const depthObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleDepthSurfaces.add(entry.target);
+      else {
+        visibleDepthSurfaces.delete(entry.target);
+        entry.target.style.setProperty("--scroll-depth", "0px");
+        entry.target.style.setProperty("--media-scroll-y", "0px");
+        entry.target.style.setProperty("--depth-y", "0px");
+        entry.target.style.setProperty("--media-rotate-x", "0deg");
+      }
+    });
+    requestDepthSync();
+  }, { rootMargin: "180px 0px", threshold: 0.01 });
+
+  depthSurfaces.forEach((surface) => depthObserver.observe(surface));
+  window.addEventListener("scroll", requestDepthSync, { passive: true });
+  window.addEventListener("resize", requestDepthSync, { passive: true });
 }
 
 document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
@@ -4219,8 +4364,14 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
         }
         if (surface.classList.contains("motion-carousel")) {
-          surface.style.setProperty("--parallax-x", ((x - 0.5) * 10).toFixed(2) + "px");
-          surface.style.setProperty("--parallax-y", ((y - 0.5) * 8).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-x", ((x - 0.5) * 16).toFixed(2) + "px");
+          surface.style.setProperty("--parallax-y", ((y - 0.5) * 12).toFixed(2) + "px");
+          surface.style.setProperty("--depth-x", ((x - 0.5) * -5).toFixed(2) + "px");
+          surface.style.setProperty("--media-rotate-y", ((x - 0.5) * 1.6).toFixed(2) + "deg");
+        }
+        if (surface.classList.contains("magnetic-button")) {
+          surface.style.setProperty("--magnet-x", ((x - 0.5) * 5).toFixed(2) + "px");
+          surface.style.setProperty("--magnet-y", ((y - 0.5) * 4).toFixed(2) + "px");
         }
       });
     });
@@ -4233,6 +4384,10 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
       surface.style.setProperty("--glare-y", "0%");
       surface.style.setProperty("--parallax-x", "0px");
       surface.style.setProperty("--parallax-y", "0px");
+      surface.style.setProperty("--depth-x", "0px");
+      surface.style.setProperty("--media-rotate-y", "0deg");
+      surface.style.setProperty("--magnet-x", "0px");
+      surface.style.setProperty("--magnet-y", "0px");
     });
   });
 }
@@ -4387,7 +4542,7 @@ function apacheHtaccess() {
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes
@@ -4605,7 +4760,7 @@ Do not replace the official franchise assets with generated images or a redesign
 
 The carousel inventory lives in \`/src/data/carouselMedia.js\`. Update that manifest first whenever replacing media, then run \`pnpm run build\` so \`scripts/validate-carousel-assets.mjs\` can catch duplicate paths, missing alt text, missing license notes, page-off-topic slides, or any static carousel slide.
 
-Service-page carousel videos now live under \`/public/media/carousel/\`. Keep them local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.
+Most carousel videos now live under \`/public/media/premium-carousel/\`; the approved family beach life clip remains under \`/public/media/carousel/life/\`. Keep carousel media local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.
 `);
 }
 

@@ -103,7 +103,7 @@ for (const viewport of viewports) {
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator("[data-insurance-carousel]")).toHaveAttribute("data-start-slide", serviceStartSlides[pageInfo.name]);
         await expect(page.locator(".motion-slide[data-active='true']")).toHaveAttribute("data-slide-id", serviceStartSlides[pageInfo.name]);
-        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/carousel\/.*\.mp4/);
+        await expect(page.locator(".motion-slide[data-active='true'] .motion-video source").first()).toHaveAttribute("src", /\/media\/(carousel|premium-carousel)\/.*\.mp4/);
         await expect(page.locator(".motion-slide[data-active='true'] .motion-poster")).toHaveAttribute("alt", /insurance|coverage|service/i);
         await expect(page.locator('img[src*="/assets/yffi3/service-"][src*="-slide"]')).toHaveCount(0);
         const focusedLayout = await page.evaluate(() => {
