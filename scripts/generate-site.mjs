@@ -1,9 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import carouselMediaModule from "../src/data/carouselMedia.js";
+import googleReviewsModule from "../src/data/googleReviews.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const { carouselMediaByPage } = carouselMediaModule;
+const { googleReviews, googleReviewSnapshot } = googleReviewsModule;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const phoneDisplay = "305-910-8850";
 const phoneHref = "tel:13059108850";
@@ -19,36 +21,6 @@ const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
 const googleReviewQrSrc = "/assets/yffi3/google-review-qr.png";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
-const googleReviewSlides = [
-  {
-    title: "Read Current Google Reviews",
-    eyebrow: "Live on Google",
-    copy: "Open the Office #3 Google review page to read the current public feedback for Your Family First Insurance Office #3.",
-    action: "Open Google Reviews",
-    icon: "star"
-  },
-  {
-    title: "Share Your Office #3 Experience",
-    eyebrow: "Scan or tap",
-    copy: "Use the QR code or button after a quote, call, office visit, or service experience to leave feedback directly on Google.",
-    action: "Leave a Google Review",
-    icon: "message"
-  },
-  {
-    title: "West Flagler Miami Office",
-    eyebrow: "Local listing",
-    copy: "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174 with English and Spanish quote help.",
-    action: "Review Office #3",
-    icon: "map"
-  },
-  {
-    title: "Transparent Review Source",
-    eyebrow: "Verified source",
-    copy: "Review content stays connected to Google so visitors can see current public feedback from the source before requesting quote help.",
-    action: "Go to Google",
-    icon: "shield"
-  }
-];
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -596,6 +568,74 @@ function iconSvg(name) {
     message: '<path d="M5 6.5A3.5 3.5 0 0 1 8.5 3h7A3.5 3.5 0 0 1 19 6.5v4A3.5 3.5 0 0 1 15.5 14H11l-4.5 4v-4.2A3.5 3.5 0 0 1 5 10.5v-4Z"/><path d="M8.5 7.5h7M8.5 10.5h4.5"/>'
   };
   return `<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${icons[name] || icons.shield}</svg>`;
+}
+
+function reviewDisplayText(review) {
+  if (review.ratingOnly) {
+    return `${review.authorName} left a ${review.rating}-star Google rating for ${businessName}.`;
+  }
+  return review.text
+    .replace(/\s+/g, " ")
+    .replace(/\(Original\).*/u, "")
+    .replace("(Translated by Google)", "")
+    .trim();
+}
+
+function reviewExcerpt(review, length = 218) {
+  const text = reviewDisplayText(review);
+  if (text.length <= length) return text;
+  const shortened = text.slice(0, length).replace(/\s+\S*$/u, "");
+  return `${shortened}...`;
+}
+
+function reviewStars(review) {
+  return `<span class="real-review-stars" role="img" aria-label="${review.rating} out of 5 Google star rating">${Array.from({ length: review.rating }, () => iconSvg("star")).join("")}</span>`;
+}
+
+function reviewCard(review, index) {
+  const isActive = index === 0;
+  const safeAuthor = escapeHtml(review.authorName);
+  const excerpt = escapeHtml(reviewExcerpt(review));
+  const fullText = review.ratingOnly ? "" : escapeHtml(review.text);
+  const responseText = review.ownerResponse?.text ? escapeHtml(review.ownerResponse.text) : "";
+  const responseTime = review.ownerResponse?.relativeTime ? escapeHtml(review.ownerResponse.relativeTime) : "";
+  return `
+    <article class="real-review-card${isActive ? " is-active" : ""}" data-review-card="${index}" aria-hidden="${isActive ? "false" : "true"}" ${isActive ? "" : "inert"}>
+      <div class="real-review-head">
+        <span class="review-avatar" aria-hidden="true">${escapeHtml(review.authorName.slice(0, 1).toUpperCase())}</span>
+        <div>
+          <p class="review-eyebrow">Google review snapshot</p>
+          <h3>${safeAuthor}</h3>
+          <p class="real-review-meta">${escapeHtml(review.relativeTime)} on Google</p>
+        </div>
+        ${reviewStars(review)}
+      </div>
+      <p class="real-review-excerpt">“${excerpt}”</p>
+      ${fullText ? `
+        <details class="review-details">
+          <summary>Read full Google review snapshot</summary>
+          <p>${fullText}</p>
+        </details>
+      ` : `<p class="review-rating-only">Rating-only Google review; no written comment was shown in the snapshot.</p>`}
+      ${responseText ? `
+        <details class="review-details office-response">
+          <summary>Office response on Google <span>${responseTime}</span></summary>
+          <p>${responseText}</p>
+        </details>
+      ` : ""}
+      <a class="review-source-link" href="${googleReviewUrl}" target="_blank" rel="noopener" tabindex="${isActive ? "0" : "-1"}">Open Google review page ${iconSvg("arrow")}</a>
+    </article>
+  `;
+}
+
+function reviewMiniCard(review, index) {
+  return `
+    <button type="button" class="real-review-mini${index === 0 ? " is-active" : ""}" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="Show Google review from ${escapeHtml(review.authorName)}">
+      <span>${reviewStars(review)}</span>
+      <strong>${escapeHtml(review.authorName)}</strong>
+      <em>${escapeHtml(reviewExcerpt(review, 94))}</em>
+    </button>
+  `;
 }
 
 function logoImg(loading = "eager") {
@@ -1203,15 +1243,21 @@ function reviewTrustSection() {
     <section class="section review-panel" id="google-reviews" data-reveal>
       <div class="review-copy">
         <p class="kicker">Google reviews for Office #3</p>
-        <h2>See Current Feedback Directly on Google</h2>
-        <p>Read or leave public feedback for ${businessName} through the live Google review path connected to the Office #3 listing.</p>
-        <p>To keep feedback current and source-connected, this section sends visitors directly to Google for public reviews and customer feedback.</p>
+        <h2>Real Google Feedback From the West Flagler Office</h2>
+        <p>This static snapshot shows ${googleReviewSnapshot.reviewCount} Google reviews visible in the signed-in ${escapeHtml(googleReviewSnapshot.sourceName)} view for the Office #3 listing as of ${escapeHtml(googleReviewSnapshot.asOf)}.</p>
+        <p>Use the QR code or button to open Google, read the current public listing, or leave feedback after a quote, call, policy question, renewal, or office visit.</p>
+        <div class="review-proof-row" aria-label="Google review snapshot details">
+          <span><strong>${googleReviewSnapshot.reviewCount}</strong> reviews in snapshot</span>
+          <span><strong>Google</strong> source linked</span>
+          <span><strong>Miami</strong> local office</span>
+        </div>
         <div class="review-actions">
           <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
           <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
         </div>
+        <p class="review-disclaimer">Customer reviews reflect individual experiences posted on Google. Coverage options, availability, pricing, eligibility, and savings vary by carrier, underwriting, location, and applicant information.</p>
       </div>
-      <div class="google-review-studio" data-google-review-carousel aria-label="Google review trust carousel">
+      <div class="google-review-studio" data-google-review-carousel aria-label="Static Google review snapshot carousel">
         <a class="review-qr-card magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener" aria-label="Scan or open the Office #3 Google review page">
           <img src="${googleReviewQrSrc}" alt="QR code linking to the Your Family First Insurance Office #3 Google review page" width="132" height="132" loading="lazy" decoding="async">
           <span>
@@ -1219,25 +1265,27 @@ function reviewTrustSection() {
             <em>Opens the live Google review page.</em>
           </span>
         </a>
-        <div class="google-review-carousel" aria-live="polite">
-          <div class="google-review-track">
-            ${googleReviewSlides.map((slide, index) => `
-              <article class="review-card${index === 0 ? " is-active" : ""}" data-review-card="${index}" style="--review-delay: ${index * 180}ms" aria-hidden="${index === 0 ? "false" : "true"}">
-                <span class="review-icon">${iconSvg(slide.icon)}</span>
-                <p class="review-eyebrow">${escapeHtml(slide.eyebrow)}</p>
-                <h3>${escapeHtml(slide.title)}</h3>
-                <p>${escapeHtml(slide.copy)}</p>
-                <a href="${googleReviewUrl}" target="_blank" rel="noopener" tabindex="${index === 0 ? "0" : "-1"}">${escapeHtml(slide.action)} ${iconSvg("arrow")}</a>
-              </article>
-            `).join("")}
+        <div class="review-source-card liquid-tilt">
+          <span class="review-icon">${iconSvg("shield")}</span>
+          <div>
+            <strong>Source-connected snapshot</strong>
+            <p>${escapeHtml(googleReviewSnapshot.listingName)} at ${escapeHtml(googleReviewSnapshot.location)}. New reviews may appear on Google after this static site snapshot.</p>
+          </div>
+        </div>
+        <div class="google-review-carousel real-review-carousel" aria-live="polite">
+          <div class="google-review-track real-review-track">
+            ${googleReviews.map((review, index) => reviewCard(review, index)).join("")}
           </div>
           <div class="review-carousel-controls" aria-label="Google review carousel controls">
-            <button type="button" data-review-prev aria-label="Previous Google review trust item">${iconSvg("arrow")}</button>
-            <div class="review-dots" role="tablist" aria-label="Google review trust items">
-              ${googleReviewSlides.map((slide, index) => `<button type="button" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="${escapeHtml(slide.title)}"></button>`).join("")}
+            <button type="button" data-review-prev aria-label="Previous Google review">${iconSvg("arrow")}</button>
+            <div class="review-dots real-review-dots" role="tablist" aria-label="Google reviews">
+              ${googleReviews.map((review, index) => `<button type="button" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="Show Google review from ${escapeHtml(review.authorName)}"></button>`).join("")}
             </div>
-            <button type="button" data-review-next aria-label="Next Google review trust item">${iconSvg("arrow")}</button>
+            <button type="button" data-review-next aria-label="Next Google review">${iconSvg("arrow")}</button>
           </div>
+        </div>
+        <div class="real-review-rail" role="tablist" aria-label="All Google review snapshot entries">
+          ${googleReviews.map((review, index) => reviewMiniCard(review, index)).join("")}
         </div>
       </div>
     </section>
@@ -2964,6 +3012,15 @@ h3 {
   0%, 100% { transform: translate3d(0, 0, 0); }
   50% { transform: translate3d(0, -5px, 0); }
 }
+@keyframes review-star-sheen {
+  0%, 42% { transform: translate3d(-120%, 0, 0); opacity: 0; }
+  55% { opacity: 0.7; }
+  72%, 100% { transform: translate3d(120%, 0, 0); opacity: 0; }
+}
+@keyframes review-card-pulse {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
+  50% { transform: translate3d(0, -3px, 0) scale(1.01); opacity: 1; }
+}
 
 .trust-strip {
   display: grid;
@@ -3368,6 +3425,32 @@ h3 {
   gap: 10px;
   margin-top: 18px;
 }
+.review-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 2px;
+}
+.review-proof-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+.review-proof-row strong {
+  color: var(--champagne);
+}
+.review-disclaimer {
+  max-width: 58ch;
+  margin: 16px 0 0;
+  color: rgba(226, 236, 245, 0.72);
+  font-size: 0.88rem;
+}
 .google-review-studio {
   display: grid;
   gap: 16px;
@@ -3414,6 +3497,50 @@ h3 {
   margin-top: 5px;
   color: var(--ink-soft);
   font-style: normal;
+}
+.review-source-card {
+  --lift: 0px;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(154, 220, 247, 0.13), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.052));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+  transform: translate3d(var(--magnet-x), var(--magnet-y), 0) translateY(var(--lift));
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+.review-source-card:hover {
+  --lift: -3px;
+  border-color: rgba(154, 220, 247, 0.34);
+}
+.review-source-card .review-icon {
+  display: inline-grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 15px;
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 224, 161, 0.96), rgba(154, 220, 247, 0.74));
+  animation: review-card-pulse 5200ms ease-in-out infinite;
+}
+.review-source-card .icon {
+  width: 20px;
+  height: 20px;
+}
+.review-source-card strong {
+  display: block;
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+.review-source-card p {
+  margin: 5px 0 0;
+  color: var(--ink-soft);
 }
 .google-review-carousel {
   position: relative;
@@ -3538,6 +3665,198 @@ h3 {
 .review-dots button[aria-selected="true"] {
   background: linear-gradient(90deg, var(--coral), var(--champagne), var(--miami-blue));
   box-shadow: 0 0 20px rgba(255, 224, 161, 0.24);
+}
+.real-review-carousel {
+  min-height: 494px;
+}
+.real-review-track {
+  min-height: 410px;
+}
+.real-review-card {
+  --review-alpha: 0;
+  --review-shift: 18px;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 410px;
+  max-height: 526px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.08) 26%, transparent 44%) -140% 0 / 220% 100% no-repeat,
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.12), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055));
+  box-shadow: 0 26px 58px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  opacity: var(--review-alpha);
+  pointer-events: none;
+  transform: translate3d(0, var(--review-shift), 0) scale(0.982);
+  transition: opacity 440ms ease, transform 440ms ease, border-color 220ms ease, background-position 720ms ease;
+  scrollbar-width: thin;
+}
+.real-review-card.is-active {
+  --review-alpha: 1;
+  --review-shift: 0;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.real-review-card.is-active:hover,
+.real-review-card.is-active:focus-within {
+  border-color: rgba(255, 224, 161, 0.40);
+  background-position: 140% 0, center, center;
+}
+.real-review-head {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 13px;
+  align-items: center;
+}
+.review-avatar {
+  display: inline-grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 16px;
+  color: #06111F;
+  font-weight: 950;
+  background: linear-gradient(135deg, var(--champagne), var(--miami-blue));
+  box-shadow: 0 0 26px rgba(255, 224, 161, 0.18);
+}
+.real-review-card h3 {
+  margin: 0;
+  font-size: clamp(1.18rem, 1.42rem, 1.62rem);
+}
+.real-review-meta,
+.review-rating-only {
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.real-review-stars {
+  position: relative;
+  display: inline-flex;
+  gap: 3px;
+  color: var(--champagne);
+  overflow: hidden;
+}
+.real-review-stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.78), transparent);
+  transform: translate3d(-120%, 0, 0);
+  animation: review-star-sheen 5200ms ease-in-out infinite;
+}
+.real-review-stars .icon {
+  width: 16px;
+  height: 16px;
+  fill: rgba(255, 224, 161, 0.20);
+}
+.real-review-excerpt {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(1.35rem, 1.78rem, 2.1rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.review-details {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 15px;
+  background: rgba(2, 13, 22, 0.34);
+}
+.review-details summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 13px;
+  color: var(--champagne);
+  font-weight: 900;
+  cursor: pointer;
+}
+.review-details summary span {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+.review-details p {
+  margin: 0;
+  padding: 0 13px 13px;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+}
+.office-response {
+  border-color: rgba(154, 220, 247, 0.18);
+}
+.review-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: auto;
+  color: var(--champagne);
+  font-weight: 900;
+  text-decoration: none;
+}
+.review-source-link .icon {
+  width: 16px;
+  height: 16px;
+}
+.real-review-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(186px, 0.42fr);
+  gap: 10px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+}
+.real-review-mini {
+  --lift: 0px;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  min-height: 132px;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 17px;
+  color: var(--ink);
+  text-align: left;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.10), transparent 28%),
+    rgba(255, 255, 255, 0.066);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  cursor: pointer;
+  scroll-snap-align: start;
+  transform: translate3d(0, var(--lift), 0);
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+.real-review-mini:hover,
+.real-review-mini:focus-visible,
+.real-review-mini.is-active {
+  --lift: -3px;
+  border-color: rgba(255, 224, 161, 0.40);
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.15), transparent 30%),
+    rgba(255, 255, 255, 0.10);
+}
+.real-review-mini strong,
+.real-review-mini em {
+  display: block;
+}
+.real-review-mini strong {
+  color: var(--ink);
+}
+.real-review-mini em {
+  color: var(--ink-soft);
+  font-style: normal;
+  font-size: 0.86rem;
+  line-height: 1.35;
 }
 
 .franchise-panel {
@@ -4150,6 +4469,56 @@ h3 {
   .review-card h3 {
     font-size: 1.2rem;
   }
+  .review-proof-row span {
+    width: 100%;
+    justify-content: center;
+  }
+  .review-source-card {
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding: 13px;
+  }
+  .review-source-card .review-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .real-review-carousel,
+  .real-review-track {
+    min-height: 506px;
+  }
+  .real-review-card {
+    min-height: 506px;
+    max-height: 560px;
+    padding: 17px;
+    border-radius: 18px;
+  }
+  .real-review-head {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+  .review-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+  .real-review-stars {
+    grid-column: 1 / -1;
+  }
+  .real-review-excerpt {
+    font-size: 1.32rem;
+  }
+  .review-details summary {
+    padding: 10px 11px;
+    font-size: 0.84rem;
+  }
+  .review-details p {
+    padding: 0 11px 11px;
+    font-size: 0.86rem;
+  }
+  .real-review-rail {
+    grid-auto-columns: minmax(210px, 78%);
+  }
+  .real-review-mini {
+    min-height: 122px;
+  }
   .review-dots button {
     width: 24px;
   }
@@ -4587,12 +4956,15 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
       const isActive = cardIndex === activeIndex;
       card.classList.toggle("is-active", isActive);
       card.setAttribute("aria-hidden", String(!isActive));
-      card.querySelectorAll("a, button").forEach((control) => {
+      card.toggleAttribute("inert", !isActive);
+      card.querySelectorAll("a, button, summary").forEach((control) => {
         control.tabIndex = isActive ? 0 : -1;
       });
     });
     dots.forEach((dot, dotIndex) => {
-      dot.setAttribute("aria-selected", String(dotIndex === activeIndex));
+      const isActiveDot = Number(dot.dataset.reviewDot || 0) === activeIndex;
+      dot.setAttribute("aria-selected", String(isActiveDot));
+      dot.classList.toggle("is-active", isActiveDot);
     });
   };
 
@@ -4650,6 +5022,9 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".language-grid article",
     ".review-signal-grid article",
     ".review-card",
+    ".real-review-card",
+    ".real-review-mini",
+    ".review-source-card",
     ".review-qr-card",
     ".notice-card",
     ".callout",

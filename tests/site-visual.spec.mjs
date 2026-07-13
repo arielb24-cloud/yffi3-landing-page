@@ -3,10 +3,12 @@ import path from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import carouselMediaModule from "../src/data/carouselMedia.js";
+import googleReviewsModule from "../src/data/googleReviews.js";
 
 const screenshotDir = path.resolve("playwright-screenshots");
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
+const { googleReviews } = googleReviewsModule;
 const pages = [
   { name: "home", path: "/" },
   { name: "quote", path: "/get-a-quote/" },
@@ -70,6 +72,9 @@ for (const viewport of viewports) {
         await expect(page.locator("#google-reviews")).toBeVisible();
         await expect(page.getByRole("link", { name: "Read or Leave a Google Review" })).toHaveAttribute("href", googleReviewUrl);
         await expect(page.locator('img[alt*="Google review page"]')).toBeVisible();
+        await expect(page.locator("#google-reviews [data-review-card]")).toHaveCount(googleReviews.length);
+        await expect(page.locator("#google-reviews")).toContainText("reviews in snapshot");
+        await expect(page.locator("#google-reviews")).toContainText("Customer reviews reflect individual experiences posted on Google");
         await expect(page.locator("#seguros-en-espanol")).toBeVisible();
         await expect(page.locator('img[alt*="Real family and office photo"]').first()).toBeVisible();
         await expect(page.locator('img[alt*="Ariel Busutil"]').first()).toBeVisible();

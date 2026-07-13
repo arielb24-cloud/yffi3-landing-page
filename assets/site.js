@@ -371,12 +371,15 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
       const isActive = cardIndex === activeIndex;
       card.classList.toggle("is-active", isActive);
       card.setAttribute("aria-hidden", String(!isActive));
-      card.querySelectorAll("a, button").forEach((control) => {
+      card.toggleAttribute("inert", !isActive);
+      card.querySelectorAll("a, button, summary").forEach((control) => {
         control.tabIndex = isActive ? 0 : -1;
       });
     });
     dots.forEach((dot, dotIndex) => {
-      dot.setAttribute("aria-selected", String(dotIndex === activeIndex));
+      const isActiveDot = Number(dot.dataset.reviewDot || 0) === activeIndex;
+      dot.setAttribute("aria-selected", String(isActiveDot));
+      dot.classList.toggle("is-active", isActiveDot);
     });
   };
 
@@ -434,6 +437,9 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".language-grid article",
     ".review-signal-grid article",
     ".review-card",
+    ".real-review-card",
+    ".real-review-mini",
+    ".review-source-card",
     ".review-qr-card",
     ".notice-card",
     ".callout",

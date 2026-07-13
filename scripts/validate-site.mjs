@@ -1,9 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import carouselMediaModule from "../src/data/carouselMedia.js";
+import googleReviewsModule from "../src/data/googleReviews.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const { carouselMediaByPage } = carouselMediaModule;
+const { googleReviews, googleReviewSnapshot } = googleReviewsModule;
 const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : root;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
@@ -132,11 +134,15 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes(googleReviewUrl)) failures.push("home Google review CTA must use the Office #3 Google review URL");
   if (slug === "" && !html.includes("/assets/yffi3/google-review-qr.png")) failures.push("home missing Google review QR asset");
   if (slug === "" && !html.includes("data-google-review-carousel")) failures.push("home missing rotating Google review carousel");
+  if (slug === "" && countMatches(html, /data-review-card="/g) !== googleReviews.length) failures.push(`home Google reviews carousel should render ${googleReviews.length} static review cards`);
+  if (slug === "" && !html.includes("reviews in snapshot")) failures.push("home missing Google reviews snapshot count");
+  if (slug === "" && !html.includes("Customer reviews reflect individual experiences posted on Google")) failures.push("home missing Google review disclaimer");
   if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing Spanish local SEO section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
   if (slug === "about-office-3" && !html.includes('id="google-reviews"')) failures.push("about page missing Google reviews trust section");
   if (slug === "about-office-3" && !html.includes(googleReviewUrl)) failures.push("about page Google review CTA must use the Office #3 Google review URL");
+  if (slug === "about-office-3" && countMatches(html, /data-review-card="/g) !== googleReviews.length) failures.push(`about page Google reviews carousel should render ${googleReviews.length} static review cards`);
   if (slug === "about-office-3" && !html.includes('id="seguros-en-espanol"')) failures.push("about page missing Spanish local SEO section");
   if (slug === "" && countMatches(html, /<details>/g) < 8) failures.push("home FAQ should include expanded customer/search-intent questions");
   if (slug === "" && !html.includes("bilingual insurance help")) failures.push("home FAQ missing bilingual service question");
