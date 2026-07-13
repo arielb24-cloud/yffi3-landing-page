@@ -16,8 +16,39 @@ const familyPhotoSrc = "/assets/yffi3/yffi3-family-office-photo.jpg";
 const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
 const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
 const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
+const googleReviewQrSrc = "/assets/yffi3/google-review-qr.png";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
-const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJD3Bodbu_2YgR8IRb5h7i-kw&source=g.page.m._&laa=merchant-review-solicitation";
+const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
+const googleReviewSlides = [
+  {
+    title: "Read Current Google Reviews",
+    eyebrow: "Live on Google",
+    copy: "Open the Office #3 Google review page to read the current public feedback for Your Family First Insurance Office #3.",
+    action: "Open Google Reviews",
+    icon: "star"
+  },
+  {
+    title: "Share Your Office #3 Experience",
+    eyebrow: "Scan or tap",
+    copy: "Use the QR code or button after a quote, call, office visit, or service experience to leave feedback directly on Google.",
+    action: "Leave a Google Review",
+    icon: "message"
+  },
+  {
+    title: "West Flagler Miami Office",
+    eyebrow: "Local listing",
+    copy: "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174 with English and Spanish quote help.",
+    action: "Review Office #3",
+    icon: "map"
+  },
+  {
+    title: "Transparent Review Source",
+    eyebrow: "Verified source",
+    copy: "Review content stays connected to Google so visitors can see current public feedback from the source before requesting quote help.",
+    action: "Go to Google",
+    icon: "shield"
+  }
+];
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -258,7 +289,7 @@ const pages = [
     slug: "",
     nav: "Home",
     title: "Your Family First Insurance Office #3 | Miami Insurance Quote Help",
-    description: "Your Family First Insurance Office #3 helps Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
+    description: "Your Family First Insurance Office #3 in West Flagler helps Miami families and businesses compare auto, homeowners, renters, life, health, general liability, and commercial insurance quote options with bilingual local guidance.",
     h1: "Florida Insurance Made Simple for Your Family",
     intro: "Local Office #3 helping Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
     kind: "home",
@@ -284,7 +315,7 @@ const pages = [
     slug: "auto-insurance",
     nav: "Auto",
     title: "Auto Insurance in Miami | Car Insurance Quote Help | Office #3",
-    description: "Miami auto insurance and car insurance quote help from Your Family First Insurance Office #3 on West Flagler. Compare options for drivers and families.",
+    description: "Compare Miami auto insurance quote options with Your Family First Insurance Office #3 on West Flagler. Local bilingual help for Florida drivers, family vehicles, financed cars, renewals, deductibles, and coverage questions.",
     h1: "Auto Insurance Quote Help in Miami",
     intro: "Get local West Flagler support for Miami auto insurance, Florida car insurance reviews, everyday drivers, family vehicles, new cars, and policy renewals.",
     kind: "service",
@@ -321,7 +352,7 @@ const pages = [
     slug: "home-insurance",
     nav: "Homeowners",
     title: "Homeowners Insurance in Miami | Florida Home Quote Help | Office #3",
-    description: "Homeowners insurance quote help for Miami-Dade property owners. Compare Florida home, wind, lender, flood, and property coverage questions with Office #3.",
+    description: "Get Miami homeowners insurance quote help from Office #3 for Florida property coverage, roof details, wind or hurricane deductibles, lender deadlines, flood questions, renewals, and bilingual local guidance.",
     h1: "Homeowners Insurance Quote Help for Miami-Dade",
     intro: "Compare homeowners insurance conversations for your house, belongings, liability needs, lender requirements, wind questions, and Florida property risks.",
     kind: "service",
@@ -358,7 +389,7 @@ const pages = [
     slug: "commercial-insurance",
     nav: "Commercial",
     title: "Commercial Insurance in Miami | Business, GL, Workers Comp Help",
-    description: "Commercial insurance and business insurance quote help in Miami. Discuss general liability, commercial auto, workers compensation, certificates, and property coverage.",
+    description: "Miami commercial insurance quote help for small businesses, contractors, offices, work vehicles, general liability, certificates of insurance, workers compensation questions, and business property conversations.",
     h1: "Commercial Insurance Help for Miami Businesses",
     intro: "Office #3 helps Miami business owners compare commercial insurance options for operations, contracts, vehicles, property, liability, certificates, and teams.",
     kind: "service",
@@ -395,7 +426,7 @@ const pages = [
     slug: "life-insurance",
     nav: "Life",
     title: "Life Insurance in Miami | Family Protection Quote Help | Office #3",
-    description: "Life insurance quote help for Miami families. Discuss term life, final expense, income replacement, mortgage protection, and family planning with Office #3.",
+    description: "Life insurance quote help in Miami for families reviewing term life, final expense, income replacement, mortgage protection, beneficiary planning, business continuity, and bilingual guidance from Office #3.",
     h1: "Life Insurance Quote Help for Miami Families",
     intro: "Compare life insurance options for family protection, income replacement, mortgage planning, final expenses, and long-term needs.",
     kind: "service",
@@ -432,7 +463,7 @@ const pages = [
     slug: "renters-insurance",
     nav: "Renters",
     title: "Renters Insurance in Miami | Apartment Quote Help | Office #3",
-    description: "Renters insurance quote help in Miami. Discuss apartments, belongings, liability questions, lease requirements, move-in timing, and proof of coverage.",
+    description: "Miami renters insurance quote help for apartments, personal belongings, liability questions, lease requirements, move-in timing, landlord proof requests, and bilingual support from Your Family First Insurance Office #3.",
     h1: "Renters Insurance Quote Help in Miami",
     intro: "Get local quote help for apartments, belongings, liability questions, lease requirements, move-in timing, and proof of coverage requests.",
     kind: "service",
@@ -470,7 +501,7 @@ const pages = [
     slug: "about-office-3",
     nav: "About",
     title: "About Office #3 | Your Family First Insurance Miami",
-    description: "Learn about Your Family First Insurance Office #3, a local West Flagler Miami insurance office helping families and businesses compare coverage options.",
+    description: "Meet Your Family First Insurance Office #3, a local West Flagler Miami insurance office offering bilingual quote help for families, drivers, homeowners, renters, life insurance shoppers, and businesses.",
     h1: "About Your Family First Insurance Office #3",
     intro: "A local West Flagler Miami office focused on clear, family-first quote help for drivers, homeowners, renters, families, health coverage shoppers, contractors, and businesses.",
     kind: "about",
@@ -490,7 +521,7 @@ const pages = [
     slug: "get-a-quote",
     nav: "Get Quote",
     title: "Get My Free Quote | Your Family First Insurance Office #3",
-    description: "Request personalized quote help from Your Family First Insurance Office #3 for auto, homeowners, renters, life, health, general liability, business, or commercial insurance.",
+    description: "Request free quote help from Your Family First Insurance Office #3 in Miami for auto, homeowners, renters, life, health, business, commercial, or general liability insurance through the secure Office #3 intake path.",
     h1: "Get My Free Quote",
     intro: "Tell Office #3 what type of insurance you want to compare and when it is best to call. Do not send sensitive personal documents through this form.",
     kind: "quote",
@@ -509,7 +540,7 @@ const pages = [
     slug: "privacy-policy",
     nav: "Privacy",
     title: "Privacy Policy | Your Family First Insurance Office #3",
-    description: "Privacy policy for Your Family First Insurance Office #3 website visitors and quote inquiries.",
+    description: "Privacy policy for Your Family First Insurance Office #3 website visitors, quote inquiries, basic contact information, secure quote routing, and data safety expectations.",
     h1: "Privacy Policy",
     intro: "This page explains the basic contact data used by the Office #3 website and what not to send through regular forms.",
     kind: "privacy"
@@ -518,7 +549,7 @@ const pages = [
     slug: "terms",
     nav: "Terms",
     title: "Terms and Insurance Disclaimer | Your Family First Insurance Office #3",
-    description: "Website terms, quote limitations, and insurance disclaimer for Your Family First Insurance Office #3.",
+    description: "Website terms and insurance disclaimer for Your Family First Insurance Office #3, including quote limitations, coverage boundaries, pricing disclaimers, and secure communication expectations.",
     h1: "Website Terms and Insurance Disclaimer",
     intro: "These terms explain website use, quote limitations, privacy-safe contact expectations, and insurance coverage boundaries.",
     kind: "terms"
@@ -561,7 +592,8 @@ function iconSvg(name) {
     clock: '<path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="8"/>',
     lock: '<rect x="6" y="10" width="12" height="9" rx="2"/><path d="M9 10V8a3 3 0 0 1 6 0v2"/>',
     map: '<path d="M9 18 4 20V6l5-2 6 2 5-2v14l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/>',
-    star: '<path d="m12 4 2.2 4.7 5.1.6-3.8 3.5 1 5-4.5-2.6-4.5 2.6 1-5-3.8-3.5 5.1-.6L12 4Z"/>'
+    star: '<path d="m12 4 2.2 4.7 5.1.6-3.8 3.5 1 5-4.5-2.6-4.5 2.6 1-5-3.8-3.5 5.1-.6L12 4Z"/>',
+    message: '<path d="M5 6.5A3.5 3.5 0 0 1 8.5 3h7A3.5 3.5 0 0 1 19 6.5v4A3.5 3.5 0 0 1 15.5 14H11l-4.5 4v-4.2A3.5 3.5 0 0 1 5 10.5v-4Z"/><path d="M8.5 7.5h7M8.5 10.5h4.5"/>'
   };
   return `<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${icons[name] || icons.shield}</svg>`;
 }
@@ -1009,7 +1041,7 @@ function insuranceMotionCarousel(page) {
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
         <div class="carousel-progress" aria-hidden="true"><span></span></div>
       </div>
-      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "50+ carriers • Local Miami Office • Bilingual quote help • No guaranteed pricing claims"}</p>
+      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "50+ carriers • Local Miami Office • Bilingual quote help • No price promises"}</p>
     </div>
   `;
 }
@@ -1167,25 +1199,46 @@ function spanishTrustSection() {
 }
 
 function reviewTrustSection() {
-  const signals = [
-    ["Official Office #3 Listing", "Your Family First Insurance Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174."],
-    ["Leave a Google Review", "Open the Office #3 Google review page after your quote, call, visit, or service experience."],
-    ["Local Bilingual Support", "English and Spanish quote help for Miami drivers, homeowners, renters, families, and business owners."]
-  ];
   return `
     <section class="section review-panel" id="google-reviews" data-reveal>
       <div class="review-copy">
         <p class="kicker">Google reviews for Office #3</p>
-        <h2>Review Your Family First Insurance Office #3 on Google</h2>
-        <p>Customers can use the official Google review path for ${businessName} at 11200 W Flagler St, Ste 108, Miami, FL 33174.</p>
-        <p>The link opens Google directly, so visitors can leave feedback from the current Office #3 listing and Google can keep the review experience current.</p>
+        <h2>See Current Feedback Directly on Google</h2>
+        <p>Read or leave public feedback for ${businessName} through the live Google review path connected to the Office #3 listing.</p>
+        <p>To keep feedback current and source-connected, this section sends visitors directly to Google for public reviews and customer feedback.</p>
         <div class="review-actions">
-          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Open Office #3 Google Review ${iconSvg("arrow")}</a>
+          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
           <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
         </div>
       </div>
-      <div class="review-signal-grid" aria-label="Office #3 review trust signals">
-        ${signals.map(([title, copy], index) => `<article style="--review-delay: ${index * 220}ms"><span>${iconSvg(index === 1 ? "star" : "shield")}</span><h3>${title}</h3><p>${copy}</p></article>`).join("")}
+      <div class="google-review-studio" data-google-review-carousel aria-label="Google review trust carousel">
+        <a class="review-qr-card magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener" aria-label="Scan or open the Office #3 Google review page">
+          <img src="${googleReviewQrSrc}" alt="QR code linking to the Your Family First Insurance Office #3 Google review page" width="132" height="132" loading="lazy" decoding="async">
+          <span>
+            <strong>Scan to review Office #3</strong>
+            <em>Opens the live Google review page.</em>
+          </span>
+        </a>
+        <div class="google-review-carousel" aria-live="polite">
+          <div class="google-review-track">
+            ${googleReviewSlides.map((slide, index) => `
+              <article class="review-card${index === 0 ? " is-active" : ""}" data-review-card="${index}" style="--review-delay: ${index * 180}ms" aria-hidden="${index === 0 ? "false" : "true"}">
+                <span class="review-icon">${iconSvg(slide.icon)}</span>
+                <p class="review-eyebrow">${escapeHtml(slide.eyebrow)}</p>
+                <h3>${escapeHtml(slide.title)}</h3>
+                <p>${escapeHtml(slide.copy)}</p>
+                <a href="${googleReviewUrl}" target="_blank" rel="noopener" tabindex="${index === 0 ? "0" : "-1"}">${escapeHtml(slide.action)} ${iconSvg("arrow")}</a>
+              </article>
+            `).join("")}
+          </div>
+          <div class="review-carousel-controls" aria-label="Google review carousel controls">
+            <button type="button" data-review-prev aria-label="Previous Google review trust item">${iconSvg("arrow")}</button>
+            <div class="review-dots" role="tablist" aria-label="Google review trust items">
+              ${googleReviewSlides.map((slide, index) => `<button type="button" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="${escapeHtml(slide.title)}"></button>`).join("")}
+            </div>
+            <button type="button" data-review-next aria-label="Next Google review trust item">${iconSvg("arrow")}</button>
+          </div>
+        </div>
       </div>
     </section>
   `;
@@ -3315,6 +3368,177 @@ h3 {
   gap: 10px;
   margin-top: 18px;
 }
+.google-review-studio {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.review-qr-card {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 224, 161, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.06));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  transform: translate3d(var(--magnet-x), var(--magnet-y), 0);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+.review-qr-card:hover {
+  border-color: rgba(255, 224, 161, 0.42);
+}
+.review-qr-card img {
+  width: 118px;
+  height: 118px;
+  border-radius: 14px;
+  padding: 8px;
+  background: #FFFFFF;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+.review-qr-card strong,
+.review-qr-card em {
+  display: block;
+}
+.review-qr-card strong {
+  font-size: 1.04rem;
+  color: var(--ink);
+}
+.review-qr-card em {
+  margin-top: 5px;
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.google-review-carousel {
+  position: relative;
+  min-height: 304px;
+}
+.google-review-track {
+  position: relative;
+  min-height: 238px;
+}
+.review-card {
+  --review-alpha: 0;
+  --review-shift: 18px;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-height: 238px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(154, 220, 247, 0.12), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055));
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  opacity: var(--review-alpha);
+  pointer-events: none;
+  transform: translate3d(0, var(--review-shift), 0) scale(0.98);
+  transition: opacity 420ms ease, transform 420ms ease, border-color 220ms ease;
+}
+.review-card.is-active {
+  --review-alpha: 1;
+  --review-shift: 0;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.review-card:hover {
+  border-color: rgba(255, 224, 161, 0.38);
+}
+.review-card .review-icon {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 15px;
+  color: #06111F;
+  background: linear-gradient(135deg, rgba(255, 224, 161, 0.96), rgba(154, 220, 247, 0.74));
+}
+.review-card .review-icon .icon { width: 19px; height: 19px; }
+.review-eyebrow {
+  margin: 4px 0 0;
+  color: var(--champagne);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.review-card h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.55rem, 1.78rem);
+}
+.review-card p:not(.review-eyebrow) {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.review-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin-top: auto;
+  color: var(--champagne);
+  font-weight: 900;
+  text-decoration: none;
+}
+.review-card a .icon {
+  width: 16px;
+  height: 16px;
+}
+.review-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+.review-carousel-controls > button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.review-carousel-controls > button:first-child .icon {
+  transform: rotate(180deg);
+}
+.review-carousel-controls > button:hover,
+.review-carousel-controls > button:focus-visible {
+  border-color: rgba(255, 224, 161, 0.42);
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+.review-dots {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 8px;
+}
+.review-dots button {
+  width: 34px;
+  height: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.20);
+  cursor: pointer;
+}
+.review-dots button[aria-selected="true"] {
+  background: linear-gradient(90deg, var(--coral), var(--champagne), var(--miami-blue));
+  box-shadow: 0 0 20px rgba(255, 224, 161, 0.24);
+}
 
 .franchise-panel {
   display: grid;
@@ -3905,6 +4129,30 @@ h3 {
   .spanish-panel, .review-panel { padding: 22px; }
   .review-actions { display: grid; }
   .review-actions .button { width: 100%; justify-content: center; }
+  .review-qr-card {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  .review-qr-card img {
+    width: 88px;
+    height: 88px;
+    border-radius: 12px;
+  }
+  .google-review-carousel,
+  .google-review-track {
+    min-height: 318px;
+  }
+  .review-card {
+    min-height: 292px;
+    padding: 18px;
+  }
+  .review-card h3 {
+    font-size: 1.2rem;
+  }
+  .review-dots button {
+    width: 24px;
+  }
   .trust-ticker {
     margin-top: 2px;
     mask-image: linear-gradient(90deg, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
@@ -4322,6 +4570,71 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   setPaused(reducedMotion);
 });
 
+document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) => {
+  const cards = Array.from(carousel.querySelectorAll("[data-review-card]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-review-dot]"));
+  const prev = carousel.querySelector("[data-review-prev]");
+  const next = carousel.querySelector("[data-review-next]");
+  if (!cards.length) return;
+  let activeIndex = 0;
+  let paused = reducedMotion;
+  let inView = true;
+  const delay = 5400;
+
+  const setActive = (index) => {
+    activeIndex = (index + cards.length) % cards.length;
+    cards.forEach((card, cardIndex) => {
+      const isActive = cardIndex === activeIndex;
+      card.classList.toggle("is-active", isActive);
+      card.setAttribute("aria-hidden", String(!isActive));
+      card.querySelectorAll("a, button").forEach((control) => {
+        control.tabIndex = isActive ? 0 : -1;
+      });
+    });
+    dots.forEach((dot, dotIndex) => {
+      dot.setAttribute("aria-selected", String(dotIndex === activeIndex));
+    });
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      paused = true;
+      setActive(Number(dot.dataset.reviewDot || 0));
+      window.setTimeout(() => { paused = reducedMotion; }, 8000);
+    });
+  });
+  prev?.addEventListener("click", () => {
+    paused = true;
+    setActive(activeIndex - 1);
+    window.setTimeout(() => { paused = reducedMotion; }, 8000);
+  });
+  next?.addEventListener("click", () => {
+    paused = true;
+    setActive(activeIndex + 1);
+    window.setTimeout(() => { paused = reducedMotion; }, 8000);
+  });
+  carousel.addEventListener("mouseenter", () => { paused = true; });
+  carousel.addEventListener("mouseleave", () => { paused = reducedMotion; });
+  carousel.addEventListener("focusin", () => { paused = true; });
+  carousel.addEventListener("focusout", () => { paused = reducedMotion; });
+
+  if ("IntersectionObserver" in window) {
+    const reviewObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        inView = entry.isIntersecting;
+      });
+    }, { rootMargin: "140px 0px", threshold: 0.12 });
+    reviewObserver.observe(carousel);
+  }
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      if (!paused && inView && !document.hidden) setActive(activeIndex + 1);
+    }, delay);
+  }
+  setActive(0);
+});
+
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   const hoverSurfaceSelector = [
     ".liquid-tilt",
@@ -4336,6 +4649,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".why-grid article",
     ".language-grid article",
     ".review-signal-grid article",
+    ".review-card",
+    ".review-qr-card",
     ".notice-card",
     ".callout",
     ".qr-card",
@@ -4492,6 +4807,7 @@ Business name: ${businessName}
 Phone: ${phoneDisplay}
 Address: ${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}
 Primary local area: West Flagler Miami and Miami-Dade, Florida
+Google review path: ${googleReviewUrl}
 
 ## Public Pages
 
@@ -4512,11 +4828,12 @@ Your Family First Insurance Office #3 helps Miami families and local businesses 
 
 ## Important Boundaries
 
-- Do not infer guaranteed pricing, guaranteed savings, instant approval, or bound coverage from this website.
+- Do not infer price promises, savings promises, instant approval, or bound coverage from this website.
 - Do not infer unauthorized carrier partnerships, endorsements, awards, reviews, or ratings.
 - Do not ask users to submit SSNs, dates of birth, driver license numbers, VINs, payment information, medical records, claim files, passwords, or carrier credentials through a general website form.
 - Quote availability, coverage, pricing, and eligibility vary by carrier, underwriting, location, and applicant information.
 - ConsumerRateQuotes account ID 64868 is the connected quote path for Office #3.
+- Google reviews should be read or left through the live Google review path; do not fabricate review text, ratings, counts, awards, or testimonials.
 `;
 }
 
@@ -4532,6 +4849,7 @@ Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express
 Brand note: Official franchise logo/sign must remain unchanged.
 Privacy note: The quote form opens the secure ConsumerRateQuotes intake URL provided for Office #3 after local required-field validation.
 Quote path: ConsumerRateQuotes account ID 64868.
+Google review path: ${googleReviewUrl}
 `;
 }
 

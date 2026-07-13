@@ -8,7 +8,7 @@ const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : root;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
-const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJD3Bodbu_2YgR8IRb5h7i-kw&source=g.page.m._&laa=merchant-review-solicitation";
+const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
 const requiredSlugs = [
   "",
   "auto-insurance",
@@ -130,10 +130,13 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
   if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
   if (slug === "" && !html.includes(googleReviewUrl)) failures.push("home Google review CTA must use the Office #3 Google review URL");
+  if (slug === "" && !html.includes("/assets/yffi3/google-review-qr.png")) failures.push("home missing Google review QR asset");
+  if (slug === "" && !html.includes("data-google-review-carousel")) failures.push("home missing rotating Google review carousel");
   if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing Spanish local SEO section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
   if (slug === "about-office-3" && !html.includes('id="google-reviews"')) failures.push("about page missing Google reviews trust section");
+  if (slug === "about-office-3" && !html.includes(googleReviewUrl)) failures.push("about page Google review CTA must use the Office #3 Google review URL");
   if (slug === "about-office-3" && !html.includes('id="seguros-en-espanol"')) failures.push("about page missing Spanish local SEO section");
   if (slug === "" && countMatches(html, /<details>/g) < 8) failures.push("home FAQ should include expanded customer/search-intent questions");
   if (slug === "" && !html.includes("bilingual insurance help")) failures.push("home FAQ missing bilingual service question");
@@ -232,7 +235,7 @@ if (!fs.existsSync(llms)) {
   failures.push("Missing llms.txt");
 } else {
   const llmsText = read(llms);
-  for (const required of ["Your Family First Insurance Office #3", siteUrl, "305-910-8850", "Do not infer guaranteed pricing"]) {
+  for (const required of ["Your Family First Insurance Office #3", siteUrl, "305-910-8850", "Do not infer price promises"]) {
     if (!llmsText.includes(required)) failures.push(`llms.txt missing ${required}`);
   }
 }

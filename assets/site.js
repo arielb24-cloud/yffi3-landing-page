@@ -354,6 +354,71 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   setPaused(reducedMotion);
 });
 
+document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) => {
+  const cards = Array.from(carousel.querySelectorAll("[data-review-card]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-review-dot]"));
+  const prev = carousel.querySelector("[data-review-prev]");
+  const next = carousel.querySelector("[data-review-next]");
+  if (!cards.length) return;
+  let activeIndex = 0;
+  let paused = reducedMotion;
+  let inView = true;
+  const delay = 5400;
+
+  const setActive = (index) => {
+    activeIndex = (index + cards.length) % cards.length;
+    cards.forEach((card, cardIndex) => {
+      const isActive = cardIndex === activeIndex;
+      card.classList.toggle("is-active", isActive);
+      card.setAttribute("aria-hidden", String(!isActive));
+      card.querySelectorAll("a, button").forEach((control) => {
+        control.tabIndex = isActive ? 0 : -1;
+      });
+    });
+    dots.forEach((dot, dotIndex) => {
+      dot.setAttribute("aria-selected", String(dotIndex === activeIndex));
+    });
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      paused = true;
+      setActive(Number(dot.dataset.reviewDot || 0));
+      window.setTimeout(() => { paused = reducedMotion; }, 8000);
+    });
+  });
+  prev?.addEventListener("click", () => {
+    paused = true;
+    setActive(activeIndex - 1);
+    window.setTimeout(() => { paused = reducedMotion; }, 8000);
+  });
+  next?.addEventListener("click", () => {
+    paused = true;
+    setActive(activeIndex + 1);
+    window.setTimeout(() => { paused = reducedMotion; }, 8000);
+  });
+  carousel.addEventListener("mouseenter", () => { paused = true; });
+  carousel.addEventListener("mouseleave", () => { paused = reducedMotion; });
+  carousel.addEventListener("focusin", () => { paused = true; });
+  carousel.addEventListener("focusout", () => { paused = reducedMotion; });
+
+  if ("IntersectionObserver" in window) {
+    const reviewObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        inView = entry.isIntersecting;
+      });
+    }, { rootMargin: "140px 0px", threshold: 0.12 });
+    reviewObserver.observe(carousel);
+  }
+
+  if (!reducedMotion) {
+    window.setInterval(() => {
+      if (!paused && inView && !document.hidden) setActive(activeIndex + 1);
+    }, delay);
+  }
+  setActive(0);
+});
+
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   const hoverSurfaceSelector = [
     ".liquid-tilt",
@@ -368,6 +433,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     ".why-grid article",
     ".language-grid article",
     ".review-signal-grid article",
+    ".review-card",
+    ".review-qr-card",
     ".notice-card",
     ".callout",
     ".qr-card",
