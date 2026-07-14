@@ -6,7 +6,7 @@ This website builds static HTML, CSS, and JavaScript into `dist/`, then serves i
 
 ## Quote Form
 
-The quote form is a privacy-safe first-step UI. It validates required basic contact fields, then opens the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
+The quote form is a privacy-safe first-step UI. It validates and normalizes required basic contact fields, rejects obvious sensitive-data keywords in the notes field, verifies the approved ConsumerRateQuotes destination, then opens the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
 
 Do not collect or request:
 
@@ -26,7 +26,7 @@ Deploy through GoDaddy Beta Apps from GitHub. Do not commit or upload `.env`, `n
 
 ## Headers
 
-The Node production server sets baseline browser security headers before serving `dist/`. The generated `.htaccess` remains only as a fallback artifact for Apache-style static hosting.
+The Node production server sets baseline browser security headers before serving `dist/`, including CSP, HSTS, frame protection, referrer policy, permissions policy, cross-origin isolation guardrails, and blocked public access to backend-looking source paths. The generated `.htaccess` remains only as a fallback artifact for Apache-style static hosting.
 
 ## Reporting Issues
 

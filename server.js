@@ -23,9 +23,14 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "SAMEORIGIN");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
+  res.setHeader("Origin-Agent-Cluster", "?1");
+  res.setHeader("X-Permitted-Cross-Domain-Policies", "none");
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
   );
   next();
 });
@@ -40,7 +45,14 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  const requestPath = decodeURIComponent(req.path || "/");
+  let requestPath = "/";
+  try {
+    requestPath = decodeURIComponent(req.path || "/");
+  } catch {
+    res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+    res.status(404).type("text/plain").send("Not found");
+    return;
+  }
   if (blockedPublicPaths.some((pattern) => pattern.test(requestPath))) {
     res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
     res.status(404).type("text/plain").send("Not found");
@@ -50,6 +62,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static(distDir, {
+  dotfiles: "ignore",
   extensions: ["html"],
   index: "index.html",
   redirect: true

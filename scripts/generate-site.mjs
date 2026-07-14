@@ -1488,6 +1488,7 @@ function quoteBody() {
     <section class="section privacy-safe" data-reveal>
       <div class="notice-card">
         <h2>Privacy-Safe First Step</h2>
+        <p>Use this first website form only for basic contact details. The form normalizes simple text fields and blocks obvious sensitive-data keywords in notes before opening the secure ConsumerRateQuotes intake path.</p>
         <p>Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier login credentials through this first website form.</p>
       </div>
     </section>
@@ -1500,7 +1501,7 @@ function privacyBody() {
     <section class="section legal-copy" data-reveal>
       <h2>Privacy Summary</h2>
       <p>This website provides business information, service pages, and quote contact options for ${businessName}.</p>
-      <p>The static pages do not store form submissions by themselves. The quote request path opens the secure ConsumerRateQuotes intake URL provided for Office #3, and that service may process submitted information under its own privacy terms.</p>
+      <p>The static pages do not store form submissions by themselves. The quote request path validates basic contact fields, normalizes simple text input, blocks obvious sensitive-data keywords in the notes field, then opens the secure ConsumerRateQuotes intake URL provided for Office #3. ConsumerRateQuotes may process submitted information under its own privacy terms.</p>
       <p>This policy is written to align with the privacy and security posture used by the original Your Family First Insurance office, while keeping this Office #3 static website accurate to its current setup.</p>
       <h2>Information You May Choose to Provide</h2>
       <p>Name, phone number, email address, ZIP code, requested insurance type, best time to call, and general notes.</p>
@@ -1648,6 +1649,8 @@ function cssSource() {
   --glass-line: rgba(255, 255, 255, 0.24);
   --glass-blur: 10px;
   --glass-blur-soft: 7px;
+  --glass-rim: rgba(154, 220, 247, 0.42);
+  --liquid-glow: rgba(119, 231, 220, 0.22);
   --shadow: 0 22px 64px rgba(0, 0, 0, 0.46);
   --shadow-soft: 0 14px 42px rgba(0, 0, 0, 0.30);
   --glow-coral: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 14px 38px rgba(255, 125, 101, 0.20), 0 0 30px rgba(119, 231, 220, 0.11);
@@ -1731,6 +1734,26 @@ body::after {
   height: 44px;
   border-color: rgba(255, 224, 161, 0.58);
   opacity: 0.68;
+}
+.liquid-particle {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: var(--particle-size, 5px);
+  height: var(--particle-size, 5px);
+  pointer-events: none;
+  border-radius: 999px;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 35% 32%, rgba(255, 255, 255, 0.95), transparent 24%),
+    radial-gradient(circle, var(--particle-color, rgba(154, 220, 247, 0.88)), transparent 72%);
+  box-shadow:
+    0 0 14px var(--particle-color, rgba(154, 220, 247, 0.58)),
+    0 0 28px rgba(255, 224, 161, 0.12);
+  transform: translate3d(var(--particle-x), var(--particle-y), 0) scale(0.6);
+  animation: liquid-particle-pop 780ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  contain: layout style paint;
 }
 ::selection {
   color: #050B12;
@@ -1990,6 +2013,21 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   from { opacity: 0; transform: translate3d(0, 8px, 0); }
   to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
+@keyframes liquid-particle-pop {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--particle-x), var(--particle-y), 0) scale(0.48);
+  }
+  16% { opacity: 0.92; }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(var(--particle-x) + var(--particle-dx)), calc(var(--particle-y) + var(--particle-dy)), 0) scale(1.04);
+  }
+}
+@keyframes liquid-rim-flow {
+  0%, 100% { opacity: 0.42; transform: translate3d(-16%, 0, 0) scaleX(0.74); }
+  50% { opacity: 0.86; transform: translate3d(16%, 0, 0) scaleX(1); }
+}
 
 .button {
   --shine-x: -46%;
@@ -2023,14 +2061,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .button::before {
   content: "";
   position: absolute;
-  inset: 1px 1px auto;
-  height: 45%;
+  inset: 1px;
+  height: auto;
   border-radius: inherit;
   background:
-    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.34), transparent 18%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+    radial-gradient(circle at var(--glare-x) var(--glare-y), rgba(255, 255, 255, 0.36), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 46%),
+    linear-gradient(135deg, rgba(154, 220, 247, 0.08), rgba(255, 224, 161, 0.05));
+  opacity: 0.72;
   pointer-events: none;
   z-index: -1;
+  transition: opacity 200ms ease, transform 260ms ease;
 }
 .button::after {
   content: "";
@@ -2043,6 +2084,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   opacity: 0;
   transition: opacity 180ms ease, transform 520ms ease;
   z-index: -1;
+}
+.button > span {
+  position: relative;
+  z-index: 1;
 }
 .button .icon {
   width: 17px;
@@ -2092,11 +2137,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .button:hover {
   transform: translate3d(var(--magnet-x), calc(var(--magnet-y) - 2px), 0) scale(1.012);
-  border-color: rgba(255, 255, 255, 0.34);
+  border-color: rgba(255, 224, 161, 0.54);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -18px 42px rgba(154, 220, 247, 0.07),
     0 24px 60px rgba(0, 0, 0, 0.42),
-    0 0 34px rgba(154, 220, 247, 0.15);
+    0 0 34px rgba(154, 220, 247, 0.18),
+    0 0 64px rgba(255, 224, 161, 0.10);
+}
+.button:hover::before {
+  opacity: 0.96;
+  transform: translate3d(0, -1px, 0) scale(1.012);
 }
 .button:hover::after {
   opacity: 1;
@@ -2204,6 +2255,45 @@ h3 {
   transition: opacity 240ms ease, transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
 }
+.coverage-card::after, .detail-card::after, .intent-card::after, .quote-form::after, .service-cta::after {
+  mix-blend-mode: screen;
+}
+.photo-showcase::after, .service-showcase::after,
+.coverage-card .card-top::after,
+.why-grid article::after,
+.process-grid article::after,
+.review-source-card::after,
+.review-qr-card::after,
+.real-review-mini::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, transparent, rgba(154, 220, 247, 0.28), rgba(255, 224, 161, 0.18), transparent);
+  transform-origin: center;
+  transition: opacity 220ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.photo-showcase::after, .service-showcase::after,
+.why-grid article::after,
+.process-grid article::after,
+.review-source-card::after,
+.review-qr-card::after,
+.real-review-mini::after {
+  inset: auto 12% 0;
+  height: 1px;
+  transform: translate3d(-10%, 0, 0) scaleX(0.62);
+  box-shadow: 0 0 26px rgba(154, 220, 247, 0.30);
+}
+.coverage-card .card-top::after {
+  inset: -14px auto auto -14px;
+  width: 52px;
+  height: 52px;
+  background:
+    radial-gradient(circle, rgba(154, 220, 247, 0.22), transparent 66%);
+  transform: scale(0.76);
+}
 .photo-showcase:hover, .service-showcase:hover,
 .coverage-card:hover, .detail-card:hover, .process-grid article:hover,
 .why-grid article:hover, .quote-form:hover, .notice-card:hover,
@@ -2216,6 +2306,22 @@ h3 {
 .coverage-card:hover::after, .detail-card:hover::after, .intent-card:hover::after, .quote-form:hover::after, .service-cta:hover::after {
   opacity: 0.96;
   transform: translate3d(0, 0, 0) scale(1);
+}
+.photo-showcase:hover::after, .service-showcase:hover::after,
+.why-grid article:hover::after,
+.process-grid article:hover::after,
+.review-source-card:hover::after,
+.review-qr-card:hover::after,
+.real-review-mini:hover::after,
+.real-review-mini:focus-visible::after,
+.real-review-mini.is-active::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scaleX(1);
+  animation: liquid-rim-flow 2400ms ease-in-out infinite;
+}
+.coverage-card:hover .card-top::after {
+  opacity: 1;
+  transform: scale(1);
 }
 .photo-showcase { padding: 10px; }
 .hero-photo, .about-photo {
@@ -3063,6 +3169,8 @@ h3 {
   width: min(1180px, calc(100% - 36px));
   margin: 0 auto;
   padding: 60px 0;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
 }
 .section-heading {
   max-width: 760px;
@@ -3195,6 +3303,23 @@ h3 {
   background:
     radial-gradient(circle at var(--glare-x) var(--glare-y), var(--card-accent, rgba(154, 220, 247, 0.28)), transparent 32%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.145), rgba(255, 255, 255, 0.065));
+  box-shadow:
+    0 20px 46px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(154, 220, 247, 0.08),
+    0 0 38px rgba(154, 220, 247, 0.14);
+}
+.detail-card:hover,
+.intent-card:hover,
+.why-grid article:hover,
+.process-grid article:hover,
+.review-source-card:hover,
+.review-qr-card:hover,
+.real-review-mini:hover,
+.real-review-mini:focus-visible {
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(154, 220, 247, 0.08),
+    0 0 36px rgba(154, 220, 247, 0.14);
 }
 .coverage-card h3, .detail-card h3, .intent-card h3, .faq summary, .link-pills a, .coverage-link-rail a {
   transition: color 180ms ease, transform 180ms ease;
@@ -3203,6 +3328,7 @@ h3 {
   color: var(--champagne);
 }
 .card-top {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4148,11 +4274,11 @@ h3 {
   transition:
     opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 820ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
 }
 .motion-ready [data-reveal] {
   opacity: 0.82;
   transform: translate3d(0, 28px, 0) scale(0.982);
+  will-change: transform, opacity;
 }
 .motion-ready [data-reveal="card"] {
   opacity: 0.86;
@@ -4169,6 +4295,7 @@ h3 {
 .motion-ready [data-reveal].is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
 }
 
 @media (min-width: 640px) {
@@ -5008,6 +5135,44 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
 });
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const particleColors = [
+    "rgba(154, 220, 247, 0.88)",
+    "rgba(255, 224, 161, 0.82)",
+    "rgba(255, 125, 101, 0.76)",
+    "rgba(119, 231, 220, 0.78)"
+  ];
+  let liveParticles = 0;
+  const spawnLiquidParticles = (event, count = 5) => {
+    if (!event?.currentTarget || document.hidden || liveParticles > 46) return;
+    const surface = event.currentTarget;
+    const now = Date.now();
+    const last = Number(surface.dataset.particleAt || 0);
+    if (now - last < 190) return;
+    surface.dataset.particleAt = String(now);
+    const rect = surface.getBoundingClientRect();
+    const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
+    const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
+    for (let index = 0; index < count; index += 1) {
+      const particle = document.createElement("span");
+      const angle = (Math.PI * 2 * index) / count + Math.random() * 0.58;
+      const distance = 16 + Math.random() * 34;
+      const size = 3 + Math.random() * 5;
+      particle.className = "liquid-particle";
+      particle.style.setProperty("--particle-x", (baseX + (Math.random() - 0.5) * 18).toFixed(1) + "px");
+      particle.style.setProperty("--particle-y", (baseY + (Math.random() - 0.5) * 14).toFixed(1) + "px");
+      particle.style.setProperty("--particle-dx", Math.cos(angle) * distance + "px");
+      particle.style.setProperty("--particle-dy", Math.sin(angle) * distance - 18 + "px");
+      particle.style.setProperty("--particle-size", size.toFixed(1) + "px");
+      particle.style.setProperty("--particle-color", particleColors[index % particleColors.length]);
+      liveParticles += 1;
+      document.body.append(particle);
+      particle.addEventListener("animationend", () => {
+        liveParticles = Math.max(0, liveParticles - 1);
+        particle.remove();
+      }, { once: true });
+    }
+  };
+
   const hoverSurfaceSelector = [
     ".liquid-tilt",
     ".motion-carousel",
@@ -5037,6 +5202,17 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
     let frame = 0;
     let lastEvent = null;
+
+    surface.addEventListener("pointerenter", (event) => {
+      const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card");
+      spawnLiquidParticles(event, stronger ? 7 : 4);
+    }, { passive: true });
+
+    surface.addEventListener("click", (event) => {
+      if (surface.matches("a, button, .button, .carousel-chip, .real-review-mini")) {
+        spawnLiquidParticles(event, 9);
+      }
+    });
 
     surface.addEventListener("pointermove", (event) => {
       lastEvent = event;
@@ -5082,6 +5258,88 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
+const quoteFieldLimits = {
+  name: 80,
+  phone: 24,
+  email: 120,
+  insuranceType: 40,
+  zip: 5,
+  bestTime: 40,
+  notes: 600,
+  companyWebsite: 140
+};
+const sensitiveQuoteTerms = [
+  "ssn",
+  "social security",
+  "date of birth",
+  "dob",
+  "driver license",
+  "drivers license",
+  "driver's license",
+  "vin",
+  "vehicle identification",
+  "credit card",
+  "card number",
+  "bank account",
+  "routing number",
+  "password",
+  "passcode",
+  "medical record",
+  "claim number",
+  "policy number"
+];
+const approvedQuoteDestination = new URL("${quoteDestination}", window.location.href);
+
+function cleanPlainText(value, limit = 600) {
+  return String(value || "")
+    .replace(/[\\u0000-\\u001F\\u007F<>\\x60]/g, " ")
+    .replace(/\\s+/g, " ")
+    .trim()
+    .slice(0, limit);
+}
+
+function normalizedSensitiveText(value) {
+  return cleanPlainText(value, 600).toLowerCase().replace(/[^a-z0-9]+/g, " ");
+}
+
+function containsSensitiveQuoteData(value) {
+  const normalized = normalizedSensitiveText(value);
+  return sensitiveQuoteTerms.some((term) => normalized.includes(normalizedSensitiveText(term)));
+}
+
+function normalizeQuoteField(field) {
+  if (!field || !("value" in field)) return;
+  const limit = quoteFieldLimits[field.name] || 160;
+  field.setCustomValidity("");
+  if (field.matches("select")) return;
+  if (field.name === "phone") {
+    field.value = cleanPlainText(field.value, limit).replace(/[^0-9+().\\-\\s]/g, "").trim();
+    return;
+  }
+  if (field.name === "zip") {
+    field.value = cleanPlainText(field.value, limit).replace(/\\D/g, "").slice(0, 5);
+    return;
+  }
+  field.value = cleanPlainText(field.value, limit);
+  if (field.name === "notes" && containsSensitiveQuoteData(field.value)) {
+    field.setCustomValidity("Please do not include sensitive details here. Continue sensitive information only through the secure approved quote process.");
+  }
+}
+
+function approvedQuoteUrl(destination) {
+  try {
+    const url = new URL(destination || "", window.location.href);
+    return url.protocol === "https:" &&
+      url.hostname.toLowerCase() === "secure.consumerratequotes.com" &&
+      url.pathname === "/ConsumerV2" &&
+      url.searchParams.get("id") === "64868"
+      ? url.href
+      : "";
+  } catch {
+    return "";
+  }
+}
+
 function markValidity(field) {
   if (!field || !("checkValidity" in field)) return;
   const shouldMark = field.matches("input, select, textarea") && field.required;
@@ -5091,13 +5349,20 @@ function markValidity(field) {
 document.querySelectorAll("[data-quote-form]").forEach((form) => {
   const fields = form.querySelectorAll("input, select, textarea");
   fields.forEach((field) => {
-    field.addEventListener("blur", () => markValidity(field));
-    field.addEventListener("input", () => markValidity(field));
+    field.addEventListener("blur", () => {
+      normalizeQuoteField(field);
+      markValidity(field);
+    });
+    field.addEventListener("input", () => {
+      field.setCustomValidity("");
+      markValidity(field);
+    });
   });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const status = form.querySelector(".form-status");
     const honeypot = form.querySelector('[name="companyWebsite"]');
+    fields.forEach(normalizeQuoteField);
     fields.forEach(markValidity);
     if (honeypot && honeypot.value) {
       if (status) status.textContent = "Thanks. The request has been received.";
@@ -5106,11 +5371,17 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
     }
     if (!form.checkValidity()) {
       form.reportValidity();
-      if (status) status.textContent = "Please complete the required contact fields before sending.";
+      const sensitiveMessage = form.querySelector('[name="notes"]')?.validationMessage || "";
+      if (status) status.textContent = sensitiveMessage || "Please complete the required contact fields before sending.";
       return;
     }
-    if (status) status.textContent = "Opening the secure quote form...";
-    window.location.assign(form.dataset.quoteDestination || form.action);
+    const destination = approvedQuoteUrl(form.dataset.quoteDestination || form.action || approvedQuoteDestination.href);
+    if (!destination) {
+      if (status) status.textContent = "The secure quote path could not be verified. Please call the office instead.";
+      return;
+    }
+    if (status) status.textContent = "Opening the secure ConsumerRateQuotes form...";
+    window.location.assign(destination);
   });
 });
 `;
@@ -5235,7 +5506,11 @@ function apacheHtaccess() {
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set Origin-Agent-Cluster "?1"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes

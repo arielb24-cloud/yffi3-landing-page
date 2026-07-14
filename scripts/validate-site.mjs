@@ -273,11 +273,12 @@ if (!fs.existsSync(htaccess)) {
   failures.push("Missing .htaccess security header file");
 } else {
   const htaccessText = read(htaccess);
-  for (const header of ["Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy"]) {
+  for (const header of ["Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy", "Cross-Origin-Opener-Policy", "X-Permitted-Cross-Domain-Policies"]) {
     if (!htaccessText.includes(header)) failures.push(`.htaccess missing ${header}`);
   }
   if (!htaccessText.includes("https://secure.ConsumerRateQuotes.com")) failures.push(".htaccess CSP missing ConsumerRateQuotes form-action");
   if (!htaccessText.includes("media-src 'self'")) failures.push(".htaccess CSP missing media-src for local videos");
+  if (!htaccessText.includes("script-src-attr 'none'")) failures.push(".htaccess CSP missing script-src-attr hardening");
   if (!htaccessText.includes("ErrorDocument 404 /404.html")) failures.push(".htaccess missing noindex 404 fallback");
 }
 

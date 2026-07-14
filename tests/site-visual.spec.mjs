@@ -303,6 +303,11 @@ test("quote form validates safe contact fields", async ({ page }) => {
   await page.locator('[name="insuranceType"]').selectOption({ label: "Auto" });
   await page.locator('[name="zip"]').fill("33174");
   await page.locator('[name="bestTime"]').selectOption({ label: "Morning" });
+  await page.locator('[name="notes"]').fill("SSN 123-45-6789");
+  await page.getByRole("button", { name: /Continue to Secure Quote Form/i }).click();
+  await expect(page).toHaveURL(/\/get-a-quote\//);
+  await expect(page.locator(".form-status")).toContainText("Please do not include sensitive details");
+
   await page.locator('[name="notes"]').fill("I want to compare auto coverage options.");
   await page.getByRole("button", { name: /Continue to Secure Quote Form/i }).click();
 
@@ -328,6 +333,20 @@ test("quote buttons and form route to the secure quote destination", async ({ pa
   await expect(page.locator("[data-quote-form]")).toHaveAttribute("action", quoteDestination);
 });
 
+test("server sends hardened security headers", async ({ page }) => {
+  const response = await page.goto("/", { waitUntil: "domcontentloaded" });
+  const headers = response?.headers() || {};
+  expect(headers["x-content-type-options"]).toBe("nosniff");
+  expect(headers["x-frame-options"]).toBe("SAMEORIGIN");
+  expect(headers["referrer-policy"]).toBe("strict-origin-when-cross-origin");
+  expect(headers["permissions-policy"]).toContain("camera=()");
+  expect(headers["cross-origin-opener-policy"]).toBe("same-origin");
+  expect(headers["cross-origin-resource-policy"]).toBe("same-origin");
+  expect(headers["x-permitted-cross-domain-policies"]).toBe("none");
+  expect(headers["content-security-policy"]).toContain("form-action 'self' https://secure.ConsumerRateQuotes.com");
+  expect(headers["content-security-policy"]).toContain("script-src-attr 'none'");
+});
+
 test("header ticker contains trusted links and pauses on hover", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
@@ -346,7 +365,7 @@ test("header ticker contains trusted links and pauses on hover", async ({ page }
 });
 
 test("backend-looking paths do not render public frontend pages", async ({ page }) => {
-  for (const sourcePath of ["/package.json", "/server.js", "/DEPLOYMENT.md", "/yffi3-godaddy-upload.zip"]) {
+  for (const sourcePath of ["/package.json", "/server.js", "/DEPLOYMENT.md", "/yffi3-godaddy-upload.zip", "/%E0%A4%A"]) {
     const response = await page.goto(sourcePath, { waitUntil: "domcontentloaded" });
     expect(response?.status()).toBe(404);
     const robots = response?.headers()["x-robots-tag"] || "";

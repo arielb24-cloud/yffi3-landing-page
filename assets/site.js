@@ -423,6 +423,44 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
 });
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+  const particleColors = [
+    "rgba(154, 220, 247, 0.88)",
+    "rgba(255, 224, 161, 0.82)",
+    "rgba(255, 125, 101, 0.76)",
+    "rgba(119, 231, 220, 0.78)"
+  ];
+  let liveParticles = 0;
+  const spawnLiquidParticles = (event, count = 5) => {
+    if (!event?.currentTarget || document.hidden || liveParticles > 46) return;
+    const surface = event.currentTarget;
+    const now = Date.now();
+    const last = Number(surface.dataset.particleAt || 0);
+    if (now - last < 190) return;
+    surface.dataset.particleAt = String(now);
+    const rect = surface.getBoundingClientRect();
+    const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
+    const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
+    for (let index = 0; index < count; index += 1) {
+      const particle = document.createElement("span");
+      const angle = (Math.PI * 2 * index) / count + Math.random() * 0.58;
+      const distance = 16 + Math.random() * 34;
+      const size = 3 + Math.random() * 5;
+      particle.className = "liquid-particle";
+      particle.style.setProperty("--particle-x", (baseX + (Math.random() - 0.5) * 18).toFixed(1) + "px");
+      particle.style.setProperty("--particle-y", (baseY + (Math.random() - 0.5) * 14).toFixed(1) + "px");
+      particle.style.setProperty("--particle-dx", Math.cos(angle) * distance + "px");
+      particle.style.setProperty("--particle-dy", Math.sin(angle) * distance - 18 + "px");
+      particle.style.setProperty("--particle-size", size.toFixed(1) + "px");
+      particle.style.setProperty("--particle-color", particleColors[index % particleColors.length]);
+      liveParticles += 1;
+      document.body.append(particle);
+      particle.addEventListener("animationend", () => {
+        liveParticles = Math.max(0, liveParticles - 1);
+        particle.remove();
+      }, { once: true });
+    }
+  };
+
   const hoverSurfaceSelector = [
     ".liquid-tilt",
     ".motion-carousel",
@@ -452,6 +490,17 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
     let frame = 0;
     let lastEvent = null;
+
+    surface.addEventListener("pointerenter", (event) => {
+      const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card");
+      spawnLiquidParticles(event, stronger ? 7 : 4);
+    }, { passive: true });
+
+    surface.addEventListener("click", (event) => {
+      if (surface.matches("a, button, .button, .carousel-chip, .real-review-mini")) {
+        spawnLiquidParticles(event, 9);
+      }
+    });
 
     surface.addEventListener("pointermove", (event) => {
       lastEvent = event;
@@ -497,6 +546,88 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
+const quoteFieldLimits = {
+  name: 80,
+  phone: 24,
+  email: 120,
+  insuranceType: 40,
+  zip: 5,
+  bestTime: 40,
+  notes: 600,
+  companyWebsite: 140
+};
+const sensitiveQuoteTerms = [
+  "ssn",
+  "social security",
+  "date of birth",
+  "dob",
+  "driver license",
+  "drivers license",
+  "driver's license",
+  "vin",
+  "vehicle identification",
+  "credit card",
+  "card number",
+  "bank account",
+  "routing number",
+  "password",
+  "passcode",
+  "medical record",
+  "claim number",
+  "policy number"
+];
+const approvedQuoteDestination = new URL("https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868", window.location.href);
+
+function cleanPlainText(value, limit = 600) {
+  return String(value || "")
+    .replace(/[\u0000-\u001F\u007F<>\x60]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, limit);
+}
+
+function normalizedSensitiveText(value) {
+  return cleanPlainText(value, 600).toLowerCase().replace(/[^a-z0-9]+/g, " ");
+}
+
+function containsSensitiveQuoteData(value) {
+  const normalized = normalizedSensitiveText(value);
+  return sensitiveQuoteTerms.some((term) => normalized.includes(normalizedSensitiveText(term)));
+}
+
+function normalizeQuoteField(field) {
+  if (!field || !("value" in field)) return;
+  const limit = quoteFieldLimits[field.name] || 160;
+  field.setCustomValidity("");
+  if (field.matches("select")) return;
+  if (field.name === "phone") {
+    field.value = cleanPlainText(field.value, limit).replace(/[^0-9+().\-\s]/g, "").trim();
+    return;
+  }
+  if (field.name === "zip") {
+    field.value = cleanPlainText(field.value, limit).replace(/\D/g, "").slice(0, 5);
+    return;
+  }
+  field.value = cleanPlainText(field.value, limit);
+  if (field.name === "notes" && containsSensitiveQuoteData(field.value)) {
+    field.setCustomValidity("Please do not include sensitive details here. Continue sensitive information only through the secure approved quote process.");
+  }
+}
+
+function approvedQuoteUrl(destination) {
+  try {
+    const url = new URL(destination || "", window.location.href);
+    return url.protocol === "https:" &&
+      url.hostname.toLowerCase() === "secure.consumerratequotes.com" &&
+      url.pathname === "/ConsumerV2" &&
+      url.searchParams.get("id") === "64868"
+      ? url.href
+      : "";
+  } catch {
+    return "";
+  }
+}
+
 function markValidity(field) {
   if (!field || !("checkValidity" in field)) return;
   const shouldMark = field.matches("input, select, textarea") && field.required;
@@ -506,13 +637,20 @@ function markValidity(field) {
 document.querySelectorAll("[data-quote-form]").forEach((form) => {
   const fields = form.querySelectorAll("input, select, textarea");
   fields.forEach((field) => {
-    field.addEventListener("blur", () => markValidity(field));
-    field.addEventListener("input", () => markValidity(field));
+    field.addEventListener("blur", () => {
+      normalizeQuoteField(field);
+      markValidity(field);
+    });
+    field.addEventListener("input", () => {
+      field.setCustomValidity("");
+      markValidity(field);
+    });
   });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const status = form.querySelector(".form-status");
     const honeypot = form.querySelector('[name="companyWebsite"]');
+    fields.forEach(normalizeQuoteField);
     fields.forEach(markValidity);
     if (honeypot && honeypot.value) {
       if (status) status.textContent = "Thanks. The request has been received.";
@@ -521,10 +659,16 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
     }
     if (!form.checkValidity()) {
       form.reportValidity();
-      if (status) status.textContent = "Please complete the required contact fields before sending.";
+      const sensitiveMessage = form.querySelector('[name="notes"]')?.validationMessage || "";
+      if (status) status.textContent = sensitiveMessage || "Please complete the required contact fields before sending.";
       return;
     }
-    if (status) status.textContent = "Opening the secure quote form...";
-    window.location.assign(form.dataset.quoteDestination || form.action);
+    const destination = approvedQuoteUrl(form.dataset.quoteDestination || form.action || approvedQuoteDestination.href);
+    if (!destination) {
+      if (status) status.textContent = "The secure quote path could not be verified. Please call the office instead.";
+      return;
+    }
+    if (status) status.textContent = "Opening the secure ConsumerRateQuotes form...";
+    window.location.assign(destination);
   });
 });
