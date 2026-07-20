@@ -46,13 +46,19 @@ for (const viewport of viewports) {
       if (pageInfo.name === "home") {
         await expect(page.getByRole("link", { name: /Get My Free Quote/i }).first()).toBeVisible();
         await expect(page.locator('img[alt*="Real family and office photo"]').first()).toBeVisible();
-        await expect(page.locator('img[alt*="Ariel Busutil"]').first()).toBeVisible();
-        await expect(page.locator('img[alt*="Original Your Family First Insurance"]').first()).toBeVisible();
+        const principalAgentPhoto = page.locator('img[alt*="Ariel Busutil"]').first();
+        await principalAgentPhoto.scrollIntoViewIfNeeded();
+        await expect(principalAgentPhoto).toBeVisible();
+        const originalFranchiseLogo = page.locator('img[alt*="Original Your Family First Insurance"]').first();
+        await originalFranchiseLogo.scrollIntoViewIfNeeded();
+        await expect(originalFranchiseLogo).toBeVisible();
         await expect(page.locator(".trust-ticker")).toBeVisible();
       }
 
       if (pageInfo.name === "quote") {
-        await expect(page.locator('[data-quote-form]')).toBeVisible();
+        const quoteForm = page.locator('[data-quote-form]');
+        await quoteForm.scrollIntoViewIfNeeded();
+        await expect(quoteForm).toBeVisible();
         await expect(page.locator('[name="companyWebsite"]')).toHaveCount(1);
         await expect(page.locator('label:has([name="phone"])')).toBeVisible();
       }
@@ -68,7 +74,9 @@ for (const viewport of viewports) {
         await expect(page.locator(".service-gallery-dots button")).toHaveCount(4);
         await expect(page.locator("[data-carousel-prev]")).toBeVisible();
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
-        await expect(page.locator(".search-intent-panel")).toBeVisible();
+        const searchIntentPanel = page.locator(".search-intent-panel");
+        await searchIntentPanel.scrollIntoViewIfNeeded();
+        await expect(searchIntentPanel).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);
       }
@@ -135,6 +143,7 @@ test("quote form validates safe contact fields", async ({ page }) => {
   });
   await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
 
+  await page.locator("[data-quote-form]").scrollIntoViewIfNeeded();
   await page.locator('[name="name"]').fill("Ariel Test");
   await page.locator('[name="phone"]').fill("3059108850");
   await page.locator('[name="email"]').fill("ariel@example.com");
@@ -211,4 +220,38 @@ test("reduced-motion preference disables automatic carousel rotation", async ({ 
   const initialCurrent = await carousel.locator("[data-carousel-dot][aria-current=\"true\"]").getAttribute("data-carousel-dot");
   await page.waitForTimeout(7000);
   await expect(carousel.locator("[data-carousel-dot][aria-current=\"true\"]")).toHaveAttribute("data-carousel-dot", initialCurrent || "0");
+});
+
+test("Save-Data keeps carousel video paused and unhydrated", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(Navigator.prototype, "connection", {
+      configurable: true,
+      get: () => ({ saveData: true })
+    });
+  });
+  await page.goto("/auto-insurance/", { waitUntil: "networkidle" });
+
+  const carousel = page.locator("[data-service-carousel]");
+  await expect(carousel.locator("[data-carousel-toggle]")).toBeHidden();
+  await expect(carousel.locator("video source[src]")).toHaveCount(0);
+  expect(await carousel.locator("video").evaluate((video) => video.paused)).toBe(true);
+});
+
+test("service carousel media requests remain self-hosted", async ({ page }) => {
+  const loadedMediaUrls = [];
+  page.on("request", (request) => {
+    if (["image", "media"].includes(request.resourceType())) loadedMediaUrls.push(request.url());
+  });
+
+  for (const pageInfo of pages.filter((pageInfo) => pageInfo.service)) {
+    await page.goto(pageInfo.path, { waitUntil: "networkidle" });
+    await expect(page.locator("[data-service-carousel]")).toHaveAttribute("data-ready", "true");
+  }
+
+  const localOrigin = new URL(page.url()).origin;
+  const remoteMediaUrls = loadedMediaUrls.filter((url) => {
+    const parsed = new URL(url);
+    return parsed.protocol !== "data:" && parsed.origin !== localOrigin;
+  });
+  expect(remoteMediaUrls).toEqual([]);
 });
