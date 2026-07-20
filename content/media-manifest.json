@@ -10,6 +10,21 @@
       "premiumVideoSearchBrief": "Licensed commercial footage: luxury or niche car driving at blue hour, sunset, or night in Miami-style streets; no visible plates, logos, unsafe driving, or identifiable people.",
       "items": [
         {
+          "id": "auto-sports-car-dawn",
+          "type": "video",
+          "src": "/assets/yffi3/media/auto-sports-car-dawn.webm",
+          "fallbackSrc": "/assets/yffi3/media/auto-sports-car-dawn.mp4",
+          "poster": "/assets/yffi3/media/auto-sports-car-dawn-poster.webp",
+          "alt": "Cinematic red sports car following a curved highway at warm dawn",
+          "sourceProvider": "Mixkit",
+          "sourceUrl": "https://mixkit.co/free-stock-video/a-red-sports-car-traveling-along-a-curvy-asphalt-road-52427/",
+          "license": "Mixkit Stock Video Free License for commercial and personal use",
+          "licenseProof": "Asset 52427 source page reviewed 2026-07-20 and explicitly labeled for commercial or personal use",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
           "id": "auto-city-car",
           "type": "image",
           "src": "/assets/yffi3/service-auto-slide-1.webp",
@@ -60,6 +75,21 @@
       "galleryAlt": "Homeowners insurance media gallery with a Florida home exterior, roof details, and an elegant interior",
       "premiumVideoSearchBrief": "Licensed commercial footage: cinematic modern mansion exterior or luxury home at sunset, blue hour, or warm night lighting; slow architectural movement, no listing watermarks or identifiable residents.",
       "items": [
+        {
+          "id": "home-luxury-pool",
+          "type": "video",
+          "src": "/assets/yffi3/media/home-luxury-pool.webm",
+          "fallbackSrc": "/assets/yffi3/media/home-luxury-pool.mp4",
+          "poster": "/assets/yffi3/media/home-luxury-pool-poster.webp",
+          "alt": "Slow cinematic movement through a landscaped luxury home pool and covered patio",
+          "sourceProvider": "Coverr",
+          "sourceUrl": "https://coverr.co/videos/swimming-pool-in-a-backyard-ttkbpdavzh",
+          "license": "Coverr commercial-use stock video license",
+          "licenseProof": "Source page reviewed 2026-07-20 and labeled Free Commercial Rights; Coverr license permits commercial website use",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": true
+        },
         {
           "id": "home-warm-exterior",
           "type": "image",
@@ -112,6 +142,21 @@
       "premiumVideoSearchBrief": "Licensed commercial footage: polished business district, boutique storefront, executive office, or premium commercial vehicles in motion at golden hour or night; no company trademarks or readable plates.",
       "items": [
         {
+          "id": "commercial-skyscraper",
+          "type": "video",
+          "src": "/assets/yffi3/media/commercial-skyscraper.webm",
+          "fallbackSrc": "/assets/yffi3/media/commercial-skyscraper.mp4",
+          "poster": "/assets/yffi3/media/commercial-skyscraper-poster.webp",
+          "alt": "Minimal low-angle motion view of a neutral glass corporate tower",
+          "sourceProvider": "Coverr",
+          "sourceUrl": "https://coverr.co/videos/a-skyscraper-in-panama-city-wp5rzmwi20",
+          "license": "Coverr commercial-use stock video license",
+          "licenseProof": "Source page reviewed 2026-07-20 and labeled Free Commercial Rights; Coverr license permits commercial website use",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": true
+        },
+        {
           "id": "commercial-storefront",
           "type": "image",
           "src": "/assets/yffi3/service-commercial-slide-1.webp",
@@ -163,6 +208,21 @@
       "premiumVideoSearchBrief": "Licensed commercial footage: elegant home details, quiet legacy-planning desk, warm sunset interiors, or tranquil aspirational lifestyle without staged testimonials or identifiable people.",
       "items": [
         {
+          "id": "life-palm-sunset",
+          "type": "video",
+          "src": "/assets/yffi3/media/life-palm-sunset.webm",
+          "fallbackSrc": "/assets/yffi3/media/life-palm-sunset.mp4",
+          "poster": "/assets/yffi3/media/life-palm-sunset-poster.webp",
+          "alt": "Calm tropical ocean horizon and palm silhouettes beneath a vivid sunset",
+          "sourceProvider": "Mixkit",
+          "sourceUrl": "https://mixkit.co/free-stock-video/red-ocean-sunset-2164/",
+          "license": "Mixkit Stock Video Free License for commercial and personal use",
+          "licenseProof": "Asset 2164 source page reviewed 2026-07-20 and explicitly labeled for commercial or personal use",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
           "id": "life-planning-desk",
           "type": "image",
           "src": "/assets/yffi3/service-life-slide-1.webp",
@@ -213,6 +273,21 @@
       "galleryAlt": "Renters insurance media gallery with a modern apartment, personal property details, and an elegant entry corridor",
       "premiumVideoSearchBrief": "Licensed commercial footage: modern luxury apartment interior, high-rise view, elegant corridor, or keys and move-in details at blue hour; no real-estate listing watermark or identifiable tenant.",
       "items": [
+        {
+          "id": "renters-luxury-room",
+          "type": "video",
+          "src": "/assets/yffi3/media/renters-luxury-room.webm",
+          "fallbackSrc": "/assets/yffi3/media/renters-luxury-room.mp4",
+          "poster": "/assets/yffi3/media/renters-luxury-room-poster.webp",
+          "alt": "Slow pan across a refined high-rise bedroom with soft natural light",
+          "sourceProvider": "Mixkit",
+          "sourceUrl": "https://mixkit.co/free-stock-video/luxury-hotel-room-panning-shot-4196/",
+          "license": "Mixkit Stock Video Free License for commercial and personal use",
+          "licenseProof": "Asset 4196 source page reviewed 2026-07-20 and explicitly labeled for commercial or personal use",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
         {
           "id": "renters-living-room",
           "type": "image",

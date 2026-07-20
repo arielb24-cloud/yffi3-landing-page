@@ -29,9 +29,9 @@ const mp4 = path.join(outputDir, `${id}.mp4`);
 const poster = path.join(outputDir, `${id}-poster.webp`);
 
 const jobs = [
-  ["ffmpeg", ["-y", "-i", input, "-an", "-vf", "scale='min(1920,iw)':-2:flags=lanczos,fps=30", "-c:v", "libvpx-vp9", "-crf", "34", "-b:v", "0", "-row-mt", "1", "-movflags", "+faststart", webm]],
-  ["ffmpeg", ["-y", "-i", input, "-an", "-vf", "scale='min(1920,iw)':-2:flags=lanczos,fps=30", "-c:v", "libx264", "-profile:v", "high", "-level", "4.1", "-crf", "24", "-preset", "slow", "-pix_fmt", "yuv420p", "-movflags", "+faststart", mp4]],
-  ["ffmpeg", ["-y", "-ss", posterTime, "-i", input, "-frames:v", "1", "-vf", "scale='min(1600,iw)':-2:flags=lanczos", "-c:v", "libwebp", "-quality", "82", poster]]
+  ["ffmpeg", ["-y", "-i", input, "-an", "-vf", "scale='min(1280,iw)':-2:flags=lanczos,fps=24", "-c:v", "libvpx-vp9", "-crf", "38", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "2", webm]],
+  ["ffmpeg", ["-y", "-i", input, "-an", "-vf", "scale='min(1280,iw)':-2:flags=lanczos,fps=24", "-c:v", "libx264", "-profile:v", "high", "-crf", "27", "-preset", "slow", "-pix_fmt", "yuv420p", "-movflags", "+faststart", mp4]],
+  ["ffmpeg", ["-y", "-ss", posterTime, "-i", input, "-frames:v", "1", "-vf", "scale='min(1280,iw)':-2:flags=lanczos", "-c:v", "libwebp", "-quality", "78", poster]]
 ];
 
 console.log(`Input: ${input}`);

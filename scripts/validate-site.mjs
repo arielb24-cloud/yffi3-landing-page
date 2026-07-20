@@ -115,7 +115,8 @@ for (const slug of requiredSlugs) {
     }
     if (!html.includes("data-service-carousel") || !html.includes("aria-roledescription=\"carousel\"")) failures.push(`${slug} missing accessible carousel semantics`);
     if (!html.includes("data-carousel-prev") || !html.includes("data-carousel-next") || !html.includes("data-carousel-toggle")) failures.push(`${slug} missing carousel controls`);
-    if (countMatches(html, /data-carousel-dot="[0-9]+"/g) !== 3) failures.push(`${slug} must have three carousel dot buttons`);
+    if (countMatches(html, /data-carousel-dot="[0-9]+"/g) !== 4) failures.push(`${slug} must have four carousel dot buttons`);
+    if (countMatches(html, /data-media-type="video"/g) !== 1) failures.push(`${slug} must have one licensed video slide`);
     if (html.includes("service-gallery-dots\" aria-hidden")) failures.push(`${slug} still exposes decorative-only carousel dots`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);

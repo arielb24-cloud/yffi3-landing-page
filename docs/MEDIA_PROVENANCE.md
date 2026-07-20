@@ -6,9 +6,15 @@ The carousel only renders assets listed in `content/media-manifest.json`. Every 
 
 The 15 image pairs currently in the manifest were already supplied in the YFFI3 repository and are retained as the safe production fallback. Their provenance is recorded as existing project assets; replacing them does not erase the original files.
 
+## Production video set acquired July 20, 2026
+
+Five source clips were downloaded from the original Mixkit and Coverr asset pages, visually reviewed, trimmed to short web loops, stripped of audio, and transcoded to self-hosted WebM/MP4 with WebP posters. The production set contains one video for each insurance page. Rejected candidates included watermarked footage, an unrelated restaurant terrace, and a dark dirt-road driving shot. Exact URLs, license names, review dates, and attribution requirements are recorded in `docs/media-licenses.csv` and `content/media-manifest.json`.
+
+Coverr attribution is retained in the public footer. Mixkit assets are covered by the Mixkit Stock Video Free License pages that explicitly state commercial or personal use.
+
 ## Premium video intake
 
-1. License and download the original clip from the actual provider account. Do not download from Pinterest, social media, manufacturer sites, real-estate listings, YouTube, or GitHub link collections.
+1. License and download the original clip from the actual provider. Do not download from Pinterest, social media, manufacturer sites, real-estate listings, YouTube, or GitHub link collections.
 2. Save the receipt, asset ID, source page, license terms, download date, and any required attribution outside the public web root.
 3. Run:
 

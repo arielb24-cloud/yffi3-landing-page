@@ -59,11 +59,13 @@ for (const viewport of viewports) {
 
       if (pageInfo.service) {
         await expect(page.locator(".service-gallery")).toBeVisible();
-        await expect(page.locator(".service-slide")).toHaveCount(3);
+        await expect(page.locator(".service-slide")).toHaveCount(4);
+        await expect(page.locator(".service-slide video")).toHaveCount(1);
         await expect(page.locator(".service-slide img")).toHaveCount(3);
+        await expect(page.locator(".service-slide video").first()).toHaveAttribute("poster", /\/assets\/yffi3\/media\/.*-poster\.webp/);
         await expect(page.locator(".service-slide img").first()).toHaveAttribute("src", /service-.*-slide-1\.jpg/);
         await expect(page.locator(".service-gallery")).toHaveAttribute("aria-roledescription", "carousel");
-        await expect(page.locator(".service-gallery-dots button")).toHaveCount(3);
+        await expect(page.locator(".service-gallery-dots button")).toHaveCount(4);
         await expect(page.locator("[data-carousel-prev]")).toBeVisible();
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator(".search-intent-panel")).toBeVisible();

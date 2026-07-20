@@ -51,7 +51,15 @@ for (const service of media.services) {
     const localPaths = [item.src, item.fallbackSrc, item.poster].filter(Boolean);
     for (const publicPath of localPaths) {
       const filePath = path.join(root, "public", publicPath.replace(/^\/assets\//, "assets/"));
-      if (!fs.existsSync(filePath)) failures.push(`${item.id} references missing file: ${publicPath}`);
+      if (!fs.existsSync(filePath)) {
+        failures.push(`${item.id} references missing file: ${publicPath}`);
+        continue;
+      }
+      const byteSize = fs.statSync(filePath).size;
+      if (byteSize === 0) failures.push(`${item.id} references an empty file: ${publicPath}`);
+      if (item.type === "video" && /\.(mp4|webm)$/i.test(publicPath) && byteSize > 6 * 1024 * 1024) {
+        failures.push(`${item.id} video exceeds the 6 MB per-format performance budget: ${publicPath}`);
+      }
     }
 
     if (item.type === "video") {
