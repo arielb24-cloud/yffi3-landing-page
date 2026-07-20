@@ -1,0 +1,19 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-quotes": "error",
+    "close-order": "error",
+    "doctype-html": "error",
+    "element-permitted-content": "error",
+    "form-dup-name": "error",
+    "input-missing-label": "error",
+    "no-dup-attr": "error",
+    "no-dup-id": "error",
+    "no-inline-style": "off",
+    "no-trailing-whitespace": "off",
+    "prefer-native-element": "off",
+    "tel-non-breaking": "off",
+    "valid-id": "error",
+    "void-style": "off"
+  }
+}

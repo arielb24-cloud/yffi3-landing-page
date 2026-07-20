@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourfamilyfirstinsurance3.com/schemas/site-facts.schema.json",
+  "title": "YFFI3 verified site facts",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["siteUrl", "businessName", "legalName", "phone", "address", "quoteDestination", "serviceAreas", "insuranceTypes", "approvedAssetPaths", "contentBoundaries"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "siteUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "businessName": { "type": "string", "minLength": 3 },
+    "legalName": { "type": "string", "minLength": 3 },
+    "phone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["display", "tel", "sms"],
+      "properties": {
+        "display": { "type": "string", "pattern": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$" },
+        "tel": { "type": "string", "pattern": "^tel:" },
+        "sms": { "type": "string", "pattern": "^sms:" }
+      }
+    },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streetAddress", "addressLocality", "addressRegion", "postalCode", "addressCountry"],
+      "properties": {
+        "streetAddress": { "type": "string", "minLength": 3 },
+        "addressLocality": { "type": "string", "minLength": 2 },
+        "addressRegion": { "type": "string", "minLength": 2, "maxLength": 2 },
+        "postalCode": { "type": "string", "pattern": "^[0-9]{5}$" },
+        "addressCountry": { "type": "string", "minLength": 2, "maxLength": 2 }
+      }
+    },
+    "quoteDestination": { "type": "string", "format": "uri", "const": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868" },
+    "serviceAreas": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+    "insuranceTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+    "approvedAssetPaths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["officialLogo", "originalLogo", "familyPhoto", "familyPhotoWebp", "principalPhoto", "quoteQr"],
+      "properties": {
+        "officialLogo": { "type": "string", "pattern": "^/assets/yffi3/" },
+        "originalLogo": { "type": "string", "pattern": "^/assets/yffi3/" },
+        "familyPhoto": { "type": "string", "pattern": "^/assets/yffi3/" },
+        "familyPhotoWebp": { "type": "string", "pattern": "^/assets/yffi3/" },
+        "principalPhoto": { "type": "string", "pattern": "^/assets/yffi3/" },
+        "quoteQr": { "type": "string", "pattern": "^/assets/yffi3/" }
+      }
+    },
+    "contentBoundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prohibitedClaims", "disclaimer"],
+      "properties": {
+        "prohibitedClaims": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 3 } },
+        "disclaimer": { "type": "string", "minLength": 20 }
+      }
+    }
+  }
+}

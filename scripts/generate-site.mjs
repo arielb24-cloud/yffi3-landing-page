@@ -2,90 +2,54 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const siteUrl = "https://yourfamilyfirstinsurance3.com";
-const phoneDisplay = "305-910-8850";
-const phoneHref = "tel:13059108850";
-const smsHref = "sms:+13059108850";
-const businessName = "Your Family First Insurance Office #3";
-const legalName = "Your Family First Insurance";
-const logoSrc = "/assets/yffi3/yffi3-official-franchise-logo.png";
-const originalFranchiseLogoSrc = "/assets/yffi3/yffi3-original-franchise-logo.png";
-const familyPhotoSrc = "/assets/yffi3/yffi3-family-office-photo.jpg";
-const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
-const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
-const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
-const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
+const siteFacts = readJson("content/site-facts.json");
+const mediaManifest = readJson("content/media-manifest.json");
+const mediaByService = new Map(mediaManifest.services.map((service) => [service.slug, service]));
+const siteUrl = siteFacts.siteUrl;
+const phoneDisplay = siteFacts.phone.display;
+const phoneHref = siteFacts.phone.tel;
+const smsHref = siteFacts.phone.sms;
+const businessName = siteFacts.businessName;
+const legalName = siteFacts.legalName;
+const logoSrc = siteFacts.approvedAssetPaths.officialLogo;
+const originalFranchiseLogoSrc = siteFacts.approvedAssetPaths.originalLogo;
+const familyPhotoSrc = siteFacts.approvedAssetPaths.familyPhoto;
+const familyWebpSrc = siteFacts.approvedAssetPaths.familyPhotoWebp;
+const principalPhotoSrc = siteFacts.approvedAssetPaths.principalPhoto;
+const qrSrc = siteFacts.approvedAssetPaths.quoteQr;
+const quoteDestination = siteFacts.quoteDestination;
 const serviceVisuals = {
   "auto-insurance": {
-    slides: [
-      { webp: "service-auto-slide-1.webp", fallback: "service-auto-slide-1.jpg", alt: "Miami auto insurance visual with a premium car on a palm-lined city street" },
-      { webp: "service-auto-slide-2.webp", fallback: "service-auto-slide-2.jpg", alt: "Auto insurance visual showing refined vehicle keys and console details" },
-      { webp: "service-auto-slide-3.webp", fallback: "service-auto-slide-3.jpg", alt: "Auto insurance visual showing a family vehicle at a Florida-style home" }
-    ],
-    label: "Auto Insurance",
     shortLabel: "Auto",
-    scene: "Miami commute visual",
-    alt: "Photographic Miami auto insurance gallery showing a modern car, coastal roadway details, and refined dashboard lighting",
     icon: "car",
     accent: "#9ADCF7",
     accent2: "#FFA184",
     accent3: "#F4C96B"
   },
   "home-insurance": {
-    slides: [
-      { webp: "service-homeowners-slide-1.webp", fallback: "service-homeowners-slide-1.jpg", alt: "Homeowners insurance visual showing a Florida home with palm trees and warm exterior lighting" },
-      { webp: "service-homeowners-slide-2.webp", fallback: "service-homeowners-slide-2.jpg", alt: "Homeowners insurance visual showing roofline and exterior details on a modern Florida home" },
-      { webp: "service-homeowners-slide-3.webp", fallback: "service-homeowners-slide-3.jpg", alt: "Homeowners insurance visual showing a calm living room with Miami natural light" }
-    ],
-    label: "Homeowners Insurance",
     shortLabel: "Homeowners",
-    scene: "Florida home visual",
-    alt: "Photographic homeowners insurance gallery showing a Florida-style home exterior, roofline details, and warm entry lighting",
     icon: "home",
     accent: "#86CFA0",
     accent2: "#F4C96B",
     accent3: "#9ADCF7"
   },
   "commercial-insurance": {
-    slides: [
-      { webp: "service-commercial-slide-1.webp", fallback: "service-commercial-slide-1.jpg", alt: "Commercial insurance visual showing a polished Miami business storefront" },
-      { webp: "service-commercial-slide-2.webp", fallback: "service-commercial-slide-2.jpg", alt: "Commercial insurance visual showing a professional office conference room" },
-      { webp: "service-commercial-slide-3.webp", fallback: "service-commercial-slide-3.jpg", alt: "Commercial auto insurance visual showing business vehicles at a modern workspace" }
-    ],
-    label: "Commercial Insurance",
     shortLabel: "Commercial",
-    scene: "Business coverage visual",
-    alt: "Photographic commercial insurance gallery showing a Miami office storefront, business desk details, and polished workspace protection",
     icon: "building",
     accent: "#F4C96B",
     accent2: "#9ADCF7",
     accent3: "#FFA184"
   },
   "life-insurance": {
-    slides: [
-      { webp: "service-life-slide-1.webp", fallback: "service-life-slide-1.jpg", alt: "Life insurance visual showing planning notes and a calm home workspace" },
-      { webp: "service-life-slide-2.webp", fallback: "service-life-slide-2.jpg", alt: "Life insurance visual showing keys and personal planning details on a warm table" },
-      { webp: "service-life-slide-3.webp", fallback: "service-life-slide-3.jpg", alt: "Life insurance visual showing a peaceful home hallway and long-term planning mood" }
-    ],
-    label: "Life Insurance",
     shortLabel: "Life",
-    scene: "Family planning visual",
-    alt: "Photographic life insurance gallery showing financial planning documents, a warm home interior, and calm legacy-planning details without people",
     icon: "heart",
     accent: "#FFA184",
     accent2: "#F4C96B",
     accent3: "#86CFA0"
   },
   "renters-insurance": {
-    slides: [
-      { webp: "service-renters-slide-1.webp", fallback: "service-renters-slide-1.jpg", alt: "Renters insurance visual showing a modern Miami apartment living room" },
-      { webp: "service-renters-slide-2.webp", fallback: "service-renters-slide-2.jpg", alt: "Renters insurance visual showing apartment keys and personal property details" },
-      { webp: "service-renters-slide-3.webp", fallback: "service-renters-slide-3.jpg", alt: "Renters insurance visual showing a luxury apartment corridor and entry area" }
-    ],
-    label: "Renters Insurance",
     shortLabel: "Renters",
-    scene: "Apartment coverage visual",
-    alt: "Photographic renters insurance gallery showing apartment keys, a modern rental living room, and personal property details",
     icon: "key",
     accent: "#9ADCF7",
     accent2: "#86CFA0",
@@ -93,15 +57,20 @@ const serviceVisuals = {
   }
 };
 const address = {
-  streetAddress: "11200 W Flagler St, Ste 108",
-  addressLocality: "Miami",
-  addressRegion: "FL",
-  postalCode: "33174",
-  addressCountry: "US"
+  ...siteFacts.address
 };
 
-const serviceAreas = ["West Flagler Miami", "Miami", "Kendall", "Hialeah", "Cutler Bay", "Homestead", "Miami-Dade", "Florida"];
-const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Condo insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
+for (const [slug, visual] of Object.entries(serviceVisuals)) {
+  const media = mediaByService.get(slug);
+  if (!media) throw new Error(`Missing media manifest entry for ${slug}`);
+  visual.slides = media.items;
+  visual.label = media.label;
+  visual.scene = media.scene;
+  visual.alt = media.galleryAlt;
+}
+
+const serviceAreas = siteFacts.serviceAreas;
+const insuranceTypes = siteFacts.insuranceTypes;
 const redFlagPhrases = [
   "guaranteed " + "cheapest",
   "official " + "cheapest " + "insurance",
@@ -619,7 +588,7 @@ function trustTicker() {
   }).join("");
   const duplicateTrack = tickerItems.map(([label]) => `<span class="ticker-copy">${escapeHtml(label)}</span>`).join("");
   return `
-    <div class="trust-ticker" aria-label="Office highlights and insurance services" data-animate data-in-view="true">
+    <div class="trust-ticker" role="region" aria-label="Office highlights and insurance services" data-animate data-in-view="true">
       <div class="trust-track">
         <span>${interactiveTrack}</span>
         <span aria-hidden="true">${duplicateTrack}</span>
@@ -863,18 +832,31 @@ function ctaRow(extra = "") {
   `;
 }
 
+function serviceMediaSlide(item, index, total) {
+  const label = `${index + 1} of ${total}: ${item.alt}`;
+  const media = item.type === "video"
+    ? `<video class="service-media" muted playsinline preload="none" poster="${item.poster}" aria-hidden="true">
+         <source data-src="${item.src}" type="video/webm">
+         <source data-src="${item.fallbackSrc}" type="video/mp4">
+       </video>`
+    : `<picture>
+         <source srcset="${item.src}" type="image/webp">
+         <img src="${item.fallbackSrc}" alt="" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}">
+       </picture>`;
+
+  return `<div class="service-slide" role="group" aria-roledescription="slide" aria-label="${escapeHtml(label)}" data-carousel-slide data-media-id="${escapeHtml(item.id)}" data-media-type="${item.type}">
+            ${media}
+          </div>`;
+}
+
 function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
   const visual = serviceVisuals[page.slug];
   const serviceSlides = isService
-    ? visual.slides.map((slide, index) => [
-      '<picture class="service-slide" aria-hidden="true">',
-      `<source srcset="/assets/yffi3/${slide.webp}" type="image/webp">`,
-      `<img src="/assets/yffi3/${slide.fallback}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}">`,
-      "</picture>"
-    ].join("")).join("")
+    ? visual.slides.map((slide, index) => serviceMediaSlide(slide, index, visual.slides.length)).join("")
     : "";
+  const carouselId = `${page.slug}-media-carousel`;
   return `
     <section class="hero ${isHome ? "home-hero" : "inner-hero"}" data-reveal>
       <div class="hero-content" data-reveal="left">
@@ -887,9 +869,19 @@ function heroHtml(page) {
       <div class="${isService ? "service-showcase liquid-tilt" : "photo-showcase liquid-tilt"}" data-reveal="right">
         ${
           isService
-            ? `<div class="service-picture service-gallery service-gallery-${page.slug}" role="img" aria-label="${escapeHtml(visual.alt)}" data-animate data-in-view="true">
-                 ${serviceSlides}
-                 <div class="service-gallery-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            ? `<div class="service-picture service-gallery service-gallery-${page.slug}" id="${carouselId}" role="region" aria-roledescription="carousel" aria-label="${escapeHtml(visual.alt)}" data-service-carousel data-animate data-in-view="true">
+                 <div class="service-carousel-viewport" data-carousel-viewport>
+                   <div class="service-carousel-container">${serviceSlides}</div>
+                 </div>
+                 <div class="service-gallery-controls">
+                   <button class="service-carousel-arrow service-carousel-prev" type="button" aria-label="Previous ${escapeHtml(visual.label)} visual" data-carousel-prev>${iconSvg("arrow")}</button>
+                   <div class="service-gallery-dots" role="group" aria-label="Choose a visual">
+                     ${visual.slides.map((slide, index) => `<button type="button" aria-label="Show visual ${index + 1}: ${escapeHtml(slide.alt)}" data-carousel-dot="${index}"><span></span></button>`).join("")}
+                   </div>
+                   <button class="service-carousel-toggle" type="button" aria-label="Pause automatic rotation" aria-pressed="false" data-carousel-toggle><span aria-hidden="true" data-carousel-toggle-symbol>Ⅱ</span></button>
+                   <button class="service-carousel-arrow service-carousel-next" type="button" aria-label="Next ${escapeHtml(visual.label)} visual" data-carousel-next>${iconSvg("arrow")}</button>
+                 </div>
+                 <p class="sr-only service-carousel-status" aria-live="polite" aria-atomic="true" data-carousel-status></p>
                </div>
                <div class="service-visual-caption">
                  <span class="service-icon-xl">${iconSvg(page.icon)}</span>
@@ -956,9 +948,9 @@ function coverageCards() {
           </article>
         `).join("")}
       </div>
-      <div class="coverage-link-rail" aria-label="Additional insurance quote paths">
+      <nav class="coverage-link-rail" aria-label="Additional insurance quote paths">
         ${specialtyCoverageLinks.map(([id, label, href]) => `<a id="${id}" href="${href}">${escapeHtml(label)}</a>`).join("")}
-      </div>
+      </nav>
     </section>
   `;
 }
@@ -1026,9 +1018,9 @@ function franchiseBadgeSection() {
 function quoteForm(formId = "quote-form") {
   return `
     <form id="${formId}" class="quote-form" data-quote-form data-quote-destination="${quoteDestination}" action="${quoteDestination}" method="post" novalidate>
-      <label class="honeypot" aria-hidden="true">Company website<input name="companyWebsite" tabindex="-1" autocomplete="off"></label>
-      <label>Name<input required name="name" autocomplete="name" minlength="2" maxlength="80"></label>
-      <label>Phone<input required name="phone" autocomplete="tel" inputmode="tel" minlength="7" maxlength="24"></label>
+      <label class="honeypot" aria-hidden="true">Company website<input type="text" name="companyWebsite" tabindex="-1" autocomplete="off"></label>
+      <label>Name<input required type="text" name="name" autocomplete="name" minlength="2" maxlength="80"></label>
+      <label>Phone<input required type="tel" name="phone" autocomplete="tel" inputmode="tel" minlength="7" maxlength="24"></label>
       <label>Email<input required name="email" type="email" autocomplete="email" maxlength="120"></label>
       <label>Insurance type
         <select required name="insuranceType">
@@ -1042,7 +1034,7 @@ function quoteForm(formId = "quote-form") {
           <option>Commercial</option>
         </select>
       </label>
-      <label>ZIP code<input required name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" maxlength="5"></label>
+      <label>ZIP code<input required type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" maxlength="5"></label>
       <label>Best time to call
         <select required name="bestTime">
           <option value="">Select one</option>
@@ -1256,7 +1248,7 @@ function bodyFor(page) {
 }
 
 function pageHtml(page) {
-  return `<!doctype html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>${headHtml(page)}</head>
 <body>
@@ -1847,90 +1839,117 @@ h3 {
     radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 26%);
   z-index: 2;
 }
-.service-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0) scale(1.012);
-  will-change: opacity, transform;
-}
-.service-slide img {
+.service-carousel-viewport {
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+.service-carousel-container {
+  display: flex;
+  height: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+.service-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity;
+}
+.service-slide picture,
+.service-slide img,
+.service-slide video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.service-slide img,
+.service-slide video {
   object-fit: cover;
   object-position: center;
-  transform: translate3d(0, 0, 0) scale(1.006);
+  transform: translate3d(0, 0, 0) scale(1.015);
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.service-slide:nth-of-type(1) {
-  opacity: 1;
+.service-gallery[data-ready="true"] .service-slide[aria-hidden="false"] img,
+.service-gallery[data-ready="true"] .service-slide[aria-hidden="false"] video {
+  transform: translate3d(0, 0, 0) scale(1.002);
 }
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(1) {
-  animation: service-slide-one 18s linear infinite;
-}
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(2) {
-  animation: service-slide-two 18s linear infinite;
-}
-.service-gallery[data-in-view="true"] .service-slide:nth-of-type(3) {
-  animation: service-slide-three 18s linear infinite;
-}
-.service-gallery:hover .service-slide, .service-gallery:focus-within .service-slide,
-.service-gallery:hover .service-gallery-dots span, .service-gallery:focus-within .service-gallery-dots span {
-  animation-play-state: paused;
-}
-.service-gallery-dots {
+.service-gallery-controls {
   position: absolute;
-  right: 14px;
-  bottom: 14px;
+  left: 50%;
+  bottom: 12px;
   z-index: 4;
-  display: inline-flex;
-  gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100% - 20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  padding: 6px 7px;
-  background: rgba(5, 11, 18, 0.42);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 4px;
+  background: rgba(5, 11, 18, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 12px 30px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  transform: translateX(-50%);
 }
-.service-gallery-dots span {
+.service-carousel-arrow,
+.service-carousel-toggle,
+.service-gallery-dots button {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+.service-carousel-arrow:hover,
+.service-carousel-toggle:hover,
+.service-gallery-dots button:hover {
+  color: var(--champagne);
+  background: rgba(255, 255, 255, 0.10);
+}
+.service-carousel-arrow:active,
+.service-carousel-toggle:active,
+.service-gallery-dots button:active { transform: scale(0.93); }
+.service-carousel-arrow:focus-visible,
+.service-carousel-toggle:focus-visible,
+.service-gallery-dots button:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 2px;
+}
+.service-carousel-arrow .icon { width: 17px; height: 17px; }
+.service-carousel-prev .icon { transform: rotate(180deg); }
+.service-carousel-toggle {
+  min-width: 40px;
+  font-weight: 900;
+  font-size: 0.76rem;
+  letter-spacing: -0.12em;
+}
+.service-carousel-toggle[hidden] { display: none; }
+.service-gallery-dots {
+  display: flex;
+  align-items: center;
+}
+.service-gallery-dots button { min-width: 32px; padding: 0; }
+.service-gallery-dots button span {
+  display: block;
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  opacity: 0.45;
-  transform: scale(0.72);
-  background: var(--ink);
+  background: rgba(243, 251, 255, 0.60);
+  box-shadow: 0 0 0 0 rgba(255, 224, 161, 0);
+  transition: width 240ms ease, background 240ms ease, box-shadow 240ms ease;
 }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(1) { animation: service-dot-one 18s linear infinite; }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(2) { animation: service-dot-two 18s linear infinite; }
-.service-gallery[data-in-view="true"] .service-gallery-dots span:nth-child(3) { animation: service-dot-three 18s linear infinite; }
-@keyframes service-slide-one {
-  0%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  34%, 94% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-}
-@keyframes service-slide-two {
-  0%, 28% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
-  34%, 62% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  68%, 100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
-}
-@keyframes service-slide-three {
-  0%, 62% { opacity: 0; transform: translate3d(1.2%, 0, 0) scale(1.04); }
-  68%, 94% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.012); }
-  100% { opacity: 0; transform: translate3d(-1.2%, 0, 0) scale(1.04); }
-}
-@keyframes service-dot-one {
-  0%, 28% { opacity: 1; transform: scale(1); background: var(--champagne); }
-  34%, 94% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-  100% { opacity: 1; transform: scale(1); background: var(--champagne); }
-}
-@keyframes service-dot-two {
-  0%, 28% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-  34%, 62% { opacity: 1; transform: scale(1); background: var(--champagne); }
-  68%, 100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-}
-@keyframes service-dot-three {
-  0%, 62% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
-  68%, 94% { opacity: 1; transform: scale(1); background: var(--champagne); }
-  100% { opacity: 0.45; transform: scale(0.72); background: var(--ink); }
+.service-gallery-dots button[aria-current="true"] span {
+  width: 20px;
+  background: var(--champagne);
+  box-shadow: 0 0 14px rgba(255, 224, 161, 0.42);
 }
 .service-visual-caption {
   position: relative;
@@ -2750,15 +2769,18 @@ h3 {
   }
   .button:hover, .faq details:hover { transform: none; }
   .trust-track { animation: none; }
-  .service-gallery[data-in-view="true"] .service-slide { animation: none; }
-  .service-gallery[data-in-view="true"] .service-gallery-dots span { animation: none; }
-  .service-slide { transform: none; }
+  .service-slide img, .service-slide video { transform: none; }
 }
 `;
 }
 
 function jsSource() {
-  return `const menuToggle = document.querySelector(".menu-toggle");
+  return `import EmblaCarousel from "embla-carousel";
+import Fade from "embla-carousel-fade";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("#site-nav");
 
 if (menuToggle && siteNav) {
@@ -2773,21 +2795,27 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 const revealItems = document.querySelectorAll("[data-reveal]");
 
 if (revealItems.length) {
-  if (reducedMotion || !("IntersectionObserver" in window)) {
+  if (reducedMotion) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   } else {
     document.documentElement.classList.add("motion-ready");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+    gsap.registerPlugin(ScrollTrigger);
+    revealItems.forEach((item) => {
+      const direction = item.getAttribute("data-reveal");
+      const x = direction === "left" ? -24 : direction === "right" ? 24 : 0;
+      gsap.fromTo(item,
+        { autoAlpha: 0, x, y: direction === "left" || direction === "right" ? 0 : 24 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          y: 0,
+          duration: 0.72,
+          ease: "power3.out",
+          clearProps: "opacity,visibility,transform",
+          onComplete: () => item.classList.add("is-visible"),
+          scrollTrigger: { trigger: item, start: "top 88%", once: true }
         }
-      });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = Math.min(index * 35, 160) + "ms";
-      observer.observe(item);
+      );
     });
   }
 }
@@ -2805,6 +2833,156 @@ if (animatedItems.length) {
     animatedItems.forEach((item) => animationObserver.observe(item));
   }
 }
+
+document.querySelectorAll("[data-service-carousel]").forEach((root) => {
+  const viewport = root.querySelector("[data-carousel-viewport]");
+  const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
+  const dots = Array.from(root.querySelectorAll("[data-carousel-dot]"));
+  const previous = root.querySelector("[data-carousel-prev]");
+  const next = root.querySelector("[data-carousel-next]");
+  const toggle = root.querySelector("[data-carousel-toggle]");
+  const toggleSymbol = root.querySelector("[data-carousel-toggle-symbol]");
+  const status = root.querySelector("[data-carousel-status]");
+  if (!viewport || slides.length < 2) return;
+
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  const embla = EmblaCarousel(viewport, { loop: true, align: "start", duration: 34 }, [Fade()]);
+  let timer = 0;
+  let userPaused = false;
+  let hovered = false;
+  let focused = false;
+  let inView = true;
+
+  const hydrateVideo = (video) => {
+    let changed = false;
+    video.querySelectorAll("source[data-src]").forEach((source) => {
+      if (!source.src) {
+        source.src = source.dataset.src;
+        changed = true;
+      }
+    });
+    if (changed) video.load();
+  };
+
+  const canRotate = () => !reducedMotion && !saveData && !userPaused && !hovered && !focused && inView && !document.hidden;
+  const clearTimer = () => {
+    if (timer) window.clearTimeout(timer);
+    timer = 0;
+  };
+  const schedule = () => {
+    clearTimer();
+    if (!canRotate()) return;
+    timer = window.setTimeout(() => embla.scrollNext(), 6500);
+  };
+  const announce = (message) => {
+    if (status) status.textContent = message;
+  };
+
+  const updateMedia = (selected) => {
+    const nextIndex = (selected + 1) % slides.length;
+    slides.forEach((slide, index) => {
+      const video = slide.querySelector("video");
+      if (!video) return;
+      if (!saveData && inView && (index === selected || index === nextIndex)) hydrateVideo(video);
+      if (index === selected && inView && !document.hidden && !reducedMotion && !saveData) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  };
+
+  const updateToggle = () => {
+    if (!toggle) return;
+    const unavailable = reducedMotion || saveData;
+    toggle.hidden = unavailable;
+    toggle.setAttribute("aria-pressed", String(userPaused));
+    toggle.setAttribute("aria-label", userPaused ? "Resume automatic rotation" : "Pause automatic rotation");
+    if (toggleSymbol) toggleSymbol.textContent = userPaused ? "▶" : "Ⅱ";
+  };
+
+  const onSelect = () => {
+    const selected = embla.selectedScrollSnap();
+    slides.forEach((slide, index) => slide.setAttribute("aria-hidden", String(index !== selected)));
+    dots.forEach((dot, index) => {
+      if (index === selected) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+    updateMedia(selected);
+    if (!reducedMotion) {
+      const activeMedia = slides[selected] && slides[selected].querySelector("img, video");
+      if (activeMedia) gsap.fromTo(activeMedia, { scale: 1.026 }, { scale: 1.002, duration: 1.25, ease: "power2.out", overwrite: true });
+    }
+    schedule();
+  };
+
+  previous && previous.addEventListener("click", () => {
+    embla.scrollPrev();
+    announce("Previous visual selected.");
+  });
+  next && next.addEventListener("click", () => {
+    embla.scrollNext();
+    announce("Next visual selected.");
+  });
+  dots.forEach((dot, index) => dot.addEventListener("click", () => {
+    embla.scrollTo(index);
+    announce("Visual " + (index + 1) + " of " + slides.length + " selected.");
+  }));
+  toggle && toggle.addEventListener("click", () => {
+    userPaused = !userPaused;
+    updateToggle();
+    announce(userPaused ? "Automatic rotation paused." : "Automatic rotation resumed.");
+    schedule();
+  });
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      embla.scrollPrev();
+      announce("Previous visual selected.");
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      embla.scrollNext();
+      announce("Next visual selected.");
+    }
+  });
+  root.addEventListener("pointerenter", () => {
+    hovered = true;
+    schedule();
+  });
+  root.addEventListener("pointerleave", () => {
+    hovered = false;
+    schedule();
+  });
+  root.addEventListener("focusin", () => {
+    focused = true;
+    schedule();
+  });
+  root.addEventListener("focusout", () => {
+    window.setTimeout(() => {
+      focused = root.contains(document.activeElement);
+      schedule();
+    }, 0);
+  });
+  document.addEventListener("visibilitychange", () => {
+    updateMedia(embla.selectedScrollSnap());
+    schedule();
+  });
+
+  if ("IntersectionObserver" in window) {
+    const carouselObserver = new IntersectionObserver((entries) => {
+      inView = entries[0] ? entries[0].isIntersecting : true;
+      updateMedia(embla.selectedScrollSnap());
+      schedule();
+    }, { rootMargin: "120px 0px", threshold: 0.05 });
+    carouselObserver.observe(root);
+  }
+
+  embla.on("select", onSelect);
+  embla.on("reInit", onSelect);
+  updateToggle();
+  onSelect();
+  root.dataset.ready = "true";
+});
 
 if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   const hoverSurfaceSelector = [
@@ -3229,7 +3407,7 @@ function generate() {
     writeFile(pagePath(page.slug), html);
   }
   writeFile(path.join(root, "assets", "styles.css"), cssSource());
-  writeFile(path.join(root, "assets", "site.js"), jsSource());
+  writeFile(path.join(root, "assets", "site.entry.js"), jsSource());
   writeFile(path.join(root, "robots.txt"), robotsTxt());
   writeFile(path.join(root, "sitemap.xml"), sitemapXml());
   writeFile(path.join(root, "llms.txt"), llmsTxt());

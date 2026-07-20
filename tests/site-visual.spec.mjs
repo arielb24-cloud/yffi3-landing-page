@@ -62,7 +62,10 @@ for (const viewport of viewports) {
         await expect(page.locator(".service-slide")).toHaveCount(3);
         await expect(page.locator(".service-slide img")).toHaveCount(3);
         await expect(page.locator(".service-slide img").first()).toHaveAttribute("src", /service-.*-slide-1\.jpg/);
-        await expect(page.locator(".service-gallery-dots span")).toHaveCount(3);
+        await expect(page.locator(".service-gallery")).toHaveAttribute("aria-roledescription", "carousel");
+        await expect(page.locator(".service-gallery-dots button")).toHaveCount(3);
+        await expect(page.locator("[data-carousel-prev]")).toBeVisible();
+        await expect(page.locator("[data-carousel-next]")).toBeVisible();
         await expect(page.locator(".search-intent-panel")).toBeVisible();
         await expect(page.locator(".intent-card")).toHaveCount(4);
         await expect(page.locator(".faq-list details")).toHaveCount(8);
@@ -176,4 +179,34 @@ test("header ticker contains trusted links and pauses on hover", async ({ page }
   await ticker.hover();
   const afterHover = await page.locator(".trust-track").evaluate((node) => getComputedStyle(node).animationPlayState);
   expect(afterHover).toBe("paused");
+});
+
+test("service carousel supports explicit controls and state", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/auto-insurance/", { waitUntil: "networkidle" });
+
+  const carousel = page.locator("[data-service-carousel]");
+  await expect(carousel).toHaveAttribute("data-ready", "true");
+  await expect(carousel.locator("[data-carousel-slide]").nth(0)).toHaveAttribute("aria-hidden", "false");
+  await expect(carousel.locator("[data-carousel-dot]").nth(0)).toHaveAttribute("aria-current", "true");
+
+  await carousel.locator("[data-carousel-next]").click();
+  await expect(carousel.locator("[data-carousel-slide]").nth(1)).toHaveAttribute("aria-hidden", "false");
+  await expect(carousel.locator("[data-carousel-dot]").nth(1)).toHaveAttribute("aria-current", "true");
+
+  const pause = carousel.locator("[data-carousel-toggle]");
+  await pause.click();
+  await expect(pause).toHaveAttribute("aria-pressed", "true");
+  await expect(carousel.locator("[data-carousel-status]")).toContainText("paused");
+});
+
+test("reduced-motion preference disables automatic carousel rotation", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/home-insurance/", { waitUntil: "networkidle" });
+
+  const carousel = page.locator("[data-service-carousel]");
+  await expect(carousel.locator("[data-carousel-toggle]")).toBeHidden();
+  const initialCurrent = await carousel.locator("[data-carousel-dot][aria-current=\"true\"]").getAttribute("data-carousel-dot");
+  await page.waitForTimeout(7000);
+  await expect(carousel.locator("[data-carousel-dot][aria-current=\"true\"]")).toHaveAttribute("data-carousel-dot", initialCurrent || "0");
 });

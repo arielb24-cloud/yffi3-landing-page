@@ -4,8 +4,9 @@ import path from "node:path";
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : root;
-const siteUrl = "https://yourfamilyfirstinsurance3.com";
-const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const siteFacts = JSON.parse(fs.readFileSync(path.join(root, "content", "site-facts.json"), "utf8"));
+const siteUrl = siteFacts.siteUrl;
+const quoteDestination = siteFacts.quoteDestination;
 const requiredSlugs = [
   "",
   "auto-insurance",
@@ -112,6 +113,10 @@ for (const slug of requiredSlugs) {
     for (const index of [1, 2, 3]) {
       if (!html.includes(`${expectedVisual}-${index}.webp`) || !html.includes(`${expectedVisual}-${index}.jpg`)) failures.push(`${slug} missing optimized service slide ${index}: ${expectedVisual}`);
     }
+    if (!html.includes("data-service-carousel") || !html.includes("aria-roledescription=\"carousel\"")) failures.push(`${slug} missing accessible carousel semantics`);
+    if (!html.includes("data-carousel-prev") || !html.includes("data-carousel-next") || !html.includes("data-carousel-toggle")) failures.push(`${slug} missing carousel controls`);
+    if (countMatches(html, /data-carousel-dot="[0-9]+"/g) !== 3) failures.push(`${slug} must have three carousel dot buttons`);
+    if (html.includes("service-gallery-dots\" aria-hidden")) failures.push(`${slug} still exposes decorative-only carousel dots`);
     if (html.includes("service-auto-gallery.webp") || html.includes("service-homeowners-gallery.webp") || html.includes("service-commercial-gallery.webp") || html.includes("service-life-gallery.webp") || html.includes("service-renters-gallery.webp")) failures.push(`${slug} still references old gallery-strip service art`);
     if (html.includes("service-auto-insurance.svg") || html.includes("service-homeowners-insurance.svg") || html.includes("service-commercial-insurance.svg") || html.includes("service-life-insurance.svg") || html.includes("service-renters-insurance.svg")) failures.push(`${slug} still references old SVG service art`);
     if (html.includes("showcase-logo")) failures.push(`${slug} should use service-specific imagery instead of the banner logo hero image`);
@@ -129,7 +134,7 @@ for (const slug of requiredSlugs) {
 
   const imgTags = html.match(/<img\b[^>]*>/gi) || [];
   for (const img of imgTags) {
-    if (!/\salt="[^"]+"/i.test(img)) failures.push(`${slug || "home"} image missing alt text: ${img}`);
+    if (!/\salt="[^"]*"/i.test(img)) failures.push(`${slug || "home"} image missing alt attribute: ${img}`);
   }
 
   const hrefs = [...html.matchAll(/\shref="([^"]+)"/gi)]
@@ -208,8 +213,11 @@ if (!fs.existsSync(styles)) {
   for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!css.includes(required)) failures.push(`CSS missing liquid glass styling: ${required}`);
   }
-  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-gallery[data-in-view=\"true\"] .service-slide", ".service-gallery-dots", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
+  for (const required of ["trust-marquee", ".trust-ticker[data-in-view=\"true\"] .trust-track", ".service-carousel-viewport", ".service-gallery-controls", ".service-gallery-dots button[aria-current=\"true\"]", ".coverage-link-rail", "translate3d(0, 28px, 0)", ".faq summary::after", "white-space: nowrap"]) {
     if (!css.includes(required)) failures.push(`CSS missing polish styling: ${required}`);
+  }
+  for (const legacy of ["service-slide-one", "service-slide-two", "service-slide-three", "service-dot-one"]) {
+    if (css.includes(legacy)) failures.push(`CSS still contains legacy timer animation: ${legacy}`);
   }
 }
 
@@ -221,7 +229,11 @@ if (!fs.existsSync(js)) {
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
   if (!script.includes("window.location.assign")) failures.push("JS missing secure quote redirect");
+  if (!script.includes("data-carousel-viewport")) failures.push("JS missing accessible carousel controller");
+  if (!script.includes("visibilitychange")) failures.push("JS missing tab visibility media pausing");
 }
+
+if (checkDist && fs.existsSync(path.join(siteRoot, "assets", "site.entry.js"))) failures.push("dist must not expose the unbundled browser entry");
 
 if (!checkDist) {
   const server = path.join(root, "server.js");

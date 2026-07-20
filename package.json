@@ -5,15 +5,23 @@
   "packageManager": "pnpm@11.7.0",
   "description": "GoDaddy Beta Apps Node.js site for Your Family First Insurance Office #3.",
   "scripts": {
-    "generate": "node scripts/generate-site.mjs",
-    "lint": "node scripts/validate-site.mjs",
-    "test": "node scripts/validate-site.mjs",
+    "generate:source": "node scripts/generate-site.mjs",
+    "bundle": "node scripts/bundle-site.mjs",
+    "generate": "pnpm generate:source && pnpm bundle",
+    "check:content": "node scripts/validate-content.mjs",
+    "check:html": "html-validate index.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
+    "check:spelling": "cspell --no-progress --show-suggestions docs/*.md *.md content/*.json index.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
+    "check": "pnpm generate && pnpm lint && pnpm check:html && pnpm check:spelling",
+    "lint": "pnpm check:content && node scripts/validate-site.mjs",
+    "test": "pnpm lint",
     "build": "node scripts/build-static.mjs",
     "start": "node server.js",
     "preview": "PORT=4174 node server.js",
     "qa": "playwright test",
     "qa:visual": "playwright test",
-    "playwright:install": "playwright install chromium"
+    "qa:lighthouse": "lhci autorun --config=lighthouserc.json",
+    "media:transcode": "node scripts/transcode-media.mjs",
+    "playwright:install": "playwright install --with-deps chromium firefox webkit"
   },
   "keywords": [
     "insurance",
@@ -23,10 +31,21 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "express": "^4.19.2"
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-fade": "^8.6.0",
+    "express": "^4.19.2",
+    "gsap": "^3.15.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
-    "@playwright/test": "^1.61.1"
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.61.1",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "cspell": "^10.0.1",
+    "esbuild": "^0.28.1",
+    "html-validate": "^11.5.6",
+    "sharp": "^0.35.3",
+    "svgo": "^4.0.2"
   }
 }

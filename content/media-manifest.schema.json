@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourfamilyfirstinsurance3.com/schemas/media-manifest.schema.json",
+  "title": "YFFI3 production media manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "services"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "services": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "label", "scene", "galleryAlt", "items", "premiumVideoSearchBrief"],
+        "properties": {
+          "slug": { "enum": ["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"] },
+          "label": { "type": "string", "minLength": 2 },
+          "scene": { "type": "string", "minLength": 2 },
+          "galleryAlt": { "type": "string", "minLength": 15 },
+          "premiumVideoSearchBrief": { "type": "string", "minLength": 20 },
+          "items": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "type", "src", "fallbackSrc", "alt", "sourceProvider", "sourceUrl", "license", "licenseProof", "approvedForProduction", "editorialOnly", "attributionRequired"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "type": { "enum": ["image", "video"] },
+                "src": { "type": "string", "pattern": "^/assets/yffi3/" },
+                "fallbackSrc": { "type": "string", "pattern": "^/assets/yffi3/" },
+                "poster": { "type": "string", "pattern": "^/assets/yffi3/" },
+                "alt": { "type": "string", "minLength": 12 },
+                "sourceProvider": { "type": "string", "minLength": 3 },
+                "sourceUrl": { "type": "string", "minLength": 8 },
+                "license": { "type": "string", "minLength": 8 },
+                "licenseProof": { "type": "string", "minLength": 8 },
+                "approvedForProduction": { "type": "boolean" },
+                "editorialOnly": { "type": "boolean" },
+                "attributionRequired": { "type": "boolean" }
+              },
+              "allOf": [
+                {
+                  "if": { "properties": { "type": { "const": "video" } } },
+                  "then": {
+                    "required": ["poster"],
+                    "properties": { "poster": { "type": "string", "pattern": "^/assets/yffi3/" } }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

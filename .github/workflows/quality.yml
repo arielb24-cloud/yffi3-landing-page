@@ -1,39 +1,85 @@
-name: quality
+name: Website quality
 
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build-and-qa:
+  build-and-browser-qa:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6.0.9
         with:
           version: 11.7.0
+          run_install: false
 
-      - name: Set up Node
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: Generate and validate source
+        run: pnpm check
 
-      - name: Lint static site
-        run: pnpm run lint
+      - name: Build production export
+        run: pnpm build
 
-      - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
+      - name: Install browser runtimes
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
 
-      - name: Run Playwright visual and accessibility smoke tests
-        run: pnpm run qa
+      - name: Run cross-browser and accessibility QA
+        run: pnpm qa
+
+      - name: Run Lighthouse budgets
+        run: pnpm qa:lighthouse
+
+      - name: Upload browser diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-diagnostics
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  prose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Review prose and prohibited claims
+        uses: vale-cli/vale-action@v2.1.2
+        with:
+          version: 3.15.1
+          files: '["docs", "README.md", "DEPLOYMENT.md", "SEO_AI_FINDABILITY_NOTES.md"]'
+          fail_on_error: true
+          filter_mode: nofilter
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check documentation links
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: --verbose --no-progress --exclude-mail docs README.md DEPLOYMENT.md SEO_AI_FINDABILITY_NOTES.md
+          fail: true

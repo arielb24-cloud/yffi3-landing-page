@@ -1,0 +1,261 @@
+{
+  "$schema": "./media-manifest.schema.json",
+  "version": 1,
+  "services": [
+    {
+      "slug": "auto-insurance",
+      "label": "Auto Insurance",
+      "scene": "Miami commute visual",
+      "galleryAlt": "Miami auto insurance media gallery with a premium car, refined vehicle details, and a Florida home arrival",
+      "premiumVideoSearchBrief": "Licensed commercial footage: luxury or niche car driving at blue hour, sunset, or night in Miami-style streets; no visible plates, logos, unsafe driving, or identifiable people.",
+      "items": [
+        {
+          "id": "auto-city-car",
+          "type": "image",
+          "src": "/assets/yffi3/service-auto-slide-1.webp",
+          "fallbackSrc": "/assets/yffi3/service-auto-slide-1.jpg",
+          "alt": "Premium car on a palm-lined Miami-style city street",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-auto-slide-1",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "auto-console-details",
+          "type": "image",
+          "src": "/assets/yffi3/service-auto-slide-2.webp",
+          "fallbackSrc": "/assets/yffi3/service-auto-slide-2.jpg",
+          "alt": "Refined vehicle keys and premium console details",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-auto-slide-2",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "auto-florida-arrival",
+          "type": "image",
+          "src": "/assets/yffi3/service-auto-slide-3.webp",
+          "fallbackSrc": "/assets/yffi3/service-auto-slide-3.jpg",
+          "alt": "Family vehicle arriving at a Florida-style home",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-auto-slide-3",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        }
+      ]
+    },
+    {
+      "slug": "home-insurance",
+      "label": "Homeowners Insurance",
+      "scene": "Florida home visual",
+      "galleryAlt": "Homeowners insurance media gallery with a Florida home exterior, roof details, and an elegant interior",
+      "premiumVideoSearchBrief": "Licensed commercial footage: cinematic modern mansion exterior or luxury home at sunset, blue hour, or warm night lighting; slow architectural movement, no listing watermarks or identifiable residents.",
+      "items": [
+        {
+          "id": "home-warm-exterior",
+          "type": "image",
+          "src": "/assets/yffi3/service-homeowners-slide-1.webp",
+          "fallbackSrc": "/assets/yffi3/service-homeowners-slide-1.jpg",
+          "alt": "Florida home with palm trees and warm exterior lighting",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-homeowners-slide-1",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "home-roofline",
+          "type": "image",
+          "src": "/assets/yffi3/service-homeowners-slide-2.webp",
+          "fallbackSrc": "/assets/yffi3/service-homeowners-slide-2.jpg",
+          "alt": "Roofline and exterior details on a modern Florida home",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-homeowners-slide-2",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "home-calm-interior",
+          "type": "image",
+          "src": "/assets/yffi3/service-homeowners-slide-3.webp",
+          "fallbackSrc": "/assets/yffi3/service-homeowners-slide-3.jpg",
+          "alt": "Calm luxury living room with warm Miami natural light",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-homeowners-slide-3",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        }
+      ]
+    },
+    {
+      "slug": "commercial-insurance",
+      "label": "Commercial Insurance",
+      "scene": "Business coverage visual",
+      "galleryAlt": "Commercial insurance media gallery with a polished storefront, professional office, and business vehicles",
+      "premiumVideoSearchBrief": "Licensed commercial footage: polished business district, boutique storefront, executive office, or premium commercial vehicles in motion at golden hour or night; no company trademarks or readable plates.",
+      "items": [
+        {
+          "id": "commercial-storefront",
+          "type": "image",
+          "src": "/assets/yffi3/service-commercial-slide-1.webp",
+          "fallbackSrc": "/assets/yffi3/service-commercial-slide-1.jpg",
+          "alt": "Polished Miami-style business storefront",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-commercial-slide-1",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "commercial-conference-room",
+          "type": "image",
+          "src": "/assets/yffi3/service-commercial-slide-2.webp",
+          "fallbackSrc": "/assets/yffi3/service-commercial-slide-2.jpg",
+          "alt": "Professional office conference room with premium finishes",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-commercial-slide-2",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "commercial-vehicles",
+          "type": "image",
+          "src": "/assets/yffi3/service-commercial-slide-3.webp",
+          "fallbackSrc": "/assets/yffi3/service-commercial-slide-3.jpg",
+          "alt": "Business vehicles outside a modern commercial workspace",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-commercial-slide-3",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        }
+      ]
+    },
+    {
+      "slug": "life-insurance",
+      "label": "Life Insurance",
+      "scene": "Family planning visual",
+      "galleryAlt": "Life insurance media gallery with planning documents, refined home details, and a calm long-term planning mood",
+      "premiumVideoSearchBrief": "Licensed commercial footage: elegant home details, quiet legacy-planning desk, warm sunset interiors, or tranquil aspirational lifestyle without staged testimonials or identifiable people.",
+      "items": [
+        {
+          "id": "life-planning-desk",
+          "type": "image",
+          "src": "/assets/yffi3/service-life-slide-1.webp",
+          "fallbackSrc": "/assets/yffi3/service-life-slide-1.jpg",
+          "alt": "Planning notes in a calm premium home workspace",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-life-slide-1",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "life-keys-planning",
+          "type": "image",
+          "src": "/assets/yffi3/service-life-slide-2.webp",
+          "fallbackSrc": "/assets/yffi3/service-life-slide-2.jpg",
+          "alt": "Keys and personal planning details on a warm table",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-life-slide-2",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "life-calm-hallway",
+          "type": "image",
+          "src": "/assets/yffi3/service-life-slide-3.webp",
+          "fallbackSrc": "/assets/yffi3/service-life-slide-3.jpg",
+          "alt": "Peaceful home hallway with a long-term planning mood",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-life-slide-3",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        }
+      ]
+    },
+    {
+      "slug": "renters-insurance",
+      "label": "Renters Insurance",
+      "scene": "Apartment coverage visual",
+      "galleryAlt": "Renters insurance media gallery with a modern apartment, personal property details, and an elegant entry corridor",
+      "premiumVideoSearchBrief": "Licensed commercial footage: modern luxury apartment interior, high-rise view, elegant corridor, or keys and move-in details at blue hour; no real-estate listing watermark or identifiable tenant.",
+      "items": [
+        {
+          "id": "renters-living-room",
+          "type": "image",
+          "src": "/assets/yffi3/service-renters-slide-1.webp",
+          "fallbackSrc": "/assets/yffi3/service-renters-slide-1.jpg",
+          "alt": "Modern Miami-style apartment living room",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-renters-slide-1",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "renters-keys-property",
+          "type": "image",
+          "src": "/assets/yffi3/service-renters-slide-2.webp",
+          "fallbackSrc": "/assets/yffi3/service-renters-slide-2.jpg",
+          "alt": "Apartment keys beside refined personal property details",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-renters-slide-2",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        },
+        {
+          "id": "renters-entry-corridor",
+          "type": "image",
+          "src": "/assets/yffi3/service-renters-slide-3.webp",
+          "fallbackSrc": "/assets/yffi3/service-renters-slide-3.jpg",
+          "alt": "Luxury apartment corridor and private entry area",
+          "sourceProvider": "Existing YFFI3 project asset",
+          "sourceUrl": "repository://public/assets/yffi3/service-renters-slide-3",
+          "license": "Owner-provided existing website asset",
+          "licenseProof": "Repository history and owner-provided project files",
+          "approvedForProduction": true,
+          "editorialOnly": false,
+          "attributionRequired": false
+        }
+      ]
+    }
+  ]
+}

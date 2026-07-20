@@ -1,0 +1,13 @@
+extends: existence
+message: "Review this insurance claim before publication: '%s'."
+level: error
+ignorecase: true
+tokens:
+  - guaranteed cheapest
+  - guaranteed savings
+  - instant approval
+  - guaranteed approval
+  - official partner
+  - authorized carrier partner
+  - award-winning
+  - top-rated
