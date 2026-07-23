@@ -26,7 +26,8 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
   let cursorY = -80;
   const syncCursor = () => {
     cursorFrame = 0;
-    cursorOrb.style.transform = "translate3d(" + (cursorX - 11) + "px, " + (cursorY - 11) + "px, 0)";
+    cursorOrb.style.setProperty("--cursor-x", (cursorX - 11) + "px");
+    cursorOrb.style.setProperty("--cursor-y", (cursorY - 11) + "px");
   };
 
   window.addEventListener("pointermove", (event) => {
@@ -430,28 +431,35 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     "rgba(119, 231, 220, 0.78)"
   ];
   let liveParticles = 0;
-  const spawnLiquidParticles = (event, count = 5) => {
-    if (!event?.currentTarget || document.hidden || liveParticles > 46) return;
+  const spawnLiquidParticles = (event, count = 5, mode = "burst") => {
+    if (!event?.currentTarget || document.hidden || liveParticles > 64) return;
     const surface = event.currentTarget;
     const now = Date.now();
-    const last = Number(surface.dataset.particleAt || 0);
-    if (now - last < 190) return;
-    surface.dataset.particleAt = String(now);
+    const stampKey = mode === "trail" ? "particleTrailAt" : "particleAt";
+    const last = Number(surface.dataset[stampKey] || 0);
+    const cooldown = mode === "trail" ? 160 : 175;
+    if (now - last < cooldown) return;
+    surface.dataset[stampKey] = String(now);
     const rect = surface.getBoundingClientRect();
     const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
     const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
     for (let index = 0; index < count; index += 1) {
       const particle = document.createElement("span");
-      const angle = (Math.PI * 2 * index) / count + Math.random() * 0.58;
-      const distance = 16 + Math.random() * 34;
-      const size = 3 + Math.random() * 5;
+      const angle = (Math.PI * 2 * index) / Math.max(1, count) + Math.random() * 0.74;
+      const distance = (mode === "trail" ? 12 : 20) + Math.random() * (mode === "trail" ? 18 : 42);
+      const size = (mode === "trail" ? 2.4 : 3.4) + Math.random() * (mode === "trail" ? 3.1 : 5.8);
+      const color = particleColors[Math.floor(Math.random() * particleColors.length)];
       particle.className = "liquid-particle";
-      particle.style.setProperty("--particle-x", (baseX + (Math.random() - 0.5) * 18).toFixed(1) + "px");
-      particle.style.setProperty("--particle-y", (baseY + (Math.random() - 0.5) * 14).toFixed(1) + "px");
-      particle.style.setProperty("--particle-dx", Math.cos(angle) * distance + "px");
-      particle.style.setProperty("--particle-dy", Math.sin(angle) * distance - 18 + "px");
+      particle.style.setProperty("--particle-x", (baseX + (Math.random() - 0.5) * 20).toFixed(1) + "px");
+      particle.style.setProperty("--particle-y", (baseY + (Math.random() - 0.5) * 16).toFixed(1) + "px");
+      particle.style.setProperty("--particle-dx", (Math.cos(angle) * distance).toFixed(1) + "px");
+      particle.style.setProperty("--particle-dy", (Math.sin(angle) * distance - 22 - Math.random() * 16).toFixed(1) + "px");
       particle.style.setProperty("--particle-size", size.toFixed(1) + "px");
-      particle.style.setProperty("--particle-color", particleColors[index % particleColors.length]);
+      particle.style.setProperty("--particle-color", color);
+      particle.style.setProperty("--particle-angle", ((angle * 180) / Math.PI).toFixed(1) + "deg");
+      particle.style.setProperty("--particle-spin", (40 + Math.random() * 120).toFixed(1) + "deg");
+      particle.style.setProperty("--particle-tail", (12 + distance * 0.38).toFixed(1) + "px");
+      particle.style.setProperty("--particle-duration", (mode === "trail" ? 660 + Math.random() * 220 : 820 + Math.random() * 300).toFixed(0) + "ms");
       liveParticles += 1;
       document.body.append(particle);
       particle.addEventListener("animationend", () => {
@@ -492,13 +500,13 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     let lastEvent = null;
 
     surface.addEventListener("pointerenter", (event) => {
-      const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card");
-      spawnLiquidParticles(event, stronger ? 7 : 4);
+      const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card, .review-qr-card");
+      spawnLiquidParticles(event, stronger ? 10 : 5);
     }, { passive: true });
 
     surface.addEventListener("click", (event) => {
       if (surface.matches("a, button, .button, .carousel-chip, .real-review-mini")) {
-        spawnLiquidParticles(event, 9);
+        spawnLiquidParticles(event, 13);
       }
     });
 
@@ -513,6 +521,9 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
         const y = (lastEvent.clientY - rect.top) / rect.height;
         surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
         surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
+        if (surface.matches(".button, .motion-carousel, .coverage-card, .review-source-card, .review-qr-card") && liveParticles < 38) {
+          spawnLiquidParticles(lastEvent, 1, "trail");
+        }
         if (surface.classList.contains("liquid-tilt")) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
