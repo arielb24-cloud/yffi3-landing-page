@@ -81,5 +81,7 @@ jobs:
       - name: Check documentation links
         uses: lycheeverse/lychee-action@v2.9.0
         with:
-          args: --verbose --no-progress docs README.md DEPLOYMENT.md SEO_AI_FINDABILITY_NOTES.md
+          # Pexels blocks automated CI clients with 403 responses; asset provenance
+          # remains documented and production media is self-hosted.
+          args: --verbose --no-progress --exclude '^https://www\.pexels\.com/' docs README.md DEPLOYMENT.md SEO_AI_FINDABILITY_NOTES.md
           fail: true
