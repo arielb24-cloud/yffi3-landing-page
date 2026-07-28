@@ -6,6 +6,7 @@ playwright-report/
 playwright-screenshots/
 audit-screenshots/
 test-results/
+.lighthouseci/
 *.zip
 .env
 .env.*

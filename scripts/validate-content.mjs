@@ -70,6 +70,12 @@ for (const service of media.services) {
       if (/owner-provided existing website asset/i.test(item.license)) failures.push(`${item.id} video needs an asset-specific commercial license record`);
     } else if (!/\.webp$/i.test(item.src) || !/\.jpe?g$/i.test(item.fallbackSrc)) {
       failures.push(`${item.id} image must provide WebP src and JPEG fallbackSrc`);
+    } else {
+      for (const width of [480, 600, 720]) {
+        const responsivePath = item.src.replace(/\.webp$/i, `-${width}.webp`);
+        const filePath = path.join(root, "public", responsivePath.replace(/^\/assets\//, "assets/"));
+        if (!fs.existsSync(filePath)) failures.push(`${item.id} missing ${width}px responsive derivative: ${responsivePath}`);
+      }
     }
   }
 }
@@ -80,6 +86,21 @@ for (const slug of expectedServices) {
 
 if (!facts.quoteDestination.endsWith("id=64868")) failures.push("Verified quote destination must retain Office #3 account ID 64868");
 if (facts.approvedAssetPaths.officialLogo !== "/assets/yffi3/yffi3-official-franchise-logo.png") failures.push("Official logo path changed");
+for (const responsiveAsset of [
+  "/assets/yffi3/yffi3-official-franchise-logo-480.webp",
+  "/assets/yffi3/yffi3-official-franchise-logo-240.webp",
+  "/assets/yffi3/yffi3-official-franchise-logo-800.webp",
+  "/assets/yffi3/yffi3-original-franchise-logo-160.webp",
+  "/assets/yffi3/yffi3-original-franchise-logo-320.webp",
+  "/assets/yffi3/yffi3-family-office-photo-480.webp",
+  "/assets/yffi3/yffi3-family-office-photo-720.webp",
+  "/assets/yffi3/yffi3-principal-agent-ariel-busutil-720.webp",
+  "/assets/yffi3/yffi3-quote-qr-240.webp"
+]) {
+  if (!fs.existsSync(path.join(root, "public", responsiveAsset.replace(/^\/assets\//, "assets/")))) {
+    failures.push(`Missing responsive approved-asset derivative: ${responsiveAsset}`);
+  }
+}
 
 if (failures.length) {
   console.error("Content validation failed:");

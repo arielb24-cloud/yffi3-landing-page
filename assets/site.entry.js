@@ -5,12 +5,41 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("#site-nav");
+const spanish = document.documentElement.lang === "es-US";
+const interfaceCopy = spanish ? {
+  openMenu: "Abrir navegación",
+  closeMenu: "Cerrar navegación",
+  resume: "Reanudar rotación automática",
+  pause: "Pausar rotación automática",
+  previous: "Video anterior seleccionado.",
+  next: "Siguiente video seleccionado.",
+  selected: (index, total) => "Video " + index + " de " + total + " seleccionado.",
+  paused: "Rotación automática en pausa.",
+  resumed: "Rotación automática reanudada.",
+  received: "Gracias. La solicitud fue recibida.",
+  incomplete: "Complete los campos de contacto obligatorios antes de continuar.",
+  opening: "Abriendo el formulario seguro de cotización..."
+} : {
+  openMenu: "Open navigation",
+  closeMenu: "Close navigation",
+  resume: "Resume automatic rotation",
+  pause: "Pause automatic rotation",
+  previous: "Previous visual selected.",
+  next: "Next visual selected.",
+  selected: (index, total) => "Visual " + index + " of " + total + " selected.",
+  paused: "Automatic rotation paused.",
+  resumed: "Automatic rotation resumed.",
+  received: "Thanks. The request has been received.",
+  incomplete: "Please complete the required contact fields before sending.",
+  opening: "Opening the secure quote form..."
+};
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
     const isOpen = siteNav.getAttribute("data-open") === "true";
     siteNav.setAttribute("data-open", String(!isOpen));
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? interfaceCopy.openMenu : interfaceCopy.closeMenu);
   });
 }
 
@@ -27,14 +56,14 @@ if (revealItems.length) {
       const direction = item.getAttribute("data-reveal");
       const x = direction === "left" ? -24 : direction === "right" ? 24 : 0;
       gsap.fromTo(item,
-        { autoAlpha: 0, x, y: direction === "left" || direction === "right" ? 0 : 24 },
+        { opacity: 0.82, x, y: direction === "left" || direction === "right" ? 0 : 24 },
         {
-          autoAlpha: 1,
+          opacity: 1,
           x: 0,
           y: 0,
           duration: 0.72,
           ease: "power3.out",
-          clearProps: "opacity,visibility,transform",
+          clearProps: "opacity,transform",
           onComplete: () => item.classList.add("is-visible"),
           scrollTrigger: { trigger: item, start: "top 88%", once: true }
         }
@@ -120,7 +149,7 @@ document.querySelectorAll("[data-service-carousel]").forEach((root) => {
     const unavailable = reducedMotion || saveData;
     toggle.hidden = unavailable;
     toggle.setAttribute("aria-pressed", String(userPaused));
-    toggle.setAttribute("aria-label", userPaused ? "Resume automatic rotation" : "Pause automatic rotation");
+    toggle.setAttribute("aria-label", userPaused ? interfaceCopy.resume : interfaceCopy.pause);
     if (toggleSymbol) toggleSymbol.textContent = userPaused ? "▶" : "Ⅱ";
   };
 
@@ -141,31 +170,31 @@ document.querySelectorAll("[data-service-carousel]").forEach((root) => {
 
   previous && previous.addEventListener("click", () => {
     embla.scrollPrev();
-    announce("Previous visual selected.");
+    announce(interfaceCopy.previous);
   });
   next && next.addEventListener("click", () => {
     embla.scrollNext();
-    announce("Next visual selected.");
+    announce(interfaceCopy.next);
   });
   dots.forEach((dot, index) => dot.addEventListener("click", () => {
     embla.scrollTo(index);
-    announce("Visual " + (index + 1) + " of " + slides.length + " selected.");
+    announce(interfaceCopy.selected(index + 1, slides.length));
   }));
   toggle && toggle.addEventListener("click", () => {
     userPaused = !userPaused;
     updateToggle();
-    announce(userPaused ? "Automatic rotation paused." : "Automatic rotation resumed.");
+    announce(userPaused ? interfaceCopy.paused : interfaceCopy.resumed);
     schedule();
   });
   root.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       embla.scrollPrev();
-      announce("Previous visual selected.");
+      announce(interfaceCopy.previous);
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
       embla.scrollNext();
-      announce("Next visual selected.");
+      announce(interfaceCopy.next);
     }
   });
   root.addEventListener("pointerenter", () => {
@@ -207,23 +236,11 @@ document.querySelectorAll("[data-service-carousel]").forEach((root) => {
   root.dataset.ready = "true";
 });
 
-if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   const hoverSurfaceSelector = [
     ".liquid-tilt",
     ".button",
-    ".coverage-card",
-    ".detail-card",
-    ".intent-card",
-    ".quote-form",
-    ".service-cta",
-    ".trust-strip article",
-    ".why-grid article",
-    ".notice-card",
-    ".callout",
-    ".qr-card",
-    ".faq details",
-    ".about-media",
-    ".franchise-card"
+    ".coverage-card"
   ].join(",");
 
   document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
@@ -276,16 +293,16 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
     const honeypot = form.querySelector('[name="companyWebsite"]');
     fields.forEach(markValidity);
     if (honeypot && honeypot.value) {
-      if (status) status.textContent = "Thanks. The request has been received.";
+      if (status) status.textContent = interfaceCopy.received;
       form.reset();
       return;
     }
     if (!form.checkValidity()) {
       form.reportValidity();
-      if (status) status.textContent = "Please complete the required contact fields before sending.";
+      if (status) status.textContent = interfaceCopy.incomplete;
       return;
     }
-    if (status) status.textContent = "Opening the secure quote form...";
+    if (status) status.textContent = interfaceCopy.opening;
     window.location.assign(form.dataset.quoteDestination || form.action);
   });
 });

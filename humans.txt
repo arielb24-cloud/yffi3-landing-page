@@ -9,3 +9,4 @@ Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express
 Brand note: Official franchise logo/sign must remain unchanged.
 Privacy note: The quote form opens the secure ConsumerRateQuotes intake URL provided for Office #3 after local required-field validation.
 Quote path: ConsumerRateQuotes account ID 64868.
+Google review path: https://g.page/r/CfCEW-Ye4vpMEAE/review

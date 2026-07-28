@@ -19,13 +19,13 @@ function copyIfExists(from, to) {
 
 run(process.execPath, ["scripts/validate-content.mjs"]);
 run(process.execPath, ["scripts/generate-site.mjs"]);
-run(process.execPath, ["scripts/bundle-site.mjs"]);
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
 const entries = [
   "index.html",
+  "404.html",
   "favicon.ico",
   "auto-insurance",
   "home-insurance",
@@ -36,6 +36,7 @@ const entries = [
   "get-a-quote",
   "privacy-policy",
   "terms",
+  "es",
   "assets",
   ".htaccess",
   "robots.txt",
@@ -58,5 +59,6 @@ fs.rmSync(path.join(dist, "assets", "site 2.js"), { force: true });
 fs.rmSync(path.join(dist, "assets", "yffi3", "README.md"), { force: true });
 
 run(process.execPath, ["scripts/validate-site.mjs", "--dist"]);
+run(process.execPath, ["scripts/validate-bilingual.mjs", "--dist"]);
 
 console.log(`Built static export in ${dist}`);

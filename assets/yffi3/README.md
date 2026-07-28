@@ -8,15 +8,9 @@ Place the approved Office #3 assets in this folder before publishing:
 - yffi3-principal-agent-ariel-busutil.jpg
 - yffi3-original-franchise-logo.png
 - yffi3-quote-qr.jpeg
-- service-auto-slide-1.webp through service-auto-slide-3.webp
-- service-auto-slide-1.jpg through service-auto-slide-3.jpg
-- service-homeowners-slide-1.webp through service-homeowners-slide-3.webp
-- service-homeowners-slide-1.jpg through service-homeowners-slide-3.jpg
-- service-commercial-slide-1.webp through service-commercial-slide-3.webp
-- service-commercial-slide-1.jpg through service-commercial-slide-3.jpg
-- service-life-slide-1.webp through service-life-slide-3.webp
-- service-life-slide-1.jpg through service-life-slide-3.jpg
-- service-renters-slide-1.webp through service-renters-slide-3.webp
-- service-renters-slide-1.jpg through service-renters-slide-3.jpg
 
-Do not replace these with generated images or a redesigned logo. The HTML references these exact files as brand/compliance assets.
+Do not replace the official franchise assets with generated images or a redesigned logo.
+
+The carousel inventory lives in `/src/data/carouselMedia.js`. Update that manifest first whenever replacing media, then run `pnpm run build` so `scripts/validate-carousel-assets.mjs` can catch duplicate paths, missing alt text, missing license notes, page-off-topic slides, or any static carousel slide.
+
+Most carousel videos now live under `/public/media/premium-carousel/`; the approved family beach life clip remains under `/public/media/carousel/life/`. Keep carousel media local, muted, loopable, optimized, page-specific, and unique. Do not hotlink external media in production, and do not reintroduce static image slides.

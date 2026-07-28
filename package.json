@@ -7,12 +7,14 @@
   "scripts": {
     "generate:source": "node scripts/generate-site.mjs",
     "bundle": "node scripts/bundle-site.mjs",
-    "generate": "pnpm generate:source && pnpm bundle",
+    "generate": "pnpm generate:source",
     "check:content": "node scripts/validate-content.mjs",
-    "check:html": "html-validate index.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
-    "check:spelling": "cspell --no-progress --show-suggestions docs/*.md *.md content/*.json index.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
+    "check:carousel": "node scripts/validate-carousel-assets.mjs",
+    "check:html": "html-validate index.html 404.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html es/index.html es/404.html es/seguro-de-auto/index.html es/seguro-de-vivienda/index.html es/seguro-de-inquilinos/index.html es/seguro-comercial/index.html es/seguro-de-vida/index.html es/sobre-oficina-3/index.html es/solicitar-cotizacion/index.html es/privacidad/index.html es/terminos/index.html",
+    "check:bilingual": "node scripts/validate-bilingual.mjs",
+    "check:spelling": "cspell --no-progress --show-suggestions docs/*.md *.md content/*.json index.html 404.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
     "check": "pnpm generate && pnpm lint && pnpm check:html && pnpm check:spelling",
-    "lint": "pnpm check:content && node scripts/validate-site.mjs",
+    "lint": "pnpm check:content && pnpm check:carousel && node scripts/validate-site.mjs && pnpm check:bilingual",
     "test": "pnpm lint",
     "build": "node scripts/build-static.mjs",
     "start": "node server.js",
@@ -21,6 +23,7 @@
     "qa:visual": "playwright test",
     "qa:lighthouse": "lhci autorun --config=lighthouserc.json",
     "media:transcode": "node scripts/transcode-media.mjs",
+    "images:responsive": "node scripts/generate-responsive-images.mjs",
     "playwright:install": "playwright install --with-deps chromium firefox webkit"
   },
   "keywords": [
@@ -31,6 +34,7 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
+    "compression": "^1.8.1",
     "embla-carousel": "^8.6.0",
     "embla-carousel-fade": "^8.6.0",
     "express": "^4.19.2",
@@ -38,6 +42,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
+    "@cspell/dict-es-es": "^3.0.8",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.61.1",
     "ajv": "^8.20.0",

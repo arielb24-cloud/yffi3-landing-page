@@ -9,7 +9,7 @@
     "sms": "sms:+13059108850"
   },
   "address": {
-    "streetAddress": "11200 W Flagler St, Ste 108",
+    "streetAddress": "11200 W Flagler St, Suite 108",
     "addressLocality": "Miami",
     "addressRegion": "FL",
     "postalCode": "33174",
@@ -18,30 +18,15 @@
   "quoteDestination": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868",
   "serviceAreas": [
     "West Flagler Miami",
-    "Miami",
-    "Kendall",
-    "Hialeah",
-    "Cutler Bay",
-    "Homestead",
-    "Miami-Dade",
-    "Florida"
+    "Miami"
   ],
   "insuranceTypes": [
     "Auto insurance",
-    "Home insurance",
     "Homeowners insurance",
     "Renters insurance",
-    "Condo insurance",
-    "Flood insurance",
-    "Motorcycle insurance",
-    "Boat insurance",
-    "RV insurance",
-    "Commercial insurance",
+    "Commercial and business insurance",
     "General liability insurance",
-    "Business insurance",
-    "Workers compensation",
-    "Life insurance",
-    "Health insurance"
+    "Life insurance"
   ],
   "approvedAssetPaths": {
     "officialLogo": "/assets/yffi3/yffi3-official-franchise-logo.png",

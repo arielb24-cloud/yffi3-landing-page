@@ -1,53 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/auto-insurance/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/auto-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/auto-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/auto-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/auto-insurance/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/home-insurance/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/home-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/home-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/home-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/home-insurance/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/commercial-insurance/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/commercial-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/commercial-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/seguro-comercial/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/commercial-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/commercial-insurance/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/life-insurance/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/life-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/life-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/life-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/life-insurance/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/renters-insurance/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/renters-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/renters-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/renters-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/renters-insurance/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/about-office-3/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/about-office-3/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/about-office-3/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/about-office-3/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/about-office-3/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/get-a-quote/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/get-a-quote/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/get-a-quote/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/get-a-quote/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/get-a-quote/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/privacy-policy/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/privacidad/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/privacy-policy/"/>
   </url>
   <url>
     <loc>https://yourfamilyfirstinsurance3.com/terms/</loc>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/terminos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/terms/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/terminos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/terms/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/terminos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/terms/"/>
   </url>
 </urlset>

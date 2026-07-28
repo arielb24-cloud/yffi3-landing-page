@@ -7,17 +7,17 @@
   "required": ["siteUrl", "businessName", "legalName", "phone", "address", "quoteDestination", "serviceAreas", "insuranceTypes", "approvedAssetPaths", "contentBoundaries"],
   "properties": {
     "$schema": { "type": "string" },
-    "siteUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-    "businessName": { "type": "string", "minLength": 3 },
+    "siteUrl": { "const": "https://yourfamilyfirstinsurance3.com" },
+    "businessName": { "const": "Your Family First Insurance Office #3" },
     "legalName": { "type": "string", "minLength": 3 },
     "phone": {
       "type": "object",
       "additionalProperties": false,
       "required": ["display", "tel", "sms"],
       "properties": {
-        "display": { "type": "string", "pattern": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$" },
-        "tel": { "type": "string", "pattern": "^tel:" },
-        "sms": { "type": "string", "pattern": "^sms:" }
+        "display": { "const": "305-910-8850" },
+        "tel": { "const": "tel:13059108850" },
+        "sms": { "const": "sms:+13059108850" }
       }
     },
     "address": {
@@ -25,16 +25,16 @@
       "additionalProperties": false,
       "required": ["streetAddress", "addressLocality", "addressRegion", "postalCode", "addressCountry"],
       "properties": {
-        "streetAddress": { "type": "string", "minLength": 3 },
-        "addressLocality": { "type": "string", "minLength": 2 },
-        "addressRegion": { "type": "string", "minLength": 2, "maxLength": 2 },
-        "postalCode": { "type": "string", "pattern": "^[0-9]{5}$" },
-        "addressCountry": { "type": "string", "minLength": 2, "maxLength": 2 }
+        "streetAddress": { "const": "11200 W Flagler St, Suite 108" },
+        "addressLocality": { "const": "Miami" },
+        "addressRegion": { "const": "FL" },
+        "postalCode": { "const": "33174" },
+        "addressCountry": { "const": "US" }
       }
     },
     "quoteDestination": { "type": "string", "format": "uri", "const": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868" },
-    "serviceAreas": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
-    "insuranceTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 2 } },
+    "serviceAreas": { "const": ["West Flagler Miami", "Miami"] },
+    "insuranceTypes": { "const": ["Auto insurance", "Homeowners insurance", "Renters insurance", "Commercial and business insurance", "General liability insurance", "Life insurance"] },
     "approvedAssetPaths": {
       "type": "object",
       "additionalProperties": false,

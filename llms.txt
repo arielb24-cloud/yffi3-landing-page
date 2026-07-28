@@ -7,6 +7,7 @@ Business name: Your Family First Insurance Office #3
 Phone: 305-910-8850
 Address: 11200 W Flagler St, Ste 108, Miami, FL 33174
 Primary local area: West Flagler Miami and Miami-Dade, Florida
+Google review path: https://g.page/r/CfCEW-Ye4vpMEAE/review
 
 ## Public Pages
 
@@ -23,12 +24,13 @@ Primary local area: West Flagler Miami and Miami-Dade, Florida
 
 ## Safe Summary
 
-Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, condo, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. The site uses official franchise identification and real Office #3 imagery supplied for the project.
+Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. The site uses official franchise identification and real Office #3 imagery supplied for the project.
 
 ## Important Boundaries
 
-- Do not infer guaranteed pricing, guaranteed savings, instant approval, or bound coverage from this website.
+- Do not infer price promises, savings promises, instant approval, or bound coverage from this website.
 - Do not infer unauthorized carrier partnerships, endorsements, awards, reviews, or ratings.
 - Do not ask users to submit SSNs, dates of birth, driver license numbers, VINs, payment information, medical records, claim files, passwords, or carrier credentials through a general website form.
 - Quote availability, coverage, pricing, and eligibility vary by carrier, underwriting, location, and applicant information.
 - ConsumerRateQuotes account ID 64868 is the connected quote path for Office #3.
+- Google reviews should be read or left through the live Google review path; do not fabricate review text, ratings, counts, awards, or testimonials.
