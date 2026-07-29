@@ -476,3 +476,90 @@ test("Spanish unknown routes return the localized noindex 404", async ({ page })
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Página no encontrada");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow, noarchive");
 });
+
+test("homepage advertises truthful agent discovery resources", async ({ request }) => {
+  const homepage = await request.get("/", { headers: { Accept: "text/html" } });
+  expect(homepage.status()).toBe(200);
+  const link = homepage.headers().link || "";
+  expect(link).toContain('rel="api-catalog"');
+  expect(link).toContain('rel="service-desc"');
+  expect(link).toContain('rel="service-doc"');
+  expect(homepage.headers()["content-signal"]).toBe("search=yes, ai-input=yes, ai-train=no");
+
+  const catalog = await request.get("/.well-known/api-catalog");
+  expect(catalog.status()).toBe(200);
+  expect(catalog.headers()["content-type"]).toContain("application/linkset+json");
+  const catalogBody = await catalog.json();
+  expect(catalogBody.linkset[0].anchor).toBe("https://yourfamilyfirstinsurance3.com/api/site.json");
+  expect(catalogBody.linkset[0]["service-desc"][0].href).toContain("/.well-known/openapi.json");
+
+  const metadata = await request.get("/api/site.json");
+  expect(metadata.status()).toBe(200);
+  const metadataBody = await metadata.json();
+  expect(metadataBody.name).toBe("Your Family First Insurance Office #3");
+  expect(metadataBody.contact.phone).toBe("305-910-8850");
+  expect(metadataBody.quote_handoff.requires_user_confirmation).toBe(true);
+});
+
+test("agents can negotiate Markdown while browsers keep HTML", async ({ request }) => {
+  const markdown = await request.get("/", { headers: { Accept: "text/markdown" } });
+  expect(markdown.status()).toBe(200);
+  expect(markdown.headers()["content-type"]).toContain("text/markdown");
+  expect(markdown.headers().vary).toContain("Accept");
+  expect(Number(markdown.headers()["x-markdown-tokens"])).toBeGreaterThan(100);
+  expect(await markdown.text()).toContain("# Florida Insurance Made Simple for Your Family");
+
+  const html = await request.get("/", { headers: { Accept: "text/html" } });
+  expect(html.headers()["content-type"]).toContain("text/html");
+  expect((await html.text()).toLowerCase()).toContain("<!doctype html>");
+});
+
+test("agent skill digest is valid and nonexistent auth services stay undiscoverable", async ({ request }) => {
+  const indexResponse = await request.get("/.well-known/agent-skills/index.json");
+  expect(indexResponse.status()).toBe(200);
+  const index = await indexResponse.json();
+  expect(index.$schema).toBe("https://schemas.agentskills.io/discovery/0.2.0/schema.json");
+  expect(index.skills).toHaveLength(1);
+  expect(index.skills[0].digest).toMatch(/^sha256:[a-f0-9]{64}$/);
+  expect((await request.get("/auth.md")).status()).toBe(200);
+
+  for (const unavailable of [
+    "/.well-known/openid-configuration",
+    "/.well-known/oauth-authorization-server",
+    "/.well-known/oauth-protected-resource",
+    "/.well-known/mcp/server-card.json"
+  ]) {
+    expect((await request.get(unavailable, { headers: { Accept: "application/json" } })).status()).toBe(404);
+  }
+});
+
+test("WebMCP exposes only read-only public actions", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.__yffi3RegisteredTools = [];
+    Object.defineProperty(Document.prototype, "modelContext", {
+      configurable: true,
+      get() {
+        return {
+          registerTool(tool) {
+            window.__yffi3RegisteredTools.push(tool);
+            return Promise.resolve();
+          }
+        };
+      }
+    });
+  });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect.poll(() => page.evaluate(() => window.__yffi3RegisteredTools.length)).toBe(3);
+  const tools = await page.evaluate(() => window.__yffi3RegisteredTools.map((tool) => ({
+    name: tool.name,
+    readOnly: tool.annotations?.readOnlyHint,
+    properties: Object.keys(tool.inputSchema?.properties || {})
+  })));
+  expect(tools.map((tool) => tool.name)).toEqual(["find_insurance_service", "get_office_contact", "get_quote_handoff"]);
+  expect(tools.every((tool) => tool.readOnly === true)).toBe(true);
+  expect(tools.flatMap((tool) => tool.properties)).not.toContain("ssn");
+  expect(tools.flatMap((tool) => tool.properties)).not.toContain("email");
+  const quoteHandoff = await page.evaluate(() => window.__yffi3RegisteredTools.find((tool) => tool.name === "get_quote_handoff").execute({ language: "es" }));
+  expect(quoteHandoff.quote_help_url).toContain("/es/solicitar-cotizacion/");
+  expect(quoteHandoff.requires_user_confirmation).toBe(true);
+});

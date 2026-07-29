@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://yourfamilyfirstinsurance3.com/api/site.json",
+      "service-desc": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/.well-known/openapi.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/docs/api.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/api/status.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

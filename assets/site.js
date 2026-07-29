@@ -707,6 +707,90 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
   });
 });
 
+const publicServiceTools = [
+  {
+    name: "find_insurance_service",
+    title: "Find an insurance service",
+    description: "Return the relevant public YFFI3 service page for one insurance category. This read-only tool does not quote, bind, or guarantee coverage.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        service: {
+          type: "string",
+          enum: ["auto", "homeowners", "renters", "commercial", "life"],
+          description: "Insurance category to locate."
+        },
+        language: {
+          type: "string",
+          enum: ["en", "es"],
+          description: "Preferred page language."
+        }
+      },
+      required: ["service"],
+      additionalProperties: false
+    },
+    annotations: { readOnlyHint: true, untrustedContentHint: false },
+    execute: async ({ service, language = "en" }) => {
+      const paths = {
+        auto: ["/auto-insurance/", "/es/seguro-de-auto/"],
+        homeowners: ["/home-insurance/", "/es/seguro-de-vivienda/"],
+        renters: ["/renters-insurance/", "/es/seguro-de-inquilinos/"],
+        commercial: ["/commercial-insurance/", "/es/seguro-comercial/"],
+        life: ["/life-insurance/", "/es/seguro-de-vida/"]
+      };
+      const pair = paths[service];
+      if (!pair) return { error: "Unsupported insurance category." };
+      return {
+        service,
+        url: new URL(pair[language === "es" ? 1 : 0], window.location.origin).href,
+        disclaimer: "Coverage, pricing, eligibility, discounts, and availability vary by carrier, underwriting, location, and applicant information."
+      };
+    }
+  },
+  {
+    name: "get_office_contact",
+    title: "Get Office #3 contact information",
+    description: "Return verified public contact and bilingual-service information for Your Family First Insurance Office #3.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true, untrustedContentHint: false },
+    execute: async () => ({
+      name: "Your Family First Insurance Office #3",
+      address: "11200 W Flagler St, Suite 108, Miami, FL 33174",
+      phone: "305-910-8850",
+      telephone_uri: "tel:13059108850",
+      languages: ["English", "Spanish"]
+    })
+  },
+  {
+    name: "get_quote_handoff",
+    title: "Get the safe quote handoff",
+    description: "Return the human-facing YFFI3 quote page and approved secure external intake URL. This read-only tool never submits data or navigates without user action.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        language: { type: "string", enum: ["en", "es"], description: "Preferred quote-help page language." }
+      },
+      additionalProperties: false
+    },
+    annotations: { readOnlyHint: true, untrustedContentHint: false },
+    execute: async ({ language = "en" } = {}) => ({
+      quote_help_url: new URL(language === "es" ? "/es/solicitar-cotizacion/" : "/get-a-quote/", window.location.origin).href,
+      secure_external_intake_url: "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868",
+      requires_user_confirmation: true,
+      sensitive_data_warning: "Do not provide SSNs, dates of birth, driver license numbers, VINs, payment data, medical records, claim files, passwords, or carrier credentials through a general website interaction."
+    })
+  }
+];
+
+const modelContext = document.modelContext || navigator.modelContext;
+if (modelContext && typeof modelContext.registerTool === "function") {
+  publicServiceTools.forEach((tool) => {
+    Promise.resolve(modelContext.registerTool(tool)).catch(() => {});
+  });
+} else if (navigator.modelContext && typeof navigator.modelContext.provideContext === "function") {
+  Promise.resolve(navigator.modelContext.provideContext({ tools: publicServiceTools })).catch(() => {});
+}
+
 
 document.addEventListener("visibilitychange", () => {
   document.querySelectorAll(".motion-video").forEach((video) => {

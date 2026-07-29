@@ -60,5 +60,6 @@ fs.rmSync(path.join(dist, "assets", "yffi3", "README.md"), { force: true });
 
 run(process.execPath, ["scripts/validate-site.mjs", "--dist"]);
 run(process.execPath, ["scripts/validate-bilingual.mjs", "--dist"]);
+run(process.execPath, ["scripts/validate-agent-discovery.mjs", "--dist"]);
 
 console.log(`Built static export in ${dist}`);

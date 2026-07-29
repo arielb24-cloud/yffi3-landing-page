@@ -1,0 +1,70 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "YFFI3 Public Site Metadata API",
+    "version": "1.0.0",
+    "description": "Read-only public business metadata. This API does not accept quote submissions, credentials, or sensitive underwriting data."
+  },
+  "servers": [
+    {
+      "url": "https://yourfamilyfirstinsurance3.com"
+    }
+  ],
+  "paths": {
+    "/api/site.json": {
+      "get": {
+        "operationId": "getPublicSiteMetadata",
+        "summary": "Get verified public office and insurance-service metadata",
+        "responses": {
+          "200": {
+            "description": "Public site metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status.json": {
+      "get": {
+        "operationId": "getPublicMetadataStatus",
+        "summary": "Get the availability document for the public metadata API",
+        "responses": {
+          "200": {
+            "description": "Availability document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "operationId": "getSiteHealth",
+        "summary": "Confirm that the public site origin is responding",
+        "responses": {
+          "200": {
+            "description": "Plain-text ok response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "const": "ok"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

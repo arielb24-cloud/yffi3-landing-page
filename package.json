@@ -11,10 +11,11 @@
     "check:content": "node scripts/validate-content.mjs",
     "check:carousel": "node scripts/validate-carousel-assets.mjs",
     "check:html": "html-validate index.html 404.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html es/index.html es/404.html es/seguro-de-auto/index.html es/seguro-de-vivienda/index.html es/seguro-de-inquilinos/index.html es/seguro-comercial/index.html es/seguro-de-vida/index.html es/sobre-oficina-3/index.html es/solicitar-cotizacion/index.html es/privacidad/index.html es/terminos/index.html",
+    "check:agents": "node scripts/validate-agent-discovery.mjs",
     "check:bilingual": "node scripts/validate-bilingual.mjs",
     "check:spelling": "cspell --no-progress --show-suggestions docs/*.md *.md content/*.json index.html 404.html auto-insurance/index.html home-insurance/index.html commercial-insurance/index.html life-insurance/index.html renters-insurance/index.html about-office-3/index.html get-a-quote/index.html privacy-policy/index.html terms/index.html",
     "check": "pnpm generate && pnpm lint && pnpm check:html && pnpm check:spelling",
-    "lint": "pnpm check:content && pnpm check:carousel && node scripts/validate-site.mjs && pnpm check:bilingual",
+    "lint": "pnpm check:content && pnpm check:carousel && pnpm check:agents && node scripts/validate-site.mjs && pnpm check:bilingual",
     "test": "pnpm lint",
     "build": "node scripts/build-static.mjs",
     "start": "node server.js",
@@ -51,6 +52,7 @@
     "esbuild": "^0.28.1",
     "html-validate": "^11.5.6",
     "sharp": "^0.35.3",
-    "svgo": "^4.0.2"
+    "svgo": "^4.0.2",
+    "turndown": "^7.2.4"
   }
 }

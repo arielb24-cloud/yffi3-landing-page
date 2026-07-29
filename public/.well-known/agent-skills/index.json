@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "find-yffi3-insurance-services",
+      "type": "skill-md",
+      "description": "Find verified public Miami insurance-service, bilingual contact, and safe quote-handoff information for Your Family First Insurance Office #3.",
+      "url": "https://yourfamilyfirstinsurance3.com/.well-known/agent-skills/find-yffi3-insurance-services/SKILL.md",
+      "digest": "sha256:fc48de92730ece20bd2f5d89c058aaf5e53c5ab6929d36a1209afb0088169080"
+    }
+  ]
+}

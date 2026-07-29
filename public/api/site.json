@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "name": "Your Family First Insurance Office #3",
+  "url": "https://yourfamilyfirstinsurance3.com",
+  "description": "Public contact, service, language, and safe quote-handoff information for Your Family First Insurance Office #3 in Miami.",
+  "languages": [
+    "en-US",
+    "es-US"
+  ],
+  "contact": {
+    "phone": "305-910-8850",
+    "telephone_uri": "tel:13059108850",
+    "address": {
+      "streetAddress": "11200 W Flagler St, Suite 108",
+      "addressLocality": "Miami",
+      "addressRegion": "FL",
+      "postalCode": "33174",
+      "addressCountry": "US"
+    }
+  },
+  "service_areas": [
+    "West Flagler Miami",
+    "Miami"
+  ],
+  "insurance_types": [
+    "Auto insurance",
+    "Homeowners insurance",
+    "Renters insurance",
+    "Commercial and business insurance",
+    "General liability insurance",
+    "Life insurance"
+  ],
+  "pages": {
+    "home": "https://yourfamilyfirstinsurance3.com/",
+    "auto": "https://yourfamilyfirstinsurance3.com/auto-insurance/",
+    "homeowners": "https://yourfamilyfirstinsurance3.com/home-insurance/",
+    "renters": "https://yourfamilyfirstinsurance3.com/renters-insurance/",
+    "commercial": "https://yourfamilyfirstinsurance3.com/commercial-insurance/",
+    "life": "https://yourfamilyfirstinsurance3.com/life-insurance/",
+    "about": "https://yourfamilyfirstinsurance3.com/about-office-3/",
+    "quote_help": "https://yourfamilyfirstinsurance3.com/get-a-quote/",
+    "spanish_home": "https://yourfamilyfirstinsurance3.com/es/"
+  },
+  "quote_handoff": {
+    "type": "external-human-facing-form",
+    "url": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868",
+    "requires_user_confirmation": true,
+    "sensitive_data_warning": "Do not send SSNs, dates of birth, driver license numbers, VINs, payment data, medical records, claim files, passwords, or carrier credentials through a general website interaction."
+  },
+  "disclaimer": "Coverage, pricing, discounts, eligibility, and availability vary by carrier, underwriting, location, and applicant information."
+}
