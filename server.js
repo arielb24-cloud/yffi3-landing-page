@@ -45,6 +45,7 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "SAMEORIGIN");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
   res.setHeader("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   res.setHeader(
     "Content-Security-Policy",
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 
 app.use(["/api", "/.well-known"], (_req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
 

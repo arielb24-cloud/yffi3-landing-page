@@ -185,10 +185,12 @@ write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAM
 const headersFile = path.join(publicDir, "_headers");
 fs.writeFileSync(
   headersFile,
-  fs.readFileSync(headersFile, "utf8").replaceAll(
-    "  Access-Control-Allow-Origin: *\n",
-    "  Access-Control-Allow-Origin: *\n  Cross-Origin-Resource-Policy: cross-origin\n"
-  )
+  `${fs.readFileSync(headersFile, "utf8")
+    .replace("  Cross-Origin-Resource-Policy: same-origin\n", "")
+    .replaceAll(
+      "  Access-Control-Allow-Origin: *\n",
+      "  Access-Control-Allow-Origin: *\n  Cross-Origin-Resource-Policy: cross-origin\n"
+    )}\n/assets/*\n  Cross-Origin-Resource-Policy: same-origin\n`
 );
 
 const functionRoutes = routes.flatMap((route) => {

@@ -84,6 +84,9 @@ const headers = read("_headers");
 for (const expected of ["rel=\"api-catalog\"", "rel=\"service-desc\"", "rel=\"service-doc\"", "Vary: Accept", "Content-Signal: search=yes, ai-input=yes, ai-train=no"]) {
   if (!headers.includes(expected)) failures.push(`Cloudflare headers missing ${expected}`);
 }
+const universalHeaders = headers.split("\n\n/")[0];
+if (universalHeaders.includes("Cross-Origin-Resource-Policy")) failures.push("Cloudflare global headers must not conflict with public cross-origin metadata routes");
+if ((headers.match(/Cross-Origin-Resource-Policy: cross-origin/g) || []).length !== 4) failures.push("Cloudflare discovery metadata routes need unambiguous cross-origin resource policy headers");
 const routeManifest = parseJson("_routes.json");
 if (routeManifest.version !== 1 || !Array.isArray(routeManifest.include) || !routeManifest.include.includes("/")) failures.push("Cloudflare Pages function route manifest is invalid");
 

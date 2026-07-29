@@ -5,7 +5,6 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Resource-Policy: same-origin
   Origin-Agent-Cluster: ?1
   X-Permitted-Cross-Domain-Policies: none
   Content-Signal: search=yes, ai-input=yes, ai-train=no
@@ -43,3 +42,6 @@ https://:project.pages.dev/*
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex, nofollow
+
+/assets/*
+  Cross-Origin-Resource-Policy: same-origin
