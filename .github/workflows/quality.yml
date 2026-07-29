@@ -41,7 +41,9 @@ jobs:
         run: pnpm build
 
       - name: Expose bundled Chromium to Lighthouse
-        run: echo "CHROME_PATH=$(node -e \"console.log(require('playwright').chromium.executablePath())\")" >> "$GITHUB_ENV"
+        run: >-
+          node -e 'require("fs").appendFileSync(process.env.GITHUB_ENV,
+          "CHROME_PATH=" + require("playwright").chromium.executablePath() + "\n")'
 
       - name: Run cross-browser and accessibility QA
         run: pnpm qa
