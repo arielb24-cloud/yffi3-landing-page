@@ -2,6 +2,7 @@ const canonicalHostname = "yourfamilyfirstinsurance3.com";
 const discoveryLinks = [
   '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
   '</.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json"',
+  '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json"',
   '</docs/api.md>; rel="service-doc"; type="text/markdown"',
   '</llms.txt>; rel="describedby"; type="text/plain"'
 ].join(", ");

@@ -7,10 +7,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 const distDir = path.join(__dirname, "dist");
 const canonicalHostname = "yourfamilyfirstinsurance3.com";
+const canonicalOrigin = `https://${canonicalHostname}`;
 const productionHostnames = new Set([canonicalHostname, `www.${canonicalHostname}`]);
+const mcpCorePromise = import("./src/mcp-core.mjs");
 const discoveryLinks = [
   '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
   '</.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json"',
+  '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json"',
   '</docs/api.md>; rel="service-doc"; type="text/markdown"',
   '</llms.txt>; rel="describedby"; type="text/plain"'
 ].join(", ");
@@ -77,10 +80,86 @@ app.get("/.well-known/openapi.json", (_req, res) => {
   res.sendFile(path.join(distDir, ".well-known", "openapi.json"));
 });
 
+app.get("/.well-known/mcp/server-card.json", (_req, res) => {
+  res.type("application/mcp-server-card+json");
+  res.setHeader("Cache-Control", "public, max-age=3600");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, If-None-Match");
+  res.setHeader("Access-Control-Expose-Headers", "ETag");
+  res.sendFile(path.join(distDir, ".well-known", "mcp", "server-card.json"));
+});
+
 app.use("/.well-known/agent-skills", express.static(path.join(distDir, ".well-known", "agent-skills"), {
   dotfiles: "allow",
   maxAge: "5m"
 }));
+
+function applyMcpHeaders(req, res) {
+  const origin = req.get("Origin");
+  res.setHeader("Access-Control-Allow-Origin", canonicalOrigin);
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, MCP-Protocol-Version");
+  res.setHeader("Access-Control-Max-Age", "86400");
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
+  res.setHeader("Vary", "Origin");
+  return !origin || origin === canonicalOrigin;
+}
+
+app.options("/mcp", (req, res) => {
+  if (!applyMcpHeaders(req, res)) {
+    res.status(403).type("text/plain").send("Forbidden Origin");
+    return;
+  }
+  res.status(204).end();
+});
+
+app.post("/mcp", (req, res, next) => {
+  if (!applyMcpHeaders(req, res)) {
+    res.status(403).json({ error: "Forbidden Origin" });
+    return;
+  }
+  next();
+}, express.json({ limit: "64kb", strict: true }), async (req, res, next) => {
+  try {
+    const { handleMcpMessage, isSupportedProtocolVersion } = await mcpCorePromise;
+    if (!isSupportedProtocolVersion(req.get("MCP-Protocol-Version"))) {
+      res.status(400).json({ error: "Unsupported MCP-Protocol-Version" });
+      return;
+    }
+    const result = handleMcpMessage(req.body);
+    if (result.body === null) {
+      res.status(result.status).end();
+      return;
+    }
+    res.status(result.status).json(result.body);
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.all("/mcp", (req, res) => {
+  applyMcpHeaders(req, res);
+  res.setHeader("Allow", "POST, OPTIONS");
+  res.status(405).type("text/plain").send("Method Not Allowed");
+});
+
+app.use((error, req, res, next) => {
+  if (req.path !== "/mcp") {
+    next(error);
+    return;
+  }
+  applyMcpHeaders(req, res);
+  if (error?.type === "entity.too.large") {
+    res.status(413).json({ error: "Request body is too large" });
+    return;
+  }
+  if (error instanceof SyntaxError) {
+    res.status(400).json({ jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } });
+    return;
+  }
+  next(error);
+});
 
 app.use((req, res, next) => {
   if (!/\btext\/markdown\b/i.test(String(req.get("Accept") || ""))) {

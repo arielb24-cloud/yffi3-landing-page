@@ -11,11 +11,11 @@
   Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests
 
 /
-  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"
   Vary: Accept
 
 /index.html
-  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"
   Vary: Accept
 
 /.well-known/api-catalog
@@ -31,6 +31,15 @@
 /.well-known/agent-skills/*
   Access-Control-Allow-Origin: *
   Cross-Origin-Resource-Policy: cross-origin
+
+/.well-known/mcp/server-card.json
+  Content-Type: application/mcp-server-card+json; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Cross-Origin-Resource-Policy: cross-origin
+  Access-Control-Allow-Methods: GET
+  Access-Control-Allow-Headers: Content-Type, If-None-Match
+  Access-Control-Expose-Headers: ETag
+  Cache-Control: public, max-age=3600
 
 /api/*
   Access-Control-Allow-Origin: *

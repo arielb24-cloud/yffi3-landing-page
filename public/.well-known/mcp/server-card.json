@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "com.yourfamilyfirstinsurance3/public-metadata",
+  "title": "YFFI3 Public Metadata",
+  "description": "Read-only public Office #3 service, contact, and safe quote-handoff metadata.",
+  "version": "1.0.0",
+  "websiteUrl": "https://yourfamilyfirstinsurance3.com/",
+  "serverInfo": {
+    "name": "yffi3-public-metadata",
+    "title": "YFFI3 Public Metadata",
+    "version": "1.0.0"
+  },
+  "protocolVersion": "2025-06-18",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://yourfamilyfirstinsurance3.com/mcp",
+      "supportedProtocolVersions": [
+        "2025-06-18",
+        "2025-03-26"
+      ]
+    }
+  ],
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://yourfamilyfirstinsurance3.com/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "documentationUrl": "https://yourfamilyfirstinsurance3.com/docs/api.md"
+}

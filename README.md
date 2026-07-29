@@ -49,6 +49,8 @@ Generated public files include:
 - Open Graph tags
 - Canonical URLs
 - InsuranceAgency, Service, FAQPage, and BreadcrumbList JSON-LD where appropriate
+- Public Streamable HTTP MCP endpoint and MCP Server Card
+- DNS-AID publication and DNSSEC handoff in `docs/dns-aid.md`
 
 ## Privacy and Quote Form Status
 

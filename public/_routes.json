@@ -59,7 +59,8 @@
     "/es/privacidad/index.html",
     "/es/terminos",
     "/es/terminos/",
-    "/es/terminos/index.html"
+    "/es/terminos/index.html",
+    "/mcp"
   ],
   "exclude": []
 }
