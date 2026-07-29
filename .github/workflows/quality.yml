@@ -12,6 +12,8 @@ permissions:
 jobs:
   build-and-browser-qa:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
     timeout-minutes: 30
     steps:
       - name: Check out repository
@@ -38,8 +40,8 @@ jobs:
       - name: Build production export
         run: pnpm build
 
-      - name: Install browser runtimes
-        run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Expose bundled Chromium to Lighthouse
+        run: echo "CHROME_PATH=$(node -e \"console.log(require('playwright').chromium.executablePath())\")" >> "$GITHUB_ENV"
 
       - name: Run cross-browser and accessibility QA
         run: pnpm qa
