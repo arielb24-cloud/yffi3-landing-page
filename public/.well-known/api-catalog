@@ -20,6 +20,27 @@
           "type": "application/json"
         }
       ]
+    },
+    {
+      "anchor": "https://yourfamilyfirstinsurance3.com/mcp",
+      "service-desc": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/.well-known/mcp/server-card.json",
+          "type": "application/mcp-server-card+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/docs/api.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://yourfamilyfirstinsurance3.com/healthz",
+          "type": "text/plain"
+        }
+      ]
     }
   ]
 }

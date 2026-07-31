@@ -166,21 +166,59 @@ const openApi = {
   }
 };
 write(path.join(".well-known", "openapi.json"), `${JSON.stringify(openApi, null, 2)}\n`);
+
+const mcpServerCard = {
+  $schema: "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  name: "com.yourfamilyfirstinsurance3/public-metadata",
+  title: "YFFI3 Public Metadata",
+  description: "Read-only public Office #3 service, contact, and safe quote-handoff metadata.",
+  version: "1.0.0",
+  websiteUrl: `${siteUrl}/`,
+  serverInfo: {
+    name: "yffi3-public-metadata",
+    title: "YFFI3 Public Metadata",
+    version: "1.0.0"
+  },
+  protocolVersion: "2025-06-18",
+  remotes: [{
+    type: "streamable-http",
+    url: `${siteUrl}/mcp`,
+    supportedProtocolVersions: ["2025-06-18", "2025-03-26"]
+  }],
+  transport: {
+    type: "streamable-http",
+    endpoint: `${siteUrl}/mcp`
+  },
+  capabilities: {
+    tools: { listChanged: false }
+  },
+  documentationUrl: `${siteUrl}/docs/api.md`
+};
+write(path.join(".well-known", "mcp", "server-card.json"), `${JSON.stringify(mcpServerCard, null, 2)}\n`);
+
 write(path.join(".well-known", "api-catalog"), `${JSON.stringify({
-  linkset: [{
-    anchor: `${siteUrl}/api/site.json`,
-    "service-desc": [{ href: `${siteUrl}/.well-known/openapi.json`, type: "application/vnd.oai.openapi+json" }],
-    "service-doc": [{ href: `${siteUrl}/docs/api.md`, type: "text/markdown" }],
-    status: [{ href: `${siteUrl}/api/status.json`, type: "application/json" }]
-  }]
+  linkset: [
+    {
+      anchor: `${siteUrl}/api/site.json`,
+      "service-desc": [{ href: `${siteUrl}/.well-known/openapi.json`, type: "application/vnd.oai.openapi+json" }],
+      "service-doc": [{ href: `${siteUrl}/docs/api.md`, type: "text/markdown" }],
+      status: [{ href: `${siteUrl}/api/status.json`, type: "application/json" }]
+    },
+    {
+      anchor: `${siteUrl}/mcp`,
+      "service-desc": [{ href: `${siteUrl}/.well-known/mcp/server-card.json`, type: "application/mcp-server-card+json" }],
+      "service-doc": [{ href: `${siteUrl}/docs/api.md`, type: "text/markdown" }],
+      status: [{ href: `${siteUrl}/healthz`, type: "text/plain" }]
+    }
+  ]
 }, null, 2)}\n`);
 
-write(path.join("docs", "api.md"), `# YFFI3 Public Site Metadata API\n\nThis read-only API publishes verified public facts for Your Family First Insurance Office #3 in Miami. It does not accept quote submissions, create accounts, bind coverage, or process credentials.\n\n## Endpoints\n\n- \`GET /api/site.json\`: public office, language, service, page, and quote-handoff metadata.\n- \`GET /api/status.json\`: availability document for this metadata API.\n- \`GET /healthz\`: plain-text origin health response.\n- \`GET /.well-known/openapi.json\`: OpenAPI 3.1 description.\n- \`GET /.well-known/api-catalog\`: RFC 9727 API catalog.\n\n## Authentication\n\nNo authentication is required because every endpoint is read-only and contains public information. No OAuth or OpenID Connect server is operated by this website.\n\n## Privacy and Safety\n\nDo not send personal, underwriting, payment, medical, claim, password, or carrier-login data to these endpoints. Quote requests continue through the approved human-facing quote path shown on the website.\n`);
+write(path.join("docs", "api.md"), `# YFFI3 Public Site Metadata API\n\nThis read-only API publishes verified public facts for Your Family First Insurance Office #3 in Miami. It does not accept quote submissions, create accounts, bind coverage, or process credentials.\n\n## Endpoints\n\n- \`GET /api/site.json\`: public office, language, service, page, and quote-handoff metadata.\n- \`GET /api/status.json\`: availability document for this metadata API.\n- \`GET /healthz\`: plain-text origin health response.\n- \`GET /.well-known/openapi.json\`: OpenAPI 3.1 description.\n- \`GET /.well-known/api-catalog\`: RFC 9727 API catalog.\n\n## MCP\n\n- \`GET /.well-known/mcp/server-card.json\`: public MCP Server Card.\n- \`POST /mcp\`: stateless Streamable HTTP MCP endpoint.\n- Runtime capability: three read-only tools for public service lookup, office contact details, and a user-confirmed quote handoff.\n\nThe MCP endpoint accepts MCP protocol versions \`2025-06-18\` and \`2025-03-26\`. It does not create sessions, accept credentials, submit quote data, or perform background actions.\n\n## Authentication\n\n\`NOT APPLICABLE — NO PROTECTED API\`: no authentication is required because every endpoint is read-only and contains public information. No OAuth or OpenID Connect server is operated by this website, so OAuth Authorization Server Metadata and Protected Resource Metadata are intentionally not published.\n\n## Privacy and Safety\n\nDo not send personal, underwriting, payment, medical, claim, password, or carrier-login data to these endpoints. Quote requests continue through the approved human-facing quote path shown on the website.\n`);
 
-write("auth.md", `# auth.md\n\n## Agent audience\n\nAI agents may read the public pages, \`llms.txt\`, the agent skill, and the public site metadata API without registration.\n\n## Authentication status\n\nThis website does not operate protected APIs, user accounts, an OAuth authorization server, an OpenID Connect provider, or an agent credential-issuance service. No bearer token is required or accepted by the public metadata endpoints.\n\n## Registration\n\nNo automated agent-registration or provisioning endpoint is offered. Do not send credentials, identity assertions, customer data, or sensitive underwriting information to this website's public metadata endpoints.\n\n## Human-facing quote handoff\n\nAgents may return the quote-help page or approved external quote URL to a person, but must obtain that person's confirmation before navigating or submitting anything. Coverage is not bound by reading or using the public metadata API.\n`);
+write("auth.md", `# auth.md\n\n## Agent audience\n\nAI agents may read the public pages, \`llms.txt\`, the agent skill, and the public site metadata API without registration.\n\n## Authentication status\n\n\`NOT APPLICABLE — NO PROTECTED API\`: this website does not operate user accounts, an OAuth authorization server, an OpenID Connect provider, or an agent credential-issuance service. No bearer token is required or accepted by the public metadata or MCP endpoints.\n\n## Supported access method\n\n- Method: anonymous, unregistered, public read-only access.\n- Registration or provisioning endpoint: none.\n- Credential type: none; do not send bearer tokens, API keys, passwords, or identity assertions.\n- Available interfaces: the public metadata API and the read-only MCP endpoint at \`/mcp\`.\n\nAutomated agent registration is not offered because this service has no account or authorization boundary to register against. Do not send customer data or sensitive underwriting information to the public endpoints.\n\n## Human-facing quote handoff\n\nAgents may return the quote-help page or approved external quote URL to a person, but must obtain that person's confirmation before navigating or submitting anything. Coverage is not bound by reading or using the public metadata API.\n`);
 
-const discoveryLinks = '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"';
-write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  Origin-Agent-Cluster: ?1\n  X-Permitted-Cross-Domain-Policies: none\n  Content-Signal: search=yes, ai-input=yes, ai-train=no\n  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests\n\n/\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/index.html\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"\n  Access-Control-Allow-Origin: *\n\n/.well-known/openapi.json\n  Content-Type: application/vnd.oai.openapi+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n\n/.well-known/agent-skills/*\n  Access-Control-Allow-Origin: *\n\n/api/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=300, must-revalidate\n\nhttps://:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n`);
+const discoveryLinks = '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"';
+write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  Origin-Agent-Cluster: ?1\n  X-Permitted-Cross-Domain-Policies: none\n  Content-Signal: search=yes, ai-input=yes, ai-train=no\n  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests\n\n/\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/index.html\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"\n  Access-Control-Allow-Origin: *\n\n/.well-known/openapi.json\n  Content-Type: application/vnd.oai.openapi+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n\n/.well-known/agent-skills/*\n  Access-Control-Allow-Origin: *\n\n/.well-known/mcp/server-card.json\n  Content-Type: application/mcp-server-card+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Methods: GET\n  Access-Control-Allow-Headers: Content-Type, If-None-Match\n  Access-Control-Expose-Headers: ETag\n  Cache-Control: public, max-age=3600\n\n/api/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=300, must-revalidate\n\nhttps://:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n`);
 
 const headersFile = path.join(publicDir, "_headers");
 fs.writeFileSync(
@@ -197,6 +235,7 @@ const functionRoutes = routes.flatMap((route) => {
   if (!route) return ["/", "/index.html"];
   return [`/${route}`, `/${route}/`, `/${route}/index.html`];
 });
+functionRoutes.push("/mcp");
 write("_routes.json", `${JSON.stringify({ version: 1, include: functionRoutes, exclude: [] }, null, 2)}\n`);
 
 console.log(`Generated agent discovery resources and ${routes.length} Markdown page variants.`);

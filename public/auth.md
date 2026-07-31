@@ -6,11 +6,16 @@ AI agents may read the public pages, `llms.txt`, the agent skill, and the public
 
 ## Authentication status
 
-This website does not operate protected APIs, user accounts, an OAuth authorization server, an OpenID Connect provider, or an agent credential-issuance service. No bearer token is required or accepted by the public metadata endpoints.
+`NOT APPLICABLE — NO PROTECTED API`: this website does not operate user accounts, an OAuth authorization server, an OpenID Connect provider, or an agent credential-issuance service. No bearer token is required or accepted by the public metadata or MCP endpoints.
 
-## Registration
+## Supported access method
 
-No automated agent-registration or provisioning endpoint is offered. Do not send credentials, identity assertions, customer data, or sensitive underwriting information to this website's public metadata endpoints.
+- Method: anonymous, unregistered, public read-only access.
+- Registration or provisioning endpoint: none.
+- Credential type: none; do not send bearer tokens, API keys, passwords, or identity assertions.
+- Available interfaces: the public metadata API and the read-only MCP endpoint at `/mcp`.
+
+Automated agent registration is not offered because this service has no account or authorization boundary to register against. Do not send customer data or sensitive underwriting information to the public endpoints.
 
 ## Human-facing quote handoff
 

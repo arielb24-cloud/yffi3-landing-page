@@ -10,9 +10,17 @@ This read-only API publishes verified public facts for Your Family First Insuran
 - `GET /.well-known/openapi.json`: OpenAPI 3.1 description.
 - `GET /.well-known/api-catalog`: RFC 9727 API catalog.
 
+## MCP
+
+- `GET /.well-known/mcp/server-card.json`: public MCP Server Card.
+- `POST /mcp`: stateless Streamable HTTP MCP endpoint.
+- Runtime capability: three read-only tools for public service lookup, office contact details, and a user-confirmed quote handoff.
+
+The MCP endpoint accepts MCP protocol versions `2025-06-18` and `2025-03-26`. It does not create sessions, accept credentials, submit quote data, or perform background actions.
+
 ## Authentication
 
-No authentication is required because every endpoint is read-only and contains public information. No OAuth or OpenID Connect server is operated by this website.
+`NOT APPLICABLE — NO PROTECTED API`: no authentication is required because every endpoint is read-only and contains public information. No OAuth or OpenID Connect server is operated by this website, so OAuth Authorization Server Metadata and Protected Resource Metadata are intentionally not published.
 
 ## Privacy and Safety
 
