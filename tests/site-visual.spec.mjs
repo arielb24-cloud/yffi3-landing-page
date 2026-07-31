@@ -592,11 +592,11 @@ test("agent skill digest is valid and nonexistent auth services stay undiscovera
   for (const unavailable of [
     "/.well-known/openid-configuration",
     "/.well-known/oauth-authorization-server",
-    "/.well-known/oauth-protected-resource",
-    "/.well-known/mcp/server-card.json"
+    "/.well-known/oauth-protected-resource"
   ]) {
     expect((await request.get(unavailable, { headers: { Accept: "application/json" } })).status()).toBe(404);
   }
+  expect((await request.get("/.well-known/mcp/server-card.json", { headers: { Accept: "application/json" } })).status()).toBe(200);
 });
 
 test("WebMCP exposes only read-only public actions", async ({ page }) => {
