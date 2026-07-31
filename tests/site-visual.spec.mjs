@@ -176,6 +176,55 @@ test("mobile homeowners page scroll content stays usable", async ({ page }) => {
   });
 });
 
+test("mobile homepage sections keep stable document flow while scrolling", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/", { waitUntil: "networkidle" });
+
+  const before = await page.evaluate(() => ({
+    height: document.documentElement.scrollHeight,
+    sections: Array.from(document.querySelectorAll("main > section")).map((section) => {
+      const box = section.getBoundingClientRect();
+      return {
+        top: Math.round(box.top + window.scrollY),
+        bottom: Math.round(box.bottom + window.scrollY),
+        contentVisibility: getComputedStyle(section).contentVisibility
+      };
+    })
+  }));
+
+  expect(before.sections.every((section) => section.contentVisibility === "visible")).toBe(true);
+  for (let index = 1; index < before.sections.length; index += 1) {
+    expect(before.sections[index].top).toBeGreaterThanOrEqual(before.sections[index - 1].bottom - 1);
+  }
+
+  await revealWholePage(page);
+  const after = await page.evaluate(() => ({
+    height: document.documentElement.scrollHeight,
+    y: window.scrollY,
+    overflow: document.documentElement.scrollWidth > window.innerWidth + 1
+  }));
+  expect(after.height).toBe(before.height);
+  expect(after.y).toBe(0);
+  expect(after.overflow).toBe(false);
+});
+
+test("mobile carousel engagement does not move the page and enables its video", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  const carousel = page.locator("[data-insurance-carousel]");
+  const nextControl = carousel.locator("[data-carousel-next]");
+  await nextControl.scrollIntoViewIfNeeded();
+  await expect(carousel.locator(".motion-video source")).toHaveCount(0);
+  const beforeY = await page.evaluate(() => window.scrollY);
+
+  await nextControl.click();
+
+  await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners");
+  await expect(carousel.locator(".motion-video source")).toHaveCount(1);
+  const afterY = await page.evaluate(() => window.scrollY);
+  expect(Math.abs(afterY - beforeY)).toBeLessThanOrEqual(1);
+});
+
 test("quote form validates safe contact fields", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.route("https://secure.ConsumerRateQuotes.com/**", async (route) => {
@@ -452,10 +501,18 @@ test("touch-only devices do not enable desktop hover motion", async ({ browser }
   expect(await page.evaluate(() => window.matchMedia("(hover: hover) and (pointer: fine)").matches)).toBe(false);
   const card = page.locator(".coverage-card").first();
   await card.scrollIntoViewIfNeeded();
-  const before = await card.evaluate((node) => getComputedStyle(node).transform);
+  const before = await card.evaluate((node) => ({
+    glareX: node.style.getPropertyValue("--glare-x"),
+    particles: document.querySelectorAll(".liquid-particle").length
+  }));
+  await card.dispatchEvent("pointerenter", { clientX: 20, clientY: 20, pointerType: "touch" });
   await card.dispatchEvent("pointermove", { clientX: 20, clientY: 20, pointerType: "touch" });
-  const after = await card.evaluate((node) => getComputedStyle(node).transform);
-  expect(after).toBe(before);
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const after = await card.evaluate((node) => ({
+    glareX: node.style.getPropertyValue("--glare-x"),
+    particles: document.querySelectorAll(".liquid-particle").length
+  }));
+  expect(after).toEqual(before);
   await context.close();
 });
 
@@ -499,6 +556,15 @@ test("homepage advertises truthful agent discovery resources", async ({ request 
   expect(metadataBody.name).toBe("Your Family First Insurance Office #3");
   expect(metadataBody.contact.phone).toBe("305-910-8850");
   expect(metadataBody.quote_handoff.requires_user_confirmation).toBe(true);
+});
+
+test("homepage exposes complete social image metadata and an optimized logo preload", async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "974");
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "732");
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /Office #3 family and office team in Miami/);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute("content", /Office #3 family and office team in Miami/);
+  await expect(page.locator('link[rel="preload"][as="image"][href$="yffi3-official-franchise-logo-240.webp"]')).toHaveCount(1);
 });
 
 test("agents can negotiate Markdown while browsers keep HTML", async ({ request }) => {

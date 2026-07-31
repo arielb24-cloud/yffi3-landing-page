@@ -28,7 +28,7 @@ Comparta aquí solo datos básicos de contacto. Al completar los campos obligato
 **¿Prefiere hablar ahora?**
 [Llamar al 305-910-8850](tel:13059108850) or [envíe un mensaje a la oficina](sms:+13059108850).
 
-![Código QR para solicitar una cotización con Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr.jpeg)
+![Código QR para solicitar una cotización con Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
 
 **Código QR de cotización**
 Escanee este código para continuar de forma rápida con su cotización.

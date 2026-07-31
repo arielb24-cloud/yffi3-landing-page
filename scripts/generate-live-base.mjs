@@ -13,11 +13,14 @@ const smsHref = "sms:+13059108850";
 const businessName = "Your Family First Insurance Office #3";
 const legalName = "Your Family First Insurance";
 const logoSrc = "/assets/yffi3/yffi3-official-franchise-logo.png";
+const logoPreloadSrc = "/assets/yffi3/yffi3-official-franchise-logo-240.webp";
 const originalFranchiseLogoSrc = "/assets/yffi3/yffi3-original-franchise-logo.png";
 const familyPhotoSrc = "/assets/yffi3/yffi3-family-office-photo.jpg";
 const familyWebpSrc = "/assets/yffi3/yffi3-family-office-photo.webp";
 const principalPhotoSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg";
+const principalWebpSrc = "/assets/yffi3/yffi3-principal-agent-ariel-busutil-720.webp";
 const qrSrc = "/assets/yffi3/yffi3-quote-qr.jpeg";
+const qrWebpSrc = "/assets/yffi3/yffi3-quote-qr-240.webp";
 const googleReviewQrSrc = "/assets/yffi3/google-review-qr.png";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
@@ -660,9 +663,7 @@ function familyPicture(className, loading = "lazy", fetchpriority = "auto") {
 }
 
 function principalPicture(className, loading = "lazy") {
-  return `<picture class="${className}">
-    <img src="${principalPhotoSrc}" alt="Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3" width="1448" height="1086" loading="${loading}" decoding="async">
-  </picture>`;
+  return `<picture class="${className}"><source srcset="${principalWebpSrc}" type="image/webp"><img src="${principalPhotoSrc}" alt="Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3" width="1448" height="1086" loading="${loading}" decoding="async"></picture>`;
 }
 
 function svgIconPaths(name) {
@@ -983,16 +984,21 @@ function headHtml(page) {
     <meta property="og:url" content="${pageUrl(page.slug)}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="${siteUrl}${familyPhotoSrc}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="974">
+    <meta property="og:image:height" content="732">
+    <meta property="og:image:alt" content="Your Family First Insurance Office #3 family and office team in Miami">
     <meta property="og:site_name" content="${businessName}">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(page.title)}">
     <meta name="twitter:description" content="${escapeHtml(page.description)}">
     <meta name="twitter:image" content="${siteUrl}${familyPhotoSrc}">
+    <meta name="twitter:image:alt" content="Your Family First Insurance Office #3 family and office team in Miami">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="${logoSrc}">
     <link rel="preconnect" href="https://secure.ConsumerRateQuotes.com">
-    <link rel="preload" href="${logoSrc}" as="image">
+    <link rel="preload" href="${logoPreloadSrc}" as="image" type="image/webp" fetchpriority="high">
     ${preloadPhoto}
     <link rel="stylesheet" href="/assets/styles.css">
     <script src="/assets/site.js" defer></script>
@@ -1049,7 +1055,7 @@ function insuranceMotionCarousel(page) {
     <button class="carousel-dot" type="button" aria-label="Show ${escapeHtml(slide.category)} slide" aria-current="${index === 0 ? "true" : "false"}" data-slide-id="${slide.id}" data-carousel-dot><span></span></button>
   `).join("");
   const slideMarkup = slides.map((slide, index) => `
-    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} role="group" aria-roledescription="slide" aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
+    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
       <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
         <img class="motion-poster" src="${carouselImageSrc(slide)}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
         ${carouselVideoMarkup(slide)}
@@ -1368,7 +1374,7 @@ function quoteSection(title = "Get My Free Quote") {
           <p><strong>Prefer to talk now?</strong><br><a href="${phoneHref}">Call ${phoneDisplay}</a> or <a href="${smsHref}">text the office</a>.</p>
         </div>
         <div class="qr-card">
-          <img src="${qrSrc}" alt="Quote Yourself QR code for Your Family First Insurance Office #3" width="400" height="386" loading="eager" decoding="async">
+          <img src="${qrWebpSrc}" alt="Quote Yourself QR code for Your Family First Insurance Office #3" width="400" height="386" loading="lazy" decoding="async">
           <p><strong>Quote Yourself QR</strong><br>Scan this QR code for a fast and easy quote!</p>
         </div>
       </div>
@@ -3283,8 +3289,6 @@ h3 {
   width: min(1180px, calc(100% - 36px));
   margin: 0 auto;
   padding: 60px 0;
-  content-visibility: auto;
-  contain-intrinsic-size: 720px;
 }
 .section-heading {
   max-width: 760px;
@@ -4844,9 +4848,10 @@ if (menuToggle && siteNav) {
 }
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobileViewport = window.matchMedia("(max-width: 639px)").matches;
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
 
-if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   const cursorOrb = document.createElement("span");
   cursorOrb.className = "cursor-orb";
   cursorOrb.setAttribute("aria-hidden", "true");
@@ -4926,7 +4931,7 @@ if (animatedItems.length) {
   }
 }
 
-if (!reducedMotion && "IntersectionObserver" in window) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches && "IntersectionObserver" in window) {
   const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
   const visibleDepthSurfaces = new Set();
   let depthFrame = 0;
@@ -4987,6 +4992,8 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   let startX = 0;
   let startScrollLeft = 0;
   let scrollFrame = 0;
+  let programmaticScroll = false;
+  let programmaticScrollTimer = 0;
 
   const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
 
@@ -5053,10 +5060,14 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
     });
     hydrateVideo(activeSlide);
-    hydrateVideo(slides[(activeIndex + 1) % slides.length]);
     syncVideos();
     if (options.scroll !== false) {
-      activeSlide.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
+      programmaticScroll = true;
+      window.clearTimeout(programmaticScrollTimer);
+      track?.scrollTo({ left: activeSlide.offsetLeft, behavior: reducedMotion ? "auto" : "smooth" });
+      programmaticScrollTimer = window.setTimeout(() => {
+        programmaticScroll = false;
+      }, reducedMotion ? 0 : 700);
     }
   };
 
@@ -5103,6 +5114,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   track?.addEventListener("scroll", () => {
+    if (programmaticScroll) return;
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(() => {
       scrollFrame = 0;
@@ -5175,12 +5187,18 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   }
 
   const enableInitialMedia = () => {
-    window.setTimeout(() => {
+    const enableMedia = () => {
+      if (mediaReady) return;
       mediaReady = true;
       hydrateVideo(slides[activeIndex]);
-      hydrateVideo(slides[(activeIndex + 1) % slides.length]);
       syncVideos();
-    }, 250);
+    };
+    if (mobileViewport) {
+      carousel.addEventListener("click", enableMedia, { once: true });
+      carousel.addEventListener("keydown", enableMedia, { once: true });
+      return;
+    }
+    window.setTimeout(enableMedia, 750);
   };
   if (document.readyState === "complete") enableInitialMedia();
   else window.addEventListener("load", enableInitialMedia, { once: true });
@@ -5189,7 +5207,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     window.setInterval(() => {
       const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
       carousel.setAttribute("data-paused", String(shouldHold));
-      if (!shouldHold) setActive(activeIndex + 1);
+      if (!shouldHold) setActive(activeIndex + 1, { scroll: false });
       syncVideos();
     }, delay);
   }

@@ -28,7 +28,7 @@ Share only basic contact details here. When the required fields are complete, th
 **Prefer to talk now?**
 [Call 305-910-8850](tel:13059108850) or [text the office](sms:+13059108850).
 
-![Quote Yourself QR code for Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr.jpeg)
+![Quote Yourself QR code for Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
 
 **Quote Yourself QR**
 Scan this QR code for a fast and easy quote!

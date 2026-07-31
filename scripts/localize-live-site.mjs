@@ -104,6 +104,7 @@ const globalPairs = [
   ["Real Office #3 family and office photo", "Foto real de la familia y la Oficina #3"],
   ["Your Family First Insurance official franchise logo and sign", "Logotipo y letrero oficial de la franquicia Your Family First Insurance"],
   ["Original Your Family First Insurance franchise family logo", "Logotipo familiar original de la franquicia Your Family First Insurance"],
+  ["Your Family First Insurance Office #3 family and office team in Miami", "Familia y equipo de la Oficina #3 de Your Family First Insurance en Miami"],
   ["Real family and office photo for Your Family First Insurance Office #3", "Foto real de la familia y la oficina de Your Family First Insurance Office #3"],
   ["Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3", "Ariel Busutil, agente principal y director ejecutivo de Your Family First Insurance Office #3"],
   ["Our services", "Nuestros servicios"],
