@@ -48,6 +48,10 @@ app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "SAMEORIGIN");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  res.setHeader(
+    "Cross-Origin-Opener-Policy",
+    Object.prototype.hasOwnProperty.call(req.query, "gtm_debug") ? "same-origin-allow-popups" : "same-origin"
+  );
   res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
   res.setHeader("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   res.setHeader(

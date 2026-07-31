@@ -34,7 +34,10 @@ function applyHeaders(headers, url) {
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
   headers.set("Strict-Transport-Security", "max-age=31536000");
-  headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  headers.set(
+    "Cross-Origin-Opener-Policy",
+    url.searchParams.has("gtm_debug") ? "same-origin-allow-popups" : "same-origin"
+  );
   headers.set("Cross-Origin-Resource-Policy", "same-origin");
   headers.set("Origin-Agent-Cluster", "?1");
   headers.set("X-Permitted-Cross-Domain-Policies", "none");
