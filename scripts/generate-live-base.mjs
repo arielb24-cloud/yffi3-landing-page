@@ -5836,7 +5836,7 @@ function apacheHtaccess() {
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set Origin-Agent-Cluster "?1"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes

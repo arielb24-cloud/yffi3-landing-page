@@ -507,6 +507,8 @@ test("production host redirects to canonical HTTPS and emits HSTS", async ({ req
   expect(secure.status()).toBe(200);
   expect(secure.headers()["strict-transport-security"]).toBe("max-age=31536000");
   expect(secure.headers()["content-security-policy"]).toContain("https://www.googletagmanager.com");
+  expect(secure.headers()["content-security-policy"]).toContain("https://tagmanager.google.com");
+  expect(secure.headers()["content-security-policy"]).toContain("https://fonts.googleapis.com");
   expect(secure.headers()["content-security-policy"]).toContain("frame-src https://www.googletagmanager.com");
   expect(secure.headers()["content-security-policy"]).not.toContain("script-src 'self' 'unsafe-inline'");
 });
