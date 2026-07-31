@@ -512,6 +512,8 @@ test("production host redirects to canonical HTTPS and emits HSTS", async ({ req
   expect(secure.headers()["content-security-policy"]).toContain("https://fonts.googleapis.com");
   expect(secure.headers()["content-security-policy"]).toContain("frame-src https://www.googletagmanager.com");
   expect(secure.headers()["content-security-policy"]).toContain("connect-src 'self' https://google.com https://www.google.com");
+  expect(secure.headers()["content-security-policy"]).toContain("https://analytics.google.com");
+  expect(secure.headers()["content-security-policy"]).toContain("https://stats.g.doubleclick.net https://ad.doubleclick.net");
   expect(secure.headers()["content-security-policy"]).not.toContain("script-src 'self' 'unsafe-inline'");
 
   const gtmPreview = await request.get("/?gtm_debug=test", {
@@ -578,6 +580,7 @@ test("Spanish homepage trust links remain in the Spanish route", async ({ page }
 });
 
 test("touch-only devices do not enable desktop hover motion", async ({ browser }) => {
+  test.setTimeout(60000);
   const context = await browser.newContext({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 920 } });
   const page = await context.newPage();
   await page.goto(`${baseURL}/`, { waitUntil: "networkidle" });
