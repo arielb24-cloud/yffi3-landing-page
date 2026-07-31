@@ -6,6 +6,8 @@ import { expect, test } from "@playwright/test";
 const screenshotDir = path.resolve("playwright-screenshots");
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:4175";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
+const googleTagManagerId = "GTM-5FZCMM3V";
+const googleAnalyticsTagId = "G-6XC09FD9LD";
 const pages = [
   { name: "home", path: "/" },
   { name: "quote", path: "/get-a-quote/" },
@@ -48,6 +50,12 @@ const languagePairs = [
 
 test.beforeAll(() => {
   fs.mkdirSync(screenshotDir, { recursive: true });
+});
+
+test.beforeEach(async ({ page }) => {
+  await page.route("https://www.googletagmanager.com/gtm.js**", async (route) => {
+    await route.fulfill({ status: 200, contentType: "application/javascript", body: "" });
+  });
 });
 
 async function revealWholePage(page) {
@@ -269,6 +277,68 @@ test("quote buttons and form route to the secure quote destination", async ({ pa
   await expect(page.locator("[data-quote-form]")).toHaveAttribute("data-quote-destination", quoteDestination);
 });
 
+test("GTM is installed once per page with no hard-coded GA4 tag", async ({ request }) => {
+  for (const pageInfo of pages) {
+    const response = await request.get(pageInfo.path);
+    expect(response.status()).toBe(200);
+    const html = await response.text();
+    expect(html).toContain("<head>\n<!-- Google Tag Manager -->");
+    expect(html).toContain("<body>\n<!-- Google Tag Manager (noscript) -->");
+    expect(html.match(/googletagmanager\.com\/gtm\.js\?id=/g) || []).toHaveLength(1);
+    expect(html.match(/googletagmanager\.com\/ns\.html\?id=GTM-5FZCMM3V/g) || []).toHaveLength(1);
+    expect(html.match(/GTM-5FZCMM3V/g) || []).toHaveLength(2);
+    expect(html).not.toContain(googleAnalyticsTagId);
+    expect(html).not.toMatch(/googletagmanager\.com\/gtag\/js|\bgtag\s*\(/i);
+  }
+
+  const notFound = await request.get("/gtm-installation-404-check/");
+  expect(notFound.status()).toBe(404);
+  const notFoundHtml = await notFound.text();
+  expect(notFoundHtml.match(/googletagmanager\.com\/gtm\.js\?id=/g) || []).toHaveLength(1);
+  expect(notFoundHtml.match(/googletagmanager\.com\/ns\.html\?id=GTM-5FZCMM3V/g) || []).toHaveLength(1);
+  expect(notFoundHtml.match(new RegExp(googleTagManagerId, "g")) || []).toHaveLength(2);
+});
+
+test("analytics events use only approved non-sensitive fields", async ({ page }) => {
+  await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
+  await page.evaluate(() => {
+    window.dataLayer = [];
+    document.addEventListener("submit", (event) => event.preventDefault(), true);
+    document.querySelector("[data-quote-form]").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+  });
+
+  const formEvents = await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "form_submit"));
+  expect(formEvents).toHaveLength(1);
+  expect(Object.keys(formEvents[0]).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
+  expect(formEvents[0]).toEqual({
+    event: "form_submit",
+    page_path: "/get-a-quote/",
+    page_language: "en",
+    product_category: "general",
+    cta_location: "quote_form"
+  });
+
+  await page.goto("/", { waitUntil: "networkidle" });
+  const clickEvents = await page.evaluate(async () => {
+    window.dataLayer = [];
+    document.addEventListener("click", (event) => event.preventDefault(), true);
+    const emailLink = document.createElement("a");
+    emailLink.href = "mailto:analytics-test@example.invalid";
+    emailLink.dataset.analyticsTest = "email-second-pass";
+    document.body.append(emailLink);
+    document.querySelector('a[href^="tel:"]').dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+    document.querySelector('a[href^="sms:"]').dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+    emailLink.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+    document.querySelector('a[href^="https://secure.ConsumerRateQuotes.com/ConsumerV2"]').dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
+    return window.dataLayer;
+  });
+  expect(clickEvents.map((entry) => entry.event)).toEqual(["phone_click", "sms_click", "email_click", "quote_start"]);
+  for (const event of clickEvents) {
+    expect(Object.keys(event).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
+    expect(JSON.stringify(event)).not.toMatch(/name|address|insurance_details|form_contents|3059108850|ariel@example\.com/i);
+  }
+});
+
 test("header ticker contains trusted links and pauses on hover", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
@@ -436,6 +506,9 @@ test("production host redirects to canonical HTTPS and emits HSTS", async ({ req
   });
   expect(secure.status()).toBe(200);
   expect(secure.headers()["strict-transport-security"]).toBe("max-age=31536000");
+  expect(secure.headers()["content-security-policy"]).toContain("https://www.googletagmanager.com");
+  expect(secure.headers()["content-security-policy"]).toContain("frame-src https://www.googletagmanager.com");
+  expect(secure.headers()["content-security-policy"]).not.toContain("script-src 'self' 'unsafe-inline'");
 });
 
 test("every language pair returns 200 with reciprocal SEO signals", async ({ page, request }) => {

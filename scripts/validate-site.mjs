@@ -10,6 +10,8 @@ const siteFacts = JSON.parse(fs.readFileSync(path.join(root, "content", "site-fa
 const siteUrl = siteFacts.siteUrl;
 const quoteDestination = siteFacts.quoteDestination;
 const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
+const googleTagManagerId = "GTM-5FZCMM3V";
+const googleAnalyticsTagId = "G-6XC09FD9LD";
 const { carouselMediaByPage } = carouselMediaModule;
 const { googleReviews } = googleReviewsModule;
 const requiredSlugs = [
@@ -97,6 +99,19 @@ for (const slug of requiredSlugs) {
   }
   const html = read(filePath);
   const lower = html.toLowerCase();
+
+  if (!/^<!doctype html>\n<html/i.test(html) || !html.includes("<head>\n<!-- Google Tag Manager -->")) {
+    failures.push(`${slug || "home"} must place Google Tag Manager immediately after <head>`);
+  }
+  if (!html.includes("<body>\n<!-- Google Tag Manager (noscript) -->")) {
+    failures.push(`${slug || "home"} must place the Google Tag Manager fallback immediately after <body>`);
+  }
+  if (countMatches(html, /googletagmanager\.com\/gtm\.js\?id=/g) !== 1) failures.push(`${slug || "home"} must have exactly one GTM script installation`);
+  if (countMatches(html, /googletagmanager\.com\/ns\.html\?id=GTM-5FZCMM3V/g) !== 1) failures.push(`${slug || "home"} must have exactly one GTM noscript fallback`);
+  if (countMatches(html, /GTM-5FZCMM3V/g) !== 2) failures.push(`${slug || "home"} must reference ${googleTagManagerId} only in the standard script and noscript snippets`);
+  if (html.includes(googleAnalyticsTagId) || /googletagmanager\.com\/gtag\/js|\bgtag\s*\(/i.test(html)) {
+    failures.push(`${slug || "home"} must not hard-code GA4 or gtag.js`);
+  }
 
   if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${slug || "home"} missing title`);
   if (!/<meta name="description" content="[^"]+">/i.test(html)) failures.push(`${slug || "home"} missing meta description`);
@@ -195,6 +210,12 @@ if (!fs.existsSync(notFound)) {
   const notFoundHtml = read(notFound);
   if (!notFoundHtml.includes('name="robots" content="noindex, nofollow, noarchive"')) failures.push("404.html must be noindex, nofollow, noarchive");
   if (countMatches(notFoundHtml, /<h1[\s>]/gi) !== 1) failures.push("404.html must have exactly one H1");
+  if (!notFoundHtml.includes("<head>\n<!-- Google Tag Manager -->")) failures.push("404.html must place Google Tag Manager immediately after <head>");
+  if (!notFoundHtml.includes("<body>\n<!-- Google Tag Manager (noscript) -->")) failures.push("404.html must place the GTM fallback immediately after <body>");
+  if (countMatches(notFoundHtml, /googletagmanager\.com\/gtm\.js\?id=/g) !== 1) failures.push("404.html must have exactly one GTM script installation");
+  if (countMatches(notFoundHtml, /googletagmanager\.com\/ns\.html\?id=GTM-5FZCMM3V/g) !== 1) failures.push("404.html must have exactly one GTM noscript fallback");
+  if (countMatches(notFoundHtml, /GTM-5FZCMM3V/g) !== 2) failures.push(`404.html must reference ${googleTagManagerId} only in the standard script and noscript snippets`);
+  if (notFoundHtml.includes(googleAnalyticsTagId) || /googletagmanager\.com\/gtag\/js|\bgtag\s*\(/i.test(notFoundHtml)) failures.push("404.html must not hard-code GA4 or gtag.js");
 }
 
 const sitemap = path.join(siteRoot, "sitemap.xml");
@@ -281,6 +302,13 @@ if (!fs.existsSync(js)) {
   if (!script.includes("hydrateVideo")) failures.push("JS missing lazy video hydration");
   if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("visibilitychange")) failures.push("JS missing tab visibility media pausing");
+  for (const eventName of ["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]) {
+    if (!script.includes(`"${eventName}"`)) failures.push(`JS missing privacy-safe analytics event: ${eventName}`);
+  }
+  for (const fieldName of ["page_path", "page_language", "product_category", "cta_location"]) {
+    if (!script.includes(`${fieldName}:`)) failures.push(`JS analytics payload missing approved field: ${fieldName}`);
+  }
+  if (!script.includes("window.dataLayer.push({")) failures.push("JS missing dataLayer event transport");
 }
 
 if (checkDist && fs.existsSync(path.join(siteRoot, "assets", "site.entry.js"))) failures.push("dist must not expose the unbundled browser entry");
