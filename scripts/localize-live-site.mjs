@@ -51,7 +51,7 @@ const globalPairs = [
   ["Trusted • Local • Bilingual", "Confianza • Servicio local • Bilingüe"],
   ["Fast, Friendly Service", "Servicio rápido y amable"],
   ["Free Quotes", "Cotizaciones sin costo"],
-  ["Family Owned", "Negocio familiar"],
+  ["Owner-Led Local Office", "Oficina local dirigida por su propietario"],
   ["Local Miami Office", "Oficina local en Miami"],
   ["Insurance Help", "Ayuda con seguros"],
   ["Auto Insurance", "Seguro de auto"],
@@ -66,7 +66,7 @@ const globalPairs = [
   ["Motorcycle Insurance", "Seguro de motocicleta"],
   ["Boat Insurance", "Seguro para embarcaciones"],
   ["RV Insurance", "Seguro para vehículos recreativos"],
-  ["50+ Insurance Carriers", "Más de 50 aseguradoras"],
+  ["Multiple Carrier Options", "Opciones de varias aseguradoras"],
   ["Local Office", "Oficina local"],
   ["Office #3 serving West Flagler Miami, Miami-Dade families, drivers, homeowners, renters, health coverage shoppers, contractors, and local businesses.", "La Oficina #3 atiende desde West Flagler, Miami, a familias, conductores, propietarios, inquilinos, contratistas y negocios de Miami-Dade."],
   ["Text the office", "Enviar mensaje a la oficina"],
@@ -76,7 +76,7 @@ const globalPairs = [
   ["media carousel", "carrusel multimedia"],
   ["quote focus", "enfoque de cotización"],
   ["guidance • Local Miami Office • Clear quote next step", "orientación • Oficina local en Miami • Próximo paso claro"],
-  ["50+ carriers • Local Miami Office • Bilingual quote help • No price promises", "Más de 50 aseguradoras • Oficina local en Miami • Ayuda bilingüe • Sin promesas de precio"],
+  ["Multiple carrier options • Local Miami Office • Bilingual quote help • No price promises", "Opciones de varias aseguradoras • Oficina local en Miami • Ayuda bilingüe • Sin promesas de precio"],
   ["Swipe, click, or use arrows to compare local quote paths.", "Deslice, haga clic o use las flechas para explorar rutas de cotización."],
   ["Swipe through focused quote moments.", "Deslice para explorar momentos clave de la cotización."],
   ["Insurance categories", "Categorías de seguros"],
@@ -99,14 +99,14 @@ const globalPairs = [
   ["The site uses real Office #3 imagery and the official franchise sign so the experience feels local, specific, and contract-safe.", "El sitio usa imágenes reales de la Oficina #3 y el letrero oficial de la franquicia para ofrecer una experiencia local, auténtica y coherente con los requisitos de la marca."],
   ["Si prefieres hablar en español, Office #3 puede ayudarte a revisar preguntas sobre seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance y general liability.", "Si prefiere hablar en español, la Oficina #3 puede ayudarle con seguro de auto, vivienda, inquilinos, vida, salud, negocios y responsabilidad civil general."],
   ["Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial insurance y general liability explicado claro.", "Seguro de auto, vivienda, inquilinos, vida, salud, comercial y responsabilidad civil general explicado con claridad."],
-  ["Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Ste 108, Miami, FL 33174.", "Puede llamar, enviar un mensaje o visitar la Oficina #3 en 11200 W Flagler St, Suite 108, Miami, FL 33174."],
-  ["Ariel Busutil, Principal Agent", "Ariel Busutil, agente principal"],
+  ["Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.", "Puede llamar, enviar un mensaje o visitar la Oficina #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
+  ["Ariel Busutil, Office #3 Owner", "Ariel Busutil, propietario de la Oficina #3"],
   ["Real Office #3 family and office photo", "Foto real de la familia y la Oficina #3"],
   ["Your Family First Insurance official franchise logo and sign", "Logotipo y letrero oficial de la franquicia Your Family First Insurance"],
   ["Original Your Family First Insurance franchise family logo", "Logotipo familiar original de la franquicia Your Family First Insurance"],
   ["Your Family First Insurance Office #3 family and office team in Miami", "Familia y equipo de la Oficina #3 de Your Family First Insurance en Miami"],
   ["Real family and office photo for Your Family First Insurance Office #3", "Foto real de la familia y la oficina de Your Family First Insurance Office #3"],
-  ["Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3", "Ariel Busutil, agente principal y director ejecutivo de Your Family First Insurance Office #3"],
+  ["Ariel Busutil, owner of Your Family First Insurance Office #3", "Ariel Busutil, propietario de Your Family First Insurance Office #3"],
   ["Our services", "Nuestros servicios"],
   ["Comprehensive Coverage Conversations for Everyday Life", "Conversaciones claras sobre cobertura para la vida diaria"],
   ["Start with the coverage type you need. Office #3 helps compare options in plain language and follows up locally.", "Comience con el tipo de cobertura que necesita. La Oficina #3 ayuda a comparar opciones en lenguaje claro y ofrece seguimiento local."],
@@ -161,6 +161,23 @@ const globalPairs = [
   ["English and Spanish quote help for Miami families who want the process explained plainly.", "Ayuda con cotizaciones en inglés y español para familias de Miami que desean una explicación clara del proceso."],
   ["Start with a no-pressure quote request and basic contact details before any secure application process.", "Comience con una solicitud sin presión y datos básicos de contacto antes de cualquier proceso seguro."],
   ["A simple, responsive path from first contact to coverage conversations with a local office team.", "Una ruta sencilla y ágil desde el primer contacto hasta la conversación sobre cobertura con un equipo local."],
+  ["Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.", "Compare las opciones disponibles de varias aseguradoras en una conversación local. La disponibilidad, la elegibilidad y el precio varían según la aseguradora y los datos del solicitante."],
+  ["Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations.", "La Oficina #3 es dirigida localmente por su propietario, Ariel Busutil, con un enfoque en orientación clara y conversaciones reales."],
+  ["Authoritative references", "Referencias oficiales"],
+  ["Official Sources for Fact-Checking", "Fuentes oficiales para verificar la información"],
+  ["Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.", "Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen."],
+  ["Your Family First Insurance company website", "Sitio web de Your Family First Insurance"],
+  ["Florida DFS insurance consumer resources", "Recursos para consumidores de seguros de Florida DFS"],
+  ["Florida DFS personal auto insurance overview", "Resumen de seguro de auto personal de Florida DFS"],
+  ["Florida DFS homeowners insurance overview", "Resumen de seguro para propietarios de Florida DFS"],
+  ["Florida DFS homeowners and renters overview", "Resumen para propietarios e inquilinos de Florida DFS"],
+  ["Florida DFS flood insurance guide", "Guía de seguro contra inundaciones de Florida DFS"],
+  ["Florida DFS insurance consumer library", "Biblioteca para consumidores de seguros de Florida DFS"],
+  ["Florida DFS licensee search", "Búsqueda de licencias de Florida DFS"],
+  ["Florida Statute 627.7011 roof-age provisions", "Disposiciones sobre la antigüedad del techo del Estatuto de Florida 627.7011"],
+  ["Office #3 on Google Maps", "Oficina #3 en Google Maps"],
+  ["View the verified office listing on Google Maps", "Ver la ficha verificada de la oficina en Google Maps"],
+  ["Verify insurance licenses with Florida DFS", "Verificar licencias de seguros con Florida DFS"],
   ["Google reviews for Office #3", "Reseñas de Google de la Oficina #3"],
   ["Real Google Feedback From the West Flagler Office", "Opiniones reales en Google sobre la oficina de West Flagler"],
   ["Read or Leave a Google Review", "Leer o dejar una reseña en Google"],
@@ -250,7 +267,8 @@ const globalPairs = [
   ["Google Tag Manager (GTM) organizes approved measurement tags on this website. At the last technical review on August 4, 2026, the container loaded Google Analytics 4 (GA4) and a Google Ads destination. An Apollo Website Tracker tag is present but paused; it must not be enabled unless its permitted use, consent settings, and privacy disclosure are approved. The site does not use a chat widget or session-replay tool.", "Google Tag Manager (GTM) organiza las etiquetas de medición aprobadas de este sitio. En la última revisión técnica, el 4 de agosto de 2026, el contenedor cargaba Google Analytics 4 (GA4) y un destino de Google Ads. Hay una etiqueta de Apollo Website Tracker, pero está pausada; no debe activarse sin aprobar su uso permitido, su configuración de consentimiento y su divulgación de privacidad. El sitio no utiliza chat ni herramientas de reproducción de sesiones."],
   ["GA4 may use first-party cookies, including <code>_ga</code>, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.", "GA4 puede utilizar cookies propias, incluida <code>_ga</code>, y recopilar datos de páginas e interacciones, información del dispositivo y navegador, ubicación aproximada derivada de una dirección de Protocolo de Internet y un identificador aleatorio del navegador. Google indica que GA4 no registra ni almacena direcciones individuales de Protocolo de Internet. GTM administra las etiquetas; las etiquetas cargadas mediante GTM determinan qué datos se recopilan."],
   ["Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.", "La medición de Google Ads puede utilizar cookies o identificadores similares para medir conversiones y funciones publicitarias. Este repositorio no instala Meta Pixel ni etiquetas de Microsoft Advertising. Los destinos publicitarios y el remarketing deben permanecer activos únicamente después de que el propietario confirme la cuenta activa, la finalidad, los requisitos de consentimiento y las divulgaciones de privacidad."],
-  ["The website's analytics data layer sends only the event name, page path, page language, product category, and call-to-action location. It does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details.", "La capa de datos analíticos del sitio envía únicamente el nombre del evento, la ruta de la página, el idioma, la categoría del producto y la ubicación de la llamada a la acción. No envía nombres, teléfonos, correos electrónicos, códigos postales, notas ni detalles de seguros."],
+  ["The website's analytics data layer sends the event name, page path, page language, product category, call-to-action location, first landing path, broad referrer category, and sanitized UTM source, medium, campaign, and content values when present. It does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.", "La capa de datos analíticos del sitio envía el nombre del evento, la ruta y el idioma de la página, la categoría del producto, la ubicación de la llamada a la acción, la primera ruta de entrada, una categoría general del referente y valores UTM saneados de fuente, medio, campaña y contenido cuando existen. No envía nombres, teléfonos, correos electrónicos, códigos postales, notas, detalles de seguros, URL completas de referencia ni consultas completas."],
+  ["First-touch campaign values are kept only in browser session storage for the current tab session. They are not a CRM record, do not prove a completed lead or sale, and are not appended to the separate ConsumerRateQuotes destination because that vendor has not supplied a documented attribution-field contract.", "Los valores de campaña del primer contacto se guardan solo en el almacenamiento de sesión del navegador durante la sesión actual de la pestaña. No son un registro de CRM, no demuestran un prospecto ni una venta completada y no se agregan al destino separado de ConsumerRateQuotes porque ese proveedor no ha entregado un contrato documentado de campos de atribución."],
   ["This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.", "Este sitio no ofrece actualmente un panel de preferencias de cookies en la página. El propietario debe confirmar con asesoría de privacidad cualificada si se requieren controles de consentimiento para la ubicación de cada visitante antes de mantener activa la publicidad o el seguimiento opcional."],
   ["Retention and Your Choices", "Retención y sus opciones"],
   ["Analytics retention is controlled in the GA4 property and must be confirmed by the owner. You can restrict cookies in your browser, use private browsing controls, or install the Google Analytics Opt-out Browser Add-on. Blocking cookies may limit measurement but should not prevent access to the public insurance information on this site.", "La retención de datos analíticos se controla en la propiedad de GA4 y debe confirmarla el propietario. Puede restringir las cookies en su navegador, utilizar controles de navegación privada o instalar el complemento de inhabilitación de Google Analytics. Bloquear las cookies puede limitar la medición, pero no debería impedir el acceso a la información pública de seguros de este sitio."],
@@ -430,6 +448,14 @@ function localizedJsonLdBlock(whole, spanishPage) {
       data.url = `${siteUrl}/es/`;
       data.inLanguage = "es-US";
     }
+    if (["WebPage", "AboutPage", "ContactPage"].includes(type)) {
+      data["@id"] = `${canonical}#webpage`;
+      data.url = canonical;
+      data.name = spanishPage.title.replace(/\s*\|\s*/g, " - ");
+      data.description = spanishPage.description;
+      data.inLanguage = "es-US";
+      if (data.breadcrumb) data.breadcrumb["@id"] = `${canonical}#breadcrumb`;
+    }
     if (type === "InsuranceAgency") {
       data.inLanguage = "es-US";
       data.description = "Agencia de seguros local y bilingüe en West Flagler, Miami, que ayuda a familias y negocios a comparar opciones de cobertura con orientación personalizada.";
@@ -465,6 +491,7 @@ function localizedJsonLdBlock(whole, spanishPage) {
       data.inLanguage = "es-US";
     }
     if (type === "BreadcrumbList") {
+      data["@id"] = `${canonical}#breadcrumb`;
       if (data.itemListElement?.[0]) data.itemListElement[0].item = `${siteUrl}/es/`;
       if (data.itemListElement?.[0]) data.itemListElement[0].name = "Inicio";
       if (data.itemListElement?.[1]) {

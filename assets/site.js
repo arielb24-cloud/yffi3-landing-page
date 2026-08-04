@@ -1,5 +1,60 @@
 const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
 
+const attributionStorageKey = "yffi_first_touch_v1";
+const attributionParameterMap = {
+  utm_source: "traffic_source",
+  utm_medium: "traffic_medium",
+  utm_campaign: "campaign_name",
+  utm_content: "campaign_content"
+};
+
+function safeCampaignValue(value, fallback = "(not_set)") {
+  const normalized = String(value || "")
+    .normalize("NFKC")
+    .replace(/[^a-zA-Z0-9._~:/ -]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 100);
+  return normalized || fallback;
+}
+
+function referrerCategory() {
+  if (!document.referrer) return "direct";
+  try {
+    const host = new URL(document.referrer).hostname.toLowerCase();
+    if (host === window.location.hostname.toLowerCase()) return "internal";
+    if (/(^|\.)google\./.test(host)) return "google";
+    if (/(^|\.)bing\.com$/.test(host)) return "bing";
+    if (/(^|\.)(facebook|instagram)\.com$/.test(host)) return "meta";
+    if (/(^|\.)linkedin\.com$/.test(host)) return "linkedin";
+    return "other";
+  } catch {
+    return "other";
+  }
+}
+
+function readFirstTouchAttribution() {
+  try {
+    const stored = JSON.parse(window.sessionStorage.getItem(attributionStorageKey) || "null");
+    if (stored && typeof stored === "object") return stored;
+  } catch {}
+
+  const params = new URLSearchParams(window.location.search);
+  const attribution = {
+    landing_page: window.location.pathname,
+    referrer_category: referrerCategory()
+  };
+  for (const [queryKey, eventKey] of Object.entries(attributionParameterMap)) {
+    attribution[eventKey] = safeCampaignValue(params.get(queryKey));
+  }
+  try {
+    window.sessionStorage.setItem(attributionStorageKey, JSON.stringify(attribution));
+  } catch {}
+  return attribution;
+}
+
+const firstTouchAttribution = readFirstTouchAttribution();
+
 function analyticsProductCategory() {
   const categoryByPath = {
     "/auto-insurance/": "auto",
@@ -34,7 +89,13 @@ function pushAnalyticsEvent(eventName, target) {
     page_path: window.location.pathname,
     page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
     product_category: analyticsProductCategory(),
-    cta_location: analyticsCtaLocation(target)
+    cta_location: analyticsCtaLocation(target),
+    landing_page: firstTouchAttribution.landing_page,
+    referrer_category: firstTouchAttribution.referrer_category,
+    traffic_source: firstTouchAttribution.traffic_source,
+    traffic_medium: firstTouchAttribution.traffic_medium,
+    campaign_name: firstTouchAttribution.campaign_name,
+    campaign_content: firstTouchAttribution.campaign_content
   });
 }
 
@@ -53,11 +114,6 @@ document.addEventListener("click", (event) => {
       }
     } catch {}
   }
-}, true);
-
-document.addEventListener("submit", (event) => {
-  const form = event.target.closest("[data-quote-form]");
-  if (form) pushAnalyticsEvent("form_submit", form);
 }, true);
 
 const menuToggle = document.querySelector(".menu-toggle");
@@ -778,6 +834,7 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
       if (status) status.textContent = formMessages.invalidPath;
       return;
     }
+    pushAnalyticsEvent("form_submit", form);
     pushAnalyticsEvent("quote_start", form);
     if (status) status.textContent = formMessages.opening;
     window.location.assign(destination);
@@ -832,7 +889,7 @@ const publicServiceTools = [
     annotations: { readOnlyHint: true, untrustedContentHint: false },
     execute: async () => ({
       name: "Your Family First Insurance Office #3",
-      address: "11200 W Flagler St, Suite 108, Miami, FL 33174",
+      address: "11200 W Flagler St, Suite 108-109, Miami, FL 33174",
       phone: "305-910-8850",
       telephone_uri: "tel:13059108850",
       languages: ["English", "Spanish"]

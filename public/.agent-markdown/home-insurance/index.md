@@ -61,7 +61,7 @@ Compare options before a real estate closing, after renovations, before hurrican
 
 ### Flood and wind conversations
 
-Flood insurance is often separate. Office #3 can help you prepare the right questions before choosing a homeowners policy.
+Standard homeowners policies generally do not cover flood damage. Flood coverage is usually a separate policy, although some private insurers may offer an endorsement. Wind coverage and deductibles also vary by policy.
 
 ### Local documentation help
 
@@ -97,6 +97,14 @@ Coverage availability varies by carrier, underwriting, location, and applicant i
 
 [Start My Quote Request](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Authoritative references
+
+## Official Sources for Fact-Checking
+
+Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+
+[Florida DFS homeowners insurance overview](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Florida DFS flood insurance guide](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Florida Statute 627.7011 roof-age provisions](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
+
 FAQ
 
 ## Frequently Asked Questions
@@ -107,7 +115,11 @@ Yes. Office #3 helps Miami-Dade homeowners request quote help for houses, proper
 
 Is flood insurance included with homeowners insurance?
 
-Flood coverage is often separate from a standard homeowners policy. Office #3 can help you discuss flood insurance questions before you choose coverage.
+Standard homeowners policies generally do not cover flood damage. Flood coverage is usually purchased separately, although some private insurers may offer it by endorsement. Review the written policy and lender requirements.
+
+Can a Florida insurer refuse coverage solely because of roof age?
+
+Florida Statute 627.7011 says a homeowners insurer may not refuse to issue or renew solely because of roof age when an authorized inspection shows at least five years of useful life remaining. The statute does not prevent other lawful underwriting decisions, so current inspection and carrier requirements still matter.
 
 What Florida home insurance details may matter?
 

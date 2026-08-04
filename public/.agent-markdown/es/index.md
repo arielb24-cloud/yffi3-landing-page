@@ -73,7 +73,7 @@ Llame o visite la Oficina #3 en West Flagler para recibir ayuda local, clara y h
 
 [Hablar con un agente](/es/sobre-oficina-3/) [Llamar al 305-910-8850](tel:13059108850)
 
-Más de 50 aseguradoras • Oficina local en Miami • Ayuda bilingüe • Sin promesas de precio
+Opciones de varias aseguradoras • Oficina local en Miami • Ayuda bilingüe • Sin promesas de precio
 
 **Oficina local #3**West Flagler, Miami
 
@@ -93,9 +93,9 @@ El sitio usa imágenes reales de la Oficina #3 y el letrero oficial de la franqu
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
 
-![Ariel Busutil, agente principal y director ejecutivo de Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, propietario de Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
 
-**Ariel Busutil, agente principal**Oficina #3
+**Ariel Busutil, propietario de la Oficina #3**Miami, Florida
 
  ![Foto real de la familia y la oficina de Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
 
@@ -117,7 +117,7 @@ Seguro de auto, vivienda, inquilinos, vida, salud, comercial y responsabilidad c
 
 ### Oficina local en West Flagler
 
-Puede llamar, enviar un mensaje o visitar la Oficina #3 en 11200 W Flagler St, Suite 108, Miami, FL 33174.
+Puede llamar, enviar un mensaje o visitar la Oficina #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 ### Sin presión
 
@@ -231,13 +231,13 @@ Por qué elegirnos
 
 La Oficina #3 mantiene la experiencia sencilla: elija la cobertura, comparta datos básicos y hable con una oficina local antes de iniciar cualquier solicitud confidencial.
 
-### Más de 50 aseguradoras
+### Opciones de varias aseguradoras
 
-Compare opciones de distintas aseguradoras en una conversación local. La disponibilidad, elegibilidad y el precio varían según la aseguradora y los datos del solicitante.
+Compare las opciones disponibles de varias aseguradoras en una conversación local. La disponibilidad, la elegibilidad y el precio varían según la aseguradora y los datos del solicitante.
 
-### Negocio familiar
+### Oficina local dirigida por su propietario
 
-Una cultura familiar enfocada en orientación clara, conversaciones reales y relaciones locales duraderas.
+La Oficina #3 es dirigida localmente por su propietario, Ariel Busutil, con un enfoque en orientación clara y conversaciones reales.
 
 ### Oficina local en Miami
 
@@ -529,13 +529,21 @@ Comparta aquí solo datos básicos de contacto. Al completar los campos obligato
 **Código QR de cotización**
 Escanee este código para continuar de forma rápida con su cotización.
 
+Referencias oficiales
+
+## Fuentes oficiales para verificar la información
+
+Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+
+[Sitio web de Your Family First Insurance](https://yourfamilyfirstinsurance.com/home/)[Recursos para consumidores de seguros de Florida DFS](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)
+
 Preguntas frecuentes
 
 ## Preguntas frecuentes
 
 ¿Dónde está Your Family First Insurance Office #3?
 
-La Oficina #3 está en 11200 W Flagler St, Suite 108, Miami, FL 33174.
+La Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 ¿Con qué tipos de seguros ofrece ayuda la Oficina #3?
 

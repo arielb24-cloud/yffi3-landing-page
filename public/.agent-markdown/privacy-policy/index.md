@@ -43,7 +43,9 @@ GA4 may use first-party cookies, including `_ga`, and collect page and interacti
 
 Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.
 
-The website's analytics data layer sends only the event name, page path, page language, product category, and call-to-action location. It does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details.
+The website's analytics data layer sends the event name, page path, page language, product category, call-to-action location, first landing path, broad referrer category, and sanitized UTM source, medium, campaign, and content values when present. It does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.
+
+First-touch campaign values are kept only in browser session storage for the current tab session. They are not a CRM record, do not prove a completed lead or sale, and are not appended to the separate ConsumerRateQuotes destination because that vendor has not supplied a documented attribution-field contract.
 
 This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.
 

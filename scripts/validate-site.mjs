@@ -321,9 +321,11 @@ if (!fs.existsSync(js)) {
   for (const eventName of ["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]) {
     if (!script.includes(`"${eventName}"`)) failures.push(`JS missing privacy-safe analytics event: ${eventName}`);
   }
-  for (const fieldName of ["page_path", "page_language", "product_category", "cta_location"]) {
+  for (const fieldName of ["page_path", "page_language", "product_category", "cta_location", "landing_page", "referrer_category", "traffic_source", "traffic_medium", "campaign_name", "campaign_content"]) {
     if (!script.includes(`${fieldName}:`)) failures.push(`JS analytics payload missing approved field: ${fieldName}`);
   }
+  if (!script.includes('const attributionStorageKey = "yffi_first_touch_v1"')) failures.push("JS missing session-scoped first-touch attribution");
+  if (script.includes("gclid") || script.includes("wbraid") || script.includes("gbraid")) failures.push("JS must not store advertising click identifiers without an approved consent and vendor contract");
   if (!script.includes("window.dataLayer.push({")) failures.push("JS missing dataLayer event transport");
 }
 

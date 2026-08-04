@@ -19,22 +19,24 @@
 
 | Event | When it fires | GA4 recommendation | Safe parameters |
 |---|---|---|---|
-| `phone_click` | Intentional click on `tel:` | Key event | `page_path`, `page_language`, `product_category`, `cta_location` |
+| `phone_click` | Intentional click on `tel:` | Key event | Approved interaction and first-touch fields listed below |
 | `sms_click` | Intentional click on `sms:` | Key event | Same |
 | `email_click` | Intentional click on `mailto:` | Optional key event | Same |
-| `form_submit` | Attempt to submit the first-step form | Diagnostic only | Same |
+| `form_submit` | Valid first-step form immediately before the approved handoff | Diagnostic only | Same |
 | `quote_start` | Valid form handoff or intentional approved destination click | Secondary funnel event | Same |
 | `generate_lead` | Not implemented | Add only after server/vendor acknowledgement | Never infer from a redirect |
 | `quote_complete` | Not implemented | Key event only with vendor confirmation | Server-side/offline identifier, no PII in GA4 |
 | `policy_bound` | Not implemented | Offline primary business conversion | Imported from system of record |
 
-The current data layer must never include name, email, phone, ZIP, address, notes, insurance answers, policy data, VIN, date of birth, health information, license information, or form contents.
+Approved interaction fields are `page_path`, `page_language`, `product_category`, and `cta_location`. Approved first-touch fields are `landing_page`, `referrer_category`, `traffic_source`, `traffic_medium`, `campaign_name`, and `campaign_content`. Missing campaign values use `(not_set)` so tag mappings stay stable.
+
+The current data layer must never include name, email, phone, ZIP, address, notes, insurance answers, policy data, VIN, date of birth, health information, license information, form contents, raw referrer URLs, full query strings, or advertising click identifiers.
 
 ## Campaign attribution posture
 
-The public form currently redirects to ConsumerRateQuotes and does not receive a success response. It does not have an approved server-side destination for attribution. Therefore this release does not persist or append raw UTM values, click IDs, or submitted data to the vendor URL. `page_path` records the landing/interaction path without its query string.
+The public form redirects to ConsumerRateQuotes and does not receive a success response. It does not have an approved server-side destination for attribution. The website captures a sanitized first-touch subset of `utm_source`, `utm_medium`, `utm_campaign`, and `utm_content` in browser `sessionStorage` for the current tab session and passes those non-PII values to its data layer. It does not retain raw queries, raw referrers, click IDs, or submitted data, and it does not append attribution values to the vendor URL. `page_path` and `landing_page` contain canonical paths without query strings.
 
-When an approved integration exists, accept only these non-PII attribution fields after validation:
+When an approved server-side integration exists, forward only these non-PII attribution fields after validation:
 
 - `utm_source`
 - `utm_medium`
@@ -91,7 +93,7 @@ PII belongs only in the approved secure lead system: name, email, phone, ZIP, in
 
 | Integration result | User experience | Analytics/CRM state |
 |---|---|---|
-| Validation failure | Inline, localized correction | `form_submit` only; no lead |
+| Validation failure | Inline, localized correction | No form or lead event |
 | Spam/honeypot | Neutral acknowledgement | Rejected/spam; no analytics conversion |
 | Vendor success | Localized success or approved secure continuation | Create lead once; eligible for `generate_lead` |
 | Vendor timeout/5xx | Do not claim success; show call fallback and retry guidance | `delivery_error`; no lead event |

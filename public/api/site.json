@@ -11,7 +11,7 @@
     "phone": "305-910-8850",
     "telephone_uri": "tel:13059108850",
     "address": {
-      "streetAddress": "11200 W Flagler St, Suite 108",
+      "streetAddress": "11200 W Flagler St, Suite 108-109",
       "addressLocality": "Miami",
       "addressRegion": "FL",
       "postalCode": "33174",
@@ -19,8 +19,12 @@
     }
   },
   "service_areas": [
-    "West Flagler Miami",
-    "Miami"
+    "Miami",
+    "Sweetwater",
+    "Doral",
+    "Hialeah",
+    "Kendall",
+    "Florida"
   ],
   "insurance_types": [
     "Auto insurance",

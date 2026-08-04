@@ -97,6 +97,14 @@ La disponibilidad varía según la aseguradora, la suscripción, la ubicación y
 
 [Iniciar mi solicitud](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Referencias oficiales
+
+## Fuentes oficiales para verificar la información
+
+Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+
+[Resumen de seguro para propietarios de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Guía de seguro contra inundaciones de Florida DFS](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Disposiciones sobre la antigüedad del techo del Estatuto de Florida 627.7011](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
+
 Preguntas frecuentes
 
 ## Preguntas frecuentes
@@ -108,6 +116,14 @@ Sí. Ayudamos a propietarios de Miami a solicitar cotizaciones para casas elegib
 ¿Qué puede incluir un seguro para propietarios?
 
 Puede incluir vivienda, otras estructuras, propiedad personal, responsabilidad civil y gastos adicionales de vivienda. La cobertura y exclusiones exactas dependen de la póliza y la aseguradora.
+
+¿El seguro para propietarios incluye inundación?
+
+Las pólizas estándar para propietarios generalmente no cubren daños por inundación. La cobertura contra inundaciones suele comprarse por separado, aunque algunas aseguradoras privadas pueden ofrecerla mediante un endoso. Revise la póliza escrita y los requisitos del prestamista.
+
+¿Una aseguradora de Florida puede rechazar cobertura solo por la antigüedad del techo?
+
+El Estatuto de Florida 627.7011 indica que una aseguradora de propietarios no puede rechazar la emisión o renovación únicamente por la antigüedad del techo cuando una inspección autorizada muestra al menos cinco años de vida útil. Siguen aplicando otros criterios legales de suscripción e inspección.
 
 ¿Qué datos de la propiedad pueden solicitarse?
 

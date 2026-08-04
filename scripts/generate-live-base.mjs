@@ -11,7 +11,7 @@ const phoneDisplay = "305-910-8850";
 const phoneHref = "tel:13059108850";
 const smsHref = "sms:+13059108850";
 const businessName = "Your Family First Insurance Office #3";
-const legalName = "Your Family First Insurance";
+const brandName = "Your Family First Insurance";
 const googleTagManagerId = "GTM-5FZCMM3V";
 const logoSrc = "/assets/yffi3/yffi3-official-franchise-logo.png";
 const logoPreloadSrc = "/assets/yffi3/yffi3-official-franchise-logo-240.webp";
@@ -25,6 +25,10 @@ const qrWebpSrc = "/assets/yffi3/yffi3-quote-qr-240.webp";
 const googleReviewQrSrc = "/assets/yffi3/google-review-qr.png";
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
+const brandUrl = "https://yourfamilyfirstinsurance.com/";
+const facebookUrl = "https://www.facebook.com/YourFamilyFirstInsurance";
+const googleMapsUrl = "https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0";
+const contentReviewedDate = "2026-08-04";
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -120,14 +124,14 @@ const serviceVisuals = {
 
 
 const address = {
-  streetAddress: "11200 W Flagler St, Ste 108",
+  streetAddress: "11200 W Flagler St, Suite 108-109",
   addressLocality: "Miami",
   addressRegion: "FL",
   postalCode: "33174",
   addressCountry: "US"
 };
 
-const serviceAreas = ["West Flagler Miami", "Miami", "Kendall", "Hialeah", "Cutler Bay", "Homestead", "Miami-Dade", "Florida"];
+const serviceAreas = ["Miami", "Sweetwater", "Doral", "Hialeah", "Kendall", "Florida"];
 const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
 const redFlagPhrases = [
   "guaranteed " + "cheapest",
@@ -235,7 +239,7 @@ const specialtyCoverageLinks = [
 
 const tickerItems = [
   ["Your Family First Insurance Office #3", "/about-office-3/"],
-  ["11200 W Flagler St, Ste 108, Miami, FL 33174", "/about-office-3/"],
+  ["11200 W Flagler St, Suite 108-109, Miami, FL 33174", "/about-office-3/"],
   ["Call Us: (305) 910-8850", phoneHref],
   ["¡Se Habla Español!", "/about-office-3/"],
   ["Get a Free Quote Now!", quoteDestination],
@@ -253,8 +257,8 @@ const tickerItems = [
   ["Workers' Compensation", "/#workers-compensation"],
   ["Life Insurance", "/life-insurance/"],
   ["Health Insurance", "/#health-insurance"],
-  ["50+ Insurance Carriers", "/#insurance-carriers"],
-  ["Family Owned", "/#family-owned"],
+  ["Multiple Carrier Options", "/#insurance-carriers"],
+  ["Owner-Led Local Office", "/#family-owned"],
   ["Local Miami Office", "/#local-miami-office"],
   ["Free Quotes", quoteDestination],
   ["Fast, Friendly Service", "/about-office-3/"]
@@ -271,14 +275,14 @@ const pages = [
     kind: "home",
     keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     faqs: [
-      ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
+      ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St, Suite 108-109, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
       ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
       ["How do I get a free insurance quote from Office #3?", "Use the Get My Free Quote buttons, scan the approved QR code, or call 305-910-8850. The website only starts with basic contact details before opening the secure quote intake path."],
       ["Is bilingual insurance help available?", "Yes. Office #3 offers local English and Spanish quote help so Miami families and business owners can ask coverage questions more comfortably."],
       ["Does Office #3 help with insurance in Spanish in Miami?", "Yes. Spanish-speaking customers can call 305-910-8850 or request a quote and ask for help with seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance, and general liability in clear Miami Spanish."],
       ["What Miami areas can Office #3 help from West Flagler?", "Office #3 is based in West Flagler and can help customers in Miami, Miami-Dade, Kendall, Doral, Hialeah, Homestead, Cutler Bay, and nearby Florida communities start quote conversations."],
       ["Why compare insurance through a local Miami office?", "A local office can help you organize the quote conversation, explain next steps, review documents you may need, and keep the process centered on your family, vehicle, home, apartment, or business instead of a generic online form."],
-      ["Can Office #3 help compare 50+ insurance carriers?", "The site highlights access to 50+ insurance carriers for quote conversations. Availability, eligibility, pricing, and coverage still vary by carrier, underwriting, location, and applicant information."],
+      ["Can Office #3 help compare multiple carrier options?", "Office #3 can help customers compare available options from participating insurance carriers. Availability, eligibility, pricing, and coverage vary by carrier, underwriting, location, and applicant information."],
       ["What should I have ready before requesting a quote?", "Have your ZIP code, the type of insurance you want to review, preferred callback time, and general coverage goals. Do not send SSNs, dates of birth, driver license numbers, VINs, payment details, medical records, passwords, or carrier login credentials through a general website form."],
       ["Can one office help me review more than one policy type?", "Yes. Many customers review auto with homeowners, renters, life, health, general liability, or business coverage so the conversation is easier to manage in one local office."],
       ["How does the secure quote path work?", "The Get My Free Quote buttons open the Office #3 ConsumerRateQuotes intake path for account ID 64868. Use the website form only for safe contact details and continue sensitive information through a secure approved process."],
@@ -320,7 +324,8 @@ const pages = [
       ["How can Miami drivers lower confusion before renewal?", "Bring your current declaration page if available, renewal notice, vehicle changes, driver changes, garaging ZIP code, and deductible questions so the office can help you compare the auto quote conversation clearly."],
       ["Can Office #3 help if I moved to Miami-Dade?", "Yes. If you recently moved, changed ZIP codes, changed commute patterns, or need Florida quote help, Office #3 can help start a local auto insurance conversation."],
       ["Can Spanish-speaking drivers request help?", "Yes. Office #3 offers bilingual quote help for Miami drivers who prefer English or Spanish conversations."],
-      ["Can I ask about deductibles and uninsured motorist coverage?", "Yes. You can ask how deductibles, liability limits, comprehensive, collision, and uninsured motorist questions may affect your auto coverage conversation."],
+      ["What does Florida uninsured or underinsured motorist coverage address?", "Florida DFS explains that uninsured or underinsured motorist coverage can address covered bodily injury when an at-fault driver has no bodily injury liability coverage or not enough limits. Terms, limits, stacking choices, and exclusions depend on the policy."],
+      ["What property damage liability limit does Florida law require?", "Florida DFS states that Florida law requires at least $10,000 of property damage liability coverage. Other requirements and appropriate limits depend on the vehicle, driver, registration, financial-responsibility rules, lender or lease terms, and individual situation."],
       ["Does a car insurance quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."]
     ]
   },
@@ -338,7 +343,7 @@ const pages = [
     sections: [
       ["Florida property review", "Review dwelling coverage, personal property, liability, roof details, wind or hurricane deductibles, flood questions, and lender requirements."],
       ["Closing and renewal timing", "Compare options before a real estate closing, after renovations, before hurricane season, or when a Miami-Dade renewal changes."],
-      ["Flood and wind conversations", "Flood insurance is often separate. Office #3 can help you prepare the right questions before choosing a homeowners policy."],
+      ["Flood and wind conversations", "Standard homeowners policies generally do not cover flood damage. Flood coverage is usually a separate policy, although some private insurers may offer an endorsement. Wind coverage and deductibles also vary by policy."],
       ["Local documentation help", "Property age, roof updates, inspections, occupancy, association documents, and prior coverage can matter during a quote review."]
     ],
     searchTopics: [
@@ -349,7 +354,8 @@ const pages = [
     ],
     faqs: [
       ["Can Office #3 help with homeowners insurance in Miami-Dade?", "Yes. Office #3 helps Miami-Dade homeowners request quote help for houses, property details, belongings, liability, lender needs, and Florida property coverage questions."],
-      ["Is flood insurance included with homeowners insurance?", "Flood coverage is often separate from a standard homeowners policy. Office #3 can help you discuss flood insurance questions before you choose coverage."],
+      ["Is flood insurance included with homeowners insurance?", "Standard homeowners policies generally do not cover flood damage. Flood coverage is usually purchased separately, although some private insurers may offer it by endorsement. Review the written policy and lender requirements."],
+      ["Can a Florida insurer refuse coverage solely because of roof age?", "Florida Statute 627.7011 says a homeowners insurer may not refuse to issue or renew solely because of roof age when an authorized inspection shows at least five years of useful life remaining. The statute does not prevent other lawful underwriting decisions, so current inspection and carrier requirements still matter."],
       ["What Florida home insurance details may matter?", "A home quote conversation may include roof information, wind or hurricane deductibles, property age, updates, protection features, claims history, occupancy, and lender requirements."],
       ["Can I request homeowners insurance help before closing on a property?", "Yes. Homebuyers commonly request quote help before a closing date, lender deadline, or policy renewal so they can review options early."],
       ["What homeowners insurance documents can help in Miami?", "Helpful documents may include a prior policy, lender requirements, inspection reports, roof details, wind mitigation details if available, updates, occupancy details, and association documents when applicable."],
@@ -483,13 +489,13 @@ const pages = [
     kind: "about",
     faqs: [
       ["What makes Your Family First Insurance Office #3 local?", "Office #3 is listed on West Flagler Street in Miami and serves Miami-Dade families, drivers, renters, homeowners, and business owners."],
-      ["Who is shown in the About Office #3 photo?", "The About section uses the approved principal agent photo for Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3."],
+      ["Who is shown in the About Office #3 photo?", "The About section uses the approved Office #3 owner photo for Ariel Busutil, identified by the Your Family First Insurance company website as the owner of Office #3."],
       ["Does the site use real approved office imagery?", "Yes. The website uses approved Office #3 assets, the official franchise sign, the original franchise logo, the real family and office photo, and the principal agent photo provided for the project."],
       ["Is Spanish-speaking insurance help available?", "Yes. Office #3 offers bilingual service for customers who prefer English or Spanish quote conversations."],
       ["How do I leave a Google review for Office #3?", "Use the Office #3 Google review button on this website to open the Google review page for the listing connected to Your Family First Insurance Office #3."],
       ["What is the Office #3 phone number?", "Call 305-910-8850 for local quote help, bilingual service, and questions about the secure quote path."],
       ["What does family-owned service mean for Office #3?", "It means the site emphasizes real local conversations, Office #3 imagery, bilingual support, clear next steps, and family-first quote guidance instead of anonymous lead forms."],
-      ["What trust points are highlighted for Office #3?", "The site highlights 50+ insurance carriers, family-owned service, a local Miami office, bilingual help, free quotes, and fast, friendly service while avoiding fake ratings or price promises."],
+      ["What trust points are highlighted for Office #3?", "The site highlights multiple carrier options, an owner-led local Miami office, bilingual help, quote assistance, and clear insurance disclaimers while avoiding fake ratings or price promises."],
       ["Can I call instead of using the form?", "Yes. Call 305-910-8850 for direct Office #3 quote help."]
     ]
   },
@@ -664,7 +670,7 @@ function familyPicture(className, loading = "lazy", fetchpriority = "auto") {
 }
 
 function principalPicture(className, loading = "lazy") {
-  return `<picture class="${className}"><source srcset="${principalWebpSrc}" type="image/webp"><img src="${principalPhotoSrc}" alt="Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3" width="1448" height="1086" loading="${loading}" decoding="async"></picture>`;
+  return `<picture class="${className}"><source srcset="${principalWebpSrc}" type="image/webp"><img src="${principalPhotoSrc}" alt="Ariel Busutil, owner of Your Family First Insurance Office #3" width="1448" height="1086" loading="${loading}" decoding="async"></picture>`;
 }
 
 function svgIconPaths(name) {
@@ -834,6 +840,8 @@ function footerHtml() {
         <div>
           <h2>Local Office</h2>
           <p>Office #3 serving West Flagler Miami, Miami-Dade families, drivers, homeowners, renters, health coverage shoppers, contractors, and local businesses.</p>
+          <p><a href="${googleMapsUrl}" target="_blank" rel="noopener external">View the verified office listing on Google Maps</a></p>
+          <p><a href="https://licenseesearch.fldfs.com/" target="_blank" rel="noopener external">Verify insurance licenses with Florida DFS</a></p>
           <p class="footer-note">Coverage options, availability, pricing, and eligibility vary by carrier, underwriting, location, and applicant information. Savings are not guaranteed.</p>
         </div>
       </div>
@@ -851,16 +859,38 @@ function organizationSchema() {
     "@type": "InsuranceAgency",
     "@id": `${siteUrl}/#insuranceagency`,
     name: businessName,
-    legalName,
+    alternateName: "Your Family First Insurance Office 3",
+    identifier: "Office #3",
     slogan: "Where Your Family Comes First",
     url: siteUrl,
     telephone: "+13059108850",
     image: `${siteUrl}${familyPhotoSrc}`,
     logo: `${siteUrl}${logoSrc}`,
+    sameAs: [brandUrl, facebookUrl],
+    hasMap: googleMapsUrl,
+    brand: {
+      "@type": "Organization",
+      name: brandName,
+      url: brandUrl
+    },
     address: { "@type": "PostalAddress", ...address },
     areaServed: serviceAreas,
     knowsAbout: insuranceTypes,
     availableLanguage: ["English", "Spanish"],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "09:00",
+        closes: "15:00"
+      }
+    ],
     contactPoint: [{
       "@type": "ContactPoint",
       telephone: "+13059108850",
@@ -882,6 +912,27 @@ function organizationSchema() {
         }
       }))
     }
+  };
+}
+
+function webPageSchema(page) {
+  const pageName = page.title.replace(/\s*\|\s*/g, " - ");
+  return {
+    "@context": "https://schema.org",
+    "@type": page.kind === "about" ? "AboutPage" : page.kind === "quote" ? "ContactPage" : "WebPage",
+    "@id": `${pageUrl(page.slug)}#webpage`,
+    url: pageUrl(page.slug),
+    name: pageName,
+    description: page.description,
+    inLanguage: "en-US",
+    dateModified: contentReviewedDate,
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    about: { "@id": `${siteUrl}/#insuranceagency` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${siteUrl}${familyPhotoSrc}`
+    },
+    ...(page.slug ? { breadcrumb: { "@id": `${pageUrl(page.slug)}#breadcrumb` } } : {})
   };
 }
 
@@ -920,6 +971,7 @@ function breadcrumbSchema(page) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${pageUrl(page.slug)}#breadcrumb`,
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
       { "@type": "ListItem", position: 2, name: page.h1, item: pageUrl(page.slug) }
@@ -976,7 +1028,7 @@ function googleTagManagerBody() {
 }
 
 function headHtml(page) {
-  const schemas = [organizationSchema(), websiteSchema(), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
+  const schemas = [organizationSchema(), websiteSchema(), webPageSchema(page), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
   const firstMotionSlide = ["home", "service"].includes(page.kind) ? orderedInsuranceSlides(page)[0] : null;
   const preloadPhoto = firstMotionSlide
     ? `<link rel="preload" href="${firstMotionSlide.poster}" as="image">`
@@ -993,6 +1045,7 @@ function headHtml(page) {
     <meta name="keywords" content="${escapeHtml(keywords)}">
     <meta name="geo.region" content="US-FL">
     <meta name="geo.placename" content="Miami, Florida">
+    <meta name="last-modified" content="${contentReviewedDate}">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="theme-color" content="#06111F">
     <meta name="format-detection" content="telephone=yes">
@@ -1111,7 +1164,7 @@ function insuranceMotionCarousel(page) {
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
         <div class="carousel-progress" aria-hidden="true"><span></span></div>
       </div>
-      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "50+ carriers • Local Miami Office • Bilingual quote help • No price promises"}</p>
+      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "Multiple carrier options • Local Miami Office • Bilingual quote help • No price promises"}</p>
     </div>
   `;
 }
@@ -1167,7 +1220,7 @@ function aboutPreview() {
       </div>
       <div class="about-media">
         ${principalPicture("about-photo principal-photo")}
-        <div class="photo-caption"><strong>Ariel Busutil, Principal Agent</strong><span>Office #3</span></div>
+        <div class="photo-caption"><strong>Ariel Busutil, Office #3 Owner</strong><span>Miami, Florida</span></div>
         <div class="office-proof-strip">
           ${familyPicture("office-proof-photo")}
           <p><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></p>
@@ -1225,8 +1278,8 @@ function processSection() {
 
 function whyChooseSection() {
   const points = [
-    ["insurance-carriers", "50+ Insurance Carriers", "Compare broad carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information."],
-    ["family-owned", "Family Owned", "A family-first office culture focused on clear guidance, real conversations, and long-term local relationships."],
+    ["insurance-carriers", "Multiple Carrier Options", "Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information."],
+    ["family-owned", "Owner-Led Local Office", "Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations."],
     ["local-miami-office", "Local Miami Office", "Office #3 is listed on West Flagler Street and serves Miami-Dade families, drivers, homeowners, renters, and businesses."],
     ["bilingual-service", "Bilingual Service", "English and Spanish quote help for Miami families who want the process explained plainly."],
     ["free-quotes", "Free Quotes", "Start with a no-pressure quote request and basic contact details before any secure application process."],
@@ -1249,7 +1302,7 @@ function whyChooseSection() {
 function spanishTrustSection() {
   const points = [
     ["Cotizaciones en español", "Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial insurance y general liability explicado claro."],
-    ["Oficina local en West Flagler", "Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Ste 108, Miami, FL 33174."],
+    ["Oficina local en West Flagler", "Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
     ["Sin presión", "Empezamos con una conversación sencilla y datos básicos antes de cualquier solicitud segura o información sensible."]
   ];
   return `
@@ -1414,6 +1467,57 @@ function finalCta() {
   `;
 }
 
+const officialResourcesBySlug = {
+  "": [
+    ["Your Family First Insurance company website", "https://yourfamilyfirstinsurance.com/home/"],
+    ["Florida DFS insurance consumer resources", "https://www.myfloridacfo.com/division/consumers/understanding-insurance"],
+    ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
+  ],
+  "auto-insurance": [
+    ["Florida DFS personal auto insurance overview", "https://www.myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview"],
+    ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
+  ],
+  "home-insurance": [
+    ["Florida DFS homeowners insurance overview", "https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview"],
+    ["Florida DFS flood insurance guide", "https://myfloridacfo.com/division/ica/fullcoverage/flood"],
+    ["Florida Statute 627.7011 roof-age provisions", "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html"]
+  ],
+  "renters-insurance": [
+    ["Florida DFS homeowners and renters overview", "https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview"],
+    ["Florida DFS flood insurance guide", "https://myfloridacfo.com/division/ica/fullcoverage/flood"]
+  ],
+  "commercial-insurance": [
+    ["Florida DFS insurance consumer library", "https://www.myfloridacfo.com/division/consumers/understanding-insurance"],
+    ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
+  ],
+  "life-insurance": [
+    ["Florida DFS insurance consumer library", "https://www.myfloridacfo.com/division/consumers/understanding-insurance"],
+    ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
+  ],
+  "about-office-3": [
+    ["Your Family First Insurance company website", "https://yourfamilyfirstinsurance.com/home/"],
+    ["Office #3 on Google Maps", googleMapsUrl],
+    ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
+  ]
+};
+
+function officialResourcesPanel(page) {
+  const resources = officialResourcesBySlug[page.slug] || [];
+  if (!resources.length) return "";
+  return `
+    <section class="section source-panel" aria-labelledby="source-title-${page.slug || "home"}" data-reveal>
+      <div class="notice-card">
+        <p class="kicker">Authoritative references</p>
+        <h2 id="source-title-${page.slug || "home"}">Official Sources for Fact-Checking</h2>
+        <p>Reviewed ${contentReviewedDate}. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.</p>
+        <div class="link-pills">
+          ${resources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener external">${escapeHtml(label)}</a>`).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function homeBody() {
   return `
     ${trustStrip()}
@@ -1425,6 +1529,7 @@ function homeBody() {
     ${reviewTrustSection()}
     ${franchiseBadgeSection()}
     ${quoteSection("Get My Free Quote")}
+    ${officialResourcesPanel(pages[0])}
     ${faqHtml(pages[0])}
     ${finalCta()}
   `;
@@ -1462,6 +1567,7 @@ function serviceBody(page) {
       </div>
       <a class="button light" href="${quoteDestination}" rel="noopener">Start My Quote Request ${iconSvg("arrow")}</a>
     </section>
+    ${officialResourcesPanel(page)}
     ${faqHtml(page)}
   `;
 }
@@ -1507,6 +1613,7 @@ function aboutBody() {
     ${whyChooseSection()}
     ${reviewTrustSection()}
     ${franchiseBadgeSection()}
+    ${officialResourcesPanel(pages.find((page) => page.slug === "about-office-3"))}
     ${relatedLinks("about-office-3")}
     ${faqHtml(pages.find((page) => page.slug === "about-office-3"))}
   `;
@@ -1541,7 +1648,8 @@ function privacyBody() {
       <p>Google Tag Manager (GTM) organizes approved measurement tags on this website. At the last technical review on August 4, 2026, the container loaded Google Analytics 4 (GA4) and a Google Ads destination. An Apollo Website Tracker tag is present but paused; it must not be enabled unless its permitted use, consent settings, and privacy disclosure are approved. The site does not use a chat widget or session-replay tool.</p>
       <p>GA4 may use first-party cookies, including <code>_ga</code>, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.</p>
       <p>Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.</p>
-      <p>The website's analytics data layer sends only the event name, page path, page language, product category, and call-to-action location. It does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details.</p>
+      <p>The website's analytics data layer sends the event name, page path, page language, product category, call-to-action location, first landing path, broad referrer category, and sanitized UTM source, medium, campaign, and content values when present. It does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.</p>
+      <p>First-touch campaign values are kept only in browser session storage for the current tab session. They are not a CRM record, do not prove a completed lead or sale, and are not appended to the separate ConsumerRateQuotes destination because that vendor has not supplied a documented attribution-field contract.</p>
       <p>This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.</p>
       <h2>Retention and Your Choices</h2>
       <p>Analytics retention is controlled in the GA4 property and must be confirmed by the owner. You can restrict cookies in your browser, use private browsing controls, or install the Google Analytics Opt-out Browser Add-on. Blocking cookies may limit measurement but should not prevent access to the public insurance information on this site.</p>
@@ -4860,6 +4968,61 @@ h3 {
 function jsSource() {
   return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
 
+const attributionStorageKey = "yffi_first_touch_v1";
+const attributionParameterMap = {
+  utm_source: "traffic_source",
+  utm_medium: "traffic_medium",
+  utm_campaign: "campaign_name",
+  utm_content: "campaign_content"
+};
+
+function safeCampaignValue(value, fallback = "(not_set)") {
+  const normalized = String(value || "")
+    .normalize("NFKC")
+    .replace(/[^a-zA-Z0-9._~:/ -]/g, " ")
+    .replace(/\\s+/g, " ")
+    .trim()
+    .slice(0, 100);
+  return normalized || fallback;
+}
+
+function referrerCategory() {
+  if (!document.referrer) return "direct";
+  try {
+    const host = new URL(document.referrer).hostname.toLowerCase();
+    if (host === window.location.hostname.toLowerCase()) return "internal";
+    if (/(^|\\.)google\\./.test(host)) return "google";
+    if (/(^|\\.)bing\\.com$/.test(host)) return "bing";
+    if (/(^|\\.)(facebook|instagram)\\.com$/.test(host)) return "meta";
+    if (/(^|\\.)linkedin\\.com$/.test(host)) return "linkedin";
+    return "other";
+  } catch {
+    return "other";
+  }
+}
+
+function readFirstTouchAttribution() {
+  try {
+    const stored = JSON.parse(window.sessionStorage.getItem(attributionStorageKey) || "null");
+    if (stored && typeof stored === "object") return stored;
+  } catch {}
+
+  const params = new URLSearchParams(window.location.search);
+  const attribution = {
+    landing_page: window.location.pathname,
+    referrer_category: referrerCategory()
+  };
+  for (const [queryKey, eventKey] of Object.entries(attributionParameterMap)) {
+    attribution[eventKey] = safeCampaignValue(params.get(queryKey));
+  }
+  try {
+    window.sessionStorage.setItem(attributionStorageKey, JSON.stringify(attribution));
+  } catch {}
+  return attribution;
+}
+
+const firstTouchAttribution = readFirstTouchAttribution();
+
 function analyticsProductCategory() {
   const categoryByPath = {
     "/auto-insurance/": "auto",
@@ -4894,7 +5057,13 @@ function pushAnalyticsEvent(eventName, target) {
     page_path: window.location.pathname,
     page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
     product_category: analyticsProductCategory(),
-    cta_location: analyticsCtaLocation(target)
+    cta_location: analyticsCtaLocation(target),
+    landing_page: firstTouchAttribution.landing_page,
+    referrer_category: firstTouchAttribution.referrer_category,
+    traffic_source: firstTouchAttribution.traffic_source,
+    traffic_medium: firstTouchAttribution.traffic_medium,
+    campaign_name: firstTouchAttribution.campaign_name,
+    campaign_content: firstTouchAttribution.campaign_content
   });
 }
 
@@ -4913,11 +5082,6 @@ document.addEventListener("click", (event) => {
       }
     } catch {}
   }
-}, true);
-
-document.addEventListener("submit", (event) => {
-  const form = event.target.closest("[data-quote-form]");
-  if (form) pushAnalyticsEvent("form_submit", form);
 }, true);
 
 const menuToggle = document.querySelector(".menu-toggle");
@@ -5627,6 +5791,7 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
       if (status) status.textContent = "The secure quote path could not be verified. Please call the office instead.";
       return;
     }
+    pushAnalyticsEvent("form_submit", form);
     pushAnalyticsEvent("quote_start", form);
     if (status) status.textContent = "Opening the secure ConsumerRateQuotes form...";
     window.location.assign(destination);
@@ -5681,7 +5846,7 @@ const publicServiceTools = [
     annotations: { readOnlyHint: true, untrustedContentHint: false },
     execute: async () => ({
       name: "Your Family First Insurance Office #3",
-      address: "11200 W Flagler St, Suite 108, Miami, FL 33174",
+      address: "11200 W Flagler St, Suite 108-109, Miami, FL 33174",
       phone: "305-910-8850",
       telephone_uri: "tel:13059108850",
       languages: ["English", "Spanish"]

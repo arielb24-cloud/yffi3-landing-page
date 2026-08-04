@@ -23,7 +23,7 @@ export const spanishPages = [
     h1: "Seguros de Florida más sencillos para su familia",
     intro: "La Oficina #3 ayuda a familias y negocios de Miami a solicitar cotizaciones de seguros de auto, vivienda, inquilinos, comerciales, responsabilidad civil general y vida.",
     faqs: [
-      ["¿Dónde está Your Family First Insurance Office #3?", "La Oficina #3 está en 11200 W Flagler St, Suite 108, Miami, FL 33174."],
+      ["¿Dónde está Your Family First Insurance Office #3?", "La Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
       ["¿Con qué tipos de seguros ofrece ayuda la Oficina #3?", "La Oficina #3 ofrece ayuda para solicitar cotizaciones de seguros de auto, vivienda, inquilinos, comerciales y para negocios, responsabilidad civil general y vida."],
       ["¿Cómo solicito una cotización de seguro en Miami?", "Use un botón de cotización, escanee el código QR de la Oficina #3 o llame al 305-910-8850. Este sitio solo solicita datos básicos de contacto antes de abrir la página separada de ConsumerRateQuotes."],
       ["¿Ofrecen atención de seguros en español?", "Sí. Your Family First Insurance Office #3 ofrece ayuda con cotizaciones en inglés y español."],
@@ -54,6 +54,8 @@ export const spanishPages = [
     faqs: [
       ["¿La Oficina #3 puede ayudarme a solicitar seguro de auto en Miami?", "Sí. Ayudamos a conductores de Miami a solicitar cotizaciones para vehículos personales y familiares, conductores nuevos, renovaciones y cambios de vehículo."],
       ["¿Qué coberturas de auto puedo consultar?", "Puede preguntar por responsabilidad civil, cobertura integral, colisión, conductor sin seguro, deducibles y requisitos de préstamo o arrendamiento. Las opciones dependen de la aseguradora y la suscripción."],
+      ["¿Qué cubre el seguro contra conductores sin seguro o con seguro insuficiente?", "Florida DFS explica que esta cobertura puede responder por lesiones corporales cubiertas cuando el conductor culpable no tiene responsabilidad por lesiones corporales o no tiene límites suficientes. Los términos, límites, opciones de acumulación y exclusiones dependen de la póliza."],
+      ["¿Qué límite de responsabilidad por daños a la propiedad exige la ley de Florida?", "Florida DFS indica que la ley de Florida exige al menos $10,000 de responsabilidad por daños a la propiedad. Otros requisitos y límites adecuados dependen del vehículo, el conductor, el registro, las reglas de responsabilidad financiera y los términos del préstamo o arrendamiento."],
       ["¿Cuándo debo revisar mi seguro de carro?", "Es útil revisarlo al comprar o arrendar un auto, agregar un conductor, cambiar de vehículo, mudarse, cambiar el recorrido diario o recibir una renovación."],
       ["¿Qué información debo preparar para cotizar un auto?", "Prepare el año, marca y modelo, código postal donde se guarda, cobertura actual si está disponible y requisitos de préstamo o arrendamiento. Comparta datos confidenciales solo mediante un proceso seguro aprobado."],
       ["¿Puedo recibir ayuda en español?", "Sí. La Oficina #3 ofrece ayuda con cotizaciones de seguro de auto en inglés y español."],
@@ -83,6 +85,8 @@ export const spanishPages = [
     faqs: [
       ["¿La Oficina #3 ayuda con seguro de vivienda en Miami?", "Sí. Ayudamos a propietarios de Miami a solicitar cotizaciones para casas elegibles y a revisar vivienda, pertenencias, responsabilidad civil y requisitos del prestamista."],
       ["¿Qué puede incluir un seguro para propietarios?", "Puede incluir vivienda, otras estructuras, propiedad personal, responsabilidad civil y gastos adicionales de vivienda. La cobertura y exclusiones exactas dependen de la póliza y la aseguradora."],
+      ["¿El seguro para propietarios incluye inundación?", "Las pólizas estándar para propietarios generalmente no cubren daños por inundación. La cobertura contra inundaciones suele comprarse por separado, aunque algunas aseguradoras privadas pueden ofrecerla mediante un endoso. Revise la póliza escrita y los requisitos del prestamista."],
+      ["¿Una aseguradora de Florida puede rechazar cobertura solo por la antigüedad del techo?", "El Estatuto de Florida 627.7011 indica que una aseguradora de propietarios no puede rechazar la emisión o renovación únicamente por la antigüedad del techo cuando una inspección autorizada muestra al menos cinco años de vida útil. Siguen aplicando otros criterios legales de suscripción e inspección."],
       ["¿Qué datos de la propiedad pueden solicitarse?", "Suelen incluir dirección, antigüedad, construcción, techo, mejoras, ocupación, protecciones, cobertura anterior y requisitos del prestamista."],
       ["¿Puedo solicitar ayuda antes del cierre?", "Sí. Empezar temprano permite revisar opciones antes de una fecha de cierre, hipoteca o depósito en garantía."],
       ["¿Hay atención en español?", "Sí. La Oficina #3 ofrece ayuda con cotizaciones para propietarios en inglés y español."],
@@ -185,7 +189,7 @@ export const spanishPages = [
     h1: "Sobre Your Family First Insurance Office #3",
     intro: "Una oficina local en West Flagler, Miami, que ofrece ayuda con cotizaciones de seguros en inglés y español para personas, familias y negocios.",
     faqs: [
-      ["¿Dónde está Your Family First Insurance Office #3?", "La Oficina #3 está en 11200 W Flagler St, Suite 108, Miami, FL 33174."],
+      ["¿Dónde está Your Family First Insurance Office #3?", "La Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
       ["¿Con qué seguros ofrece ayuda la Oficina #3?", "Ofrece ayuda con cotizaciones de auto, vivienda, inquilinos, seguros comerciales y para negocios, responsabilidad civil general y vida."],
       ["¿El sitio usa imágenes reales y aprobadas?", "Sí. Usa activos aprobados de la Oficina #3, el letrero oficial de la franquicia, el logotipo original, la foto real de la familia y oficina, y la foto del agente principal entregada para el proyecto."],
       ["¿Hay atención en español?", "Sí. La Oficina #3 ofrece servicio bilingüe para clientes que prefieren conversar en inglés o español."],
@@ -235,7 +239,7 @@ export const spanishServiceCards = [
 
 export const spanishTickerItems = [
   ["Your Family First Insurance Office #3", "/es/sobre-oficina-3/"],
-  ["11200 W Flagler St, Suite 108, Miami, FL 33174", "/es/sobre-oficina-3/"],
+  ["11200 W Flagler St, Suite 108-109, Miami, FL 33174", "/es/sobre-oficina-3/"],
   ["Llámenos: (305) 910-8850", "tel:3059108850"],
   ["¡Se habla español!", "/es/sobre-oficina-3/"],
   ["Solicite ayuda con su cotización", "/es/solicitar-cotizacion/"],

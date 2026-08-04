@@ -2,14 +2,14 @@
   "$schema": "./site-facts.schema.json",
   "siteUrl": "https://yourfamilyfirstinsurance3.com",
   "businessName": "Your Family First Insurance Office #3",
-  "legalName": "Your Family First Insurance",
+  "brandName": "Your Family First Insurance",
   "phone": {
     "display": "305-910-8850",
     "tel": "tel:13059108850",
     "sms": "sms:+13059108850"
   },
   "address": {
-    "streetAddress": "11200 W Flagler St, Suite 108",
+    "streetAddress": "11200 W Flagler St, Suite 108-109",
     "addressLocality": "Miami",
     "addressRegion": "FL",
     "postalCode": "33174",
@@ -17,8 +17,12 @@
   },
   "quoteDestination": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868",
   "serviceAreas": [
-    "West Flagler Miami",
-    "Miami"
+    "Miami",
+    "Sweetwater",
+    "Doral",
+    "Hialeah",
+    "Kendall",
+    "Florida"
   ],
   "insuranceTypes": [
     "Auto insurance",

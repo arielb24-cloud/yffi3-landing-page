@@ -37,9 +37,9 @@ The site uses real Office #3 imagery and the official franchise sign so the expe
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 
-![Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
 
-**Ariel Busutil, Principal Agent**Office #3
+**Ariel Busutil, Office #3 Owner**Miami, Florida
 
  ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
 
@@ -61,7 +61,7 @@ Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial
 
 ### Oficina local en West Flagler
 
-Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Ste 108, Miami, FL 33174.
+Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 ### Sin presión
 
@@ -73,13 +73,13 @@ Why choose us
 
 Office #3 keeps the online experience simple: choose the coverage conversation, share safe basics, and talk with a local office before moving into any secure application process.
 
-### 50+ Insurance Carriers
+### Multiple Carrier Options
 
-Compare broad carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.
+Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.
 
-### Family Owned
+### Owner-Led Local Office
 
-A family-first office culture focused on clear guidance, real conversations, and long-term local relationships.
+Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations.
 
 ### Local Miami Office
 
@@ -355,6 +355,14 @@ Official Your Family First Insurance Office #3 branding shown for franchise iden
 
  ![Original Your Family First Insurance franchise family logo](/assets/yffi3/yffi3-original-franchise-logo.png)
 
+Authoritative references
+
+## Official Sources for Fact-Checking
+
+Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+
+[Your Family First Insurance company website](https://yourfamilyfirstinsurance.com/home/)[Office #3 on Google Maps](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
+
 Related options
 
 ## Compare Another Coverage Conversation
@@ -371,7 +379,7 @@ Office #3 is listed on West Flagler Street in Miami and serves Miami-Dade famili
 
 Who is shown in the About Office #3 photo?
 
-The About section uses the approved principal agent photo for Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3.
+The About section uses the approved Office #3 owner photo for Ariel Busutil, identified by the Your Family First Insurance company website as the owner of Office #3.
 
 Does the site use real approved office imagery?
 
@@ -395,7 +403,7 @@ It means the site emphasizes real local conversations, Office #3 imagery, biling
 
 What trust points are highlighted for Office #3?
 
-The site highlights 50+ insurance carriers, family-owned service, a local Miami office, bilingual help, free quotes, and fast, friendly service while avoiding fake ratings or price promises.
+The site highlights multiple carrier options, an owner-led local Miami office, bilingual help, quote assistance, and clear insurance disclaimers while avoiding fake ratings or price promises.
 
 Can I call instead of using the form?
 

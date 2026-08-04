@@ -97,6 +97,14 @@ Coverage availability varies by carrier, underwriting, location, and applicant i
 
 [Start My Quote Request](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Authoritative references
+
+## Official Sources for Fact-Checking
+
+Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+
+[Florida DFS personal auto insurance overview](https://www.myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
+
 FAQ
 
 ## Frequently Asked Questions
@@ -137,9 +145,13 @@ Can Spanish-speaking drivers request help?
 
 Yes. Office #3 offers bilingual quote help for Miami drivers who prefer English or Spanish conversations.
 
-Can I ask about deductibles and uninsured motorist coverage?
+What does Florida uninsured or underinsured motorist coverage address?
 
-Yes. You can ask how deductibles, liability limits, comprehensive, collision, and uninsured motorist questions may affect your auto coverage conversation.
+Florida DFS explains that uninsured or underinsured motorist coverage can address covered bodily injury when an at-fault driver has no bodily injury liability coverage or not enough limits. Terms, limits, stacking choices, and exclusions depend on the policy.
+
+What property damage liability limit does Florida law require?
+
+Florida DFS states that Florida law requires at least $10,000 of property damage liability coverage. Other requirements and appropriate limits depend on the vehicle, driver, registration, financial-responsibility rules, lender or lease terms, and individual situation.
 
 Does a car insurance quote request bind coverage?
 

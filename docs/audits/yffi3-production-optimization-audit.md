@@ -9,7 +9,15 @@
 3. Source `robots.txt` allowed GPTBot while the `Content-Signal` header denied model training and Cloudflare's managed `robots.txt` blocked GPTBot.
 4. `www.yourfamilyfirstinsurance3.com` returned Cloudflare 522 before the Pages middleware could issue its permanent redirect. GTM Admin also reported the Cloudflare Google tag gateway as `Incomplete`, with the apex `Pending`; its two injected bootstrap scripts generated the two remaining CSP errors.
 
-The repository repairs privacy disclosure, crawler-policy consistency, unsupported `priceRange` schema, 301 redirect semantics, review-control accessibility, analytics regression tests, and stale technical documentation. GTM version 5 pauses Apollo and live testing proves it no longer loads. The `www` routing defect, incomplete Google tag gateway, advertising/consent approval, authoritative address/title/licensing facts, Search Console work, GA4 administration, and CRM/vendor integration remain external actions. Because `www` and the two gateway/Ads CSP errors remain unresolved, the post-implementation status is still **NOT PRODUCTION-READY** under the brief's strict acceptance criteria.
+The repository repairs privacy disclosure, crawler-policy consistency, unsupported `priceRange` schema, 301 redirect semantics, review-control accessibility, analytics regression tests, and stale technical documentation. GTM version 5 pauses Apollo and live testing proves it no longer loads.
+
+### Completion update — August 4, 2026
+
+The follow-through pass resolved the two remaining production blockers from the original audit. Cloudflare now has an active path- and query-preserving `www` to apex 301, and the incomplete Google tag gateway was deleted without weakening CSP. Search Console domain ownership is verified; the canonical sitemap is `Success` with 20 discovered pages and the two obsolete failed submissions are removed. GTM version 6 is live with a dedicated GA4 Event tag for the approved `cta_click`, `phone_click`, `quote_start`, `form_submit`, and `language_switch` events. Apollo remains paused.
+
+The site facts were also reconciled against the verified Google Business Profile and the master company office page: Suite 108-109, phone, website, hours, service areas, map identity, and Office #3 owner wording now align. Unsupported `Principal Agent`, `CEO`, and exact carrier-count claims were removed. The data layer now adds sanitized, session-only first-touch campaign context without raw referrers, full queries, click identifiers, or submitted contact/insurance data.
+
+The remaining limitations are not website defects: GA4 Admin settings still require stable authenticated access; advertising/consent decisions require owner/privacy review; and completed-lead, quote, policy, and revenue attribution require ConsumerRateQuotes/CRM acknowledgement and API permission. No ranking, lead, or revenue outcome is claimed without evidence.
 
 ## Audit identity and evidence
 

@@ -125,7 +125,7 @@ function callTool(name, args) {
       name: "Your Family First Insurance Office #3",
       phone: "305-910-8850",
       telephone_uri: "tel:13059108850",
-      address: "11200 W Flagler St, Suite 108, Miami, FL 33174",
+      address: "11200 W Flagler St, Suite 108-109, Miami, FL 33174",
       languages: ["English", "Spanish"],
       website: "https://yourfamilyfirstinsurance3.com/"
     });

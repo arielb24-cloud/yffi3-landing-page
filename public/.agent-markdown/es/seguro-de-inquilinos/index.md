@@ -97,6 +97,14 @@ La disponibilidad varía según la aseguradora, la suscripción, la ubicación y
 
 [Iniciar mi solicitud](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Referencias oficiales
+
+## Fuentes oficiales para verificar la información
+
+Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+
+[Resumen para propietarios e inquilinos de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Guía de seguro contra inundaciones de Florida DFS](https://myfloridacfo.com/division/ica/fullcoverage/flood)
+
 Preguntas frecuentes
 
 ## Preguntas frecuentes

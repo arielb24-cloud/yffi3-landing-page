@@ -73,7 +73,7 @@ Call or visit Office #3 on West Flagler for local quote help that feels clear an
 
 [Hablar con un agente](/about-office-3/) [Call 305-910-8850](tel:13059108850)
 
-50+ carriers • Local Miami Office • Bilingual quote help • No price promises
+Multiple carrier options • Local Miami Office • Bilingual quote help • No price promises
 
 **Local Office #3**West Flagler Miami
 
@@ -93,9 +93,9 @@ The site uses real Office #3 imagery and the official franchise sign so the expe
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 
-![Ariel Busutil, Principal Agent and CEO at Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
 
-**Ariel Busutil, Principal Agent**Office #3
+**Ariel Busutil, Office #3 Owner**Miami, Florida
 
  ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
 
@@ -117,7 +117,7 @@ Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial
 
 ### Oficina local en West Flagler
 
-Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Ste 108, Miami, FL 33174.
+Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 ### Sin presión
 
@@ -231,13 +231,13 @@ Why choose us
 
 Office #3 keeps the online experience simple: choose the coverage conversation, share safe basics, and talk with a local office before moving into any secure application process.
 
-### 50+ Insurance Carriers
+### Multiple Carrier Options
 
-Compare broad carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.
+Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.
 
-### Family Owned
+### Owner-Led Local Office
 
-A family-first office culture focused on clear guidance, real conversations, and long-term local relationships.
+Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations.
 
 ### Local Miami Office
 
@@ -527,13 +527,21 @@ Share only basic contact details here. When the required fields are complete, th
 **Quote Yourself QR**
 Scan this QR code for a fast and easy quote!
 
+Authoritative references
+
+## Official Sources for Fact-Checking
+
+Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+
+[Your Family First Insurance company website](https://yourfamilyfirstinsurance.com/home/)[Florida DFS insurance consumer resources](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
+
 FAQ
 
 ## Frequently Asked Questions
 
 Where is Your Family First Insurance Office #3 located in Miami?
 
-Office #3 is listed at 11200 W Flagler St, Ste 108, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities.
+Office #3 is listed at 11200 W Flagler St, Suite 108-109, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities.
 
 What insurance can Office #3 help Miami families compare?
 
@@ -559,9 +567,9 @@ Why compare insurance through a local Miami office?
 
 A local office can help you organize the quote conversation, explain next steps, review documents you may need, and keep the process centered on your family, vehicle, home, apartment, or business instead of a generic online form.
 
-Can Office #3 help compare 50+ insurance carriers?
+Can Office #3 help compare multiple carrier options?
 
-The site highlights access to 50+ insurance carriers for quote conversations. Availability, eligibility, pricing, and coverage still vary by carrier, underwriting, location, and applicant information.
+Office #3 can help customers compare available options from participating insurance carriers. Availability, eligibility, pricing, and coverage vary by carrier, underwriting, location, and applicant information.
 
 What should I have ready before requesting a quote?
 

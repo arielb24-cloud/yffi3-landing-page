@@ -97,6 +97,14 @@ La disponibilidad varía según la aseguradora, la suscripción, la ubicación y
 
 [Iniciar mi solicitud](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Referencias oficiales
+
+## Fuentes oficiales para verificar la información
+
+Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+
+[Resumen de seguro de auto personal de Florida DFS](https://www.myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)
+
 Preguntas frecuentes
 
 ## Preguntas frecuentes
@@ -108,6 +116,14 @@ Sí. Ayudamos a conductores de Miami a solicitar cotizaciones para vehículos pe
 ¿Qué coberturas de auto puedo consultar?
 
 Puede preguntar por responsabilidad civil, cobertura integral, colisión, conductor sin seguro, deducibles y requisitos de préstamo o arrendamiento. Las opciones dependen de la aseguradora y la suscripción.
+
+¿Qué cubre el seguro contra conductores sin seguro o con seguro insuficiente?
+
+Florida DFS explica que esta cobertura puede responder por lesiones corporales cubiertas cuando el conductor culpable no tiene responsabilidad por lesiones corporales o no tiene límites suficientes. Los términos, límites, opciones de acumulación y exclusiones dependen de la póliza.
+
+¿Qué límite de responsabilidad por daños a la propiedad exige la ley de Florida?
+
+Florida DFS indica que la ley de Florida exige al menos $10,000 de responsabilidad por daños a la propiedad. Otros requisitos y límites adecuados dependen del vehículo, el conductor, el registro, las reglas de responsabilidad financiera y los términos del préstamo o arrendamiento.
 
 ¿Cuándo debo revisar mi seguro de carro?
 

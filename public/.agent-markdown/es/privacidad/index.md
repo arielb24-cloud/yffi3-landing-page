@@ -43,7 +43,9 @@ GA4 puede utilizar cookies propias, incluida `_ga`, y recopilar datos de página
 
 La medición de Google Ads puede utilizar cookies o identificadores similares para medir conversiones y funciones publicitarias. Este repositorio no instala Meta Pixel ni etiquetas de Microsoft Advertising. Los destinos publicitarios y el remarketing deben permanecer activos únicamente después de que el propietario confirme la cuenta activa, la finalidad, los requisitos de consentimiento y las divulgaciones de privacidad.
 
-La capa de datos analíticos del sitio envía únicamente el nombre del evento, la ruta de la página, el idioma, la categoría del producto y la ubicación de la llamada a la acción. No envía nombres, teléfonos, correos electrónicos, códigos postales, notas ni detalles de seguros.
+La capa de datos analíticos del sitio envía el nombre del evento, la ruta y el idioma de la página, la categoría del producto, la ubicación de la llamada a la acción, la primera ruta de entrada, una categoría general del referente y valores UTM saneados de fuente, medio, campaña y contenido cuando existen. No envía nombres, teléfonos, correos electrónicos, códigos postales, notas, detalles de seguros, URL completas de referencia ni consultas completas.
+
+Los valores de campaña del primer contacto se guardan solo en el almacenamiento de sesión del navegador durante la sesión actual de la pestaña. No son un registro de CRM, no demuestran un prospecto ni una venta completada y no se agregan al destino separado de ConsumerRateQuotes porque ese proveedor no ha entregado un contrato documentado de campos de atribución.
 
 Este sitio no ofrece actualmente un panel de preferencias de cookies en la página. El propietario debe confirmar con asesoría de privacidad cualificada si se requieren controles de consentimiento para la ubicación de cada visitante antes de mantener activa la publicidad o el seguimiento opcional.
 

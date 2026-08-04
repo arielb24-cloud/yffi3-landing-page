@@ -2,13 +2,24 @@
 
 This file contains only actions that cannot be safely completed from the repository. Status labels are intentionally explicit.
 
-## 1. Repair the `www` production hostname — NEEDS HUMAN LOGIN
+## Current completion snapshot — August 4, 2026
+
+- **CONNECTED:** Cloudflare now has an active Single Redirect named `Canonicalize www to apex`. Live HTTPS `www` requests return a path- and query-preserving 301 to the apex instead of 522.
+- **CONNECTED:** Google Search Console domain ownership is verified. `https://yourfamilyfirstinsurance3.com/sitemap.xml` is `Success` with 20 discovered pages, and the two obsolete failed sitemap submissions were removed.
+- **CONNECTED:** GTM version 6, `YFFI marketing intent measurement`, is live. It sends the approved `cta_click`, `phone_click`, `quote_start`, `form_submit`, and `language_switch` events to GA4. The Apollo tag remains paused.
+- **CONNECTED:** The incomplete Cloudflare Google tag gateway was deleted. Standard GTM remains the single loader, and the gateway-generated CSP errors are gone.
+- **PARTIALLY CONNECTED:** The Google Business Profile is verified and the website, phone, address, service areas, and hours were inspected. The website entity facts now match the verified profile and the master company office page. Other directories still require reconciliation.
+- **PARTIALLY CONNECTED:** GA4 receives the standard Google tag and the new GTM event mapping, but GA4 Admin key-event, retention, internal-traffic, and DebugView settings still require a stable authenticated GA4 session.
+- **NEEDS OAUTH / API PERMISSION:** ConsumerRateQuotes/CRM acknowledgement, qualified-lead creation, policy/revenue reconciliation, and offline conversion uploads remain unavailable. The site does not claim `generate_lead` or revenue without that system-of-record evidence.
+
+## 1. Repair the `www` production hostname — CONNECTED
 
 - **Dashboard/service:** Cloudflare dashboard for `yourfamilyfirstinsurance3.com` and its Pages project.
 - **Menu path:** `Workers & Pages` → select the YFFI3 Pages project → `Custom domains`.
 - **Field/setting:** `www.yourfamilyfirstinsurance3.com`.
 - **Recommended value:** Attach `www.yourfamilyfirstinsurance3.com` to the same Pages project as the apex. In `DNS` → `Records`, remove only a confirmed conflicting/orphaned `www` A, AAAA, or CNAME record. Use the Pages-provided record and keep it proxied. In `Workers & Pages` → `Overview` → `Domains & Routes`, remove a `www` Worker route only if it points to a different Worker.
-- **Why it matters:** HTTPS `www` currently returns Cloudflare 522 before repository middleware can issue the configured 301 to the apex.
+- **Completed:** An active Cloudflare Single Redirect now matches `https://www.yourfamilyfirstinsurance3.com/*`, redirects to `https://yourfamilyfirstinsurance3.com/${1}` with status 301, and preserves the query string.
+- **Why it matters:** The prior HTTPS `www` route returned Cloudflare 522 before repository middleware could execute.
 - **How to verify:** `curl -I 'https://www.yourfamilyfirstinsurance3.com/es/seguro-de-auto/?source=verify'` must return one permanent 301 whose `Location` is `https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/?source=verify`; following it must end at 200 without a loop.
 - **Risk if incorrect:** Deleting an authoritative DNS record or attaching the hostname to the wrong Pages project can create downtime or route traffic to the wrong site. Do not enable HSTS `includeSubDomains` or preload until this succeeds.
 
@@ -26,11 +37,11 @@ This file contains only actions that cannot be safely completed from the reposit
 - **How to verify:** Cloudflare Configuration Rules show no conflicting override; SSL Labs or an equivalent controlled test confirms TLS 1.2+; apex stays 200 and the repaired `www` redirect works.
 - **Risk if incorrect:** `Flexible` SSL can cause redirect loops and unencrypted origin traffic. Aggressive WAF/rate rules can block search crawlers and customers. HSTS subdomain/preload settings can make broken subdomains inaccessible for a long time.
 
-## 3. Resolve the incomplete Google tag gateway — NEEDS HUMAN LOGIN
+## 3. Resolve the incomplete Google tag gateway — CONNECTED
 
 - **Dashboard/service:** GTM container `GTM-5FZCMM3V` and Cloudflare Google tag gateway.
 - **Menu path:** GTM `Admin` → `Google tag gateway`; then `Configure` or the `Manage in Cloudflare` link. Cloudflare opens the zone's Google tag gateway page.
-- **Field/setting:** GTM currently reports `Incomplete`; `yourfamilyfirstinsurance3.com` is `Pending`; the Pages hostname is `Not started`.
+- **Completed:** The incomplete gateway was deleted. The standard GTM installation remains active, and a post-removal production verifier found zero gateway/Apollo console errors.
 - **Recommended value:** Because this repository already contains the standard manual GTM installation, detach/delete the incomplete gateway until the owner intentionally approves a complete first-party gateway and consent configuration. In GTM `Admin` → `Google tag gateway` → `Configure` → `Delete`, review the domain impact and confirm. If the owner elects to keep it instead, complete the Cloudflare connection, keep automatic script setup off for the manually tagged domain, and validate the selected measurement path in Tag Assistant.
 - **Why it matters:** Cloudflare currently injects two gateway bootstrap scripts that CSP blocks. Allowing their hashes in repository CSP could enable a second loader, so CSP must not be weakened as a workaround.
 - **How to verify:** GTM Admin no longer shows an incomplete/pending gateway; rendered HTML has one executable GTM loader; browser console has zero CSP errors; Tag Assistant shows one Google tag and expected hits; GA4 Realtime/DebugView receives a test page view without duplicate events.
@@ -46,32 +57,34 @@ This file contains only actions that cannot be safely completed from the reposit
 - **How to verify:** In GTM Preview/Tag Assistant, Apollo does not fire while paused and the Google tag fires once. GA4 receives only approved non-PII parameters. Diagnose the separate tag-gateway CSP errors under action 3. Review the final version diff and retain version 5 unless a later approved version supersedes it.
 - **Risk if incorrect:** Publishing an unreviewed tag can create privacy exposure, duplicate data, bad attribution, or website errors. Weakening CSP with `unsafe-inline` would increase security risk and is not recommended.
 
-## 5. Configure and verify GA4 reporting — NEEDS HUMAN LOGIN
+## 5. Configure and verify GA4 reporting — PARTIALLY CONNECTED
 
 - **Dashboard/service:** GA4 property for measurement ID `G-6XC09FD9LD`.
 - **Menu path:** `Admin` → `Data collection and modification` → `Data streams` for the web stream; `Admin` → `Data display` → `Events` and `Key events`; `Admin` → `Data settings` → `Data retention`; `Reports` → `Realtime`; `Admin`/`DebugView` where shown in the current UI.
 - **Field/setting:** Enhanced measurement, internal/developer traffic filters, retention, event/key-event names.
 - **Recommended value:** Confirm the production stream URL and measurement ID; exclude internal/developer traffic only through tested filters; document retention; use `phone_click` and `sms_click` as key events, `email_click` optionally, and `quote_start` as a secondary funnel event. Do not create `generate_lead` until a secure system confirms a valid lead. Do not double-count enhanced-measurement form events.
-- **Why it matters:** Live GA4 page-view collection was proven, but event receipt, DebugView, retention, filters, and key-event settings were not.
+- **Completed:** GTM version 6 maps the five approved website custom events to GA4 using the existing measurement ID. Live GA4 page-view collection remains proven.
+- **Why it matters:** DebugView, retention, filters, and key-event settings are not yet verified in GA4 Admin.
 - **How to verify:** Test from GTM Preview, confirm exactly one event in Tag Assistant and DebugView, inspect parameters for PII, then confirm Realtime. Use test data only.
 - **Risk if incorrect:** Marking `form_submit` as a lead or enabling duplicate form measurement inflates conversions and corrupts campaign decisions.
 
-## 6. Submit and inspect in Google Search Console — NEEDS HUMAN LOGIN
+## 6. Submit and inspect in Google Search Console — CONNECTED
 
 - **Dashboard/service:** Google Search Console.
 - **Menu path:** Select the **Domain property** `yourfamilyfirstinsurance3.com`; `Sitemaps`; `URL inspection`; `Indexing` → `Pages`; `Experience` → `Core Web Vitals`; `Security & Manual Actions`.
-- **Field/setting:** Submit `https://yourfamilyfirstinsurance3.com/sitemap.xml`.
+- **Completed:** Domain ownership is verified. The correct sitemap was submitted, processed successfully on August 4, 2026, and reported 20 discovered pages. Two obsolete failed submissions were removed.
 - **Recommended value:** Inspect `/`, the five English service pages, their five Spanish counterparts, `/get-a-quote/`, and `/es/solicitar-cotizacion/`. Confirm live access, declared/selected canonical, HTTPS, robots access, and indexing. Export the last 28 days and compare with the prior 28 days by query, page, device, and country.
 - **Why it matters:** Repository and live crawlability are proven, but Google indexing, canonical selection, demand, CTR, manual actions, and field Core Web Vitals are not.
 - **How to verify:** Sitemap status is `Success`; inspected priority pages are available to Google and use the intended canonical; no manual action/security issue is present.
 - **Risk if incorrect:** Requesting indexing before business facts or privacy are corrected can accelerate discovery of inaccurate information. Repeated submissions do not improve rankings.
 
-## 7. Verify the authoritative business entity — NEEDS BUSINESS CONFIRMATION
+## 7. Verify the authoritative business entity — PARTIALLY CONNECTED
 
 - **Dashboard/service:** Florida licensing records, lease/official business documents, Google Business Profile, and approved franchise records.
 - **Menu path:** GBP `Edit profile` → `Business information`; compare with the authoritative primary documents and Florida license lookup.
 - **Field/setting:** Public/legal name, street and suite, phone, categories, service areas, hours, principal/CEO title, producer/license language, carrier-count claims, geo coordinates, and approved profiles.
-- **Recommended value:** Do not change the website from `Ste 108` to `108-109` until the authoritative document and GBP agree. Confirm whether `Principal Agent`, `CEO`, agent descriptions, and any `50+` carrier statement are legally and factually supportable. Add hours, coordinates, email, `hasMap`, and `sameAs` only when verified.
+- **Completed:** The verified Google Business Profile and the master company office page both support `11200 W Flagler St 108-109`, phone `305-910-8850`, the canonical website, and Office #3 owner language. Unsupported `Principal Agent`, `CEO`, and exact carrier-count claims were removed. Verified map/profile references, hours, and service areas were used without inventing a legal entity name or license claim.
+- **Recommended value:** Complete Florida license/entity-document verification before adding a legal name, license number, producer credential, or regulated-title claim.
 - **Why it matters:** Inconsistent NAP or unsupported licensing/title claims harm local trust and can create regulatory risk.
 - **How to verify:** The exact same approved entity facts appear in the website footer, JSON-LD, Markdown, APIs, GBP, Apple Business Connect, Bing Places, and approved profiles.
 - **Risk if incorrect:** A silent suite or licensing change may misdirect customers and create compliance problems.

@@ -4,12 +4,12 @@
   "title": "YFFI3 verified site facts",
   "type": "object",
   "additionalProperties": false,
-  "required": ["siteUrl", "businessName", "legalName", "phone", "address", "quoteDestination", "serviceAreas", "insuranceTypes", "approvedAssetPaths", "contentBoundaries"],
+  "required": ["siteUrl", "businessName", "brandName", "phone", "address", "quoteDestination", "serviceAreas", "insuranceTypes", "approvedAssetPaths", "contentBoundaries"],
   "properties": {
     "$schema": { "type": "string" },
     "siteUrl": { "const": "https://yourfamilyfirstinsurance3.com" },
     "businessName": { "const": "Your Family First Insurance Office #3" },
-    "legalName": { "type": "string", "minLength": 3 },
+    "brandName": { "const": "Your Family First Insurance" },
     "phone": {
       "type": "object",
       "additionalProperties": false,
@@ -25,7 +25,7 @@
       "additionalProperties": false,
       "required": ["streetAddress", "addressLocality", "addressRegion", "postalCode", "addressCountry"],
       "properties": {
-        "streetAddress": { "const": "11200 W Flagler St, Suite 108" },
+        "streetAddress": { "const": "11200 W Flagler St, Suite 108-109" },
         "addressLocality": { "const": "Miami" },
         "addressRegion": { "const": "FL" },
         "postalCode": { "const": "33174" },
@@ -33,7 +33,7 @@
       }
     },
     "quoteDestination": { "type": "string", "format": "uri", "const": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868" },
-    "serviceAreas": { "const": ["West Flagler Miami", "Miami"] },
+    "serviceAreas": { "const": ["Miami", "Sweetwater", "Doral", "Hialeah", "Kendall", "Florida"] },
     "insuranceTypes": { "const": ["Auto insurance", "Homeowners insurance", "Renters insurance", "Commercial and business insurance", "General liability insurance", "Life insurance"] },
     "approvedAssetPaths": {
       "type": "object",

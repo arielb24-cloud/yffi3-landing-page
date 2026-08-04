@@ -97,6 +97,14 @@ Coverage availability varies by carrier, underwriting, location, and applicant i
 
 [Start My Quote Request](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Authoritative references
+
+## Official Sources for Fact-Checking
+
+Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+
+[Florida DFS homeowners and renters overview](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Florida DFS flood insurance guide](https://myfloridacfo.com/division/ica/fullcoverage/flood)
+
 FAQ
 
 ## Frequently Asked Questions

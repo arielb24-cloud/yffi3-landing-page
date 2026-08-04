@@ -308,17 +308,9 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
   });
 
   const formEvents = await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "form_submit"));
-  expect(formEvents).toHaveLength(1);
+  expect(formEvents).toHaveLength(0);
   expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "quote_start"))).toHaveLength(0);
   expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "generate_lead"))).toHaveLength(0);
-  expect(Object.keys(formEvents[0]).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
-  expect(formEvents[0]).toEqual({
-    event: "form_submit",
-    page_path: "/get-a-quote/",
-    page_language: "en",
-    product_category: "general",
-    cta_location: "quote_form"
-  });
 
   await page.goto("/", { waitUntil: "networkidle" });
   const clickEvents = await page.evaluate(async () => {
@@ -336,9 +328,33 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
   });
   expect(clickEvents.map((entry) => entry.event)).toEqual(["phone_click", "sms_click", "email_click", "quote_start"]);
   for (const event of clickEvents) {
-    expect(Object.keys(event).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
-    expect(JSON.stringify(event)).not.toMatch(/name|address|insurance_details|form_contents|3059108850|ariel@example\.com/i);
+    expect(Object.keys(event).sort()).toEqual([
+      "campaign_content", "campaign_name", "cta_location", "event", "landing_page", "page_language",
+      "page_path", "product_category", "referrer_category", "traffic_medium", "traffic_source"
+    ]);
+    expect(event.landing_page).toBe("/get-a-quote/");
+    expect(event.referrer_category).toBe("direct");
+    expect(JSON.stringify(event)).not.toMatch(/"(?:name|address|insurance_details|form_contents)"\s*:|3059108850|ariel@example\.com/i);
   }
+});
+
+test("first-touch attribution is sanitized, non-PII, and session-scoped", async ({ page }) => {
+  await page.goto("/auto-insurance/?utm_source=google&utm_medium=cpc&utm_campaign=Miami%20Auto%202026&utm_content=hero%3Cscript%3E&gclid=must-not-be-stored", { waitUntil: "networkidle" });
+  const firstTouch = await page.evaluate(() => JSON.parse(sessionStorage.getItem("yffi_first_touch_v1")));
+  expect(firstTouch).toEqual({
+    landing_page: "/auto-insurance/",
+    referrer_category: "direct",
+    traffic_source: "google",
+    traffic_medium: "cpc",
+    campaign_name: "Miami Auto 2026",
+    campaign_content: "hero script"
+  });
+  expect(JSON.stringify(firstTouch)).not.toContain("gclid");
+  expect(JSON.stringify(firstTouch)).not.toContain("must-not-be-stored");
+
+  await page.goto("/home-insurance/?utm_source=second-touch", { waitUntil: "networkidle" });
+  const persisted = await page.evaluate(() => JSON.parse(sessionStorage.getItem("yffi_first_touch_v1")));
+  expect(persisted).toEqual(firstTouch);
 });
 
 test("a valid quote handoff emits quote_start once without claiming a generated lead", async ({ page }) => {
@@ -367,7 +383,8 @@ test("privacy pages accurately disclose measurement and advertising tools", asyn
   for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "cookie-preference panel"]) {
     expect(english).toContain(disclosure);
   }
-  expect(english).toContain("does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details");
+  expect(english).toContain("does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings");
+  expect(english).toContain("browser session storage");
 
   const spanish = await (await request.get("/es/privacidad/")).text();
   for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "panel de preferencias de cookies"]) {
