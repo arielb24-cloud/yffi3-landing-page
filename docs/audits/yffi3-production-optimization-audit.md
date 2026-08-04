@@ -94,11 +94,11 @@ The privacy failures were content accuracy failures, not metadata or rendering f
 
 | ID | Area | Status/severity | Evidence | Business impact | Action | Implemented | Verification |
 |---|---|---|---|---|---|---|---|
-| F-01 | Privacy | PASS AFTER REPAIR / critical | Live GA4 and Google Ads requests contradicted both privacy pages | Material trust and compliance exposure | Disclose GTM, GA4, cookies/identifiers, approximate location, Google processing, Ads, paused Apollo, retention/controls, no PII, and legal review | Yes, repository | Bilingual build and browser disclosure tests pass; production verification pending deployment |
+| F-01 | Privacy | PASS AFTER REPAIR / critical | Live GA4 and Google Ads requests contradicted both privacy pages | Material trust and compliance exposure | Disclose GTM, GA4, cookies/identifiers, approximate location, Google processing, Ads, paused Apollo, retention/controls, no PII, and legal review | Yes, repository | Bilingual build/browser tests pass; both disclosures verified on the deployed production domain |
 | F-02 | GTM/Apollo | PASS WITH WARNING / high | Authenticated workspace had one Apollo Custom HTML tag connected to All Pages, Consent Initialization, and Initialization; production emitted repeated CSP errors | Possible duplicate unconsented tracking attempts and noisy diagnostics | Pause until approved consent and purpose exist; do not weaken CSP | Yes: GTM version 5 published at 2:29 PM EDT | Live fresh-context probe: zero Apollo requests; GA4 tag unchanged |
 | F-03 | Google Ads | WARNING / high | Live requests referenced an Ads destination even though no repository ad tag exists | Advertising/remarketing may require consent and an accurate privacy basis | Confirm account, campaign purpose, linked destination, and consent; disconnect if unapproved | Disclosure added; account decision external | NEEDS OWNER/PRIVACY CONFIRMATION |
 | F-04 | `www` | FAILURE / high | HTTPS 522 from Cloudflare; Pages middleware cannot execute | Lost traffic, link inconsistency, and acceptance failure | Attach/repair `www` in Cloudflare Pages/DNS, then let middleware return 301 | 301 code corrected | BLOCKED: Cloudflare CLI not authenticated |
-| F-05 | Crawler policy | PASS AFTER REPAIR / medium | Source allowed GPTBot while `ai-train=no` and Cloudflare managed robots blocked it | Ambiguous training permission and difficult governance | Allow search/retrieval bots; disallow model-training bots | Yes | Source validation and generated `robots.txt` directive tests pass; live verification pending deployment |
+| F-05 | Crawler policy | PASS AFTER REPAIR / medium | Source allowed GPTBot while `ai-train=no` and Cloudflare managed robots blocked it | Ambiguous training permission and difficult governance | Allow search/retrieval bots; disallow model-training bots | Yes | Source validation and generated `robots.txt` directive tests pass; production directives verified after deployment |
 | F-06 | Structured data | PASS AFTER REPAIR / medium | `priceRange: "$$"` had no verified meaning or visible support | Unsupported business fact can reduce trust | Remove only `priceRange`; preserve address until verified | Yes | All JSON-LD parses in generation and 20-page browser tests |
 | F-07 | Conversion semantics | PASS / medium | `form_submit` is diagnostic; `quote_start` runs only after validation; no `generate_lead` | Prevents inflated lead reporting | Add invalid/valid handoff tests and no-PII assertions | Yes | Invalid form: no lead/quote start; valid handoff: one quote start; zero PII; all tests pass |
 | F-08 | Metadata/SEO | PASS / informational | 20 unique titles/descriptions; correct canonical/hreflang/H1/locale/schema | Strong crawl and presentation foundation | Preserve | No metadata rewrite | Generation, browser, and 40-image visual gate pass |
@@ -170,4 +170,17 @@ Original baseline screenshots and machine metadata are under the audit artifact 
 
 ### Deployment state
 
-Repository commit, push, Cloudflare Pages deployment, and final production polling will be recorded after the final diff and commit gate. Until the `www` 522 and incomplete gateway are resolved, the strict overall status remains **NOT PRODUCTION-READY** even if the repository deployment succeeds.
+Implementation commit `4f0aded` and audit commit `4bf992f` were pushed to `codex/yffi3-production-optimization` and fast-forwarded to `origin/main` on August 4, 2026. The connected Cloudflare Pages workflow deployed the tree, and the apex custom domain served the new privacy wording, crawler directives, schema repair, and accessibility markup.
+
+The final production-only verifier recorded:
+
+- 20/20 sitemap URLs returned 200 with 20 unique titles and descriptions, correct self-canonicals, reciprocal hreflang, one H1, and parseable JSON-LD.
+- All seven discovery/API endpoints returned 200 with the expected content types.
+- Markdown content negotiation returned `text/markdown` with `Vary: Accept`; the unknown-path test returned a real 404 with `no-store`; HTTP apex returned a path/query-preserving 301.
+- Production network evidence contained GA4 and Google Ads hosts with zero Apollo requests.
+- The deployed-versus-tested visual comparison passed 40/40 desktop and mobile screenshots with no unexpected difference.
+- `www` still returned Cloudflare 522. Two CSP console errors from the incomplete gateway remained.
+
+Machine-readable production evidence is stored outside the public build at `/Users/arielsacc/.codex/visualizations/2026/08/04/019fcde2-77aa-7503-a069-2d28c1bda2d5/yffi3-production-audit/production-verification.json`; the production visual result is `production-visual-diff-summary.json` in the same artifact directory.
+
+The deployment is verified, but until the `www` 522 and incomplete gateway/Ads consent decisions are resolved, the strict overall status remains **NOT PRODUCTION-READY**.
