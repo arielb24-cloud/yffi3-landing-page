@@ -12,6 +12,7 @@ const phoneHref = "tel:13059108850";
 const smsHref = "sms:+13059108850";
 const businessName = "Your Family First Insurance Office #3";
 const legalName = "Your Family First Insurance";
+const googleTagManagerId = "GTM-5FZCMM3V";
 const logoSrc = "/assets/yffi3/yffi3-official-franchise-logo.png";
 const logoPreloadSrc = "/assets/yffi3/yffi3-official-franchise-logo-240.webp";
 const originalFranchiseLogoSrc = "/assets/yffi3/yffi3-original-franchise-logo.png";
@@ -957,6 +958,24 @@ function jsonLd(data) {
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
+function googleTagManagerHead() {
+  return `
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${googleTagManagerId}');</script>
+<!-- End Google Tag Manager -->`;
+}
+
+function googleTagManagerBody() {
+  return `
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->`;
+}
+
 function headHtml(page) {
   const schemas = [organizationSchema(), websiteSchema(), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
   const firstMotionSlide = ["home", "service"].includes(page.kind) ? orderedInsuranceSlides(page)[0] : null;
@@ -1578,8 +1597,8 @@ function bodyFor(page) {
 function pageHtml(page) {
   return `<!doctype html>
 <html lang="en">
-<head>${headHtml(page)}</head>
-<body>
+<head>${googleTagManagerHead()}${headHtml(page)}</head>
+<body>${googleTagManagerBody()}
   <a class="skip-link" href="#main">Skip to content</a>
   ${navHtml(page.slug)}
   <main id="main">
@@ -1596,7 +1615,7 @@ function notFoundHtml() {
   const description = "The requested Your Family First Insurance Office #3 page was not found. Use the main navigation or request local Miami insurance quote help.";
   return `<!doctype html>
 <html lang="en">
-<head>
+<head>${googleTagManagerHead()}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Page Not Found | Your Family First Insurance Office #3</title>
@@ -1609,7 +1628,7 @@ function notFoundHtml() {
     <link rel="stylesheet" href="/assets/styles.css">
     <script src="/assets/site.js" defer></script>
 </head>
-<body>
+<body>${googleTagManagerBody()}
   <a class="skip-link" href="#main">Skip to content</a>
   ${navHtml("")}
   <main id="main">
@@ -4833,7 +4852,69 @@ h3 {
 }
 
 function jsSource() {
-  return `const menuToggle = document.querySelector(".menu-toggle");
+  return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
+
+function analyticsProductCategory() {
+  const categoryByPath = {
+    "/auto-insurance/": "auto",
+    "/home-insurance/": "homeowners",
+    "/renters-insurance/": "renters",
+    "/commercial-insurance/": "commercial",
+    "/life-insurance/": "life",
+    "/es/seguro-de-auto/": "auto",
+    "/es/seguro-de-vivienda/": "homeowners",
+    "/es/seguro-de-inquilinos/": "renters",
+    "/es/seguro-comercial/": "commercial",
+    "/es/seguro-de-vida/": "life"
+  };
+  return categoryByPath[window.location.pathname] || "general";
+}
+
+function analyticsCtaLocation(target) {
+  if (target?.closest(".site-header")) return "header";
+  if (target?.closest(".hero")) return "hero";
+  if (target?.closest("[data-insurance-carousel]")) return "carousel";
+  if (target?.closest("[data-quote-form]")) return "quote_form";
+  if (target?.closest(".quote-section, #quote")) return "quote_section";
+  if (target?.closest("footer")) return "footer";
+  return "content";
+}
+
+function pushAnalyticsEvent(eventName, target) {
+  if (!analyticsEventNames.has(eventName)) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    page_path: window.location.pathname,
+    page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+    product_category: analyticsProductCategory(),
+    cta_location: analyticsCtaLocation(target)
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest("a[href]");
+  if (!anchor) return;
+  const href = anchor.getAttribute("href") || "";
+  if (href.startsWith("tel:")) pushAnalyticsEvent("phone_click", anchor);
+  else if (href.startsWith("sms:")) pushAnalyticsEvent("sms_click", anchor);
+  else if (href.startsWith("mailto:")) pushAnalyticsEvent("email_click", anchor);
+  else {
+    try {
+      const destination = new URL(href, window.location.href);
+      if (destination.hostname.toLowerCase() === "secure.consumerratequotes.com" && destination.pathname === "/ConsumerV2") {
+        pushAnalyticsEvent("quote_start", anchor);
+      }
+    } catch {}
+  }
+}, true);
+
+document.addEventListener("submit", (event) => {
+  const form = event.target.closest("[data-quote-form]");
+  if (form) pushAnalyticsEvent("form_submit", form);
+}, true);
+
+const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("#site-nav");
 
 if (menuToggle && siteNav) {
@@ -5540,6 +5621,7 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
       if (status) status.textContent = "The secure quote path could not be verified. Please call the office instead.";
       return;
     }
+    pushAnalyticsEvent("quote_start", form);
     if (status) status.textContent = "Opening the secure ConsumerRateQuotes form...";
     window.location.assign(destination);
   });
@@ -5754,7 +5836,7 @@ function apacheHtaccess() {
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set Origin-Agent-Cluster "?1"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes

@@ -34,14 +34,17 @@ function applyHeaders(headers, url) {
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
   headers.set("Strict-Transport-Security", "max-age=31536000");
-  headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  headers.set(
+    "Cross-Origin-Opener-Policy",
+    url.searchParams.has("gtm_debug") ? "same-origin-allow-popups" : "same-origin"
+  );
   headers.set("Cross-Origin-Resource-Policy", "same-origin");
   headers.set("Origin-Agent-Cluster", "?1");
   headers.set("X-Permitted-Cross-Domain-Policies", "none");
   headers.set("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   headers.set(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data:; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-attr 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
   );
   if (url.pathname === "/" || url.pathname === "/index.html") {
     headers.set("Link", discoveryLinks);

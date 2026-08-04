@@ -502,6 +502,7 @@ function protectSpanishSource(html) {
     return token;
   };
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, stash);
+  html = html.replace(/<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->/g, stash);
   html = html.replace(/(<p class="real-review-excerpt">)([\s\S]*?)(<\/p>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);
   html = html.replace(/(<details class="review-details[^"]*">[\s\S]*?<p>)([\s\S]*?)(<\/p>[\s\S]*?<\/details>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);
   html = html.replace(/(<button type="button" class="real-review-mini[^"]*"[\s\S]*?<em>)([\s\S]*?)(<\/em>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);
@@ -597,12 +598,14 @@ function localizeNotFound() {
   let english = addLanguageHead(normalizeMarkup(source), "404.html", "es/404.html", false);
   english = injectLanguageUi(english, "404.html", "es/404.html", false);
   fs.writeFileSync(path.join(root, "404.html"), english, "utf8");
-  let spanish = english;
+  const gtmBlock = english.match(/<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->/)?.[0] || "";
+  let spanish = gtmBlock ? english.replace(gtmBlock, "__YFFI_GTM_BOOTSTRAP__") : english;
   for (const [from, to] of globalPairs.sort((a, b) => b[0].length - a[0].length)) spanish = replaceEverywhere(spanish, from, to);
   spanish = spanish
     .replace("The requested Your Family First Insurance Office #3 page was not found. Use the main navigation or request local Miami insurance quote help.", "No encontramos la página solicitada de Your Family First Insurance Office #3. Use la navegación principal o solicite ayuda local con una cotización en Miami.")
     .replace("That page is not available. Your Family First Insurance Office #3 can still help with local Miami auto, homeowners, renters, life, and business insurance quote conversations.", "Esa página no está disponible. Your Family First Insurance Office #3 puede ayudarle con cotizaciones de seguro de auto, vivienda, inquilinos, vida y negocios en Miami.")
     .replace(/<html lang="en-US">/, '<html lang="es-US">');
+  if (gtmBlock) spanish = spanish.replace("__YFFI_GTM_BOOTSTRAP__", gtmBlock);
   spanish = addLanguageHead(spanish, "404.html", "es/404.html", true);
   spanish = localizeLinks(spanish);
   spanish = injectLanguageUi(spanish.replace(/<nav class="language-switcher language-switcher-(?:mobile|desktop)"[\s\S]*?<\/nav>\s*/g, ""), "404.html", "es/404.html", true);

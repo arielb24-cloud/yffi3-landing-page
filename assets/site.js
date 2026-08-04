@@ -1,3 +1,65 @@
+const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
+
+function analyticsProductCategory() {
+  const categoryByPath = {
+    "/auto-insurance/": "auto",
+    "/home-insurance/": "homeowners",
+    "/renters-insurance/": "renters",
+    "/commercial-insurance/": "commercial",
+    "/life-insurance/": "life",
+    "/es/seguro-de-auto/": "auto",
+    "/es/seguro-de-vivienda/": "homeowners",
+    "/es/seguro-de-inquilinos/": "renters",
+    "/es/seguro-comercial/": "commercial",
+    "/es/seguro-de-vida/": "life"
+  };
+  return categoryByPath[window.location.pathname] || "general";
+}
+
+function analyticsCtaLocation(target) {
+  if (target?.closest(".site-header")) return "header";
+  if (target?.closest(".hero")) return "hero";
+  if (target?.closest("[data-insurance-carousel]")) return "carousel";
+  if (target?.closest("[data-quote-form]")) return "quote_form";
+  if (target?.closest(".quote-section, #quote")) return "quote_section";
+  if (target?.closest("footer")) return "footer";
+  return "content";
+}
+
+function pushAnalyticsEvent(eventName, target) {
+  if (!analyticsEventNames.has(eventName)) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    page_path: window.location.pathname,
+    page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+    product_category: analyticsProductCategory(),
+    cta_location: analyticsCtaLocation(target)
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const anchor = event.target.closest("a[href]");
+  if (!anchor) return;
+  const href = anchor.getAttribute("href") || "";
+  if (href.startsWith("tel:")) pushAnalyticsEvent("phone_click", anchor);
+  else if (href.startsWith("sms:")) pushAnalyticsEvent("sms_click", anchor);
+  else if (href.startsWith("mailto:")) pushAnalyticsEvent("email_click", anchor);
+  else {
+    try {
+      const destination = new URL(href, window.location.href);
+      if (destination.hostname.toLowerCase() === "secure.consumerratequotes.com" && destination.pathname === "/ConsumerV2") {
+        pushAnalyticsEvent("quote_start", anchor);
+      }
+    } catch {}
+  }
+}, true);
+
+document.addEventListener("submit", (event) => {
+  const form = event.target.closest("[data-quote-form]");
+  if (form) pushAnalyticsEvent("form_submit", form);
+}, true);
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector("#site-nav");
 
@@ -716,6 +778,7 @@ document.querySelectorAll("[data-quote-form]").forEach((form) => {
       if (status) status.textContent = formMessages.invalidPath;
       return;
     }
+    pushAnalyticsEvent("quote_start", form);
     if (status) status.textContent = formMessages.opening;
     window.location.assign(destination);
   });
