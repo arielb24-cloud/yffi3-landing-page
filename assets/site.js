@@ -24,9 +24,10 @@ const formMessages = {
   opening: spanishUi ? "Abriendo el formulario seguro de ConsumerRateQuotes..." : "Opening the secure ConsumerRateQuotes form...",
   received: spanishUi ? "Gracias. Recibimos la solicitud." : "Thanks. The request has been received."
 };
+const mobileViewport = window.matchMedia("(max-width: 639px)").matches;
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
 
-if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
+if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   const cursorOrb = document.createElement("span");
   cursorOrb.className = "cursor-orb";
   cursorOrb.setAttribute("aria-hidden", "true");
@@ -106,7 +107,7 @@ if (animatedItems.length) {
   }
 }
 
-if (!motionDisabled && "IntersectionObserver" in window) {
+if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine)").matches && "IntersectionObserver" in window) {
   const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
   const visibleDepthSurfaces = new Set();
   let depthFrame = 0;
@@ -167,6 +168,8 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   let startX = 0;
   let startScrollLeft = 0;
   let scrollFrame = 0;
+  let programmaticScroll = false;
+  let programmaticScrollTimer = 0;
 
   const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
 
@@ -233,10 +236,14 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
     });
     hydrateVideo(activeSlide);
-    hydrateVideo(slides[(activeIndex + 1) % slides.length]);
     syncVideos();
     if (options.scroll !== false) {
-      activeSlide.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "nearest", inline: "center" });
+      programmaticScroll = true;
+      window.clearTimeout(programmaticScrollTimer);
+      track?.scrollTo({ left: activeSlide.offsetLeft, behavior: reducedMotion ? "auto" : "smooth" });
+      programmaticScrollTimer = window.setTimeout(() => {
+        programmaticScroll = false;
+      }, reducedMotion ? 0 : 700);
     }
   };
 
@@ -283,6 +290,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   track?.addEventListener("scroll", () => {
+    if (programmaticScroll) return;
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(() => {
       scrollFrame = 0;
@@ -355,12 +363,18 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   }
 
   const enableInitialMedia = () => {
-    window.setTimeout(() => {
+    const enableMedia = () => {
+      if (mediaReady) return;
       mediaReady = true;
       hydrateVideo(slides[activeIndex]);
-      hydrateVideo(slides[(activeIndex + 1) % slides.length]);
       syncVideos();
-    }, 250);
+    };
+    if (mobileViewport) {
+      carousel.addEventListener("click", enableMedia, { once: true });
+      carousel.addEventListener("keydown", enableMedia, { once: true });
+      return;
+    }
+    window.setTimeout(enableMedia, 750);
   };
   if (document.readyState === "complete") enableInitialMedia();
   else window.addEventListener("load", enableInitialMedia, { once: true });
@@ -369,7 +383,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     window.setInterval(() => {
       const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
       carousel.setAttribute("data-paused", String(shouldHold));
-      if (!shouldHold) setActive(activeIndex + 1);
+      if (!shouldHold) setActive(activeIndex + 1, { scroll: false });
       syncVideos();
     }, delay);
   }
