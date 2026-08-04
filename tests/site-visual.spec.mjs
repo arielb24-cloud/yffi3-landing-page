@@ -309,6 +309,8 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
 
   const formEvents = await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "form_submit"));
   expect(formEvents).toHaveLength(1);
+  expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "quote_start"))).toHaveLength(0);
+  expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "generate_lead"))).toHaveLength(0);
   expect(Object.keys(formEvents[0]).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
   expect(formEvents[0]).toEqual({
     event: "form_submit",
@@ -336,6 +338,51 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
   for (const event of clickEvents) {
     expect(Object.keys(event).sort()).toEqual(["cta_location", "event", "page_language", "page_path", "product_category"]);
     expect(JSON.stringify(event)).not.toMatch(/name|address|insurance_details|form_contents|3059108850|ariel@example\.com/i);
+  }
+});
+
+test("a valid quote handoff emits quote_start once without claiming a generated lead", async ({ page }) => {
+  await page.route("https://secure.consumerratequotes.com/**", (route) => route.abort());
+  await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
+  const events = await page.evaluate(() => {
+    window.dataLayer = [];
+    const form = document.querySelector("[data-quote-form]");
+    form.querySelector('[name="name"]').value = "Test Visitor";
+    form.querySelector('[name="phone"]').value = "3055550100";
+    form.querySelector('[name="email"]').value = "test@example.invalid";
+    form.querySelector('[name="insuranceType"]').value = "Auto";
+    form.querySelector('[name="zip"]').value = "33134";
+    form.querySelector('[name="bestTime"]').value = "Morning";
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    return window.dataLayer;
+  });
+  expect(events.filter((entry) => entry?.event === "form_submit")).toHaveLength(1);
+  expect(events.filter((entry) => entry?.event === "quote_start")).toHaveLength(1);
+  expect(events.filter((entry) => entry?.event === "generate_lead")).toHaveLength(0);
+  expect(JSON.stringify(events)).not.toMatch(/Test Visitor|3055550100|test@example\.invalid|33134/i);
+});
+
+test("privacy pages accurately disclose measurement and advertising tools", async ({ request }) => {
+  const english = await (await request.get("/privacy-policy/")).text();
+  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "cookie-preference panel"]) {
+    expect(english).toContain(disclosure);
+  }
+  expect(english).toContain("does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details");
+
+  const spanish = await (await request.get("/es/privacidad/")).text();
+  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "panel de preferencias de cookies"]) {
+    expect(spanish).toContain(disclosure);
+  }
+});
+
+test("review rail buttons use their visible text as the accessible name", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const reviewButtons = page.locator(".real-review-mini");
+  expect(await reviewButtons.count()).toBeGreaterThanOrEqual(3);
+  for (const button of await reviewButtons.all()) {
+    await expect(button).not.toHaveAttribute("aria-label", /.+/);
+    const visibleText = (await button.innerText()).replace(/\s+/g, " ").trim();
+    expect(visibleText.length).toBeGreaterThan(20);
   }
 });
 
@@ -498,7 +545,7 @@ test("production host redirects to canonical HTTPS and emits HSTS", async ({ req
     headers: { Host: "www.yourfamilyfirstinsurance3.com", "X-Forwarded-Proto": "http" },
     maxRedirects: 0
   });
-  expect(redirect.status()).toBe(308);
+  expect(redirect.status()).toBe(301);
   expect(redirect.headers().location).toBe("https://yourfamilyfirstinsurance3.com/");
 
   const secure = await request.get("/", {

@@ -37,7 +37,21 @@ The public website is designed for HTTPS hosting and includes baseline browser s
 
 ## Cookies and Tracking
 
-This static build does not add analytics scripts, ad pixels, chat widgets, or third-party tracking code by default. If those tools are added later, the privacy policy should be reviewed and updated before publishing.
+Google Tag Manager (GTM) organizes approved measurement tags on this website. At the last technical review on August 4, 2026, the container loaded Google Analytics 4 (GA4) and a Google Ads destination. An Apollo Website Tracker tag is present but paused; it must not be enabled unless its permitted use, consent settings, and privacy disclosure are approved. The site does not use a chat widget or session-replay tool.
+
+GA4 may use first-party cookies, including `_ga`, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.
+
+Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.
+
+The website's analytics data layer sends only the event name, page path, page language, product category, and call-to-action location. It does not send names, phone numbers, email addresses, ZIP codes, notes, or insurance details.
+
+This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.
+
+## Retention and Your Choices
+
+Analytics retention is controlled in the GA4 property and must be confirmed by the owner. You can restrict cookies in your browser, use private browsing controls, or install the Google Analytics Opt-out Browser Add-on. Blocking cookies may limit measurement but should not prevent access to the public insurance information on this site.
+
+Google's privacy information is available at [policies.google.com/privacy](https://policies.google.com/privacy), and the opt-out add-on is available at [tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
 
 ## Third-Party Quote Intake
 

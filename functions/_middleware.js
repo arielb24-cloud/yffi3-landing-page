@@ -58,7 +58,7 @@ export async function onRequest(context) {
   if ((url.hostname === `www.${canonicalHostname}` || url.protocol !== "https:") && !url.hostname.endsWith(".pages.dev")) {
     url.protocol = "https:";
     url.hostname = canonicalHostname;
-    return Response.redirect(url.toString(), 308);
+    return Response.redirect(url.toString(), 301);
   }
 
   const response = await context.next();

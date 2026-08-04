@@ -40,7 +40,7 @@ app.use(compression({ threshold: 1024 }));
 app.use((req, res, next) => {
   const hostname = String(req.hostname || "").toLowerCase();
   if (productionHostnames.has(hostname) && (!req.secure || hostname !== canonicalHostname)) {
-    res.redirect(308, `https://${canonicalHostname}${req.originalUrl}`);
+    res.redirect(301, `https://${canonicalHostname}${req.originalUrl}`);
     return;
   }
 

@@ -235,8 +235,24 @@ if (!fs.existsSync(robots)) {
 } else {
   const robotsText = read(robots);
   if (!robotsText.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) failures.push("robots.txt missing sitemap URL");
-  for (const bot of ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "Googlebot", "Bingbot", "PerplexityBot"]) {
-    if (!robotsText.includes(`User-agent: ${bot}`)) failures.push(`robots.txt missing ${bot}`);
+  const crawlerPolicies = new Map([
+    ["GPTBot", "Disallow: /"],
+    ["OAI-SearchBot", "Allow: /"],
+    ["ChatGPT-User", "Allow: /"],
+    ["ClaudeBot", "Disallow: /"],
+    ["Claude-SearchBot", "Allow: /"],
+    ["Claude-User", "Allow: /"],
+    ["Googlebot", "Allow: /"],
+    ["Google-Extended", "Disallow: /"],
+    ["Applebot", "Allow: /"],
+    ["Applebot-Extended", "Disallow: /"],
+    ["Bingbot", "Allow: /"],
+    ["PerplexityBot", "Allow: /"]
+  ]);
+  for (const [bot, directive] of crawlerPolicies) {
+    const group = robotsText.match(new RegExp(`User-agent: ${bot.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}\\n([^\\n]*(?:\\n(?!User-agent:|Sitemap:)[^\\n]*)*)`, "i"))?.[0] || "";
+    if (!group) failures.push(`robots.txt missing ${bot}`);
+    else if (!group.includes(directive)) failures.push(`robots.txt ${bot} must include ${directive}`);
   }
 }
 

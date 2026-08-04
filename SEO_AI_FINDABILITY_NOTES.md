@@ -7,11 +7,11 @@
 - Dedicated pages for home, auto insurance, homeowners insurance, commercial insurance, life insurance, renters insurance, about, quote, privacy, and terms.
 - Service pages include Miami search-intent topic panels and expanded customer-facing FAQs for local, product-specific searches.
 - InsuranceAgency, Service, FAQPage, and BreadcrumbList schema where appropriate.
-- Robots.txt allows Google, Bing, OpenAI, and Perplexity crawler user agents.
+- Robots.txt allows search and user-requested retrieval crawlers while blocking model-training crawlers.
 - Sitemap includes every generated public page.
 - llms.txt and humans.txt provide AI-readable and human-readable public site facts.
 - Internal links connect service pages, quote page, and footer navigation.
-- Security/privacy defaults avoid third-party scripts and warn users against sending sensitive information.
+- Security/privacy controls disclose GTM, GA4, Google Ads, and the pending Apollo review, and warn users against sending sensitive information.
 
 ## Best Next SEO Actions
 

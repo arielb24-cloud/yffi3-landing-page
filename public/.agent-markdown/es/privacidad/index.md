@@ -37,7 +37,21 @@ El sitio público está diseñado para alojamiento HTTPS e incluye encabezados b
 
 ## Cookies y seguimiento
 
-Esta versión estática no añade por defecto analítica, píxeles publicitarios, chat ni seguimiento de terceros. Si se incorporan esas herramientas, debe revisarse y actualizarse la política de privacidad antes de publicar.
+Google Tag Manager (GTM) organiza las etiquetas de medición aprobadas de este sitio. En la última revisión técnica, el 4 de agosto de 2026, el contenedor cargaba Google Analytics 4 (GA4) y un destino de Google Ads. Hay una etiqueta de Apollo Website Tracker, pero está pausada; no debe activarse sin aprobar su uso permitido, su configuración de consentimiento y su divulgación de privacidad. El sitio no utiliza chat ni herramientas de reproducción de sesiones.
+
+GA4 puede utilizar cookies propias, incluida `_ga`, y recopilar datos de páginas e interacciones, información del dispositivo y navegador, ubicación aproximada derivada de una dirección de Protocolo de Internet y un identificador aleatorio del navegador. Google indica que GA4 no registra ni almacena direcciones individuales de Protocolo de Internet. GTM administra las etiquetas; las etiquetas cargadas mediante GTM determinan qué datos se recopilan.
+
+La medición de Google Ads puede utilizar cookies o identificadores similares para medir conversiones y funciones publicitarias. Este repositorio no instala Meta Pixel ni etiquetas de Microsoft Advertising. Los destinos publicitarios y el remarketing deben permanecer activos únicamente después de que el propietario confirme la cuenta activa, la finalidad, los requisitos de consentimiento y las divulgaciones de privacidad.
+
+La capa de datos analíticos del sitio envía únicamente el nombre del evento, la ruta de la página, el idioma, la categoría del producto y la ubicación de la llamada a la acción. No envía nombres, teléfonos, correos electrónicos, códigos postales, notas ni detalles de seguros.
+
+Este sitio no ofrece actualmente un panel de preferencias de cookies en la página. El propietario debe confirmar con asesoría de privacidad cualificada si se requieren controles de consentimiento para la ubicación de cada visitante antes de mantener activa la publicidad o el seguimiento opcional.
+
+## Retención y sus opciones
+
+La retención de datos analíticos se controla en la propiedad de GA4 y debe confirmarla el propietario. Puede restringir las cookies en su navegador, utilizar controles de navegación privada o instalar el complemento de inhabilitación de Google Analytics. Bloquear las cookies puede limitar la medición, pero no debería impedir el acceso a la información pública de seguros de este sitio.
+
+La información de privacidad de Google está disponible en [policies.google.com/privacy](https://policies.google.com/privacy), y el complemento de inhabilitación está disponible en [tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
 
 ## Recepción de cotizaciones por un tercero
 
