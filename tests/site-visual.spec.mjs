@@ -202,7 +202,9 @@ test("mobile homepage sections keep stable document flow while scrolling", async
 
   expect(before.sections.every((section) => section.contentVisibility === "visible")).toBe(true);
   for (let index = 1; index < before.sections.length; index += 1) {
-    expect(before.sections[index].top).toBeGreaterThanOrEqual(before.sections[index - 1].bottom - 1);
+    // Firefox can round adjacent fractional-pixel section edges two pixels apart.
+    // This tolerance still rejects a visible overlap while avoiding a false failure.
+    expect(before.sections[index].top).toBeGreaterThanOrEqual(before.sections[index - 1].bottom - 2);
   }
 
   await revealWholePage(page);
@@ -329,8 +331,9 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
   expect(clickEvents.map((entry) => entry.event)).toEqual(["phone_click", "sms_click", "email_click", "quote_start"]);
   for (const event of clickEvents) {
     expect(Object.keys(event).sort()).toEqual([
-      "campaign_content", "campaign_name", "cta_location", "event", "landing_page", "page_language",
-      "page_path", "product_category", "referrer_category", "traffic_medium", "traffic_source"
+      "campaign_content", "campaign_id", "campaign_name", "campaign_term", "cta_location", "event",
+      "landing_page", "page_language", "page_path", "product_category", "referrer_category",
+      "traffic_medium", "traffic_source"
     ]);
     expect(event.landing_page).toBe("/get-a-quote/");
     expect(event.referrer_category).toBe("direct");
@@ -339,7 +342,7 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
 });
 
 test("first-touch attribution is sanitized, non-PII, and session-scoped", async ({ page }) => {
-  await page.goto("/auto-insurance/?utm_source=google&utm_medium=cpc&utm_campaign=Miami%20Auto%202026&utm_content=hero%3Cscript%3E&gclid=must-not-be-stored", { waitUntil: "networkidle" });
+  await page.goto("/auto-insurance/?utm_source=google&utm_medium=cpc&utm_campaign=Miami%20Auto%202026&utm_id=campaign-64868&utm_term=miami%20auto%20insurance&utm_content=hero%3Cscript%3E&gclid=must-not-be-stored", { waitUntil: "networkidle" });
   const firstTouch = await page.evaluate(() => JSON.parse(sessionStorage.getItem("yffi_first_touch_v1")));
   expect(firstTouch).toEqual({
     landing_page: "/auto-insurance/",
@@ -347,6 +350,8 @@ test("first-touch attribution is sanitized, non-PII, and session-scoped", async 
     traffic_source: "google",
     traffic_medium: "cpc",
     campaign_name: "Miami Auto 2026",
+    campaign_id: "campaign-64868",
+    campaign_term: "miami auto insurance",
     campaign_content: "hero script"
   });
   expect(JSON.stringify(firstTouch)).not.toContain("gclid");
@@ -723,7 +728,7 @@ test("agents can negotiate Markdown while browsers keep HTML", async ({ request 
   expect(markdown.headers()["content-type"]).toContain("text/markdown");
   expect(markdown.headers().vary).toContain("Accept");
   expect(Number(markdown.headers()["x-markdown-tokens"])).toBeGreaterThan(100);
-  expect(await markdown.text()).toContain("# Florida Insurance Made Simple for Your Family");
+  expect(await markdown.text()).toContain("# Miami Insurance Made Simple for Your Family");
 
   const html = await request.get("/", { headers: { Accept: "text/html" } });
   expect(html.headers()["content-type"]).toContain("text/html");
