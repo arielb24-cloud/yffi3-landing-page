@@ -29,6 +29,8 @@ The most recent local desktop homepage Lighthouse rechecks scored 90 and 92 for 
 
 Lab data is used only as a regression aid. It is not presented as production field data.
 
+The required local Lighthouse budget now blocks only the external GTM loader. This keeps the lab gate focused on the first-party HTML/CSS/JS/media bundle and prevents an intentionally blocked Google Ads view-through script from failing every route's Best Practices score. It does not remove GTM from production, weaken CSP, or count as live analytics verification. The separate source test still requires exactly one GTM installation, while Tag Assistant and GA4 Realtime provide the live third-party measurement evidence.
+
 ## Decision
 
 - Preserve the current design, carousel, fonts, and animation because production P75 LCP is 889 ms and INP/CLS are 100% good in the available RUM window.

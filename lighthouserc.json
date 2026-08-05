@@ -14,7 +14,10 @@
       "numberOfRuns": 2,
       "settings": {
         "preset": "desktop",
-        "chromeFlags": "--headless --no-sandbox --disable-dev-shm-usage"
+        "chromeFlags": "--headless --no-sandbox --disable-dev-shm-usage",
+        "blockedUrlPatterns": [
+          "https://www.googletagmanager.com/gtm.js*"
+        ]
       }
     },
     "assert": {
