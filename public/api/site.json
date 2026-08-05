@@ -30,9 +30,16 @@
     "Auto insurance",
     "Homeowners insurance",
     "Renters insurance",
-    "Commercial and business insurance",
+    "Flood insurance",
+    "Motorcycle insurance",
+    "Boat insurance",
+    "RV insurance",
+    "Commercial insurance",
+    "Business insurance",
     "General liability insurance",
-    "Life insurance"
+    "Workers' compensation insurance",
+    "Life insurance",
+    "Health insurance"
   ],
   "pages": {
     "home": "https://yourfamilyfirstinsurance3.com/",

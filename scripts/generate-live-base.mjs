@@ -28,7 +28,7 @@ const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
 const brandUrl = "https://yourfamilyfirstinsurance.com/";
 const facebookUrl = "https://www.facebook.com/YourFamilyFirstInsurance";
 const googleMapsUrl = "https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0";
-const contentReviewedDate = "2026-08-04";
+const contentReviewedDate = "2026-08-05";
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -270,7 +270,7 @@ const pages = [
     nav: "Home",
     title: "Your Family First Insurance Office #3 | Miami Insurance Quote Help",
     description: "Your Family First Insurance Office #3 provides bilingual Miami quote help for auto, homeowners, renters, life, health, liability, and business insurance.",
-    h1: "Florida Insurance Made Simple for Your Family",
+    h1: "Miami Insurance Made Simple for Your Family",
     intro: "Local Office #3 helping Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
     kind: "home",
     keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
@@ -4966,6 +4966,12 @@ h3 {
 }
 
 function jsSource() {
+  // The committed runtime is the canonical browser source. Reading it here keeps
+  // production builds from replacing later performance and accessibility fixes
+  // with this historical fallback template.
+  const committedRuntime = path.join(root, "assets", "site.js");
+  if (fs.existsSync(committedRuntime)) return fs.readFileSync(committedRuntime, "utf8");
+
   return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
 
 const attributionStorageKey = "yffi_first_touch_v1";

@@ -26,7 +26,7 @@ Ayuda con su cotización
 Comparta aquí solo datos básicos de contacto. Al completar los campos obligatorios, el formulario abre la ruta segura de ConsumerRateQuotes para el siguiente paso.
 
 **¿Prefiere hablar ahora?**
-[Llamar al 305-910-8850](tel:13059108850) or [envíe un mensaje a la oficina](sms:+13059108850).
+[Llamar al 305-910-8850](tel:13059108850) o [envíe un mensaje a la oficina](sms:+13059108850).
 
 ![Código QR para solicitar una cotización con Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
 

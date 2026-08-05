@@ -361,7 +361,7 @@ Referencias oficiales
 
 ## Fuentes oficiales para verificar la información
 
-Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+Reviewed 2026-08-05. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
 
 [Sitio web de Your Family First Insurance](https://yourfamilyfirstinsurance.com/home/)[Oficina #3 en Google Maps](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)
 

@@ -101,7 +101,7 @@ Authoritative references
 
 ## Official Sources for Fact-Checking
 
-Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+Reviewed 2026-08-05. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
 
 [Florida DFS homeowners insurance overview](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Florida DFS flood insurance guide](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Florida Statute 627.7011 roof-age provisions](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
 

@@ -6,7 +6,7 @@ This file contains only actions that cannot be safely completed from the reposit
 
 - **CONNECTED:** Cloudflare now has an active Single Redirect named `Canonicalize www to apex`. Live HTTPS `www` requests return a path- and query-preserving 301 to the apex instead of 522.
 - **CONNECTED:** Google Search Console domain ownership is verified. `https://yourfamilyfirstinsurance3.com/sitemap.xml` is `Success` with 20 discovered pages, and the two obsolete failed sitemap submissions were removed.
-- **CONNECTED:** GTM version 6, `YFFI marketing intent measurement`, is live. It sends the approved `cta_click`, `phone_click`, `quote_start`, `form_submit`, and `language_switch` events to GA4. The Apollo tag remains paused.
+- **CONNECTED:** GTM version 7, `YFFI SMS intent measurement`, is live. It sends the approved `cta_click`, `phone_click`, `sms_click`, `quote_start`, `form_submit`, and `language_switch` events to GA4. Tag Assistant preview and a clean production test both fired the GA4 event tag; GA4 Realtime received `sms_click`. The Apollo tag remains paused.
 - **CONNECTED:** The incomplete Cloudflare Google tag gateway was deleted. Standard GTM remains the single loader, and the gateway-generated CSP errors are gone.
 - **PARTIALLY CONNECTED:** The Google Business Profile is verified and the website, phone, address, service areas, and hours were inspected. The website entity facts now match the verified profile and the master company office page. Other directories still require reconciliation.
 - **PARTIALLY CONNECTED:** GA4 receives the standard Google tag and the new GTM event mapping, but GA4 Admin key-event, retention, internal-traffic, and DebugView settings still require a stable authenticated GA4 session.

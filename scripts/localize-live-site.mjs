@@ -214,6 +214,7 @@ const globalPairs = [
   ["Official Your Family First Insurance Office #3 branding shown for franchise identification.", "La marca oficial de Your Family First Insurance Office #3 se muestra para identificar la franquicia."],
   ["Get quote help", "Ayuda con su cotización"],
   ["Prefer to talk now?", "¿Prefiere hablar ahora?"],
+  ["Call 305-910-8850</a> or <a href=\"sms:+13059108850\">text the office", "Llamar al 305-910-8850</a> o <a href=\"sms:+13059108850\">envíe un mensaje a la oficina"],
   ["text the office", "envíe un mensaje a la oficina"],
   ["Quote Yourself QR", "Código QR de cotización"],
   ["Quote Yourself QR code for Your Family First Insurance Office #3", "Código QR para solicitar una cotización con Your Family First Insurance Office #3"],
@@ -735,7 +736,7 @@ html.save-data .motion-video { display: none; }
 function enhanceRuntime() {
   const file = path.join(root, "assets", "site.js");
   let source = fs.readFileSync(file, "utf8");
-  source = source
+  if (!source.includes("const motionDisabled = reducedMotion || saveData;")) source = source
     .replace('const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;', `const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;\nconst saveData = Boolean(navigator.connection && navigator.connection.saveData);\nconst motionDisabled = reducedMotion || saveData;\nconst spanishUi = document.documentElement.lang.toLowerCase().startsWith("es");\ndocument.documentElement.classList.toggle("save-data", saveData);\nconst formMessages = {\n  sensitive: spanishUi ? "No incluya información confidencial aquí. Compártala únicamente mediante el proceso seguro aprobado." : "Please do not include sensitive details here. Continue sensitive information only through the secure approved quote process.",\n  complete: spanishUi ? "Complete los campos de contacto obligatorios antes de continuar." : "Please complete the required contact fields before sending.",\n  invalidPath: spanishUi ? "No se pudo verificar la ruta segura. Llame a la oficina." : "The secure quote path could not be verified. Please call the office instead.",\n  opening: spanishUi ? "Abriendo el formulario seguro de ConsumerRateQuotes..." : "Opening the secure ConsumerRateQuotes form...",\n  received: spanishUi ? "Gracias. Recibimos la solicitud." : "Thanks. The request has been received."\n};`)
     .replaceAll("if (!reducedMotion && window.matchMedia", "if (!motionDisabled && window.matchMedia")
     .replaceAll('if (!reducedMotion && "IntersectionObserver"', 'if (!motionDisabled && "IntersectionObserver"')

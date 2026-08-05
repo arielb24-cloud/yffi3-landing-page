@@ -101,7 +101,7 @@ Referencias oficiales
 
 ## Fuentes oficiales para verificar la información
 
-Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+Reviewed 2026-08-05. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
 
 [Resumen de seguro para propietarios de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Guía de seguro contra inundaciones de Florida DFS](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Disposiciones sobre la antigüedad del techo del Estatuto de Florida 627.7011](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
 

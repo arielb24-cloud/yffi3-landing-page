@@ -5,6 +5,8 @@ const attributionParameterMap = {
   utm_source: "traffic_source",
   utm_medium: "traffic_medium",
   utm_campaign: "campaign_name",
+  utm_id: "campaign_id",
+  utm_term: "campaign_term",
   utm_content: "campaign_content"
 };
 
@@ -95,6 +97,8 @@ function pushAnalyticsEvent(eventName, target) {
     traffic_source: firstTouchAttribution.traffic_source,
     traffic_medium: firstTouchAttribution.traffic_medium,
     campaign_name: firstTouchAttribution.campaign_name,
+    campaign_id: firstTouchAttribution.campaign_id,
+    campaign_term: firstTouchAttribution.campaign_term,
     campaign_content: firstTouchAttribution.campaign_content
   });
 }

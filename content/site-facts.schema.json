@@ -34,7 +34,7 @@
     },
     "quoteDestination": { "type": "string", "format": "uri", "const": "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868" },
     "serviceAreas": { "const": ["Miami", "Sweetwater", "Doral", "Hialeah", "Kendall", "Florida"] },
-    "insuranceTypes": { "const": ["Auto insurance", "Homeowners insurance", "Renters insurance", "Commercial and business insurance", "General liability insurance", "Life insurance"] },
+    "insuranceTypes": { "const": ["Auto insurance", "Homeowners insurance", "Renters insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "Business insurance", "General liability insurance", "Workers' compensation insurance", "Life insurance", "Health insurance"] },
     "approvedAssetPaths": {
       "type": "object",
       "additionalProperties": false,

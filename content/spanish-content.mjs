@@ -20,7 +20,7 @@ export const spanishPages = [
     slug: "es", englishSlug: "", nav: "Inicio", locale: "es-US", kind: "home",
     title: "Agencia de Seguros en Miami | Your Family First Office #3",
     description: "Solicite ayuda bilingüe con cotizaciones de seguros de auto, vivienda, inquilinos, negocios, responsabilidad civil general y vida en Miami.",
-    h1: "Seguros de Florida más sencillos para su familia",
+    h1: "Seguros en Miami más sencillos para su familia",
     intro: "La Oficina #3 ayuda a familias y negocios de Miami a solicitar cotizaciones de seguros de auto, vivienda, inquilinos, comerciales, responsabilidad civil general y vida.",
     faqs: [
       ["¿Dónde está Your Family First Insurance Office #3?", "La Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],

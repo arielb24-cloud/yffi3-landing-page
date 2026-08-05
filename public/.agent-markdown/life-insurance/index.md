@@ -101,7 +101,7 @@ Authoritative references
 
 ## Official Sources for Fact-Checking
 
-Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
+Reviewed 2026-08-05. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
 
 [Florida DFS insurance consumer library](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
 

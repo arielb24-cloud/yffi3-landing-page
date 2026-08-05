@@ -5,7 +5,7 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/"
 ---
 
-# Seguros de Florida más sencillos para su familia
+# Seguros en Miami más sencillos para su familia
 
 La Oficina #3 ayuda a familias y negocios de Miami a solicitar cotizaciones de seguros de auto, vivienda, inquilinos, comerciales, responsabilidad civil general y vida.
 
@@ -522,7 +522,7 @@ Ayuda con su cotización
 Comparta aquí solo datos básicos de contacto. Al completar los campos obligatorios, el formulario abre la ruta segura de ConsumerRateQuotes para el siguiente paso.
 
 **¿Prefiere hablar ahora?**
-[Llamar al 305-910-8850](tel:13059108850) or [envíe un mensaje a la oficina](sms:+13059108850).
+[Llamar al 305-910-8850](tel:13059108850) o [envíe un mensaje a la oficina](sms:+13059108850).
 
 ![Código QR para solicitar una cotización con Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
 
@@ -533,7 +533,7 @@ Referencias oficiales
 
 ## Fuentes oficiales para verificar la información
 
-Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.
+Reviewed 2026-08-05. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.
 
 [Sitio web de Your Family First Insurance](https://yourfamilyfirstinsurance.com/home/)[Recursos para consumidores de seguros de Florida DFS](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)
 
