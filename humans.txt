@@ -7,6 +7,7 @@ Location: 11200 W Flagler St, Suite 108-109, Miami, FL 33174
 
 Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express server for GoDaddy Beta Apps.
 Brand note: Official franchise logo/sign must remain unchanged.
-Privacy note: The quote form opens the secure ConsumerRateQuotes intake URL provided for Office #3 after local required-field validation.
+Privacy note: The public page opens the verified ConsumerRateQuotes intake URL directly and does not collect duplicate contact or underwriting fields.
+Customer service note: Public policyholder guides do not accept policy numbers, documents, claim files, or service requests.
 Quote path: ConsumerRateQuotes account ID 64868.
 Google review path: https://g.page/r/CfCEW-Ye4vpMEAE/review

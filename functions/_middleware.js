@@ -11,17 +11,27 @@ const markdownRoutes = new Set([
   "renters-insurance", "about-office-3", "get-a-quote", "privacy-policy", "terms",
   "es", "es/seguro-de-auto", "es/seguro-de-vivienda", "es/seguro-de-inquilinos",
   "es/seguro-comercial", "es/seguro-de-vida", "es/sobre-oficina-3",
-  "es/solicitar-cotizacion", "es/privacidad", "es/terminos"
+  "es/solicitar-cotizacion", "es/privacidad", "es/terminos",
+  "policyholder-help", "customer-resources/hurricane-preparation", "customer-resources/renewal-review",
+  "customer-resources/certificate-of-insurance", "customer-resources/life-event-review",
+  "es/ayuda-para-clientes", "es/recursos-para-clientes/preparacion-para-huracanes",
+  "es/recursos-para-clientes/revision-de-renovacion", "es/recursos-para-clientes/certificado-de-seguro",
+  "es/recursos-para-clientes/revision-anual",
 ]);
 
 function routeSlug(pathname) {
   return pathname.replace(/^\/+|\/+$/g, "").replace(/(^|\/)index\.html$/i, "").replace(/\/$/, "");
 }
 
-function wantsMarkdown(request) {
-  return String(request.headers.get("Accept") || "")
-    .split(",")
-    .some((part) => /^\s*text\/markdown\b/i.test(part) && !/;\s*q=0(?:\.0*)?\b/i.test(part));
+function prefersMarkdown(accept) {
+  const quality = (type) => {
+    const entry = String(accept || "").split(",").find((part) => part.trim().split(";")[0].toLowerCase() === type);
+    if (!entry) return 0;
+    const match = entry.match(/;\s*q=([0-9.]+)/i);
+    const value = match ? Number(match[1]) : 1;
+    return Number.isFinite(value) && value >= 0 && value <= 1 ? value : 0;
+  };
+  return quality("text/markdown") > 0 && quality("text/markdown") >= quality("text/html");
 }
 
 function estimatedTokens(text) {
@@ -44,11 +54,16 @@ function applyHeaders(headers, url) {
   headers.set("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   headers.set(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
   );
   if (url.pathname === "/" || url.pathname === "/index.html") {
     headers.set("Link", discoveryLinks);
-    headers.set("Vary", "Accept");
+
+  }
+  if (markdownRoutes.has(routeSlug(url.pathname))) {
+    const vary = (headers.get("Vary") || "").split(",").map((value) => value.trim()).filter(Boolean);
+    if (!vary.some((value) => value.toLowerCase() === "accept" || value === "*")) vary.push("Accept");
+    headers.set("Vary", vary.join(", "));
   }
   if (url.hostname.endsWith(".pages.dev")) headers.set("X-Robots-Tag", "noindex, nofollow");
 }
@@ -66,7 +81,7 @@ export async function onRequest(context) {
   applyHeaders(headers, url);
 
   const slug = routeSlug(url.pathname);
-  if (!wantsMarkdown(context.request) || !response.ok || !markdownRoutes.has(slug) || !context.env?.ASSETS) {
+  if ((!["GET", "HEAD"].includes(context.request.method) || !prefersMarkdown(context.request.headers.get("Accept"))) || !response.ok || !markdownRoutes.has(slug) || !context.env?.ASSETS) {
     return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
   }
 
@@ -77,7 +92,6 @@ export async function onRequest(context) {
 
   const [markdown, originalHtml] = await Promise.all([markdownResponse.text(), response.clone().text()]);
   headers.set("Content-Type", "text/markdown; charset=utf-8");
-  headers.set("Vary", "Accept");
   headers.set("Cache-Control", "public, max-age=300, must-revalidate");
   headers.set("x-markdown-tokens", String(estimatedTokens(markdown)));
   headers.set("x-original-tokens", String(estimatedTokens(originalHtml)));

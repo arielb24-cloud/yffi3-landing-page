@@ -22,11 +22,27 @@ const markdownRoutes = new Set([
   "renters-insurance", "about-office-3", "get-a-quote", "privacy-policy", "terms",
   "es", "es/seguro-de-auto", "es/seguro-de-vivienda", "es/seguro-de-inquilinos",
   "es/seguro-comercial", "es/seguro-de-vida", "es/sobre-oficina-3",
-  "es/solicitar-cotizacion", "es/privacidad", "es/terminos"
+  "es/solicitar-cotizacion", "es/privacidad", "es/terminos",
+  "policyholder-help", "customer-resources/hurricane-preparation", "customer-resources/renewal-review",
+  "customer-resources/certificate-of-insurance", "customer-resources/life-event-review",
+  "es/ayuda-para-clientes", "es/recursos-para-clientes/preparacion-para-huracanes",
+  "es/recursos-para-clientes/revision-de-renovacion", "es/recursos-para-clientes/certificado-de-seguro",
+  "es/recursos-para-clientes/revision-anual",
 ]);
 
 function routeSlug(requestPath) {
   return requestPath.replace(/^\/+|\/+$/g, "").replace(/(^|\/)index\.html$/i, "").replace(/\/$/, "");
+}
+
+function prefersMarkdown(accept) {
+  const quality = (type) => {
+    const entry = String(accept || "").split(",").find((part) => part.trim().split(";")[0].toLowerCase() === type);
+    if (!entry) return 0;
+    const match = entry.match(/;\s*q=([0-9.]+)/i);
+    const value = match ? Number(match[1]) : 1;
+    return Number.isFinite(value) && value >= 0 && value <= 1 ? value : 0;
+  };
+  return quality("text/markdown") > 0 && quality("text/markdown") >= quality("text/html");
 }
 
 function estimatedTokens(text) {
@@ -56,7 +72,7 @@ app.use((req, res, next) => {
   res.setHeader("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
   );
   if (req.secure) {
     res.setHeader("Strict-Transport-Security", "max-age=31536000");
@@ -166,11 +182,12 @@ app.use((error, req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  if (!/\btext\/markdown\b/i.test(String(req.get("Accept") || ""))) {
+  const slug = routeSlug(req.path);
+  if (markdownRoutes.has(slug)) res.vary("Accept");
+  if (!["GET", "HEAD"].includes(req.method) || !prefersMarkdown(req.get("Accept"))) {
     next();
     return;
   }
-  const slug = routeSlug(req.path);
   if (!markdownRoutes.has(slug)) {
     next();
     return;
@@ -186,7 +203,7 @@ app.use((req, res, next) => {
   const markdown = fs.readFileSync(markdownPath, "utf8");
   const originalHtml = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, "utf8") : "";
   res.setHeader("Content-Type", "text/markdown; charset=utf-8");
-  res.setHeader("Vary", "Accept");
+  res.vary("Accept");
   res.setHeader("x-markdown-tokens", String(estimatedTokens(markdown)));
   res.setHeader("x-original-tokens", String(estimatedTokens(originalHtml)));
   res.setHeader("Cache-Control", "public, max-age=300, must-revalidate");

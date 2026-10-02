@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
+import carouselData from "../src/data/carouselMedia.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const publicDir = path.join(root, "public");
@@ -37,6 +38,16 @@ for (const service of mediaManifest.services) {
       const relativeOutput = relativeInput.replace(/\.webp$/i, `-${width}.webp`);
       await webpVariant(inputPath, path.join(publicDir, relativeOutput), width);
     }
+  }
+}
+
+// Keep original photography and video files intact; optimize only display posters.
+for (const src of new Set(carouselData.carouselMedia.map((slide) => slide.type === "image" ? slide.src : slide.poster))) {
+  if (!src || src.endsWith(".webp")) continue;
+  const input = path.join(publicDir, src.replace(/^\//, ""));
+  const output = input.replace(/\.(png|jpe?g)$/i, ".webp");
+  if (!fs.existsSync(output) || fs.statSync(output).mtimeMs < fs.statSync(input).mtimeMs) {
+    await webpVariant(input, output, 1200, { quality: 84 });
   }
 }
 

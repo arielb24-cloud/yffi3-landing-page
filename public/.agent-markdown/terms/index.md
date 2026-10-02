@@ -9,15 +9,7 @@ Terms
 
 # Website Terms and Insurance Disclaimer
 
-These terms explain website use, quote limitations, privacy-safe contact expectations, and insurance coverage boundaries.
-
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
-
-Local Office #3 / Personalized Quote Help / Miami Families
-
- ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
-
-**Real Office #3 family and office photo**Miami, Florida
+Please review these terms before using the website or requesting insurance.
 
 ## Website Use
 
@@ -37,7 +29,7 @@ Any carrier name that may appear incidentally in a real office photo is not a se
 
 ## Third-Party Intake
 
-The secure quote path may open ConsumerRateQuotes. That service is outside this static website and may apply its own terms, privacy practices, and submission handling rules.
+Quote links open ConsumerRateQuotes. That service has its own terms and privacy practices.
 
 ## No Legal or Financial Advice
 

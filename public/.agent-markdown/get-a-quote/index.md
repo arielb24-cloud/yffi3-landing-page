@@ -1,6 +1,6 @@
 ---
 title: "Get My Free Quote | Your Family First Insurance Office #3"
-description: "Request bilingual insurance quote help in Miami for auto, homeowners, renters, life, health, business, commercial, or general liability coverage."
+description: "Get a free insurance quote from Your Family First Office #3 in Miami. Start online or call 305-910-8850 for help in English or Spanish."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/get-a-quote/"
 ---
@@ -9,68 +9,52 @@ Get Quote
 
 # Get My Free Quote
 
-Tell Office #3 what type of insurance you want to compare and when it is best to call. Do not send sensitive personal documents through this form.
+Start your quote online with Office #3, or call us for help in English or Spanish.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
+### Online Quote
 
-Local Office #3 / Personalized Quote Help / Miami Families
+Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.
 
- ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
+[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-**Real Office #3 family and office photo**Miami, Florida
+Requesting a quote does not start coverage. [Privacy policy](/privacy-policy/).
 
-Get quote help
+## Prefer to Talk?
 
-## Tell Office #3 What You Want to Compare
+Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.
 
-Share only basic contact details here. When the required fields are complete, the form opens the secure ConsumerRateQuotes intake path for the next step.
-
-**Prefer to talk now?**
-[Call 305-910-8850](tel:13059108850) or [text the office](sms:+13059108850).
-
-![Quote Yourself QR code for Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
-
-**Quote Yourself QR**
-Scan this QR code for a fast and easy quote!
-
-## Privacy-Safe First Step
-
-Use this first website form only for basic contact details. The form normalizes simple text fields and blocks obvious sensitive-data keywords in notes before opening the secure ConsumerRateQuotes intake path.
-
-Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier login credentials through this first website form.
+[Call 305-910-8850](tel:13059108850)[Text the Office](sms:+13059108850)
 
 FAQ
 
-## Frequently Asked Questions
+## Getting your insurance quote
 
-Where does the Office #3 quote form go?
+How do I start my free insurance quote?
 
-The quote request opens the secure ConsumerRateQuotes intake path provided for Office #3 using account ID 64868.
+Select the online quote button to open ConsumerRateQuotes, the quote service used by Office #3. Complete the application there. If your insurance type is not listed or you would rather speak with someone, call 305-910-8850.
 
-Is ConsumerRateQuotes ID 64868 connected to Office #3?
+[Start the online quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 
-Yes. The website routes Get My Free Quote buttons to the Office #3 ConsumerRateQuotes path using account ID 64868, as provided for this project.
+Why does the quote open on another website?
 
-Does the quote form bind insurance coverage?
+ConsumerRateQuotes handles the online application for Office #3. Our website links directly to that application rather than asking you to enter the same information twice. Before sharing information there, review that service’s privacy terms.
 
-No. Submitting a form does not bind, change, renew, cancel, or reinstate insurance coverage.
+What information should I prepare?
 
-What information should I enter first?
+Have your current coverage summary, the details of what you want to insure and your preferred start date ready. Include any insurance requirements from a lender, landlord or contract. Application questions vary by insurance type; provide personal details only in the secure quote application.
 
-Enter your name, phone, email, insurance type, ZIP code, best time to call, and brief general notes so the office knows how to follow up.
+Can I request business, life or health insurance here?
 
-Can I choose a specific insurance type?
+Call Office #3 for business, life, health or an insurance type not shown in the online form. We can discuss your needs and explain the next application steps in English or Spanish.
 
-Yes. Choose auto, homeowners, renters, life, health, general liability, business, commercial, or another quote path so Office #3 can follow up with the right conversation.
+[Call 305-910-8850](tel:13059108850)
 
-What should I avoid sending through the website?
+What happens after I request a quote?
 
-Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment card details, claim files, medical records, passwords, or carrier login credentials through regular forms.
+The information you provide is used to review available options. Additional details may be needed before an insurer offers coverage. If you have a deadline or a question about your request, call the office. Timing depends on the application and the insurer’s review.
 
-Can I call if I do not want to use the form?
+[Call 305-910-8850](tel:13059108850)
 
-Yes. Call 305-910-8850 if you prefer to speak directly with Office #3.
+When does my insurance coverage start?
 
-Can the QR code be used for quote help?
-
-Yes, use the QR code only if it is approved for the Office #3 quote intake path and you are comfortable continuing through that route.
+Submitting a quote request does not start coverage. Confirm the policy’s effective date and time in writing, and complete any required approval and payment steps. Keep your current insurance until replacement coverage is confirmed.

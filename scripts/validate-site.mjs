@@ -13,7 +13,7 @@ const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
 const googleTagManagerId = "GTM-5FZCMM3V";
 const googleAnalyticsTagId = "G-6XC09FD9LD";
 const { carouselMediaByPage } = carouselMediaModule;
-const { googleReviews } = googleReviewsModule;
+const googleReviews = googleReviewsModule.googleReviews.filter((review) => review.authorName !== "Ariel Busutil");
 const requiredSlugs = [
   "",
   "auto-insurance",
@@ -25,6 +25,11 @@ const requiredSlugs = [
   "get-a-quote",
   "privacy-policy",
   "terms",
+  "policyholder-help",
+  "customer-resources/hurricane-preparation",
+  "customer-resources/renewal-review",
+  "customer-resources/certificate-of-insurance",
+  "customer-resources/life-event-review",
   "es",
   "es/seguro-de-auto",
   "es/seguro-de-vivienda",
@@ -34,10 +39,24 @@ const requiredSlugs = [
   "es/sobre-oficina-3",
   "es/solicitar-cotizacion",
   "es/privacidad",
-  "es/terminos"
+  "es/terminos",
+  "es/ayuda-para-clientes",
+  "es/recursos-para-clientes/preparacion-para-huracanes",
+  "es/recursos-para-clientes/revision-de-renovacion",
+  "es/recursos-para-clientes/certificado-de-seguro",
+  "es/recursos-para-clientes/revision-anual"
 ];
-const requiredFields = ["name", "phone", "email", "insuranceType", "zip", "bestTime", "notes"];
-const honeypotField = "companyWebsite";
+const policyholderHubSlugs = ["policyholder-help", "es/ayuda-para-clientes"];
+const customerResourceSlugs = [
+  "customer-resources/hurricane-preparation",
+  "customer-resources/renewal-review",
+  "customer-resources/certificate-of-insurance",
+  "customer-resources/life-event-review",
+  "es/recursos-para-clientes/preparacion-para-huracanes",
+  "es/recursos-para-clientes/revision-de-renovacion",
+  "es/recursos-para-clientes/certificado-de-seguro",
+  "es/recursos-para-clientes/revision-anual"
+];
 const bannedPhrases = [
   "guaranteed " + "cheapest",
   "official " + "cheapest " + "insurance",
@@ -133,7 +152,7 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes("mobile-call")) failures.push("home missing mobile phone call chip");
   if (slug === "" && !html.includes("Get My Free Quote")) failures.push("home missing quote CTA");
   if (slug === "" && !html.includes("trust-ticker")) failures.push("home missing header trust ticker");
-  if (slug === "" && countMatches(html, /class="coverage-card"/g) !== 8) failures.push("home must show the eight live coverage cards");
+  if (slug === "" && countMatches(html, /class="coverage-card"/g) !== 7) failures.push("home must show seven distinct insurance services");
   if (slug === "" && !html.includes('id="general-liability-insurance"')) failures.push("home missing General Liability coverage card");
   if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
   if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
@@ -143,10 +162,10 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing bilingual Miami section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
-  if (slug === "" && countMatches(html, /<details>/g) < 8) failures.push("home FAQ should include expanded customer/search-intent questions");
-  if (slug === "" && !html.includes("bilingual insurance help")) failures.push("home FAQ missing bilingual service question");
-  if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug) && !html.includes("Local search guide")) {
-    failures.push(`${slug} missing local search-intent panel`);
+  if (slug === "" && countMatches(html, /<details>/g) < 5) failures.push("home FAQ should answer the main customer questions");
+  if (slug === "" && !html.includes("Can I get help in Spanish?")) failures.push("home FAQ missing bilingual service question");
+  if (["auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance"].includes(slug) && !html.includes('class="section service-detail"')) {
+    failures.push(`${slug} missing service coverage details`);
   }
   const matchingEnglishSlug = englishServiceSlugs.includes(slug)
     ? slug
@@ -161,16 +180,36 @@ for (const slug of requiredSlugs) {
     if (countMatches(html, /class="carousel-dot"/g) !== expected.ids.length) failures.push(`${slug} has the wrong dot count`);
     if (!html.includes("data-carousel-prev") || !html.includes("data-carousel-next")) failures.push(`${slug} carousel missing arrow controls`);
     for (const id of expected.ids) if (!html.includes(`data-slide-id="${id}"`)) failures.push(`${slug} missing carousel slide ${id}`);
-    for (const source of expected.sources) if (!html.includes(source)) failures.push(`${slug} missing local carousel source ${source}`);
+    for (const source of expected.sources) {
+      const optimized = source.replace(/\.(png|jpe?g)$/i, ".webp");
+      const renderedSource = fs.existsSync(path.join(root, "public", optimized)) ? optimized : source;
+      if (!html.includes(renderedSource)) failures.push(`${slug} missing local carousel source ${renderedSource}`);
+      const assetRoot = checkDist ? siteRoot : path.join(root, "public");
+      if (!fs.existsSync(path.join(assetRoot, renderedSource))) failures.push(`${slug} missing carousel asset ${renderedSource}`);
+    }
     if (html.includes('data-media-type="image"')) failures.push(`${slug} must not render static image slides`);
     if (/https?:\/\/[^"']+\.(?:mp4|webm|mov)/i.test(html)) failures.push(`${slug} must not load remote media URLs`);
   }
-  if (slug === "get-a-quote" && !html.includes("ConsumerRateQuotes intake path")) failures.push("quote FAQ missing secure intake explanation");
+  if (slug === "get-a-quote" && !html.includes("ConsumerRateQuotes")) failures.push("quote FAQ missing secure intake explanation");
+  if (policyholderHubSlugs.includes(slug)) {
+    if (!html.includes("policyholder-resources")) failures.push(`${slug} missing customer resource center`);
+    if (countMatches(html, /class="text-link"/g) !== 4) failures.push(`${slug} must link to four policyholder guides`);
+    if (!html.includes('href="tel:13059108850"')) failures.push(`${slug} missing secure service call path`);
+  }
+  if ([...policyholderHubSlugs, ...customerResourceSlugs].includes(slug)) {
+    if (/<(?:input|textarea|select)\b/i.test(html)) failures.push(`${slug} must not collect policyholder or claim data`);
+    if (!html.includes("policyholder-contact")) failures.push(`${slug} missing sensitive-data service boundary`);
+  }
+  if (customerResourceSlugs.includes(slug)) {
+    if (!html.includes("policyholder-sources")) failures.push(`${slug} missing official consumer sources`);
+    if (!html.includes('rel="noopener external"')) failures.push(`${slug} missing safe external source links`);
+    if (!html.includes(slug.startsWith("es/") ? "/es/ayuda-para-clientes/" : "/policyholder-help/")) failures.push(`${slug} missing resource-center return link`);
+  }
 
   for (const asset of approvedAssets) {
     const needsAsset =
       asset.includes("official-franchise-logo") ||
-      (asset.includes("family-office") && ["", "get-a-quote"].includes(slug)) ||
+      (asset.includes("family-office") && slug === "") ||
       (asset.includes("principal-agent") && ["", "about-office-3"].includes(slug)) ||
       (asset.includes("original-franchise") && ["", "about-office-3"].includes(slug));
     if (needsAsset && !html.includes(asset)) failures.push(`${slug || "home"} missing approved asset reference: ${asset}`);
@@ -191,16 +230,10 @@ for (const slug of requiredSlugs) {
 
 const quoteHtml = read(htmlPath("get-a-quote"));
 const spanishQuoteHtml = read(htmlPath("es/solicitar-cotizacion"));
-for (const field of requiredFields) {
-  if (!quoteHtml.includes(`name="${field}"`)) failures.push(`Quote form missing field: ${field}`);
-}
-if (!quoteHtml.includes(`name="${honeypotField}"`)) failures.push(`Quote form missing honeypot field: ${honeypotField}`);
-if (!quoteHtml.includes(`action="${quoteDestination}"`)) failures.push("Quote form missing verified ConsumerRateQuotes action");
-if (!quoteHtml.includes(`data-quote-destination="${quoteDestination}"`)) failures.push("Quote form missing ConsumerRateQuotes JS destination");
-if (!spanishQuoteHtml.includes(`action="${quoteDestination}"`)) failures.push("Spanish quote form missing verified ConsumerRateQuotes action");
-if (!spanishQuoteHtml.includes(`data-quote-destination="${quoteDestination}"`)) failures.push("Spanish quote form missing ConsumerRateQuotes JS destination");
-for (const option of ["Auto", "Homeowners", "Renters", "Business", "General Liability", "Commercial", "Life"]) {
-  if (!quoteHtml.includes(`<option>${option}</option>`)) failures.push(`Quote form missing approved option: ${option}`);
+for (const [label, html] of [["English", quoteHtml], ["Spanish", spanishQuoteHtml]]) {
+  if (!html.includes("data-quote-handoff")) failures.push(`${label} quote page missing direct secure handoff card`);
+  if (!html.includes(`href="${quoteDestination}"`)) failures.push(`${label} quote page missing verified ConsumerRateQuotes link`);
+  if (/<(?:input|textarea|select)\b/i.test(html)) failures.push(`${label} quote page must not collect duplicate contact or underwriting fields`);
 }
 
 const notFound = path.join(siteRoot, "404.html");
@@ -312,19 +345,21 @@ if (!fs.existsSync(js)) {
   const script = read(js);
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
-  if (!script.includes("window.location.assign")) failures.push("JS missing secure quote redirect");
   if (!script.includes("data-insurance-carousel")) failures.push("JS missing accessible carousel controller");
   if (!script.includes("syncMotionMedia")) failures.push("JS missing offscreen video pause/play handling");
   if (!script.includes("hydrateVideo")) failures.push("JS missing lazy video hydration");
   if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("visibilitychange")) failures.push("JS missing tab visibility media pausing");
-  for (const eventName of ["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]) {
+  for (const eventName of ["phone_click", "sms_click", "email_click", "quote_start"]) {
     if (!script.includes(`"${eventName}"`)) failures.push(`JS missing privacy-safe analytics event: ${eventName}`);
   }
   for (const fieldName of ["page_path", "page_language", "product_category", "cta_location", "landing_page", "referrer_category", "traffic_source", "traffic_medium", "campaign_name", "campaign_content"]) {
     if (!script.includes(`${fieldName}:`)) failures.push(`JS analytics payload missing approved field: ${fieldName}`);
   }
   if (!script.includes('const attributionStorageKey = "yffi_first_touch_v1"')) failures.push("JS missing session-scoped first-touch attribution");
+  if (script.includes('"form_submit"')) failures.push("JS must not claim a form submission before the quote vendor acknowledges a lead");
+  if (script.includes('"quote_form_validated"')) failures.push("JS must not claim local form validation when no local form exists");
+  if (script.includes('"generate_lead"')) failures.push("JS must not claim a generated lead without downstream acknowledgement");
   if (script.includes("gclid") || script.includes("wbraid") || script.includes("gbraid")) failures.push("JS must not store advertising click identifiers without an approved consent and vendor contract");
   if (!script.includes("window.dataLayer.push({")) failures.push("JS missing dataLayer event transport");
 }

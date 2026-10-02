@@ -1,4 +1,4 @@
-const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
+const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start"]);
 
 const attributionStorageKey = "yffi_first_touch_v1";
 const attributionParameterMap = {
@@ -11,7 +11,10 @@ const attributionParameterMap = {
 };
 
 function safeCampaignValue(value, fallback = "(not_set)") {
-  const normalized = String(value || "")
+  const raw = String(value || "");
+  // Drop contact-like values before normalization can disguise them.
+  if (/@|(?:\+?\d[\s().-]*){7,}/.test(raw)) return fallback;
+  const normalized = raw
     .normalize("NFKC")
     .replace(/[^a-zA-Z0-9._~:/ -]/g, " ")
     .replace(/\s+/g, " ")
@@ -74,10 +77,12 @@ function analyticsProductCategory() {
 }
 
 function analyticsCtaLocation(target) {
+  if (target?.closest(".mobile-contact-bar")) return "mobile_bar";
+  if (target?.closest(".faq")) return "faq";
   if (target?.closest(".site-header")) return "header";
   if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-insurance-carousel]")) return "carousel";
-  if (target?.closest("[data-quote-form]")) return "quote_form";
+  if (target?.closest("[data-quote-handoff]")) return "quote_handoff";
   if (target?.closest(".quote-section, #quote")) return "quote_section";
   if (target?.closest("footer")) return "footer";
   return "content";
@@ -139,17 +144,9 @@ const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 const motionDisabled = reducedMotion || saveData;
 const spanishUi = document.documentElement.lang.toLowerCase().startsWith("es");
 document.documentElement.classList.toggle("save-data", saveData);
-const formMessages = {
-  sensitive: spanishUi ? "No incluya información confidencial aquí. Compártala únicamente mediante el proceso seguro aprobado." : "Please do not include sensitive details here. Continue sensitive information only through the secure approved quote process.",
-  complete: spanishUi ? "Complete los campos de contacto obligatorios antes de continuar." : "Please complete the required contact fields before sending.",
-  invalidPath: spanishUi ? "No se pudo verificar la ruta segura. Llame a la oficina." : "The secure quote path could not be verified. Please call the office instead.",
-  opening: spanishUi ? "Abriendo el formulario seguro de ConsumerRateQuotes..." : "Opening the secure ConsumerRateQuotes form...",
-  received: spanishUi ? "Gracias. Recibimos la solicitud." : "Thanks. The request has been received."
-};
-const mobileViewport = window.matchMedia("(max-width: 639px)").matches;
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
 
-if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
   const cursorOrb = document.createElement("span");
   cursorOrb.className = "cursor-orb";
   cursorOrb.setAttribute("aria-hidden", "true");
@@ -179,7 +176,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine)").m
 }
 
 if (revealItems.length) {
-  if (reducedMotion || !("IntersectionObserver" in window)) {
+  if (motionDisabled || !("IntersectionObserver" in window)) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   } else {
     document.documentElement.classList.add("motion-ready");
@@ -210,7 +207,7 @@ if (animatedItems.length) {
       }
     });
   };
-  if (reducedMotion || !("IntersectionObserver" in window)) {
+  if (motionDisabled || !("IntersectionObserver" in window)) {
     animatedItems.forEach((item) => {
       item.setAttribute("data-in-view", "true");
       syncMotionMedia(item, false);
@@ -229,7 +226,7 @@ if (animatedItems.length) {
   }
 }
 
-if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine)").matches && "IntersectionObserver" in window) {
+if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches && "IntersectionObserver" in window) {
   const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
   const visibleDepthSurfaces = new Set();
   let depthFrame = 0;
@@ -279,25 +276,26 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
   const prev = carousel.querySelector("[data-carousel-prev]");
   const next = carousel.querySelector("[data-carousel-next]");
+  const motionToggle = carousel.querySelector("[data-carousel-motion]");
+  let userPaused = false;
   const delay = 6800;
   let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
-  let inView = carousel.getAttribute("data-in-view") === "true";
+  let inView = !("IntersectionObserver" in window);
   let paused = motionDisabled;
   let interactionHoldUntil = 0;
   let dragging = false;
   let didDrag = false;
-  let mediaReady = false;
   let startX = 0;
   let startScrollLeft = 0;
   let scrollFrame = 0;
   let programmaticScroll = false;
   let programmaticScrollTimer = 0;
 
-  const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
+  const isTemporarilyPaused = () => userPaused || paused || Date.now() < interactionHoldUntil;
 
   const hydrateVideo = (slide) => {
     const video = slide?.querySelector(".motion-video");
-    if (!video || video.dataset.loaded === "true" || !mediaReady || saveData) return video;
+    if (!video || video.dataset.loaded === "true" || !inView || motionDisabled || userPaused) return video;
     const webm = video.dataset.src;
     const mp4 = video.dataset.mp4;
     if (webm) {
@@ -312,8 +310,14 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       source.type = "video/mp4";
       video.append(source);
     }
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.autoplay = true;
     video.dataset.loaded = "true";
-    video.addEventListener("canplay", () => video.classList.add("is-ready"), { once: true });
+    video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
+    video.addEventListener("canplay", syncVideos);
+    video.addEventListener("error", () => video.classList.remove("is-ready"));
     video.load();
     return video;
   };
@@ -323,9 +327,9 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       const video = slide.querySelector(".motion-video");
       if (index === activeIndex) hydrateVideo(slide);
       if (!video) return;
-      const shouldPlay = index === activeIndex && inView && !motionDisabled;
-      if (shouldPlay) {
-        video.play().catch(() => {});
+      const shouldPlay = index === activeIndex && inView && !motionDisabled && !userPaused && !document.hidden;
+      if (shouldPlay && video.dataset.loaded === "true") {
+        if (video.paused) video.play().catch(() => {});
       } else {
         video.pause();
       }
@@ -334,7 +338,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
 
   const setPaused = (value) => {
     paused = value || motionDisabled;
-    carousel.setAttribute("data-paused", String(paused));
+    carousel.setAttribute("data-paused", String(paused || userPaused));
     syncVideos();
   };
 
@@ -342,6 +346,11 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     if (!slides.length) return;
     activeIndex = (index + slides.length) % slides.length;
     const activeSlide = slides[activeIndex];
+    const poster = activeSlide.querySelector(".motion-poster");
+    if (poster?.dataset.posterSrc) {
+      poster.src = poster.dataset.posterSrc;
+      delete poster.dataset.posterSrc;
+    }
     carousel.setAttribute("data-active-slide", activeSlide.dataset.slideId || "");
     slides.forEach((slide, slideIndex) => {
       slide.dataset.active = String(slideIndex === activeIndex);
@@ -374,6 +383,22 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     carousel.setAttribute("data-paused", "true");
     syncVideos();
   };
+
+  // Keep the selected slide in view when its responsive width changes.
+  let trackWidth = track?.clientWidth || 0;
+  const realignTrack = () => {
+    if (!track || !slides.length) return false;
+    const width = track.clientWidth;
+    if (!width || width === trackWidth) return false;
+    trackWidth = width;
+    programmaticScroll = true;
+    window.clearTimeout(programmaticScrollTimer);
+    track.scrollTo({ left: slides[activeIndex].offsetLeft, behavior: "instant" });
+    programmaticScrollTimer = window.setTimeout(() => { programmaticScroll = false; }, 200);
+    return true;
+  };
+  window.addEventListener("resize", realignTrack, { passive: true });
+  if (track && "ResizeObserver" in window) new ResizeObserver(realignTrack).observe(track);
 
   const goToSlideId = (slideId) => {
     const index = slides.findIndex((slide) => slide.dataset.slideId === slideId);
@@ -412,10 +437,11 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   track?.addEventListener("scroll", () => {
-    if (programmaticScroll) return;
+    if (realignTrack() || programmaticScroll) return;
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(() => {
       scrollFrame = 0;
+      if (realignTrack() || programmaticScroll) return;
       const trackBox = track.getBoundingClientRect();
       const trackCenter = trackBox.left + trackBox.width / 2;
       let closestIndex = activeIndex;
@@ -465,6 +491,26 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     }
   }, true);
 
+  const updateMotionToggle = () => {
+    if (!motionToggle) return;
+    const stopped = userPaused || motionDisabled;
+    motionToggle.setAttribute("aria-pressed", String(stopped));
+    carousel.setAttribute("data-motion-stopped", String(stopped));
+    motionToggle.disabled = motionDisabled;
+    motionToggle.textContent = stopped
+      ? (spanishUi ? "Reanudar animación" : "Resume motion")
+      : (spanishUi ? "Pausar animación" : "Pause motion");
+    if (motionDisabled) motionToggle.textContent = spanishUi ? "Animación desactivada" : "Motion disabled";
+    carousel.setAttribute("data-paused", String(stopped || paused));
+    syncVideos();
+  };
+  motionToggle?.addEventListener("click", () => {
+    userPaused = !userPaused;
+    updateMotionToggle();
+  });
+  updateMotionToggle();
+  document.addEventListener("visibilitychange", syncVideos);
+
   carousel.addEventListener("mouseenter", () => setPaused(true));
   carousel.addEventListener("mouseleave", () => setPaused(false));
   carousel.addEventListener("focusin", () => setPaused(true));
@@ -477,35 +523,23 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
         carousel.setAttribute("data-in-view", String(inView));
         syncVideos();
       });
-    }, { rootMargin: "160px 0px", threshold: 0.12 });
-    carouselObserver.observe(carousel);
+    }, { threshold: 0.01 });
+    carouselObserver.observe(carousel.querySelector(".carousel-stage") || carousel);
   } else {
     inView = true;
     carousel.setAttribute("data-in-view", "true");
   }
 
-  const enableInitialMedia = () => {
-    const enableMedia = () => {
-      if (mediaReady) return;
-      mediaReady = true;
-      hydrateVideo(slides[activeIndex]);
-      syncVideos();
-    };
-    if (mobileViewport) {
-      carousel.addEventListener("click", enableMedia, { once: true });
-      carousel.addEventListener("keydown", enableMedia, { once: true });
-      return;
-    }
-    window.setTimeout(enableMedia, 750);
-  };
-  if (document.readyState === "complete") enableInitialMedia();
-  else window.addEventListener("load", enableInitialMedia, { once: true });
+  // Muted inline videos start as soon as their media enters the viewport.
+  // Retry after a gesture if the browser's autoplay policy rejected playback.
+  document.addEventListener("pointerdown", syncVideos);
+  document.addEventListener("keydown", syncVideos);
 
-  if (!reducedMotion) {
+  if (!motionDisabled) {
     window.setInterval(() => {
       const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
       carousel.setAttribute("data-paused", String(shouldHold));
-      if (!shouldHold) setActive(activeIndex + 1, { scroll: false });
+      if (!shouldHold) setActive(activeIndex + 1);
       syncVideos();
     }, delay);
   }
@@ -521,9 +555,6 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
   const next = carousel.querySelector("[data-review-next]");
   if (!cards.length) return;
   let activeIndex = 0;
-  let paused = motionDisabled;
-  let inView = true;
-  const delay = 5400;
 
   const setActive = (index) => {
     activeIndex = (index + cards.length) % cards.length;
@@ -545,44 +576,29 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
 
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
-      paused = true;
       setActive(Number(dot.dataset.reviewDot || 0));
-      window.setTimeout(() => { paused = motionDisabled; }, 8000);
     });
   });
   prev?.addEventListener("click", () => {
-    paused = true;
     setActive(activeIndex - 1);
-    window.setTimeout(() => { paused = motionDisabled; }, 8000);
   });
   next?.addEventListener("click", () => {
-    paused = true;
     setActive(activeIndex + 1);
-    window.setTimeout(() => { paused = motionDisabled; }, 8000);
   });
-  carousel.addEventListener("mouseenter", () => { paused = true; });
-  carousel.addEventListener("mouseleave", () => { paused = motionDisabled; });
-  carousel.addEventListener("focusin", () => { paused = true; });
-  carousel.addEventListener("focusout", () => { paused = motionDisabled; });
-
-  if ("IntersectionObserver" in window) {
-    const reviewObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        inView = entry.isIntersecting;
-      });
-    }, { rootMargin: "140px 0px", threshold: 0.12 });
-    reviewObserver.observe(carousel);
-  }
-
-  if (!reducedMotion) {
-    window.setInterval(() => {
-      if (!paused && inView && !document.hidden) setActive(activeIndex + 1);
-    }, delay);
-  }
+  carousel.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+    tablist.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const index = event.key === "Home" ? 0 : event.key === "End" ? cards.length - 1 : activeIndex + (event.key === "ArrowRight" ? 1 : -1);
+      setActive(index);
+      const selected = tablist.querySelector('[aria-selected="true"]');
+      selected?.focus();
+    });
+  });
   setActive(0);
 });
 
-if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
+if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
   const particleColors = [
     "rgba(154, 220, 247, 0.88)",
     "rgba(255, 224, 161, 0.82)",
@@ -591,7 +607,7 @@ if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
   ];
   let liveParticles = 0;
   const spawnLiquidParticles = (event, count = 5, mode = "burst") => {
-    if (!event?.currentTarget || document.hidden || liveParticles > 64) return;
+    if (!event?.currentTarget || document.hidden || liveParticles >= 32) return;
     const surface = event.currentTarget;
     const now = Date.now();
     const stampKey = mode === "trail" ? "particleTrailAt" : "particleAt";
@@ -602,7 +618,8 @@ if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
     const rect = surface.getBoundingClientRect();
     const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
     const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
-    for (let index = 0; index < count; index += 1) {
+    const particleCount = Math.min(count, 32 - liveParticles);
+    for (let index = 0; index < particleCount; index += 1) {
       const particle = document.createElement("span");
       const angle = (Math.PI * 2 * index) / Math.max(1, count) + Math.random() * 0.74;
       const distance = (mode === "trail" ? 12 : 20) + Math.random() * (mode === "trail" ? 18 : 42);
@@ -664,6 +681,7 @@ if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
     }, { passive: true });
 
     surface.addEventListener("click", (event) => {
+      if (event.target.closest(hoverSurfaceSelector) !== surface) return;
       if (surface.matches("a, button, .button, .carousel-chip, .real-review-mini")) {
         spawnLiquidParticles(event, 13);
       }
@@ -701,6 +719,8 @@ if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
     });
 
     surface.addEventListener("pointerleave", () => {
+      window.cancelAnimationFrame(frame);
+      frame = 0;
       lastEvent = null;
       surface.style.setProperty("--tilt-x", "0deg");
       surface.style.setProperty("--tilt-y", "0deg");
@@ -715,135 +735,6 @@ if (!motionDisabled && window.matchMedia("(pointer: fine)").matches) {
     });
   });
 }
-
-const quoteFieldLimits = {
-  name: 80,
-  phone: 24,
-  email: 120,
-  insuranceType: 40,
-  zip: 5,
-  bestTime: 40,
-  notes: 600,
-  companyWebsite: 140
-};
-const sensitiveQuoteTerms = [
-  "ssn",
-  "social security",
-  "date of birth",
-  "dob",
-  "driver license",
-  "drivers license",
-  "driver's license",
-  "vin",
-  "vehicle identification",
-  "credit card",
-  "card number",
-  "bank account",
-  "routing number",
-  "password",
-  "passcode",
-  "medical record",
-  "claim number",
-  "policy number"
-];
-const approvedQuoteDestination = new URL("https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868", window.location.href);
-
-function cleanPlainText(value, limit = 600) {
-  return String(value || "")
-    .replace(/[\u0000-\u001F\u007F<>\x60]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, limit);
-}
-
-function normalizedSensitiveText(value) {
-  return cleanPlainText(value, 600).toLowerCase().replace(/[^a-z0-9]+/g, " ");
-}
-
-function containsSensitiveQuoteData(value) {
-  const normalized = normalizedSensitiveText(value);
-  return sensitiveQuoteTerms.some((term) => normalized.includes(normalizedSensitiveText(term)));
-}
-
-function normalizeQuoteField(field) {
-  if (!field || !("value" in field)) return;
-  const limit = quoteFieldLimits[field.name] || 160;
-  field.setCustomValidity("");
-  if (field.matches("select")) return;
-  if (field.name === "phone") {
-    field.value = cleanPlainText(field.value, limit).replace(/[^0-9+().\-\s]/g, "").trim();
-    return;
-  }
-  if (field.name === "zip") {
-    field.value = cleanPlainText(field.value, limit).replace(/\D/g, "").slice(0, 5);
-    return;
-  }
-  field.value = cleanPlainText(field.value, limit);
-  if (field.name === "notes" && containsSensitiveQuoteData(field.value)) {
-    field.setCustomValidity(formMessages.sensitive);
-  }
-}
-
-function approvedQuoteUrl(destination) {
-  try {
-    const url = new URL(destination || "", window.location.href);
-    return url.protocol === "https:" &&
-      url.hostname.toLowerCase() === "secure.consumerratequotes.com" &&
-      url.pathname === "/ConsumerV2" &&
-      url.searchParams.get("id") === "64868"
-      ? url.href
-      : "";
-  } catch {
-    return "";
-  }
-}
-
-function markValidity(field) {
-  if (!field || !("checkValidity" in field)) return;
-  const shouldMark = field.matches("input, select, textarea") && field.required;
-  if (shouldMark) field.setAttribute("aria-invalid", String(!field.checkValidity()));
-}
-
-document.querySelectorAll("[data-quote-form]").forEach((form) => {
-  const fields = form.querySelectorAll("input, select, textarea");
-  fields.forEach((field) => {
-    field.addEventListener("blur", () => {
-      normalizeQuoteField(field);
-      markValidity(field);
-    });
-    field.addEventListener("input", () => {
-      field.setCustomValidity("");
-      markValidity(field);
-    });
-  });
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const status = form.querySelector(".form-status");
-    const honeypot = form.querySelector('[name="companyWebsite"]');
-    fields.forEach(normalizeQuoteField);
-    fields.forEach(markValidity);
-    if (honeypot && honeypot.value) {
-      if (status) status.textContent = formMessages.received;
-      form.reset();
-      return;
-    }
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      const sensitiveMessage = form.querySelector('[name="notes"]')?.validationMessage || "";
-      if (status) status.textContent = sensitiveMessage || formMessages.complete;
-      return;
-    }
-    const destination = approvedQuoteUrl(form.dataset.quoteDestination || form.action || approvedQuoteDestination.href);
-    if (!destination) {
-      if (status) status.textContent = formMessages.invalidPath;
-      return;
-    }
-    pushAnalyticsEvent("form_submit", form);
-    pushAnalyticsEvent("quote_start", form);
-    if (status) status.textContent = formMessages.opening;
-    window.location.assign(destination);
-  });
-});
 
 const publicServiceTools = [
   {
@@ -928,18 +819,3 @@ if (modelContext && typeof modelContext.registerTool === "function") {
 } else if (navigator.modelContext && typeof navigator.modelContext.provideContext === "function") {
   Promise.resolve(navigator.modelContext.provideContext({ tools: publicServiceTools })).catch(() => {});
 }
-
-
-document.addEventListener("visibilitychange", () => {
-  document.querySelectorAll(".motion-video").forEach((video) => {
-    if (document.hidden) {
-      video.pause();
-      return;
-    }
-    const slide = video.closest(".motion-slide");
-    const carousel = video.closest("[data-insurance-carousel]");
-    if (!motionDisabled && slide?.getAttribute("data-active") === "true" && carousel?.getAttribute("data-in-view") === "true") {
-      video.play().catch(() => {});
-    }
-  });
-});

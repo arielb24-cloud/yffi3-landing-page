@@ -38,7 +38,7 @@ dist/
     - Family/office photo is the real Office #3 photo.
     - Phone links call `305-910-8850`.
     - `Get My Free Quote` opens the connected quote path.
-    - Quote form validates required fields and opens `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
+    - Quote handoff card contains no duplicate contact fields and opens `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
     - Footer links, `robots.txt`, `sitemap.xml`, `llms.txt`, and `humans.txt` open.
 
 ## Production Server

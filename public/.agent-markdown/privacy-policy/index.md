@@ -1,6 +1,6 @@
 ---
 title: "Privacy Policy | Your Family First Insurance Office #3"
-description: "Read how Your Family First Insurance Office #3 handles basic website contact information, secure quote routing, privacy, and data safety."
+description: "Read how Your Family First Insurance Office #3 routes quote requests to the separate ConsumerRateQuotes service, limits public-site data collection, and handles analytics and data safety."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/privacy-policy/"
 ---
@@ -9,55 +9,47 @@ Privacy
 
 # Privacy Policy
 
-This page explains the basic contact data used by the Office #3 website and what not to send through regular forms.
-
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
-
-Local Office #3 / Personalized Quote Help / Miami Families
-
- ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
-
-**Real Office #3 family and office photo**Miami, Florida
+Learn how this website uses information and what happens when you follow a quote link.
 
 ## Privacy Summary
 
 This website provides business information, service pages, and quote contact options for Your Family First Insurance Office #3.
 
-The static pages do not store form submissions by themselves. The quote request path validates basic contact fields, normalizes simple text input, blocks obvious sensitive-data keywords in the notes field, then opens the secure ConsumerRateQuotes intake URL provided for Office #3. ConsumerRateQuotes may process submitted information under its own privacy terms.
+This website does not collect quote form submissions. Our quote links open ConsumerRateQuotes, which handles the information you enter under its own privacy terms.
 
-This policy is written to align with the privacy and security posture used by the original Your Family First Insurance office, while keeping this Office #3 static website accurate to its current setup.
+This policy covers this Office #3 website. Other services you visit through our links have their own privacy policies.
 
-## Information You May Choose to Provide
+## Information Entered on This Public Site
 
-Name, phone number, email address, ZIP code, requested insurance type, best time to call, and general notes.
+No contact or underwriting fields are submitted to this public site. Information entered after following the quote link is handled by the separate ConsumerRateQuotes service.
 
 ## Security Measures
 
-The public website is designed for HTTPS hosting and includes baseline browser security headers for GoDaddy/Apache where supported. Information sent through the quote path should be handled only through the secure ConsumerRateQuotes intake and approved office workflows.
+This site uses HTTPS to encrypt the connection. Before sending personal documents, call the office for the appropriate submission method.
 
 ## Cookies and Tracking
 
-Google Tag Manager (GTM) organizes approved measurement tags on this website. At the last technical review on August 4, 2026, the container loaded Google Analytics 4 (GA4) and a Google Ads destination. An Apollo Website Tracker tag is present but paused; it must not be enabled unless its permitted use, consent settings, and privacy disclosure are approved. The site does not use a chat widget or session-replay tool.
+This website uses Google Analytics 4 and Google Ads measurement tools to understand visits and interactions. Google Tag Manager loads these tools.
 
 GA4 may use first-party cookies, including `_ga`, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.
 
-Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.
+Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.
 
-The website's analytics data layer sends the event name, page path, page language, product category, call-to-action location, first landing path, broad referrer category, and sanitized UTM source, medium, campaign, and content values when present. It does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.
+The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Its analytics event code does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.
 
-First-touch campaign values are kept only in browser session storage for the current tab session. They are not a CRM record, do not prove a completed lead or sale, and are not appended to the separate ConsumerRateQuotes destination because that vendor has not supplied a documented attribution-field contract.
+General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.
 
-This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.
+This website does not currently provide a cookie-preference panel. You can restrict cookies in your browser settings.
 
 ## Retention and Your Choices
 
-Analytics retention is controlled in the GA4 property and must be confirmed by the owner. You can restrict cookies in your browser, use private browsing controls, or install the Google Analytics Opt-out Browser Add-on. Blocking cookies may limit measurement but should not prevent access to the public insurance information on this site.
+Contact us with questions about data retention or privacy requests. You can restrict cookies in your browser or install the Google Analytics Opt-out Browser Add-on. The public insurance information remains available if you block cookies.
 
 Google's privacy information is available at [policies.google.com/privacy](https://policies.google.com/privacy), and the opt-out add-on is available at [tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
 
 ## Third-Party Quote Intake
 
-ConsumerRateQuotes is a separate quote intake destination. Review that service's privacy and security terms before relying on it for live lead collection.
+ConsumerRateQuotes is a separate service. Review its privacy terms before entering personal information.
 
 ## Sensitive Information
 

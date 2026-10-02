@@ -36,6 +36,8 @@ const entries = [
   "get-a-quote",
   "privacy-policy",
   "terms",
+  "policyholder-help",
+  "customer-resources",
   "es",
   "assets",
   ".htaccess",
@@ -57,6 +59,9 @@ fs.rmSync(path.join(dist, "assets", "site.entry.js"), { force: true });
 fs.rmSync(path.join(dist, "assets", "styles 2.css"), { force: true });
 fs.rmSync(path.join(dist, "assets", "site 2.js"), { force: true });
 fs.rmSync(path.join(dist, "assets", "yffi3", "README.md"), { force: true });
+fs.rmSync(path.join(dist, ".agent-markdown", "index 2.md"), { force: true });
+fs.rmSync(path.join(dist, ".well-known", "api-catalog 2"), { force: true });
+fs.rmSync(path.join(dist, ".well-known", "openapi 2.json"), { force: true });
 
 run(process.execPath, ["scripts/validate-site.mjs", "--dist"]);
 run(process.execPath, ["scripts/validate-bilingual.mjs", "--dist"]);

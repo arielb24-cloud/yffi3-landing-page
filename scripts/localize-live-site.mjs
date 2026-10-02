@@ -4,7 +4,10 @@ import {
   pages as englishPages,
   siteUrl,
   businessName,
-  phoneDisplay
+  phoneDisplay,
+  faqHtml,
+  faqSchema,
+  contentReviewedDate
 } from "./generate-live-base.mjs";
 import {
   englishToSpanish,
@@ -12,35 +15,471 @@ import {
 } from "../content/spanish-content.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const reviewSourceNotice = "Las reseñas se conservan en el idioma exacto en que aparecen en la captura de Google para no alterar el comentario del cliente.";
-const assetVersion = "20260728-premium-bilingual";
+const reviewSourceNotice = "Las reseñas se muestran tal como aparecen en Google.";
+const assetVersion = "20261002-video-autoplay-v7";
+const reviewedDateSpanish = new Intl.DateTimeFormat("es-US", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${contentReviewedDate}T00:00:00Z`));
 
 const carouselSpanish = {
-  "home-auto": ["Auto", "Seguro de auto", "Ayuda con seguro de auto para las carreteras de Miami", "Orientación local para conductores diarios, vehículos familiares, autos financiados y renovaciones.", "Cotizar seguro de auto", "Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto"],
-  "home-homeowners": ["Vivienda", "Seguro para propietarios", "Ayuda con seguro para viviendas de Miami", "Revise preguntas sobre la propiedad, el techo, el prestamista, viento, inundación y renovación con una oficina local de West Flagler.", "Cotizar mi vivienda", "Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami"],
-  "home-renters": ["Inquilinos", "Seguro de inquilinos", "Seguro de inquilinos para apartamentos de Miami", "Una ruta enfocada en pertenencias, requisitos del contrato, responsabilidad civil y fecha de mudanza.", "Cotizar seguro de inquilinos", "Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami"],
-  "home-business": ["Negocios", "Seguro para negocios", "Ayuda con seguro para dueños de negocios en Miami", "Orientación comercial para operaciones, locales, vehículos de trabajo, contratos y certificados.", "Proteger mi negocio", "Video de un pequeño negocio para solicitar seguro comercial en Miami"],
-  "home-liability": ["Responsabilidad", "Responsabilidad civil general", "Ayuda con cotizaciones de responsabilidad civil general", "Converse en lenguaje claro sobre requisitos de contratos, arrendamientos, proveedores, clientes, obras y certificados.", "Cotizar responsabilidad civil", "Video de un contratista revisando documentos para solicitar responsabilidad civil general"],
-  "home-life": ["Vida", "Seguro de vida", "Planificación de seguro de vida para familias de Miami", "Comience con necesidades de ingresos, responsabilidades familiares, gastos finales, hipoteca y metas a largo plazo.", "Proteger a mi familia", "Video de un padre y su hijo en la playa para la planificación de seguro de vida"],
-  "home-bilingual": ["Español", "Servicio local bilingüe", "Ayuda con seguros en inglés y español", "Llame o visite la Oficina #3 en West Flagler para recibir ayuda local, clara y humana.", "Hablar con un agente", "Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami"],
-  "auto-drive": ["Miami al volante", "Seguro de auto", "Cotizaciones de auto para las carreteras de Miami", "Compare opciones para recorridos diarios, vehículos familiares, autos nuevos, financiados y renovaciones.", "Cotizar seguro de auto", "Video de un automóvil en movimiento por la ciudad para solicitar seguro de auto en Miami"],
-  "auto-renewal": ["Renovaciones", "Revisión de renovación de auto", "Revise su renovación antes de decidir", "Converse sobre cambios en la prima, coberturas, deducibles y el código postal donde guarda el vehículo.", "Revisar mi cotización", "Video de conducción nocturna para revisar una renovación de seguro de auto en Miami"],
-  "auto-family-drivers": ["Conductores", "Cobertura para conductores del hogar", "Ayuda para los conductores de su hogar", "Reciba orientación para vehículos familiares, conductores añadidos, autos financiados, arrendamientos y cambios de recorrido.", "Hablar sobre mi cobertura", "Video de tráfico urbano para solicitar seguro de auto para conductores del hogar"],
-  "homeowners-exterior": ["Propietarios", "Seguro para propietarios", "Cobertura para propietarios de Miami-Dade", "Revise vivienda, techo, pertenencias, responsabilidad civil, prestamista, viento e inundación con apoyo local.", "Cotizar mi vivienda", "Video de una vivienda terminada para solicitar seguro de propietarios en Miami"],
-  "homeowners-closing": ["Cierre", "Seguro antes del cierre", "Ayuda con la cotización antes del día del cierre", "Prepárese para fechas del prestamista, detalles de la propiedad, inspecciones y momento de inicio de cobertura.", "Proteger mi vivienda", "Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre"],
-  "homeowners-renewal": ["Renovación", "Revisión de renovación de vivienda", "Entienda los cambios de su renovación", "Pregunte por el techo, deducibles, viento, inundación y documentación de la propiedad.", "Revisar mi cotización", "Video del exterior de una vivienda moderna para revisar una renovación de seguro"],
-  "renters-apartment": ["Mudanza", "Seguro de inquilinos", "Seguro de inquilinos hecho sencillo", "Solicite ayuda para pertenencias, responsabilidad civil, requisitos del contrato y fecha de mudanza.", "Cotizar seguro de inquilinos", "Video de una mudanza a un apartamento para solicitar seguro de inquilinos"],
-  "renters-lease": ["Contrato", "Requisito de seguro del contrato", "Cumpla los requisitos de seguro de su contrato", "Traiga el requisito del propietario y reciba orientación sobre lo que debe incluir la cotización.", "Iniciar cotización", "Video de una pareja con llaves de apartamento para requisitos de seguro de inquilinos"],
-  "renters-belongings": ["Pertenencias", "Cobertura de pertenencias", "Proteja las cosas que hacen suyo el hogar", "Converse sobre propiedad personal, responsabilidad civil, deducible y gastos adicionales de vivienda.", "Cotizar mi apartamento", "Video de inquilinos con cajas de mudanza para preguntas sobre cobertura de pertenencias"],
-  "commercial-storefront": ["Negocio", "Seguro comercial", "Proteja el negocio que está construyendo", "Solicite ayuda para operaciones, locales, vehículos de trabajo, propiedad y equipos.", "Proteger mi negocio", "Video de una conversación con un dueño de negocio para solicitar seguro comercial en Miami"],
-  "commercial-office": ["Operaciones", "Revisión de seguro para negocios", "Cobertura para las operaciones diarias", "Revise oficina, contratos, arrendamiento, proveedores, propiedad y servicios profesionales en una sola ruta.", "Revisar cobertura comercial", "Video de un contratista trabajando para solicitar seguro comercial y responsabilidad civil"],
-  "commercial-certificates": ["Certificados", "Ayuda con certificados de seguro", "Ayuda cuando le solicitan un certificado", "Traiga el contrato o texto del certificado para identificar qué debe revisar con la oficina.", "Revisar cobertura comercial", "Video de un equipo en una obra para solicitudes de certificados y responsabilidad civil"],
-  "life-family": ["Familia", "Seguro de vida", "Ayuda con seguro de vida para familias de Miami", "Comience con metas familiares, ingresos, hipoteca, gastos finales y planificación a largo plazo.", "Proteger a mi familia", "Video de una familia caminando por la playa para solicitar seguro de vida en Miami"],
-  "life-term": ["Temporal", "Seguro de vida temporal", "Seguro de vida temporal explicado con claridad", "Converse sobre un período definido relacionado con responsabilidades familiares, ingresos, hipoteca o deudas.", "Cotizar seguro temporal", "Video de una familia llegando a casa para preguntas sobre seguro de vida temporal"],
-  "life-final-expense": ["Gastos finales", "Seguro de gastos finales", "Planificación sin presión", "Pregunte por opciones de gastos finales y protección familiar antes de continuar con una solicitud segura.", "Hablar sobre seguro de vida", "Video de una reunión de planificación familiar para preguntas sobre gastos finales" ]
+  "home-auto": ["Auto", "Seguro de auto", "Seguro de auto en Miami", "Compare límites de responsabilidad civil, deducibles y coberturas para su vehículo.", "Cotizar seguro de auto", "Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto"],
+  "home-homeowners": ["Vivienda", "Seguro para propietarios", "Seguro para su vivienda", "Revise su vivienda, techo y deducible por huracán. Pregunte por un seguro separado contra inundaciones.", "Cotizar mi vivienda", "Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami"],
+  "home-renters": ["Inquilinos", "Seguro de inquilinos", "Seguro de inquilinos", "Revise la cobertura de sus pertenencias y el límite de responsabilidad civil que exige su contrato.", "Cotizar seguro de inquilinos", "Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami"],
+  "home-business": ["Negocios", "Seguro para negocios", "Seguro para negocios", "Cuéntenos a qué se dedica su negocio y qué requisitos exigen sus contratos.", "Proteger mi negocio", "Video de un pequeño negocio para solicitar seguro comercial en Miami"],
+  "home-liability": ["Responsabilidad", "Responsabilidad civil general", "Responsabilidad civil general", "Traiga los requisitos de sus contratos para revisar límites y certificados de seguro.", "Cotizar responsabilidad civil", "Video de un contratista revisando documentos para solicitar responsabilidad civil general"],
+  "home-life": ["Vida", "Seguro de vida", "Seguro de vida", "Considere cuánto ingreso necesitaría su familia y durante cuánto tiempo.", "Proteger a mi familia", "Video de un padre y su hijo en la playa para la planificación de seguro de vida"],
+  "home-bilingual": ["Español", "Servicio local bilingüe", "Hablamos español", "Llame a nuestra oficina en West Flagler para cotizar o hacer preguntas sobre su seguro.", "Hablar con un agente", "Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami"],
+  "auto-drive": ["Miami al volante", "Seguro de auto", "Compare su seguro de auto", "Tenga su póliza actual a mano para comparar los mismos límites y deducibles.", "Cotizar seguro de auto", "Video de un automóvil en movimiento por la ciudad para solicitar seguro de auto en Miami"],
+  "auto-renewal": ["Renovaciones", "Revisión de renovación de auto", "¿Subió el precio de su renovación?", "Revise la nueva prima, los conductores y las coberturas antes de renovar.", "Revisar mi cotización", "Video de conducción nocturna para revisar una renovación de seguro de auto en Miami"],
+  "auto-family-drivers": ["Conductores", "Cobertura para conductores del hogar", "¿Añade un vehículo o conductor?", "Díganos quién conduce, dónde guarda el vehículo y si está financiado o arrendado.", "Hablar sobre mi cobertura", "Video de tráfico urbano para solicitar seguro de auto para conductores del hogar"],
+  "homeowners-exterior": ["Propietarios", "Seguro para propietarios", "Revise la cobertura de su vivienda", "Compruebe el costo de reconstrucción, los límites de pertenencias y el deducible por huracán.", "Cotizar mi vivienda", "Video de una vivienda terminada para solicitar seguro de propietarios en Miami"],
+  "homeowners-closing": ["Cierre", "Seguro antes del cierre", "¿Está comprando una vivienda?", "Tenga la dirección, la fecha de cierre y los requisitos del prestamista a mano.", "Proteger mi vivienda", "Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre"],
+  "homeowners-renewal": ["Renovación", "Revisión de renovación de vivienda", "Antes de renovar su seguro", "Revise la nueva prima, la información del techo, las inspecciones y los cambios de cobertura.", "Revisar mi cotización", "Video del exterior de una vivienda moderna para revisar una renovación de seguro"],
+  "renters-apartment": ["Mudanza", "Seguro de inquilinos", "¿Se muda a un apartamento?", "Traiga la fecha de mudanza, la dirección y los requisitos de seguro del propietario.", "Cotizar seguro de inquilinos", "Video de una mudanza a un apartamento para solicitar seguro de inquilinos"],
+  "renters-lease": ["Contrato", "Requisito de seguro del contrato", "¿Su contrato exige seguro?", "Revise el límite de responsabilidad civil y el texto que debe aparecer en el comprobante.", "Iniciar cotización", "Video de una pareja con llaves de apartamento para requisitos de seguro de inquilinos"],
+  "renters-belongings": ["Pertenencias", "Cobertura de pertenencias", "¿Cuánto costaría reemplazar sus pertenencias?", "Incluya muebles, aparatos electrónicos y ropa al elegir su límite de propiedad personal.", "Cotizar mi apartamento", "Video de inquilinos con cajas de mudanza para preguntas sobre cobertura de pertenencias"],
+  "commercial-storefront": ["Negocio", "Seguro comercial", "Seguro para su negocio", "Cuéntenos sobre su trabajo, local, empleados y vehículos para revisar coberturas.", "Proteger mi negocio", "Video de una conversación con un dueño de negocio para solicitar seguro comercial en Miami"],
+  "commercial-office": ["Operaciones", "Revisión de seguro para negocios", "Revise sus contratos", "Traiga los requisitos de seguro de propietarios o clientes antes de solicitar una cotización.", "Revisar cobertura comercial", "Video de un contratista trabajando para solicitar seguro comercial y responsabilidad civil"],
+  "commercial-certificates": ["Certificados", "Ayuda con certificados de seguro", "¿Necesita un certificado de seguro?", "Tenga los datos del solicitante y el contrato a mano. Un certificado no modifica su cobertura.", "Revisar cobertura comercial", "Video de un equipo en una obra para solicitudes de certificados y responsabilidad civil"],
+  "life-family": ["Familia", "Seguro de vida", "Piense en quienes dependen de usted", "Considere los ingresos, deudas y gastos que su familia necesitaría cubrir.", "Proteger a mi familia", "Video de una familia caminando por la playa para solicitar seguro de vida en Miami"],
+  "life-term": ["Temporal", "Seguro de vida temporal", "¿Por cuánto tiempo necesita cobertura?", "El seguro temporal cubre un plazo definido. Piense en su hipoteca y los años hasta que sus hijos sean independientes.", "Cotizar seguro temporal", "Video de una familia llegando a casa para preguntas sobre seguro de vida temporal"],
+  "life-final-expense": ["Gastos finales", "Seguro de gastos finales", "Planifique los gastos finales", "Consulte los gastos funerarios, deudas y el apoyo que desea dejar a su familia.", "Hablar sobre seguro de vida", "Video de una reunión de planificación familiar para preguntas sobre gastos finales"]
 };
 
 const globalPairs = [
+  ["Visit our West Flagler office for insurance help in Miami, Sweetwater, Doral, Hialeah and Kendall. We speak English and Spanish.", "Visite nuestra oficina de West Flagler para seguros en Miami, Sweetwater, Doral, Hialeah y Kendall. Hablamos inglés y español."],
+  ["Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.", "Seleccione auto, vivienda, inquilinos o condominio en el formulario seguro. También puede cotizar auto y propiedad juntos. Tenga su póliza actual a mano si la tiene."],
+  ["Request auto, home, renters or condo insurance online. For business, life, health or another insurance type, call or text us.", "Cotice seguros de auto, vivienda, inquilinos o condominio por internet. Para negocios, vida, salud u otro seguro, llame o envíenos un texto."],
+  ["Select Auto in the secure form. Have your current policy, driver and vehicle information ready so you can compare the same limits and deductibles.", "Seleccione Auto en el formulario seguro. Tenga a mano su póliza actual y los datos de conductores y vehículos para comparar los mismos límites y deducibles."],
+  ["Select Homeowners or Condo Owners in the secure form. Have the property address, current policy and any roof information available.", "Seleccione Homeowners o Condo Owners en el formulario seguro. Tenga a mano la dirección de la propiedad, su póliza actual y los datos del techo que tenga."],
+  ["Select Renters in the secure form. Have your rental address and any insurance requirements from your lease available.", "Seleccione Renters en el formulario seguro. Tenga a mano la dirección de su vivienda y los requisitos de seguro de su contrato de alquiler."],
+  ["Call or text us about your business, employees, vehicles and any insurance requirements from a client or landlord.", "Llámenos o envíenos un texto sobre su negocio, empleados, vehículos y los requisitos de seguro de sus clientes o del arrendador."],
+  ["Call or text us to discuss who depends on your income, the amount of coverage you need and how long you need it.", "Llámenos o envíenos un texto para hablar de quién depende de sus ingresos, cuánta cobertura necesita y por cuánto tiempo."],
+  ["Pause motion", "Pausar animación"],
+
+  ["Prefer to Talk?", "¿Prefiere hablar con nosotros?"],
+  ["Text the Office", "Enviar un mensaje"],
+  ["Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.", "Llame para cotizar seguros de negocios, vida o cualquier tipo que no aparezca en el formulario. Respondemos sus preguntas en inglés o español."],
+
+  ["Other insurance: call us to discuss these options.", "Otros seguros: llámenos para consultar estas opciones."],
+  ["Compare Coverage", "Comparar coberturas"],
+  ["Visit Our Office", "Conozca la oficina"],
+  ["Free quotes", "Cotizaciones gratis"],
+  ["This website uses Google Analytics 4 and Google Ads measurement tools to understand visits and interactions. Google Tag Manager loads these tools.", "Este sitio usa herramientas de medición de Google Analytics 4 y Google Ads para entender las visitas e interacciones. Google Tag Manager carga estas herramientas."],
+
+  ["Call for a Free Quote", "Llame para cotizar gratis"],
+  ["What to Have Ready", "Qué necesita para cotizar"],
+  ["Get Directions", "Cómo llegar"],
+  ["View Coverage", "Ver cobertura"],
+  ["Quick contact", "Contacto rápido"],
+  ["Call Office #3", "Llamar a la Oficina #3"],
+  ["Google reviews of Office #3", "Reseñas de Google de la Oficina #3"],
+  ["For auto, home or renters insurance, start with our online quote form. For business, life or another type of insurance, call the office.", "Para seguros de auto, vivienda o inquilinos, comience con nuestro formulario de cotización. Para negocios, vida u otro tipo de seguro, llame a la oficina."],
+
+  ["Reviews describe individual experiences.", "Las reseñas describen experiencias individuales."],
+  [
+    "Online Quote",
+    "Cotización por internet"
+  ],
+  [
+    "Review liability, property, work vehicles, employees and contract requirements.",
+    "Revise responsabilidad civil, propiedad, vehículos de trabajo, empleados y requisitos de contratos."
+  ]
+,
+  [
+    "Use these checklists to prepare for a renewal, claim or policy review. Call us with questions about your policy.",
+    "Use estas listas para preparar una renovación, reclamación o revisión. Llámenos si tiene dudas sobre su póliza."
+  ],
+  [
+    "Call us for help with the items below. Report new claims directly to your insurer.",
+    "Llámenos para los asuntos indicados abajo. Informe las reclamaciones nuevas directamente a su aseguradora."
+  ],
+  [
+    "Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier login credentials through public channels. Use a secure process only when it specifically requires them.",
+    "No envíe números de Seguro Social, fechas de nacimiento, licencias, VIN, datos de pago, archivos de reclamaciones, expedientes médicos ni contraseñas por canales públicos. Compártalos solo mediante un proceso seguro que los solicite."
+  ]
+,
+  [
+    "Swipe to explore coverage and common questions.",
+    "Deslice para ver coberturas y preguntas frecuentes."
+  ],
+  [
+    "Contact Office #3 About Your Policy",
+    "Consulte su póliza con la Oficina #3"
+  ],
+  [
+    "What Do You Need Help With?",
+    "¿En qué necesita ayuda?"
+  ],
+  [
+    "Find more detail in these consumer guides. Follow your insurer’s instructions for your policy or claim.",
+    "Consulte estas guías para más información. Siga las instrucciones de su aseguradora para su póliza o reclamación."
+  ],
+  [
+    "Consumer Guides",
+    "Guías para consumidores"
+  ],
+  [
+    "Your Checklist",
+    "Su lista de pasos"
+  ],
+  [
+    "Use these steps to prepare your questions and documents. Your policy and insurer determine what is covered.",
+    "Use estos pasos para preparar sus preguntas y documentos. Su póliza y aseguradora determinan qué está cubierto."
+  ],
+  [
+    "QR code to request a quote from Office #3",
+    "Código QR para solicitar una cotización con la Oficina #3"
+  ],
+  [
+    "Florida DFS life insurance guide",
+    "Guía de seguro de vida de Florida DFS"
+  ]
+,
+  [
+    "This policy covers this Office #3 website. Other services you visit through our links have their own privacy policies.",
+    "Esta política corresponde al sitio de la Oficina #3. Los servicios que visite mediante nuestros enlaces tienen sus propias políticas de privacidad."
+  ],
+  [
+    "This website does not collect quote form submissions. Our quote links open ConsumerRateQuotes, which handles the information you enter under its own privacy terms.",
+    "Este sitio no recopila formularios de cotización. Los enlaces abren ConsumerRateQuotes, que maneja los datos que ingrese según sus propios términos de privacidad."
+  ],
+  [
+    "This site uses HTTPS to encrypt the connection. Before sending personal documents, call the office for the appropriate submission method.",
+    "Este sitio usa HTTPS para cifrar la conexión. Antes de enviar documentos personales, llame a la oficina para saber cómo entregarlos."
+  ],
+  [
+    "This website uses Google Tag Manager to load measurement tools. The last verified configuration, on August 4, 2026, included Google Analytics 4 and Google Ads. Apollo Website Tracker was paused at that review. These tools are configured separately from the website, so contact us with questions about their current use.",
+    "Este sitio usa Google Tag Manager para cargar herramientas de medición. La última configuración verificada, el 4 de agosto de 2026, incluía Google Analytics 4 y Google Ads. Apollo Website Tracker estaba pausado en esa revisión. Estas herramientas se configuran por separado; contáctenos si tiene preguntas sobre su uso actual."
+  ],
+  [
+    "Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.",
+    "Google Ads puede usar cookies u otros identificadores para medir interacciones y conversiones publicitarias. Puede administrar las cookies desde su navegador."
+  ],
+  [
+    "The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Its analytics event code does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.",
+    "El sitio registra visitas y acciones como clics en enlaces de cotización o teléfono, además de información general de campañas. El código de eventos no envía nombres, teléfonos, correos, códigos postales, notas, datos de seguros, direcciones completas de referencia ni parámetros completos de búsqueda."
+  ],
+  [
+    "General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.",
+    "La información general de campañas se conserva en el almacenamiento de sesión de la pestaña actual. No se envía con el enlace a ConsumerRateQuotes. Un clic no nos indica si completó una solicitud."
+  ],
+  [
+    "This website does not currently provide a cookie-preference panel. You can restrict cookies in your browser settings.",
+    "Este sitio no tiene actualmente un panel de preferencias de cookies. Puede restringirlas desde la configuración de su navegador."
+  ],
+  [
+    "Contact us with questions about data retention or privacy requests. You can restrict cookies in your browser or install the Google Analytics Opt-out Browser Add-on. The public insurance information remains available if you block cookies.",
+    "Contáctenos para preguntas sobre conservación de datos o solicitudes de privacidad. Puede restringir cookies o instalar el complemento de inhabilitación de Google Analytics. La información pública sobre seguros sigue disponible si bloquea cookies."
+  ],
+  [
+    "ConsumerRateQuotes is a separate service. Review its privacy terms before entering personal information.",
+    "ConsumerRateQuotes es un servicio independiente. Revise sus términos de privacidad antes de ingresar datos personales."
+  ],
+  [
+    "Quote links open ConsumerRateQuotes. That service has its own terms and privacy practices.",
+    "Los enlaces de cotización abren ConsumerRateQuotes. Ese servicio tiene sus propios términos y prácticas de privacidad."
+  ],
+  [
+    "Read full review",
+    "Leer reseña completa"
+  ],
+  [
+    "Call us to review your needs and the available options. Coverage, eligibility and pricing depend on the insurer and your application.",
+    "Llámenos para revisar sus necesidades y las opciones disponibles. La cobertura, elegibilidad y precio dependen de la aseguradora y su solicitud."
+  ],
+  [
+    "Compare limits and deductibles for your vehicle, drivers and daily use.",
+    "Compare límites y deducibles para su vehículo, conductores y uso diario."
+  ],
+  [
+    "Review protection for your home and belongings, plus wind, flood and lender requirements.",
+    "Revise la protección de su vivienda y pertenencias, además de viento, inundación y requisitos del prestamista."
+  ],
+  [
+    "Plan for income, debts and expenses your family may face without you.",
+    "Planifique los ingresos, deudas y gastos que su familia podría afrontar sin usted."
+  ],
+  [
+    "Review your premises, equipment and daily business risks.",
+    "Revise su local, equipos y los riesgos de su actividad."
+  ],
+  [
+    "Cover eligible losses to belongings and review personal liability and lease requirements.",
+    "Revise cobertura para pérdidas cubiertas de sus pertenencias, responsabilidad civil y requisitos del alquiler."
+  ],
+  [
+    "Review protection against certain injury and property damage claims from others.",
+    "Revise protección ante ciertos reclamos de terceros por lesiones y daños a la propiedad."
+  ],
+  [
+    "Ask about work vehicles, employees and insurance required by your contracts.",
+    "Consulte seguros para vehículos de trabajo, empleados y requisitos de contratos."
+  ],
+  [
+    "Call to ask about available plans, enrollment timing and information needed to apply.",
+    "Llame para consultar planes disponibles, fechas de inscripción y datos necesarios para solicitar cobertura."
+  ]
+,
+  [
+    "English and Spanish Service",
+    "Atención en inglés y español"
+  ],
+  [
+    "Our family at Office #3",
+    "Nuestra familia en la Oficina #3"
+  ],
+  [
+    "Free Quotes",
+    "Cotizaciones gratis"
+  ],
+  [
+    "Online or by phone",
+    "Por internet o por teléfono"
+  ],
+  [
+    "Home and family",
+    "Hogar y familia"
+  ],
+  [
+    "Coverage for your business",
+    "Seguros para su negocio"
+  ],
+  [
+    "Visit Our West Flagler Office",
+    "Visite nuestra oficina en West Flagler"
+  ],
+  [
+    "helps you compare insurance and understand what each option covers. Bring your questions, current policy or renewal notice.",
+    "le ayuda a comparar seguros y entender qué cubre cada opción. Traiga sus preguntas, póliza actual o aviso de renovación."
+  ],
+  [
+    "Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability.",
+    "Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Llame antes de venir para confirmar disponibilidad."
+  ],
+  [
+    "What Would You Like to Insure?",
+    "¿Qué desea asegurar?"
+  ],
+  [
+    "Choose a type of insurance to see what to consider and what to have ready for a quote.",
+    "Seleccione un tipo de seguro para saber qué revisar y qué preparar para cotizar."
+  ],
+  [
+    "Start online or call 305-910-8850. Tell us what you want to insure and when you need coverage.",
+    "Comience por internet o llame al 305-910-8850. Díganos qué desea asegurar y para cuándo necesita cobertura."
+  ],
+  [
+    "Review the details",
+    "Revisamos los detalles"
+  ],
+  [
+    "We review the information needed for your quote and explain any documents the insurer requests.",
+    "Revisamos los datos para su cotización y le explicamos qué documentos pide la aseguradora."
+  ],
+  [
+    "Compare premiums, limits, deductibles and exclusions before you choose.",
+    "Compare precios, límites, deducibles y exclusiones antes de elegir."
+  ],
+  [
+    "How to Get an Insurance Quote",
+    "Cómo solicitar una cotización"
+  ],
+  [
+    "Here is what to expect from your first request to a policy decision.",
+    "Estos son los pasos desde su primera consulta hasta elegir una póliza."
+  ],
+  [
+    "Ask us to compare available policies and explain differences in coverage and cost.",
+    "Pídanos comparar las pólizas disponibles y explicar las diferencias de cobertura y precio."
+  ],
+  [
+    "Ariel Busutil leads Office #3 here in Miami.",
+    "Ariel Busutil dirige la Oficina #3 aquí en Miami."
+  ],
+  [
+    "Visit our West Flagler office for quotes, renewals and policy questions.",
+    "Visite nuestra oficina en West Flagler para cotizaciones, renovaciones y consultas sobre su póliza."
+  ],
+  [
+    "Discuss your coverage and ask questions in English or Spanish.",
+    "Consulte su cobertura y haga preguntas en inglés o español."
+  ],
+  [
+    "Request a quote at no cost, online or by phone.",
+    "Solicite su cotización gratis, por internet o por teléfono."
+  ],
+  [
+    "Help After Your Purchase",
+    "Atención después de su compra"
+  ],
+  [
+    "Contact us about renewals, proof of insurance or changes to your policy.",
+    "Contáctenos para renovar, pedir un comprobante o solicitar cambios en su póliza."
+  ],
+  [
+    "A Miami Office You Can Call or Visit",
+    "Una oficina en Miami donde le atendemos"
+  ],
+  [
+    "Work with the same local office when you need a quote, have a policy question or want to review a renewal.",
+    "Cuente con nuestra oficina cuando necesite una cotización, tenga dudas sobre su póliza o quiera revisar una renovación."
+  ],
+  [
+    "Consulte seguros de auto, vivienda, inquilinos, vida y negocios.",
+    "Consulte seguros de auto, vivienda, inquilinos, vida y negocios."
+  ],
+  [
+    "Pregunte antes de elegir",
+    "Pregunte antes de elegir"
+  ],
+  [
+    "Le explicamos los límites, deducibles y exclusiones para que pueda comparar.",
+    "Le explicamos los límites, deducibles y exclusiones para que pueda comparar."
+  ],
+  [
+    "¿Prefiere hablar en español? Llámenos para cotizar, revisar su renovación o resolver dudas sobre su póliza.",
+    "¿Prefiere hablar en español? Llámenos para cotizar, revisar su renovación o resolver dudas sobre su póliza."
+  ],
+  [
+    "También puede consultar nuestros servicios y solicitar una cotización desde la versión en español del sitio.",
+    "También puede consultar nuestros servicios y solicitar una cotización desde la versión en español del sitio."
+  ],
+  [
+    "Puede llamar, enviar un mensaje o visitar la Oficina #3 en",
+    "Puede llamar, enviar un mensaje o visitar la Oficina #3 en"
+  ],
+  [
+    "Reviews of Our Miami Office",
+    "Reseñas de nuestra oficina en Miami"
+  ],
+  [
+    "Read what people have shared about Office #3. Visit Google for the latest reviews.",
+    "Lea las experiencias compartidas sobre la Oficina #3. Visite Google para ver las reseñas más recientes."
+  ],
+  [
+    "Have you visited or called us? You can share your experience on Google.",
+    "¿Nos ha visitado o llamado? Puede compartir su experiencia en Google."
+  ],
+  [
+    "reviews shown",
+    "reseñas mostradas"
+  ],
+  [
+    "</strong> reviews",
+    "</strong> reseñas"
+  ],
+  [
+    "See Google for newer reviews.",
+    "Consulte las reseñas más recientes en Google."
+  ],
+  [
+    "Google review",
+    "Reseña de Google"
+  ],
+  [
+    "Read full review",
+    "Leer reseña completa"
+  ],
+  [
+    "Rating only; no written comment.",
+    "Solo calificación, sin comentario escrito."
+  ],
+  [
+    "Your Family First Insurance",
+    "Your Family First Insurance"
+  ],
+  [
+    "Your Family First Insurance, Office #3",
+    "Your Family First Insurance, Oficina #3"
+  ],
+  [
+    "Our office is part of Your Family First Insurance. Visit us on West Flagler in Miami.",
+    "Nuestra oficina forma parte de Your Family First Insurance. Visítenos en West Flagler, Miami."
+  ],
+  [
+    "Start your request with ConsumerRateQuotes, our online quote service. Call us if the insurance you need is not listed.",
+    "Comience su solicitud con ConsumerRateQuotes, nuestro servicio de cotizaciones por internet. Llámenos si el seguro que necesita no aparece."
+  ],
+  [
+    "Have your ZIP code and current policy handy, if available.",
+    "Tenga a mano su código postal y póliza actual, si tiene una."
+  ],
+  [
+    "Enter the details requested for the insurance you select.",
+    "Complete los datos que se piden para el seguro que seleccione."
+  ],
+  [
+    "The quote form opens on ConsumerRateQuotes. Requesting a quote does not start coverage.",
+    "El formulario se abre en ConsumerRateQuotes. Solicitar una cotización no activa cobertura."
+  ],
+  [
+    "Free insurance quotes",
+    "Cotizaciones gratis de seguros"
+  ],
+  [
+    "Quote from your phone",
+    "Cotice desde su teléfono"
+  ],
+  [
+    "Scan to open the online quote form.",
+    "Escanee para abrir el formulario de cotización."
+  ],
+  [
+    "Get Your Free Insurance Quote",
+    "Solicite su cotización gratis"
+  ],
+  [
+    "Start online or call 305-910-8850 to discuss the insurance you need. We speak English and Spanish.",
+    "Comience por internet o llame al 305-910-8850 para consultar el seguro que necesita. Hablamos inglés y español."
+  ],
+  [
+    "Insurance resources",
+    "Recursos sobre seguros"
+  ],
+  [
+    "Florida Insurance Resources",
+    "Recursos de seguros en Florida"
+  ],
+  [
+    "Read Florida consumer guides or look up an insurance license. For questions about your own coverage, check your policy or call us.",
+    "Consulte guías de Florida o verifique una licencia de seguros. Para dudas sobre su cobertura, revise su póliza o llámenos."
+  ],
+  [
+    "Coverage details",
+    "Detalles de cobertura"
+  ],
+  [
+    "Explore Other Insurance Options",
+    "Consulte otros tipos de seguro"
+  ],
+  [
+    "Protect Your Personal Information",
+    "Proteja sus datos personales"
+  ],
+  [
+    "Enter quote details in the linked ConsumerRateQuotes form. If you are unsure how to send a document, call us first.",
+    "Complete los datos de su cotización en el formulario de ConsumerRateQuotes. Si no sabe cómo enviar un documento, llámenos primero."
+  ],
+  [
+    "Explore insurance options",
+    "Explore los tipos de seguro"
+  ],
+  [
+    "Swipe or use the arrows to explore insurance options.",
+    "Deslice o use las flechas para ver los tipos de seguro."
+  ],
+  [
+    "Miami office • English and Spanish • Free quotes",
+    "Oficina en Miami • Inglés y español • Cotizaciones gratis"
+  ],
+  [
+    "What to Review Before You Choose",
+    "Qué revisar antes de elegir"
+  ],
+  [
+    "Request a Free Quote",
+    "Solicite una cotización gratis"
+  ]
+,
   ["Office highlights and insurance services", "Información destacada de la oficina y servicios de seguros"],
   ["Open navigation", "Abrir navegación"],
   ["Primary navigation", "Navegación principal"],
@@ -50,8 +489,8 @@ const globalPairs = [
   ["Where Your Family Comes First!", "¡Donde su familia es lo primero!"],
   ["Trusted • Local • Bilingual", "Confianza • Servicio local • Bilingüe"],
   ["Fast, Friendly Service", "Servicio rápido y amable"],
+  ["Existing Customer Help", "Ayuda para clientes existentes"],
   ["Free Quotes", "Cotizaciones sin costo"],
-  ["Owner-Led Local Office", "Oficina local dirigida por su propietario"],
   ["Local Miami Office", "Oficina local en Miami"],
   ["Insurance Help", "Ayuda con seguros"],
   ["Auto Insurance", "Seguro de auto"],
@@ -89,6 +528,8 @@ const globalPairs = [
   ["Office trust points", "Datos de confianza de la oficina"],
   ["West Flagler Miami", "West Flagler, Miami"],
   ["Privacy-Safe Start", "Primer paso consciente de la privacidad"],
+  ["No public quote form", "Sin formulario público de cotización"],
+  ["Continue to the Verified Secure Quote Path", "Continúe a la ruta segura verificada de cotización"],
   ["Basic contact only", "Solo datos básicos de contacto"],
   ["Family coverage help", "Ayuda para proteger a su familia"],
   ["Business Support", "Apoyo para negocios"],
@@ -144,7 +585,7 @@ const globalPairs = [
   ["Getting Insured Is Easy", "Solicitar ayuda con su seguro es sencillo"],
   ["A simple first conversation helps Office #3 point you toward the right quote path.", "Una primera conversación sencilla ayuda a la Oficina #3 a orientarle hacia la ruta de cotización adecuada."],
   ["Contact us", "Contáctenos"],
-  ["Call, text, or send a basic quote request with only safe contact details.", "Llame, envíe un mensaje o solicite una cotización usando solo datos básicos de contacto."],
+  ["Call, text, or continue to the secure quote path when you are ready to share details.", "Llame, envíe un mensaje o continúe a la ruta segura de cotización cuando esté listo para compartir sus datos."],
   ["We shape the quote path", "Definimos la ruta de cotización"],
   ["Office #3 confirms the coverage conversation and what information may be needed next.", "La Oficina #3 confirma el tipo de cobertura y la información que podría necesitarse después."],
   ["Review your options", "Revise sus opciones"],
@@ -159,13 +600,14 @@ const globalPairs = [
   ["Office #3 is listed on West Flagler Street and serves Miami-Dade families, drivers, homeowners, renters, and businesses.", "La Oficina #3 está en West Flagler Street y atiende a familias, conductores, propietarios, inquilinos y negocios de Miami-Dade."],
   ["Bilingual Service", "Servicio bilingüe"],
   ["English and Spanish quote help for Miami families who want the process explained plainly.", "Ayuda con cotizaciones en inglés y español para familias de Miami que desean una explicación clara del proceso."],
+  ["Start with a no-pressure request that continues directly to the verified secure quote intake.", "Comience con una solicitud sin presión que continúa directamente a la recepción segura verificada de cotizaciones."],
   ["Start with a no-pressure quote request and basic contact details before any secure application process.", "Comience con una solicitud sin presión y datos básicos de contacto antes de cualquier proceso seguro."],
   ["A simple, responsive path from first contact to coverage conversations with a local office team.", "Una ruta sencilla y ágil desde el primer contacto hasta la conversación sobre cobertura con un equipo local."],
   ["Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information.", "Compare las opciones disponibles de varias aseguradoras en una conversación local. La disponibilidad, la elegibilidad y el precio varían según la aseguradora y los datos del solicitante."],
   ["Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations.", "La Oficina #3 es dirigida localmente por su propietario, Ariel Busutil, con un enfoque en orientación clara y conversaciones reales."],
   ["Authoritative references", "Referencias oficiales"],
   ["Official Sources for Fact-Checking", "Fuentes oficiales para verificar la información"],
-  ["Reviewed 2026-08-04. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.", "Revisado el 4 de agosto de 2026. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen."],
+  [`Reviewed ${contentReviewedDate}. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.`, `Revisado el ${reviewedDateSpanish}. Estos recursos oficiales respaldan la información sobre seguros de Florida y la Oficina #3 en esta página. Los términos y las leyes pueden cambiar; su póliza y las reglas vigentes de la aseguradora prevalecen.`],
   ["Your Family First Insurance company website", "Sitio web de Your Family First Insurance"],
   ["Florida DFS insurance consumer resources", "Recursos para consumidores de seguros de Florida DFS"],
   ["Florida DFS personal auto insurance overview", "Resumen de seguro de auto personal de Florida DFS"],
@@ -191,6 +633,10 @@ const globalPairs = [
   ["Scan to review Office #3", "Escanee para dejar una reseña de la Oficina #3"],
   ["Opens the live Google review page.", "Abre la página vigente de reseñas en Google."],
   ["Source-connected snapshot", "Captura vinculada a la fuente"],
+  ["Visit our West Flagler office for insurance questions and quote help in English or Spanish.", "Visite nuestra oficina en West Flagler para consultas de seguros y ayuda con cotizaciones en inglés o español."],
+  ["These 12 Google reviews were recorded on July 13, 2026. Open Google to see the latest reviews.", "Estas 12 reseñas de Google se registraron el 13 de julio de 2026. Abra Google para ver las reseñas más recientes."],
+  ["Reviews recorded July 13, 2026", "Reseñas registradas el 13 de julio de 2026"],
+  ["Recorded July 13, 2026", "Registrado el 13 de julio de 2026"],
   ["New reviews may appear on Google after this static site snapshot.", "Es posible que aparezcan reseñas nuevas en Google después de esta captura estática del sitio."],
   ["Static Google review snapshot carousel", "Carrusel de una captura estática de reseñas de Google"],
   ["Previous Google review", "Reseña anterior de Google"],
@@ -243,7 +689,20 @@ const globalPairs = [
   ["Briefly describe what you want to compare. Do not include SSNs, DOBs, driver license numbers, VINs, payment details, or sensitive documents.", "Describa brevemente lo que desea comparar. No incluya números de Seguro Social, fechas de nacimiento, licencias, VIN, datos de pago ni documentos confidenciales."],
   ["This first-step form is for basic contact only. Coverage is not bound by submitting it, and savings are not guaranteed.", "Este primer formulario es solo para datos básicos de contacto. Enviarlo no activa cobertura y los ahorros no están garantizados."],
   ["Continue to Secure Quote Form", "Continuar al formulario seguro"],
-  ["Share only basic contact details here. When the required fields are complete, the form opens the secure ConsumerRateQuotes intake path for the next step.", "Comparta aquí solo datos básicos de contacto. Al completar los campos obligatorios, el formulario abre la ruta segura de ConsumerRateQuotes para el siguiente paso."],
+  ["Continue Without Re-Entering Information", "Continúe sin volver a ingresar información"],
+  ["One secure entry", "Un solo ingreso seguro"],
+  ["Start Your Online Quote", "Comience su cotización en línea"],
+  ["Ready to Get Started?", "¿Listo para comenzar?"],
+  ["Your next step", "Su próximo paso"],
+  ["Choose your insurance type and begin your request in ConsumerRateQuotes, our secure online quote service.", "Elija el tipo de seguro y comience su solicitud en ConsumerRateQuotes, nuestro servicio seguro de cotización en línea."],
+  ["Use the secure online form to begin your request. If you have questions or prefer to speak with us, call the office.", "Use el formulario seguro en línea para comenzar su solicitud. Si tiene preguntas o prefiere hablar con nosotros, llame a la oficina."],
+
+  ["Office #3 does not collect a duplicate contact form on this public page. Continue directly to the verified ConsumerRateQuotes path, where the secure intake begins.", "La Oficina #3 no recopila un formulario de contacto duplicado en esta página pública. Continúe directamente a la ruta verificada de ConsumerRateQuotes, donde comienza la recepción segura."],
+  ["Have the coverage type and ZIP code ready.", "Tenga listo el tipo de cobertura y el código postal."],
+  ["Use the secure intake for personal or underwriting details.", "Use la recepción segura para datos personales o de suscripción."],
+  ["A quote request does not bind, change, or renew coverage.", "Una solicitud de cotización no emite, cambia ni renueva cobertura."],
+  ["ConsumerRateQuotes is a separate secure intake destination. Coverage, eligibility, pricing, and availability vary.", "ConsumerRateQuotes es un destino seguro independiente. La cobertura, elegibilidad, precio y disponibilidad varían."],
+  ["Continue directly to the verified ConsumerRateQuotes intake path. This page does not ask you to enter contact details that would need to be entered again.", "Continúe directamente a la ruta verificada de ConsumerRateQuotes. Esta página no le pide datos de contacto que tendría que volver a ingresar."],
   ["Ready when you are", "Cuando usted esté listo"],
   ["Start With a Local Office #3 Conversation", "Comience con una conversación local con la Oficina #3"],
   ["No fake urgency, no price promises, and no sensitive details in the first step. Just a clean path to quote help.", "Sin urgencia artificial, promesas de precio ni datos confidenciales en el primer paso. Solo una ruta clara para solicitar ayuda."],
@@ -258,9 +717,10 @@ const globalPairs = [
   ["Compare Another Coverage Conversation", "Explore otra conversación de cobertura"],
   ["Privacy Summary", "Resumen de privacidad"],
   [`This website provides business information, service pages, and quote contact options for ${businessName}.`, `Este sitio ofrece información del negocio, páginas de servicios y opciones para solicitar cotizaciones de ${businessName}.`],
-  ["The static pages do not store form submissions by themselves. The quote request path validates basic contact fields, normalizes simple text input, blocks obvious sensitive-data keywords in the notes field, then opens the secure ConsumerRateQuotes intake URL provided for Office #3. ConsumerRateQuotes may process submitted information under its own privacy terms.", "Las páginas estáticas no almacenan por sí solas los formularios. La ruta de cotización valida datos básicos, normaliza texto sencillo, bloquea términos evidentes de información confidencial en las notas y luego abre la dirección segura de ConsumerRateQuotes provista para la Oficina #3. ConsumerRateQuotes puede procesar la información según sus propios términos de privacidad."],
+  ["The static pages do not collect or store quote form submissions. Quote buttons open the verified ConsumerRateQuotes intake URL provided for Office #3. ConsumerRateQuotes may process information under its own privacy terms.", "Las páginas estáticas no recopilan ni almacenan formularios de cotización. Los botones abren la dirección verificada de ConsumerRateQuotes provista para la Oficina #3. ConsumerRateQuotes puede procesar información según sus propios términos de privacidad."],
   ["This policy is written to align with the privacy and security posture used by the original Your Family First Insurance office, while keeping this Office #3 static website accurate to its current setup.", "Esta política busca mantener una postura de privacidad y seguridad coherente con la oficina original de Your Family First Insurance y describir con precisión la configuración actual del sitio estático de la Oficina #3."],
-  ["Information You May Choose to Provide", "Información que puede decidir proporcionar"],
+  ["Information Entered on This Public Site", "Información ingresada en este sitio público"],
+  ["No contact or underwriting fields are submitted to this public site. Information entered after following the quote link is handled by the separate ConsumerRateQuotes service.", "No se envían datos de contacto ni de suscripción a este sitio público. La información ingresada después de seguir el enlace de cotización es manejada por el servicio independiente ConsumerRateQuotes."],
   ["Name, phone number, email address, ZIP code, requested insurance type, best time to call, and general notes.", "Nombre, teléfono, correo electrónico, código postal, tipo de seguro solicitado, mejor horario para llamar y notas generales."],
   ["Security Measures", "Medidas de seguridad"],
   ["The public website is designed for HTTPS hosting and includes baseline browser security headers for GoDaddy/Apache where supported. Information sent through the quote path should be handled only through the secure ConsumerRateQuotes intake and approved office workflows.", "El sitio público está diseñado para alojamiento HTTPS e incluye encabezados básicos de seguridad para GoDaddy/Apache donde sean compatibles. La información de la cotización debe manejarse únicamente mediante ConsumerRateQuotes y los procesos aprobados de la oficina."],
@@ -294,15 +754,37 @@ const globalPairs = [
   ["No Legal or Financial Advice", "Sin asesoría legal o financiera"],
   ["Website content is general information and is not legal, tax, financial, or claims advice.", "El contenido del sitio es información general y no constituye asesoría legal, fiscal, financiera ni sobre reclamaciones."],
   ["Privacy-Safe First Step", "Primer paso consciente de la privacidad"],
+  ["This public page does not collect contact or underwriting details. It links directly to the verified ConsumerRateQuotes intake path for Office #3.", "Esta página pública no recopila datos de contacto ni de suscripción. Enlaza directamente a la ruta verificada de ConsumerRateQuotes para la Oficina #3."],
+  ["Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier credentials through public channels. Use a secure process only when it specifically requires them.", "No envíe números de Seguro Social, fechas de nacimiento, licencias de conducir, VIN, datos de pago, archivos de reclamaciones, expedientes médicos, contraseñas ni credenciales de aseguradoras mediante canales públicos. Use un proceso seguro solo cuando requiera específicamente esos datos."],
   ["Use this first website form only for basic contact details. The form normalizes simple text fields and blocks obvious sensitive-data keywords in notes before opening the secure ConsumerRateQuotes intake path.", "Use este primer formulario solo para datos básicos de contacto. El formulario normaliza texto sencillo y bloquea términos evidentes de información confidencial antes de abrir la ruta segura de ConsumerRateQuotes."],
   ["Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier login credentials through this first website form.", "No envíe números de Seguro Social, fechas de nacimiento, licencias, VIN, datos de pago, archivos de reclamaciones, expedientes médicos, contraseñas ni credenciales de aseguradoras mediante este formulario."],
+  ["Policyholder Guidance", "Orientación para asegurados"],
+  ["Existing customer service", "Servicio para clientes existentes"],
+  ["Call Office #3 for a Secure Service Path", "Llame a la Oficina #3 para usar una ruta de servicio segura"],
+  ["Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.", "No coloque números de póliza, identificación, datos de pago, información médica, archivos de reclamaciones ni documentos de póliza en este sitio público ni en un mensaje de texto común."],
+  ["Customer resource center", "Centro de recursos para clientes"],
+  ["Prepare Before the Deadline or Emergency", "Prepárese antes de una fecha límite o emergencia"],
+  ["Use these educational checklists early, then confirm policy-specific questions through the carrier or a secure Office #3 service path.", "Use estas listas educativas con anticipación y confirme preguntas específicas de su póliza con la aseguradora o por una ruta segura de la Oficina #3."],
+  ["Open the guide", "Abrir la guía"],
+  ["Policyholder service guide", "Guía de servicio para asegurados"],
+  ["Choose the Right Service Path", "Elija la ruta de servicio adecuada"],
+  ["This page is educational and does not report a claim, change coverage, prove payment, or create a service request.", "Esta página es educativa y no informa una reclamación, cambia cobertura, demuestra un pago ni crea una solicitud de servicio."],
+  ["Customer checklist", "Lista para clientes"],
+  ["Steps to Review and Document", "Pasos para revisar y documentar"],
+  ["This checklist provides general education. It cannot determine coverage, replace carrier instructions, or make a requested policy change effective.", "Esta lista brinda educación general. No puede determinar cobertura, sustituir instrucciones de la aseguradora ni hacer efectivo un cambio solicitado."],
+  ["Official Consumer Sources", "Fuentes oficiales para consumidores"],
+  [`Reviewed ${contentReviewedDate}. These references support this general checklist. Current law, carrier instructions, and the written policy control.`, `Revisado el ${reviewedDateSpanish}. Estas referencias respaldan la lista general. La ley vigente, las instrucciones de la aseguradora y la póliza escrita controlan.`],
+  ["More customer help", "Más ayuda para clientes"],
+  ["Return to the Policyholder Resource Center", "Regrese al centro de recursos para asegurados"],
+  ["View all customer service guides", "Ver todas las guías de servicio para clientes"],
   ["Skip to content", "Saltar al contenido"],
   ["Page Not Found", "Página no encontrada"]
 ];
 
 function replaceEverywhere(source, from, to) {
   if (!from || from === to) return source;
-  return source.split(from).join(to);
+  const escape = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  return source.split(escape(from)).join(escape(to)).split(from).join(to);
 }
 
 function addPair(pairs, english, spanish) {
@@ -317,11 +799,20 @@ function pagePairs(english, spanish) {
     const spanishRows = spanish[key] || [];
     englishRows.forEach((row, index) => row.forEach((value, column) => addPair(pairs, value, spanishRows[index]?.[column])));
   }
+  for (const key of ["resources", "sourceLinks"]) {
+    const englishRows = english[key] || [];
+    const spanishRows = spanish[key] || [];
+    englishRows.forEach((row, index) => {
+      addPair(pairs, row[0], spanishRows[index]?.[0]);
+      if (key === "resources") addPair(pairs, row[2], spanishRows[index]?.[2]);
+    });
+  }
   const navigationPairs = [
     ["Home", "Inicio"],
     ["Commercial", "Comercial"],
     ["Life", "Vida"],
     ["About", "Nosotros"],
+    ["Customers", "Clientes"],
     ["Get Quote", "Cotización"],
     ["Privacy", "Privacidad"],
     ["Terms", "Términos"]
@@ -358,7 +849,8 @@ function translateCarouselBlocks(html) {
     const match = html.match(articlePattern);
     if (!match) continue;
     let block = match[1];
-    const [chip, category, headline, subheadline, cta, alt] = values;
+    const [chip, category, headline, subheadline, originalCta, alt] = values;
+    const cta = id === "home-bilingual" ? "Conozca la oficina" : id.startsWith("home-") ? "Ver cobertura" : /href="tel:/.test(block) ? "Llame para cotizar gratis" : "Solicitar cotización";
     block = block
       .replace(/aria-label="(\d+) of (\d+): [^"]+"/, (_, index, total) => `aria-label="${index} de ${total}: ${category}"`)
       .replace(/(<a class="motion-media-link"[^>]*aria-label=")[^"]+("[^>]*>)/, `$1${cta}$2`)
@@ -501,12 +993,7 @@ function localizedJsonLdBlock(whole, spanishPage) {
       }
     }
     if (type === "FAQPage") {
-      data.inLanguage = "es-US";
-      data.mainEntity = (spanishPage.faqs || []).map(([question, answer]) => ({
-        "@type": "Question",
-        name: question,
-        acceptedAnswer: { "@type": "Answer", text: answer }
-      }));
+      data = faqSchema(spanishPage);
     }
     if (type === "ItemList") {
       data.inLanguage = "es-US";
@@ -519,12 +1006,15 @@ function localizedJsonLdBlock(whole, spanishPage) {
           "Workers' Compensation": "Compensación laboral"
         };
         if (names[item.name]) item.name = names[item.name];
-        const url = item?.item?.url;
+        const url = item?.url;
         if (typeof url !== "string") continue;
-        for (const [english, spanish] of Object.entries(englishToSpanish)) {
-          const englishUrl = english ? `${siteUrl}/${english}/` : `${siteUrl}/`;
-          if (url === englishUrl) item.item.url = `${siteUrl}/${spanish}/`;
-        }
+        let parsed;
+        try { parsed = new URL(url); } catch { continue; }
+        if (parsed.origin !== new URL(siteUrl).origin) continue;
+        const englishSlug = parsed.pathname.replace(/^\/+|\/+$/g, "");
+        const spanishSlug = englishToSpanish[englishSlug];
+        if (typeof spanishSlug !== "string") continue;
+        item.url = `${siteUrl}/${spanishSlug}/${parsed.hash || ""}`;
       }
     }
     return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
@@ -557,8 +1047,7 @@ function restoreProtected(html, fragments, spanishPage) {
 
 function replaceFaqList(html, spanishPage) {
   if (!spanishPage.faqs) return html;
-  const faqMarkup = spanishPage.faqs.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("");
-  return html.replace(/<div class="faq-list">[\s\S]*?<\/div>/, `<div class="faq-list">\n        ${faqMarkup}\n      </div>`);
+  return html.replace(/<section class="section faq"[^>]*>[\s\S]*?<\/section>/, () => faqHtml(spanishPage));
 }
 
 function localizeInterfaceLabels(html) {
@@ -569,6 +1058,7 @@ function localizeInterfaceLabels(html) {
     "Commercial": "Comercial",
     "Life": "Vida",
     "About": "Nosotros",
+    "Customers": "Clientes",
     "Get Quote": "Cotización",
     "Privacy": "Privacidad",
     "Terms": "Términos",
@@ -622,7 +1112,7 @@ function localizeEnglishPage(englishPage, spanishPage) {
     true
   );
   if (spanishHtml.includes('class="google-review-studio"')) {
-    spanishHtml = spanishHtml.replace(/(<div class="google-review-studio"[^>]*>)/, `<p class="review-language-note">${reviewSourceNotice}</p>$1`);
+    spanishHtml = spanishHtml.replace(/(<div class="google-review-studio"[^>]*>)/, `$1<p class="review-language-note">${reviewSourceNotice}</p>`);
   }
   const outputPath = path.join(root, spanishPage.slug, "index.html");
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });

@@ -2,19 +2,14 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { handleMcpMessage, SERVER_INFO, TOOLS } from "../src/mcp-core.mjs";
+import { englishToSpanish } from "../content/spanish-content.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const checkDist = process.argv.includes("--dist");
 const siteRoot = checkDist ? path.join(root, "dist") : path.join(root, "public");
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const failures = [];
-const routes = [
-  "", "auto-insurance", "home-insurance", "commercial-insurance", "life-insurance",
-  "renters-insurance", "about-office-3", "get-a-quote", "privacy-policy", "terms",
-  "es", "es/seguro-de-auto", "es/seguro-de-vivienda", "es/seguro-de-inquilinos",
-  "es/seguro-comercial", "es/seguro-de-vida", "es/sobre-oficina-3",
-  "es/solicitar-cotizacion", "es/privacidad", "es/terminos"
-];
+const routes = [...new Set([...Object.keys(englishToSpanish), ...Object.values(englishToSpanish)])];
 
 function read(relativePath) {
   const filePath = path.join(siteRoot, relativePath);
@@ -132,6 +127,16 @@ if (!checkDist) {
   }
   for (const marker of ["/mcp", "mcpCorePromise", "MCP-Protocol-Version"]) {
     if (!server.includes(marker)) failures.push(`Express MCP fallback missing ${marker}`);
+  }
+}
+
+if (checkDist) {
+  for (const duplicate of [
+    path.join(".agent-markdown", "index 2.md"),
+    path.join(".well-known", "api-catalog 2"),
+    path.join(".well-known", "openapi 2.json")
+  ]) {
+    if (fs.existsSync(path.join(siteRoot, duplicate))) failures.push(`dist must not publish local duplicate: /${duplicate}`);
   }
 }
 

@@ -54,7 +54,7 @@ Generated public files include:
 
 ## Privacy and Quote Form Status
 
-The quote form validates required basic contact fields, then opens the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
+The public quote page contains no duplicate contact or underwriting form. Its quote buttons and handoff card open the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
 
 Do not collect SSNs, dates of birth, driver license numbers, VINs, policy numbers, payment details, medical records, claim files, passwords, or carrier credentials through the public static form.
 

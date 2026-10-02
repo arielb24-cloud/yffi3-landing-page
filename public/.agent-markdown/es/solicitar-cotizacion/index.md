@@ -9,60 +9,52 @@ Cotización
 
 # Solicitar cotización
 
-Indique a la Oficina #3 qué tipo de seguro desea comparar y el mejor horario para llamarle. No envíe documentos personales confidenciales mediante este formulario.
+Comience su cotización en línea con la Oficina #3 o llámenos para recibir ayuda en inglés o español.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
+### Cotización por internet
 
-Oficina local #3 / Ayuda personalizada con cotizaciones / Familias de Miami
+Seleccione auto, vivienda, inquilinos o condominio en el formulario seguro. También puede cotizar auto y propiedad juntos. Tenga su póliza actual a mano si la tiene.
 
- ![Foto real de la familia y la oficina de Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
+[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-**Foto real de la familia y la Oficina #3**Miami, Florida
+Requesting a quote does not start coverage. [Privacidad policy](/es/privacidad/).
 
-Ayuda con su cotización
+## ¿Prefiere hablar con nosotros?
 
-## Indique a la Oficina #3 qué desea comparar
+Llame para cotizar seguros de negocios, vida o cualquier tipo que no aparezca en el formulario. Respondemos sus preguntas en inglés o español.
 
-Comparta aquí solo datos básicos de contacto. Al completar los campos obligatorios, el formulario abre la ruta segura de ConsumerRateQuotes para el siguiente paso.
+[Llamar al 305-910-8850](tel:13059108850)[Enviar un mensaje](sms:+13059108850)
 
-**¿Prefiere hablar ahora?**
-[Llamar al 305-910-8850](tel:13059108850) o [envíe un mensaje a la oficina](sms:+13059108850).
+FAQ
 
-![Código QR para solicitar una cotización con Your Family First Insurance Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
+## Cómo solicitar su cotización
 
-**Código QR de cotización**
-Escanee este código para continuar de forma rápida con su cotización.
+¿Cómo comienzo mi cotización gratis?
 
-## Primer paso consciente de la privacidad
+Seleccione el botón de cotización para abrir ConsumerRateQuotes, el servicio que utiliza la Oficina #3. Complete la solicitud allí. Si su tipo de seguro no aparece o prefiere hablar con alguien, llame al 305-910-8850.
 
-Use este primer formulario solo para datos básicos de contacto. El formulario normaliza texto sencillo y bloquea términos evidentes de información confidencial antes de abrir la ruta segura de ConsumerRateQuotes.
+[Comenzar la cotización por internet](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llame al 305-910-8850](tel:13059108850)
 
-No envíe números de Seguro Social, fechas de nacimiento, licencias, VIN, datos de pago, archivos de reclamaciones, expedientes médicos, contraseñas ni credenciales de aseguradoras mediante este formulario.
+¿Por qué la cotización abre en otro sitio?
 
-Preguntas frecuentes
+ConsumerRateQuotes gestiona la solicitud por internet para la Oficina #3. Nuestro sitio lo lleva directamente a esa solicitud para que no tenga que escribir los mismos datos dos veces. Antes de compartir información allí, revise sus condiciones de privacidad.
 
-## Preguntas frecuentes
+¿Qué información debo preparar?
 
-¿A dónde lleva el formulario de la Oficina #3?
+Tenga a mano el resumen de sus coberturas, los detalles de lo que quiere asegurar y la fecha de inicio deseada. Incluya los requisitos de su prestamista, arrendador o contrato. Las preguntas varían según el seguro; ingrese los datos personales solo en la solicitud segura.
 
-La solicitud abre la ruta segura de ConsumerRateQuotes configurada para la Oficina #3 con la cuenta 64868.
+¿Puedo solicitar aquí seguro de negocios, vida o salud?
 
-¿El formulario activa cobertura?
+Llame a la Oficina #3 para negocios, vida, salud u otro tipo de seguro que no aparezca en el formulario. Podemos conversar sobre lo que necesita y explicar los pasos de solicitud en español o inglés.
 
-No. Enviar el formulario no emite, cambia, renueva, cancela ni restablece cobertura.
+[Llame al 305-910-8850](tel:13059108850)
 
-¿Qué información debo ingresar primero?
+¿Qué pasa después de pedir la cotización?
 
-Ingrese nombre, teléfono, correo electrónico, tipo de seguro, código postal, mejor horario para llamar y notas generales breves.
+La información que proporcione se usa para revisar las opciones disponibles. La aseguradora puede necesitar más detalles antes de ofrecer cobertura. Si tiene una fecha límite o preguntas sobre su solicitud, llame a la oficina. El plazo y la aprobación dependen de cada caso.
 
-¿Qué debo evitar enviar?
+[Llame al 305-910-8850](tel:13059108850)
 
-No envíe números de Seguro Social, fechas de nacimiento, licencias de conducir, VIN, tarjetas de pago, expedientes de reclamos, datos médicos, contraseñas o credenciales de aseguradoras.
+¿Cuándo empieza la cobertura?
 
-¿Puedo llamar si no quiero usar el formulario?
-
-Sí. Llame al 305-910-8850 para hablar directamente con la Oficina #3.
-
-¿Puedo usar el código QR?
-
-Sí, use el código QR solo si está aprobado para la ruta de cotización de la Oficina #3 y desea continuar por ese medio.
+Enviar una solicitud de cotización no activa el seguro. Confirme por escrito la fecha y hora de inicio de la póliza y complete los requisitos de aprobación y pago. Mantenga el seguro actual hasta que la nueva cobertura esté confirmada.

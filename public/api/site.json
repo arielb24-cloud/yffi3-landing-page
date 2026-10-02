@@ -50,7 +50,13 @@
     "life": "https://yourfamilyfirstinsurance3.com/life-insurance/",
     "about": "https://yourfamilyfirstinsurance3.com/about-office-3/",
     "quote_help": "https://yourfamilyfirstinsurance3.com/get-a-quote/",
-    "spanish_home": "https://yourfamilyfirstinsurance3.com/es/"
+    "policyholder_help": "https://yourfamilyfirstinsurance3.com/policyholder-help/",
+    "hurricane_preparation": "https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/",
+    "renewal_review": "https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/",
+    "certificate_guidance": "https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/",
+    "annual_review": "https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/",
+    "spanish_home": "https://yourfamilyfirstinsurance3.com/es/",
+    "spanish_policyholder_help": "https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/"
   },
   "quote_handoff": {
     "type": "external-human-facing-form",

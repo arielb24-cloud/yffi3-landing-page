@@ -160,4 +160,84 @@
     <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/terminos/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/terms/"/>
   </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/policyholder-help/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/policyholder-help/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/policyholder-help/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/policyholder-help/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/policyholder-help/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-anual/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/"/>
+  </url>
+  <url>
+    <loc>https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-anual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/"/>
+    <xhtml:link rel="alternate" hreflang="es-US" href="https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-anual/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/"/>
+  </url>
 </urlset>

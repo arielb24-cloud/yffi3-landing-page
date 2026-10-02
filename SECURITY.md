@@ -6,7 +6,7 @@ This website builds static HTML, CSS, and JavaScript into `dist/`, then serves i
 
 ## Quote Form
 
-The quote form is a privacy-safe first-step UI. It validates required basic contact fields, then opens the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
+The quote page is a privacy-safe handoff UI with no public contact or underwriting fields. It opens the provided secure ConsumerRateQuotes path: `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`.
 
 Do not collect or request:
 

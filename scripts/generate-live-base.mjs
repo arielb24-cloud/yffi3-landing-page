@@ -2,10 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import carouselMediaModule from "../src/data/carouselMedia.js";
 import googleReviewsModule from "../src/data/googleReviews.js";
+import retentionPagesModule from "../src/data/retentionPages.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const { carouselMediaByPage } = carouselMediaModule;
-const { googleReviews, googleReviewSnapshot } = googleReviewsModule;
+const { googleReviews: recordedGoogleReviews, googleReviewSnapshot } = googleReviewsModule;
+// The office owner rating should not be presented as customer feedback.
+const googleReviews = recordedGoogleReviews.filter((review) => review.authorName !== "Ariel Busutil");
+const { retentionPages } = retentionPagesModule;
 const siteUrl = "https://yourfamilyfirstinsurance3.com";
 const phoneDisplay = "305-910-8850";
 const phoneHref = "tel:13059108850";
@@ -28,7 +32,7 @@ const googleReviewUrl = "https://g.page/r/CfCEW-Ye4vpMEAE/review";
 const brandUrl = "https://yourfamilyfirstinsurance.com/";
 const facebookUrl = "https://www.facebook.com/YourFamilyFirstInsurance";
 const googleMapsUrl = "https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0";
-const contentReviewedDate = "2026-08-05";
+const contentReviewedDate = "2026-10-02";
 const serviceVisuals = {
   "auto-insurance": {
     slides: [
@@ -153,7 +157,7 @@ const serviceCards = [
     short: "Auto",
     icon: "car",
     href: "/auto-insurance/",
-    copy: "Miami auto insurance quote help for daily drivers, family vehicles, new drivers, financed cars, and renewal reviews.",
+    copy: "Compare limits and deductibles for your vehicle, drivers and daily use.",
     tags: ["Car insurance Miami", "Family vehicles", "Renewal review"],
     accent: "rgba(154, 220, 247, 0.30)"
   },
@@ -163,7 +167,7 @@ const serviceCards = [
     short: "Homeowners",
     icon: "home",
     href: "/home-insurance/",
-    copy: "Homeowners insurance quote help for Miami-Dade properties, roof details, wind questions, lender needs, and flood conversations.",
+    copy: "Review protection for your home and belongings, plus wind, flood and lender requirements.",
     tags: ["Miami-Dade homes", "Roof details", "Lender needs"],
     accent: "rgba(134, 207, 160, 0.30)"
   },
@@ -173,7 +177,7 @@ const serviceCards = [
     short: "Life",
     icon: "heart",
     href: "/life-insurance/",
-    copy: "Life insurance quote help for term life, final expense, income protection, mortgage planning, and family responsibilities.",
+    copy: "Plan for income, debts and expenses your family may face without you.",
     tags: ["Term life", "Income needs", "Final expense"],
     accent: "rgba(255, 161, 132, 0.30)"
   },
@@ -183,7 +187,7 @@ const serviceCards = [
     short: "Business",
     icon: "briefcase",
     href: "/commercial-insurance/",
-    copy: "Business insurance quote help for Miami owners reviewing BOP, property, commercial auto, certificates, and operations.",
+    copy: "Review your premises, equipment and daily business risks.",
     tags: ["BOP questions", "Certificates", "Operations"],
     accent: "rgba(244, 201, 107, 0.30)"
   },
@@ -193,7 +197,7 @@ const serviceCards = [
     short: "Renters",
     icon: "key",
     href: "/renters-insurance/",
-    copy: "Renters insurance quote help for Miami apartments, belongings, lease requirements, liability questions, and move-in timing.",
+    copy: "Cover eligible losses to belongings and review personal liability and lease requirements.",
     tags: ["Miami apartments", "Belongings", "Lease proof"],
     accent: "rgba(119, 231, 220, 0.26)"
   },
@@ -203,7 +207,7 @@ const serviceCards = [
     short: "Liability",
     icon: "shield",
     href: "/commercial-insurance/#general-liability-insurance",
-    copy: "General liability quote help for contractors, vendors, offices, leases, client requirements, certificates, and job-site risk conversations.",
+    copy: "Review protection against certain injury and property damage claims from others.",
     tags: ["Contractors", "Certificates", "Client needs"],
     accent: "rgba(154, 220, 247, 0.28)"
   },
@@ -213,7 +217,7 @@ const serviceCards = [
     short: "Commercial",
     icon: "shield",
     href: "/commercial-insurance/",
-    copy: "Commercial insurance quote help for contractors, fleets, work vehicles, local businesses, locations, and certificate requests.",
+    copy: "Review liability, property, work vehicles, employees and contract requirements.",
     tags: ["Contractors", "Fleets", "Small business"],
     accent: "rgba(244, 201, 107, 0.28)"
   },
@@ -222,18 +226,18 @@ const serviceCards = [
     title: "Health Insurance",
     short: "Health",
     icon: "health",
-    href: "/get-a-quote/#quote",
-    copy: "Health insurance quote help for individuals, families, self-employed customers, and small-business benefit conversations.",
+    href: phoneHref,
+    copy: "Call to ask about available plans, enrollment timing and information needed to apply.",
     tags: ["Families", "Self-employed", "Benefit questions"],
     accent: "rgba(134, 207, 160, 0.30)"
   }
 ];
 
 const specialtyCoverageLinks = [
-  ["flood-insurance", "Flood Insurance", "/get-a-quote/#quote"],
-  ["motorcycle-insurance", "Motorcycle Insurance", "/get-a-quote/#quote"],
-  ["boat-insurance", "Boat Insurance", "/get-a-quote/#quote"],
-  ["rv-insurance", "RV Insurance", "/get-a-quote/#quote"],
+  ["flood-insurance", "Flood Insurance", phoneHref],
+  ["motorcycle-insurance", "Motorcycle Insurance", phoneHref],
+  ["boat-insurance", "Boat Insurance", phoneHref],
+  ["rv-insurance", "RV Insurance", phoneHref],
   ["workers-compensation", "Workers' Compensation", "/commercial-insurance/"]
 ];
 
@@ -242,300 +246,652 @@ const tickerItems = [
   ["11200 W Flagler St, Suite 108-109, Miami, FL 33174", "/about-office-3/"],
   ["Call Us: (305) 910-8850", phoneHref],
   ["¡Se Habla Español!", "/about-office-3/"],
-  ["Get a Free Quote Now!", quoteDestination],
-  ["Where Your Family Comes First!", "/about-office-3/"],
-  ["Trusted • Local • Bilingual", "/about-office-3/"],
-  ["Auto Insurance", "/auto-insurance/"],
-  ["Homeowners Insurance", "/home-insurance/"],
-  ["Renters Insurance", "/renters-insurance/"],
-  ["Flood Insurance", "/#flood-insurance"],
-  ["Motorcycle Insurance", "/#motorcycle-insurance"],
-  ["Boat Insurance", "/#boat-insurance"],
-  ["RV Insurance", "/#rv-insurance"],
-  ["General Liability Insurance", "/#general-liability-insurance"],
-  ["Business Insurance", "/commercial-insurance/"],
-  ["Workers' Compensation", "/#workers-compensation"],
-  ["Life Insurance", "/life-insurance/"],
-  ["Health Insurance", "/#health-insurance"],
-  ["Multiple Carrier Options", "/#insurance-carriers"],
-  ["Owner-Led Local Office", "/#family-owned"],
-  ["Local Miami Office", "/#local-miami-office"],
-  ["Free Quotes", quoteDestination],
-  ["Fast, Friendly Service", "/about-office-3/"]
+  ["Get My Free Quote", quoteDestination],
+  ["Existing Customer Help", "/policyholder-help/"]
 ];
 
 const pages = [
   {
-    slug: "",
-    nav: "Home",
-    title: "Your Family First Insurance Office #3 | Miami Insurance Quote Help",
-    description: "Your Family First Insurance Office #3 provides bilingual Miami quote help for auto, homeowners, renters, life, health, liability, and business insurance.",
-    h1: "Miami Insurance Made Simple for Your Family",
-    intro: "Local Office #3 helping Miami families compare auto, homeowners, renters, life, health, business, general liability, and commercial insurance options.",
-    kind: "home",
-    keywords: "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
-    faqs: [
-      ["Where is Your Family First Insurance Office #3 located in Miami?", "Office #3 is listed at 11200 W Flagler St, Suite 108-109, Miami, FL 33174, serving West Flagler, Miami-Dade, and nearby South Florida communities."],
-      ["What insurance can Office #3 help Miami families compare?", "Office #3 can help with auto, homeowners, renters, flood, motorcycle, boat, RV, life, health, business, general liability, workers compensation, and commercial insurance quote conversations."],
-      ["How do I get a free insurance quote from Office #3?", "Use the Get My Free Quote buttons, scan the approved QR code, or call 305-910-8850. The website only starts with basic contact details before opening the secure quote intake path."],
-      ["Is bilingual insurance help available?", "Yes. Office #3 offers local English and Spanish quote help so Miami families and business owners can ask coverage questions more comfortably."],
-      ["Does Office #3 help with insurance in Spanish in Miami?", "Yes. Spanish-speaking customers can call 305-910-8850 or request a quote and ask for help with seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance, and general liability in clear Miami Spanish."],
-      ["What Miami areas can Office #3 help from West Flagler?", "Office #3 is based in West Flagler and can help customers in Miami, Miami-Dade, Kendall, Doral, Hialeah, Homestead, Cutler Bay, and nearby Florida communities start quote conversations."],
-      ["Why compare insurance through a local Miami office?", "A local office can help you organize the quote conversation, explain next steps, review documents you may need, and keep the process centered on your family, vehicle, home, apartment, or business instead of a generic online form."],
-      ["Can Office #3 help compare multiple carrier options?", "Office #3 can help customers compare available options from participating insurance carriers. Availability, eligibility, pricing, and coverage vary by carrier, underwriting, location, and applicant information."],
-      ["What should I have ready before requesting a quote?", "Have your ZIP code, the type of insurance you want to review, preferred callback time, and general coverage goals. Do not send SSNs, dates of birth, driver license numbers, VINs, payment details, medical records, passwords, or carrier login credentials through a general website form."],
-      ["Can one office help me review more than one policy type?", "Yes. Many customers review auto with homeowners, renters, life, health, general liability, or business coverage so the conversation is easier to manage in one local office."],
-      ["How does the secure quote path work?", "The Get My Free Quote buttons open the Office #3 ConsumerRateQuotes intake path for account ID 64868. Use the website form only for safe contact details and continue sensitive information through a secure approved process."],
-      ["Can I leave a Google review for Your Family First Insurance Office #3?", "Yes. The Google review button opens the Office #3 Google review page so customers can leave feedback through Google after a quote, call, office visit, or service experience."],
-      ["Does a website quote request start or change insurance coverage?", "No. Submitting a quote request does not bind, change, renew, cancel, or reinstate insurance coverage. Coverage is only active after carrier approval, written confirmation, and any required payment steps."],
-      ["Are prices, savings, or carrier approvals guaranteed?", "No. Coverage options, availability, pricing, eligibility, and savings depend on carrier rules, underwriting, location, applicant information, and the coverage selected."]
+    "slug": "",
+    "nav": "Home",
+    "title": "Miami Insurance & Free Quotes | Your Family First Office #3",
+    "description": "Get a free insurance quote in Miami. Visit Office #3 on West Flagler for auto, home, renters, business and life insurance, with English and Spanish service.",
+    "h1": "Insurance in Miami",
+    "intro": "Auto, home, renters, business and life insurance from our West Flagler office. Compare your options and get a free quote in English or Spanish.",
+    "kind": "home",
+    "keywords": "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
+    "faqTitle": "Insurance questions in Miami",
+    "faqs": [
+      [
+        "How do I get a free insurance quote in Miami?",
+        "Start your quote online or call Your Family First Insurance Office #3 at 305-910-8850. Tell us what you want to insure and when you need coverage. For business, life, health or a type of insurance missing from the online form, call the office.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ],
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Is the insurance quote free, and do I have to buy a policy?",
+        "The quote is free, and requesting one does not commit you to buying a policy. Review the price, coverage, deductibles and payment terms before deciding. A quote does not start insurance coverage."
+      ],
+      [
+        "What should I have ready before asking for a quote?",
+        "Have your current policy summary, renewal date and the coverage you want to compare ready. If you are buying insurance for the first time, start with what you need to insure and any lender, landlord or contract requirements. Enter personal application details only in the secure quote form.",
+        [
+          [
+            "See the quote steps",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "What types of insurance can I ask about?",
+        "Ask about auto, home, renters, business, general liability, life or health insurance. The right policy depends on what you own, who depends on you and any coverage your contracts require. Tell us your needs so we can check available options.",
+        [
+          [
+            "Compare insurance types",
+            "/#coverage-title"
+          ]
+        ]
+      ],
+      [
+        "Can I get help in Spanish?",
+        "Yes. Office #3 offers help in English and Spanish, from reviewing a quote to explaining deductibles and renewal questions. Call 305-910-8850 and tell us which language you prefer.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Where is Your Family First Insurance Office #3 in Miami?",
+        "Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability. You can also request a quote online or speak with us by phone.",
+        [
+          [
+            "Get directions to Office #3",
+            "https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0"
+          ]
+        ]
+      ],
+      [
+        "Can I compare a new quote before my current policy renews?",
+        "Yes. Start when your renewal notice arrives so there is time to compare limits, deductibles and total cost. Before cancelling your current policy, confirm the replacement policy and its start date in writing, including any required payment.",
+        [
+          [
+            "Review your renewal",
+            "/customer-resources/renewal-review/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "auto-insurance",
-    nav: "Auto",
-    title: "Auto Insurance in Miami | Car Insurance Quote Help | Office #3",
-    description: "Compare Miami auto insurance options with local bilingual help for family vehicles, new drivers, financed cars, deductibles, and Florida policy renewals.",
-    h1: "Auto Insurance Quote Help in Miami",
-    intro: "Get local West Flagler support for Miami auto insurance, Florida car insurance reviews, everyday drivers, family vehicles, new cars, and policy renewals.",
-    kind: "service",
-    service: "Auto Insurance",
-    icon: "car",
-    keywords: "auto insurance Miami, car insurance Miami, Miami auto insurance quote, Florida car insurance, West Flagler auto insurance, Miami-Dade auto insurance, bilingual car insurance help",
-    sections: [
-      ["Built for Miami drivers", "Talk through liability, comprehensive, collision, uninsured motorist, deductibles, medical payment questions, and other options based on your situation."],
-      ["Renewal and new-driver moments", "A quote conversation can help when buying a vehicle, adding a driver, moving to Miami-Dade, financing a car, or seeing a renewal change."],
-      ["What to have ready", "Bring vehicle details, garaging ZIP code, current coverage if available, driver information to discuss securely, and any lender or lease requirements."],
-      ["Local household driver review", "Office #3 can help review multiple cars, teen drivers, commute changes, rideshare questions, and financed or leased vehicle requirements."]
+    "slug": "auto-insurance",
+    "nav": "Auto",
+    "title": "Auto Insurance in Miami | Free Quote | Office #3",
+    "description": "Compare auto insurance in Miami for your car, drivers and daily use. Free quotes and English or Spanish service at Your Family First Office #3.",
+    "h1": "Auto Insurance in Miami",
+    "intro": "Compare coverage for your car, your drivers and the way you use your vehicle. We can review a new purchase, a move or an upcoming renewal.",
+    "kind": "service",
+    "service": "Auto Insurance",
+    "icon": "car",
+    "keywords": "auto insurance Miami, car insurance Miami, Miami auto insurance quote, Florida car insurance, West Flagler auto insurance, Miami-Dade auto insurance, bilingual car insurance help",
+    "sections": [
+      [
+        "Coverage for your car",
+        "Ask about liability, personal injury protection, collision, comprehensive and uninsured motorist coverage. Compare limits and deductibles as well as the price."
+      ],
+      [
+        "Buying or financing a vehicle",
+        "Bring the lender or lease requirements and the date you need coverage. Confirm your policy is active before driving the vehicle."
+      ],
+      [
+        "What to have ready",
+        "Have your vehicle year, make and model, garaging ZIP code, current policy and household driver information ready. Provide identification details through the quote service when requested."
+      ],
+      [
+        "Changes to how you drive",
+        "Tell us about a new driver, a move, delivery work or rideshare driving. A change in use can affect the coverage you need."
+      ]
     ],
-    searchTopics: [
-      ["Miami auto insurance quote help", "For drivers comparing car insurance options in Miami, West Flagler, Kendall, Hialeah, Doral, Homestead, and Miami-Dade."],
-      ["Florida car insurance renewal review", "For policyholders seeing renewal changes, deductible questions, vehicle changes, or household driver updates."],
-      ["New car and financed vehicle coverage", "For buyers who need to understand lender or lease requirements before choosing coverage."],
-      ["Bilingual auto insurance support", "For families who want English or Spanish help before continuing through a secure quote path."]
-    ],
-    faqs: [
-      ["Can Office #3 help with auto insurance in Miami?", "Yes. Office #3 helps Miami drivers request auto insurance quote help for daily commuting, family vehicles, new drivers, renewals, and vehicle changes."],
-      ["What auto insurance topics can I review with the office?", "You can discuss liability, comprehensive, collision, uninsured motorist, deductibles, lender or lease needs, driver changes, garaging ZIP code, and other coverage questions that may apply to your situation."],
-      ["When should I compare auto insurance options?", "A review can help before buying a vehicle, adding a driver, moving, changing commute patterns, financing or leasing a car, or seeing a renewal premium change."],
-      ["Can Office #3 help with Miami luxury cars or financed vehicles?", "Yes. Drivers can ask about quote conversations for financed cars, leased vehicles, family SUVs, premium vehicles, new purchases, and lender requirements. The final coverage path depends on carrier rules and vehicle details."],
-      ["Can I get help with a financed or leased vehicle?", "Yes. Bring any lender or lease requirements so the office can help you review the auto coverage conversation before you choose a path."],
-      ["What information should I prepare for an auto quote conversation?", "Have the vehicle year, make, model, garaging ZIP code, current coverage if available, household driver information to discuss securely, and any lender or lease requirements."],
-      ["How can Miami drivers lower confusion before renewal?", "Bring your current declaration page if available, renewal notice, vehicle changes, driver changes, garaging ZIP code, and deductible questions so the office can help you compare the auto quote conversation clearly."],
-      ["Can Office #3 help if I moved to Miami-Dade?", "Yes. If you recently moved, changed ZIP codes, changed commute patterns, or need Florida quote help, Office #3 can help start a local auto insurance conversation."],
-      ["Can Spanish-speaking drivers request help?", "Yes. Office #3 offers bilingual quote help for Miami drivers who prefer English or Spanish conversations."],
-      ["What does Florida uninsured or underinsured motorist coverage address?", "Florida DFS explains that uninsured or underinsured motorist coverage can address covered bodily injury when an at-fault driver has no bodily injury liability coverage or not enough limits. Terms, limits, stacking choices, and exclusions depend on the policy."],
-      ["What property damage liability limit does Florida law require?", "Florida DFS states that Florida law requires at least $10,000 of property damage liability coverage. Other requirements and appropriate limits depend on the vehicle, driver, registration, financial-responsibility rules, lender or lease terms, and individual situation."],
-      ["Does a car insurance quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."]
+    "searchTopics": [],
+    "faqTitle": "Auto insurance questions",
+    "faqs": [
+      [
+        "How much does car insurance cost in Miami?",
+        "There is no single price for Miami drivers. Your vehicles, drivers, driving history, address, vehicle use and coverage choices affect the quote. Compare the total cost for the same policy term, along with limits, deductibles, the initial payment and installment charges.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "What car insurance does Florida require?",
+        "For most private passenger vehicles registered in Florida, the basic requirements are $10,000 in Personal Injury Protection (PIP) and $10,000 in Property Damage Liability (PDL). These minimums do not cover every risk. Different requirements can apply to certain drivers and vehicles, and a lender may require additional coverage.",
+        [
+          [
+            "Florida vehicle insurance requirements",
+            "https://www.flhsmv.gov/insurance/"
+          ]
+        ]
+      ],
+      [
+        "What does “full coverage” car insurance actually mean?",
+        "“Full coverage” is not a standard package that covers everything. People often use it to mean liability plus collision and comprehensive coverage. Ask for the exact coverages, limits, deductibles and exclusions in your quote, especially if your car is financed or leased."
+      ],
+      [
+        "Does car insurance cover flood or hurricane damage to my car?",
+        "Comprehensive coverage generally addresses damage from flooding, theft, fire and wind, subject to your policy and deductible. PIP and property damage liability alone do not pay to repair your own car after a flood. Check whether comprehensive is included before a storm threatens."
+      ],
+      [
+        "What information is needed for an auto insurance quote?",
+        "Expect questions about your vehicles, household drivers, driving history, address, vehicle use and current insurance. Have your current coverage summary ready for a fair comparison. Complete personal details in the secure application; this website does not collect driver licenses or vehicle identification numbers.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "Do I need to disclose delivery driving or rideshare work?",
+        "Yes. Tell us if you deliver goods, carry paying passengers or use the car for business. A personal auto policy may exclude that use or leave gaps. Review the actual work you do before choosing a policy or starting a new driving job.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Can I switch car insurance without a gap in coverage?",
+        "You can compare options before your current policy ends. Confirm the new policy’s effective date and time, required payment and written proof of coverage before cancelling the old policy. Keep the insurance required for your Florida registration in force.",
+        [
+          [
+            "Plan a renewal review",
+            "/customer-resources/renewal-review/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "home-insurance",
-    nav: "Homeowners",
-    title: "Homeowners Insurance in Miami | Florida Home Quote Help | Office #3",
-    description: "Get local Miami homeowners insurance quote help for property details, roofs, wind deductibles, lender deadlines, flood questions, and renewals.",
-    h1: "Homeowners Insurance Quote Help for Miami-Dade",
-    intro: "Compare homeowners insurance conversations for your house, belongings, liability needs, lender requirements, wind questions, and Florida property risks.",
-    kind: "service",
-    service: "Homeowners Insurance",
-    icon: "home",
-    keywords: "homeowners insurance Miami, home insurance Miami, Florida homeowners insurance, Miami-Dade home insurance quote, West Flagler homeowners insurance, hurricane deductible, flood insurance Miami",
-    sections: [
-      ["Florida property review", "Review dwelling coverage, personal property, liability, roof details, wind or hurricane deductibles, flood questions, and lender requirements."],
-      ["Closing and renewal timing", "Compare options before a real estate closing, after renovations, before hurricane season, or when a Miami-Dade renewal changes."],
-      ["Flood and wind conversations", "Standard homeowners policies generally do not cover flood damage. Flood coverage is usually a separate policy, although some private insurers may offer an endorsement. Wind coverage and deductibles also vary by policy."],
-      ["Local documentation help", "Property age, roof updates, inspections, occupancy, association documents, and prior coverage can matter during a quote review."]
+    "slug": "home-insurance",
+    "nav": "Homeowners",
+    "title": "Homeowners Insurance in Miami | Free Quote | Office #3",
+    "description": "Compare homeowners insurance in Miami. Review hurricane deductibles, flood coverage, inspections and closing deadlines with bilingual Office #3.",
+    "h1": "Homeowners Insurance in Miami",
+    "intro": "Review coverage for your home and belongings, along with hurricane deductibles, flood insurance and lender requirements. Start early if you have a closing or renewal deadline.",
+    "kind": "service",
+    "service": "Homeowners Insurance",
+    "icon": "home",
+    "keywords": "homeowners insurance Miami, home insurance Miami, Florida homeowners insurance, Miami-Dade home insurance quote, West Flagler homeowners insurance, hurricane deductible, flood insurance Miami",
+    "sections": [
+      [
+        "Your home and belongings",
+        "Review the cost to rebuild your home, replace belongings and cover eligible temporary living expenses after a covered loss. The purchase price is not the same as rebuilding cost."
+      ],
+      [
+        "Wind and flood",
+        "Check how your policy treats wind damage and hurricane deductibles. Standard homeowners insurance generally excludes flood; ask about separate flood coverage."
+      ],
+      [
+        "Inspections and roof details",
+        "Have the roof age, updates, prior insurance and any inspection reports ready. The insurer may request additional documentation before offering coverage."
+      ],
+      [
+        "Closing or renewing",
+        "Share your closing date or renewal deadline and lender requirements. Review the effective date before replacing an existing policy."
+      ]
     ],
-    searchTopics: [
-      ["Miami homeowners insurance quote help", "For Miami-Dade homeowners reviewing property coverage, lender deadlines, wind deductibles, roof details, and renewal changes."],
-      ["Florida home insurance before closing", "For buyers who need quote help before a closing date, mortgage deadline, or escrow requirement."],
-      ["Flood insurance questions in Miami", "For homeowners who want to understand when flood coverage may need a separate conversation."],
-      ["Bilingual homeowners insurance support", "For families who want English or Spanish help reviewing Florida home insurance details."]
-    ],
-    faqs: [
-      ["Can Office #3 help with homeowners insurance in Miami-Dade?", "Yes. Office #3 helps Miami-Dade homeowners request quote help for houses, property details, belongings, liability, lender needs, and Florida property coverage questions."],
-      ["Is flood insurance included with homeowners insurance?", "Standard homeowners policies generally do not cover flood damage. Flood coverage is usually purchased separately, although some private insurers may offer it by endorsement. Review the written policy and lender requirements."],
-      ["Can a Florida insurer refuse coverage solely because of roof age?", "Florida Statute 627.7011 says a homeowners insurer may not refuse to issue or renew solely because of roof age when an authorized inspection shows at least five years of useful life remaining. The statute does not prevent other lawful underwriting decisions, so current inspection and carrier requirements still matter."],
-      ["What Florida home insurance details may matter?", "A home quote conversation may include roof information, wind or hurricane deductibles, property age, updates, protection features, claims history, occupancy, and lender requirements."],
-      ["Can I request homeowners insurance help before closing on a property?", "Yes. Homebuyers commonly request quote help before a closing date, lender deadline, or policy renewal so they can review options early."],
-      ["What homeowners insurance documents can help in Miami?", "Helpful documents may include a prior policy, lender requirements, inspection reports, roof details, wind mitigation details if available, updates, occupancy details, and association documents when applicable."],
-      ["What should I have ready for a homeowners quote conversation?", "Helpful details may include property address, roof information, year built, updates, occupancy, prior coverage, lender requirements, and inspection documents if available."],
-      ["Can I ask about hurricane deductibles?", "Yes. You can ask how wind or hurricane deductible questions may affect the coverage conversation. Exact terms vary by carrier and policy."],
-      ["Can Office #3 help with Miami home insurance renewal questions?", "Yes. Homeowners can ask about renewal changes, roof questions, deductible questions, property updates, lender requests, and whether a flood insurance conversation should be reviewed separately."],
-      ["Does homeowners insurance cover every Florida property risk?", "No. Coverage terms, exclusions, flood coverage, wind questions, limits, and deductibles vary by policy and carrier. Review written documents before making a decision."],
-      ["Is homeowners insurance approval guaranteed?", "No. Eligibility and approval depend on carrier underwriting, property details, location, applicant information, inspections, and coverage selected."],
-      ["Are homeowners insurance savings guaranteed?", "No. Savings are not guaranteed. Pricing varies by underwriting, property details, location, carrier, applicant information, and coverage selected."]
+    "searchTopics": [],
+    "faqTitle": "Home insurance questions",
+    "faqs": [
+      [
+        "How much does homeowners insurance cost in Miami?",
+        "The quote depends on the home’s location, rebuilding cost, roof, construction, occupancy, claims history and coverage choices. Two homes on the same street can have different prices. Compare dwelling limits, hurricane and other deductibles, exclusions and total premium together.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "Does homeowners insurance include flood coverage?",
+        "Standard homeowners insurance generally excludes flooding from rising water. Flood insurance is separate from wind or hurricane coverage. Ask about flood protection for both the building and your belongings, even if your lender has not required it.",
+        [
+          [
+            "Ask about flood coverage",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "How does a hurricane deductible work in Florida?",
+        "A hurricane deductible may be a dollar amount or a percentage of the insured dwelling limit. For example, a 2% deductible on a $300,000 dwelling limit is $6,000. It is not 2% of your claim. Check your declarations page for the amount and policy rules.",
+        [
+          [
+            "Florida hurricane deductible guide",
+            "https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible"
+          ]
+        ]
+      ],
+      [
+        "What documents should I prepare for a home insurance quote?",
+        "Have the property address, roof age, occupancy details and current declarations page ready. If available, include your wind mitigation and four-point inspection reports. Tell us about renovations, rental use or a home business; those details can affect the options offered.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "Can a new roof or wind mitigation inspection lower my premium?",
+        "Certain roof features and documented wind protection may qualify for discounts. A newer roof does not guarantee a lower price or approval. Ask which inspection reports and features the insurer accepts, and compare the final quote rather than assuming a credit applies."
+      ],
+      [
+        "Should my home be insured for its sale price or rebuilding cost?",
+        "The dwelling limit should reflect the cost to rebuild the covered structure, rather than simply its sale price or mortgage balance. Land value is not a rebuilding expense. Review the insurer’s replacement-cost estimate, construction details and any coverage limits or conditions."
+      ],
+      [
+        "Can I buy or change home insurance when a hurricane is approaching?",
+        "Insurers may restrict new policies or changes when a storm threatens. Review your home, wind and flood coverage early; do not wait for a warning. Any new coverage must have a confirmed effective date, and some flood policies have waiting periods.",
+        [
+          [
+            "Prepare before hurricane season",
+            "/customer-resources/hurricane-preparation/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "commercial-insurance",
-    nav: "Commercial",
-    title: "Commercial Insurance in Miami | Business, GL, Workers Comp Help",
-    description: "Request Miami commercial insurance quote help for small businesses, contractors, general liability, business property, work vehicles, and certificates.",
-    h1: "Commercial Insurance Help for Miami Businesses",
-    intro: "Office #3 helps Miami business owners compare commercial insurance options for operations, contracts, vehicles, property, liability, certificates, and teams.",
-    kind: "service",
-    service: "Commercial Insurance",
-    icon: "shield",
-    keywords: "commercial insurance Miami, business insurance Miami, general liability insurance Miami, workers compensation Miami, commercial auto insurance Miami, certificate of insurance Miami, small business insurance Miami",
-    sections: [
-      ["Business coverage options", "Depending on operations, a business may need general liability, commercial auto, property, professional liability, workers compensation, or BOP conversations."],
-      ["Contract and lease triggers", "Review coverage before signing leases, hiring employees, buying work vehicles, accepting jobs, or handling certificate of insurance requests."],
-      ["Plain-language support", "Bring your business activity, address, payroll or revenue estimates, vehicle details, prior coverage, and certificate requirements if available."],
-      ["Miami small business focus", "Office #3 can support contractors, local shops, professional offices, family businesses, and growing teams with a safer first-step intake path."]
+    "slug": "commercial-insurance",
+    "nav": "Commercial",
+    "title": "Business Insurance in Miami | Free Quote | Office #3",
+    "description": "Review business insurance in Miami: general liability, property, work vehicles, employees and certificates. Call Office #3 for a free quote.",
+    "h1": "Business Insurance in Miami",
+    "intro": "Tell us what your business does and what your contracts require. We can review liability, property, work vehicles and employee-related insurance needs.",
+    "kind": "service",
+    "service": "Commercial Insurance",
+    "icon": "shield",
+    "keywords": "commercial insurance Miami, business insurance Miami, general liability insurance Miami, workers compensation Miami, commercial auto insurance Miami, certificate of insurance Miami, small business insurance Miami",
+    "sections": [
+      [
+        "General liability",
+        "Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions and contract requirements, including any additional insured request."
+      ],
+      [
+        "Property and work vehicles",
+        "Tell us about your premises, equipment and vehicle use. Personal policies may not cover business activities, and one business policy may not address every exposure."
+      ],
+      [
+        "Employees and operations",
+        "Employee duties, payroll and the work your business performs can affect insurance requirements. Ask about workers compensation and any coverage specific to your industry."
+      ],
+      [
+        "Contracts and certificates",
+        "Bring the full insurance requirements and deadline. A certificate shows existing coverage; it does not add coverage or change policy terms."
+      ]
     ],
-    searchTopics: [
-      ["Commercial insurance Miami", "For local companies comparing liability, property, commercial auto, workers compensation, and certificate requirements."],
-      ["General liability insurance Miami", "For contractors, vendors, service businesses, and offices that need to discuss liability and contract requirements."],
-      ["Workers compensation quote help", "For businesses adding employees or reviewing payroll, classification, and state requirement questions."],
-      ["Commercial auto insurance Miami", "For businesses using work vehicles, trucks, vans, delivery vehicles, or company-owned cars."]
-    ],
-    faqs: [
-      ["Can Miami small businesses request commercial insurance help?", "Yes. Office #3 helps local businesses, contractors, and companies request quote help for commercial insurance conversations."],
-      ["What business insurance topics can Office #3 discuss?", "Depending on operations, you can discuss general liability, commercial auto, business property, professional liability, workers compensation, certificates of insurance, and other coverage questions."],
-      ["Can the office help when a contract asks for a certificate of insurance?", "Yes. Bring the contract or certificate requirements so the office can help you understand what coverage details may need to be reviewed."],
-      ["Can Office #3 help with general liability insurance in Miami?", "Yes. Contractors, service businesses, vendors, offices, and local operators can start a general liability quote conversation for contracts, leases, client requirements, and certificate requests."],
-      ["What information helps with a commercial insurance quote?", "Helpful details can include business activity, location, payroll or revenue estimates, number of employees, work vehicles, equipment, prior coverage, and certificate requirements."],
-      ["Can contractors request general liability insurance help?", "Yes. Contractors and service businesses can request quote help and discuss general liability, commercial auto, tools, certificates, and contract requirements."],
-      ["Can business owners ask about workers compensation?", "Yes. If your business has employees or is adding team members, Office #3 can help start a workers compensation quote conversation."],
-      ["Can commercial auto be discussed on this page?", "Yes. Business owners using company cars, vans, trucks, delivery vehicles, or work vehicles can ask about commercial auto quote conversations as part of the business insurance review."],
-      ["What should I bring when a landlord or client asks for insurance?", "Bring the lease, contract, vendor portal wording, certificate request, additional insured wording if provided, and a plain description of your business operations."],
-      ["Can every business qualify for the same coverage?", "No. Coverage options and eligibility depend on underwriting, operations, location, payroll, vehicles, prior loss history, and other business details."],
-      ["Does this website promise special carrier access?", "No. The site does not promise or imply special carrier access, guaranteed placement, or unapproved carrier relationship claims."]
+    "searchTopics": [],
+    "faqTitle": "Business insurance questions",
+    "faqs": [
+      [
+        "What insurance does a small business in Miami need?",
+        "Start with what the business does, where it operates, its employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation address different risks. Call Office #3 with your business details so we can review what to ask for and what is available.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "How much does business insurance cost?",
+        "Cost depends on your operations, revenue, payroll, location, claims history and requested coverage. A contractor and an office-based business may need very different policies. Prepare your business description and contract requirements so the quote reflects the work you actually do.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Is general liability enough to insure my business?",
+        "Not necessarily. General liability typically addresses certain third-party injury or property-damage claims. It does not replace coverage for your own equipment, business vehicles, employee injuries or professional mistakes. Review each exposure and the policy’s exclusions before relying on one policy for everything."
+      ],
+      [
+        "What is a business owner’s policy, or BOP?",
+        "A BOP combines several business coverages, commonly general liability, property and business interruption, in one policy. Eligibility and included protection vary. It may suit some small businesses, but it does not automatically include every coverage your operations or contracts require."
+      ],
+      [
+        "Can I get a certificate of insurance for a job or lease?",
+        "Call with the requester’s written requirements, certificate holder details and deadline. We need to check that the requested limits and endorsements match the policy. A certificate shows evidence of insurance; it cannot add coverage or make someone an additional insured by itself.",
+        [
+          [
+            "Prepare a certificate request",
+            "/customer-resources/certificate-of-insurance/"
+          ]
+        ]
+      ],
+      [
+        "Does my personal car insurance cover business driving?",
+        "Do not assume it does. Tell us about deliveries, transporting customers, employee drivers and other business use. A personal auto policy may exclude some activities, and business driving may need commercial auto or other coverage.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "life-insurance",
-    nav: "Life",
-    title: "Life Insurance in Miami | Family Protection Quote Help | Office #3",
-    description: "Request Miami life insurance quote help for term life, final expenses, income replacement, mortgage needs, beneficiaries, and family planning.",
-    h1: "Life Insurance Quote Help for Miami Families",
-    intro: "Compare life insurance options for family protection, income replacement, mortgage planning, final expenses, and long-term needs.",
-    kind: "service",
-    service: "Life Insurance",
-    icon: "heart",
-    keywords: "life insurance Miami, term life insurance Miami, final expense insurance Miami, family protection Miami, mortgage protection life insurance, bilingual life insurance help",
-    sections: [
-      ["Family-first planning", "Discuss coverage goals in plain language so you can compare options that may fit your budget, responsibilities, and family priorities."],
-      ["When to review", "Review life insurance after marriage, a child, home purchase, job change, business launch, debt change, or a major family milestone."],
-      ["Coverage conversation types", "Ask about term life, permanent life, final expense, income replacement, mortgage protection, and business continuity conversations."],
-      ["Privacy-safe first step", "Initial conversations can start with general goals and contact details before any secure application or underwriting process is used."]
+    "slug": "life-insurance",
+    "nav": "Life",
+    "title": "Life Insurance in Miami | Free Quote | Office #3",
+    "description": "Discuss life insurance in Miami for income, debts and family expenses. Compare term and permanent options with English or Spanish service at Office #3.",
+    "h1": "Life Insurance in Miami",
+    "intro": "Plan for the people who depend on you. Talk with us about your budget, income, mortgage and family responsibilities before choosing a coverage amount.",
+    "kind": "service",
+    "service": "Life Insurance",
+    "icon": "heart",
+    "keywords": "life insurance Miami, term life insurance Miami, final expense insurance Miami, family protection Miami, mortgage protection life insurance, bilingual life insurance help",
+    "sections": [
+      [
+        "Decide what you want to cover",
+        "Consider income your family would need, outstanding debts, education costs and final expenses. Include existing coverage in your review."
+      ],
+      [
+        "Term or permanent insurance",
+        "Term insurance covers a defined period. Permanent policies can provide longer-lasting coverage when their requirements are met. Ask about costs, guarantees and conditions."
+      ],
+      [
+        "Choose and review beneficiaries",
+        "Review who should receive the benefit and update your instructions after major family changes. Ask how your insurer handles beneficiary changes."
+      ],
+      [
+        "Applying for coverage",
+        "The insurer may ask about health and other personal details. Share those only through the application process provided by the office or insurer."
+      ]
     ],
-    searchTopics: [
-      ["Life insurance Miami families", "For families comparing income protection, final expenses, mortgage protection, and long-term planning options."],
-      ["Term life insurance quote help", "For people who want a defined coverage period tied to family, debt, income, or mortgage needs."],
-      ["Final expense insurance Miami", "For customers asking about funeral, burial, and final expense planning conversations."],
-      ["Bilingual life insurance support", "For Miami families who want English or Spanish guidance before any secure application process."]
-    ],
-    faqs: [
-      ["Can Office #3 help with life insurance in Miami?", "Yes. Office #3 can help Miami families start a life insurance quote conversation around family protection, income replacement, mortgage planning, final expenses, or business needs."],
-      ["Is life insurance only for parents?", "No. Life insurance may support spouses, children, business partners, debt planning, final expenses, and other family responsibilities."],
-      ["What life insurance options can I ask about?", "You can ask about term life, permanent life, final expense, and other options that may be available depending on carrier rules, underwriting, age, health, and coverage goals."],
-      ["When should a family review life insurance?", "A review can help after marriage, a child, home purchase, new business, job change, debt change, or any major family milestone."],
-      ["Can life insurance help with mortgage or income planning?", "Life insurance conversations often include income replacement, mortgage protection, final expenses, family responsibilities, and business continuity questions. Exact options depend on underwriting and carrier rules."],
-      ["Can I talk through beneficiaries and coverage goals?", "Yes. You can ask general questions about family responsibilities, beneficiary planning, budget, coverage goals, and timing before moving into a secure application path."],
-      ["Can I start with a general conversation before applying?", "Yes. You can begin with goals, budget, family responsibilities, and callback preferences before any secure application steps."],
-      ["Can Spanish-speaking families request life insurance help?", "Yes. Office #3 can explain life insurance quote conversations in English or Spanish before any secure application or underwriting process begins."],
-      ["Will the website ask for medical records for life insurance?", "No. Do not send medical records, dates of birth, Social Security numbers, payment details, or sensitive underwriting information through the general website form."],
-      ["Do I need to send medical or identification details through this website?", "No. Do not send sensitive underwriting, medical, payment, identification, or account information through a general website form."],
-      ["Is life insurance approval guaranteed?", "No. Availability, pricing, eligibility, and approval depend on carrier underwriting and applicant information."]
+    "searchTopics": [],
+    "faqTitle": "Life insurance questions",
+    "faqs": [
+      [
+        "What is the difference between term and permanent life insurance?",
+        "Term life covers a set period and generally has no cash value. Permanent life is designed for longer-term coverage and may build cash value, depending on the policy. Compare premiums, guarantees and conditions for keeping coverage active, rather than choosing by the label alone."
+      ],
+      [
+        "How much life insurance do I need?",
+        "Start with the income your family would need to replace, debts, housing costs, childcare and future expenses. Subtract savings and existing coverage that would be available to them. Review both the amount and how long the need may last; one income multiple does not fit every family.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "What affects the cost of life insurance?",
+        "Age, health, tobacco use, coverage amount, policy type and term length can affect the premium. The insurer reviews the application before making an offer. A preliminary quote is an estimate, not a promise of approval or the final rate."
+      ],
+      [
+        "Do I need a medical exam to apply for life insurance?",
+        "It depends on the insurer, product and your application. Some options may use health questions or records without an exam, but no-exam does not mean automatic approval. Call to discuss the application process; do not send medical records through this public website.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Is life insurance through my employer enough?",
+        "Check the benefit amount, who receives it and what happens if you change jobs or stop working. Employer coverage may help, but it may not meet every household expense or remain available after employment ends. Include it when reviewing your family’s overall needs."
+      ],
+      [
+        "How do I request a life insurance quote in Miami?",
+        "Call Office #3 at 305-910-8850. We can discuss your budget, who depends on you, the amount you want to consider and the application steps in English or Spanish. Keep an existing policy active while any replacement is being reviewed.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ],
+          [
+            "Review family and beneficiary changes",
+            "/customer-resources/life-event-review/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "renters-insurance",
-    nav: "Renters",
-    title: "Renters Insurance in Miami | Apartment Quote Help | Office #3",
-    description: "Request Miami renters insurance quote help for apartments, belongings, personal liability, lease requirements, move-in dates, and proof of coverage.",
-    h1: "Renters Insurance Quote Help in Miami",
-    intro: "Get local quote help for apartments, belongings, liability questions, lease requirements, move-in timing, and proof of coverage requests.",
-    kind: "service",
-    service: "Renters Insurance",
-    icon: "key",
-    keywords: "renters insurance Miami, apartment insurance Miami, Miami renters insurance quote, renters insurance West Flagler, lease insurance requirement, proof of renters coverage Miami",
-    sections: [
-      ["Renters conversations", "Review options for personal belongings, liability, additional living expense questions, and lease requirements."],
-      ["Lease and proof requests", "Bring landlord wording or a proof-of-coverage request so the office can help you understand what the renters quote conversation should include."],
-      ["Good timing", "Compare before move-in, lease renewal, major purchases, roommate changes, or after a landlord updates insurance requirements."],
-      ["Miami apartment support", "Office #3 helps Miami renters start a simple quote conversation without collecting sensitive details first."]
+    "slug": "renters-insurance",
+    "nav": "Renters",
+    "title": "Renters Insurance in Miami | Free Quote | Office #3",
+    "description": "Get a renters insurance quote in Miami. Review belongings, liability, lease requirements and proof of insurance with bilingual Office #3.",
+    "h1": "Renters Insurance in Miami",
+    "intro": "Moving into an apartment or renewing your lease? Compare coverage for your belongings and personal liability, and check what your landlord requires.",
+    "kind": "service",
+    "service": "Renters Insurance",
+    "icon": "key",
+    "keywords": "renters insurance Miami, apartment insurance Miami, Miami renters insurance quote, renters insurance West Flagler, lease insurance requirement, proof of renters coverage Miami",
+    "sections": [
+      [
+        "Your belongings",
+        "Estimate what it would cost to replace furniture, clothing and electronics. Ask about special limits for jewelry and other valuables."
+      ],
+      [
+        "Liability and living expenses",
+        "Review personal liability and additional living expenses after a covered loss. Check limits, exclusions and the deductible before choosing a policy."
+      ],
+      [
+        "Lease requirements",
+        "Bring the insurance requirements from your lease or property manager, including the requested liability limit and move-in date."
+      ],
+      [
+        "Proof of insurance",
+        "After coverage is issued, ask how to obtain the proof your landlord needs. A quote alone is not evidence of active insurance."
+      ]
     ],
-    searchTopics: [
-      ["Renters insurance Miami apartments", "For renters comparing apartment coverage, belongings, liability, lease requirements, and move-in timing."],
-      ["Lease requirement quote help", "For renters who need proof of coverage or have a landlord requirement before move-in."],
-      ["Apartment belongings coverage questions", "For renters reviewing furniture, electronics, clothing, valuables, deductibles, and liability questions."],
-      ["Bilingual renters insurance support", "For Miami renters who want English or Spanish help before choosing a quote path."]
-    ],
-    faqs: [
-      ["Can renters in Miami request insurance quote help?", "Yes. Renters can request quote help for apartments, personal belongings, liability conversations, and lease requirements."],
-      ["Why might a renter consider renters insurance?", "Renters insurance can help start a conversation about belongings, liability, and additional living expense questions. Exact coverage depends on the policy and carrier."],
-      ["What belongings can I discuss during a renters quote conversation?", "You can ask general questions about furniture, electronics, clothing, valuables, liability, deductibles, and additional living expense topics."],
-      ["Does renters insurance help with landlord proof requirements?", "If a landlord requests proof of renters coverage, Office #3 can help you understand the quote conversation and what may be needed after coverage is approved."],
-      ["When should I request renters quote help?", "Good times include before move-in, lease renewal, major purchases, roommate changes, or after a landlord updates insurance requirements."],
-      ["Can I ask about lease insurance requirements?", "Yes. Bring the lease or landlord requirement so Office #3 can help you understand what coverage conversation may be needed."],
-      ["Can I get proof of renters insurance for a landlord?", "Proof of coverage depends on the policy and carrier process. Office #3 can help you discuss the requirement and next steps after coverage is approved."],
-      ["Can roommates share one renters insurance conversation?", "Roommate situations can be different by policy and carrier. Bring the lease arrangement and ask what should be reviewed before choosing a path."],
-      ["Can renters in high-rise or luxury apartments request help?", "Yes. Miami apartment renters can ask about personal property, liability, lease requirements, building address details, deductibles, and move-in timing."],
-      ["Can Spanish-speaking renters request help?", "Yes. Office #3 offers English and Spanish quote help for Miami renters."],
-      ["Does a renters quote request bind coverage?", "No. Coverage is not bound, changed, or active until written confirmation, carrier approval, and any required payment steps are complete."],
-      ["Does this page collect sensitive underwriting data?", "No. The first website form only asks for basic contact details and general quote notes before the secure intake path."]
+    "searchTopics": [],
+    "faqTitle": "Renters insurance questions",
+    "faqs": [
+      [
+        "What does renters insurance cover?",
+        "Renters insurance can cover your belongings, personal liability and additional living expenses after a covered loss. It does not insure the landlord’s building. Review the covered causes of loss, deductible and limits, especially for jewelry, electronics or other valuable items."
+      ],
+      [
+        "Does my landlord’s insurance cover my belongings?",
+        "Usually no. The landlord’s policy protects the building and the landlord’s interests. Your furniture, clothes and electronics generally need your own coverage. Check your lease for any renters insurance requirement and required liability limit.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "How much renters insurance do I need for an apartment in Miami?",
+        "Add up what it would cost to replace your belongings, then review liability limits and the requirements in your lease. A low premium alone does not tell you whether the policy fits. Compare deductibles, loss-of-use coverage and limits for valuables too."
+      ],
+      [
+        "What is the difference between replacement cost and actual cash value?",
+        "Replacement cost coverage generally pays toward replacing covered belongings with comparable new items, subject to policy conditions and limits. Actual cash value accounts for depreciation. Ask which settlement method your quote includes and what proof or replacement steps are required."
+      ],
+      [
+        "Does renters insurance cover flood damage?",
+        "Standard renters insurance generally excludes flooding from rising water. Renters can ask about separate flood coverage for belongings. Do not assume your landlord’s flood policy protects your personal property.",
+        [
+          [
+            "Ask about flood insurance for belongings",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "What do I need to get a renters insurance quote?",
+        "Have your rental address, move-in date, estimated value of belongings and lease insurance requirements ready. Tell us who needs to be insured; do not assume a roommate is included. Confirm the coverage start date and any proof your landlord needs before move-in.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "about-office-3",
-    nav: "About",
-    title: "About Office #3 | Your Family First Insurance Miami",
-    description: "Meet Your Family First Insurance Office #3, a local West Flagler Miami agency offering bilingual insurance quote help for families and businesses.",
-    h1: "About Your Family First Insurance Office #3",
-    intro: "A local West Flagler Miami office focused on clear, family-first quote help for drivers, homeowners, renters, families, health coverage shoppers, contractors, and businesses.",
-    kind: "about",
-    faqs: [
-      ["What makes Your Family First Insurance Office #3 local?", "Office #3 is listed on West Flagler Street in Miami and serves Miami-Dade families, drivers, renters, homeowners, and business owners."],
-      ["Who is shown in the About Office #3 photo?", "The About section uses the approved Office #3 owner photo for Ariel Busutil, identified by the Your Family First Insurance company website as the owner of Office #3."],
-      ["Does the site use real approved office imagery?", "Yes. The website uses approved Office #3 assets, the official franchise sign, the original franchise logo, the real family and office photo, and the principal agent photo provided for the project."],
-      ["Is Spanish-speaking insurance help available?", "Yes. Office #3 offers bilingual service for customers who prefer English or Spanish quote conversations."],
-      ["How do I leave a Google review for Office #3?", "Use the Office #3 Google review button on this website to open the Google review page for the listing connected to Your Family First Insurance Office #3."],
-      ["What is the Office #3 phone number?", "Call 305-910-8850 for local quote help, bilingual service, and questions about the secure quote path."],
-      ["What does family-owned service mean for Office #3?", "It means the site emphasizes real local conversations, Office #3 imagery, bilingual support, clear next steps, and family-first quote guidance instead of anonymous lead forms."],
-      ["What trust points are highlighted for Office #3?", "The site highlights multiple carrier options, an owner-led local Miami office, bilingual help, quote assistance, and clear insurance disclaimers while avoiding fake ratings or price promises."],
-      ["Can I call instead of using the form?", "Yes. Call 305-910-8850 for direct Office #3 quote help."]
+    "slug": "about-office-3",
+    "nav": "About",
+    "title": "About Office #3 | Your Family First Insurance Miami",
+    "description": "Meet Your Family First Insurance Office #3, a local West Flagler Miami agency offering bilingual insurance quote help for families and businesses.",
+    "h1": "Meet Your Miami Insurance Office",
+    "intro": "Ariel Busutil owns Your Family First Insurance Office #3 on West Flagler. Our office helps with insurance quotes and policy questions in English and Spanish.",
+    "kind": "about",
+    "faqTitle": "Visiting and contacting Office #3",
+    "faqs": [
+      [
+        "Where is Office #3, and how do I get directions?",
+        "Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Use the office’s Google Maps listing for directions. Call 305-910-8850 before visiting to confirm availability.",
+        [
+          [
+            "Directions to our West Flagler office",
+            "https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0"
+          ]
+        ]
+      ],
+      [
+        "Can I get a quote without visiting the office?",
+        "Yes. You can start online or call the office. For business, life, health or coverage not listed in the online form, call so we can discuss what you need. You do not need to visit just to ask for a quote.",
+        [
+          [
+            "Get a free quote",
+            "/get-a-quote/"
+          ],
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Can someone explain my insurance quote in Spanish?",
+        "Yes. Ask for English or Spanish service when you call. We can go over the quoted coverage, deductibles, payment terms and questions you want answered before you decide.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "What should I bring when comparing insurance?",
+        "Bring your current declarations page, renewal notice and any lender, landlord or business-contract requirements. A declarations page summarizes your coverage and deductibles. If you do not have insurance yet, bring your questions and the details of what you want to insure."
+      ],
+      [
+        "Can Office #3 help after I buy a policy?",
+        "Call us about renewals, proof of insurance, billing questions or requested policy changes. For a new claim, report the loss through your insurer’s official claims channel and keep the claim number. The insurer makes the coverage decision.",
+        [
+          [
+            "Existing customer help",
+            "/policyholder-help/"
+          ]
+        ]
+      ]
     ]
   },
   {
-    slug: "get-a-quote",
-    nav: "Get Quote",
-    title: "Get My Free Quote | Your Family First Insurance Office #3",
-    description: "Request bilingual insurance quote help in Miami for auto, homeowners, renters, life, health, business, commercial, or general liability coverage.",
-    h1: "Get My Free Quote",
-    intro: "Tell Office #3 what type of insurance you want to compare and when it is best to call. Do not send sensitive personal documents through this form.",
-    kind: "quote",
-    faqs: [
-      ["Where does the Office #3 quote form go?", "The quote request opens the secure ConsumerRateQuotes intake path provided for Office #3 using account ID 64868."],
-      ["Is ConsumerRateQuotes ID 64868 connected to Office #3?", "Yes. The website routes Get My Free Quote buttons to the Office #3 ConsumerRateQuotes path using account ID 64868, as provided for this project."],
-      ["Does the quote form bind insurance coverage?", "No. Submitting a form does not bind, change, renew, cancel, or reinstate insurance coverage."],
-      ["What information should I enter first?", "Enter your name, phone, email, insurance type, ZIP code, best time to call, and brief general notes so the office knows how to follow up."],
-      ["Can I choose a specific insurance type?", "Yes. Choose auto, homeowners, renters, life, health, general liability, business, commercial, or another quote path so Office #3 can follow up with the right conversation."],
-      ["What should I avoid sending through the website?", "Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment card details, claim files, medical records, passwords, or carrier login credentials through regular forms."],
-      ["Can I call if I do not want to use the form?", "Yes. Call 305-910-8850 if you prefer to speak directly with Office #3."],
-      ["Can the QR code be used for quote help?", "Yes, use the QR code only if it is approved for the Office #3 quote intake path and you are comfortable continuing through that route."]
+    "slug": "get-a-quote",
+    "nav": "Get Quote",
+    "title": "Get My Free Quote | Your Family First Insurance Office #3",
+    "description": "Get a free insurance quote from Your Family First Office #3 in Miami. Start online or call 305-910-8850 for help in English or Spanish.",
+    "h1": "Get My Free Quote",
+    "intro": "Start your quote online with Office #3, or call us for help in English or Spanish.",
+    "kind": "quote",
+    "faqTitle": "Getting your insurance quote",
+    "faqs": [
+      [
+        "How do I start my free insurance quote?",
+        "Select the online quote button to open ConsumerRateQuotes, the quote service used by Office #3. Complete the application there. If your insurance type is not listed or you would rather speak with someone, call 305-910-8850.",
+        [
+          [
+            "Start the online quote",
+            "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868"
+          ],
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Why does the quote open on another website?",
+        "ConsumerRateQuotes handles the online application for Office #3. Our website links directly to that application rather than asking you to enter the same information twice. Before sharing information there, review that service’s privacy terms."
+      ],
+      [
+        "What information should I prepare?",
+        "Have your current coverage summary, the details of what you want to insure and your preferred start date ready. Include any insurance requirements from a lender, landlord or contract. Application questions vary by insurance type; provide personal details only in the secure quote application."
+      ],
+      [
+        "Can I request business, life or health insurance here?",
+        "Call Office #3 for business, life, health or an insurance type not shown in the online form. We can discuss your needs and explain the next application steps in English or Spanish.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "What happens after I request a quote?",
+        "The information you provide is used to review available options. Additional details may be needed before an insurer offers coverage. If you have a deadline or a question about your request, call the office. Timing depends on the application and the insurer’s review.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "When does my insurance coverage start?",
+        "Submitting a quote request does not start coverage. Confirm the policy’s effective date and time in writing, and complete any required approval and payment steps. Keep your current insurance until replacement coverage is confirmed."
+      ]
     ]
   },
   {
-    slug: "privacy-policy",
-    nav: "Privacy",
-    title: "Privacy Policy | Your Family First Insurance Office #3",
-    description: "Read how Your Family First Insurance Office #3 handles basic website contact information, secure quote routing, privacy, and data safety.",
-    h1: "Privacy Policy",
-    intro: "This page explains the basic contact data used by the Office #3 website and what not to send through regular forms.",
-    kind: "privacy"
+    "slug": "privacy-policy",
+    "nav": "Privacy",
+    "title": "Privacy Policy | Your Family First Insurance Office #3",
+    "description": "Read how Your Family First Insurance Office #3 routes quote requests to the separate ConsumerRateQuotes service, limits public-site data collection, and handles analytics and data safety.",
+    "h1": "Privacy Policy",
+    "intro": "Learn how this website uses information and what happens when you follow a quote link.",
+    "kind": "privacy"
   },
   {
-    slug: "terms",
-    nav: "Terms",
-    title: "Terms and Insurance Disclaimer | Your Family First Insurance Office #3",
-    description: "Read the website terms and insurance disclaimer for Office #3, including quote limitations, coverage boundaries, and secure communication guidance.",
-    h1: "Website Terms and Insurance Disclaimer",
-    intro: "These terms explain website use, quote limitations, privacy-safe contact expectations, and insurance coverage boundaries.",
-    kind: "terms"
+    "slug": "terms",
+    "nav": "Terms",
+    "title": "Terms and Insurance Disclaimer | Your Family First Insurance Office #3",
+    "description": "Read the website terms and insurance disclaimer for Office #3, including quote limitations, coverage boundaries, and secure communication guidance.",
+    "h1": "Website Terms and Insurance Disclaimer",
+    "intro": "Please review these terms before using the website or requesting insurance.",
+    "kind": "terms"
   }
+,
+  ...retentionPages
 ];
 
 function escapeHtml(value) {
@@ -608,25 +964,25 @@ function reviewCard(review, index) {
   const excerpt = escapeHtml(reviewExcerpt(review));
   const fullText = review.ratingOnly ? "" : escapeHtml(review.text);
   const responseText = review.ownerResponse?.text ? escapeHtml(review.ownerResponse.text) : "";
-  const responseTime = review.ownerResponse?.relativeTime ? escapeHtml(review.ownerResponse.relativeTime) : "";
+  const responseTime = `Recorded ${escapeHtml(googleReviewSnapshot.asOf)}`;
   return `
     <article class="real-review-card${isActive ? " is-active" : ""}" data-review-card="${index}" aria-hidden="${isActive ? "false" : "true"}" ${isActive ? "" : "inert"}>
       <div class="real-review-head">
         <span class="review-avatar" aria-hidden="true">${escapeHtml(review.authorName.slice(0, 1).toUpperCase())}</span>
         <div>
-          <p class="review-eyebrow">Google review snapshot</p>
+          <p class="review-eyebrow">Google review</p>
           <h3>${safeAuthor}</h3>
-          <p class="real-review-meta">${escapeHtml(review.relativeTime)} on Google</p>
+          <p class="real-review-meta">Recorded ${escapeHtml(googleReviewSnapshot.asOf)}</p>
         </div>
         ${reviewStars(review)}
       </div>
-      <p class="real-review-excerpt">“${excerpt}”</p>
+      <p class="real-review-excerpt">${review.ratingOnly ? excerpt : `“${excerpt}”`}</p>
       ${fullText ? `
         <details class="review-details">
-          <summary>Read full Google review snapshot</summary>
+          <summary>Read full review</summary>
           <p>${fullText}</p>
         </details>
-      ` : `<p class="review-rating-only">Rating-only Google review; no written comment was shown in the snapshot.</p>`}
+      ` : `<p class="review-rating-only">Rating only; no written comment.</p>`}
       ${responseText ? `
         <details class="review-details office-response">
           <summary>Office response on Google <span>${responseTime}</span></summary>
@@ -778,7 +1134,7 @@ function trustTicker() {
 }
 
 function navHtml(currentSlug) {
-  const mainNavSlugs = ["", "auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance", "about-office-3"];
+  const mainNavSlugs = ["", "auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance", "policyholder-help", "about-office-3"];
   const navLabels = {
     "": "Home",
     "auto-insurance": "Auto",
@@ -786,6 +1142,7 @@ function navHtml(currentSlug) {
     "commercial-insurance": "Commercial",
     "life-insurance": "Life",
     "renters-insurance": "Renters",
+    "policyholder-help": "Customers",
     "about-office-3": "About"
   };
   const links = pages
@@ -820,7 +1177,10 @@ function navHtml(currentSlug) {
 }
 
 function footerHtml() {
-  const links = pages.map((page) => `<li><a href="${page.slug ? `/${page.slug}/` : "/"}">${escapeHtml(page.nav)}</a></li>`).join("");
+  const links = pages
+    .filter((page) => page.kind !== "resource")
+    .map((page) => `<li><a href="${page.slug ? `/${page.slug}/` : "/"}">${escapeHtml(page.nav)}</a></li>`)
+    .join("");
   return `
     <footer class="site-footer">
       <div class="footer-shell">
@@ -839,7 +1199,7 @@ function footerHtml() {
         </div>
         <div>
           <h2>Local Office</h2>
-          <p>Office #3 serving West Flagler Miami, Miami-Dade families, drivers, homeowners, renters, health coverage shoppers, contractors, and local businesses.</p>
+          <p>Visit our West Flagler office for insurance help in Miami, Sweetwater, Doral, Hialeah and Kendall. We speak English and Spanish.</p>
           <p><a href="${googleMapsUrl}" target="_blank" rel="noopener external">View the verified office listing on Google Maps</a></p>
           <p><a href="https://licenseesearch.fldfs.com/" target="_blank" rel="noopener external">Verify insurance licenses with Florida DFS</a></p>
           <p class="footer-note">Coverage options, availability, pricing, and eligibility vary by carrier, underwriting, location, and applicant information. Savings are not guaranteed.</p>
@@ -866,31 +1226,18 @@ function organizationSchema() {
     telephone: "+13059108850",
     image: `${siteUrl}${familyPhotoSrc}`,
     logo: `${siteUrl}${logoSrc}`,
-    sameAs: [brandUrl, facebookUrl],
+    sameAs: [googleMapsUrl],
     hasMap: googleMapsUrl,
     brand: {
       "@type": "Organization",
       name: brandName,
-      url: brandUrl
+      url: brandUrl,
+      sameAs: [facebookUrl]
     },
     address: { "@type": "PostalAddress", ...address },
     areaServed: serviceAreas,
     knowsAbout: insuranceTypes,
     availableLanguage: ["English", "Spanish"],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "18:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "15:00"
-      }
-    ],
     contactPoint: [{
       "@type": "ContactPoint",
       telephone: "+13059108850",
@@ -955,7 +1302,7 @@ function serviceItemListSchema() {
     "@id": `${siteUrl}/#insurance-services`,
     name: "Insurance services and quote paths",
     itemListElement: [
-      ...serviceCards.map((card) => [card.title, `${siteUrl}${card.href}`]),
+      ...homeServiceCards().map((card) => [card.title, card.href.startsWith("tel:") ? `${siteUrl}/#${card.id}` : `${siteUrl}${card.href}`]),
       ...specialtyCoverageLinks.map(([id, label]) => [label, `${siteUrl}/#${id}`])
     ].map(([name, url], index) => ({
       "@type": "ListItem",
@@ -997,10 +1344,13 @@ function faqSchema(page) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: page.faqs.map(([question, answer]) => ({
+    "@id": `${pageUrl(page.slug)}#faqs`,
+    inLanguage: page.locale || "en-US",
+    mainEntity: page.faqs.map((entry, index) => ({
       "@type": "Question",
-      name: question,
-      acceptedAnswer: { "@type": "Answer", text: answer }
+      "@id": `${pageUrl(page.slug)}#faq-${index + 1}`,
+      name: entry[0],
+      acceptedAnswer: { "@type": "Answer", text: faqAnswerHtml(entry) }
     }))
   };
 }
@@ -1013,9 +1363,13 @@ function googleTagManagerHead() {
   return `
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+new Date().getTime(),event:'gtm.js'});var loaded=false;
+function load(){if(loaded)return;loaded=true;var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}
+function afterPaint(){if(w.requestAnimationFrame){w.requestAnimationFrame(function(){w.requestAnimationFrame(load);});}else{load();}}
+if(d.readyState==='loading'){d.addEventListener('DOMContentLoaded',afterPaint,{once:true});}else{afterPaint();}
+w.addEventListener('pointerdown',load,{once:true,passive:true});w.addEventListener('keydown',load,{once:true});
 })(window,document,'script','dataLayer','${googleTagManagerId}');</script>
 <!-- End Google Tag Manager -->`;
 }
@@ -1031,7 +1385,7 @@ function headHtml(page) {
   const schemas = [organizationSchema(), websiteSchema(), webPageSchema(page), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
   const firstMotionSlide = ["home", "service"].includes(page.kind) ? orderedInsuranceSlides(page)[0] : null;
   const preloadPhoto = firstMotionSlide
-    ? `<link rel="preload" href="${firstMotionSlide.poster}" as="image">`
+    ? `<link rel="preload" href="${carouselImageSrc(firstMotionSlide)}" as="image" fetchpriority="high">`
     : page.kind === "home"
       ? `<link rel="preload" href="${familyWebpSrc}" as="image" type="image/webp">`
       : "";
@@ -1077,7 +1431,8 @@ function headHtml(page) {
   `;
 }
 
-function ctaRow(extra = "") {
+function ctaRow(extra = "", page = null) {
+  if (["commercial-insurance", "life-insurance"].includes(page?.slug)) return `<div class="cta-row ${extra}"><a class="button warm" href="${phoneHref}">Call for a Free Quote ${iconSvg("arrow")}</a><a class="button light" href="#coverage-details">Compare Coverage</a></div>`;
   return `
     <div class="cta-row ${extra}">
       <a class="button warm" href="${quoteDestination}" rel="noopener">Get My Free Quote ${iconSvg("arrow")}</a>
@@ -1096,7 +1451,9 @@ function orderedInsuranceSlides(page) {
 }
 
 function carouselImageSrc(slide) {
-  return slide.type === "image" ? slide.src : slide.poster;
+  const source = slide.type === "image" ? slide.src : slide.poster;
+  const optimized = source.replace(/\.(png|jpe?g)$/i, ".webp");
+  return fs.existsSync(path.join(root, "public", optimized)) ? optimized : source;
 }
 
 function carouselVideoMarkup(slide) {
@@ -1104,7 +1461,7 @@ function carouselVideoMarkup(slide) {
   const primaryWebm = slide.src?.endsWith(".webm") ? slide.src : "";
   const primaryMp4 = slide.src?.endsWith(".mp4") ? slide.src : "";
   const mp4 = slide.fallbackMp4 || primaryMp4;
-  return `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none" poster="${slide.poster}"${primaryWebm ? ` data-src="${primaryWebm}"` : ""}${mp4 ? ` data-mp4="${mp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>`;
+  return `<video class="motion-video" aria-hidden="true" muted loop playsinline preload="none"${primaryWebm ? ` data-src="${primaryWebm}"` : ""}${mp4 ? ` data-mp4="${mp4}"` : ""} style="object-position: ${escapeHtml(slide.objectPosition)}"></video>`;
 }
 
 function carouselMotionAssetMarkup(slide) {
@@ -1125,10 +1482,13 @@ function insuranceMotionCarousel(page) {
   const dots = slides.map((slide, index) => `
     <button class="carousel-dot" type="button" aria-label="Show ${escapeHtml(slide.category)} slide" aria-current="${index === 0 ? "true" : "false"}" data-slide-id="${slide.id}" data-carousel-dot><span></span></button>
   `).join("");
-  const slideMarkup = slides.map((slide, index) => `
+  const slideMarkup = slides.map((slide, index) => {
+    const href = isFocused ? (["commercial-insurance", "life-insurance"].includes(page.slug) ? phoneHref : quoteDestination) : slide.href;
+    const cta = isFocused ? (href === phoneHref ? "Call for a Free Quote" : "Get My Free Quote") : (slide.id === "home-bilingual" ? "Visit Our Office" : "View Coverage");
+    return `
     <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
-      <a class="motion-media-link" href="${slide.href}" aria-label="${escapeHtml(slide.cta)}">
-        <img class="motion-poster" src="${carouselImageSrc(slide)}" alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
+      <a class="motion-media-link" href="${href}" aria-label="${escapeHtml(cta)}">
+        <img class="motion-poster" ${index === 0 ? `src="${carouselImageSrc(slide)}"` : `src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-poster-src="${carouselImageSrc(slide)}"`} alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
         ${carouselVideoMarkup(slide)}
         ${carouselMotionAssetMarkup(slide)}
         <span class="motion-scrim" aria-hidden="true"></span>
@@ -1138,23 +1498,15 @@ function insuranceMotionCarousel(page) {
         <h2>${escapeHtml(slide.headline)}</h2>
         <p>${escapeHtml(slide.subheadline)}</p>
         <div class="motion-actions">
-          <a class="button warm magnetic-button" href="${slide.href}">${escapeHtml(slide.cta)} ${iconSvg("arrow")}</a>
-          <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
+          <a class="button warm magnetic-button" href="${href}">${escapeHtml(cta)} ${iconSvg("arrow")}</a>
         </div>
       </div>
     </article>
-  `).join("");
+  `; }).join("");
 
   return `
     <div class="motion-carousel ${isFocused ? "focused-carousel" : "story-carousel"} liquid-tilt" data-insurance-carousel data-mode="${isFocused ? "focused" : "broad"}" data-start-slide="${firstSlide.id}" data-animate data-in-view="true" aria-label="${isFocused ? `${escapeHtml(page.service)} media carousel` : "Interactive insurance coverage carousel"}">
-      <div class="carousel-topline">
-        <div>
-          <strong>${isFocused ? `${escapeHtml(page.service)} quote focus` : "Interactive coverage studio"}</strong>
-          <span>${isFocused ? "Swipe through focused quote moments." : "Swipe, click, or use arrows to compare local quote paths."}</span>
-        </div>
-        <a href="${phoneHref}" class="carousel-phone">${iconSvg("phone")} ${phoneDisplay}</a>
-      </div>
-      <div class="carousel-chips" role="tablist" aria-label="${isFocused ? `${escapeHtml(page.service)} quote moments` : "Insurance categories"}">${chipButtons}</div>
+      <div class="carousel-chips" role="tablist" aria-label="${isFocused ? `${escapeHtml(page.service)} topics` : "Insurance categories"}">${chipButtons}</div>
       <div class="carousel-stage">
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous insurance slide" data-carousel-prev>${iconSvg("arrow")}</button>
         <div class="carousel-track" tabindex="0" aria-live="off">${slideMarkup}</div>
@@ -1163,8 +1515,8 @@ function insuranceMotionCarousel(page) {
       <div class="carousel-controls">
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
         <div class="carousel-progress" aria-hidden="true"><span></span></div>
+        <button type="button" class="carousel-motion-toggle" data-carousel-motion aria-pressed="false">Pause motion</button>
       </div>
-      <p class="carousel-footnote">${isFocused ? `${escapeHtml(page.service)} guidance • Local Miami Office • Clear quote next step` : "Multiple carrier options • Local Miami Office • Bilingual quote help • No price promises"}</p>
     </div>
   `;
 }
@@ -1173,37 +1525,24 @@ function heroHtml(page) {
   const isHome = page.kind === "home";
   const isService = page.kind === "service";
   const hasMotionCarousel = isHome || isService;
+  const hasVisual = hasMotionCarousel;
   return `
-    <section class="hero ${isHome ? "home-hero" : "inner-hero"}">
+    <section class="hero ${isHome ? "home-hero" : "inner-hero"} ${hasVisual ? "" : "text-hero"}">
       <div class="hero-content">
         ${isHome ? "" : `<p class="kicker">${escapeHtml(page.nav)}</p>`}
         <h1>${escapeHtml(page.h1)}</h1>
         <p class="hero-lead">${escapeHtml(page.intro)}</p>
-        ${ctaRow()}
-        <p class="trust-line">Local Office #3 <span>/</span> Personalized Quote Help <span>/</span> Miami Families</p>
+        ${["home", "service"].includes(page.kind) ? ctaRow("", page) : ""}
+        ${hasVisual ? `<p class="trust-line">11200 W Flagler St <span>·</span> Suite 108–109 <span>·</span> Miami</p>` : ""}
       </div>
-      <div class="${hasMotionCarousel ? "motion-showcase" : "photo-showcase liquid-tilt"}">
+      ${hasVisual ? `<div class="${hasMotionCarousel ? "motion-showcase" : "photo-showcase liquid-tilt"}">
         ${
           hasMotionCarousel
             ? insuranceMotionCarousel(page)
             : `${familyPicture("hero-photo", isHome ? "eager" : "lazy", isHome ? "high" : "auto")}
-               <div class="photo-caption"><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></div>`
+               <div class="photo-caption"><strong>Our family at Office #3</strong><span>Miami, Florida</span></div>`
         }
-      </div>
-    </section>
-  `;
-}
-
-function trustStrip() {
-  const items = [
-    ["Local Office #3", "West Flagler Miami"],
-    ["Privacy-Safe Start", "Basic contact only"],
-    ["Auto / Homeowners / Life", "Family coverage help"],
-    ["Business Support", "Commercial conversations"]
-  ];
-  return `
-    <section class="trust-strip" aria-label="Office trust points" data-reveal>
-      ${items.map(([title, copy]) => `<article><span></span><strong>${title}</strong><small>${copy}</small></article>`).join("")}
+      </div>` : ""}
     </section>
   `;
 }
@@ -1213,21 +1552,27 @@ function aboutPreview() {
     <section class="section about-panel" data-reveal>
       <div class="about-copy">
         <p class="kicker">About Office #3</p>
-        <h2>Your Local Insurance Resource in Miami</h2>
-        <p>${businessName} is a West Flagler Miami office helping families and businesses compare coverage options without pressure or confusing promises.</p>
-        <p>The site uses real Office #3 imagery and the official franchise sign so the experience feels local, specific, and contract-safe.</p>
-        ${ctaRow("compact")}
+        <h2>Visit Our West Flagler Office</h2>
+        <p>${businessName} helps you compare insurance and understand what each option covers. Bring your questions, current policy or renewal notice.</p>
+        <p>Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability.</p>
+        <p id="seguros-en-espanol" lang="es">Hablamos español. <a href="/es/">Ver seguros y cotizaciones en español</a>.</p>
+        <div class="cta-row compact"><a class="button warm" href="${googleMapsUrl}" target="_blank" rel="noopener">Get Directions ${iconSvg("arrow")}</a><a class="button light" href="${phoneHref}">Call ${phoneDisplay}</a></div>
       </div>
       <div class="about-media">
         ${principalPicture("about-photo principal-photo")}
         <div class="photo-caption"><strong>Ariel Busutil, Office #3 Owner</strong><span>Miami, Florida</span></div>
         <div class="office-proof-strip">
           ${familyPicture("office-proof-photo")}
-          <p><strong>Real Office #3 family and office photo</strong><span>Miami, Florida</span></p>
+          <p><strong>Our family at Office #3</strong><span>Miami, Florida</span></p>
         </div>
       </div>
     </section>
   `;
+}
+
+function homeServiceCards() {
+  const order = ["auto-insurance", "home-insurance", "renters-insurance", "commercial-insurance", "life-insurance", "general-liability-insurance", "health-insurance"];
+  return serviceCards.filter((card) => order.includes(card.id)).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 }
 
 function coverageCards() {
@@ -1235,87 +1580,21 @@ function coverageCards() {
     <section class="section coverage-section" aria-labelledby="coverage-title" data-reveal>
       <div class="section-heading center">
         <p class="kicker">Our services</p>
-        <h2 id="coverage-title">Comprehensive Coverage Conversations for Everyday Life</h2>
-        <p>Start with the coverage type you need. Office #3 helps compare options in plain language and follows up locally.</p>
+        <h2 id="coverage-title">What Would You Like to Insure?</h2>
+        <p>Choose a type of insurance to see what to consider and what to have ready for a quote.</p>
       </div>
       <div class="coverage-grid">
-        ${serviceCards.map((card) => `
-          <article class="coverage-card" id="${card.id}" style="--card-accent: ${card.accent || "rgba(154, 220, 247, 0.26)"}" data-reveal>
-            <div class="card-top"><span class="soft-icon">${iconSvg(card.icon)}</span><a href="${card.href}">${escapeHtml(card.short)} ${iconSvg("arrow")}</a></div>
-            <h3>${escapeHtml(card.title)}</h3>
-            <p>${escapeHtml(card.copy)}</p>
-            <div class="tag-row">${card.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
-          </article>
+        ${homeServiceCards().map((card) => `
+          <a class="coverage-card" id="${card.id}" href="${card.href}" style="--card-accent: ${card.accent || "rgba(154, 220, 247, 0.26)"}" data-reveal>
+            <span class="soft-icon">${iconSvg(card.icon)}</span>
+            <div>${card.id === "commercial-insurance" ? '<span id="business-insurance"></span>' : ""}<h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.copy)}</p></div>
+            ${iconSvg("arrow")}
+          </a>
         `).join("")}
       </div>
+      <p class="specialty-intro">Other insurance: call us to discuss these options.</p>
       <div class="coverage-link-rail" aria-label="Additional insurance quote paths">
         ${specialtyCoverageLinks.map(([id, label, href]) => `<a id="${id}" href="${href}">${escapeHtml(label)}</a>`).join("")}
-      </div>
-    </section>
-  `;
-}
-
-function processSection() {
-  const steps = [
-    ["1", "Contact us", "Call, text, or send a basic quote request with only safe contact details."],
-    ["2", "We shape the quote path", "Office #3 confirms the coverage conversation and what information may be needed next."],
-    ["3", "Review your options", "Compare available options in plain language before making a decision."],
-    ["4", "Get covered", "Coverage is only active after written confirmation and required carrier steps."]
-  ];
-  return `
-    <section class="section process-section" aria-labelledby="process-title" data-reveal>
-      <div class="section-heading">
-        <p class="kicker">How it works</p>
-        <h2 id="process-title">Getting Insured Is Easy</h2>
-        <p>A simple first conversation helps Office #3 point you toward the right quote path.</p>
-      </div>
-      <div class="process-grid">
-        ${steps.map(([number, title, copy]) => `<article data-reveal><span>${number}</span><h3>${title}</h3><p>${copy}</p></article>`).join("")}
-      </div>
-    </section>
-  `;
-}
-
-function whyChooseSection() {
-  const points = [
-    ["insurance-carriers", "Multiple Carrier Options", "Compare available carrier options in one local conversation. Availability, eligibility, and pricing still vary by carrier and applicant information."],
-    ["family-owned", "Owner-Led Local Office", "Office #3 is led locally by owner Ariel Busutil, with a focus on clear guidance and real conversations."],
-    ["local-miami-office", "Local Miami Office", "Office #3 is listed on West Flagler Street and serves Miami-Dade families, drivers, homeowners, renters, and businesses."],
-    ["bilingual-service", "Bilingual Service", "English and Spanish quote help for Miami families who want the process explained plainly."],
-    ["free-quotes", "Free Quotes", "Start with a no-pressure quote request and basic contact details before any secure application process."],
-    ["fast-friendly-service", "Fast, Friendly Service", "A simple, responsive path from first contact to coverage conversations with a local office team."]
-  ];
-  return `
-    <section class="section why-panel" data-reveal>
-      <div class="why-copy">
-        <p class="kicker">Why choose us</p>
-        <h2>Insurance Help That Feels Human, Local, and Clear</h2>
-        <p>Office #3 keeps the online experience simple: choose the coverage conversation, share safe basics, and talk with a local office before moving into any secure application process.</p>
-      </div>
-      <div class="why-grid">
-        ${points.map(([id, title, copy]) => `<article id="${id}"><h3>${title}</h3><p>${copy}</p></article>`).join("")}
-      </div>
-    </section>
-  `;
-}
-
-function spanishTrustSection() {
-  const points = [
-    ["Cotizaciones en español", "Seguro de auto en Miami, homeowners, renters, vida, health insurance, commercial insurance y general liability explicado claro."],
-    ["Oficina local en West Flagler", "Puedes llamar, mandar texto o visitar Office #3 en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
-    ["Sin presión", "Empezamos con una conversación sencilla y datos básicos antes de cualquier solicitud segura o información sensible."]
-  ];
-  return `
-    <section class="section spanish-panel" id="seguros-en-espanol" data-reveal>
-      <div class="spanish-copy">
-        <p class="kicker">Se habla español</p>
-        <h2>Seguros en Miami Explicados Claro, en Español</h2>
-        <p>Hablamos español. Te ayudamos con cotizaciones de seguro en Miami sin vueltas, sin presión, y con una explicación clara para que sepas cuál es el próximo paso.</p>
-        <p>Si prefieres hablar en español, Office #3 puede ayudarte a revisar preguntas sobre seguro de auto, seguro de casa, renters insurance, seguro de vida, health insurance, business insurance y general liability.</p>
-        <a class="button light magnetic-button" href="${phoneHref}">Llamar ${phoneDisplay}</a>
-      </div>
-      <div class="language-grid">
-        ${points.map(([title, copy]) => `<article><span>${iconSvg("map")}</span><h3>${title}</h3><p>${copy}</p></article>`).join("")}
       </div>
     </section>
   `;
@@ -1326,21 +1605,15 @@ function reviewTrustSection() {
     <section class="section review-panel" id="google-reviews" data-reveal>
       <div class="review-copy">
         <p class="kicker">Google reviews for Office #3</p>
-        <h2>Real Google Feedback From the West Flagler Office</h2>
-        <p>This static snapshot shows ${googleReviewSnapshot.reviewCount} Google reviews visible in the signed-in ${escapeHtml(googleReviewSnapshot.sourceName)} view for the Office #3 listing as of ${escapeHtml(googleReviewSnapshot.asOf)}.</p>
-        <p>Use the QR code or button to open Google, read the current public listing, or leave feedback after a quote, call, policy question, renewal, or office visit.</p>
-        <div class="review-proof-row" aria-label="Google review snapshot details">
-          <span><strong>${googleReviewSnapshot.reviewCount}</strong> reviews in snapshot</span>
-          <span><strong>Google</strong> source linked</span>
-          <span><strong>Miami</strong> local office</span>
-        </div>
+        <h2>Reviews of Our Miami Office</h2>
+        <p>Read what people have shared about Office #3. Visit Google for the latest reviews.</p>
         <div class="review-actions">
           <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
           <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
         </div>
-        <p class="review-disclaimer">Customer reviews reflect individual experiences posted on Google. Coverage options, availability, pricing, eligibility, and savings vary by carrier, underwriting, location, and applicant information.</p>
+        <p class="review-disclaimer">Reviews describe individual experiences.</p>
       </div>
-      <div class="google-review-studio" data-google-review-carousel aria-label="Static Google review snapshot carousel">
+      <div class="google-review-studio" data-google-review-carousel aria-label="Google reviews of Office #3">
         <a class="review-qr-card magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">
           <img src="${googleReviewQrSrc}" alt="QR code linking to the Your Family First Insurance Office #3 Google review page" width="132" height="132" loading="lazy" decoding="async">
           <span>
@@ -1348,13 +1621,6 @@ function reviewTrustSection() {
             <em>Opens the live Google review page.</em>
           </span>
         </a>
-        <div class="review-source-card liquid-tilt">
-          <span class="review-icon">${iconSvg("shield")}</span>
-          <div>
-            <strong>Source-connected snapshot</strong>
-            <p>${escapeHtml(googleReviewSnapshot.listingName)} at ${escapeHtml(googleReviewSnapshot.location)}. New reviews may appear on Google after this static site snapshot.</p>
-          </div>
-        </div>
         <div class="google-review-carousel real-review-carousel" aria-live="polite">
           <div class="google-review-track real-review-track">
             ${googleReviews.map((review, index) => reviewCard(review, index)).join("")}
@@ -1367,7 +1633,7 @@ function reviewTrustSection() {
             <button type="button" data-review-next aria-label="Next Google review">${iconSvg("arrow")}</button>
           </div>
         </div>
-        <div class="real-review-rail" role="tablist" aria-label="All Google review snapshot entries">
+        <div class="real-review-rail" role="tablist" aria-label="All Google review entries">
           ${googleReviews.map((review, index) => reviewMiniCard(review, index)).join("")}
         </div>
       </div>
@@ -1375,61 +1641,14 @@ function reviewTrustSection() {
   `;
 }
 
-function franchiseBadgeSection() {
+function quoteForm(formId = "quote-handoff") {
   return `
-    <section class="section franchise-panel" aria-labelledby="franchise-title" data-reveal>
-      <div class="franchise-copy">
-        <p class="kicker">Official franchise identification</p>
-        <h2 id="franchise-title">Official Your Family First Insurance Office #3 Branding</h2>
-        <p>Official Your Family First Insurance Office #3 branding shown for franchise identification.</p>
-      </div>
-      <div class="franchise-card franchise-logo-stack">
-        <div class="franchise-logo-main">${logoImg("lazy")}</div>
-        <div class="franchise-logo-original">${originalFranchiseLogoImg()}</div>
-      </div>
+    <section id="${formId}" class="quote-form quote-handoff-card" data-quote-handoff aria-labelledby="quote-handoff-title">
+      <h3 id="quote-handoff-title" class="wide">Online Quote</h3>
+      <p class="wide">Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.</p>
+      <a class="button warm wide" href="${quoteDestination}" rel="noopener" data-secure-quote-handoff>Get My Free Quote ${iconSvg("arrow")}</a>
+      <p class="form-disclaimer wide">Requesting a quote does not start coverage. <a href="/privacy-policy/">Privacy policy</a>.</p>
     </section>
-  `;
-}
-
-function quoteForm(formId = "quote-form") {
-  return `
-    <form id="${formId}" class="quote-form" data-quote-form data-quote-destination="${quoteDestination}" action="${quoteDestination}" method="post" novalidate>
-      <label class="honeypot" aria-hidden="true">Company website<input name="companyWebsite" tabindex="-1" autocomplete="off"></label>
-      <label>Name<input required name="name" autocomplete="name" minlength="2" maxlength="80"></label>
-      <label>Phone<input required name="phone" autocomplete="tel" inputmode="tel" minlength="7" maxlength="24"></label>
-      <label>Email<input required name="email" type="email" autocomplete="email" maxlength="120"></label>
-      <label>Insurance type
-        <select required name="insuranceType">
-          <option value="">Select one</option>
-          <option>Auto</option>
-          <option>Homeowners</option>
-          <option>Renters</option>
-          <option>Life</option>
-          <option>Health</option>
-          <option>Business</option>
-          <option>General Liability</option>
-          <option>Commercial</option>
-          <option>Workers' Compensation</option>
-          <option>Flood</option>
-          <option>Motorcycle</option>
-          <option>Boat / RV</option>
-        </select>
-      </label>
-      <label>ZIP code<input required name="zip" inputmode="numeric" pattern="[0-9]{5}" autocomplete="postal-code" maxlength="5"></label>
-      <label>Best time to call
-        <select required name="bestTime">
-          <option value="">Select one</option>
-          <option>Morning</option>
-          <option>Afternoon</option>
-          <option>Evening</option>
-          <option>No preference</option>
-        </select>
-      </label>
-      <label class="wide">Notes<textarea name="notes" rows="4" maxlength="600" placeholder="Briefly describe what you want to compare. Do not include SSNs, DOBs, driver license numbers, VINs, payment details, or sensitive documents."></textarea></label>
-      <p class="form-disclaimer wide">This first-step form is for basic contact only. Coverage is not bound by submitting it, and savings are not guaranteed.</p>
-      <button class="button warm wide" type="submit">Continue to Secure Quote Form ${iconSvg("arrow")}</button>
-      <p class="form-status wide" role="status" aria-live="polite"></p>
-    </form>
   `;
 }
 
@@ -1437,32 +1656,19 @@ function quoteSection(title = "Get My Free Quote") {
   return `
     <section class="section quote-panel" id="quote" data-reveal>
       <div class="quote-copy">
-        <p class="kicker">Get quote help</p>
+        <p class="kicker">Free insurance quotes</p>
         <h2>${escapeHtml(title)}</h2>
-        <p>Share only basic contact details here. When the required fields are complete, the form opens the secure ConsumerRateQuotes intake path for the next step.</p>
+        <p>Request auto, home, renters or condo insurance online. For business, life, health or another insurance type, call or text us.</p>
         <div class="callout">
           ${iconSvg("phone")}
           <p><strong>Prefer to talk now?</strong><br><a href="${phoneHref}">Call ${phoneDisplay}</a> or <a href="${smsHref}">text the office</a>.</p>
         </div>
         <div class="qr-card">
-          <img src="${qrWebpSrc}" alt="Quote Yourself QR code for Your Family First Insurance Office #3" width="400" height="386" loading="lazy" decoding="async">
-          <p><strong>Quote Yourself QR</strong><br>Scan this QR code for a fast and easy quote!</p>
+          <img src="${qrWebpSrc}" alt="QR code to request a quote from Office #3" width="400" height="386" loading="lazy" decoding="async">
+          <p><strong>Quote from your phone</strong><br>Scan to open the online quote form.</p>
         </div>
       </div>
       ${quoteForm()}
-    </section>
-  `;
-}
-
-function finalCta() {
-  return `
-    <section class="final-cta" data-reveal>
-      <div>
-        <p class="kicker">Ready when you are</p>
-        <h2>Start With a Local Office #3 Conversation</h2>
-        <p>No fake urgency, no price promises, and no sensitive details in the first step. Just a clean path to quote help.</p>
-        ${ctaRow("centered")}
-      </div>
     </section>
   `;
 }
@@ -1491,7 +1697,7 @@ const officialResourcesBySlug = {
     ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
   ],
   "life-insurance": [
-    ["Florida DFS insurance consumer library", "https://www.myfloridacfo.com/division/consumers/understanding-insurance"],
+    ["Florida DFS life insurance guide", "https://www.myfloridacfo.com/division/consumers/understanding-insurance/lifeinsuranceoverview"],
     ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
   ],
   "about-office-3": [
@@ -1507,9 +1713,9 @@ function officialResourcesPanel(page) {
   return `
     <section class="section source-panel" aria-labelledby="source-title-${page.slug || "home"}" data-reveal>
       <div class="notice-card">
-        <p class="kicker">Authoritative references</p>
-        <h2 id="source-title-${page.slug || "home"}">Official Sources for Fact-Checking</h2>
-        <p>Reviewed ${contentReviewedDate}. These official resources support the Florida insurance and Office #3 facts on this page. Policy terms and laws can change; your policy and current carrier rules control.</p>
+        <p class="kicker">Insurance resources</p>
+        <h2 id="source-title-${page.slug || "home"}">Florida Insurance Resources</h2>
+        <p>Read Florida consumer guides or look up an insurance license. For questions about your own coverage, check your policy or call us.</p>
         <div class="link-pills">
           ${resources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener external">${escapeHtml(label)}</a>`).join("")}
         </div>
@@ -1520,74 +1726,42 @@ function officialResourcesPanel(page) {
 
 function homeBody() {
   return `
-    ${trustStrip()}
-    ${aboutPreview()}
-    ${spanishTrustSection()}
     ${coverageCards()}
-    ${processSection()}
-    ${whyChooseSection()}
+    ${aboutPreview()}
     ${reviewTrustSection()}
-    ${franchiseBadgeSection()}
     ${quoteSection("Get My Free Quote")}
-    ${officialResourcesPanel(pages[0])}
     ${faqHtml(pages[0])}
-    ${finalCta()}
   `;
-}
-
-function serviceAudienceLine(page) {
-  const lines = {
-    "auto-insurance": "Office #3 is listed on West Flagler Street in Miami and helps Miami drivers review auto insurance questions for vehicles, drivers, deductibles, lender needs, and renewals.",
-    "home-insurance": "Office #3 is listed on West Flagler Street in Miami and helps Miami-Dade homeowners review property, roof, lender, wind, flood, and renewal questions.",
-    "commercial-insurance": "Office #3 is listed on West Flagler Street in Miami and helps local business owners review commercial insurance, liability, certificates, work vehicles, and team-related coverage questions.",
-    "life-insurance": "Office #3 is listed on West Flagler Street in Miami and helps families review life insurance goals, income needs, mortgage planning, final expenses, and privacy-safe next steps.",
-    "renters-insurance": "Office #3 is listed on West Flagler Street in Miami and helps renters review apartment belongings, liability questions, lease requirements, proof requests, and move-in timing."
-  };
-  return lines[page.slug] || "Office #3 is listed on West Flagler Street in Miami and helps customers review coverage questions in plain language.";
 }
 
 function serviceBody(page) {
+  const quoteInstructions = {
+    "auto-insurance": "Select Auto in the secure form. Have your current policy, driver and vehicle information ready so you can compare the same limits and deductibles.",
+    "home-insurance": "Select Homeowners or Condo Owners in the secure form. Have the property address, current policy and any roof information available.",
+    "renters-insurance": "Select Renters in the secure form. Have your rental address and any insurance requirements from your lease available.",
+    "commercial-insurance": "Call or text us about your business, employees, vehicles and any insurance requirements from a client or landlord.",
+    "life-insurance": "Call or text us to discuss who depends on your income, the amount of coverage you need and how long you need it."
+  };
   return `
-    <section class="section service-detail" data-reveal>
+    <section class="section service-detail" id="coverage-details" data-reveal>
       <div class="section-heading">
-        <p class="kicker">Miami coverage conversation</p>
-        <h2>${escapeHtml(page.service)} Guidance Without Pressure</h2>
-        <p>${escapeHtml(serviceAudienceLine(page))}</p>
+        <p class="kicker">Coverage details</p>
+        <h2>What to Review Before You Choose</h2>
       </div>
       <div class="detail-grid">
-        ${page.sections.map(([title, copy]) => `<article class="detail-card" data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
-    ${serviceSearchPanel(page)}
     <section class="section service-cta" data-reveal>
       <div>
-        <p class="kicker">Ready when you are</p>
-        <h2>Request ${escapeHtml(page.service)} Quote Help</h2>
-        <p>Coverage availability varies by carrier, underwriting, location, and applicant information. Office #3 can help compare options without price or approval promises.</p>
+        <p class="kicker">Free quotes</p>
+        <h2>Request a Free Quote</h2>
+        <p>${escapeHtml(quoteInstructions[page.slug])}</p>
       </div>
-      <a class="button light" href="${quoteDestination}" rel="noopener">Start My Quote Request ${iconSvg("arrow")}</a>
+      <a class="button light" href="${["commercial-insurance", "life-insurance"].includes(page.slug) ? phoneHref : quoteDestination}" rel="noopener">${["commercial-insurance", "life-insurance"].includes(page.slug) ? `Call ${phoneDisplay}` : "Start My Quote Request"} ${iconSvg("arrow")}</a>
     </section>
-    ${officialResourcesPanel(page)}
     ${faqHtml(page)}
-  `;
-}
-
-function serviceSearchPanel(page) {
-  if (!page.searchTopics) return "";
-  return `
-    <section class="section search-intent-panel" data-reveal>
-      <div class="section-heading">
-        <p class="kicker">Local search guide</p>
-        <h2>Helpful ${escapeHtml(page.service)} Topics for Miami Customers</h2>
-        <p>These are the real questions customers often bring to Office #3 when comparing insurance options in West Flagler, Miami, Kendall, Hialeah, Doral, Homestead, and Miami-Dade.</p>
-      </div>
-      <div class="intent-grid">
-        ${page.searchTopics.map(([title, copy]) => {
-          const anchor = title.toLowerCase().includes("general liability") ? ' id="general-liability-insurance"' : "";
-          return `<article class="intent-card"${anchor} data-reveal="card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`;
-        }).join("")}
-      </div>
-    </section>
+    ${officialResourcesPanel(page)}
   `;
 }
 
@@ -1599,7 +1773,7 @@ function relatedLinks(currentSlug) {
   return `
     <section class="section related-links" data-reveal>
       <p class="kicker">Related options</p>
-      <h2>Compare Another Coverage Conversation</h2>
+      <h2>Explore Other Insurance Options</h2>
       <div class="link-pills">${related}</div>
     </section>
   `;
@@ -1607,29 +1781,116 @@ function relatedLinks(currentSlug) {
 
 function aboutBody() {
   return `
-    ${trustStrip()}
     ${aboutPreview()}
-    ${spanishTrustSection()}
-    ${whyChooseSection()}
     ${reviewTrustSection()}
-    ${franchiseBadgeSection()}
-    ${officialResourcesPanel(pages.find((page) => page.slug === "about-office-3"))}
-    ${relatedLinks("about-office-3")}
     ${faqHtml(pages.find((page) => page.slug === "about-office-3"))}
   `;
 }
 
 function quoteBody() {
   return `
-    ${quoteSection("Tell Office #3 What You Want to Compare")}
-    <section class="section privacy-safe" data-reveal>
-      <div class="notice-card">
-        <h2>Privacy-Safe First Step</h2>
-        <p>Use this first website form only for basic contact details. The form normalizes simple text fields and blocks obvious sensitive-data keywords in notes before opening the secure ConsumerRateQuotes intake path.</p>
-        <p>Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment details, claim files, medical records, passwords, or carrier login credentials through this first website form.</p>
+    <section class="section quote-panel quote-page-panel" data-reveal>
+      ${quoteForm()}
+      <div class="quote-copy">
+        <h2>Prefer to Talk?</h2>
+        <p>Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.</p>
+        <div class="cta-row"><a class="button light" href="${phoneHref}">Call ${phoneDisplay}</a><a class="button light" href="${smsHref}">Text the Office</a></div>
       </div>
     </section>
     ${faqHtml(pages.find((page) => page.slug === "get-a-quote"))}
+  `;
+}
+
+function policyholderContactPanel() {
+  return `
+    <section class="section service-cta policyholder-contact" data-reveal>
+      <div>
+        <p class="kicker">Existing customer service</p>
+        <h2>Contact Office #3 About Your Policy</h2>
+        <p>Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.</p>
+      </div>
+      <a class="button light" href="${phoneHref}">Call ${phoneDisplay} ${iconSvg("phone")}</a>
+    </section>
+  `;
+}
+
+function policyholderResourceCards(page) {
+  if (!page.resources?.length) return "";
+  return `
+    <section class="section search-intent-panel policyholder-resources" data-reveal>
+      <div class="section-heading">
+        <p class="kicker">Customer resource center</p>
+        <h2>Prepare Before the Deadline or Emergency</h2>
+        <p>Use these checklists to prepare for a renewal, claim or policy review. Call us with questions about your policy.</p>
+      </div>
+      <div class="intent-grid">
+        ${page.resources.map(([title, href, copy]) => `
+          <article class="intent-card" data-reveal="card">
+            <h3><a href="${escapeHtml(href)}">${escapeHtml(title)}</a></h3>
+            <p>${escapeHtml(copy)}</p>
+            <a class="text-link" href="${escapeHtml(href)}">Open the guide ${iconSvg("arrow")}</a>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function policyholderSourcePanel(page) {
+  if (!page.sourceLinks?.length) return "";
+  const sourceId = `source-title-${page.slug.replaceAll("/", "-")}`;
+  return `
+    <section class="section source-panel policyholder-sources" aria-labelledby="${sourceId}" data-reveal>
+      <div class="notice-card">
+        <p class="kicker">Insurance resources</p>
+        <h2 id="${sourceId}">Consumer Guides</h2>
+        <p>Find more detail in these consumer guides. Follow your insurer’s instructions for your policy or claim.</p>
+        <div class="link-pills">
+          ${page.sourceLinks.map(([label, url]) => `<a href="${escapeHtml(url)}" target="_blank" rel="noopener external">${escapeHtml(label)}</a>`).join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function policyholderBody(page) {
+  return `
+    <section class="section service-detail policyholder-detail" data-reveal>
+      <div class="section-heading">
+        <p class="kicker">Policyholder service guide</p>
+        <h2>What Do You Need Help With?</h2>
+        <p>Call us for help with the items below. Report new claims directly to your insurer.</p>
+      </div>
+      <div class="detail-grid">
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+      </div>
+    </section>
+    ${policyholderResourceCards(page)}
+    ${policyholderContactPanel()}
+    ${faqHtml(page)}
+  `;
+}
+
+function customerResourceBody(page) {
+  return `
+    <section class="section service-detail policyholder-detail" data-reveal>
+      <div class="section-heading">
+        <p class="kicker">Customer checklist</p>
+        <h2>Your Checklist</h2>
+        <p>Use these steps to prepare your questions and documents. Your policy and insurer determine what is covered.</p>
+      </div>
+      <div class="detail-grid">
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+      </div>
+    </section>
+    ${policyholderSourcePanel(page)}
+    ${policyholderContactPanel()}
+    <section class="section related-links" data-reveal>
+      <p class="kicker">More customer help</p>
+      <h2>Return to the Policyholder Resource Center</h2>
+      <div class="link-pills"><a href="/policyholder-help/">View all customer service guides</a></div>
+    </section>
+    ${faqHtml(page)}
   `;
 }
 
@@ -1638,24 +1899,24 @@ function privacyBody() {
     <section class="section legal-copy" data-reveal>
       <h2>Privacy Summary</h2>
       <p>This website provides business information, service pages, and quote contact options for ${businessName}.</p>
-      <p>The static pages do not store form submissions by themselves. The quote request path validates basic contact fields, normalizes simple text input, blocks obvious sensitive-data keywords in the notes field, then opens the secure ConsumerRateQuotes intake URL provided for Office #3. ConsumerRateQuotes may process submitted information under its own privacy terms.</p>
-      <p>This policy is written to align with the privacy and security posture used by the original Your Family First Insurance office, while keeping this Office #3 static website accurate to its current setup.</p>
-      <h2>Information You May Choose to Provide</h2>
-      <p>Name, phone number, email address, ZIP code, requested insurance type, best time to call, and general notes.</p>
+      <p>This website does not collect quote form submissions. Our quote links open ConsumerRateQuotes, which handles the information you enter under its own privacy terms.</p>
+      <p>This policy covers this Office #3 website. Other services you visit through our links have their own privacy policies.</p>
+      <h2>Information Entered on This Public Site</h2>
+      <p>No contact or underwriting fields are submitted to this public site. Information entered after following the quote link is handled by the separate ConsumerRateQuotes service.</p>
       <h2>Security Measures</h2>
-      <p>The public website is designed for HTTPS hosting and includes baseline browser security headers for GoDaddy/Apache where supported. Information sent through the quote path should be handled only through the secure ConsumerRateQuotes intake and approved office workflows.</p>
+      <p>This site uses HTTPS to encrypt the connection. Before sending personal documents, call the office for the appropriate submission method.</p>
       <h2>Cookies and Tracking</h2>
-      <p>Google Tag Manager (GTM) organizes approved measurement tags on this website. At the last technical review on August 4, 2026, the container loaded Google Analytics 4 (GA4) and a Google Ads destination. An Apollo Website Tracker tag is present but paused; it must not be enabled unless its permitted use, consent settings, and privacy disclosure are approved. The site does not use a chat widget or session-replay tool.</p>
+      <p>This website uses Google Analytics 4 and Google Ads measurement tools to understand visits and interactions. Google Tag Manager loads these tools.</p>
       <p>GA4 may use first-party cookies, including <code>_ga</code>, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.</p>
-      <p>Google Ads measurement may use cookies or similar identifiers for conversion measurement and advertising features. No Meta Pixel or Microsoft Advertising tag is installed in this repository. Advertising destinations and remarketing must remain enabled only after the owner confirms the active account, purpose, consent requirements, and privacy disclosures.</p>
-      <p>The website's analytics data layer sends the event name, page path, page language, product category, call-to-action location, first landing path, broad referrer category, and sanitized UTM source, medium, campaign, and content values when present. It does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.</p>
-      <p>First-touch campaign values are kept only in browser session storage for the current tab session. They are not a CRM record, do not prove a completed lead or sale, and are not appended to the separate ConsumerRateQuotes destination because that vendor has not supplied a documented attribution-field contract.</p>
-      <p>This website does not currently provide an on-page cookie-preference panel. The owner must confirm with qualified privacy counsel whether consent controls are required for each visitor location before advertising or optional tracking remains enabled.</p>
+      <p>Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.</p>
+      <p>The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Its analytics event code does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.</p>
+      <p>General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.</p>
+      <p>This website does not currently provide a cookie-preference panel. You can restrict cookies in your browser settings.</p>
       <h2>Retention and Your Choices</h2>
-      <p>Analytics retention is controlled in the GA4 property and must be confirmed by the owner. You can restrict cookies in your browser, use private browsing controls, or install the Google Analytics Opt-out Browser Add-on. Blocking cookies may limit measurement but should not prevent access to the public insurance information on this site.</p>
+      <p>Contact us with questions about data retention or privacy requests. You can restrict cookies in your browser or install the Google Analytics Opt-out Browser Add-on. The public insurance information remains available if you block cookies.</p>
       <p>Google's privacy information is available at <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>, and the opt-out add-on is available at <a href="https://tools.google.com/dlpage/gaoptout">tools.google.com/dlpage/gaoptout</a>.</p>
       <h2>Third-Party Quote Intake</h2>
-      <p>ConsumerRateQuotes is a separate quote intake destination. Review that service's privacy and security terms before relying on it for live lead collection.</p>
+      <p>ConsumerRateQuotes is a separate service. Review its privacy terms before entering personal information.</p>
       <h2>Sensitive Information</h2>
       <p>Do not send Social Security numbers, dates of birth, driver license numbers, VINs, payment card information, bank details, claim documents, medical records, passwords, or carrier login credentials through regular website forms or text messages.</p>
       <h2>Contact</h2>
@@ -1676,23 +1937,31 @@ function termsBody() {
       <h2>Carrier and Photo Disclaimer</h2>
       <p>Any carrier name that may appear incidentally in a real office photo is not a separate marketing claim, endorsement, or unauthorized affiliation statement.</p>
       <h2>Third-Party Intake</h2>
-      <p>The secure quote path may open ConsumerRateQuotes. That service is outside this static website and may apply its own terms, privacy practices, and submission handling rules.</p>
+      <p>Quote links open ConsumerRateQuotes. That service has its own terms and privacy practices.</p>
       <h2>No Legal or Financial Advice</h2>
       <p>Website content is general information and is not legal, tax, financial, or claims advice.</p>
     </section>
   `;
 }
 
+function faqAnswerHtml([, answer, links = []]) {
+  const actions = links.length
+    ? `<p class="faq-links">${links.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join(" ")}</p>`
+    : "";
+  return `<p>${escapeHtml(answer)}</p>${actions}`;
+}
+
 function faqHtml(page) {
   if (!page?.faqs) return "";
+  const spanish = page.locale?.startsWith("es");
   return `
-    <section class="section faq" data-reveal>
+    <section class="section faq" id="faqs" aria-labelledby="faq-title" data-reveal>
       <div class="section-heading">
         <p class="kicker">FAQ</p>
-        <h2>Frequently Asked Questions</h2>
+        <h2 id="faq-title">${escapeHtml(page.faqTitle || (spanish ? "Preguntas frecuentes" : "Frequently Asked Questions"))}</h2>
       </div>
       <div class="faq-list">
-        ${page.faqs.map(([question, answer]) => `<details><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`).join("")}
+        ${page.faqs.map((entry, index) => `<details><summary id="faq-${index + 1}">${escapeHtml(entry[0])}</summary><div class="faq-answer">${faqAnswerHtml(entry)}</div></details>`).join("")}
       </div>
     </section>
   `;
@@ -1703,6 +1972,8 @@ function bodyFor(page) {
   if (page.kind === "service") return serviceBody(page);
   if (page.kind === "about") return aboutBody();
   if (page.kind === "quote") return quoteBody();
+  if (page.kind === "retention") return policyholderBody(page);
+  if (page.kind === "resource") return customerResourceBody(page);
   if (page.kind === "privacy") return privacyBody();
   if (page.kind === "terms") return termsBody();
   return "";
@@ -1720,6 +1991,7 @@ function pageHtml(page) {
     ${bodyFor(page)}
   </main>
   ${footerHtml()}
+  <nav class="mobile-contact-bar" aria-label="Quick contact"><a href="${["commercial-insurance", "life-insurance"].includes(page.slug) ? "#coverage-details" : phoneHref}">${iconSvg(["commercial-insurance", "life-insurance"].includes(page.slug) ? "shield" : "phone")} ${["commercial-insurance", "life-insurance"].includes(page.slug) ? "View Coverage" : "Call Office #3"}</a><a href="${["commercial-insurance", "life-insurance"].includes(page.slug) ? phoneHref : quoteDestination}">${["commercial-insurance", "life-insurance"].includes(page.slug) ? "Call for a Free Quote" : "Get My Free Quote"} ${iconSvg("arrow")}</a></nav>
 </body>
 </html>
 `;
@@ -4034,11 +4306,12 @@ h3 {
   display: flex;
   flex: 1;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
 }
 .review-dots button {
-  width: 34px;
-  height: 8px;
+  width: 28px;
+  min-height: 28px;
+  height: 28px;
   border: 0;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.20);
@@ -4329,6 +4602,46 @@ h3 {
   gap: 14px;
   padding: 20px;
 }
+.quote-handoff-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.85rem;
+}
+.quote-preflight-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--ink-soft);
+}
+.quote-preflight-list li::marker { color: var(--champagne); }
+.policyholder-resources .intent-card h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.policyholder-resources .intent-card h3 a:hover,
+.policyholder-resources .intent-card h3 a:focus-visible {
+  color: var(--champagne);
+}
+.policyholder-resources .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  color: var(--miami-blue);
+  font-weight: 900;
+  text-decoration: none;
+}
+.policyholder-resources .text-link svg {
+  width: 16px;
+  height: 16px;
+}
+.policyholder-contact {
+  align-items: center;
+}
+.policyholder-sources .link-pills a {
+  overflow-wrap: anywhere;
+}
 .quote-form label {
   display: grid;
   gap: 7px;
@@ -4408,6 +4721,7 @@ h3 {
   display: grid;
   gap: 10px;
 }
+.faq .section-heading { max-width: none; margin-inline: 0; }
 .faq details {
   --lift: 0px;
   position: relative;
@@ -4458,6 +4772,11 @@ h3 {
   background: rgba(154, 220, 247, 0.14);
 }
 .faq details p { max-width: 860px; color: var(--muted); }
+.faq summary { min-height: 44px; line-height: 1.5; scroll-margin-top: 180px; }
+.faq summary:focus-visible { outline: 2px solid var(--champagne); outline-offset: 5px; border-radius: 4px; }
+.faq-answer { padding-top: 4px; line-height: 1.7; overflow-wrap: anywhere; }
+.faq-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 0; }
+.faq-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--champagne); text-decoration: underline; text-underline-offset: 4px; }
 .final-cta {
   margin-top: 28px;
   padding: 58px 18px;
@@ -4962,6 +5281,154 @@ h3 {
   .service-media-layer { transform: none; }
   .service-motion-video { opacity: 1; }
 }
+
+/* Reviews must fit narrow screens and expand with the document. */
+.review-panel > *, .google-review-studio, .real-review-carousel,
+.real-review-track, .real-review-head > * { min-width: 0; max-width: 100%; }
+.review-panel { overflow-wrap: anywhere; }
+.review-dots { flex-wrap: wrap; min-width: 0; }
+@media (max-width: 767px) {
+  .review-panel { grid-template-columns: minmax(0, 1fr); }
+  .real-review-carousel, .real-review-track { min-height: 0; }
+  .real-review-card { min-height: 0; max-height: none; overflow: visible; }
+  .real-review-card.is-active { position: relative; inset: auto; }
+  .real-review-card:not(.is-active) { visibility: hidden; }
+  .review-carousel-controls { position: relative; margin-top: 16px; }
+  .review-actions .button { white-space: normal; text-align: center; }
+}
+/* Shared gutters, centered media, and consistent responsive spacing. */
+:root { --content-width: 1180px; --page-gutter: 24px; --section-space: 56px; }
+.header-shell, .footer-shell { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); }
+.language-switcher-mobile { width: max-content; justify-self: start; }
+.hero { gap: 40px; padding: 48px max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); min-height: 0; }
+h1 { font-size: 4.2rem; line-height: 1.05; letter-spacing: -0.035em; }
+h2 { font-size: 2.6rem; line-height: 1.12; }
+.hero-lead { font-size: 1.1rem; line-height: 1.6; max-width: 540px; }
+.hero.text-hero { display: block; padding-block: 40px 24px; }
+.text-hero .hero-content { max-width: 850px; margin-inline: auto; }
+.text-hero .hero-lead { max-width: 760px; }
+.text-hero .kicker { display: none; }
+.section { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); margin-inline: auto; padding-block: var(--section-space); }
+.section-heading { margin-inline: auto; margin-bottom: 28px; }
+.section-heading.center { text-align: center; }
+.motion-showcase { width: 100%; max-width: 680px; margin-inline: auto; }
+.motion-carousel { width: 100%; padding: 12px; border-radius: 20px; background-color: #0c1d29; }
+.carousel-track { border: 0; background: none; box-shadow: none; border-radius: 12px; }
+.story-carousel .motion-slide, .focused-carousel .motion-slide { grid-template-rows: auto 1fr; padding: 0; gap: 0; background: transparent; min-width: 0; }
+.story-carousel .motion-media-link, .focused-carousel .motion-media-link { width: 100%; min-width: 0; min-height: 0; max-height: none; aspect-ratio: 16 / 9; border-radius: 12px; box-shadow: none; justify-self: stretch; }
+.story-carousel .motion-slide-copy, .focused-carousel .motion-slide-copy { padding: 20px 12px 12px; border-radius: 0; background: none; box-shadow: none; transform: none; text-align: center; }
+.story-carousel .motion-slide h2, .focused-carousel .motion-slide h2 { margin: 0; font-size: 1.5rem; line-height: 1.2; }
+.motion-slide-copy p { font-size: 0.94rem; line-height: 1.5; margin: 12px auto 0; }
+.motion-slide-copy .motion-actions { display: flex; justify-content: center; margin-top: 16px; }
+.motion-actions .button { width: auto; min-height: 44px; padding: 10px 16px; font-size: 0.9rem; }
+.carousel-chips { margin-bottom: 12px; padding: 4px 2px 8px; justify-content: safe center; }
+.motion-carousel[data-motion-stopped="true"] .motion-poster, .motion-carousel[data-motion-stopped="true"] .motion-video, .motion-carousel[data-motion-stopped="true"] .motion-sheen { animation-play-state: paused !important; }
+.carousel-motion-toggle { color: var(--ink, #fff8e8); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 10px 18px; min-height: 44px; cursor: pointer; font: inherit; font-size: .875rem; }
+.carousel-motion-toggle:hover, .carousel-motion-toggle:focus-visible { background: rgba(255,255,255,.18); outline: 2px solid #ffe0a1; outline-offset: 3px; }
+.carousel-controls { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 10px; margin-top: 10px; padding: 10px 4px 4px; }
+.carousel-dots { justify-content: center; max-width: 100%; flex-wrap: wrap; }
+.carousel-progress { width: min(100%, 240px); }
+.carousel-arrow { top: 0; margin-top: calc(100cqw * 9 / 32); }
+.carousel-stage { container-type: inline-size; }
+.coverage-section { width: 100%; max-width: none; padding-inline: max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); }
+.coverage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: center; gap: 16px; min-height: 140px; padding: 22px; color: var(--ink); text-decoration: none; border-radius: 14px; }
+.coverage-card h3 { margin: 0; font-size: 1.3rem; line-height: 1.2; }
+.coverage-card p { margin: 8px 0 0; font-size: 0.95rem; line-height: 1.5; }
+.coverage-card > .icon { width: 20px; height: 20px; }
+.coverage-card .soft-icon { width: 48px; height: 48px; }
+.coverage-card:last-child { grid-column: 1 / -1; }
+.about-panel, .quote-panel { gap: 40px; }
+.about-panel > *, .quote-panel > *, .review-panel > *, .detail-grid > *, .intent-grid > * { min-width: 0; max-width: 100%; }
+.about-copy, .quote-copy { width: 100%; }
+.about-media { max-width: 520px; justify-self: center; width: 100%; margin-inline: auto; }
+.about-photo { aspect-ratio: 4 / 3; }
+.review-panel { padding: 32px; margin-block: 24px; align-items: center; gap: 32px; }
+.google-review-studio { width: 100%; }
+.real-review-carousel, .real-review-track { min-height: 0; }
+.real-review-card { min-height: 0; max-height: none; overflow: visible; }
+.real-review-card.is-active { position: relative; inset: auto; }
+.real-review-card:not(.is-active) { visibility: hidden; }
+.review-carousel-controls { position: relative; margin-top: 16px; }
+.real-review-card:has(> .review-details:not(.office-response)[open]) > .real-review-excerpt { display: none; }
+.real-review-excerpt { font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 1.1rem; line-height: 1.6; }
+.real-review-mini { min-height: 100px; padding: 12px; gap: 6px; }
+.review-qr-card { grid-template-columns: 72px minmax(0, 1fr); padding: 12px; }
+.review-qr-card img { width: 72px; height: 72px; padding: 4px; border-radius: 8px; }
+.qr-card { grid-template-columns: 104px minmax(0, 1fr); }
+.qr-card img { width: 104px; height: 104px; }
+.quote-form { width: 100%; min-width: 0; }
+.quote-page-panel { align-items: center; }
+.quote-page-panel .quote-form { order: -1; }
+.specialty-intro { color: var(--muted); text-align: center; margin: 24px 0 0; }
+.source-panel { padding-block: 24px; }
+.source-panel .notice-card { padding: 22px; }
+.source-panel h2 { font-size: 1.4rem; }
+.source-panel .kicker { display: none; }
+.source-panel .link-pills { margin-top: 12px; }
+.mobile-contact-bar { display: none; }
+@media (min-width: 1024px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .about-panel, .quote-panel, .review-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1040px) {
+  .header-shell { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); grid-template-columns: auto minmax(0, 1fr) max-content; }
+  .site-nav { grid-column: 1 / -1; min-width: 0; justify-content: center; }
+  .footer-shell { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  h1 { font-size: 3.4rem; }
+  h2 { font-size: 2.3rem; }
+}
+@media (max-width: 1023px) {
+  :root { --section-space: 44px; }
+  .hero { gap: 32px; padding-block: 36px; }
+  .hero-content { max-width: 680px; width: 100%; margin-inline: auto; text-align: center; }
+  .hero-lead { margin-inline: auto; }
+  .hero .cta-row { margin-inline: auto; justify-content: center; }
+  .section { max-width: 680px; }
+  .coverage-section { max-width: none; }
+  .coverage-grid, .coverage-section .section-heading, .coverage-link-rail, .specialty-intro { max-width: 680px; margin-inline: auto; }
+  .about-panel, .quote-panel, .review-panel { grid-template-columns: minmax(0, 1fr); }
+  .about-copy, .quote-copy, .review-copy { max-width: none; }
+  .about-panel, .quote-panel { gap: 28px; }
+  .review-panel { padding: 28px; gap: 24px; }
+}
+@media (max-width: 767px) {
+  :root { --page-gutter: 16px; --section-space: 36px; }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  html { scroll-padding-bottom: 100px; }
+  main a, main button, main summary { scroll-margin-bottom: 100px; }
+  .hero { gap: 28px; padding-block: 28px; }
+  h1 { font-size: 2.65rem; }
+  h2 { font-size: 1.9rem; }
+  .hero-lead { font-size: 1rem; margin-top: 14px; }
+  .hero .cta-row { display: grid; margin-top: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .hero .cta-row .button { min-height: 46px; padding: 10px 8px; font-size: 0.84rem; white-space: normal; text-align: center; }
+  .trust-line { font-size: 0.8rem; line-height: 1.5; font-weight: 650; }
+  .motion-carousel { padding: 10px; }
+  .story-carousel .motion-slide-copy, .focused-carousel .motion-slide-copy { padding: 18px 8px 12px; }
+  .carousel-arrow { margin-top: calc(100cqw * 9 / 32); top: 0; transform: translateY(-50%); }
+  .carousel-prev { left: 8px; right: auto; }
+  .carousel-next { right: 8px; }
+  .carousel-prev:hover, .carousel-prev:focus-visible { transform: translate(-2px, -50%); }
+  .carousel-next:hover, .carousel-next:focus-visible { transform: translate(2px, -50%); }
+  .coverage-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  a.coverage-card { min-height: 116px; padding: 16px; grid-template-columns: 38px minmax(0, 1fr) 18px; gap: 12px; }
+  .coverage-card h3 { font-size: 1.14rem; }
+  .coverage-card p { font-size: 0.9rem; line-height: 1.45; margin-top: 5px; }
+  .coverage-card .soft-icon { width: 38px; height: 38px; }
+  .qr-card, .review-qr-card { display: none; }
+  .review-panel { padding: 20px; gap: 24px; margin-block: 16px; }
+  .real-review-excerpt { font-size: 1.05rem; line-height: 1.6; }
+  .about-panel { gap: 24px; }
+  .trust-ticker { padding-block: 3px; }
+  .mobile-contact-bar { position: fixed; z-index: 40; inset: auto 0 0; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(5, 11, 18, 0.96); border-top: 1px solid var(--glass-line); backdrop-filter: blur(12px); }
+  .mobile-contact-bar a { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 46px; border: 1px solid var(--glass-line); border-radius: 9px; color: var(--ink); text-decoration: none; font-size: 0.83rem; font-weight: 800; text-align: center; }
+  .mobile-contact-bar a:last-child { color: #18212c; background: var(--champagne); border-color: var(--champagne); }
+  .mobile-contact-bar .icon { width: 16px; height: 16px; flex-shrink: 0; }
+}
+
 `;
 }
 
@@ -4972,7 +5439,7 @@ function jsSource() {
   const committedRuntime = path.join(root, "assets", "site.js");
   if (fs.existsSync(committedRuntime)) return fs.readFileSync(committedRuntime, "utf8");
 
-  return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "form_submit"]);
+  return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start"]);
 
 const attributionStorageKey = "yffi_first_touch_v1";
 const attributionParameterMap = {
@@ -5049,7 +5516,7 @@ function analyticsCtaLocation(target) {
   if (target?.closest(".site-header")) return "header";
   if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-insurance-carousel]")) return "carousel";
-  if (target?.closest("[data-quote-form]")) return "quote_form";
+  if (target?.closest("[data-quote-handoff]")) return "quote_handoff";
   if (target?.closest(".quote-section, #quote")) return "quote_section";
   if (target?.closest("footer")) return "footer";
   return "content";
@@ -5105,10 +5572,9 @@ if (menuToggle && siteNav) {
 }
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const mobileViewport = window.matchMedia("(max-width: 639px)").matches;
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
 
-if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
   const cursorOrb = document.createElement("span");
   cursorOrb.className = "cursor-orb";
   cursorOrb.setAttribute("aria-hidden", "true");
@@ -5188,7 +5654,7 @@ if (animatedItems.length) {
   }
 }
 
-if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches && "IntersectionObserver" in window) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches && "IntersectionObserver" in window) {
   const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
   const visibleDepthSurfaces = new Set();
   let depthFrame = 0;
@@ -5238,25 +5704,26 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
   const prev = carousel.querySelector("[data-carousel-prev]");
   const next = carousel.querySelector("[data-carousel-next]");
+  const motionToggle = carousel.querySelector("[data-carousel-motion]");
+  let userPaused = false;
   const delay = 6800;
   let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
-  let inView = carousel.getAttribute("data-in-view") === "true";
+  let inView = !("IntersectionObserver" in window);
   let paused = reducedMotion;
   let interactionHoldUntil = 0;
   let dragging = false;
   let didDrag = false;
-  let mediaReady = false;
   let startX = 0;
   let startScrollLeft = 0;
   let scrollFrame = 0;
   let programmaticScroll = false;
   let programmaticScrollTimer = 0;
 
-  const isTemporarilyPaused = () => paused || Date.now() < interactionHoldUntil;
+  const isTemporarilyPaused = () => userPaused || paused || Date.now() < interactionHoldUntil;
 
   const hydrateVideo = (slide) => {
     const video = slide?.querySelector(".motion-video");
-    if (!video || video.dataset.loaded === "true" || !mediaReady) return video;
+    if (!video || video.dataset.loaded === "true" || !inView || reducedMotion || userPaused) return video;
     const webm = video.dataset.src;
     const mp4 = video.dataset.mp4;
     if (webm) {
@@ -5271,8 +5738,14 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       source.type = "video/mp4";
       video.append(source);
     }
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.autoplay = true;
     video.dataset.loaded = "true";
-    video.addEventListener("canplay", () => video.classList.add("is-ready"), { once: true });
+    video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
+    video.addEventListener("canplay", syncVideos);
+    video.addEventListener("error", () => video.classList.remove("is-ready"));
     video.load();
     return video;
   };
@@ -5282,9 +5755,9 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       const video = slide.querySelector(".motion-video");
       if (index === activeIndex) hydrateVideo(slide);
       if (!video) return;
-      const shouldPlay = index === activeIndex && inView && !reducedMotion;
-      if (shouldPlay) {
-        video.play().catch(() => {});
+      const shouldPlay = index === activeIndex && inView && !reducedMotion && !userPaused && !document.hidden;
+      if (shouldPlay && video.dataset.loaded === "true") {
+        if (video.paused) video.play().catch(() => {});
       } else {
         video.pause();
       }
@@ -5293,7 +5766,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
 
   const setPaused = (value) => {
     paused = value || reducedMotion;
-    carousel.setAttribute("data-paused", String(paused));
+    carousel.setAttribute("data-paused", String(paused || userPaused));
     syncVideos();
   };
 
@@ -5301,6 +5774,11 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     if (!slides.length) return;
     activeIndex = (index + slides.length) % slides.length;
     const activeSlide = slides[activeIndex];
+    const poster = activeSlide.querySelector(".motion-poster");
+    if (poster?.dataset.posterSrc) {
+      poster.src = poster.dataset.posterSrc;
+      delete poster.dataset.posterSrc;
+    }
     carousel.setAttribute("data-active-slide", activeSlide.dataset.slideId || "");
     slides.forEach((slide, slideIndex) => {
       slide.dataset.active = String(slideIndex === activeIndex);
@@ -5333,6 +5811,22 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     carousel.setAttribute("data-paused", "true");
     syncVideos();
   };
+
+  // Keep the selected slide in view when its responsive width changes.
+  let trackWidth = track?.clientWidth || 0;
+  const realignTrack = () => {
+    if (!track || !slides.length) return false;
+    const width = track.clientWidth;
+    if (!width || width === trackWidth) return false;
+    trackWidth = width;
+    programmaticScroll = true;
+    window.clearTimeout(programmaticScrollTimer);
+    track.scrollTo({ left: slides[activeIndex].offsetLeft, behavior: "instant" });
+    programmaticScrollTimer = window.setTimeout(() => { programmaticScroll = false; }, 200);
+    return true;
+  };
+  window.addEventListener("resize", realignTrack, { passive: true });
+  if (track && "ResizeObserver" in window) new ResizeObserver(realignTrack).observe(track);
 
   const goToSlideId = (slideId) => {
     const index = slides.findIndex((slide) => slide.dataset.slideId === slideId);
@@ -5371,10 +5865,11 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   track?.addEventListener("scroll", () => {
-    if (programmaticScroll) return;
+    if (realignTrack() || programmaticScroll) return;
     if (scrollFrame) return;
     scrollFrame = window.requestAnimationFrame(() => {
       scrollFrame = 0;
+      if (realignTrack() || programmaticScroll) return;
       const trackBox = track.getBoundingClientRect();
       const trackCenter = trackBox.left + trackBox.width / 2;
       let closestIndex = activeIndex;
@@ -5424,6 +5919,26 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     }
   }, true);
 
+  const updateMotionToggle = () => {
+    if (!motionToggle) return;
+    const stopped = userPaused || reducedMotion;
+    motionToggle.setAttribute("aria-pressed", String(stopped));
+    carousel.setAttribute("data-motion-stopped", String(stopped));
+    motionToggle.disabled = reducedMotion;
+    motionToggle.textContent = stopped
+      ? (document.documentElement.lang.startsWith("es") ? "Reanudar animación" : "Resume motion")
+      : (document.documentElement.lang.startsWith("es") ? "Pausar animación" : "Pause motion");
+    if (reducedMotion) motionToggle.textContent = document.documentElement.lang.startsWith("es") ? "Animación desactivada" : "Motion disabled";
+    carousel.setAttribute("data-paused", String(stopped || paused));
+    syncVideos();
+  };
+  motionToggle?.addEventListener("click", () => {
+    userPaused = !userPaused;
+    updateMotionToggle();
+  });
+  updateMotionToggle();
+  document.addEventListener("visibilitychange", syncVideos);
+
   carousel.addEventListener("mouseenter", () => setPaused(true));
   carousel.addEventListener("mouseleave", () => setPaused(false));
   carousel.addEventListener("focusin", () => setPaused(true));
@@ -5436,35 +5951,23 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
         carousel.setAttribute("data-in-view", String(inView));
         syncVideos();
       });
-    }, { rootMargin: "160px 0px", threshold: 0.12 });
-    carouselObserver.observe(carousel);
+    }, { threshold: 0.01 });
+    carouselObserver.observe(carousel.querySelector(".carousel-stage") || carousel);
   } else {
     inView = true;
     carousel.setAttribute("data-in-view", "true");
   }
 
-  const enableInitialMedia = () => {
-    const enableMedia = () => {
-      if (mediaReady) return;
-      mediaReady = true;
-      hydrateVideo(slides[activeIndex]);
-      syncVideos();
-    };
-    if (mobileViewport) {
-      carousel.addEventListener("click", enableMedia, { once: true });
-      carousel.addEventListener("keydown", enableMedia, { once: true });
-      return;
-    }
-    window.setTimeout(enableMedia, 750);
-  };
-  if (document.readyState === "complete") enableInitialMedia();
-  else window.addEventListener("load", enableInitialMedia, { once: true });
+  // Muted inline videos start as soon as their media enters the viewport.
+  // Retry after a gesture if the browser's autoplay policy rejected playback.
+  document.addEventListener("pointerdown", syncVideos);
+  document.addEventListener("keydown", syncVideos);
 
   if (!reducedMotion) {
     window.setInterval(() => {
       const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
       carousel.setAttribute("data-paused", String(shouldHold));
-      if (!shouldHold) setActive(activeIndex + 1, { scroll: false });
+      if (!shouldHold) setActive(activeIndex + 1);
       syncVideos();
     }, delay);
   }
@@ -5480,9 +5983,6 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
   const next = carousel.querySelector("[data-review-next]");
   if (!cards.length) return;
   let activeIndex = 0;
-  let paused = reducedMotion;
-  let inView = true;
-  const delay = 5400;
 
   const setActive = (index) => {
     activeIndex = (index + cards.length) % cards.length;
@@ -5504,44 +6004,29 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
 
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
-      paused = true;
       setActive(Number(dot.dataset.reviewDot || 0));
-      window.setTimeout(() => { paused = reducedMotion; }, 8000);
     });
   });
   prev?.addEventListener("click", () => {
-    paused = true;
     setActive(activeIndex - 1);
-    window.setTimeout(() => { paused = reducedMotion; }, 8000);
   });
   next?.addEventListener("click", () => {
-    paused = true;
     setActive(activeIndex + 1);
-    window.setTimeout(() => { paused = reducedMotion; }, 8000);
   });
-  carousel.addEventListener("mouseenter", () => { paused = true; });
-  carousel.addEventListener("mouseleave", () => { paused = reducedMotion; });
-  carousel.addEventListener("focusin", () => { paused = true; });
-  carousel.addEventListener("focusout", () => { paused = reducedMotion; });
-
-  if ("IntersectionObserver" in window) {
-    const reviewObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        inView = entry.isIntersecting;
-      });
-    }, { rootMargin: "140px 0px", threshold: 0.12 });
-    reviewObserver.observe(carousel);
-  }
-
-  if (!reducedMotion) {
-    window.setInterval(() => {
-      if (!paused && inView && !document.hidden) setActive(activeIndex + 1);
-    }, delay);
-  }
+  carousel.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+    tablist.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const index = event.key === "Home" ? 0 : event.key === "End" ? cards.length - 1 : activeIndex + (event.key === "ArrowRight" ? 1 : -1);
+      setActive(index);
+      const selected = tablist.querySelector('[aria-selected="true"]');
+      selected?.focus();
+    });
+  });
   setActive(0);
 });
 
-if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
   const particleColors = [
     "rgba(154, 220, 247, 0.88)",
     "rgba(255, 224, 161, 0.82)",
@@ -5674,135 +6159,6 @@ if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
     });
   });
 }
-
-const quoteFieldLimits = {
-  name: 80,
-  phone: 24,
-  email: 120,
-  insuranceType: 40,
-  zip: 5,
-  bestTime: 40,
-  notes: 600,
-  companyWebsite: 140
-};
-const sensitiveQuoteTerms = [
-  "ssn",
-  "social security",
-  "date of birth",
-  "dob",
-  "driver license",
-  "drivers license",
-  "driver's license",
-  "vin",
-  "vehicle identification",
-  "credit card",
-  "card number",
-  "bank account",
-  "routing number",
-  "password",
-  "passcode",
-  "medical record",
-  "claim number",
-  "policy number"
-];
-const approvedQuoteDestination = new URL("${quoteDestination}", window.location.href);
-
-function cleanPlainText(value, limit = 600) {
-  return String(value || "")
-    .replace(/[\\u0000-\\u001F\\u007F<>\\x60]/g, " ")
-    .replace(/\\s+/g, " ")
-    .trim()
-    .slice(0, limit);
-}
-
-function normalizedSensitiveText(value) {
-  return cleanPlainText(value, 600).toLowerCase().replace(/[^a-z0-9]+/g, " ");
-}
-
-function containsSensitiveQuoteData(value) {
-  const normalized = normalizedSensitiveText(value);
-  return sensitiveQuoteTerms.some((term) => normalized.includes(normalizedSensitiveText(term)));
-}
-
-function normalizeQuoteField(field) {
-  if (!field || !("value" in field)) return;
-  const limit = quoteFieldLimits[field.name] || 160;
-  field.setCustomValidity("");
-  if (field.matches("select")) return;
-  if (field.name === "phone") {
-    field.value = cleanPlainText(field.value, limit).replace(/[^0-9+().\\-\\s]/g, "").trim();
-    return;
-  }
-  if (field.name === "zip") {
-    field.value = cleanPlainText(field.value, limit).replace(/\\D/g, "").slice(0, 5);
-    return;
-  }
-  field.value = cleanPlainText(field.value, limit);
-  if (field.name === "notes" && containsSensitiveQuoteData(field.value)) {
-    field.setCustomValidity("Please do not include sensitive details here. Continue sensitive information only through the secure approved quote process.");
-  }
-}
-
-function approvedQuoteUrl(destination) {
-  try {
-    const url = new URL(destination || "", window.location.href);
-    return url.protocol === "https:" &&
-      url.hostname.toLowerCase() === "secure.consumerratequotes.com" &&
-      url.pathname === "/ConsumerV2" &&
-      url.searchParams.get("id") === "64868"
-      ? url.href
-      : "";
-  } catch {
-    return "";
-  }
-}
-
-function markValidity(field) {
-  if (!field || !("checkValidity" in field)) return;
-  const shouldMark = field.matches("input, select, textarea") && field.required;
-  if (shouldMark) field.setAttribute("aria-invalid", String(!field.checkValidity()));
-}
-
-document.querySelectorAll("[data-quote-form]").forEach((form) => {
-  const fields = form.querySelectorAll("input, select, textarea");
-  fields.forEach((field) => {
-    field.addEventListener("blur", () => {
-      normalizeQuoteField(field);
-      markValidity(field);
-    });
-    field.addEventListener("input", () => {
-      field.setCustomValidity("");
-      markValidity(field);
-    });
-  });
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const status = form.querySelector(".form-status");
-    const honeypot = form.querySelector('[name="companyWebsite"]');
-    fields.forEach(normalizeQuoteField);
-    fields.forEach(markValidity);
-    if (honeypot && honeypot.value) {
-      if (status) status.textContent = "Thanks. The request has been received.";
-      form.reset();
-      return;
-    }
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      const sensitiveMessage = form.querySelector('[name="notes"]')?.validationMessage || "";
-      if (status) status.textContent = sensitiveMessage || "Please complete the required contact fields before sending.";
-      return;
-    }
-    const destination = approvedQuoteUrl(form.dataset.quoteDestination || form.action || approvedQuoteDestination.href);
-    if (!destination) {
-      if (status) status.textContent = "The secure quote path could not be verified. Please call the office instead.";
-      return;
-    }
-    pushAnalyticsEvent("form_submit", form);
-    pushAnalyticsEvent("quote_start", form);
-    if (status) status.textContent = "Opening the secure ConsumerRateQuotes form...";
-    window.location.assign(destination);
-  });
-});
 
 const publicServiceTools = [
   {
@@ -5997,13 +6353,18 @@ Google review path: ${googleReviewUrl}
 - Life insurance: ${siteUrl}/life-insurance/
 - Renters insurance: ${siteUrl}/renters-insurance/
 - About Office #3: ${siteUrl}/about-office-3/
-- Get quote help: ${siteUrl}/get-a-quote/
+- Free insurance quotes: ${siteUrl}/get-a-quote/
+- Existing customer and policyholder help: ${siteUrl}/policyholder-help/
+- Hurricane preparation: ${siteUrl}/customer-resources/hurricane-preparation/
+- Renewal review: ${siteUrl}/customer-resources/renewal-review/
+- Certificate guidance: ${siteUrl}/customer-resources/certificate-of-insurance/
+- Annual and life-event review: ${siteUrl}/customer-resources/life-event-review/
 - Privacy policy: ${siteUrl}/privacy-policy/
 - Terms and insurance disclaimer: ${siteUrl}/terms/
 
 ## Safe Summary
 
-Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. The site uses official franchise identification and real Office #3 imagery supplied for the project.
+Your Family First Insurance Office #3 helps Miami families and local businesses compare auto, home, homeowners, renters, flood, motorcycle, boat, RV, general liability, business, commercial, workers compensation, life, and health insurance quote options. It also publishes bilingual educational guidance for existing customers about renewals, hurricane preparation, certificates, and annual reviews. The site uses official franchise identification and real Office #3 imagery supplied for the project.
 
 ## Important Boundaries
 
@@ -6026,7 +6387,8 @@ Location: ${address.streetAddress}, ${address.addressLocality}, ${address.addres
 
 Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express server for GoDaddy Beta Apps.
 Brand note: Official franchise logo/sign must remain unchanged.
-Privacy note: The quote form opens the secure ConsumerRateQuotes intake URL provided for Office #3 after local required-field validation.
+Privacy note: The public page opens the verified ConsumerRateQuotes intake URL directly and does not collect duplicate contact or underwriting fields.
+Customer service note: Public policyholder guides do not accept policy numbers, documents, claim files, or service requests.
 Quote path: ConsumerRateQuotes account ID 64868.
 Google review path: ${googleReviewUrl}
 `;
@@ -6043,7 +6405,7 @@ function apacheHtaccess() {
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set Origin-Agent-Cluster "?1"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes
@@ -6080,7 +6442,7 @@ Generated by the static site build for ${businessName}.
 
 ## UX and Design
 
-- Homepage uses a sticky glass header, dark liquid hero, trust strip, real office image, glass coverage cards, process section, local office section, official franchise badge, connected quote form, FAQ, final CTA, and footer.
+- Homepage uses a sticky glass header, dark liquid hero, trust strip, real office image, glass coverage cards, process section, local office section, official franchise badge, direct secure quote handoff, FAQ, final CTA, and footer.
 - Service pages include richer Miami search-intent panels, local topic cards, expanded FAQs, and safer product-specific quote guidance.
 - Above-the-fold CTAs include "Get My Free Quote" and "Call ${phoneDisplay}."
 - Mobile navigation is collapsible and the phone number remains visible.
@@ -6099,9 +6461,9 @@ Generated by the static site build for ${businessName}.
 
 ## Privacy and Security
 
-- Quote form uses required frontend validation and a hidden honeypot anti-spam field before opening ${quoteDestination}.
-- Quote form warns users not to send SSNs, DOBs, driver license numbers, VINs, payment data, claims, medical records, passwords, or credentials.
-- Static hosting does not store quote form submissions; completed requests continue on the provided ConsumerRateQuotes intake path.
+- The public quote page contains no duplicate contact or underwriting fields before opening ${quoteDestination}.
+- The page warns users to share sensitive data only through a secure process that specifically requires it.
+- A redirect is measured as \`quote_start\`; it is not reported as a submitted or generated lead without downstream acknowledgement.
 - ConsumerRateQuotes account ID 64868 was confirmed by the owner as the Office #3 intake path.
 - \`server.js\` serves the built \`dist/\` folder with Express and sets baseline browser security headers for the GoDaddy Beta Apps Node.js runtime.
 - \`.htaccess\` remains in the static export only as a harmless fallback artifact for Apache-style static hosting.
@@ -6222,7 +6584,7 @@ dist/
     - Family/office photo is the real Office #3 photo.
     - Phone links call \`${phoneDisplay}\`.
     - \`Get My Free Quote\` opens the connected quote path.
-    - Quote form validates required fields and opens \`${quoteDestination}\`.
+    - Quote handoff card contains no duplicate contact fields and opens \`${quoteDestination}\`.
     - Footer links, \`robots.txt\`, \`sitemap.xml\`, \`llms.txt\`, and \`humans.txt\` open.
 
 ## Production Server
@@ -6304,6 +6666,8 @@ generate();
 
 export {
   pages,
+  faqHtml,
+  faqSchema,
   serviceCards,
   specialtyCoverageLinks,
   tickerItems,
@@ -6314,5 +6678,6 @@ export {
   businessName,
   address,
   quoteDestination,
-  googleReviewUrl
+  googleReviewUrl,
+  contentReviewedDate
 };

@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import TurndownService from "turndown";
+import { englishToSpanish } from "../content/spanish-content.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const publicDir = path.join(root, "public");
@@ -10,28 +11,7 @@ const markdownDir = path.join(publicDir, ".agent-markdown");
 const siteFacts = JSON.parse(fs.readFileSync(path.join(root, "content", "site-facts.json"), "utf8"));
 const siteUrl = siteFacts.siteUrl;
 
-const routes = [
-  "",
-  "auto-insurance",
-  "home-insurance",
-  "commercial-insurance",
-  "life-insurance",
-  "renters-insurance",
-  "about-office-3",
-  "get-a-quote",
-  "privacy-policy",
-  "terms",
-  "es",
-  "es/seguro-de-auto",
-  "es/seguro-de-vivienda",
-  "es/seguro-de-inquilinos",
-  "es/seguro-comercial",
-  "es/seguro-de-vida",
-  "es/sobre-oficina-3",
-  "es/solicitar-cotizacion",
-  "es/privacidad",
-  "es/terminos"
-];
+const routes = [...new Set([...Object.keys(englishToSpanish), ...Object.values(englishToSpanish)])];
 
 function write(relativePath, content) {
   const filePath = path.join(publicDir, relativePath);
@@ -66,8 +46,8 @@ function markdownForHtml(html, canonicalUrl) {
   return `---\ntitle: ${escapeYaml(title)}\ndescription: ${escapeYaml(description)}\nlanguage: ${escapeYaml(language)}\ncanonical: ${escapeYaml(canonicalUrl)}\n---\n\n${body}\n`;
 }
 
-fs.rmSync(wellKnownDir, { recursive: true, force: true });
-fs.rmSync(markdownDir, { recursive: true, force: true });
+fs.mkdirSync(wellKnownDir, { recursive: true });
+fs.mkdirSync(markdownDir, { recursive: true });
 
 for (const route of routes) {
   const sourcePath = route ? path.join(root, route, "index.html") : path.join(root, "index.html");
@@ -114,7 +94,13 @@ const publicSiteMetadata = {
     life: `${siteUrl}/life-insurance/`,
     about: `${siteUrl}/about-office-3/`,
     quote_help: `${siteUrl}/get-a-quote/`,
-    spanish_home: `${siteUrl}/es/`
+    policyholder_help: `${siteUrl}/policyholder-help/`,
+    hurricane_preparation: `${siteUrl}/customer-resources/hurricane-preparation/`,
+    renewal_review: `${siteUrl}/customer-resources/renewal-review/`,
+    certificate_guidance: `${siteUrl}/customer-resources/certificate-of-insurance/`,
+    annual_review: `${siteUrl}/customer-resources/life-event-review/`,
+    spanish_home: `${siteUrl}/es/`,
+    spanish_policyholder_help: `${siteUrl}/es/ayuda-para-clientes/`
   },
   quote_handoff: {
     type: "external-human-facing-form",
@@ -218,7 +204,7 @@ write(path.join("docs", "api.md"), `# YFFI3 Public Site Metadata API\n\nThis rea
 write("auth.md", `# auth.md\n\n## Agent audience\n\nAI agents may read the public pages, \`llms.txt\`, the agent skill, and the public site metadata API without registration.\n\n## Authentication status\n\n\`NOT APPLICABLE — NO PROTECTED API\`: this website does not operate user accounts, an OAuth authorization server, an OpenID Connect provider, or an agent credential-issuance service. No bearer token is required or accepted by the public metadata or MCP endpoints.\n\n## Supported access method\n\n- Method: anonymous, unregistered, public read-only access.\n- Registration or provisioning endpoint: none.\n- Credential type: none; do not send bearer tokens, API keys, passwords, or identity assertions.\n- Available interfaces: the public metadata API and the read-only MCP endpoint at \`/mcp\`.\n\nAutomated agent registration is not offered because this service has no account or authorization boundary to register against. Do not send customer data or sensitive underwriting information to the public endpoints.\n\n## Human-facing quote handoff\n\nAgents may return the quote-help page or approved external quote URL to a person, but must obtain that person's confirmation before navigating or submitting anything. Coverage is not bound by reading or using the public metadata API.\n`);
 
 const discoveryLinks = '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json", </.well-known/mcp/server-card.json>; rel="service-desc"; type="application/mcp-server-card+json", </docs/api.md>; rel="service-doc"; type="text/markdown", </llms.txt>; rel="describedby"; type="text/plain"';
-write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  Origin-Agent-Cluster: ?1\n  X-Permitted-Cross-Domain-Policies: none\n  Content-Signal: search=yes, ai-input=yes, ai-train=no\n  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-DaMsrnme1cB26ZbUI+06/lNY3R+EpKtlVPrw4gsa8A0=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests\n\n/\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/index.html\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"\n  Access-Control-Allow-Origin: *\n\n/.well-known/openapi.json\n  Content-Type: application/vnd.oai.openapi+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n\n/.well-known/agent-skills/*\n  Access-Control-Allow-Origin: *\n\n/.well-known/mcp/server-card.json\n  Content-Type: application/mcp-server-card+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Methods: GET\n  Access-Control-Allow-Headers: Content-Type, If-None-Match\n  Access-Control-Expose-Headers: ETag\n  Cache-Control: public, max-age=3600\n\n/api/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=300, must-revalidate\n\nhttps://:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n`);
+write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  Origin-Agent-Cluster: ?1\n  X-Permitted-Cross-Domain-Policies: none\n  Content-Signal: search=yes, ai-input=yes, ai-train=no\n  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests\n\n/\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/index.html\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"\n  Access-Control-Allow-Origin: *\n\n/.well-known/openapi.json\n  Content-Type: application/vnd.oai.openapi+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n\n/.well-known/agent-skills/*\n  Access-Control-Allow-Origin: *\n\n/.well-known/mcp/server-card.json\n  Content-Type: application/mcp-server-card+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Methods: GET\n  Access-Control-Allow-Headers: Content-Type, If-None-Match\n  Access-Control-Expose-Headers: ETag\n  Cache-Control: public, max-age=3600\n\n/api/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=300, must-revalidate\n\nhttps://:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n`);
 
 const headersFile = path.join(publicDir, "_headers");
 fs.writeFileSync(

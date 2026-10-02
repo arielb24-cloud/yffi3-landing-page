@@ -4,7 +4,8 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 const screenshotDir = path.resolve("playwright-screenshots");
-const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:4175";
+const playwrightPort = process.env.PLAYWRIGHT_PORT || "4275";
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${playwrightPort}`;
 const quoteDestination = "https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868";
 const googleTagManagerId = "GTM-5FZCMM3V";
 const googleAnalyticsTagId = "G-6XC09FD9LD";
@@ -19,6 +20,11 @@ const pages = [
   { name: "about", path: "/about-office-3/" },
   { name: "privacy", path: "/privacy-policy/" },
   { name: "terms", path: "/terms/" },
+  { name: "customers", path: "/policyholder-help/", policyholder: true },
+  { name: "hurricane-guide", path: "/customer-resources/hurricane-preparation/", policyholder: true, resource: true },
+  { name: "renewal-guide", path: "/customer-resources/renewal-review/", policyholder: true, resource: true },
+  { name: "certificate-guide", path: "/customer-resources/certificate-of-insurance/", policyholder: true, resource: true },
+  { name: "annual-review-guide", path: "/customer-resources/life-event-review/", policyholder: true, resource: true },
   { name: "home-es", path: "/es/", spanish: true },
   { name: "quote-es", path: "/es/solicitar-cotizacion/", spanish: true },
   { name: "auto-es", path: "/es/seguro-de-auto/", spanish: true, service: true },
@@ -28,7 +34,12 @@ const pages = [
   { name: "renters-es", path: "/es/seguro-de-inquilinos/", spanish: true, service: true },
   { name: "about-es", path: "/es/sobre-oficina-3/", spanish: true },
   { name: "privacy-es", path: "/es/privacidad/", spanish: true },
-  { name: "terms-es", path: "/es/terminos/", spanish: true }
+  { name: "terms-es", path: "/es/terminos/", spanish: true },
+  { name: "customers-es", path: "/es/ayuda-para-clientes/", spanish: true, policyholder: true },
+  { name: "hurricane-guide-es", path: "/es/recursos-para-clientes/preparacion-para-huracanes/", spanish: true, policyholder: true, resource: true },
+  { name: "renewal-guide-es", path: "/es/recursos-para-clientes/revision-de-renovacion/", spanish: true, policyholder: true, resource: true },
+  { name: "certificate-guide-es", path: "/es/recursos-para-clientes/certificado-de-seguro/", spanish: true, policyholder: true, resource: true },
+  { name: "annual-review-guide-es", path: "/es/recursos-para-clientes/revision-anual/", spanish: true, policyholder: true, resource: true }
 ];
 const viewports = [
   { name: "mobile", width: 390, height: 920 },
@@ -45,14 +56,30 @@ const languagePairs = [
   ["/about-office-3/", "/es/sobre-oficina-3/"],
   ["/get-a-quote/", "/es/solicitar-cotizacion/"],
   ["/privacy-policy/", "/es/privacidad/"],
-  ["/terms/", "/es/terminos/"]
+  ["/terms/", "/es/terminos/"],
+  ["/policyholder-help/", "/es/ayuda-para-clientes/"],
+  ["/customer-resources/hurricane-preparation/", "/es/recursos-para-clientes/preparacion-para-huracanes/"],
+  ["/customer-resources/renewal-review/", "/es/recursos-para-clientes/revision-de-renovacion/"],
+  ["/customer-resources/certificate-of-insurance/", "/es/recursos-para-clientes/certificado-de-seguro/"],
+  ["/customer-resources/life-event-review/", "/es/recursos-para-clientes/revision-anual/"]
 ];
 
 test.beforeAll(() => {
   fs.mkdirSync(screenshotDir, { recursive: true });
 });
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
+  // Safari upgrades loopback assets under the production CSP. Keep this HTTP-only
+  // test accommodation in the harness; production security headers stay intact.
+  if (baseURL.startsWith("http://127.0.0.1:") || baseURL.startsWith("http://localhost:")) {
+    await context.route(`${baseURL}/**`, async (route) => {
+      if (!route.request().isNavigationRequest()) return route.continue();
+      const response = await route.fetch();
+      const headers = response.headers();
+      if (headers["content-security-policy"]) headers["content-security-policy"] = headers["content-security-policy"].replace(/;?\s*upgrade-insecure-requests/g, "");
+      await route.fulfill({ response, headers });
+    });
+  }
   await page.route("https://www.googletagmanager.com/gtm.js**", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/javascript", body: "" });
   });
@@ -98,18 +125,15 @@ for (const viewport of viewports) {
         const principalAgentPhoto = page.locator(".principal-photo img").first();
         await principalAgentPhoto.scrollIntoViewIfNeeded();
         await expect(principalAgentPhoto).toBeVisible();
-        const originalFranchiseLogo = page.locator(pageInfo.spanish ? 'img[alt*="Logotipo familiar original"]' : 'img[alt*="Original Your Family First Insurance"]').first();
-        await originalFranchiseLogo.scrollIntoViewIfNeeded();
-        await expect(originalFranchiseLogo).toBeVisible();
         await expect(page.locator(".trust-ticker")).toBeVisible();
       }
 
       if (["quote", "quote-es"].includes(pageInfo.name)) {
-        const quoteForm = page.locator('[data-quote-form]');
-        await quoteForm.scrollIntoViewIfNeeded();
-        await expect(quoteForm).toBeVisible();
-        await expect(page.locator('[name="companyWebsite"]')).toHaveCount(1);
-        await expect(page.locator('label:has([name="phone"])')).toBeVisible();
+        const quoteHandoff = page.locator('[data-quote-handoff]');
+        await quoteHandoff.scrollIntoViewIfNeeded();
+        await expect(quoteHandoff).toBeVisible();
+        await expect(quoteHandoff.locator('input, textarea, select')).toHaveCount(0);
+        await expect(quoteHandoff.locator('a[href*="secure.ConsumerRateQuotes.com"]')).toBeVisible();
       }
 
       if (pageInfo.service) {
@@ -124,11 +148,18 @@ for (const viewport of viewports) {
         await expect(carousel.locator("[data-carousel-dot]")).toHaveCount(3);
         await expect(page.locator("[data-carousel-prev]")).toBeVisible();
         await expect(page.locator("[data-carousel-next]")).toBeVisible();
-        const searchIntentPanel = page.locator(".search-intent-panel");
+        const searchIntentPanel = page.locator(".service-detail");
         await searchIntentPanel.scrollIntoViewIfNeeded();
         await expect(searchIntentPanel).toBeVisible();
-        await expect(page.locator(".intent-card")).toHaveCount(4);
-        expect(await page.locator(".faq-list details").count()).toBeGreaterThanOrEqual(8);
+        await expect(page.locator(".service-detail .detail-card")).toHaveCount(4);
+        expect(await page.locator(".faq-list details").count()).toBeGreaterThanOrEqual(4);
+      }
+
+      if (pageInfo.policyholder) {
+        await expect(page.locator("main input, main textarea, main select")).toHaveCount(0);
+        await expect(page.locator(".policyholder-contact")).toBeVisible();
+        if (pageInfo.resource) await expect(page.locator(".policyholder-sources")).toBeVisible();
+        else await expect(page.locator(".policyholder-resources .intent-card")).toHaveCount(4);
       }
 
       await revealWholePage(page);
@@ -167,9 +198,9 @@ test("mobile homeowners page scroll content stays usable", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.goto("/home-insurance/", { waitUntil: "networkidle" });
 
-  await page.locator(".search-intent-panel").scrollIntoViewIfNeeded();
-  await expect(page.locator(".search-intent-panel h2")).toContainText("Homeowners Insurance");
-  await expect(page.locator(".intent-card").first()).toBeVisible();
+  await page.locator(".service-detail").scrollIntoViewIfNeeded();
+  await expect(page.locator(".service-detail h2")).toContainText("What to Review");
+  await expect(page.locator(".detail-card").first()).toBeVisible();
 
   await page.locator(".faq-list").scrollIntoViewIfNeeded();
   await page.locator(".faq-list summary").first().click();
@@ -218,26 +249,26 @@ test("mobile homepage sections keep stable document flow while scrolling", async
   expect(after.overflow).toBe(false);
 });
 
-test("mobile carousel engagement does not move the page and enables its video", async ({ page }) => {
+test("mobile carousel autoplays before engagement and controls do not move the page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.goto("/", { waitUntil: "networkidle" });
   const carousel = page.locator("[data-insurance-carousel]");
   const nextControl = carousel.locator("[data-carousel-next]");
   await nextControl.scrollIntoViewIfNeeded();
-  await expect(carousel.locator(".motion-video source")).toHaveCount(0);
+  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
   const beforeY = await page.evaluate(() => window.scrollY);
 
   await nextControl.click();
 
   await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners");
-  await expect(carousel.locator(".motion-video source")).toHaveCount(1);
+  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
   const afterY = await page.evaluate(() => window.scrollY);
   expect(Math.abs(afterY - beforeY)).toBeLessThanOrEqual(1);
 });
 
-test("quote form validates safe contact fields", async ({ page }) => {
+test("quote page avoids duplicate data entry and continues to the secure vendor", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
-  await page.route("https://secure.ConsumerRateQuotes.com/**", async (route) => {
+  await page.route("https://secure.consumerratequotes.com/**", async (route) => {
     await route.fulfill({
       status: 200,
       contentType: "text/html",
@@ -246,20 +277,18 @@ test("quote form validates safe contact fields", async ({ page }) => {
   });
   await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
 
-  await page.locator("[data-quote-form]").scrollIntoViewIfNeeded();
-  await page.locator('[name="name"]').fill("Ariel Test");
-  await page.locator('[name="phone"]').fill("3059108850");
-  await page.locator('[name="email"]').fill("ariel@example.com");
-  await page.locator('[name="insuranceType"]').selectOption({ label: "Auto" });
-  await page.locator('[name="zip"]').fill("33174");
-  await page.locator('[name="bestTime"]').selectOption({ label: "Morning" });
-  await page.locator('[name="notes"]').fill("I want to compare auto coverage options.");
-  await page.getByRole("button", { name: /Continue to Secure Quote Form/i }).click();
+  const handoff = page.locator("[data-quote-handoff]");
+  const buttonBounds = await handoff.locator("[data-secure-quote-handoff]").boundingBox();
+  const barBounds = await page.locator(".mobile-contact-bar").boundingBox();
+  expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(barBounds.y);
+  await handoff.scrollIntoViewIfNeeded();
+  await expect(handoff.locator("input, textarea, select")).toHaveCount(0);
+  await handoff.getByRole("link", { name: /Get My Free Quote/i }).click();
 
   await expect(page).toHaveURL(quoteDestination);
 });
 
-test("quote buttons and form route to the secure quote destination", async ({ page }) => {
+test("quote buttons and handoff card route to the secure quote destination", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
 
@@ -275,8 +304,7 @@ test("quote buttons and form route to the secure quote destination", async ({ pa
   }
 
   await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
-  await expect(page.locator("[data-quote-form]")).toHaveAttribute("action", quoteDestination);
-  await expect(page.locator("[data-quote-form]")).toHaveAttribute("data-quote-destination", quoteDestination);
+  await expect(page.locator("[data-quote-handoff] a[data-secure-quote-handoff]")).toHaveAttribute("href", quoteDestination);
 });
 
 test("GTM is installed once per page with no hard-coded GA4 tag", async ({ request }) => {
@@ -303,16 +331,7 @@ test("GTM is installed once per page with no hard-coded GA4 tag", async ({ reque
 
 test("analytics events use only approved non-sensitive fields", async ({ page }) => {
   await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
-  await page.evaluate(() => {
-    window.dataLayer = [];
-    document.addEventListener("submit", (event) => event.preventDefault(), true);
-    document.querySelector("[data-quote-form]").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
-  });
-
-  const formEvents = await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "form_submit"));
-  expect(formEvents).toHaveLength(0);
-  expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "quote_start"))).toHaveLength(0);
-  expect(await page.evaluate(() => window.dataLayer.filter((entry) => entry?.event === "generate_lead"))).toHaveLength(0);
+  await expect(page.locator("[data-quote-handoff] input, [data-quote-handoff] textarea, [data-quote-handoff] select")).toHaveCount(0);
 
   await page.goto("/", { waitUntil: "networkidle" });
   const clickEvents = await page.evaluate(async () => {
@@ -362,37 +381,48 @@ test("first-touch attribution is sanitized, non-PII, and session-scoped", async 
   expect(persisted).toEqual(firstTouch);
 });
 
-test("a valid quote handoff emits quote_start once without claiming a generated lead", async ({ page }) => {
+test("campaign attribution rejects email addresses and phone numbers", async ({ page }) => {
+  await page.goto("/auto-insurance/?utm_campaign=synthetic%40example.invalid&utm_content=%2B1%20%28202%29%20555-0100", { waitUntil: "networkidle" });
+  const firstTouch = await page.evaluate(() => JSON.parse(sessionStorage.getItem("yffi_first_touch_v1")));
+  expect(firstTouch.campaign_name).toBe("(not_set)");
+  expect(firstTouch.campaign_content).toBe("(not_set)");
+});
+
+test("review dates stay anchored to the actual snapshot in both languages", async ({ request }) => {
+  for (const [path, date] of [["/about-office-3/", "Recorded July 13, 2026"], ["/es/sobre-oficina-3/", "Registrado el 13 de julio de 2026"]]) {
+    const html = await (await request.get(path)).text();
+    expect(html).toContain(date);
+    expect(html).not.toMatch(/class="real-review-meta">[^<]*(?:ago|hace)/);
+    expect(html).not.toContain("contract-safe");
+  }
+});
+
+test("a direct quote handoff emits quote_start without claiming form submission or generated lead", async ({ page }) => {
   await page.route("https://secure.consumerratequotes.com/**", (route) => route.abort());
   await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
   const events = await page.evaluate(() => {
     window.dataLayer = [];
-    const form = document.querySelector("[data-quote-form]");
-    form.querySelector('[name="name"]').value = "Test Visitor";
-    form.querySelector('[name="phone"]').value = "3055550100";
-    form.querySelector('[name="email"]').value = "test@example.invalid";
-    form.querySelector('[name="insuranceType"]').value = "Auto";
-    form.querySelector('[name="zip"]').value = "33134";
-    form.querySelector('[name="bestTime"]').value = "Morning";
-    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    document.addEventListener("click", (event) => event.preventDefault(), true);
+    document.querySelector("[data-secure-quote-handoff]").dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
     return window.dataLayer;
   });
-  expect(events.filter((entry) => entry?.event === "form_submit")).toHaveLength(1);
-  expect(events.filter((entry) => entry?.event === "quote_start")).toHaveLength(1);
+  const quoteStartEvents = events.filter((entry) => entry?.event === "quote_start");
+  expect(quoteStartEvents).toHaveLength(1);
+  expect(events.filter((entry) => entry?.event === "form_submit")).toHaveLength(0);
+  expect(events.filter((entry) => entry?.event === "quote_form_validated")).toHaveLength(0);
   expect(events.filter((entry) => entry?.event === "generate_lead")).toHaveLength(0);
-  expect(JSON.stringify(events)).not.toMatch(/Test Visitor|3055550100|test@example\.invalid|33134/i);
 });
 
 test("privacy pages accurately disclose measurement and advertising tools", async ({ request }) => {
   const english = await (await request.get("/privacy-policy/")).text();
-  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "cookie-preference panel"]) {
+  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "_ga", "cookie-preference panel"]) {
     expect(english).toContain(disclosure);
   }
   expect(english).toContain("does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings");
   expect(english).toContain("browser session storage");
 
   const spanish = await (await request.get("/es/privacidad/")).text();
-  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "Apollo Website Tracker", "_ga", "panel de preferencias de cookies"]) {
+  for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "_ga", "panel de preferencias de cookies"]) {
     expect(spanish).toContain(disclosure);
   }
 });
@@ -414,8 +444,8 @@ test("header ticker contains trusted links and pauses on hover", async ({ page }
 
   const ticker = page.locator(".trust-ticker");
   await expect(ticker).toBeVisible();
-  await expect(ticker.locator('a[href="/auto-insurance/"]').first()).toBeVisible();
-  await expect(ticker.locator('a[href="/#general-liability-insurance"]').first()).toBeVisible();
+  await expect(ticker.locator('a[href="/about-office-3/"]').first()).toBeVisible();
+  await expect(ticker.locator('a[href="/policyholder-help/"]').first()).toBeVisible();
   await expect(ticker.locator('a[href*="secure.ConsumerRateQuotes.com"]').first()).toBeVisible();
 
   const beforeHover = await page.locator(".trust-track").evaluate((node) => getComputedStyle(node).animationPlayState);
@@ -524,10 +554,107 @@ for (const pageInfo of pages) {
     expect(description?.length || 0).toBeLessThanOrEqual(250);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`^https://yourfamilyfirstinsurance3\\.com${pageInfo.path === "/" ? "/$" : pageInfo.path}`));
     const schemaText = (await page.locator('script[type="application/ld+json"]').allTextContents()).join(" ");
-    if (await page.locator(".faq-list details").count()) expect(schemaText).toContain("FAQPage");
+    if (await page.locator(".faq-list details").count()) {
+      const faq = await page.evaluate(() => {
+        const schema = [...document.querySelectorAll('script[type="application/ld+json"]')]
+          .map((script) => JSON.parse(script.textContent)).find((item) => item["@type"] === "FAQPage");
+        const text = (html) => {
+          const element = document.createElement("div");
+          element.innerHTML = html;
+          return element.textContent.replace(/\s+/g, " ").trim();
+        };
+        return {
+          locale: schema.inLanguage,
+          schemaRows: schema.mainEntity.map((item) => ({
+            question: item.name, answer: text(item.acceptedAnswer.text), id: new URL(item["@id"]).hash.slice(1),
+            links: [...new DOMParser().parseFromString(item.acceptedAnswer.text, "text/html").querySelectorAll("a")]
+              .map((link) => [link.textContent, link.getAttribute("href")])
+          })),
+          visibleRows: [...document.querySelectorAll(".faq-list details")].map((item) => ({
+            question: item.querySelector("summary").textContent,
+            answer: text(item.querySelector(".faq-answer").innerHTML), id: item.querySelector("summary").id,
+            links: [...item.querySelectorAll("a")].map((link) => [link.textContent, link.getAttribute("href")])
+          }))
+        };
+      });
+      expect(faq.locale).toBe(pageInfo.spanish ? "es-US" : "en-US");
+      expect(faq.schemaRows).toEqual(faq.visibleRows);
+      expect(new Set(faq.visibleRows.map((row) => row.question)).size).toBe(faq.visibleRows.length);
+    }
     expect(consoleErrors).toEqual([]);
     expect(pageErrors).toEqual([]);
     expect(failedRequests).toEqual([]);
+  });
+}
+
+test("expanded FAQs have no serious accessibility violations", async ({ page }) => {
+  for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]) {
+    await page.setViewportSize({ width: 390, height: 920 });
+    await page.goto(route, { waitUntil: "networkidle" });
+    for (const summary of await page.locator(".faq summary").all()) await summary.click();
+    const results = await new AxeBuilder({ page }).include(".faq").analyze();
+    expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact)), route).toEqual([]);
+  }
+});
+
+test("FAQ next steps have valid destinations and localized internal links", async ({ page, request }) => {
+  test.setTimeout(90_000);
+  const internalLinks = new Set();
+  for (const pageInfo of pages.filter((item) => !["privacy", "terms", "privacy-es", "terms-es"].includes(item.name))) {
+    await page.goto(pageInfo.path, { waitUntil: "domcontentloaded" });
+    const links = await page.locator(".faq-links a").evaluateAll((items) => items.map((item) => item.getAttribute("href")));
+    expect(links.length).toBeGreaterThan(0);
+    for (const href of links) {
+      if (href.startsWith("/")) {
+        expect(href.startsWith("/es/")).toBe(Boolean(pageInfo.spanish));
+        internalLinks.add(href);
+      } else {
+        expect(href).toMatch(/^https:\/\/|^tel:13059108850$/);
+      }
+    }
+  }
+  for (const href of internalLinks) {
+    const url = new URL(href, baseURL);
+    const response = await request.get(url.pathname);
+    expect(response.status(), href).toBe(200);
+    if (url.hash) expect(await response.text(), href).toContain(`id="${url.hash.slice(1)}"`);
+  }
+});
+
+for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]) {
+  test(`FAQ keyboard controls and expanded layout ${route}`, async ({ page }) => {
+    test.setTimeout(60_000);
+    for (const width of [320, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 920 });
+      await page.goto(route, { waitUntil: "networkidle" });
+      const details = page.locator(".faq-list details");
+      const summary = details.first().locator("summary");
+      await summary.focus();
+      await page.keyboard.press("Enter");
+      await expect(details.first()).toHaveAttribute("open", "");
+      await page.keyboard.press("Space");
+      await expect(details.first()).not.toHaveAttribute("open", "");
+      for (const item of await details.all()) await item.locator("summary").click();
+      const lastAnswer = details.last().locator(".faq-answer");
+      await lastAnswer.scrollIntoViewIfNeeded();
+      const geometry = await page.evaluate(() => {
+        const rects = [...document.querySelectorAll(".faq details, .faq-answer, .faq-links a")]
+          .map((item) => item.getBoundingClientRect());
+        const bar = document.querySelector(".mobile-contact-bar")?.getBoundingClientRect();
+        const last = [...document.querySelectorAll(".faq-answer")].at(-1).getBoundingClientRect();
+        return {
+          fits: rects.every((rect) => rect.left >= 0 && rect.right <= innerWidth + 1),
+          overflow: document.documentElement.scrollWidth > innerWidth,
+          lastBottom: last.bottom, barTop: bar?.height ? bar.top : innerHeight,
+          targets: [...document.querySelectorAll(".faq summary, .faq-links a")].every((item) => item.getBoundingClientRect().height >= 44)
+        };
+      });
+      expect(geometry.fits).toBe(true);
+      expect(geometry.overflow).toBe(false);
+      expect(geometry.targets).toBe(true);
+      // Scroll offsets round to device pixels; DOM rectangles retain fractional pixels.
+      expect(geometry.lastBottom).toBeLessThanOrEqual(geometry.barTop + 1);
+    }
   });
 }
 
@@ -643,9 +770,17 @@ test("language selector stays compact on mobile and uses full names on desktop",
 
 test("Spanish homepage trust links remain in the Spanish route", async ({ page }) => {
   await page.goto("/es/", { waitUntil: "domcontentloaded" });
-  const localizedAnchors = page.locator('.trust-ticker a[href^="/es/#"]');
-  await expect(localizedAnchors).toHaveCount(10);
+  await expect(page.locator('.trust-ticker a[href="/es/ayuda-para-clientes/"]')).toHaveCount(1);
   await expect(page.locator('.trust-ticker a[href^="/#"]')).toHaveCount(0);
+});
+
+test("Spanish homepage schema and trust copy stay localized", async ({ page }) => {
+  await page.goto("/es/", { waitUntil: "domcontentloaded" });
+  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const itemList = schemas.map((text) => JSON.parse(text)).find((schema) => schema["@type"] === "ItemList");
+  expect(itemList?.itemListElement?.every((item) => item.url.startsWith("https://yourfamilyfirstinsurance3.com/es/"))).toBe(true);
+  await expect(page.locator("#seguros-en-espanol")).toContainText("Hablamos español");
+  await expect(page.locator(".trust-strip, .why-panel, .franchise-panel, .process-section, .final-cta")).toHaveCount(0);
 });
 
 test("touch-only devices do not enable desktop hover motion", async ({ browser }) => {
@@ -728,7 +863,7 @@ test("agents can negotiate Markdown while browsers keep HTML", async ({ request 
   expect(markdown.headers()["content-type"]).toContain("text/markdown");
   expect(markdown.headers().vary).toContain("Accept");
   expect(Number(markdown.headers()["x-markdown-tokens"])).toBeGreaterThan(100);
-  expect(await markdown.text()).toContain("# Miami Insurance Made Simple for Your Family");
+  expect(await markdown.text()).toContain("# Insurance in Miami");
 
   const html = await request.get("/", { headers: { Accept: "text/html" } });
   expect(html.headers()["content-type"]).toContain("text/html");
@@ -784,3 +919,259 @@ test("WebMCP exposes only read-only public actions", async ({ page }) => {
   expect(quoteHandoff.quote_help_url).toContain("/es/solicitar-cotizacion/");
   expect(quoteHandoff.requires_user_confirmation).toBe(true);
 });
+
+
+test("mobile Google reviews fit and expanded text stays in document flow", async ({ page }) => {
+  test.setTimeout(90_000);
+  for (const route of ["/", "/es/", "/about-office-3/", "/es/sobre-oficina-3/"]) {
+    for (const width of [320, 390, 430]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(route, { waitUntil: "networkidle" });
+      const panel = page.locator("#google-reviews");
+      await panel.scrollIntoViewIfNeeded();
+      await expect(panel).toHaveCSS("display", "grid");
+      await page.locator(".review-dots [data-review-dot='1']").click();
+      const card = page.locator(".real-review-card.is-active");
+      await card.locator("details").first().locator("summary").click();
+      await expect(card.locator("details").first()).toHaveAttribute("open", "");
+      await expect(card.locator(".real-review-excerpt")).toBeHidden();
+      const fits = await panel.evaluate((element) => {
+        const card = element.querySelector(".real-review-card.is-active");
+        const controls = element.querySelector(".review-carousel-controls");
+        const box = card.getBoundingClientRect();
+        return {
+          page: document.documentElement.scrollWidth <= innerWidth + 1,
+          panel: element.scrollWidth <= element.clientWidth + 1,
+          card: card.scrollHeight <= card.clientHeight + 1,
+          inside: box.left >= 0 && box.right <= innerWidth + 1,
+          controls: controls.getBoundingClientRect().top >= box.bottom - 1
+        };
+      });
+      expect(fits).toEqual({ page: true, panel: true, card: true, inside: true, controls: true });
+      await card.locator(".review-source-link").scrollIntoViewIfNeeded();
+      await expect(card.locator(".review-source-link")).toBeInViewport();
+    }
+  }
+});
+
+
+for (const [route, autoPath, commercialPath, spanish] of [
+  ["/", "/auto-insurance/", "/commercial-insurance/", false],
+  ["/es/", "/es/seguro-de-auto/", "/es/seguro-comercial/", true]
+]) {
+  test(`mobile service selection and quote routing work in ${spanish ? "Spanish" : "English"}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.route("https://secure.consumerratequotes.com/**", route => route.fulfill({ body: "<title>Quote form</title>" }));
+    await page.goto(route, { waitUntil: "networkidle" });
+    const bar = page.locator(".mobile-contact-bar");
+    await expect(bar).toBeVisible();
+    await expect(bar.locator("a").last()).toHaveAttribute("href", quoteDestination);
+    await page.locator(`.coverage-card[href="${autoPath}"]`).click();
+    await expect(page).toHaveURL(new RegExp(autoPath));
+    await expect(page.locator('.motion-slide[data-active="true"] .motion-actions a')).toHaveAttribute("href", quoteDestination);
+    await page.locator(".mobile-contact-bar a").last().click();
+    await expect(page).toHaveURL(quoteDestination);
+    await page.goto(commercialPath, { waitUntil: "networkidle" });
+    await expect(page.locator(".hero .cta-row a").first()).toHaveAttribute("href", /^tel:/);
+    await expect(bar.locator("a").first()).toHaveAttribute("href", "#coverage-details");
+    await expect(bar.locator("a").last()).toHaveAttribute("href", /^tel:/);
+  });
+}
+
+test("a selected review stays available while the customer reads it", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await page.locator(".review-dots [data-review-dot='1']").click();
+  await page.evaluate(() => document.activeElement?.blur());
+  await page.mouse.move(4, 4);
+  await page.waitForTimeout(8500);
+  await expect(page.locator('[data-review-card="1"]')).toHaveClass(/is-active/);
+});
+
+
+for (const route of ["/", "/es/", "/auto-insurance/", "/es/seguro-de-auto/", "/get-a-quote/", "/es/solicitar-cotizacion/"]) {
+  test(`responsive media and section geometry ${route}`, async ({ page }) => {
+    test.setTimeout(90_000);
+    for (const width of [320, 390, 430, 600, 768, 834, 1024, 1040, 1280, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 1100 });
+      await page.goto(route, { waitUntil: "networkidle" });
+      const geometry = await page.evaluate(() => {
+        const rect = selector => document.querySelector(selector)?.getBoundingClientRect();
+        const center = box => box.left + box.width / 2;
+        const media = rect('.motion-slide[data-active="true"] .motion-media-link');
+        const slide = rect('.motion-slide[data-active="true"]');
+        const showcase = rect('.motion-showcase');
+        const arrow = rect('.carousel-prev');
+        const actions = rect('.header-actions');
+        const sections = [...document.querySelectorAll('main > section')].map(node => {
+          const box = node.getBoundingClientRect();
+          return { name: node.className, center: Math.abs(center(box) - innerWidth / 2), left: box.left, right: box.right };
+        });
+        const panels = [...document.querySelectorAll('.quote-panel > *, .about-panel > *, .review-panel > *')].map(node => {
+          const box = node.getBoundingClientRect();
+          const parent = node.parentElement.getBoundingClientRect();
+          return { name: node.className, fits: box.left >= parent.left - 2 && box.right <= parent.right + 2 };
+        });
+        return {
+          overflow: document.documentElement.scrollWidth > innerWidth + 1,
+          media: media ? { widthDifference: Math.abs(media.width - slide.width), centerDifference: Math.abs(center(media) - center(slide)), aspect: media.width / media.height, arrowDifference: Math.abs(arrow.top + arrow.height / 2 - (media.top + media.height / 2)), showcaseCenter: Math.abs(center(showcase) - innerWidth / 2) } : null,
+          headerFits: !actions.width || (actions.left >= 0 && actions.right <= innerWidth),
+          sections, panels
+        };
+      });
+      const context = `${route} at ${width}px: ${JSON.stringify(geometry)}`;
+      expect(geometry.overflow, context).toBe(false);
+      expect(geometry.headerFits, context).toBe(true);
+      for (const section of geometry.sections) {
+        expect(section.center, context).toBeLessThanOrEqual(2);
+        expect(section.left, context).toBeGreaterThanOrEqual(-2);
+        expect(section.right, context).toBeLessThanOrEqual(width + 2);
+      }
+      expect(geometry.panels.every(panel => panel.fits), context).toBe(true);
+      if (geometry.media) {
+        expect(geometry.media.widthDifference, context).toBeLessThanOrEqual(2);
+        expect(geometry.media.centerDifference, context).toBeLessThanOrEqual(2);
+        expect(geometry.media.aspect, context).toBeCloseTo(16 / 9, 1);
+        expect(geometry.media.arrowDifference, context).toBeLessThanOrEqual(4);
+        if (width < 1024) expect(geometry.media.showcaseCenter, context).toBeLessThanOrEqual(2);
+      }
+    }
+  });
+}
+
+
+test("the selected video stays centered through resizing and automatic rotation", async ({ page }) => {
+  test.setTimeout(40_000);
+  await page.setViewportSize({ width: 1280, height: 1100 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  const carousel = page.locator("[data-insurance-carousel]");
+  await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners", { timeout: 9000 });
+  const centerOffset = () => page.evaluate(() => {
+    const carousel = document.querySelector("[data-insurance-carousel]");
+    const slide = carousel.querySelector('.motion-slide[data-active="true"]').getBoundingClientRect();
+    const track = carousel.querySelector('.carousel-track').getBoundingClientRect();
+    return Math.abs(slide.left + slide.width / 2 - (track.left + track.width / 2));
+  });
+  await expect.poll(centerOffset).toBeLessThanOrEqual(2);
+  await page.locator('[data-carousel-chip][data-slide-id="home-business"]').click();
+  await expect.poll(centerOffset).toBeLessThanOrEqual(2);
+  for (const width of [834, 390, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 1100 });
+    await expect.poll(centerOffset).toBeLessThanOrEqual(2);
+    await expect(carousel).toHaveAttribute("data-active-slide", "home-business");
+  }
+  const video = page.locator('.motion-slide[data-active="true"] .motion-video');
+  await expect.poll(() => video.evaluate(node => !node.paused && node.readyState >= 2)).toBe(true);
+});
+
+
+test("motion controls pause videos persistently and resume in both languages", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 1440, height: 1100 });
+  for (const path of ["/", "/es/"]) {
+    await page.goto(path, { waitUntil: "networkidle" });
+    const carousel = page.locator("[data-insurance-carousel]");
+    const control = carousel.locator("[data-carousel-motion]");
+    const video = carousel.locator('.motion-slide[data-active="true"] .motion-video');
+    await expect.poll(() => video.evaluate((node) => !node.paused && node.readyState >= 2)).toBe(true);
+    await control.click();
+    await expect(control).toHaveAttribute("aria-pressed", "true");
+    await expect(control).toHaveText(path === "/" ? "Resume motion" : "Reanudar animación");
+    await page.mouse.move(0, 0);
+    await expect.poll(() => video.evaluate((node) => node.paused)).toBe(true);
+    await control.press("Enter");
+    await expect(control).toHaveAttribute("aria-pressed", "false");
+    await expect.poll(() => video.evaluate((node) => !node.paused)).toBe(true);
+  }
+});
+
+test("business search markup omits unverified office hours and franchise identity links", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const agency = schemas.map((text) => JSON.parse(text)).flatMap((schema) => schema["@graph"] || [schema]).find((schema) => schema["@type"] === "InsuranceAgency");
+  expect(agency.openingHoursSpecification).toBeUndefined();
+  expect(agency.sameAs).toEqual([agency.hasMap]);
+  const preload = await page.locator('link[rel="preload"][as="image"]').all().then(async (links) => Promise.all(links.map(link => link.getAttribute("href"))));
+  const poster = await page.locator('.motion-slide[data-active="true"] .motion-poster').getAttribute("src");
+  expect(preload).toContain(poster);
+});
+
+
+test("mobile visitors download only the active optimized carousel poster", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const posters = new Set();
+  page.on("request", (request) => {
+    if (/\/media\/.*-poster\./.test(request.url())) posters.add(new URL(request.url()).pathname);
+  });
+  await page.goto("/", { waitUntil: "networkidle" });
+  expect([...posters]).toEqual(["/media/premium-carousel/home/miami-traffic-skyline-poster.webp"]);
+  await page.locator('[data-carousel-chip][data-slide-id="home-homeowners"]').click();
+  await expect.poll(() => posters.size).toBe(2);
+  expect([...posters]).toContain("/media/premium-carousel/home/luxury-home-aerial-poster.webp");
+});
+
+
+test("reviewable growth preview at desktop and phone sizes", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "chromium");
+  test.setTimeout(60_000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator("h1")).toBeVisible();
+  await page.screenshot({ path: "/tmp/yffi-growth-desktop.png", fullPage: false });
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  await page.locator('.review-dots [data-review-dot="1"]').click();
+  const card = page.locator(".real-review-card.is-active");
+  await card.locator("details").first().locator("summary").click();
+  await card.scrollIntoViewIfNeeded();
+  await expect(card.locator("details").first()).toHaveAttribute("open", "");
+  await card.locator("details").first().locator("summary").click();
+  await page.locator("#google-reviews").scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "/tmp/yffi-growth-mobile-reviews.png", fullPage: false });
+});
+
+
+for (const width of [390, 768, 1096, 1440]) {
+  test(`visible homepage videos autoplay and advance at ${width}px`, async ({ page }) => {
+    test.setTimeout(90_000);
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto(width === 768 ? "/es/" : "/", { waitUntil: "domcontentloaded" });
+    const carousel = page.locator("[data-insurance-carousel]");
+    await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+    const first = carousel.locator('.motion-slide[data-active="true"] video');
+    await expect.poll(() => first.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+    for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
+      await chip.click();
+      await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+      const video = carousel.locator('.motion-slide[data-active="true"] video');
+      await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+      await expect(video).toHaveClass(/is-ready/);
+      expect(await carousel.locator('.motion-slide[data-active="false"] video').evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
+    }
+    await page.locator("footer").scrollIntoViewIfNeeded();
+    await expect.poll(() => carousel.locator("video").evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
+    await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
+    expect(errors).toEqual([]);
+    if (width === 1096) await page.screenshot({ path: "/tmp/yffi-video-autoplay.png" });
+  });
+}
+
+for (const entry of pages.filter(entry => entry.service)) {
+  test(`all ${entry.name} videos play on selection`, async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.setViewportSize({ width: entry.spanish ? 390 : 1440, height: 1000 });
+    await page.goto(entry.path, { waitUntil: "domcontentloaded" });
+    const carousel = page.locator("[data-insurance-carousel]");
+    await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+    for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
+      await chip.click();
+      await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+      const video = carousel.locator('.motion-slide[data-active="true"] video');
+      await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+      expect(await video.evaluate(v => v.error)).toBeNull();
+    }
+  });
+}

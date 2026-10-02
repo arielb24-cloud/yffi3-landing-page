@@ -23,7 +23,7 @@ This project is a GoDaddy Beta Apps Node.js website for Your Family First Insura
 - Do not collect sensitive underwriting info in the public static form.
 - Do not ask for SSN, DOB, driver license number, VIN, policy number, payment information, medical records, claim files, passwords, or carrier login credentials.
 - Do not expose recipient emails, SMTP credentials, API keys, tokens, webhooks, or private URLs in frontend code.
-- The current quote form validates required basic contact fields and opens `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`; the owner confirmed account ID `64868` belongs to Office #3 and routes leads correctly.
+- The public quote page contains no duplicate contact or underwriting fields and opens `https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868`; the owner confirmed account ID `64868` belongs to Office #3 and routes leads correctly.
 
 ## Design and Build Rules
 
