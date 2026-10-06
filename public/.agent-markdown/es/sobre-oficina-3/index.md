@@ -37,13 +37,13 @@ Reseñas de Google de la Oficina #3
 
 Lea las experiencias compartidas sobre la Oficina #3. Visite Google para ver las reseñas más recientes.
 
-[Leer o dejar una reseña en Google](https://g.page/r/CfCEW-Ye4vpMEAE/review) [Llamar al 305-910-8850](tel:13059108850)
+[Leer reseñas en Google](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Dejar una reseña en Google](https://g.page/r/CfCEW-Ye4vpMEAE/review)
 
 Las reseñas describen experiencias individuales.
 
 Las reseñas se muestran tal como aparecen en Google.
 
- [![QR code linking to the Your Family First Insurance Office #3 Reseña de Google page](/assets/yffi3/google-review-qr.png) **Escanee para dejar una reseña de la Oficina #3** _Abre la página vigente de reseñas en Google._](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+ [![QR code linking to the Your Family First Insurance Office #3 Reseña de Google page](/assets/yffi3/google-review-qr.png) **Escanee para dejar una reseña de la Oficina #3**_Abre la página vigente de reseñas en Google._](https://g.page/r/CfCEW-Ye4vpMEAE/review)
 
 R
 

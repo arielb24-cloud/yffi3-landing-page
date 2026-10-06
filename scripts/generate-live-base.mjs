@@ -256,8 +256,8 @@ const pages = [
     "nav": "Home",
     "title": "Miami Insurance & Free Quotes | Your Family First Office #3",
     "description": "Get a free insurance quote in Miami. Visit Office #3 on West Flagler for auto, home, renters, business and life insurance, with English and Spanish service.",
-    "h1": "Insurance in Miami",
-    "intro": "Auto, home, renters, business and life insurance from our West Flagler office. Compare your options and get a free quote in English or Spanish.",
+    "h1": "Compare Insurance in Miami",
+    "intro": "Get a free quote and help comparing coverage from our West Flagler office. Auto, home, renters, business and life insurance, with service in English and Spanish.",
     "kind": "home",
     "keywords": "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     "faqTitle": "Insurance questions in Miami",
@@ -958,7 +958,7 @@ function reviewStars(review) {
   return `<span class="real-review-stars" role="img" aria-label="${review.rating} out of 5 Google star rating">${Array.from({ length: review.rating }, () => iconSvg("star")).join("")}</span>`;
 }
 
-function reviewCard(review, index) {
+function reviewCard(review, index, showRecordedDate = true) {
   const isActive = index === 0;
   const safeAuthor = escapeHtml(review.authorName);
   const excerpt = escapeHtml(reviewExcerpt(review));
@@ -972,7 +972,7 @@ function reviewCard(review, index) {
         <div>
           <p class="review-eyebrow">Google review</p>
           <h3>${safeAuthor}</h3>
-          <p class="real-review-meta">Recorded ${escapeHtml(googleReviewSnapshot.asOf)}</p>
+          ${showRecordedDate ? `<p class="real-review-meta">Recorded ${escapeHtml(googleReviewSnapshot.asOf)}</p>` : ""}
         </div>
         ${reviewStars(review)}
       </div>
@@ -1118,17 +1118,10 @@ function writeServiceVisualAssets() {
 }
 
 function trustTicker() {
-  const interactiveTrack = tickerItems.map(([label, href]) => {
-    const external = href.startsWith("http") ? ' rel="noopener"' : "";
-    return `<a href="${href}"${external}>${escapeHtml(label)}</a>`;
-  }).join("");
-  const duplicateTrack = tickerItems.map(([label]) => `<span class="ticker-copy">${escapeHtml(label)}</span>`).join("");
   return `
-    <div class="trust-ticker" aria-label="Office highlights and insurance services" data-animate data-in-view="true">
-      <div class="trust-track">
-        <span>${interactiveTrack}</span>
-        <span aria-hidden="true">${duplicateTrack}</span>
-      </div>
+    <div class="trust-ticker office-summary" role="region" aria-label="Office contact information">
+      <a href="/about-office-3/">11200 W Flagler St, Suite 108–109<span>Miami, FL 33174</span></a>
+      <a class="office-help" href="/policyholder-help/">Existing Customer Help</a>
     </div>
   `;
 }
@@ -1581,7 +1574,7 @@ function coverageCards() {
       <div class="section-heading center">
         <p class="kicker">Our services</p>
         <h2 id="coverage-title">What Would You Like to Insure?</h2>
-        <p>Choose a type of insurance to see what to consider and what to have ready for a quote.</p>
+        <p>Choose what you need to insure. See coverage options and how to request a quote.</p>
       </div>
       <div class="coverage-grid">
         ${homeServiceCards().map((card) => `
@@ -1600,52 +1593,54 @@ function coverageCards() {
   `;
 }
 
-function reviewTrustSection() {
+function reviewTrustSection(compact = false) {
+  const reviews = compact
+    ? googleReviews.filter((review) => ["Brian", "Leeor Reyes", "mairelys del pino"].includes(review.authorName))
+    : googleReviews;
+  const qr = compact ? "" : `
+    <a class="review-qr-card" href="${googleReviewUrl}" target="_blank" rel="noopener">
+      <img src="${googleReviewQrSrc}" alt="QR code linking to the Your Family First Insurance Office #3 Google review page" width="132" height="132" loading="lazy" decoding="async">
+      <span><strong>Scan to review Office #3</strong><em>Opens the live Google review page.</em></span>
+    </a>`;
   return `
-    <section class="section review-panel" id="google-reviews" data-reveal>
+    <section class="section review-panel${compact ? " review-panel-compact" : ""}" id="google-reviews" data-reveal>
       <div class="review-copy">
         <p class="kicker">Google reviews for Office #3</p>
         <h2>Reviews of Our Miami Office</h2>
         <p>Read what people have shared about Office #3. Visit Google for the latest reviews.</p>
         <div class="review-actions">
-          <a class="button warm magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">Read or Leave a Google Review ${iconSvg("arrow")}</a>
-          <a class="button light magnetic-button" href="${phoneHref}">Call ${phoneDisplay}</a>
+          <a class="button light" href="${googleMapsUrl}" target="_blank" rel="noopener">Read Google Reviews ${iconSvg("arrow")}</a>
+          ${compact ? '<a class="text-link" href="/about-office-3/#google-reviews">More Customer Reviews</a>' : `<a class="text-link" href="${googleReviewUrl}" target="_blank" rel="noopener">Leave a Google Review</a>`}
         </div>
         <p class="review-disclaimer">Reviews describe individual experiences.</p>
       </div>
       <div class="google-review-studio" data-google-review-carousel aria-label="Google reviews of Office #3">
-        <a class="review-qr-card magnetic-button" href="${googleReviewUrl}" target="_blank" rel="noopener">
-          <img src="${googleReviewQrSrc}" alt="QR code linking to the Your Family First Insurance Office #3 Google review page" width="132" height="132" loading="lazy" decoding="async">
-          <span>
-            <strong>Scan to review Office #3</strong>
-            <em>Opens the live Google review page.</em>
-          </span>
-        </a>
+        ${qr}
         <div class="google-review-carousel real-review-carousel" aria-live="polite">
           <div class="google-review-track real-review-track">
-            ${googleReviews.map((review, index) => reviewCard(review, index)).join("")}
+            ${reviews.map((review, index) => reviewCard(review, index, !compact)).join("")}
           </div>
           <div class="review-carousel-controls" aria-label="Google review carousel controls">
             <button type="button" data-review-prev aria-label="Previous Google review">${iconSvg("arrow")}</button>
             <div class="review-dots real-review-dots" role="tablist" aria-label="Google reviews">
-              ${googleReviews.map((review, index) => `<button type="button" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="Show Google review from ${escapeHtml(review.authorName)}"></button>`).join("")}
+              ${reviews.map((review, index) => `<button type="button" data-review-dot="${index}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-label="Show Google review from ${escapeHtml(review.authorName)}"></button>`).join("")}
             </div>
             <button type="button" data-review-next aria-label="Next Google review">${iconSvg("arrow")}</button>
           </div>
         </div>
-        <div class="real-review-rail" role="tablist" aria-label="All Google review entries">
-          ${googleReviews.map((review, index) => reviewMiniCard(review, index)).join("")}
-        </div>
+        ${compact ? "" : `<div class="real-review-rail" role="tablist" aria-label="All Google review entries">
+          ${reviews.map((review, index) => reviewMiniCard(review, index)).join("")}
+        </div>`}
       </div>
     </section>
   `;
 }
 
-function quoteForm(formId = "quote-handoff") {
+function quoteForm(formId = "quote-handoff", headingLevel = 3) {
   return `
     <section id="${formId}" class="quote-form quote-handoff-card" data-quote-handoff aria-labelledby="quote-handoff-title">
-      <h3 id="quote-handoff-title" class="wide">Online Quote</h3>
-      <p class="wide">Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.</p>
+      <h${headingLevel} id="quote-handoff-title" class="wide">Online Quote</h${headingLevel}>
+      <p class="wide">Choose auto, homeowners, renters or condo insurance, or quote auto and property together. Your request goes to Office #3 in Miami.</p>
       <a class="button warm wide" href="${quoteDestination}" rel="noopener" data-secure-quote-handoff>Get My Free Quote ${iconSvg("arrow")}</a>
       <p class="form-disclaimer wide">Requesting a quote does not start coverage. <a href="/privacy-policy/">Privacy policy</a>.</p>
     </section>
@@ -1728,7 +1723,7 @@ function homeBody() {
   return `
     ${coverageCards()}
     ${aboutPreview()}
-    ${reviewTrustSection()}
+    ${reviewTrustSection(true)}
     ${quoteSection("Get My Free Quote")}
     ${faqHtml(pages[0])}
   `;
@@ -1790,7 +1785,7 @@ function aboutBody() {
 function quoteBody() {
   return `
     <section class="section quote-panel quote-page-panel" data-reveal>
-      ${quoteForm()}
+      ${quoteForm("quote-handoff", 2)}
       <div class="quote-copy">
         <h2>Prefer to Talk?</h2>
         <p>Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.</p>
@@ -2557,7 +2552,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: transform 180ms ease;
 }
 .button.warm {
-  color: var(--ink);
+  color: #18212c;
   border-color: rgba(255, 205, 180, 0.38);
   background:
     linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.78) 58%, rgba(154, 220, 247, 0.58));
@@ -4602,10 +4597,12 @@ h3 {
   gap: 14px;
   padding: 20px;
 }
-.quote-handoff-card h3 {
+.quote-handoff-card #quote-handoff-title {
   margin: 0;
   color: var(--ink);
   font-size: 1.85rem;
+  font-family: inherit;
+  line-height: 1.24;
 }
 .quote-preflight-list {
   display: grid;
@@ -5376,6 +5373,40 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
   .site-nav { grid-column: 1 / -1; min-width: 0; justify-content: center; }
   .footer-shell { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); }
 }
+/* A stable office identity keeps the quote path clear without a moving banner. */
+.office-summary { display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; mask-image: none; -webkit-mask-image: none; }
+.office-summary a { color: var(--ink-soft); font-size: .78rem; line-height: 1.4; text-decoration: none; }
+.office-summary a span { display: block; }
+.office-summary .office-help { color: var(--miami-blue); font-size: .72rem; text-decoration: underline; text-underline-offset: 3px; }
+.brand-copy strong { font-weight: 750; }
+.brand-copy span { font-weight: 600; }
+.text-link { color: var(--miami-blue); text-underline-offset: 4px; font-weight: 600; }
+.review-panel-compact { margin-block: 0; }
+.review-panel-compact .review-copy h2 { font-size: 2.1rem; }
+.review-panel-compact .review-actions { align-items: center; }
+.coverage-card p, .detail-card p, .intent-card p { font-weight: 400; }
+@media (max-width: 1039px) {
+  .header-shell { grid-template-columns: minmax(0, 1fr) auto auto auto; grid-template-areas: "brand language call menu" "nav nav nav nav"; gap: 8px; padding-block: 10px; }
+  .brand-lockup { grid-area: brand; gap: 8px; }
+  .brand-logo { width: 100px; height: 48px; }
+  .brand-copy { display: block; }
+  .language-switcher-mobile { grid-area: language; justify-self: end; }
+  .mobile-call { grid-area: call; }
+  .menu-toggle { grid-area: menu; }
+  .site-nav { grid-area: nav; }
+  .office-summary { display: none; }
+}
+@media (max-width: 767px) {
+  .header-shell { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand language menu" "nav nav nav"; }
+  .brand-logo { width: 76px; height: 44px; }
+  .brand-copy strong { font-size: .65rem; }
+  .brand-copy span { font-size: .72rem; max-width: 82px; line-height: 1.25; }
+  .mobile-call { display: none; }
+  .header-shell .language-switcher-mobile a { min-height: 44px; }
+  .review-panel-compact .review-copy h2 { font-size: 1.8rem; }
+  :root { --glass-blur: 5px; --glass-blur-soft: 3px; }
+}
+
 @media (min-width: 768px) and (max-width: 1199px) {
   h1 { font-size: 3.4rem; }
   h2 { font-size: 2.3rem; }
@@ -5439,7 +5470,7 @@ function jsSource() {
   const committedRuntime = path.join(root, "assets", "site.js");
   if (fs.existsSync(committedRuntime)) return fs.readFileSync(committedRuntime, "utf8");
 
-  return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start"]);
+  return `const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "cta_click", "language_switch"]);
 
 const attributionStorageKey = "yffi_first_touch_v1";
 const attributionParameterMap = {
@@ -5496,7 +5527,7 @@ function readFirstTouchAttribution() {
 
 const firstTouchAttribution = readFirstTouchAttribution();
 
-function analyticsProductCategory() {
+function analyticsProductCategory(target) {
   const categoryByPath = {
     "/auto-insurance/": "auto",
     "/home-insurance/": "homeowners",
@@ -5509,13 +5540,18 @@ function analyticsProductCategory() {
     "/es/seguro-comercial/": "commercial",
     "/es/seguro-de-vida/": "life"
   };
-  return categoryByPath[window.location.pathname] || "general";
+  const destinationPath = target?.getAttribute("href")?.split(/[?#]/)[0];
+  return categoryByPath[destinationPath] || categoryByPath[window.location.pathname] || "general";
 }
 
 function analyticsCtaLocation(target) {
+  if (target?.closest(".language-switcher")) return "language_switcher";
+  if (target?.closest(".site-nav")) return "main_menu";
+  if (target?.closest("#google-reviews")) return "reviews";
+  if (target?.closest(".coverage-grid")) return "service_grid";
   if (target?.closest(".site-header")) return "header";
-  if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-insurance-carousel]")) return "carousel";
+  if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-quote-handoff]")) return "quote_handoff";
   if (target?.closest(".quote-section, #quote")) return "quote_section";
   if (target?.closest("footer")) return "footer";
@@ -5529,7 +5565,7 @@ function pushAnalyticsEvent(eventName, target) {
     event: eventName,
     page_path: window.location.pathname,
     page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
-    product_category: analyticsProductCategory(),
+    product_category: analyticsProductCategory(target),
     cta_location: analyticsCtaLocation(target),
     landing_page: firstTouchAttribution.landing_page,
     referrer_category: firstTouchAttribution.referrer_category,
@@ -5552,6 +5588,10 @@ document.addEventListener("click", (event) => {
       const destination = new URL(href, window.location.href);
       if (destination.hostname.toLowerCase() === "secure.consumerratequotes.com" && destination.pathname === "/ConsumerV2") {
         pushAnalyticsEvent("quote_start", anchor);
+      } else if (anchor.closest(".language-switcher")) {
+        pushAnalyticsEvent("language_switch", anchor);
+      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a") || anchor.closest(".site-nav")) {
+        pushAnalyticsEvent("cta_click", anchor);
       }
     } catch {}
   }

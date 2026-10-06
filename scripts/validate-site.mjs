@@ -157,8 +157,9 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
   if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
   if (slug === "" && !html.includes(googleReviewUrl)) failures.push("home Google review CTA must use the Office #3 URL");
-  if (slug === "" && !html.includes("/assets/yffi3/google-review-qr.png")) failures.push("home missing Google review QR asset");
-  if (slug === "" && countMatches(html, /data-review-card=/g) !== googleReviews.length) failures.push(`home must render ${googleReviews.length} review snapshot cards`);
+  if (slug === "about-office-3" && !html.includes("/assets/yffi3/google-review-qr.png")) failures.push("office page missing Google review QR asset");
+  if (slug === "" && countMatches(html, /data-review-card=/g) !== 3) failures.push("home must feature three customer reviews");
+  if (slug === "about-office-3" && countMatches(html, /data-review-card=/g) !== googleReviews.length) failures.push(`office page must preserve ${googleReviews.length} review snapshot cards`);
   if (slug === "" && !html.includes('id="seguros-en-espanol"')) failures.push("home missing bilingual Miami section");
   if (slug === "" && html.includes('href="/home-insurance/">Home</a>')) failures.push("home nav should label home-insurance as Homeowners");
   if (slug === "home-insurance" && !html.includes("Homeowners Insurance")) failures.push("homeowners page missing Homeowners Insurance wording");
@@ -328,7 +329,7 @@ if (!fs.existsSync(styles)) {
   if (/font-size\s*:[^;]*vw/i.test(css)) failures.push("CSS uses viewport-width font sizing");
   if (!hasCss("object-fit: contain")) failures.push("CSS missing logo contain rule");
   for (const variable of ["--navy: #050B12", "--deep-blue: #7DD3FC", "--miami-blue: #9ADCF7", "--aqua: #77E7DC", "--ice: #F3FBFF", "--coral: #FF7D65", "--gold: #F4C96B", "--champagne: #FFE0A1"]) {
-    if (!css.includes(variable)) failures.push(`CSS missing palette variable: ${variable}`);
+    if (!hasCss(variable)) failures.push(`CSS missing palette variable: ${variable}`);
   }
   for (const required of ["backdrop-filter", "--glass-line", ".button::before", ".button::after", ".service-picture", ".liquid-tilt"]) {
     if (!hasCss(required)) failures.push(`CSS missing liquid glass styling: ${required}`);

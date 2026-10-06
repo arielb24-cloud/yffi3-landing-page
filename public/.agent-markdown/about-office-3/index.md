@@ -37,11 +37,11 @@ Google reviews for Office #3
 
 Read what people have shared about Office #3. Visit Google for the latest reviews.
 
-[Read or Leave a Google Review](https://g.page/r/CfCEW-Ye4vpMEAE/review) [Call 305-910-8850](tel:13059108850)
+[Read Google Reviews](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Leave a Google Review](https://g.page/r/CfCEW-Ye4vpMEAE/review)
 
 Reviews describe individual experiences.
 
- [![QR code linking to the Your Family First Insurance Office #3 Google review page](/assets/yffi3/google-review-qr.png) **Scan to review Office #3** _Opens the live Google review page._](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+ [![QR code linking to the Your Family First Insurance Office #3 Google review page](/assets/yffi3/google-review-qr.png) **Scan to review Office #3**_Opens the live Google review page._](https://g.page/r/CfCEW-Ye4vpMEAE/review)
 
 R
 

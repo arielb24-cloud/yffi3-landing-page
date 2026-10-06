@@ -11,9 +11,9 @@ Cotización
 
 Comience su cotización en línea con la Oficina #3 o llámenos para recibir ayuda en inglés o español.
 
-### Cotización por internet
+## Cotización por internet
 
-Seleccione auto, vivienda, inquilinos o condominio en el formulario seguro. También puede cotizar auto y propiedad juntos. Tenga su póliza actual a mano si la tiene.
+Elija auto, vivienda, inquilinos o condominio, o cotice auto y propiedad juntos. Su solicitud llega a la Oficina #3 en Miami.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 

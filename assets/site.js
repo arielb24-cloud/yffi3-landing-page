@@ -1,4 +1,4 @@
-const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start"]);
+const analyticsEventNames = new Set(["phone_click", "sms_click", "email_click", "quote_start", "cta_click", "language_switch"]);
 
 const attributionStorageKey = "yffi_first_touch_v1";
 const attributionParameterMap = {
@@ -60,7 +60,7 @@ function readFirstTouchAttribution() {
 
 const firstTouchAttribution = readFirstTouchAttribution();
 
-function analyticsProductCategory() {
+function analyticsProductCategory(target) {
   const categoryByPath = {
     "/auto-insurance/": "auto",
     "/home-insurance/": "homeowners",
@@ -73,15 +73,20 @@ function analyticsProductCategory() {
     "/es/seguro-comercial/": "commercial",
     "/es/seguro-de-vida/": "life"
   };
-  return categoryByPath[window.location.pathname] || "general";
+  const destinationPath = target?.getAttribute("href")?.split(/[?#]/)[0];
+  return categoryByPath[destinationPath] || categoryByPath[window.location.pathname] || "general";
 }
 
 function analyticsCtaLocation(target) {
+  if (target?.closest(".language-switcher")) return "language_switcher";
+  if (target?.closest(".site-nav")) return "main_menu";
+  if (target?.closest("#google-reviews")) return "reviews";
+  if (target?.closest(".coverage-grid")) return "service_grid";
   if (target?.closest(".mobile-contact-bar")) return "mobile_bar";
   if (target?.closest(".faq")) return "faq";
   if (target?.closest(".site-header")) return "header";
-  if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-insurance-carousel]")) return "carousel";
+  if (target?.closest(".hero")) return "hero";
   if (target?.closest("[data-quote-handoff]")) return "quote_handoff";
   if (target?.closest(".quote-section, #quote")) return "quote_section";
   if (target?.closest("footer")) return "footer";
@@ -95,7 +100,7 @@ function pushAnalyticsEvent(eventName, target) {
     event: eventName,
     page_path: window.location.pathname,
     page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
-    product_category: analyticsProductCategory(),
+    product_category: analyticsProductCategory(target),
     cta_location: analyticsCtaLocation(target),
     landing_page: firstTouchAttribution.landing_page,
     referrer_category: firstTouchAttribution.referrer_category,
@@ -120,6 +125,10 @@ document.addEventListener("click", (event) => {
       const destination = new URL(href, window.location.href);
       if (destination.hostname.toLowerCase() === "secure.consumerratequotes.com" && destination.pathname === "/ConsumerV2") {
         pushAnalyticsEvent("quote_start", anchor);
+      } else if (anchor.closest(".language-switcher")) {
+        pushAnalyticsEvent("language_switch", anchor);
+      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a") || anchor.closest(".site-nav")) {
+        pushAnalyticsEvent("cta_click", anchor);
       }
     } catch {}
   }

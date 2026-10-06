@@ -518,7 +518,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: transform 180ms ease;
 }
 .button.warm {
-  color: var(--ink);
+  color: #18212c;
   border-color: rgba(255, 205, 180, 0.38);
   background:
     linear-gradient(135deg, rgba(255, 125, 101, 0.95), rgba(244, 201, 107, 0.78) 58%, rgba(154, 220, 247, 0.58));
@@ -2563,10 +2563,12 @@ h3 {
   gap: 14px;
   padding: 20px;
 }
-.quote-handoff-card h3 {
+.quote-handoff-card #quote-handoff-title {
   margin: 0;
   color: var(--ink);
   font-size: 1.85rem;
+  font-family: inherit;
+  line-height: 1.24;
 }
 .quote-preflight-list {
   display: grid;
@@ -3337,6 +3339,40 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
   .site-nav { grid-column: 1 / -1; min-width: 0; justify-content: center; }
   .footer-shell { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); }
 }
+/* A stable office identity keeps the quote path clear without a moving banner. */
+.office-summary { display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; mask-image: none; -webkit-mask-image: none; }
+.office-summary a { color: var(--ink-soft); font-size: .78rem; line-height: 1.4; text-decoration: none; }
+.office-summary a span { display: block; }
+.office-summary .office-help { color: var(--miami-blue); font-size: .72rem; text-decoration: underline; text-underline-offset: 3px; }
+.brand-copy strong { font-weight: 750; }
+.brand-copy span { font-weight: 600; }
+.text-link { color: var(--miami-blue); text-underline-offset: 4px; font-weight: 600; }
+.review-panel-compact { margin-block: 0; }
+.review-panel-compact .review-copy h2 { font-size: 2.1rem; }
+.review-panel-compact .review-actions { align-items: center; }
+.coverage-card p, .detail-card p, .intent-card p { font-weight: 400; }
+@media (max-width: 1039px) {
+  .header-shell { grid-template-columns: minmax(0, 1fr) auto auto auto; grid-template-areas: "brand language call menu" "nav nav nav nav"; gap: 8px; padding-block: 10px; }
+  .brand-lockup { grid-area: brand; gap: 8px; }
+  .brand-logo { width: 100px; height: 48px; }
+  .brand-copy { display: block; }
+  .language-switcher-mobile { grid-area: language; justify-self: end; }
+  .mobile-call { grid-area: call; }
+  .menu-toggle { grid-area: menu; }
+  .site-nav { grid-area: nav; }
+  .office-summary { display: none; }
+}
+@media (max-width: 767px) {
+  .header-shell { grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "brand language menu" "nav nav nav"; }
+  .brand-logo { width: 76px; height: 44px; }
+  .brand-copy strong { font-size: .65rem; }
+  .brand-copy span { font-size: .72rem; max-width: 82px; line-height: 1.25; }
+  .mobile-call { display: none; }
+  .header-shell .language-switcher-mobile a { min-height: 44px; }
+  .review-panel-compact .review-copy h2 { font-size: 1.8rem; }
+  :root { --glass-blur: 5px; --glass-blur-soft: 3px; }
+}
+
 @media (min-width: 768px) and (max-width: 1199px) {
   h1 { font-size: 3.4rem; }
   h2 { font-size: 2.3rem; }

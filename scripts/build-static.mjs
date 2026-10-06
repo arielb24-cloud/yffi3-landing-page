@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { transformSync } from "esbuild";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const dist = path.join(root, "dist");
@@ -55,6 +57,21 @@ copyIfExists(path.join(root, "public"), path.join(dist));
 fs.mkdirSync(path.join(dist, "assets"), { recursive: true });
 fs.copyFileSync(path.join(root, "assets", "styles.css"), path.join(dist, "assets", "styles.css"));
 fs.copyFileSync(path.join(root, "assets", "site.js"), path.join(dist, "assets", "site.js"));
+// Keep editable source readable while shipping smaller, correctly versioned CSS.
+const deploymentStyles = transformSync(fs.readFileSync(path.join(dist, "assets", "styles.css"), "utf8"), { loader: "css", minify: true }).code;
+fs.writeFileSync(path.join(dist, "assets", "styles.css"), deploymentStyles);
+const deploymentVersion = createHash("sha256").update(deploymentStyles).update(fs.readFileSync(path.join(dist, "assets", "site.js"))).digest("hex").slice(0, 12);
+function versionDeploymentPages(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) versionDeploymentPages(file);
+    else if (entry.name.endsWith(".html")) {
+      const html = fs.readFileSync(file, "utf8").replace(/(\/assets\/(?:styles\.css|site\.js)\?v=)[^"\s]+/g, `$1${deploymentVersion}`);
+      fs.writeFileSync(file, html);
+    }
+  }
+}
+versionDeploymentPages(dist);
 fs.rmSync(path.join(dist, "assets", "site.entry.js"), { force: true });
 fs.rmSync(path.join(dist, "assets", "styles 2.css"), { force: true });
 fs.rmSync(path.join(dist, "assets", "site 2.js"), { force: true });

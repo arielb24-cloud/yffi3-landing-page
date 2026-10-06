@@ -125,7 +125,8 @@ for (const viewport of viewports) {
         const principalAgentPhoto = page.locator(".principal-photo img").first();
         await principalAgentPhoto.scrollIntoViewIfNeeded();
         await expect(principalAgentPhoto).toBeVisible();
-        await expect(page.locator(".trust-ticker")).toBeVisible();
+        if (viewport.width >= 1040) await expect(page.locator(".office-summary")).toBeVisible();
+        else await expect(page.locator(".brand-copy")).toBeVisible();
       }
 
       if (["quote", "quote-es"].includes(pageInfo.name)) {
@@ -180,6 +181,16 @@ for (const pageInfo of pages) {
     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
   });
 }
+
+test("quote headings follow the surrounding page hierarchy in both languages", async ({ page }) => {
+  for (const route of ["/", "/es/", "/get-a-quote/", "/es/solicitar-cotizacion/"]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    const dedicatedQuotePage = route.includes("get-a-quote") || route.includes("solicitar-cotizacion");
+    await expect(page.locator(`#quote-handoff-title:is(${dedicatedQuotePage ? "h2" : "h3"})`)).toHaveCount(1);
+    const results = await new AxeBuilder({ page }).withRules(["heading-order"]).analyze();
+    expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
+  }
+});
 
 test("mobile navigation opens cleanly", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
@@ -345,7 +356,7 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
     document.querySelector('a[href^="sms:"]').dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
     emailLink.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
     document.querySelector('a[href^="https://secure.ConsumerRateQuotes.com/ConsumerV2"]').dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
-    return window.dataLayer;
+    return window.dataLayer.filter((entry) => typeof entry?.event === "string");
   });
   expect(clickEvents.map((entry) => entry.event)).toEqual(["phone_click", "sms_click", "email_click", "quote_start"]);
   for (const event of clickEvents) {
@@ -357,6 +368,25 @@ test("analytics events use only approved non-sensitive fields", async ({ page })
     expect(event.landing_page).toBe("/get-a-quote/");
     expect(event.referrer_category).toBe("direct");
     expect(JSON.stringify(event)).not.toMatch(/"(?:name|address|insurance_details|form_contents)"\s*:|3059108850|ariel@example\.com/i);
+  }
+});
+
+test("service and language clicks emit one event with useful context", async ({ page }) => {
+  for (const [route, path, language] of [["/", "/auto-insurance/", "en"], ["/es/", "/es/seguro-de-auto/", "es"]]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    const events = await page.evaluate((servicePath) => {
+      window.dataLayer = [];
+      document.addEventListener("click", (event) => event.preventDefault(), true);
+      document.querySelector('.coverage-card[href="' + servicePath + '"]').click();
+      document.querySelector('.language-switcher a:not([aria-current="page"])').click();
+      document.querySelector('.motion-slide[data-active="true"] .motion-media-link').click();
+      return window.dataLayer.filter((entry) => typeof entry?.event === "string");
+    }, path);
+    expect(events.map((entry) => entry.event)).toEqual(["cta_click", "language_switch", "cta_click"]);
+    expect(events[0]).toMatchObject({ product_category: "auto", cta_location: "service_grid", page_path: route, page_language: language });
+    expect(events[1]).toMatchObject({ cta_location: "language_switcher", page_path: route, page_language: language });
+    expect(events[2]).toMatchObject({ product_category: "auto", cta_location: "carousel", page_path: route, page_language: language });
+    expect(events.map((entry) => entry.event)).not.toContain("form_submit");
   }
 });
 
@@ -404,7 +434,7 @@ test("a direct quote handoff emits quote_start without claiming form submission 
     window.dataLayer = [];
     document.addEventListener("click", (event) => event.preventDefault(), true);
     document.querySelector("[data-secure-quote-handoff]").dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true }));
-    return window.dataLayer;
+    return window.dataLayer.filter((entry) => typeof entry?.event === "string");
   });
   const quoteStartEvents = events.filter((entry) => entry?.event === "quote_start");
   expect(quoteStartEvents).toHaveLength(1);
@@ -428,7 +458,7 @@ test("privacy pages accurately disclose measurement and advertising tools", asyn
 });
 
 test("review rail buttons use their visible text as the accessible name", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("/about-office-3/", { waitUntil: "networkidle" });
   const reviewButtons = page.locator(".real-review-mini");
   expect(await reviewButtons.count()).toBeGreaterThanOrEqual(3);
   for (const button of await reviewButtons.all()) {
@@ -438,21 +468,16 @@ test("review rail buttons use their visible text as the accessible name", async 
   }
 });
 
-test("header ticker contains trusted links and pauses on hover", async ({ page }) => {
+test("header office details stay readable and static", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
-
-  const ticker = page.locator(".trust-ticker");
-  await expect(ticker).toBeVisible();
-  await expect(ticker.locator('a[href="/about-office-3/"]').first()).toBeVisible();
-  await expect(ticker.locator('a[href="/policyholder-help/"]').first()).toBeVisible();
-  await expect(ticker.locator('a[href*="secure.ConsumerRateQuotes.com"]').first()).toBeVisible();
-
-  const beforeHover = await page.locator(".trust-track").evaluate((node) => getComputedStyle(node).animationPlayState);
-  expect(beforeHover).toBe("running");
-  await ticker.hover();
-  const afterHover = await page.locator(".trust-track").evaluate((node) => getComputedStyle(node).animationPlayState);
-  expect(afterHover).toBe("paused");
+  const summary = page.locator(".office-summary");
+  await expect(summary).toBeVisible();
+  await expect(summary.locator('a[href="/about-office-3/"]')).toContainText("11200 W Flagler St");
+  await expect(summary.locator('a[href="/policyholder-help/"]')).toBeVisible();
+  await expect(page.locator('.header-actions a[href*="secure.ConsumerRateQuotes.com"]')).toBeVisible();
+  expect(await summary.evaluate(node => getComputedStyle(node).maskImage)).toBe("none");
+  await expect(page.locator(".trust-track")).toHaveCount(0);
 });
 
 test("service carousel supports explicit controls and state", async ({ page }) => {
@@ -489,7 +514,7 @@ test("homepage Business slide uses the premium consultation video and keeps play
   await expect(carousel).toHaveAttribute("data-active-slide", "home-business");
 
   const activeVideo = carousel.locator('.motion-slide[data-active="true"] .motion-video');
-  await expect(activeVideo).toHaveAttribute("data-mp4", "/media/premium-carousel/home/business-office-consultation.mp4");
+  await expect(activeVideo).toHaveAttribute("data-mp4", "/media/premium-carousel/home/business-office-consultation-web.mp4");
   await expect(page.locator('[data-mp4*="storefront-open-sign"]')).toHaveCount(0);
   await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 8000 }).toBe(false);
 
@@ -863,7 +888,7 @@ test("agents can negotiate Markdown while browsers keep HTML", async ({ request 
   expect(markdown.headers()["content-type"]).toContain("text/markdown");
   expect(markdown.headers().vary).toContain("Accept");
   expect(Number(markdown.headers()["x-markdown-tokens"])).toBeGreaterThan(100);
-  expect(await markdown.text()).toContain("# Insurance in Miami");
+  expect(await markdown.text()).toContain("# Compare Insurance in Miami");
 
   const html = await request.get("/", { headers: { Accept: "text/html" } });
   expect(html.headers()["content-type"]).toContain("text/html");

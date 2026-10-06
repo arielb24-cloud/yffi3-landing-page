@@ -11,9 +11,9 @@ Get Quote
 
 Start your quote online with Office #3, or call us for help in English or Spanish.
 
-### Online Quote
+## Online Quote
 
-Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.
+Choose auto, homeowners, renters or condo insurance, or quote auto and property together. Your request goes to Office #3 in Miami.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 

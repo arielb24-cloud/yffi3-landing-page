@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import {
   pages as englishPages,
   siteUrl,
@@ -16,7 +17,7 @@ import {
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const reviewSourceNotice = "Las reseñas se muestran tal como aparecen en Google.";
-const assetVersion = "20261002-video-autoplay-v7";
+let assetVersion;
 const reviewedDateSpanish = new Intl.DateTimeFormat("es-US", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${contentReviewedDate}T00:00:00Z`));
 
 const carouselSpanish = {
@@ -45,6 +46,12 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Office contact information", "Información de contacto de la oficina"],
+  ["Read Google Reviews", "Leer reseñas en Google"],
+  ["More Customer Reviews", "Más reseñas de clientes"],
+  ["Leave a Google Review", "Dejar una reseña en Google"],
+  ["Choose what you need to insure. See coverage options and how to request a quote.", "Elija lo que necesita asegurar. Vea las opciones de cobertura y cómo solicitar una cotización."],
+  ["Choose auto, homeowners, renters or condo insurance, or quote auto and property together. Your request goes to Office #3 in Miami.", "Elija auto, vivienda, inquilinos o condominio, o cotice auto y propiedad juntos. Su solicitud llega a la Oficina #3 en Miami."],
   ["Visit our West Flagler office for insurance help in Miami, Sweetwater, Doral, Hialeah and Kendall. We speak English and Spanish.", "Visite nuestra oficina de West Flagler para seguros en Miami, Sweetwater, Doral, Hialeah y Kendall. Hablamos inglés y español."],
   ["Choose auto, homeowners, renters or condo insurance in the secure form. You can also request an auto and property bundle. Have your current policy handy if available.", "Seleccione auto, vivienda, inquilinos o condominio en el formulario seguro. También puede cotizar auto y propiedad juntos. Tenga su póliza actual a mano si la tiene."],
   ["Request auto, home, renters or condo insurance online. For business, life, health or another insurance type, call or text us.", "Cotice seguros de auto, vivienda, inquilinos o condominio por internet. Para negocios, vida, salud u otro seguro, llame o envíenos un texto."],
@@ -893,7 +900,7 @@ function normalizeMarkup(html) {
     .replace(/role="region" role="region"/g, 'role="region"');
   if (normalized.includes('id="google-reviews"') && !normalized.includes("cspell:disable")) {
     normalized = normalized
-      .replace(/(\s*)(<section class="section review-panel" id="google-reviews")/, "$1<!-- cspell:disable --><!-- Verbatim Google review snapshot text. -->$1$2")
+      .replace(/(\s*)(<section class="section review-panel(?: [^\"]*)?" id="google-reviews")/, "$1<!-- cspell:disable --><!-- Verbatim Google review snapshot text. -->$1$2")
       .replace(/(\s*)(<section class="section (?:quote-panel|faq)"[^>]*data-reveal>)/, "$1<!-- cspell:enable -->$1$2");
   }
   return normalized;
@@ -1284,6 +1291,14 @@ function writeSitemap() {
   fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap, "utf8");
 }
 
+// Version the final asset bytes so an older cached runtime cannot survive a fix.
+enhanceStyles();
+enhanceRuntime();
+assetVersion = createHash("sha256")
+  .update(fs.readFileSync(path.join(root, "assets", "styles.css")))
+  .update(fs.readFileSync(path.join(root, "assets", "site.js")))
+  .digest("hex").slice(0, 12);
+
 for (const englishPage of englishPages) {
   const spanishPage = spanishPages.find((page) => page.englishSlug === englishPage.slug);
   if (!spanishPage) throw new Error(`Missing Spanish page for ${englishPage.slug || "home"}`);
@@ -1291,8 +1306,6 @@ for (const englishPage of englishPages) {
 }
 
 localizeNotFound();
-enhanceStyles();
-enhanceRuntime();
 enhanceHtaccess();
 writeSitemap();
 
