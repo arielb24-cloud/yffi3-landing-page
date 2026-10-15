@@ -46,7 +46,7 @@
     "@axe-core/playwright": "^4.12.1",
     "@cspell/dict-es-es": "^3.0.8",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.61.1",
+    "@playwright/test": "^1.62.1",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "cspell": "^10.0.1",
