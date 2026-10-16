@@ -100,7 +100,11 @@ const universalHeaders = headers.split("\n\n/")[0];
 if (universalHeaders.includes("Cross-Origin-Resource-Policy")) failures.push("Cloudflare global headers must not conflict with public cross-origin metadata routes");
 if ((headers.match(/Cross-Origin-Resource-Policy: cross-origin/g) || []).length !== 5) failures.push("Cloudflare discovery metadata routes need unambiguous cross-origin resource policy headers");
 const routeManifest = parseJson("_routes.json");
-if (routeManifest.version !== 1 || !Array.isArray(routeManifest.include) || !routeManifest.include.includes("/") || !routeManifest.include.includes("/mcp")) failures.push("Cloudflare Pages function route manifest is invalid");
+const functionRouteIncludes = (route) => Array.isArray(routeManifest.include)
+  && routeManifest.include.some((pattern) => pattern === route || pattern === "/*")
+  && !routeManifest.exclude?.some((pattern) => pattern === route || pattern === "/*");
+if (routeManifest.version !== 1 || !functionRouteIncludes("/") || !functionRouteIncludes("/mcp")) failures.push("Cloudflare Pages function route manifest is invalid");
+if (routeManifest.include?.includes("/*") && !["/assets/*", "/media/*"].every((route) => routeManifest.exclude?.includes(route))) failures.push("Preview static media must stay outside function routing");
 
 for (const misleadingPath of [
   path.join(".well-known", "openid-configuration"),

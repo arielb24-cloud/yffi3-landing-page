@@ -222,6 +222,10 @@ const functionRoutes = routes.flatMap((route) => {
   return [`/${route}`, `/${route}/`, `/${route}/index.html`];
 });
 functionRoutes.push("/mcp");
-write("_routes.json", `${JSON.stringify({ version: 1, include: functionRoutes, exclude: [] }, null, 2)}\n`);
+// Preview error pages also need tracking exclusion. Keep production's narrow
+// routing, and leave preview static assets on the CDN without function calls.
+const previewBuild = Boolean(process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_BRANCH !== "main");
+const previewStaticRoutes = ["/assets/*", "/media/*", "/.well-known/*", "/.agent-markdown/*", "/api/*", "/docs/*", "/robots.txt", "/sitemap.xml", "/llms.txt", "/humans.txt", "/favicon.ico"];
+write("_routes.json", `${JSON.stringify({ version: 1, include: previewBuild ? ["/*"] : functionRoutes, exclude: previewBuild ? previewStaticRoutes : [] }, null, 2)}\n`);
 
 console.log(`Generated agent discovery resources and ${routes.length} Markdown page variants.`);
