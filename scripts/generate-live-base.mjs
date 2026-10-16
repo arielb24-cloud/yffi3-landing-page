@@ -1356,7 +1356,7 @@ function jsonLd(data) {
 function googleTagManagerHead() {
   return `
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<script data-site-tracking="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var loaded=false;
 function load(){if(loaded)return;loaded=true;var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -1371,7 +1371,7 @@ w.addEventListener('pointerdown',load,{once:true,passive:true});w.addEventListen
 function googleTagManagerBody() {
   return `
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<noscript data-site-tracking="gtm"><iframe src="https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->`;
 }
 
@@ -1529,7 +1529,7 @@ function heroHtml(page) {
         <h1>${escapeHtml(page.h1)}</h1>
         <p class="hero-lead">${escapeHtml(page.intro)}</p>
         ${["home", "service"].includes(page.kind) ? ctaRow("", page) : ""}
-        ${hasVisual ? `<p class="trust-line"><a href="${googleMapsUrl}" target="_blank" rel="noopener" aria-label="Get directions to Office #3 on Google Maps">11200 W Flagler St <span>·</span> Suite 108–109 <span>·</span> Miami ${iconSvg("map")}</a></p>` : ""}
+        ${hasVisual ? `<p class="trust-line"><a href="${googleMapsUrl}" target="_blank" rel="noopener" title="Get directions to Office #3 on Google Maps">11200 W Flagler St <span>·</span> Suite 108–109 <span>·</span> Miami ${iconSvg("map")}</a></p>` : ""}
         ${isService ? `<nav class="service-jump-links" aria-label="On this page"><a href="#coverage-details">Coverage</a><a href="#quote-next">What You Need</a><a href="#faqs">Questions</a></nav>` : ""}
       </div>
       ${hasVisual ? `<div class="${hasMotionCarousel ? "motion-showcase" : "photo-showcase liquid-tilt"}">

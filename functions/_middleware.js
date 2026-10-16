@@ -70,7 +70,7 @@ function applyHeaders(headers, url) {
 
 function htmlResponse(response, headers, url) {
   const result = new Response(response.body, { status: response.status, statusText: response.statusText, headers });
-  if (!response.ok || !url.hostname.endsWith(".pages.dev") || !headers.get("Content-Type")?.includes("text/html") || typeof HTMLRewriter === "undefined") return result;
+  if (!response.body || !url.hostname.endsWith(".pages.dev") || !headers.get("Content-Type")?.includes("text/html") || typeof HTMLRewriter === "undefined") return result;
   // Preview cards must resolve before production approval. Keep canonical page
   // URLs unchanged and stream only these two image-attribute substitutions.
   result.headers.delete("Content-Length");
@@ -83,10 +83,17 @@ function htmlResponse(response, headers, url) {
       }
     }
   };
-  return new HTMLRewriter()
+  const rewriter = new HTMLRewriter()
     .on('meta[property="og:image"]', imageHandler)
-    .on('meta[name="twitter:image"]', imageHandler)
-    .transform(result);
+    .on('meta[name="twitter:image"]', imageHandler);
+  // Preview traffic is not customer traffic. Tag Assistant can explicitly opt
+  // in with its existing debug parameter without changing production tracking.
+  if (!url.searchParams.has("gtm_debug")) {
+    const removeTracking = { element(element) { element.remove(); } };
+    rewriter.on('script[data-site-tracking="gtm"]', removeTracking)
+      .on('noscript[data-site-tracking="gtm"]', removeTracking);
+  }
+  return rewriter.transform(result);
 }
 
 export async function onRequest(context) {
