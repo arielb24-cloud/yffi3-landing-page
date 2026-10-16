@@ -1127,6 +1127,7 @@ function trustTicker() {
 }
 
 function navHtml(currentSlug) {
+  const assistedQuote = ["commercial-insurance", "life-insurance"].includes(currentSlug);
   const mainNavSlugs = ["", "auto-insurance", "home-insurance", "commercial-insurance", "life-insurance", "renters-insurance", "policyholder-help", "about-office-3"];
   const navLabels = {
     "": "Home",
@@ -1161,8 +1162,8 @@ function navHtml(currentSlug) {
         </button>
         <nav id="site-nav" class="site-nav" aria-label="Primary navigation">${links}</nav>
         <div class="header-actions">
-          <a class="header-call" href="${phoneHref}">${phoneDisplay}</a>
-          <a class="button small warm" href="${quoteDestination}" rel="noopener">Get My Free Quote</a>
+          ${assistedQuote ? "" : `<a class="header-call" href="${phoneHref}">${phoneDisplay}</a>`}
+          <a class="button small warm" href="${assistedQuote ? phoneHref : quoteDestination}" rel="noopener">${assistedQuote ? "Call for a Free Quote" : "Get My Free Quote"}</a>
         </div>
       </div>
     </header>
@@ -1375,6 +1376,8 @@ function googleTagManagerBody() {
 }
 
 function headHtml(page) {
+  const socialImage = `${siteUrl}/assets/social/${(page.slug || "home").replaceAll("/", "-")}-en.jpg`;
+  const socialAlt = `${page.h1} — Your Family First Insurance Office #3, Miami`;
   const schemas = [organizationSchema(), websiteSchema(), webPageSchema(page), page.kind === "home" ? serviceItemListSchema() : null, breadcrumbSchema(page), serviceSchema(page), faqSchema(page)].filter(Boolean);
   const firstMotionSlide = ["home", "service"].includes(page.kind) ? orderedInsuranceSlides(page)[0] : null;
   const preloadPhoto = firstMotionSlide
@@ -1401,18 +1404,18 @@ function headHtml(page) {
     <meta property="og:description" content="${escapeHtml(page.description)}">
     <meta property="og:url" content="${pageUrl(page.slug)}">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="${siteUrl}${familyPhotoSrc}">
+    <meta property="og:image" content="${socialImage}">
     <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="974">
-    <meta property="og:image:height" content="732">
-    <meta property="og:image:alt" content="Your Family First Insurance Office #3 family and office team in Miami">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="${escapeHtml(socialAlt)}">
     <meta property="og:site_name" content="${businessName}">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${escapeHtml(page.title)}">
     <meta name="twitter:description" content="${escapeHtml(page.description)}">
-    <meta name="twitter:image" content="${siteUrl}${familyPhotoSrc}">
-    <meta name="twitter:image:alt" content="Your Family First Insurance Office #3 family and office team in Miami">
+    <meta name="twitter:image" content="${socialImage}">
+    <meta name="twitter:image:alt" content="${escapeHtml(socialAlt)}">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="${logoSrc}">
     <link rel="preconnect" href="https://secure.ConsumerRateQuotes.com">
@@ -1522,11 +1525,12 @@ function heroHtml(page) {
   return `
     <section class="hero ${isHome ? "home-hero" : "inner-hero"} ${hasVisual ? "" : "text-hero"}">
       <div class="hero-content">
-        ${isHome ? "" : `<p class="kicker">${escapeHtml(page.nav)}</p>`}
+        ${isService ? `<nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>${escapeHtml(page.nav)}</span></nav>` : isHome ? "" : `<p class="kicker">${escapeHtml(page.nav)}</p>`}
         <h1>${escapeHtml(page.h1)}</h1>
         <p class="hero-lead">${escapeHtml(page.intro)}</p>
         ${["home", "service"].includes(page.kind) ? ctaRow("", page) : ""}
-        ${hasVisual ? `<p class="trust-line">11200 W Flagler St <span>·</span> Suite 108–109 <span>·</span> Miami</p>` : ""}
+        ${hasVisual ? `<p class="trust-line"><a href="${googleMapsUrl}" target="_blank" rel="noopener" aria-label="Get directions to Office #3 on Google Maps">11200 W Flagler St <span>·</span> Suite 108–109 <span>·</span> Miami ${iconSvg("map")}</a></p>` : ""}
+        ${isService ? `<nav class="service-jump-links" aria-label="On this page"><a href="#coverage-details">Coverage</a><a href="#quote-next">What You Need</a><a href="#faqs">Questions</a></nav>` : ""}
       </div>
       ${hasVisual ? `<div class="${hasMotionCarousel ? "motion-showcase" : "photo-showcase liquid-tilt"}">
         ${
@@ -1640,8 +1644,10 @@ function quoteForm(formId = "quote-handoff", headingLevel = 3) {
   return `
     <section id="${formId}" class="quote-form quote-handoff-card" data-quote-handoff aria-labelledby="quote-handoff-title">
       <h${headingLevel} id="quote-handoff-title" class="wide">Online Quote</h${headingLevel}>
-      <p class="wide">Choose auto, homeowners, renters or condo insurance, or quote auto and property together. Your request goes to Office #3 in Miami.</p>
+      <p class="wide">Get a quote for auto, home, renters or condo insurance. You can also combine auto and property.</p>
       <a class="button warm wide" href="${quoteDestination}" rel="noopener" data-secure-quote-handoff>Get My Free Quote ${iconSvg("arrow")}</a>
+      <p class="wide quote-destination-note">Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.</p>
+      ${headingLevel === 2 ? `<details class="quote-next-steps wide"><summary>What happens next?</summary><ol><li>Choose your insurance type in the secure form.</li><li>Have your current policy handy, if you have one.</li><li>Review coverage and pricing with Office #3 before buying.</li></ol></details>` : ""}
       <p class="form-disclaimer wide">Requesting a quote does not start coverage. <a href="/privacy-policy/">Privacy policy</a>.</p>
     </section>
   `;
@@ -1747,7 +1753,7 @@ function serviceBody(page) {
         ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
-    <section class="section service-cta" data-reveal>
+    <section class="section service-cta" id="quote-next" data-reveal>
       <div>
         <p class="kicker">Free quotes</p>
         <h2>Request a Free Quote</h2>
@@ -1787,8 +1793,9 @@ function quoteBody() {
     <section class="section quote-panel quote-page-panel" data-reveal>
       ${quoteForm("quote-handoff", 2)}
       <div class="quote-copy">
-        <h2>Prefer to Talk?</h2>
-        <p>Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.</p>
+        <h2>Business, Life or Other Insurance?</h2>
+        <a class="quote-office-contact" href="/about-office-3/">${principalPicture("quote-owner-photo")}<span><strong>Ariel Busutil</strong><span>Office #3 Owner</span></span>${iconSvg("arrow")}</a>
+        <p>Call or text Office #3. Tell us what you need to insure and when you need coverage. We speak English and Spanish.</p>
         <div class="cta-row"><a class="button light" href="${phoneHref}">Call ${phoneDisplay}</a><a class="button light" href="${smsHref}">Text the Office</a></div>
       </div>
     </section>
@@ -5460,6 +5467,48 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
   .mobile-contact-bar .icon { width: 16px; height: 16px; flex-shrink: 0; }
 }
 
+
+/* Clear wayfinding and larger touch targets, without layout-changing animation. */
+.page-breadcrumb, .service-jump-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.page-breadcrumb { margin-bottom: 12px; color: var(--ink-soft); font-size: .85rem; }
+.page-breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; color: var(--miami-blue); text-underline-offset: 4px; }
+.service-jump-links { margin-top: 18px; gap: 8px; }
+.service-jump-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--glass-line); border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: .85rem; transition: transform 160ms ease, border-color 160ms ease; }
+.trust-line a { display: inline; color: inherit; text-decoration: none; text-underline-offset: 4px; }
+.trust-line a:hover, .trust-line a:focus-visible { text-decoration: underline; }
+.trust-line .icon { display: inline-block; width: 15px; height: 15px; margin-left: 4px; vertical-align: middle; }
+#coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 160px; }
+.quote-handoff-card > p { margin: 0; line-height: 1.55; }
+.quote-handoff-card .quote-destination-note { font-size: .86rem; color: var(--ink-soft); }
+.quote-next-steps { border-top: 1px solid var(--glass-line); padding-top: 4px; }
+.quote-next-steps summary { min-height: 44px; padding-block: 11px; cursor: pointer; color: var(--miami-blue); font-size: .9rem; font-weight: 600; }
+.quote-next-steps ol { display: grid; gap: 8px; margin: 4px 0 0; padding-left: 22px; font-size: .9rem; color: var(--ink-soft); line-height: 1.55; }
+.quote-page-panel .quote-copy { padding: 24px; border: 1px solid var(--glass-line); border-radius: 24px; background: rgba(255,255,255,.045); align-self: start; }
+.quote-page-panel .quote-copy h2 { font-size: 1.7rem; }
+.quote-page-panel .quote-copy p { font-size: 1rem; line-height: 1.6; }
+.quote-office-contact { display: flex; align-items: center; gap: 14px; margin: 18px 0; color: var(--ink); text-decoration: none; }
+.quote-owner-photo { display: block; width: 88px; flex-shrink: 0; }
+.quote-owner-photo img { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: contain; }
+.quote-office-contact > span { display: grid; gap: 4px; font-size: .92rem; }
+.quote-office-contact > span > span { color: var(--ink-soft); font-size: .82rem; }
+.quote-office-contact > .icon { width: 18px; height: 18px; margin-left: auto; }
+.quote-office-contact:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .service-jump-links a:hover { transform: translateY(-2px); border-color: var(--miami-blue); }
+}
+@media (max-width: 1039px) {
+  .page-breadcrumb, .service-jump-links { justify-content: center; }
+  #coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 104px; }
+}
+@media (max-width: 767px) {
+  .mobile-contact-bar { transition: opacity 160ms ease, transform 160ms ease, visibility 160ms; }
+  .mobile-contact-bar.is-suppressed { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(12px); }
+  .mobile-contact-bar a { min-height: 48px; border-radius: 14px; }
+  .quote-handoff-card #quote-handoff-title { font-size: 1.65rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-jump-links a, .mobile-contact-bar { transition: none; transform: none; }
+}
 `;
 }
 
@@ -5545,6 +5594,8 @@ function analyticsProductCategory(target) {
 }
 
 function analyticsCtaLocation(target) {
+  if (target?.closest(".trust-line")) return "directions";
+  if (target?.closest(".service-jump-links")) return "page_navigation";
   if (target?.closest(".language-switcher")) return "language_switcher";
   if (target?.closest(".site-nav")) return "main_menu";
   if (target?.closest("#google-reviews")) return "reviews";
@@ -5590,7 +5641,7 @@ document.addEventListener("click", (event) => {
         pushAnalyticsEvent("quote_start", anchor);
       } else if (anchor.closest(".language-switcher")) {
         pushAnalyticsEvent("language_switch", anchor);
-      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a") || anchor.closest(".site-nav")) {
+      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a, .trust-line a, .service-jump-links a") || anchor.closest(".site-nav")) {
         pushAnalyticsEvent("cta_click", anchor);
       }
     } catch {}
@@ -5610,6 +5661,38 @@ if (menuToggle && siteNav) {
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 }
+
+// Keep a quote action available without covering a second visible quote button.
+const mobileQuoteBar = document.querySelector(".mobile-contact-bar");
+if (mobileQuoteBar && "IntersectionObserver" in window) {
+  const visibleQuoteActions = new Set();
+  const updateQuoteBar = () => mobileQuoteBar.classList.toggle("is-suppressed",
+    visibleQuoteActions.size > 0 && !mobileQuoteBar.contains(document.activeElement));
+  const quoteActionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.99) visibleQuoteActions.add(entry.target);
+      else visibleQuoteActions.delete(entry.target);
+    });
+    updateQuoteBar();
+  }, { rootMargin: "-100px 0px -100px 0px", threshold: [0, 0.99, 1] });
+  document.querySelectorAll(".hero .cta-row .button.warm, [data-secure-quote-handoff], .service-cta > a")
+    .forEach((action) => quoteActionObserver.observe(action));
+  mobileQuoteBar.addEventListener("focusin", updateQuoteBar);
+  mobileQuoteBar.addEventListener("focusout", () => requestAnimationFrame(updateQuoteBar));
+}
+
+// Search and shared answer links should open the answer they point to.
+function openLinkedFaq() {
+  let target;
+  try { target = document.getElementById(decodeURIComponent(window.location.hash.slice(1))); } catch { return; }
+  const answer = target?.closest(".faq details");
+  if (!answer) return;
+  answer.open = true;
+  answer.closest("[data-reveal]")?.classList.add("is-visible");
+  requestAnimationFrame(() => target.scrollIntoView({ block: "start", behavior: "auto" }));
+}
+window.addEventListener("hashchange", openLinkedFaq);
+openLinkedFaq();
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
@@ -5715,7 +5798,7 @@ if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and 
   };
 
   const requestDepthSync = () => {
-    if (!depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
+    if (!document.hidden && visibleDepthSurfaces.size && !depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
   };
 
   const depthObserver = new IntersectionObserver((entries) => {
@@ -6074,7 +6157,7 @@ if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and 
     "rgba(119, 231, 220, 0.78)"
   ];
   let liveParticles = 0;
-  const spawnLiquidParticles = (event, count = 5, mode = "burst") => {
+  const spawnLiquidParticles = (event, count = 5, mode = "burst", bounds = null) => {
     if (!event?.currentTarget || document.hidden || liveParticles > 64) return;
     const surface = event.currentTarget;
     const now = Date.now();
@@ -6083,7 +6166,7 @@ if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and 
     const cooldown = mode === "trail" ? 160 : 175;
     if (now - last < cooldown) return;
     surface.dataset[stampKey] = String(now);
-    const rect = surface.getBoundingClientRect();
+    const rect = bounds || surface.getBoundingClientRect();
     const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
     const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
     for (let index = 0; index < count; index += 1) {
@@ -6154,6 +6237,7 @@ if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and 
     });
 
     surface.addEventListener("pointermove", (event) => {
+      if (event.target.closest(hoverSurfaceSelector) !== surface) return;
       lastEvent = event;
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
@@ -6165,7 +6249,7 @@ if (!reducedMotion && window.matchMedia("(hover: hover) and (pointer: fine) and 
         surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
         surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
         if (surface.matches(".button, .motion-carousel, .coverage-card, .review-source-card, .review-qr-card") && liveParticles < 38) {
-          spawnLiquidParticles(lastEvent, 1, "trail");
+          spawnLiquidParticles(lastEvent, 1, "trail", rect);
         }
         if (surface.classList.contains("liquid-tilt")) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
@@ -6382,7 +6466,8 @@ Business name: ${businessName}
 Phone: ${phoneDisplay}
 Address: ${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}
 Primary local area: West Flagler Miami and Miami-Dade, Florida
-Google review path: ${googleReviewUrl}
+Read Google reviews: ${googleMapsUrl}
+Leave a Google review: ${googleReviewUrl}
 
 ## Public Pages
 
@@ -6401,6 +6486,22 @@ Google review path: ${googleReviewUrl}
 - Annual and life-event review: ${siteUrl}/customer-resources/life-event-review/
 - Privacy policy: ${siteUrl}/privacy-policy/
 - Terms and insurance disclaimer: ${siteUrl}/terms/
+
+## En español
+
+- Seguros en Miami: ${siteUrl}/es/
+- Seguros de auto: ${siteUrl}/es/seguro-de-auto/
+- Seguros de vivienda: ${siteUrl}/es/seguro-de-vivienda/
+- Seguros de inquilinos: ${siteUrl}/es/seguro-de-inquilinos/
+- Seguros para negocios: ${siteUrl}/es/seguro-comercial/
+- Seguros de vida: ${siteUrl}/es/seguro-de-vida/
+- Cotizaciones gratis: ${siteUrl}/es/solicitar-cotizacion/
+- Oficina y cómo llegar: ${siteUrl}/es/sobre-oficina-3/
+- Atención a clientes: ${siteUrl}/es/ayuda-para-clientes/
+
+## Quote routing
+
+Online quote requests for auto, homeowners, renters, condo and auto with property go to Office #3 through ${quoteDestination}. For business, life, health or another insurance type, call ${phoneDisplay} to ask about available options. A quote does not start insurance coverage.
 
 ## Safe Summary
 

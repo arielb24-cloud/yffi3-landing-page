@@ -12,3 +12,5 @@ test-results/
 .env.*
 !.env.example
 .DS_Store
+# Generated preview mirror; source social cards live in public/assets/social.
+/assets/social/

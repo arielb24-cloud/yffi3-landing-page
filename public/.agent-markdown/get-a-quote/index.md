@@ -13,15 +13,25 @@ Start your quote online with Office #3, or call us for help in English or Spanis
 
 ## Online Quote
 
-Choose auto, homeowners, renters or condo insurance, or quote auto and property together. Your request goes to Office #3 in Miami.
+Get a quote for auto, home, renters or condo insurance. You can also combine auto and property.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.
+
+What happens next?
+
+1.  Choose your insurance type in the secure form.
+2.  Have your current policy handy, if you have one.
+3.  Review coverage and pricing with Office #3 before buying.
+
 Requesting a quote does not start coverage. [Privacy policy](/privacy-policy/).
 
-## Prefer to Talk?
+## Business, Life or Other Insurance?
 
-Call for help with business, life or any insurance type not listed in the online form. We can answer your questions in English or Spanish.
+[![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)**Ariel Busutil**Office #3 Owner](/about-office-3/)
+
+Call or text Office #3. Tell us what you need to insure and when you need coverage. We speak English and Spanish.
 
 [Call 305-910-8850](tel:13059108850)[Text the Office](sms:+13059108850)
 

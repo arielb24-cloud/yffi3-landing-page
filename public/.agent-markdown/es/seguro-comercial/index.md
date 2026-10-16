@@ -5,7 +5,7 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"
 ---
 
-Comercial
+[Inicio](/es/)/Comercial
 
 # Seguro para negocios en Miami
 
@@ -13,7 +13,9 @@ Cuéntenos qué hace su negocio y qué seguros exigen sus contratos. Revisamos r
 
 [Llame para cotizar gratis](tel:13059108850) [Comparar coberturas](#coverage-details)
 
-11200 W Flagler St · Suite 108–109 · Miami
+[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+
+[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una conversación con un dueño de negocio para solicitar seguro comercial en Miami](/media/premium-carousel/commercial/business-owner-conversation-poster.webp)](tel:13059108850)
 

@@ -5,13 +5,13 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/"
 ---
 
-# Compare Seguros en Miami
+# Compare seguros en Miami
 
 Cotice gratis y compare coberturas con nuestra oficina de West Flagler. Seguros de auto, vivienda, inquilinos, negocios y vida, con atención en español e inglés.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
 
-11200 W Flagler St · Suite 108–109 · Miami
+[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
 
 [![Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto](/media/premium-carousel/home/miami-traffic-skyline-poster.webp)](/es/seguro-de-auto/)
 
@@ -225,9 +225,11 @@ Escanee para abrir el formulario de cotización.
 
 ### Cotización por internet
 
-Elija auto, vivienda, inquilinos o condominio, o cotice auto y propiedad juntos. Su solicitud llega a la Oficina #3 en Miami.
+Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combinar auto y propiedad.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
+Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 
 Requesting a quote does not start coverage. [Privacidad policy](/es/privacidad/).
 

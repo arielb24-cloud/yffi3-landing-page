@@ -13,15 +13,25 @@ Comience su cotización en línea con la Oficina #3 o llámenos para recibir ayu
 
 ## Cotización por internet
 
-Elija auto, vivienda, inquilinos o condominio, o cotice auto y propiedad juntos. Su solicitud llega a la Oficina #3 en Miami.
+Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combinar auto y propiedad.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
+
+¿Qué sucede después?
+
+1.  Elija el tipo de seguro en el formulario seguro.
+2.  Tenga su póliza actual a mano, si ya tiene una.
+3.  Revise la cobertura y el precio con la Oficina #3 antes de comprar.
+
 Requesting a quote does not start coverage. [Privacidad policy](/es/privacidad/).
 
-## ¿Prefiere hablar con nosotros?
+## ¿Seguro de negocios, vida u otro tipo?
 
-Llame para cotizar seguros de negocios, vida o cualquier tipo que no aparezca en el formulario. Respondemos sus preguntas en inglés o español.
+[![Ariel Busutil, propietario de Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)**Ariel Busutil**Dueño de la Oficina #3](/es/sobre-oficina-3/)
+
+Llame o envíe un texto a la Oficina #3. Díganos qué necesita asegurar y para cuándo necesita cobertura. Hablamos español e inglés.
 
 [Llamar al 305-910-8850](tel:13059108850)[Enviar un mensaje](sms:+13059108850)
 

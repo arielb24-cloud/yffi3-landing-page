@@ -78,6 +78,8 @@ function analyticsProductCategory(target) {
 }
 
 function analyticsCtaLocation(target) {
+  if (target?.closest(".trust-line")) return "directions";
+  if (target?.closest(".service-jump-links")) return "page_navigation";
   if (target?.closest(".language-switcher")) return "language_switcher";
   if (target?.closest(".site-nav")) return "main_menu";
   if (target?.closest("#google-reviews")) return "reviews";
@@ -127,7 +129,7 @@ document.addEventListener("click", (event) => {
         pushAnalyticsEvent("quote_start", anchor);
       } else if (anchor.closest(".language-switcher")) {
         pushAnalyticsEvent("language_switch", anchor);
-      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a") || anchor.closest(".site-nav")) {
+      } else if (anchor.matches(".coverage-card, .coverage-link-rail a, .motion-media-link, .motion-actions a, .review-actions a, .office-summary a, .policyholder-resources a, .trust-line a, .service-jump-links a") || anchor.closest(".site-nav")) {
         pushAnalyticsEvent("cta_click", anchor);
       }
     } catch {}
@@ -147,6 +149,38 @@ if (menuToggle && siteNav) {
     menuToggle.setAttribute("aria-expanded", String(!isOpen));
   });
 }
+
+// Keep a quote action available without covering a second visible quote button.
+const mobileQuoteBar = document.querySelector(".mobile-contact-bar");
+if (mobileQuoteBar && "IntersectionObserver" in window) {
+  const visibleQuoteActions = new Set();
+  const updateQuoteBar = () => mobileQuoteBar.classList.toggle("is-suppressed",
+    visibleQuoteActions.size > 0 && !mobileQuoteBar.contains(document.activeElement));
+  const quoteActionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.99) visibleQuoteActions.add(entry.target);
+      else visibleQuoteActions.delete(entry.target);
+    });
+    updateQuoteBar();
+  }, { rootMargin: "-100px 0px -100px 0px", threshold: [0, 0.99, 1] });
+  document.querySelectorAll(".hero .cta-row .button.warm, [data-secure-quote-handoff], .service-cta > a")
+    .forEach((action) => quoteActionObserver.observe(action));
+  mobileQuoteBar.addEventListener("focusin", updateQuoteBar);
+  mobileQuoteBar.addEventListener("focusout", () => requestAnimationFrame(updateQuoteBar));
+}
+
+// Search and shared answer links should open the answer they point to.
+function openLinkedFaq() {
+  let target;
+  try { target = document.getElementById(decodeURIComponent(window.location.hash.slice(1))); } catch { return; }
+  const answer = target?.closest(".faq details");
+  if (!answer) return;
+  answer.open = true;
+  answer.closest("[data-reveal]")?.classList.add("is-visible");
+  requestAnimationFrame(() => target.scrollIntoView({ block: "start", behavior: "auto" }));
+}
+window.addEventListener("hashchange", openLinkedFaq);
+openLinkedFaq();
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const saveData = Boolean(navigator.connection && navigator.connection.saveData);
@@ -256,7 +290,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
   };
 
   const requestDepthSync = () => {
-    if (!depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
+    if (!document.hidden && visibleDepthSurfaces.size && !depthFrame) depthFrame = window.requestAnimationFrame(syncDepth);
   };
 
   const depthObserver = new IntersectionObserver((entries) => {
@@ -615,7 +649,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     "rgba(119, 231, 220, 0.78)"
   ];
   let liveParticles = 0;
-  const spawnLiquidParticles = (event, count = 5, mode = "burst") => {
+  const spawnLiquidParticles = (event, count = 5, mode = "burst", bounds = null) => {
     if (!event?.currentTarget || document.hidden || liveParticles >= 32) return;
     const surface = event.currentTarget;
     const now = Date.now();
@@ -624,7 +658,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     const cooldown = mode === "trail" ? 160 : 175;
     if (now - last < cooldown) return;
     surface.dataset[stampKey] = String(now);
-    const rect = surface.getBoundingClientRect();
+    const rect = bounds || surface.getBoundingClientRect();
     const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
     const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
     const particleCount = Math.min(count, 32 - liveParticles);
@@ -697,6 +731,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     });
 
     surface.addEventListener("pointermove", (event) => {
+      if (event.target.closest(hoverSurfaceSelector) !== surface) return;
       lastEvent = event;
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
@@ -708,7 +743,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
         surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
         surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
         if (surface.matches(".button, .motion-carousel, .coverage-card, .review-source-card, .review-qr-card") && liveParticles < 38) {
-          spawnLiquidParticles(lastEvent, 1, "trail");
+          spawnLiquidParticles(lastEvent, 1, "trail", rect);
         }
         if (surface.classList.contains("liquid-tilt")) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");

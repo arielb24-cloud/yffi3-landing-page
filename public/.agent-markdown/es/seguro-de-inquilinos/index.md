@@ -5,7 +5,7 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/"
 ---
 
-Inquilinos
+[Inicio](/es/)/Inquilinos
 
 # Seguro de inquilinos en Miami
 
@@ -13,7 +13,9 @@ Inquilinos
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
 
-11200 W Flagler St · Suite 108–109 · Miami
+[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+
+[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una mudanza a un apartamento para solicitar seguro de inquilinos](/media/premium-carousel/renters/moving-boxes-apartment-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 

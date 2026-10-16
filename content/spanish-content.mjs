@@ -31,7 +31,7 @@ export const spanishPages = [
     "kind": "home",
     "title": "Agencia de Seguros en Miami | Your Family First Office #3",
     "description": "Cotizaciones gratis de seguros en Miami. Visite la Oficina #3 en West Flagler para seguros de auto, vivienda, inquilinos, negocios y vida. Hablamos español.",
-    "h1": "Compare Seguros en Miami",
+    "h1": "Compare seguros en Miami",
     "intro": "Cotice gratis y compare coberturas con nuestra oficina de West Flagler. Seguros de auto, vivienda, inquilinos, negocios y vida, con atención en español e inglés.",
     "faqTitle": "Preguntas sobre seguros en Miami",
     "faqs": [
@@ -607,7 +607,7 @@ export const spanishPages = [
     "kind": "quote",
     "title": "Solicite una Cotización | Your Family First Insurance Office #3",
     "description": "Solicite ayuda con una cotización de seguro en Miami para auto, vivienda, inquilinos, negocios, responsabilidad civil general o vida.",
-    "h1": "Solicite una cotización gratis",
+    "h1": "Solicitar cotización",
     "intro": "Comience su cotización en línea con la Oficina #3 o llámenos para recibir ayuda en inglés o español.",
     "faqTitle": "Cómo solicitar su cotización",
     "faqs": [

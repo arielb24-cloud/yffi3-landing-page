@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
@@ -290,8 +291,8 @@ test("quote page avoids duplicate data entry and continues to the secure vendor"
 
   const handoff = page.locator("[data-quote-handoff]");
   const buttonBounds = await handoff.locator("[data-secure-quote-handoff]").boundingBox();
-  const barBounds = await page.locator(".mobile-contact-bar").boundingBox();
-  expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(barBounds.y);
+  await expect(page.locator(".mobile-contact-bar")).toBeHidden();
+  expect(buttonBounds.y + buttonBounds.height).toBeLessThanOrEqual(920);
   await handoff.scrollIntoViewIfNeeded();
   await expect(handoff.locator("input, textarea, select")).toHaveCount(0);
   await handoff.getByRole("link", { name: /Get My Free Quote/i }).click();
@@ -875,10 +876,10 @@ test("homepage advertises truthful agent discovery resources", async ({ request 
 
 test("homepage exposes complete social image metadata and an optimized logo preload", async ({ page }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
-  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "974");
-  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "732");
-  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /Office #3 family and office team in Miami/);
-  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute("content", /Office #3 family and office team in Miami/);
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "630");
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /Compare Insurance in Miami.*Office #3, Miami/);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute("content", /Compare Insurance in Miami.*Office #3, Miami/);
   await expect(page.locator('link[rel="preload"][as="image"][href$="yffi3-official-franchise-logo-240.webp"]')).toHaveCount(1);
 });
 
@@ -989,11 +990,13 @@ for (const [route, autoPath, commercialPath, spanish] of [
     await page.route("https://secure.consumerratequotes.com/**", route => route.fulfill({ body: "<title>Quote form</title>" }));
     await page.goto(route, { waitUntil: "networkidle" });
     const bar = page.locator(".mobile-contact-bar");
-    await expect(bar).toBeVisible();
+    await expect(bar).toBeHidden();
     await expect(bar.locator("a").last()).toHaveAttribute("href", quoteDestination);
     await page.locator(`.coverage-card[href="${autoPath}"]`).click();
     await expect(page).toHaveURL(new RegExp(autoPath));
     await expect(page.locator('.motion-slide[data-active="true"] .motion-actions a')).toHaveAttribute("href", quoteDestination);
+    await page.locator("#faqs").scrollIntoViewIfNeeded();
+    await expect(bar).toBeVisible();
     await page.locator(".mobile-contact-bar a").last().click();
     await expect(page).toHaveURL(quoteDestination);
     await page.goto(commercialPath, { waitUntil: "networkidle" });
@@ -1200,3 +1203,84 @@ for (const entry of pages.filter(entry => entry.service)) {
     }
   });
 }
+
+
+test("social previews are localized, correctly sized and lightweight on every page", async ({ page, request }) => {
+  test.setTimeout(90_000);
+  const pageImageRequests = [];
+  page.on("request", (request) => { if (new URL(request.url()).pathname.startsWith("/assets/social/")) pageImageRequests.push(request.url()); });
+  for (const entry of pages) {
+    await page.goto(entry.path, { waitUntil: "domcontentloaded" });
+    const image = await page.locator('meta[property="og:image"]').getAttribute("content");
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", image);
+    expect(image).toMatch(new RegExp(entry.spanish ? "-es\\.jpg$" : "-en\\.jpg$"));
+    const response = await request.get(new URL(image).pathname);
+    expect(response.status()).toBe(200);
+    const bytes = await response.body();
+    const metadata = await sharp(bytes).metadata();
+    expect([metadata.width, metadata.height]).toEqual([1200, 630]);
+    expect(bytes.length).toBeLessThan(150_000);
+    const alt = await page.locator('meta[property="og:image:alt"]').getAttribute("content");
+    expect(alt).toContain(await page.locator('h1').textContent());
+  }
+  expect(pageImageRequests).toEqual([]);
+});
+
+test("business and life quote actions agree and service navigation reaches useful sections", async ({ page }) => {
+  for (const route of ["/commercial-insurance/", "/life-insurance/", "/es/seguro-comercial/", "/es/seguro-de-vida/"]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    await expect(page.locator(".header-actions .button.warm")).toHaveAttribute("href", "tel:13059108850");
+    await expect(page.locator(".hero .cta-row .button.warm")).toHaveAttribute("href", "tel:13059108850");
+    for (const anchor of await page.locator(".service-jump-links a").all()) {
+      const href = await anchor.getAttribute("href");
+      await anchor.click();
+      await expect(page.locator(href)).toBeInViewport();
+    }
+  }
+});
+
+test("FAQ answer links open the right answer below the sticky header", async ({ page }) => {
+  for (const route of ["/auto-insurance/", "/es/seguro-de-auto/"]) {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(route + "#faq-3", { waitUntil: "networkidle" });
+    await expect(page.locator(".faq details").nth(2)).toHaveAttribute("open", "");
+    await expect.poll(() => page.evaluate(() => document.querySelector("#faq-3").getBoundingClientRect().top >= document.querySelector(".site-header").getBoundingClientRect().bottom)).toBe(true);
+    await page.evaluate(() => { location.hash = "#faq-2"; });
+    await expect(page.locator(".faq details").nth(1)).toHaveAttribute("open", "");
+    await expect(page.locator("#faq-2")).toBeInViewport();
+  }
+});
+
+test("mobile quote bar yields to visible quote actions and returns after scrolling", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const route of ["/", "/es/", "/get-a-quote/", "/es/solicitar-cotizacion/"]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    const bar = page.locator(".mobile-contact-bar");
+    const primary = page.locator(route.includes("quote") || route.includes("cotizacion") ? "[data-secure-quote-handoff]" : ".hero .cta-row .button.warm");
+    await primary.scrollIntoViewIfNeeded();
+    await expect(primary).toBeInViewport();
+    await expect(bar).toBeHidden();
+    await page.locator("footer").scrollIntoViewIfNeeded();
+    await expect(bar).toBeVisible();
+    await bar.locator("a").last().focus();
+    await primary.scrollIntoViewIfNeeded();
+    await expect(bar).toBeVisible();
+    await page.evaluate(() => document.activeElement.blur());
+    await expect(bar).toBeHidden();
+  }
+});
+
+test("quote actions and FAQ answers remain usable without JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, baseURL, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.goto("/get-a-quote/");
+  await expect(page.locator("[data-secure-quote-handoff]")).toHaveAttribute("href", quoteDestination);
+  await expect(page.locator(".mobile-contact-bar")).toBeVisible();
+  await page.locator(".quote-next-steps summary").click();
+  await expect(page.locator(".quote-next-steps")).toHaveAttribute("open", "");
+  await page.goto("/commercial-insurance/");
+  await expect(page.locator(".header-actions .button.warm")).toHaveAttribute("href", "tel:13059108850");
+  await page.locator(".faq summary").first().click();
+  await expect(page.locator(".faq details").first()).toHaveAttribute("open", "");
+  await context.close();
+});

@@ -5,7 +5,7 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/"
 ---
 
-Vida
+[Inicio](/es/)/Vida
 
 # Seguro de vida en Miami
 
@@ -13,7 +13,9 @@ Planifique el apoyo para las personas que dependen de usted. Consulte su presupu
 
 [Llame para cotizar gratis](tel:13059108850) [Comparar coberturas](#coverage-details)
 
-11200 W Flagler St · Suite 108–109 · Miami
+[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+
+[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una familia caminando por la playa para solicitar seguro de vida en Miami](/media/carousel/life/life-family-beach-poster.webp)](tel:13059108850)
 

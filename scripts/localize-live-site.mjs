@@ -18,6 +18,7 @@ import {
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const reviewSourceNotice = "Las reseñas se muestran tal como aparecen en Google.";
 let assetVersion;
+const escapeHtml = (value) => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 const reviewedDateSpanish = new Intl.DateTimeFormat("es-US", { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${contentReviewedDate}T00:00:00Z`));
 
 const carouselSpanish = {
@@ -46,6 +47,18 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Office #3 Owner", "Dueño de la Oficina #3"],
+  ["Breadcrumb", "Ruta de navegación"],
+  ["On this page", "En esta página"],
+  ["Get directions to Office #3 on Google Maps", "Cómo llegar a la Oficina #3 en Google Maps"],
+  ["Get a quote for auto, home, renters or condo insurance. You can also combine auto and property.", "Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combinar auto y propiedad."],
+  ["Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.", "Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami."],
+  ["What happens next?", "¿Qué sucede después?"],
+  ["Choose your insurance type in the secure form.", "Elija el tipo de seguro en el formulario seguro."],
+  ["Have your current policy handy, if you have one.", "Tenga su póliza actual a mano, si ya tiene una."],
+  ["Review coverage and pricing with Office #3 before buying.", "Revise la cobertura y el precio con la Oficina #3 antes de comprar."],
+  ["Business, Life or Other Insurance?", "¿Seguro de negocios, vida u otro tipo?"],
+  ["Call or text Office #3. Tell us what you need to insure and when you need coverage. We speak English and Spanish.", "Llame o envíe un texto a la Oficina #3. Díganos qué necesita asegurar y para cuándo necesita cobertura. Hablamos español e inglés."],
   ["Office contact information", "Información de contacto de la oficina"],
   ["Read Google Reviews", "Leer reseñas en Google"],
   ["More Customer Reviews", "Más reseñas de clientes"],
@@ -927,6 +940,9 @@ function addLanguageHead(html, englishSlug, spanishSlug, spanish) {
   const englishUrl = routeUrl(englishSlug);
   const spanishUrl = routeUrl(spanishSlug);
   const canonical = spanish ? spanishUrl : englishUrl;
+  const socialImage = `${siteUrl}/assets/social/${(englishSlug || "home").replaceAll("/", "-")}-${spanish ? "es" : "en"}.jpg`;
+  const socialPage = spanish ? spanishPages.find((page) => page.englishSlug === englishSlug) : englishPages.find((page) => page.slug === englishSlug);
+  const socialAlt = `${socialPage?.h1 || "Your Family First Insurance"} — Your Family First Insurance ${spanish ? "Oficina" : "Office"} #3, Miami`;
   html = html
     .replace(/\s*<link rel="alternate" hreflang="(?:en-US|es-US|x-default)" href="[^"]+">/g, "")
     .replace(/\s*<meta property="og:locale:alternate" content="[^"]+">/g, "")
@@ -934,6 +950,8 @@ function addLanguageHead(html, englishSlug, spanishSlug, spanish) {
     .replace(/<link rel="canonical" href="[^"]+">/, `<link rel="canonical" href="${canonical}">\n    <link rel="alternate" hreflang="en-US" href="${englishUrl}">\n    <link rel="alternate" hreflang="es-US" href="${spanishUrl}">\n    <link rel="alternate" hreflang="x-default" href="${englishUrl}">`)
     .replace(/<meta property="og:url" content="[^"]+">/, `<meta property="og:url" content="${canonical}">`)
     .replace(/<meta property="og:locale" content="[^"]+">/, `<meta property="og:locale" content="${spanish ? "es_US" : "en_US"}">\n    <meta property="og:locale:alternate" content="${spanish ? "en_US" : "es_US"}">`);
+  html = html.replace(/(<meta (?:property="og:image"|name="twitter:image") content=")[^"]+(">)/g, `$1${socialImage}$2`)
+    .replace(/(<meta (?:property="og:image:alt"|name="twitter:image:alt") content=")[^"]*(">)/g, `$1${escapeHtml(socialAlt)}$2`);
   return html;
 }
 
@@ -1070,7 +1088,10 @@ function localizeInterfaceLabels(html) {
     "Privacy": "Privacidad",
     "Terms": "Términos",
     "Business": "Negocios",
-    "Office #3": "Oficina #3"
+    "Office #3": "Oficina #3",
+    "Coverage": "Coberturas",
+    "Questions": "Preguntas",
+    "What You Need": "Qué necesita"
   };
   for (const [english, spanish] of Object.entries(labels)) {
     html = html.split(`>${english}<`).join(`>${spanish}<`);
@@ -1106,6 +1127,7 @@ function localizeEnglishPage(englishPage, spanishPage) {
     .filter(([from]) => typeof from === "string")
     .sort((a, b) => b[0].length - a[0].length);
   for (const [english, spanish] of pairs) spanishHtml = replaceEverywhere(spanishHtml, english, spanish);
+  spanishHtml = spanishHtml.replace(/<h1>[^<]*<\/h1>/, () => `<h1>${escapeHtml(spanishPage.h1)}</h1>`);
   spanishHtml = translateCarouselBlocks(spanishHtml);
   spanishHtml = replaceFaqList(spanishHtml, spanishPage);
   spanishHtml = addLanguageHead(spanishHtml, englishPage.slug, spanishPage.slug, true);

@@ -3426,6 +3426,49 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
   .mobile-contact-bar .icon { width: 16px; height: 16px; flex-shrink: 0; }
 }
 
+
+/* Clear wayfinding and larger touch targets, without layout-changing animation. */
+.page-breadcrumb, .service-jump-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.page-breadcrumb { margin-bottom: 12px; color: var(--ink-soft); font-size: .85rem; }
+.page-breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; color: var(--miami-blue); text-underline-offset: 4px; }
+.service-jump-links { margin-top: 18px; gap: 8px; }
+.service-jump-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--glass-line); border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: .85rem; transition: transform 160ms ease, border-color 160ms ease; }
+.trust-line a { display: inline; color: inherit; text-decoration: none; text-underline-offset: 4px; }
+.trust-line a:hover, .trust-line a:focus-visible { text-decoration: underline; }
+.trust-line .icon { display: inline-block; width: 15px; height: 15px; margin-left: 4px; vertical-align: middle; }
+#coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 160px; }
+.quote-handoff-card > p { margin: 0; line-height: 1.55; }
+.quote-handoff-card .quote-destination-note { font-size: .86rem; color: var(--ink-soft); }
+.quote-next-steps { border-top: 1px solid var(--glass-line); padding-top: 4px; }
+.quote-next-steps summary { min-height: 44px; padding-block: 11px; cursor: pointer; color: var(--miami-blue); font-size: .9rem; font-weight: 600; }
+.quote-next-steps ol { display: grid; gap: 8px; margin: 4px 0 0; padding-left: 22px; font-size: .9rem; color: var(--ink-soft); line-height: 1.55; }
+.quote-page-panel .quote-copy { padding: 24px; border: 1px solid var(--glass-line); border-radius: 24px; background: rgba(255,255,255,.045); align-self: start; }
+.quote-page-panel .quote-copy h2 { font-size: 1.7rem; }
+.quote-page-panel .quote-copy p { font-size: 1rem; line-height: 1.6; }
+.quote-office-contact { display: flex; align-items: center; gap: 14px; margin: 18px 0; color: var(--ink); text-decoration: none; }
+.quote-owner-photo { display: block; width: 88px; flex-shrink: 0; }
+.quote-owner-photo img { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: contain; }
+.quote-office-contact > span { display: grid; gap: 4px; font-size: .92rem; }
+.quote-office-contact > span > span { color: var(--ink-soft); font-size: .82rem; }
+.quote-office-contact > .icon { width: 18px; height: 18px; margin-left: auto; }
+.quote-office-contact:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .service-jump-links a:hover { transform: translateY(-2px); border-color: var(--miami-blue); }
+}
+@media (max-width: 1039px) {
+  .page-breadcrumb, .service-jump-links { justify-content: center; }
+  #coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 104px; }
+}
+@media (max-width: 767px) {
+  .mobile-contact-bar { transition: opacity 160ms ease, transform 160ms ease, visibility 160ms; }
+  .mobile-contact-bar.is-suppressed { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(12px); }
+  .mobile-contact-bar a { min-height: 48px; border-radius: 14px; }
+  .quote-handoff-card #quote-handoff-title { font-size: 1.65rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-jump-links a, .mobile-contact-bar { transition: none; transform: none; }
+}
+
 /* Bilingual controls preserve the production header composition. */
 .language-switcher {
   display: inline-flex;

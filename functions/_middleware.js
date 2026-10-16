@@ -68,6 +68,27 @@ function applyHeaders(headers, url) {
   if (url.hostname.endsWith(".pages.dev")) headers.set("X-Robots-Tag", "noindex, nofollow");
 }
 
+function htmlResponse(response, headers, url) {
+  const result = new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+  if (!response.ok || !url.hostname.endsWith(".pages.dev") || !headers.get("Content-Type")?.includes("text/html") || typeof HTMLRewriter === "undefined") return result;
+  // Preview cards must resolve before production approval. Keep canonical page
+  // URLs unchanged and stream only these two image-attribute substitutions.
+  result.headers.delete("Content-Length");
+  result.headers.delete("ETag");
+  const imageHandler = {
+    element(element) {
+      const image = element.getAttribute("content");
+      if (image?.startsWith(`https://${canonicalHostname}/assets/social/`)) {
+        element.setAttribute("content", image.replace(`https://${canonicalHostname}`, url.origin));
+      }
+    }
+  };
+  return new HTMLRewriter()
+    .on('meta[property="og:image"]', imageHandler)
+    .on('meta[name="twitter:image"]', imageHandler)
+    .transform(result);
+}
+
 export async function onRequest(context) {
   const url = new URL(context.request.url);
   if ((url.hostname === `www.${canonicalHostname}` || url.protocol !== "https:") && !url.hostname.endsWith(".pages.dev")) {
@@ -82,13 +103,13 @@ export async function onRequest(context) {
 
   const slug = routeSlug(url.pathname);
   if ((!["GET", "HEAD"].includes(context.request.method) || !prefersMarkdown(context.request.headers.get("Accept"))) || !response.ok || !markdownRoutes.has(slug) || !context.env?.ASSETS) {
-    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+    return htmlResponse(response, headers, url);
   }
 
   const markdownPath = slug ? `/.agent-markdown/${slug}/index.md` : "/.agent-markdown/index.md";
   const markdownUrl = new URL(markdownPath, url.origin);
   const markdownResponse = await context.env.ASSETS.fetch(new Request(markdownUrl, { headers: { Accept: "text/markdown" } }));
-  if (!markdownResponse.ok) return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+  if (!markdownResponse.ok) return htmlResponse(response, headers, url);
 
   const [markdown, originalHtml] = await Promise.all([markdownResponse.text(), response.clone().text()]);
   headers.set("Content-Type", "text/markdown; charset=utf-8");

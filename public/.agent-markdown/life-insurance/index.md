@@ -5,7 +5,7 @@ language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/life-insurance/"
 ---
 
-Life
+[Home](/)/Life
 
 # Life Insurance in Miami
 
@@ -13,7 +13,9 @@ Plan for the people who depend on you. Talk with us about your budget, income, m
 
 [Call for a Free Quote](tel:13059108850) [Compare Coverage](#coverage-details)
 
-11200 W Flagler St · Suite 108–109 · Miami
+[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+
+[Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
 [![Family walking together at the beach video for life insurance quote help in Miami](/media/carousel/life/life-family-beach-poster.webp)](tel:13059108850)
 
