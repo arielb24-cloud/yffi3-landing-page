@@ -457,6 +457,8 @@ test("privacy pages accurately disclose measurement and advertising tools", asyn
   for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "_ga", "panel de preferencias de cookies"]) {
     expect(spanish).toContain(disclosure);
   }
+  expect(spanish).not.toContain("The website records");
+  expect(spanish).toContain("Las etiquetas de medición de Google");
 });
 
 test("review rail buttons use their visible text as the accessible name", async ({ page }) => {
