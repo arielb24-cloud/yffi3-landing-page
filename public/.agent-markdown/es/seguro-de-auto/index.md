@@ -17,23 +17,17 @@ Compare coberturas para su auto, los conductores de su hogar y el uso del vehíc
 
 [Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
-[![Video de un automóvil en movimiento por la ciudad para solicitar seguro de auto en Miami](/media/premium-carousel/auto/premium-car-city-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## Compare su seguro de auto
 
 Tenga su póliza actual a mano para comparar los mismos límites y deducibles.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video de conducción nocturna para revisar una renovación de seguro de auto en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## ¿Subió el precio de su renovación?
 
 Revise la nueva prima, los conductores y las coberturas antes de renovar.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
-[![Video de tráfico urbano para solicitar seguro de auto para conductores del hogar](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Añade un vehículo o conductor?
 

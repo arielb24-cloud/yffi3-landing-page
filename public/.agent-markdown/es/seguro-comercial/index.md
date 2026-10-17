@@ -17,23 +17,17 @@ Cuéntenos qué hace su negocio y qué seguros exigen sus contratos. Revisamos r
 
 [Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
-[![Video de una conversación con un dueño de negocio para solicitar seguro comercial en Miami](/media/premium-carousel/commercial/business-owner-conversation-poster.webp)](tel:13059108850)
-
 ## Seguro para su negocio
 
 Cuéntenos sobre su trabajo, local, empleados y vehículos para revisar coberturas.
 
 [Llame para cotizar gratis](tel:13059108850)
 
-[![Video de un contratista trabajando para solicitar seguro comercial y responsabilidad civil](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
-
 ## Revise sus contratos
 
 Traiga los requisitos de seguro de propietarios o clientes antes de solicitar una cotización.
 
 [Llame para cotizar gratis](tel:13059108850)
-
-[![Video de un equipo en una obra para solicitudes de certificados y responsabilidad civil](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
 
 ## ¿Necesita un certificado de seguro?
 

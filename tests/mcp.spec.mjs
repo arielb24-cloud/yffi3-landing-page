@@ -143,7 +143,7 @@ test("Google tag startup waits for initial paint, keeps queued events and matche
   const { runInNewContext } = await import("node:vm");
   const response = await request.get("/");
   const html = await response.text();
-  const source = html.match(/<!-- Google Tag Manager -->\s*<script>([\s\S]*?)<\/script>/)[1];
+  const source = html.match(/<!-- Google Tag Manager -->\s*<script data-site-tracking="gtm">([\s\S]*?)<\/script>/)[1];
   const hash = "sha256-" + createHash("sha256").update(source).digest("base64");
   expect(response.headers()["content-security-policy"]).toContain(hash);
   const frames = [];

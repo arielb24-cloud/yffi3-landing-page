@@ -21,7 +21,7 @@ Enviar un formulario, llamar, enviar mensajes o navegar este sitio no emite, act
 
 ## Sin garantía de precio ni aprobación
 
-Las cotizaciones, descuentos, elegibilidad y disponibilidad pueden variar según los datos del cliente, la suscripción, la ubicación, la propiedad, los vehículos, las operaciones del negocio y las reglas de la aseguradora.
+Las cotizaciones son estimados y no activan cobertura. El precio y la cobertura finales dependen de la evaluación del riesgo, la elegibilidad, la aprobación de la aseguradora y los requisitos de pago aplicables.
 
 ## Aviso sobre aseguradoras y fotografías
 

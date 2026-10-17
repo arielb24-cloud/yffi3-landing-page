@@ -17,23 +17,17 @@ Revise la cobertura de su vivienda y pertenencias, el deducible por huracán y e
 
 [Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
-[![Video de una vivienda terminada para solicitar seguro de propietarios en Miami](/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## Revise la cobertura de su vivienda
 
 Compruebe el costo de reconstrucción, los límites de pertenencias y el deducible por huracán.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## ¿Está comprando una vivienda?
 
 Tenga la dirección, la fecha de cierre y los requisitos del prestamista a mano.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
-[![Video del exterior de una vivienda moderna para revisar una renovación de seguro](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Antes de renovar su seguro
 

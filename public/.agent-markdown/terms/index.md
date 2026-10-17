@@ -21,7 +21,7 @@ Submitting a form, calling, texting, or browsing this website does not create, b
 
 ## No Guaranteed Price or Approval
 
-Quotes, discounts, eligibility, and coverage availability may vary based on customer information, underwriting, location, property details, vehicles, business operations, and carrier guidelines.
+Quotes are estimates and do not bind coverage. Final pricing and coverage depend on underwriting, eligibility, carrier approval and applicable payment requirements.
 
 ## Carrier and Photo Disclaimer
 

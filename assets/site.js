@@ -11,16 +11,32 @@ const attributionParameterMap = {
 };
 
 function safeCampaignValue(value, fallback = "(not_set)") {
-  const raw = String(value || "");
-  // Drop contact-like values before normalization can disguise them.
-  if (/@|(?:\+?\d[\s().-]*){7,}/.test(raw)) return fallback;
-  const normalized = raw
-    .normalize("NFKC")
-    .replace(/[^a-zA-Z0-9._~:/ -]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 100);
-  return normalized || fallback;
+  if (typeof value !== "string") return fallback;
+  const normalized = value.normalize("NFKC").trim();
+  // Validate after Unicode normalization, before punctuation can hide contact data.
+  // Encoded values, URLs and free-form text are not campaign labels.
+  if (!normalized || /@|%[0-9a-f]{2}|https?:|(?:\+?\d[\s().-]*){7,}/i.test(normalized)) return fallback;
+  const label = normalized.replace(/\s+/g, "-");
+  return /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(label) ? label : fallback;
+}
+
+function safeLandingPath(value) {
+  return typeof value === "string" && /^\/(?:[a-z0-9-]+\/)*$/.test(value) && !/\d{7,}/.test(value) ? value : "/";
+}
+
+function canonicalPagePath() {
+  try { return safeLandingPath(new URL(document.querySelector('link[rel="canonical"]').href).pathname); }
+  catch { return "/"; }
+}
+
+function validatedAttribution(stored) {
+  if (!stored || typeof stored !== "object" || Array.isArray(stored)) return null;
+  const result = {
+    landing_page: safeLandingPath(stored.landing_page),
+    referrer_category: ["direct", "internal", "google", "bing", "meta", "linkedin", "other"].includes(stored.referrer_category) ? stored.referrer_category : "other"
+  };
+  for (const key of Object.values(attributionParameterMap)) result[key] = safeCampaignValue(stored[key]);
+  return result;
 }
 
 function referrerCategory() {
@@ -40,13 +56,13 @@ function referrerCategory() {
 
 function readFirstTouchAttribution() {
   try {
-    const stored = JSON.parse(window.sessionStorage.getItem(attributionStorageKey) || "null");
-    if (stored && typeof stored === "object") return stored;
+    const stored = validatedAttribution(JSON.parse(window.sessionStorage.getItem(attributionStorageKey) || "null"));
+    if (stored) return stored;
   } catch {}
 
   const params = new URLSearchParams(window.location.search);
   const attribution = {
-    landing_page: window.location.pathname,
+    landing_page: canonicalPagePath(),
     referrer_category: referrerCategory()
   };
   for (const [queryKey, eventKey] of Object.entries(attributionParameterMap)) {
@@ -100,7 +116,7 @@ function pushAnalyticsEvent(eventName, target) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: eventName,
-    page_path: window.location.pathname,
+    page_path: canonicalPagePath(),
     page_language: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
     product_category: analyticsProductCategory(target),
     cta_location: analyticsCtaLocation(target),
@@ -240,30 +256,17 @@ if (revealItems.length) {
 
 const animatedItems = document.querySelectorAll("[data-animate]");
 if (animatedItems.length) {
-  const syncMotionMedia = (item, shouldPlay) => {
-    if (item.matches("[data-insurance-carousel]")) return;
-    item.querySelectorAll("video").forEach((video) => {
-      if (shouldPlay && !motionDisabled) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  };
   if (motionDisabled || !("IntersectionObserver" in window)) {
     animatedItems.forEach((item) => {
       item.setAttribute("data-in-view", "true");
-      syncMotionMedia(item, false);
     });
   } else {
     const animationObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         entry.target.setAttribute("data-in-view", String(entry.isIntersecting));
-        syncMotionMedia(entry.target, entry.isIntersecting);
       });
     }, { rootMargin: "96px 0px", threshold: 0.01 });
     animatedItems.forEach((item) => {
-      syncMotionMedia(item, item.getAttribute("data-in-view") === "true");
       animationObserver.observe(item);
     });
   }
@@ -319,13 +322,10 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
   const prev = carousel.querySelector("[data-carousel-prev]");
   const next = carousel.querySelector("[data-carousel-next]");
-  const motionToggle = carousel.querySelector("[data-carousel-motion]");
-  let userPaused = false;
-  const delay = 6800;
+  const playButtons = Array.from(carousel.querySelectorAll("[data-carousel-play]"));
+  let requestedVideo = null;
   let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
   let inView = !("IntersectionObserver" in window);
-  let paused = motionDisabled;
-  let interactionHoldUntil = 0;
   let dragging = false;
   let didDrag = false;
   let startX = 0;
@@ -334,11 +334,9 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   let programmaticScroll = false;
   let programmaticScrollTimer = 0;
 
-  const isTemporarilyPaused = () => userPaused || paused || Date.now() < interactionHoldUntil;
-
   const hydrateVideo = (slide) => {
     const video = slide?.querySelector(".motion-video");
-    if (!video || video.dataset.loaded === "true" || !inView || motionDisabled || userPaused) return video;
+    if (!video || video.dataset.loaded === "true" || video !== requestedVideo || !inView) return video;
     const webm = video.dataset.src;
     const mp4 = video.dataset.mp4;
     if (webm) {
@@ -356,11 +354,15 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.autoplay = true;
+    video.autoplay = false;
     video.dataset.loaded = "true";
     video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
     video.addEventListener("canplay", syncVideos);
-    video.addEventListener("error", () => video.classList.remove("is-ready"));
+    video.addEventListener("error", () => {
+      if (requestedVideo === video) requestedVideo = null;
+      video.classList.remove("is-ready");
+      syncVideos();
+    });
     video.load();
     return video;
   };
@@ -368,26 +370,41 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const syncVideos = () => {
     slides.forEach((slide, index) => {
       const video = slide.querySelector(".motion-video");
-      if (index === activeIndex) hydrateVideo(slide);
       if (!video) return;
-      const shouldPlay = index === activeIndex && inView && !motionDisabled && !userPaused && !document.hidden;
-      if (shouldPlay && video.dataset.loaded === "true") {
-        if (video.paused) video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
+      const shouldPlay = video === requestedVideo && index === activeIndex && inView && !document.hidden;
+      if (shouldPlay) {
+        hydrateVideo(slide);
+        if (video.paused) video.play().catch(() => {
+          if (requestedVideo === video) requestedVideo = null;
+          updatePlayButtons();
+        });
+      } else video.pause();
     });
+    updatePlayButtons();
   };
 
-  const setPaused = (value) => {
-    paused = value || motionDisabled;
-    carousel.setAttribute("data-paused", String(paused || userPaused));
-    syncVideos();
+  const updatePlayButtons = () => {
+    playButtons.forEach((button) => {
+      const playing = button.querySelector("video") === requestedVideo;
+      const label = playing ? (spanishUi ? "Pausar video" : "Pause video") : (spanishUi ? "Reproducir video" : "Play video");
+      button.setAttribute("aria-pressed", String(playing));
+      button.setAttribute("aria-label", label);
+      button.querySelector(".video-play-label").textContent = label;
+    });
+    carousel.setAttribute("data-motion-stopped", String(!requestedVideo));
+    carousel.setAttribute("data-paused", "true");
   };
+  playButtons.forEach((button) => button.addEventListener("click", () => {
+    const video = button.querySelector("video");
+    requestedVideo = requestedVideo === video ? null : video;
+    syncVideos();
+  }));
 
   const setActive = (index, options = {}) => {
     if (!slides.length) return;
-    activeIndex = (index + slides.length) % slides.length;
+    const nextIndex = (index + slides.length) % slides.length;
+    if (nextIndex !== activeIndex) requestedVideo = null;
+    activeIndex = nextIndex;
     const activeSlide = slides[activeIndex];
     const poster = activeSlide.querySelector(".motion-poster");
     if (poster?.dataset.posterSrc) {
@@ -404,12 +421,13 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       }
     });
     chips.forEach((chip) => {
-      chip.setAttribute("aria-selected", String(chip.dataset.slideId === activeSlide.dataset.slideId));
+      const selected = chip.dataset.slideId === activeSlide.dataset.slideId;
+      chip.setAttribute("aria-selected", String(selected));
+      chip.tabIndex = selected ? 0 : -1;
     });
     dots.forEach((dot) => {
       dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
     });
-    hydrateVideo(activeSlide);
     syncVideos();
     if (options.scroll !== false) {
       programmaticScroll = true;
@@ -419,12 +437,6 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
         programmaticScroll = false;
       }, reducedMotion ? 0 : 700);
     }
-  };
-
-  const holdAfterInteraction = () => {
-    interactionHoldUntil = Date.now() + 9000;
-    carousel.setAttribute("data-paused", "true");
-    syncVideos();
   };
 
   // Keep the selected slide in view when its responsive width changes.
@@ -446,35 +458,37 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const goToSlideId = (slideId) => {
     const index = slides.findIndex((slide) => slide.dataset.slideId === slideId);
     if (index >= 0) {
-      holdAfterInteraction();
       setActive(index);
     }
   };
 
   chips.forEach((chip) => {
     chip.addEventListener("click", () => goToSlideId(chip.dataset.slideId));
+    chip.addEventListener("keydown", (event) => {
+      const destinations = { ArrowRight: activeIndex + 1, ArrowLeft: activeIndex - 1, Home: 0, End: slides.length - 1 };
+      if (!(event.key in destinations)) return;
+      event.preventDefault();
+      setActive(destinations[event.key]);
+      chips[activeIndex]?.focus({ preventScroll: true });
+    });
   });
   dots.forEach((dot) => {
     dot.addEventListener("click", () => goToSlideId(dot.dataset.slideId));
   });
   prev?.addEventListener("click", () => {
-    holdAfterInteraction();
     setActive(activeIndex - 1);
   });
   next?.addEventListener("click", () => {
-    holdAfterInteraction();
     setActive(activeIndex + 1);
   });
 
   track?.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      holdAfterInteraction();
       setActive(activeIndex + 1);
     }
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      holdAfterInteraction();
       setActive(activeIndex - 1);
     }
   });
@@ -498,7 +512,6 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
         }
       });
       if (closestIndex !== activeIndex) {
-        holdAfterInteraction();
         setActive(closestIndex, { scroll: false });
       }
     });
@@ -510,19 +523,20 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     didDrag = false;
     startX = event.clientX;
     startScrollLeft = track.scrollLeft;
-    track.setPointerCapture?.(event.pointerId);
   });
   track?.addEventListener("pointermove", (event) => {
     if (!dragging) return;
     const delta = event.clientX - startX;
-    if (Math.abs(delta) > 4) didDrag = true;
+    if (Math.abs(delta) > 4) {
+      didDrag = true;
+      track.setPointerCapture?.(event.pointerId);
+    }
     track.scrollLeft = startScrollLeft - delta;
   });
   const endDrag = (event) => {
     if (!dragging) return;
     dragging = false;
     track.releasePointerCapture?.(event.pointerId);
-    if (didDrag) holdAfterInteraction();
   };
   track?.addEventListener("pointerup", endDrag);
   track?.addEventListener("pointercancel", endDrag);
@@ -534,35 +548,16 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     }
   }, true);
 
-  const updateMotionToggle = () => {
-    if (!motionToggle) return;
-    const stopped = userPaused || motionDisabled;
-    motionToggle.setAttribute("aria-pressed", String(stopped));
-    carousel.setAttribute("data-motion-stopped", String(stopped));
-    motionToggle.disabled = motionDisabled;
-    motionToggle.textContent = stopped
-      ? (spanishUi ? "Reanudar animación" : "Resume motion")
-      : (spanishUi ? "Pausar animación" : "Pause motion");
-    if (motionDisabled) motionToggle.textContent = spanishUi ? "Animación desactivada" : "Motion disabled";
-    carousel.setAttribute("data-paused", String(stopped || paused));
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) requestedVideo = null;
     syncVideos();
-  };
-  motionToggle?.addEventListener("click", () => {
-    userPaused = !userPaused;
-    updateMotionToggle();
   });
-  updateMotionToggle();
-  document.addEventListener("visibilitychange", syncVideos);
-
-  carousel.addEventListener("mouseenter", () => setPaused(true));
-  carousel.addEventListener("mouseleave", () => setPaused(false));
-  carousel.addEventListener("focusin", () => setPaused(true));
-  carousel.addEventListener("focusout", () => setPaused(false));
 
   if ("IntersectionObserver" in window) {
     const carouselObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         inView = entry.isIntersecting;
+        if (!inView) requestedVideo = null;
         carousel.setAttribute("data-in-view", String(inView));
         syncVideos();
       });
@@ -573,22 +568,8 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     carousel.setAttribute("data-in-view", "true");
   }
 
-  // Muted inline videos start as soon as their media enters the viewport.
-  // Retry after a gesture if the browser's autoplay policy rejected playback.
-  document.addEventListener("pointerdown", syncVideos);
-  document.addEventListener("keydown", syncVideos);
-
-  if (!motionDisabled) {
-    window.setInterval(() => {
-      const shouldHold = isTemporarilyPaused() || !inView || document.hidden;
-      carousel.setAttribute("data-paused", String(shouldHold));
-      if (!shouldHold) setActive(activeIndex + 1);
-      syncVideos();
-    }, delay);
-  }
-
   setActive(activeIndex, { scroll: false });
-  setPaused(motionDisabled);
+
 });
 
 document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) => {

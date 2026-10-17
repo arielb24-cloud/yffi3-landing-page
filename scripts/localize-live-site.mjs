@@ -74,6 +74,10 @@ const globalPairs = [
   ["Call or text us about your business, employees, vehicles and any insurance requirements from a client or landlord.", "Llámenos o envíenos un texto sobre su negocio, empleados, vehículos y los requisitos de seguro de sus clientes o del arrendador."],
   ["Call or text us to discuss who depends on your income, the amount of coverage you need and how long you need it.", "Llámenos o envíenos un texto para hablar de quién depende de sus ingresos, cuánta cobertura necesita y por cuánto tiempo."],
   ["Pause motion", "Pausar animación"],
+  ["Play video", "Reproducir video"],
+  ["Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings. Campaign labels are filtered before being included in these events. Google measurement tags may also receive page URLs and referring-page information; do not include personal information in links you share.", "Nuestros eventos de clic en enlaces de contacto no incluyen campos de cotización, direcciones completas de páginas de referencia ni parámetros completos de URL. Los nombres de campañas se filtran antes de incluirse en estos eventos. Las etiquetas de medición de Google también pueden recibir direcciones de páginas e información de referencia; no incluya datos personales en los enlaces que comparta."],
+  ["Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval.", "Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora."],
+  ["Quotes are estimates and do not bind coverage. Final pricing and coverage depend on underwriting, eligibility, carrier approval and applicable payment requirements.", "Las cotizaciones son estimados y no activan cobertura. El precio y la cobertura finales dependen de la evaluación del riesgo, la elegibilidad, la aprobación de la aseguradora y los requisitos de pago aplicables."],
 
   ["Prefer to Talk?", "¿Prefiere hablar con nosotros?"],
   ["Text the Office", "Enviar un mensaje"],

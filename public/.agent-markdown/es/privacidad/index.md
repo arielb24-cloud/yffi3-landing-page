@@ -35,7 +35,7 @@ GA4 puede utilizar cookies propias, incluida `_ga`, y recopilar datos de página
 
 Google Ads puede usar cookies u otros identificadores para medir interacciones y conversiones publicitarias. Puede administrar las cookies desde su navegador.
 
-El sitio registra visitas y acciones como clics en enlaces de cotización o teléfono, además de información general de campañas. El código de eventos no envía nombres, teléfonos, correos, códigos postales, notas, datos de seguros, direcciones completas de referencia ni parámetros completos de búsqueda.
+The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Nuestros eventos de clic en enlaces de contacto no incluyen campos de cotización, direcciones completas de páginas de referencia ni parámetros completos de URL. Los nombres de campañas se filtran antes de incluirse en estos eventos. Las etiquetas de medición de Google también pueden recibir direcciones de páginas e información de referencia; no incluya datos personales en los enlaces que comparta.
 
 La información general de campañas se conserva en el almacenamiento de sesión de la pestaña actual. No se envía con el enlace a ConsumerRateQuotes. Un clic no nos indica si completó una solicitud.
 

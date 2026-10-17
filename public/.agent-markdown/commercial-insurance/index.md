@@ -17,23 +17,17 @@ Tell us what your business does and what your contracts require. We can review l
 
 [Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
-[![Business owner conversation video for Miami commercial insurance quote help](/media/premium-carousel/commercial/business-owner-conversation-poster.webp)](tel:13059108850)
-
 ## Insurance for Your Business
 
 Tell us about your work, premises, employees and vehicles to discuss coverage.
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Contractor worksite video for commercial insurance and liability quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
-
 ## Check Your Contracts and Lease
 
 Bring any insurance requirements from landlords or customers before requesting a quote.
 
 [Call for a Free Quote](tel:13059108850)
-
-[![Commercial jobsite team video for certificate of insurance and liability quote requests](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
 
 ## Need a Certificate of Insurance?
 

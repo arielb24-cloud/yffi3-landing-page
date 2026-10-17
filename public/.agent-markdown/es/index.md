@@ -13,15 +13,11 @@ Cotice gratis y compare coberturas con nuestra oficina de West Flagler. Seguros 
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
 
-[![Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto](/media/premium-carousel/home/miami-traffic-skyline-poster.webp)](/es/seguro-de-auto/)
-
 ## Seguro de auto en Miami
 
 Compare límites de responsabilidad civil, deducibles y coberturas para su vehículo.
 
 [Ver cobertura](/es/seguro-de-auto/)
-
-[![Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-vivienda/)
 
 ## Seguro para su vivienda
 
@@ -29,15 +25,11 @@ Revise su vivienda, techo y deducible por huracán. Pregunte por un seguro separ
 
 [Ver cobertura](/es/seguro-de-vivienda/)
 
-[![Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-inquilinos/)
-
 ## Seguro de inquilinos
 
 Revise la cobertura de sus pertenencias y el límite de responsabilidad civil que exige su contrato.
 
 [Ver cobertura](/es/seguro-de-inquilinos/)
-
-[![Video de un pequeño negocio para solicitar seguro comercial en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-comercial/)
 
 ## Seguro para negocios
 
@@ -45,23 +37,17 @@ Cuéntenos a qué se dedica su negocio y qué requisitos exigen sus contratos.
 
 [Ver cobertura](/es/seguro-comercial/)
 
-[![Video de un contratista revisando documentos para solicitar responsabilidad civil general](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-comercial/#general-liability-insurance)
-
 ## Responsabilidad civil general
 
 Traiga los requisitos de sus contratos para revisar límites y certificados de seguro.
 
 [Ver cobertura](/es/seguro-comercial/#general-liability-insurance)
 
-[![Video de un padre y su hijo en la playa para la planificación de seguro de vida](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-vida/)
-
 ## Seguro de vida
 
 Considere cuánto ingreso necesitaría su familia y durante cuánto tiempo.
 
 [Ver cobertura](/es/seguro-de-vida/)
-
-[![Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/sobre-oficina-3/)
 
 ## Hablamos español
 
@@ -231,7 +217,7 @@ Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combin
 
 Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 
-Requesting a quote does not start coverage. [Privacidad policy](/es/privacidad/).
+Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Privacidad policy](/es/privacidad/).
 
 FAQ
 

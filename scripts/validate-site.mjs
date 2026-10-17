@@ -347,7 +347,8 @@ if (!fs.existsSync(js)) {
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
   if (!script.includes("data-insurance-carousel")) failures.push("JS missing accessible carousel controller");
-  if (!script.includes("syncMotionMedia")) failures.push("JS missing offscreen video pause/play handling");
+  if (!script.includes("syncVideos") || !script.includes('if (!inView) requestedVideo = null')) failures.push("JS missing offscreen video pause handling");
+  if (/\.autoplay\s*=\s*true/.test(script)) failures.push("Videos must require an explicit play request");
   if (!script.includes("hydrateVideo")) failures.push("JS missing lazy video hydration");
   if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("visibilitychange")) failures.push("JS missing tab visibility media pausing");

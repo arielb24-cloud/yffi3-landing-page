@@ -17,23 +17,17 @@ Plan for the people who depend on you. Talk with us about your budget, income, m
 
 [Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
-[![Family walking together at the beach video for life insurance quote help in Miami](/media/carousel/life/life-family-beach-poster.webp)](tel:13059108850)
-
 ## Plan for the People Who Depend on You
 
 Consider income, debts and the expenses your family would need help paying.
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Family coming home video for term life insurance planning questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
-
 ## How Long Do You Need Coverage?
 
 Term life covers a set period. Think about your mortgage and years until your children are independent.
 
 [Call for a Free Quote](tel:13059108850)
-
-[![Family planning documents meeting video for final expense life insurance questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
 
 ## Plan for Final Expenses
 

@@ -35,7 +35,7 @@ GA4 may use first-party cookies, including `_ga`, and collect page and interacti
 
 Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.
 
-The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Its analytics event code does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.
+The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings. Campaign labels are filtered before being included in these events. Google measurement tags may also receive page URLs and referring-page information; do not include personal information in links you share.
 
 General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.
 

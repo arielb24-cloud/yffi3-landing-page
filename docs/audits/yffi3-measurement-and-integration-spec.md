@@ -17,24 +17,30 @@
 
 ## Current website event contract
 
+Verified against the October 17, 2026 preview source. The public site has no local quote form. The owner confirmed that ConsumerRateQuotes account 64868 delivers requests to Office #3; the site does not receive a completion acknowledgement.
+
 | Event | When it fires | GA4 recommendation | Safe parameters |
 |---|---|---|---|
 | `phone_click` | Intentional click on `tel:` | Key event | Approved interaction and first-touch fields listed below |
 | `sms_click` | Intentional click on `sms:` | Key event | Same |
 | `email_click` | Intentional click on `mailto:` | Optional key event | Same |
-| `form_submit` | Valid first-step form immediately before the approved handoff | Diagnostic only | Same |
-| `quote_start` | Valid form handoff or intentional approved destination click | Secondary funnel event | Same |
+| `form_submit` | Not emitted; there is no local form | N/A | N/A |
+| `quote_start` | Intentional approved ConsumerRateQuotes destination click | Secondary funnel event; not a completed quote | Same |
 | `generate_lead` | Not implemented | Add only after server/vendor acknowledgement | Never infer from a redirect |
 | `quote_complete` | Not implemented | Key event only with vendor confirmation | Server-side/offline identifier, no PII in GA4 |
 | `policy_bound` | Not implemented | Offline primary business conversion | Imported from system of record |
 
-Approved interaction fields are `page_path`, `page_language`, `product_category`, and `cta_location`. Approved first-touch fields are `landing_page`, `referrer_category`, `traffic_source`, `traffic_medium`, `campaign_name`, and `campaign_content`. Missing campaign values use `(not_set)` so tag mappings stay stable.
+Approved interaction fields are `page_path`, `page_language`, `product_category`, and `cta_location`. Approved first-touch fields are `landing_page`, `referrer_category`, `traffic_source`, `traffic_medium`, `campaign_name`, `campaign_id`, `campaign_term`, and `campaign_content`. Missing campaign values use `(not_set)` so tag mappings stay stable.
 
 The current data layer must never include name, email, phone, ZIP, address, notes, insurance answers, policy data, VIN, date of birth, health information, license information, form contents, raw referrer URLs, full query strings, or advertising click identifiers.
 
 ## Campaign attribution posture
 
-The public form redirects to ConsumerRateQuotes and does not receive a success response. It does not have an approved server-side destination for attribution. The website captures a sanitized first-touch subset of `utm_source`, `utm_medium`, `utm_campaign`, and `utm_content` in browser `sessionStorage` for the current tab session and passes those non-PII values to its data layer. It does not retain raw queries, raw referrers, click IDs, or submitted data, and it does not append attribution values to the vendor URL. `page_path` and `landing_page` contain canonical paths without query strings.
+The public quote link opens ConsumerRateQuotes; the website receives no success response. It captures filtered campaign labels from `utm_source`, `utm_medium`, `utm_campaign`, `utm_id`, `utm_term`, and `utm_content` in tab-scoped `sessionStorage`. Values are normalized before contact-like, encoded, URL and invalid-label checks. Stored values are revalidated before custom events use them. Spaces become hyphens; missing or rejected values become `(not_set)`. Do not put customer information in campaign labels. No campaign values are appended to the vendor URL.
+
+`page_path` comes from the page canonical without query strings; `landing_page` is a filtered first-touch path. These protections apply to custom website events. They do not configure Google tags' automatic page URL/referrer collection or account-level redaction.
+
+The public GTM version 7 resource was read on October 17: its event trigger recognizes `cta_click`, `phone_click`, `sms_click`, `quote_start`, `form_submit` and `language_switch`. It has no data-layer-variable macros or event-parameter mapping for the website's attribution/context fields. The dormant `form_submit` trigger does not prove a submission event fires. Its generic runtime contains standard event-name strings; those strings do not prove corresponding tags exist. Cloudflare also injects Zaraz for the same GA4 measurement ID. Server-side duplication remains unconfirmed until authenticated inspection of Zaraz Monitoring and GA4 DebugView. No account configuration was changed.
 
 When an approved server-side integration exists, forward only these non-PII attribution fields after validation:
 
@@ -85,7 +91,7 @@ PII belongs only in the approved secure lead system: name, email, phone, ZIP, in
 
 - Use vendor idempotency keys for retries.
 - Deduplicate by the approved CRM's protected matching logic, not in GA4.
-- Keep the existing honeypot and field validation; add server-side schema validation and rate limits.
+- If a future local handler is approved, add server-side schema validation, anti-spam checks and rate limits. No local form or honeypot currently exists.
 - Treat honeypot hits, invalid payloads, and rejected vendor responses as non-leads.
 - Never emit `generate_lead` for spam, validation failure, timeout, or unknown response.
 

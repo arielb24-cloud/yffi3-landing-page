@@ -25,7 +25,7 @@ What happens next?
 2.  Have your current policy handy, if you have one.
 3.  Review coverage and pricing with Office #3 before buying.
 
-Requesting a quote does not start coverage. [Privacy policy](/privacy-policy/).
+Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. [Privacy policy](/privacy-policy/).
 
 ## Business, Life or Other Insurance?
 

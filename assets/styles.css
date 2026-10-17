@@ -3286,6 +3286,13 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .motion-actions .button { width: auto; min-height: 44px; padding: 10px 16px; font-size: 0.9rem; }
 .carousel-chips { margin-bottom: 12px; padding: 4px 2px 8px; justify-content: safe center; }
 .motion-carousel[data-motion-stopped="true"] .motion-poster, .motion-carousel[data-motion-stopped="true"] .motion-video, .motion-carousel[data-motion-stopped="true"] .motion-sheen { animation-play-state: paused !important; }
+/* Videos load only after an explicit play request. */
+.motion-media-link { padding: 0; cursor: pointer; font: inherit; }
+.video-play-label { position: absolute; z-index: 4; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 999px; background: #071b2b; border: 1px solid #b9dbe8; color: #fff8e8; font-size: .875rem; font-weight: 700; box-shadow: 0 3px 16px #0005; }
+.video-play-label::before { content: "▶"; font-size: .8em; }
+.motion-media-link[aria-pressed="true"] .video-play-label::before { content: "Ⅱ"; }
+.motion-media-link:focus-visible { outline: 3px solid #ffe0a1; outline-offset: -4px; }
+.motion-carousel[data-motion-stopped="true"] .motion-sheen { opacity: 0; }
 .carousel-motion-toggle { color: var(--ink, #fff8e8); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 10px 18px; min-height: 44px; cursor: pointer; font: inherit; font-size: .875rem; }
 .carousel-motion-toggle:hover, .carousel-motion-toggle:focus-visible { background: rgba(255,255,255,.18); outline: 2px solid #ffe0a1; outline-offset: 3px; }
 .carousel-controls { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 10px; margin-top: 10px; padding: 10px 4px 4px; }

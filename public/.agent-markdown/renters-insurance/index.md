@@ -17,23 +17,17 @@ Moving into an apartment or renewing your lease? Compare coverage for your belon
 
 [Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
-[![Renters moving boxes into an apartment video for renters insurance quote help](/media/premium-carousel/renters/moving-boxes-apartment-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## Moving Into an Apartment?
 
 Bring your move-in date, rental address and your landlord’s insurance requirements.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Couple holding apartment keys video for renters insurance lease requirements](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
 ## Does Your Lease Require Insurance?
 
 Check the liability limit and any wording your landlord needs on proof of insurance.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
-
-[![Renters carrying moving boxes through a doorway video for apartment belongings coverage questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## What Would Your Belongings Cost to Replace?
 

@@ -1470,7 +1470,7 @@ function insuranceMotionCarousel(page) {
   const firstSlide = slides[0];
   const isFocused = page.kind === "service";
   const chipButtons = slides.map((slide, index) => `
-    <button class="carousel-chip" type="button" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-carousel-chip>
+    <button class="carousel-chip" type="button" id="carousel-tab-${page.slug || "home"}-${slide.id}" tabindex="${index === 0 ? "0" : "-1"}" role="tab" aria-selected="${index === 0 ? "true" : "false"}" aria-controls="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-carousel-chip>
       <span class="chip-icon">${iconSvg(slide.icon)}</span>
       <span>${escapeHtml(slide.chip)}</span>
     </button>
@@ -1482,14 +1482,15 @@ function insuranceMotionCarousel(page) {
     const href = isFocused ? (["commercial-insurance", "life-insurance"].includes(page.slug) ? phoneHref : quoteDestination) : slide.href;
     const cta = isFocused ? (href === phoneHref ? "Call for a Free Quote" : "Get My Free Quote") : (slide.id === "home-bilingual" ? "Visit Our Office" : "View Coverage");
     return `
-    <article class="motion-slide" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
-      <a class="motion-media-link" href="${href}" aria-label="${escapeHtml(cta)}">
+    <article class="motion-slide" role="tabpanel" aria-labelledby="carousel-tab-${page.slug || "home"}-${slide.id}" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
+      <button type="button" class="motion-media-link" data-carousel-play aria-label="Play video" aria-pressed="false">
         <img class="motion-poster" ${index === 0 ? `src="${carouselImageSrc(slide)}"` : `src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-poster-src="${carouselImageSrc(slide)}"`} alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
         ${carouselVideoMarkup(slide)}
         ${carouselMotionAssetMarkup(slide)}
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
-      </a>
+        <span class="video-play-label" aria-hidden="true">Play video</span>
+      </button>
       <div class="motion-slide-copy">
         <h2>${escapeHtml(slide.headline)}</h2>
         <p>${escapeHtml(slide.subheadline)}</p>
@@ -1510,8 +1511,7 @@ function insuranceMotionCarousel(page) {
       </div>
       <div class="carousel-controls">
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
-        <div class="carousel-progress" aria-hidden="true"><span></span></div>
-        <button type="button" class="carousel-motion-toggle" data-carousel-motion aria-pressed="false">Pause motion</button>
+
       </div>
     </div>
   `;
@@ -1648,7 +1648,7 @@ function quoteForm(formId = "quote-handoff", headingLevel = 3) {
       <a class="button warm wide" href="${quoteDestination}" rel="noopener" data-secure-quote-handoff>Get My Free Quote ${iconSvg("arrow")}</a>
       <p class="wide quote-destination-note">Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.</p>
       ${headingLevel === 2 ? `<details class="quote-next-steps wide"><summary>What happens next?</summary><ol><li>Choose your insurance type in the secure form.</li><li>Have your current policy handy, if you have one.</li><li>Review coverage and pricing with Office #3 before buying.</li></ol></details>` : ""}
-      <p class="form-disclaimer wide">Requesting a quote does not start coverage. <a href="/privacy-policy/">Privacy policy</a>.</p>
+      <p class="form-disclaimer wide">Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. <a href="/privacy-policy/">Privacy policy</a>.</p>
     </section>
   `;
 }
@@ -1911,7 +1911,7 @@ function privacyBody() {
       <p>This website uses Google Analytics 4 and Google Ads measurement tools to understand visits and interactions. Google Tag Manager loads these tools.</p>
       <p>GA4 may use first-party cookies, including <code>_ga</code>, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.</p>
       <p>Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.</p>
-      <p>The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Its analytics event code does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings.</p>
+      <p>The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings. Campaign labels are filtered before being included in these events. Google measurement tags may also receive page URLs and referring-page information; do not include personal information in links you share.</p>
       <p>General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.</p>
       <p>This website does not currently provide a cookie-preference panel. You can restrict cookies in your browser settings.</p>
       <h2>Retention and Your Choices</h2>
@@ -1935,7 +1935,7 @@ function termsBody() {
       <h2>No Coverage Bound by Website Use</h2>
       <p>Submitting a form, calling, texting, or browsing this website does not create, bind, change, renew, cancel, or reinstate insurance coverage. Coverage is subject to written confirmation, carrier rules, eligibility, underwriting, and payment requirements.</p>
       <h2>No Guaranteed Price or Approval</h2>
-      <p>Quotes, discounts, eligibility, and coverage availability may vary based on customer information, underwriting, location, property details, vehicles, business operations, and carrier guidelines.</p>
+      <p>Quotes are estimates and do not bind coverage. Final pricing and coverage depend on underwriting, eligibility, carrier approval and applicable payment requirements.</p>
       <h2>Carrier and Photo Disclaimer</h2>
       <p>Any carrier name that may appear incidentally in a real office photo is not a separate marketing claim, endorsement, or unauthorized affiliation statement.</p>
       <h2>Third-Party Intake</h2>
@@ -5327,6 +5327,13 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .motion-actions .button { width: auto; min-height: 44px; padding: 10px 16px; font-size: 0.9rem; }
 .carousel-chips { margin-bottom: 12px; padding: 4px 2px 8px; justify-content: safe center; }
 .motion-carousel[data-motion-stopped="true"] .motion-poster, .motion-carousel[data-motion-stopped="true"] .motion-video, .motion-carousel[data-motion-stopped="true"] .motion-sheen { animation-play-state: paused !important; }
+/* Videos load only after an explicit play request. */
+.motion-media-link { padding: 0; cursor: pointer; font: inherit; }
+.video-play-label { position: absolute; z-index: 4; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 999px; background: #071b2b; border: 1px solid #b9dbe8; color: #fff8e8; font-size: .875rem; font-weight: 700; box-shadow: 0 3px 16px #0005; }
+.video-play-label::before { content: "▶"; font-size: .8em; }
+.motion-media-link[aria-pressed="true"] .video-play-label::before { content: "Ⅱ"; }
+.motion-media-link:focus-visible { outline: 3px solid #ffe0a1; outline-offset: -4px; }
+.motion-carousel[data-motion-stopped="true"] .motion-sheen { opacity: 0; }
 .carousel-motion-toggle { color: var(--ink, #fff8e8); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 10px 18px; min-height: 44px; cursor: pointer; font: inherit; font-size: .875rem; }
 .carousel-motion-toggle:hover, .carousel-motion-toggle:focus-visible { background: rgba(255,255,255,.18); outline: 2px solid #ffe0a1; outline-offset: 3px; }
 .carousel-controls { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 10px; margin-top: 10px; padding: 10px 4px 4px; }

@@ -261,19 +261,19 @@ test("mobile homepage sections keep stable document flow while scrolling", async
   expect(after.overflow).toBe(false);
 });
 
-test("mobile carousel autoplays before engagement and controls do not move the page", async ({ page }) => {
+test("mobile carousel waits for play and selection does not move the page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.goto("/", { waitUntil: "networkidle" });
   const carousel = page.locator("[data-insurance-carousel]");
   const nextControl = carousel.locator("[data-carousel-next]");
   await nextControl.scrollIntoViewIfNeeded();
-  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
+  expect(await carousel.locator("video source").count()).toBe(0);
   const beforeY = await page.evaluate(() => window.scrollY);
 
   await nextControl.click();
 
   await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners");
-  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
+  expect(await carousel.locator("video source").count()).toBe(0);
   const afterY = await page.evaluate(() => window.scrollY);
   expect(Math.abs(afterY - beforeY)).toBeLessThanOrEqual(1);
 });
@@ -380,7 +380,7 @@ test("service and language clicks emit one event with useful context", async ({ 
       document.addEventListener("click", (event) => event.preventDefault(), true);
       document.querySelector('.coverage-card[href="' + servicePath + '"]').click();
       document.querySelector('.language-switcher a:not([aria-current="page"])').click();
-      document.querySelector('.motion-slide[data-active="true"] .motion-media-link').click();
+      document.querySelector('.motion-slide[data-active="true"] .motion-actions a').click();
       return window.dataLayer.filter((entry) => typeof entry?.event === "string");
     }, path);
     expect(events.map((entry) => entry.event)).toEqual(["cta_click", "language_switch", "cta_click"]);
@@ -399,10 +399,10 @@ test("first-touch attribution is sanitized, non-PII, and session-scoped", async 
     referrer_category: "direct",
     traffic_source: "google",
     traffic_medium: "cpc",
-    campaign_name: "Miami Auto 2026",
+    campaign_name: "Miami-Auto-2026",
     campaign_id: "campaign-64868",
-    campaign_term: "miami auto insurance",
-    campaign_content: "hero script"
+    campaign_term: "miami-auto-insurance",
+    campaign_content: "(not_set)"
   });
   expect(JSON.stringify(firstTouch)).not.toContain("gclid");
   expect(JSON.stringify(firstTouch)).not.toContain("must-not-be-stored");
@@ -449,7 +449,8 @@ test("privacy pages accurately disclose measurement and advertising tools", asyn
   for (const disclosure of ["Google Tag Manager", "Google Analytics 4", "Google Ads", "_ga", "cookie-preference panel"]) {
     expect(english).toContain(disclosure);
   }
-  expect(english).toContain("does not send names, phone numbers, email addresses, ZIP codes, notes, insurance details, raw referrer URLs, or full query strings");
+  expect(english).toContain("Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings");
+  expect(english).toContain("Google measurement tags may also receive page URLs");
   expect(english).toContain("browser session storage");
 
   const spanish = await (await request.get("/es/privacidad/")).text();
@@ -517,6 +518,7 @@ test("homepage Business slide uses the premium consultation video and keeps play
   const activeVideo = carousel.locator('.motion-slide[data-active="true"] .motion-video');
   await expect(activeVideo).toHaveAttribute("data-mp4", "/media/premium-carousel/home/business-office-consultation-web.mp4");
   await expect(page.locator('[data-mp4*="storefront-open-sign"]')).toHaveCount(0);
+  await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
   await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 8000 }).toBe(false);
 
   await carousel.hover();
@@ -1067,12 +1069,14 @@ for (const route of ["/", "/es/", "/auto-insurance/", "/es/seguro-de-auto/", "/g
 }
 
 
-test("the selected video stays centered through resizing and automatic rotation", async ({ page }) => {
+test("the selected video stays centered through resizing without automatic rotation", async ({ page }) => {
   test.setTimeout(40_000);
   await page.setViewportSize({ width: 1280, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
   const carousel = page.locator("[data-insurance-carousel]");
-  await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners", { timeout: 9000 });
+  await page.waitForTimeout(7000);
+  await expect(carousel).toHaveAttribute("data-active-slide", "home-auto");
+  expect(await carousel.locator("video source").count()).toBe(0);
   const centerOffset = () => page.evaluate(() => {
     const carousel = document.querySelector("[data-insurance-carousel]");
     const slide = carousel.querySelector('.motion-slide[data-active="true"]').getBoundingClientRect();
@@ -1088,27 +1092,29 @@ test("the selected video stays centered through resizing and automatic rotation"
     await expect(carousel).toHaveAttribute("data-active-slide", "home-business");
   }
   const video = page.locator('.motion-slide[data-active="true"] .motion-video');
+  await page.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
   await expect.poll(() => video.evaluate(node => !node.paused && node.readyState >= 2)).toBe(true);
 });
 
 
-test("motion controls pause videos persistently and resume in both languages", async ({ page }) => {
+test("video controls require an explicit play request in both languages", async ({ page }) => {
   test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 1100 });
   for (const path of ["/", "/es/"]) {
     await page.goto(path, { waitUntil: "networkidle" });
     const carousel = page.locator("[data-insurance-carousel]");
-    const control = carousel.locator("[data-carousel-motion]");
+    const control = carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]');
     const video = carousel.locator('.motion-slide[data-active="true"] .motion-video');
-    await expect.poll(() => video.evaluate((node) => !node.paused && node.readyState >= 2)).toBe(true);
+    expect(await video.evaluate(node => node.paused)).toBe(true);
+    await expect(control).toHaveText(path === "/" ? /Play video/ : /Reproducir video/);
     await control.click();
     await expect(control).toHaveAttribute("aria-pressed", "true");
-    await expect(control).toHaveText(path === "/" ? "Resume motion" : "Reanudar animación");
-    await page.mouse.move(0, 0);
-    await expect.poll(() => video.evaluate((node) => node.paused)).toBe(true);
+    await expect.poll(() => video.evaluate(node => !node.paused && node.currentTime > .1)).toBe(true);
     await control.press("Enter");
     await expect(control).toHaveAttribute("aria-pressed", "false");
-    await expect.poll(() => video.evaluate((node) => !node.paused)).toBe(true);
+    await expect.poll(() => video.evaluate(node => node.paused)).toBe(true);
+    await control.press("Enter");
+    await expect.poll(() => video.evaluate(node => !node.paused)).toBe(true);
   }
 });
 
@@ -1159,7 +1165,7 @@ test("reviewable growth preview at desktop and phone sizes", async ({ page }, te
 
 
 for (const width of [390, 768, 1096, 1440]) {
-  test(`visible homepage videos autoplay and advance at ${width}px`, async ({ page }) => {
+  test(`homepage videos load only on explicit play at ${width}px`, async ({ page }) => {
     test.setTimeout(90_000);
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
@@ -1168,11 +1174,14 @@ for (const width of [390, 768, 1096, 1440]) {
     const carousel = page.locator("[data-insurance-carousel]");
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
     const first = carousel.locator('.motion-slide[data-active="true"] video');
-    await expect.poll(() => first.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+    expect(await first.evaluate(v => v.paused)).toBe(true);
+    expect(await carousel.locator("video source").count()).toBe(0);
     for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
       await chip.click();
       await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
       const video = carousel.locator('.motion-slide[data-active="true"] video');
+      expect(await video.evaluate(v => v.paused)).toBe(true);
+      await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
       await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
       await expect(video).toHaveClass(/is-ready/);
       expect(await carousel.locator('.motion-slide[data-active="false"] video').evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
@@ -1180,24 +1189,26 @@ for (const width of [390, 768, 1096, 1440]) {
     await page.locator("footer").scrollIntoViewIfNeeded();
     await expect.poll(() => carousel.locator("video").evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
-    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
+    expect(await carousel.locator("video").evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
     expect(errors).toEqual([]);
-    if (width === 1096) await page.screenshot({ path: "/tmp/yffi-video-autoplay.png" });
+    if (width === 1096) await page.screenshot({ path: "/tmp/yffi-oct17-video-play.png" });
   });
 }
 
 for (const entry of pages.filter(entry => entry.service)) {
-  test(`all ${entry.name} videos play on selection`, async ({ page }) => {
+  test(`all ${entry.name} videos play only after pressing play`, async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: entry.spanish ? 390 : 1440, height: 1000 });
     await page.goto(entry.path, { waitUntil: "domcontentloaded" });
     const carousel = page.locator("[data-insurance-carousel]");
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
-    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
+    expect(await carousel.locator("video source").count()).toBe(0);
     for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
       await chip.click();
       await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
       const video = carousel.locator('.motion-slide[data-active="true"] video');
+      expect(await video.evaluate(v => v.paused)).toBe(true);
+      await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
       await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
       expect(await video.evaluate(v => v.error)).toBeNull();
     }
@@ -1283,4 +1294,39 @@ test("quote actions and FAQ answers remain usable without JavaScript", async ({ 
   await page.locator(".faq summary").first().click();
   await expect(page.locator(".faq details").first()).toHaveAttribute("open", "");
   await context.close();
+});
+
+
+test("attribution revalidates cached and Unicode contact-like values", async ({ page }) => {
+  await page.addInitScript(() => sessionStorage.setItem("yffi_first_touch_v1", JSON.stringify({
+    landing_page: "/?private=synthetic", referrer_category: "https://private.example.invalid",
+    traffic_source: "ｑａ＠ｅｘａｍｐｌｅ．ｉｎｖａｌｉｄ", campaign_name: "２０２５５５０１００",
+    campaign_content: "synthetic%2540example.invalid", campaign_id: "qa-valid"
+  })));
+  await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
+  const event = await page.evaluate(() => {
+    window.dataLayer = [];
+    document.addEventListener("click", event => event.preventDefault(), true);
+    document.querySelector('[data-secure-quote-handoff]').click();
+    return window.dataLayer.find(entry => entry.event === "quote_start");
+  });
+  expect(event).toMatchObject({ landing_page: "/", referrer_category: "other", traffic_source: "(not_set)", campaign_name: "(not_set)", campaign_content: "(not_set)", campaign_id: "qa-valid" });
+  expect(JSON.stringify(event)).not.toMatch(/private|synthetic|２０２５５５０１００/);
+});
+
+
+test("coverage tabs support arrows, Home and End without starting videos", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const carousel = page.locator('[data-insurance-carousel]');
+  const tabs = carousel.locator('[role="tab"]');
+  await tabs.first().focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(tabs.nth(1)).toBeFocused();
+  await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
+  await page.keyboard.press("End");
+  await expect(tabs.last()).toBeFocused();
+  await page.keyboard.press("Home");
+  await expect(tabs.first()).toBeFocused();
+  expect(await carousel.locator('video source').count()).toBe(0);
+  await expect(carousel.locator('[role="tab"][tabindex="0"]')).toHaveCount(1);
 });
