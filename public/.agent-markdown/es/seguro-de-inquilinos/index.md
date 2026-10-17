@@ -17,17 +17,23 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/"
 
 [Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
+[![Video de una mudanza a un apartamento para solicitar seguro de inquilinos](/media/premium-carousel/renters/moving-boxes-apartment-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## ¿Se muda a un apartamento?
 
 Traiga la fecha de mudanza, la dirección y los requisitos de seguro del propietario.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+[![Video de una pareja con llaves de apartamento para requisitos de seguro de inquilinos](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## ¿Su contrato exige seguro?
 
 Revise el límite de responsabilidad civil y el texto que debe aparecer en el comprobante.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
+[![Video de inquilinos con cajas de mudanza para preguntas sobre cobertura de pertenencias](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Cuánto costaría reemplazar sus pertenencias?
 

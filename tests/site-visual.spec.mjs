@@ -261,19 +261,19 @@ test("mobile homepage sections keep stable document flow while scrolling", async
   expect(after.overflow).toBe(false);
 });
 
-test("mobile carousel waits for play and selection does not move the page", async ({ page }) => {
+test("mobile carousel autoplays visible videos and selection does not move the page", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.goto("/", { waitUntil: "networkidle" });
   const carousel = page.locator("[data-insurance-carousel]");
   const nextControl = carousel.locator("[data-carousel-next]");
   await nextControl.scrollIntoViewIfNeeded();
-  expect(await carousel.locator("video source").count()).toBe(0);
+  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.currentTime > .1)).toBe(true);
   const beforeY = await page.evaluate(() => window.scrollY);
 
   await nextControl.click();
 
   await expect(carousel).toHaveAttribute("data-active-slide", "home-homeowners");
-  expect(await carousel.locator("video source").count()).toBe(0);
+  await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.currentTime > .1)).toBe(true);
   const afterY = await page.evaluate(() => window.scrollY);
   expect(Math.abs(afterY - beforeY)).toBeLessThanOrEqual(1);
 });
@@ -509,7 +509,7 @@ test("reduced-motion preference disables automatic carousel rotation", async ({ 
   expect(await carousel.locator("video").first().evaluate((video) => video.paused)).toBe(true);
 });
 
-test("homepage Business slide uses the premium consultation video and keeps playing on hover", async ({ page }) => {
+test("homepage Business video pauses on hover and resumes immediately after leaving", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto("/", { waitUntil: "networkidle" });
 
@@ -520,12 +520,13 @@ test("homepage Business slide uses the premium consultation video and keeps play
   const activeVideo = carousel.locator('.motion-slide[data-active="true"] .motion-video');
   await expect(activeVideo).toHaveAttribute("data-mp4", "/media/premium-carousel/home/business-office-consultation-web.mp4");
   await expect(page.locator('[data-mp4*="storefront-open-sign"]')).toHaveCount(0);
-  await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
   await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 8000 }).toBe(false);
 
-  await carousel.hover();
+  await carousel.locator('.motion-slide[data-active="true"] .motion-media-link').hover();
   await expect(carousel).toHaveAttribute("data-paused", "true");
-  await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 3000 }).toBe(false);
+  await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 3000 }).toBe(true);
+  await page.mouse.move(0, 0);
+  await expect.poll(() => activeVideo.evaluate(video => !video.paused && video.readyState >= 2)).toBe(true);
 });
 
 test("Save-Data keeps carousel video paused and unhydrated", async ({ page }) => {
@@ -1078,7 +1079,7 @@ test("the selected video stays centered through resizing without automatic rotat
   const carousel = page.locator("[data-insurance-carousel]");
   await page.waitForTimeout(7000);
   await expect(carousel).toHaveAttribute("data-active-slide", "home-auto");
-  expect(await carousel.locator("video source").count()).toBe(0);
+  expect(await carousel.locator("video source").count()).toBeGreaterThan(0);
   const centerOffset = () => page.evaluate(() => {
     const carousel = document.querySelector("[data-insurance-carousel]");
     const slide = carousel.querySelector('.motion-slide[data-active="true"]').getBoundingClientRect();
@@ -1094,31 +1095,32 @@ test("the selected video stays centered through resizing without automatic rotat
     await expect(carousel).toHaveAttribute("data-active-slide", "home-business");
   }
   const video = page.locator('.motion-slide[data-active="true"] .motion-video');
-  await page.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
   await expect.poll(() => video.evaluate(node => !node.paused && node.readyState >= 2)).toBe(true);
 });
 
 
-test("video controls require an explicit play request in both languages", async ({ page }) => {
-  test.setTimeout(60_000);
-  await page.setViewportSize({ width: 1440, height: 1100 });
+test("video pause controls persist and resume in both languages", async ({ page }) => {
   for (const path of ["/", "/es/"]) {
-    await page.goto(path, { waitUntil: "networkidle" });
-    const carousel = page.locator("[data-insurance-carousel]");
-    const control = carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]');
-    const video = carousel.locator('.motion-slide[data-active="true"] .motion-video');
-    expect(await video.evaluate(node => node.paused)).toBe(true);
-    await expect(control).toHaveText(path === "/" ? /Play video/ : /Reproducir video/);
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    const carousel = page.locator('[data-insurance-carousel]');
+    await carousel.locator('.carousel-stage').scrollIntoViewIfNeeded();
+    const video = carousel.locator('.motion-slide[data-active="true"] video');
+    const control = carousel.locator('[data-carousel-pause]');
+    await page.mouse.move(0, 0);
+    await expect.poll(() => video.evaluate(v => !v.paused && v.currentTime > .1)).toBe(true);
+    await expect(page.locator('[data-carousel-play], .video-play-label')).toHaveCount(0);
     await control.click();
-    await expect(control).toHaveAttribute("aria-pressed", "true");
-    await expect.poll(() => video.evaluate(node => !node.paused && node.currentTime > .1)).toBe(true);
-    await control.press("Enter");
-    await expect(control).toHaveAttribute("aria-pressed", "false");
-    await expect.poll(() => video.evaluate(node => node.paused)).toBe(true);
-    await control.press("Enter");
-    await expect.poll(() => video.evaluate(node => !node.paused)).toBe(true);
+    await expect(control).toHaveAttribute('aria-pressed', 'true');
+    await expect.poll(() => video.evaluate(v => v.paused)).toBe(true);
+    await page.mouse.move(0, 0);
+    expect(await video.evaluate(v => v.paused)).toBe(true);
+    await control.press('Enter');
+    await expect(control).toHaveAttribute('aria-pressed', 'false');
+    await expect.poll(() => video.evaluate(v => !v.paused)).toBe(true);
   }
 });
+
 
 test("business search markup omits unverified office hours and franchise identity links", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
@@ -1167,7 +1169,7 @@ test("reviewable growth preview at desktop and phone sizes", async ({ page }, te
 
 
 for (const width of [390, 768, 1096, 1440]) {
-  test(`homepage videos load only on explicit play at ${width}px`, async ({ page }) => {
+  test(`homepage videos autoplay only while visible at ${width}px`, async ({ page }) => {
     test.setTimeout(90_000);
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
@@ -1175,15 +1177,14 @@ for (const width of [390, 768, 1096, 1440]) {
     await page.goto(width === 768 ? "/es/" : "/", { waitUntil: "domcontentloaded" });
     const carousel = page.locator("[data-insurance-carousel]");
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+      await page.mouse.move(0, 0);
     const first = carousel.locator('.motion-slide[data-active="true"] video');
-    expect(await first.evaluate(v => v.paused)).toBe(true);
-    expect(await carousel.locator("video source").count()).toBe(0);
+    await expect.poll(() => first.evaluate(v => !v.paused && v.currentTime > .1)).toBe(true);
     for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
       await chip.click();
       await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+      await page.mouse.move(0, 0);
       const video = carousel.locator('.motion-slide[data-active="true"] video');
-      expect(await video.evaluate(v => v.paused)).toBe(true);
-      await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
       await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
       await expect(video).toHaveClass(/is-ready/);
       expect(await carousel.locator('.motion-slide[data-active="false"] video').evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
@@ -1191,26 +1192,27 @@ for (const width of [390, 768, 1096, 1440]) {
     await page.locator("footer").scrollIntoViewIfNeeded();
     await expect.poll(() => carousel.locator("video").evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
-    expect(await carousel.locator("video").evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
+      await page.mouse.move(0, 0);
+    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.readyState >= 2)).toBe(true);
     expect(errors).toEqual([]);
     if (width === 1096) await page.screenshot({ path: "/tmp/yffi-oct17-video-play.png" });
   });
 }
 
 for (const entry of pages.filter(entry => entry.service)) {
-  test(`all ${entry.name} videos play only after pressing play`, async ({ page }) => {
+  test(`all ${entry.name} videos autoplay on selection`, async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: entry.spanish ? 390 : 1440, height: 1000 });
     await page.goto(entry.path, { waitUntil: "domcontentloaded" });
     const carousel = page.locator("[data-insurance-carousel]");
     await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
-    expect(await carousel.locator("video source").count()).toBe(0);
+      await page.mouse.move(0, 0);
+    await expect.poll(() => carousel.locator('.motion-slide[data-active="true"] video').evaluate(v => !v.paused && v.currentTime > .1)).toBe(true);
     for (const chip of await carousel.locator("[data-carousel-chip]").all()) {
       await chip.click();
       await carousel.locator(".carousel-stage").scrollIntoViewIfNeeded();
+      await page.mouse.move(0, 0);
       const video = carousel.locator('.motion-slide[data-active="true"] video');
-      expect(await video.evaluate(v => v.paused)).toBe(true);
-      await carousel.locator('.motion-slide[data-active="true"] [data-carousel-play]').click();
       await expect.poll(() => video.evaluate(v => !v.paused && v.readyState >= 2 && v.currentTime > 0.25), { timeout: 15_000 }).toBe(true);
       expect(await video.evaluate(v => v.error)).toBeNull();
     }
@@ -1317,7 +1319,7 @@ test("attribution revalidates cached and Unicode contact-like values", async ({ 
 });
 
 
-test("coverage tabs support arrows, Home and End without starting videos", async ({ page }) => {
+test("coverage tabs support arrows, Home and End while visible videos autoplay", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   const carousel = page.locator('[data-insurance-carousel]');
   const tabs = carousel.locator('[role="tab"]');
@@ -1329,7 +1331,7 @@ test("coverage tabs support arrows, Home and End without starting videos", async
   await expect(tabs.last()).toBeFocused();
   await page.keyboard.press("Home");
   await expect(tabs.first()).toBeFocused();
-  expect(await carousel.locator('video source').count()).toBe(0);
+  expect(await carousel.locator('.motion-slide[data-active="false"] video').evaluateAll(videos => videos.every(v => v.paused))).toBe(true);
   await expect(carousel.locator('[role="tab"][tabindex="0"]')).toHaveCount(1);
 });
 

@@ -1486,14 +1486,13 @@ function insuranceMotionCarousel(page) {
     const cta = isFocused ? (href === phoneHref ? "Call for a Free Quote" : "Get My Free Quote") : (slide.id === "home-bilingual" ? "Visit Our Office" : "View Coverage");
     return `
     <article class="motion-slide" role="tabpanel" aria-labelledby="carousel-tab-${page.slug || "home"}-${slide.id}" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
-      <button type="button" class="motion-media-link" data-carousel-play aria-label="Play video" aria-pressed="false">
+      <a class="motion-media-link" href="${href}" aria-label="${escapeHtml(cta)}">
         <img class="motion-poster" ${index === 0 ? `src="${carouselImageSrc(slide)}"` : `src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-poster-src="${carouselImageSrc(slide)}"`} alt="${escapeHtml(slide.alt)}" width="${posterSize.width}" height="${posterSize.height}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
         ${carouselVideoMarkup(slide)}
         ${carouselMotionAssetMarkup(slide)}
         <span class="motion-scrim" aria-hidden="true"></span>
         <span class="motion-sheen" aria-hidden="true"></span>
-        <span class="video-play-label" aria-hidden="true">Play video</span>
-      </button>
+      </a>
       <div class="motion-slide-copy">
         <h2>${escapeHtml(slide.headline)}</h2>
         <p>${escapeHtml(slide.subheadline)}</p>
@@ -1514,6 +1513,7 @@ function insuranceMotionCarousel(page) {
       </div>
       <div class="carousel-controls">
         <div class="carousel-dots" aria-label="Carousel slides">${dots}</div>
+        <button type="button" class="carousel-pause" data-carousel-pause aria-label="Pause video" title="Pause video" aria-pressed="false">Ⅱ</button>
 
       </div>
     </div>
@@ -5320,7 +5320,7 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .section-heading.center { text-align: center; }
 .motion-showcase { width: 100%; max-width: 680px; margin-inline: auto; }
 .motion-carousel { width: 100%; padding: 12px; border-radius: 20px; background-color: #0c1d29; }
-.carousel-track { border: 0; background: none; box-shadow: none; border-radius: 12px; }
+.carousel-track { border: 0; background: none; box-shadow: none; border-radius: 12px; align-items: flex-start; }
 .story-carousel .motion-slide, .focused-carousel .motion-slide { grid-template-rows: auto 1fr; padding: 0; gap: 0; background: transparent; min-width: 0; }
 .story-carousel .motion-media-link, .focused-carousel .motion-media-link { width: 100%; min-width: 0; min-height: 0; max-height: none; aspect-ratio: 16 / 9; border-radius: 12px; box-shadow: none; justify-self: stretch; }
 .story-carousel .motion-slide-copy, .focused-carousel .motion-slide-copy { padding: 20px 12px 12px; border-radius: 0; background: none; box-shadow: none; transform: none; text-align: center; }
@@ -5328,18 +5328,21 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .motion-slide-copy p { font-size: 0.94rem; line-height: 1.5; margin: 12px auto 0; }
 .motion-slide-copy .motion-actions { display: flex; justify-content: center; margin-top: 16px; }
 .motion-actions .button { width: auto; min-height: 44px; padding: 10px 16px; font-size: 0.9rem; }
-.carousel-chips { margin-bottom: 12px; padding: 4px 2px 8px; justify-content: safe center; }
+.carousel-chips { margin-bottom: 12px; padding: 0 2px; justify-content: safe center; }
 .motion-carousel[data-motion-stopped="true"] .motion-poster, .motion-carousel[data-motion-stopped="true"] .motion-video, .motion-carousel[data-motion-stopped="true"] .motion-sheen { animation-play-state: paused !important; }
-/* Videos load only after an explicit play request. */
-.motion-media-link { padding: 0; cursor: pointer; font: inherit; }
-.video-play-label { position: absolute; z-index: 4; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 999px; background: #071b2b; border: 1px solid #b9dbe8; color: #fff8e8; font-size: .875rem; font-weight: 700; box-shadow: 0 3px 16px #0005; }
-.video-play-label::before { content: "▶"; font-size: .8em; }
-.motion-media-link[aria-pressed="true"] .video-play-label::before { content: "Ⅱ"; }
+/* Keep video frames aligned with their posters; avoid enlarging the crop. */
+.motion-carousel .motion-slide[data-active="true"] .motion-video.is-ready { animation: none; }
+.story-carousel .motion-video, .focused-carousel .motion-video,
+.story-carousel .motion-poster, .focused-carousel .motion-poster { inset: 0; width: 100%; height: 100%; transform: none; animation: none; }
+.story-carousel .motion-slide-copy, .focused-carousel .motion-slide-copy { border: 0; padding: 20px 12px 16px; align-content: start; }
+.story-carousel .motion-slide:hover .motion-slide-copy, .story-carousel .motion-slide:focus-within .motion-slide-copy,
+.focused-carousel .motion-slide:hover .motion-slide-copy, .focused-carousel .motion-slide:focus-within .motion-slide-copy { transform: none; }
 .motion-media-link:focus-visible { outline: 3px solid #ffe0a1; outline-offset: -4px; }
 .motion-carousel[data-motion-stopped="true"] .motion-sheen { opacity: 0; }
-.carousel-motion-toggle { color: var(--ink, #fff8e8); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 10px 18px; min-height: 44px; cursor: pointer; font: inherit; font-size: .875rem; }
-.carousel-motion-toggle:hover, .carousel-motion-toggle:focus-visible { background: rgba(255,255,255,.18); outline: 2px solid #ffe0a1; outline-offset: 3px; }
-.carousel-controls { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 10px; margin-top: 10px; padding: 10px 4px 4px; }
+.carousel-controls { grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 8px; margin-top: 4px; padding: 8px 0 0; border-top: 1px solid var(--glass-line); }
+.carousel-controls::before { content: ""; }
+.carousel-pause { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--glass-line); border-radius: 50%; background: rgba(5, 17, 29, .55); color: var(--ink); font: inherit; font-size: 1rem; cursor: pointer; }
+.carousel-pause:hover, .carousel-pause:focus-visible { border-color: var(--champagne); outline: 2px solid var(--champagne); outline-offset: 2px; }
 .carousel-dots { justify-content: center; max-width: 100%; flex-wrap: wrap; }
 .carousel-progress { width: min(100%, 240px); }
 .carousel-arrow { top: 0; margin-top: calc(100cqw * 9 / 32); }

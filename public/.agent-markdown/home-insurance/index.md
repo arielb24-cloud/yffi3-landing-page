@@ -17,17 +17,23 @@ Review coverage for your home and belongings, along with hurricane deductibles, 
 
 [Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
+[![Sunlit finished home walkthrough video for Miami homeowners insurance quote help](/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## Review Your Home Coverage
 
 Check the amount to rebuild, personal property limits and hurricane deductible.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+[![Luxury home pool aerial video for homeowners insurance before closing](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## Buying a Home?
 
 Have the property address, closing date and lender requirements ready.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
+[![Modern home exterior video for homeowners insurance renewal questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Before Your Home Policy Renews
 

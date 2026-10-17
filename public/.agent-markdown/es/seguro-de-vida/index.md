@@ -17,17 +17,23 @@ Planifique el apoyo para las personas que dependen de usted. Consulte su presupu
 
 [Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
+[![Video de una familia caminando por la playa para solicitar seguro de vida en Miami](/media/carousel/life/life-family-beach-poster.webp)](tel:13059108850)
+
 ## Piense en quienes dependen de usted
 
 Considere los ingresos, deudas y gastos que su familia necesitaría cubrir.
 
 [Llame para cotizar gratis](tel:13059108850)
 
+[![Video de una familia llegando a casa para preguntas sobre seguro de vida temporal](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+
 ## ¿Por cuánto tiempo necesita cobertura?
 
 El seguro temporal cubre un plazo definido. Piense en su hipoteca y los años hasta que sus hijos sean independientes.
 
 [Llame para cotizar gratis](tel:13059108850)
+
+[![Video de una reunión de planificación familiar para preguntas sobre gastos finales](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
 
 ## Planifique los gastos finales
 

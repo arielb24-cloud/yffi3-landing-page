@@ -322,8 +322,12 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
   const prev = carousel.querySelector("[data-carousel-prev]");
   const next = carousel.querySelector("[data-carousel-next]");
-  const playButtons = Array.from(carousel.querySelectorAll("[data-carousel-play]"));
-  let requestedVideo = null;
+  const pauseButton = carousel.querySelector("[data-carousel-pause]");
+  const pendingPlay = new WeakSet();
+  let userPaused = motionDisabled;
+  let hoveredMedia = null;
+  let mediaObserver = null;
+  let slideSizeObserver = null;
   let activeIndex = Math.max(0, slides.findIndex((slide) => slide.dataset.active === "true"));
   let inView = !("IntersectionObserver" in window);
   let dragging = false;
@@ -336,7 +340,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
 
   const hydrateVideo = (slide) => {
     const video = slide?.querySelector(".motion-video");
-    if (!video || video.dataset.loaded === "true" || video !== requestedVideo || !inView) return video;
+    if (!video || video.dataset.loaded === "true" || video.dataset.failed === "true" || !inView || userPaused) return video;
     const webm = video.dataset.src;
     const mp4 = video.dataset.mp4;
     if (webm) {
@@ -354,56 +358,71 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.autoplay = false;
+    video.autoplay = true;
     video.dataset.loaded = "true";
     video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
     video.addEventListener("canplay", syncVideos);
     video.addEventListener("error", () => {
-      if (requestedVideo === video) requestedVideo = null;
+      video.dataset.failed = "true";
       video.classList.remove("is-ready");
-      syncVideos();
     });
     video.load();
     return video;
   };
 
   const syncVideos = () => {
+    const activeMedia = slides[activeIndex]?.querySelector(".motion-media-link");
+    const stopped = !inView || userPaused || hoveredMedia === activeMedia || document.hidden;
     slides.forEach((slide, index) => {
       const video = slide.querySelector(".motion-video");
       if (!video) return;
-      const shouldPlay = video === requestedVideo && index === activeIndex && inView && !document.hidden;
-      if (shouldPlay) {
+      if (index === activeIndex && !stopped && video.dataset.failed !== "true") {
         hydrateVideo(slide);
-        if (video.paused) video.play().catch(() => {
-          if (requestedVideo === video) requestedVideo = null;
-          updatePlayButtons();
-        });
+        if (video.paused && !pendingPlay.has(video)) {
+          pendingPlay.add(video);
+          let interrupted = false;
+          video.play().catch((error) => { interrupted = error.name === "AbortError"; }).finally(() => {
+            pendingPlay.delete(video);
+            if (interrupted && inView && !userPaused && !document.hidden) requestAnimationFrame(syncVideos);
+          });
+        }
       } else video.pause();
     });
-    updatePlayButtons();
+    carousel.setAttribute("data-motion-stopped", String(stopped));
+    carousel.setAttribute("data-paused", String(stopped));
+    if (pauseButton) {
+      const label = userPaused ? (spanishUi ? "Reanudar video" : "Resume video") : (spanishUi ? "Pausar video" : "Pause video");
+      pauseButton.setAttribute("aria-label", label);
+      pauseButton.setAttribute("title", label);
+      pauseButton.setAttribute("aria-pressed", String(userPaused));
+      pauseButton.textContent = userPaused ? "↻" : "Ⅱ";
+    }
   };
-
-  const updatePlayButtons = () => {
-    playButtons.forEach((button) => {
-      const playing = button.querySelector("video") === requestedVideo;
-      const label = playing ? (spanishUi ? "Pausar video" : "Pause video") : (spanishUi ? "Reproducir video" : "Play video");
-      button.setAttribute("aria-pressed", String(playing));
-      button.setAttribute("aria-label", label);
-      button.querySelector(".video-play-label").textContent = label;
-    });
-    carousel.setAttribute("data-motion-stopped", String(!requestedVideo));
-    carousel.setAttribute("data-paused", "true");
-  };
-  playButtons.forEach((button) => button.addEventListener("click", () => {
-    const video = button.querySelector("video");
-    requestedVideo = requestedVideo === video ? null : video;
+  pauseButton?.addEventListener("click", () => {
+    userPaused = !userPaused;
     syncVideos();
-  }));
+  });
+  slides.forEach((slide) => {
+    const media = slide.querySelector(".motion-media-link");
+    media?.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+      hoveredMedia = media;
+      syncVideos();
+    });
+    media?.addEventListener("pointerleave", () => {
+      if (hoveredMedia === media) hoveredMedia = null;
+      syncVideos();
+    });
+  });
+
+  const fitActiveSlide = () => {
+    const height = slides[activeIndex]?.getBoundingClientRect().height;
+    if (track && height) track.style.height = Math.ceil(height) + "px";
+  };
 
   const setActive = (index, options = {}) => {
     if (!slides.length) return;
     const nextIndex = (index + slides.length) % slides.length;
-    if (nextIndex !== activeIndex) requestedVideo = null;
     activeIndex = nextIndex;
     const activeSlide = slides[activeIndex];
     const poster = activeSlide.querySelector(".motion-poster");
@@ -428,6 +447,16 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     dots.forEach((dot) => {
       dot.setAttribute("aria-current", String(dot.dataset.slideId === activeSlide.dataset.slideId));
     });
+    fitActiveSlide();
+    if (slideSizeObserver) {
+      slideSizeObserver.disconnect();
+      slideSizeObserver.observe(activeSlide);
+    }
+    if (mediaObserver) {
+      inView = false;
+      mediaObserver.disconnect();
+      mediaObserver.observe(activeSlide.querySelector(".motion-media-link"));
+    }
     syncVideos();
     if (options.scroll !== false) {
       programmaticScroll = true;
@@ -548,26 +577,29 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     }
   }, true);
 
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) requestedVideo = null;
-    syncVideos();
-  });
+  document.addEventListener("visibilitychange", syncVideos);
+  // Browsers that initially reject autoplay can retry after the first gesture.
+  document.addEventListener("pointerdown", syncVideos, { passive: true });
+  document.addEventListener("keydown", syncVideos);
 
   if ("IntersectionObserver" in window) {
-    const carouselObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        inView = entry.isIntersecting;
-        if (!inView) requestedVideo = null;
+    mediaObserver = new IntersectionObserver((entries) => {
+      const activeMedia = slides[activeIndex]?.querySelector(".motion-media-link");
+      for (const entry of entries) {
+        if (entry.target !== activeMedia) continue;
+        inView = entry.isIntersecting && entry.intersectionRatio >= 0.15;
         carousel.setAttribute("data-in-view", String(inView));
         syncVideos();
-      });
-    }, { threshold: 0.01 });
-    carouselObserver.observe(carousel.querySelector(".carousel-stage") || carousel);
+      }
+    }, { threshold: [0, 0.15] });
   } else {
     inView = true;
     carousel.setAttribute("data-in-view", "true");
   }
 
+  if ("ResizeObserver" in window) slideSizeObserver = new ResizeObserver(fitActiveSlide);
+  window.addEventListener("resize", fitActiveSlide, { passive: true });
+  document.fonts?.ready.then(fitActiveSlide);
   setActive(activeIndex, { scroll: false });
 
 });

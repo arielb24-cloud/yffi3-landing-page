@@ -17,17 +17,23 @@ Compare coverage for your car, your drivers and the way you use your vehicle. We
 
 [Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
 
+[![Premium car moving through city traffic video for Miami auto insurance quote help](/media/premium-carousel/auto/premium-car-city-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## Compare Your Auto Insurance
 
 Have your current policy handy to compare the same limits and deductibles.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+[![Night dashboard driving video for Miami auto insurance renewal quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
 ## Is Your Auto Renewal Going Up?
 
 Review the new premium, driver list and coverage before your renewal date.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+
+[![Moving urban traffic video for household auto insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Adding a Car or Driver?
 

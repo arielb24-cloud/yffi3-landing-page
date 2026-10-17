@@ -13,11 +13,15 @@ Get a free quote and help comparing coverage from our West Flagler office. Auto,
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Get directions to Office #3 on Google Maps")
 
+[![Miami traffic and skyline video for local auto insurance quote help](/media/premium-carousel/home/miami-traffic-skyline-poster.webp)](/auto-insurance/)
+
 ## Auto Insurance in Miami
 
 Compare liability limits, deductibles and coverage for your car.
 
 [View Coverage](/auto-insurance/)
+
+[![Luxury home aerial video for Miami homeowners insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/home-insurance/)
 
 ## Insurance for Your Miami Home
 
@@ -25,11 +29,15 @@ Review your home, roof and hurricane deductible. Ask about separate flood insura
 
 [View Coverage](/home-insurance/)
 
+[![Renters unpacking moving boxes video for Miami renters insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/renters-insurance/)
+
 ## Renters Insurance
 
 Check coverage for your belongings and the liability limits your lease requires.
 
 [View Coverage](/renters-insurance/)
+
+[![Business professionals consulting in a modern office video for Miami business insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/commercial-insurance/)
 
 ## Business Insurance
 
@@ -37,17 +45,23 @@ Tell us what your business does and what your lease or contracts require.
 
 [View Coverage](/commercial-insurance/)
 
+[![Contractor reviewing job documents video for general liability insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/commercial-insurance/#general-liability-insurance)
+
 ## General Liability Insurance
 
 Bring your contract requirements so we can review liability limits and certificates.
 
 [View Coverage](/commercial-insurance/#general-liability-insurance)
 
+[![Parent and child walking on the beach video for life insurance planning](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/life-insurance/)
+
 ## Life Insurance
 
 Consider how much income your family would need and for how long.
 
 [View Coverage](/life-insurance/)
+
+[![Advisor meeting with a client video for bilingual Miami insurance office help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/about-office-3/)
 
 ## Hablamos Español
 
