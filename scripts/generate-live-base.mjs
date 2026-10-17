@@ -1,11 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 import carouselMediaModule from "../src/data/carouselMedia.js";
 import googleReviewsModule from "../src/data/googleReviews.js";
 import retentionPagesModule from "../src/data/retentionPages.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const { carouselMediaByPage } = carouselMediaModule;
+const carouselPosterSizes = new Map();
 const { googleReviews: recordedGoogleReviews, googleReviewSnapshot } = googleReviewsModule;
 // The office owner rating should not be presented as customer feedback.
 const googleReviews = recordedGoogleReviews.filter((review) => review.authorName !== "Ariel Busutil");
@@ -1479,12 +1481,13 @@ function insuranceMotionCarousel(page) {
     <button class="carousel-dot" type="button" aria-label="Show ${escapeHtml(slide.category)} slide" aria-current="${index === 0 ? "true" : "false"}" data-slide-id="${slide.id}" data-carousel-dot><span></span></button>
   `).join("");
   const slideMarkup = slides.map((slide, index) => {
+    const posterSize = carouselPosterSizes.get(carouselImageSrc(slide));
     const href = isFocused ? (["commercial-insurance", "life-insurance"].includes(page.slug) ? phoneHref : quoteDestination) : slide.href;
     const cta = isFocused ? (href === phoneHref ? "Call for a Free Quote" : "Get My Free Quote") : (slide.id === "home-bilingual" ? "Visit Our Office" : "View Coverage");
     return `
     <article class="motion-slide" role="tabpanel" aria-labelledby="carousel-tab-${page.slug || "home"}-${slide.id}" id="motion-slide-${page.slug || "home"}-${slide.id}" data-slide-id="${slide.id}" data-media-type="${escapeHtml(slide.type)}" data-media-priority="${escapeHtml(slide.priority)}" data-active="${index === 0 ? "true" : "false"}"${index === 0 ? "" : " inert"} aria-label="${index + 1} of ${slides.length}: ${escapeHtml(slide.category)}">
       <button type="button" class="motion-media-link" data-carousel-play aria-label="Play video" aria-pressed="false">
-        <img class="motion-poster" ${index === 0 ? `src="${carouselImageSrc(slide)}"` : `src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-poster-src="${carouselImageSrc(slide)}"`} alt="${escapeHtml(slide.alt)}" width="1200" height="750" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
+        <img class="motion-poster" ${index === 0 ? `src="${carouselImageSrc(slide)}"` : `src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-poster-src="${carouselImageSrc(slide)}"`} alt="${escapeHtml(slide.alt)}" width="${posterSize.width}" height="${posterSize.height}" loading="${index === 0 ? "eager" : "lazy"}" decoding="async" fetchpriority="${index === 0 ? "high" : "low"}" style="object-position: ${escapeHtml(slide.objectPosition)}">
         ${carouselVideoMarkup(slide)}
         ${carouselMotionAssetMarkup(slide)}
         <span class="motion-scrim" aria-hidden="true"></span>
@@ -6785,7 +6788,13 @@ function copyPublicAssetsForPreview() {
   fs.cpSync(fromDir, toDir, { recursive: true });
 }
 
-function generate() {
+async function generate() {
+  const posters = new Set(Object.values(carouselMediaByPage).flat().map(carouselImageSrc));
+  await Promise.all([...posters].map(async (src) => {
+    const { width, height } = await sharp(path.join(root, "public", src)).metadata();
+    if (!width || !height) throw new Error(`Missing poster dimensions: ${src}`);
+    carouselPosterSizes.set(src, { width, height });
+  }));
   for (const page of pages) {
     const html = pageHtml(page);
     const lower = html.toLowerCase();
@@ -6810,7 +6819,7 @@ function generate() {
   copyPublicAssetsForPreview();
 }
 
-generate();
+await generate();
 
 export {
   pages,

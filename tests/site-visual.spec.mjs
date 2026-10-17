@@ -1330,3 +1330,21 @@ test("coverage tabs support arrows, Home and End without starting videos", async
   expect(await carousel.locator('video source').count()).toBe(0);
   await expect(carousel.locator('[role="tab"][tabindex="0"]')).toHaveCount(1);
 });
+
+test("carousel poster dimensions match the original media files", async ({ page, request }, testInfo) => {
+  test.skip(testInfo.project.name !== "chromium");
+  const checked = new Map();
+  for (const route of ["/", "/auto-insurance/", "/home-insurance/", "/commercial-insurance/", "/life-insurance/", "/renters-insurance/"]) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    const posters = await page.locator('.motion-poster').evaluateAll(images => images.map(i => ({ src: i.dataset.posterSrc || i.getAttribute('src'), width: i.width, height: i.height, declaredWidth: Number(i.getAttribute('width')), declaredHeight: Number(i.getAttribute('height')) })));
+    for (const image of posters) {
+      if (!checked.has(image.src)) {
+        const response = await request.get(image.src);
+        expect(response.status()).toBe(200);
+        checked.set(image.src, await sharp(await response.body()).metadata());
+      }
+      const actual = checked.get(image.src);
+      expect([image.declaredWidth, image.declaredHeight]).toEqual([actual.width, actual.height]);
+    }
+  }
+});
