@@ -72,7 +72,7 @@ app.use((req, res, next) => {
   res.setHeader("Content-Signal", "search=yes, ai-input=yes, ai-train=no");
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
+    "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net" + (["localhost", "127.0.0.1", "::1", "[::1]"].includes(hostname) ? "" : "; upgrade-insecure-requests")
   );
   if (req.secure) {
     res.setHeader("Strict-Transport-Security", "max-age=31536000");
@@ -137,6 +137,10 @@ app.options("/mcp", (req, res) => {
 app.post("/mcp", (req, res, next) => {
   if (!applyMcpHeaders(req, res)) {
     res.status(403).json({ error: "Forbidden Origin" });
+    return;
+  }
+  if (!/^application\/json\b/i.test(req.get("Content-Type") || "")) {
+    res.status(415).json({ error: "Content-Type must be application/json" });
     return;
   }
   next();

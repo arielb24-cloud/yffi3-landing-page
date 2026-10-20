@@ -3,6 +3,17 @@ import { onRequestPost } from "../functions/mcp.js";
 
 const endpoint = "https://yourfamilyfirstinsurance3.com/mcp";
 
+test("metadata endpoints reject unsupported content types consistently", async ({ request }, testInfo) => {
+  test.skip(testInfo.project.name !== "chromium", "Transport-independent HTTP contract.");
+  const local = await request.post("/mcp", { headers: { "Content-Type": "text/plain" }, data: "x" });
+  const cloudflare = await onRequestPost({ request: new Request(endpoint, {
+    method: "POST", headers: { "Content-Type": "text/plain" }, body: "x"
+  }) });
+  expect(local.status()).toBe(415);
+  expect(cloudflare.status).toBe(415);
+  expect(await local.json()).toEqual(await cloudflare.json());
+});
+
 test("Cloudflare stops oversized streamed bodies without trusting Content-Length", async ({}, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "Transport-independent stream contract.");
   let pulls = 0;

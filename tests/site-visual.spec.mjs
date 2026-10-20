@@ -70,17 +70,6 @@ test.beforeAll(() => {
 });
 
 test.beforeEach(async ({ page, context }) => {
-  // Safari upgrades loopback assets under the production CSP. Keep this HTTP-only
-  // test accommodation in the harness; production security headers stay intact.
-  if (baseURL.startsWith("http://127.0.0.1:") || baseURL.startsWith("http://localhost:")) {
-    await context.route(`${baseURL}/**`, async (route) => {
-      if (!route.request().isNavigationRequest()) return route.continue();
-      const response = await route.fetch();
-      const headers = response.headers();
-      if (headers["content-security-policy"]) headers["content-security-policy"] = headers["content-security-policy"].replace(/;?\s*upgrade-insecure-requests/g, "");
-      await route.fulfill({ response, headers });
-    });
-  }
   await page.route("https://www.googletagmanager.com/gtm.js**", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/javascript", body: "" });
   });
@@ -773,6 +762,9 @@ test("production host redirects to canonical HTTPS and emits HSTS", async ({ req
   });
   expect(secure.status()).toBe(200);
   expect(secure.headers()["strict-transport-security"]).toBe("max-age=31536000");
+  expect(secure.headers()["content-security-policy"]).toContain("upgrade-insecure-requests");
+  const loopback = await request.get("/");
+  expect(loopback.headers()["content-security-policy"]).not.toContain("upgrade-insecure-requests");
   expect(secure.headers()["cross-origin-opener-policy"]).toBe("same-origin");
   expect(secure.headers()["content-security-policy"]).toContain("https://www.googletagmanager.com");
   expect(secure.headers()["content-security-policy"]).toContain("https://tagmanager.google.com");
