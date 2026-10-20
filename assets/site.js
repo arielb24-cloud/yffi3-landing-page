@@ -15,7 +15,7 @@ function safeCampaignValue(value, fallback = "(not_set)") {
   const normalized = value.normalize("NFKC").trim();
   // Validate after Unicode normalization, before punctuation can hide contact data.
   // Encoded values, URLs and free-form text are not campaign labels.
-  if (!normalized || /@|%[0-9a-f]{2}|https?:|(?:\+?\d[\s().-]*){7,}/i.test(normalized)) return fallback;
+  if (!normalized || /@|%[0-9a-f]{2}|https?:|(?:\+?\d[\s()._-]*){7,}/i.test(normalized)) return fallback;
   const label = normalized.replace(/\s+/g, "-");
   return /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(label) ? label : fallback;
 }

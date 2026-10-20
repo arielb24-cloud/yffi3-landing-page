@@ -25,7 +25,7 @@ Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 2.  Tenga su póliza actual a mano, si ya tiene una.
 3.  Revise la cobertura y el precio con la Oficina #3 antes de comprar.
 
-Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Privacidad policy](/es/privacidad/).
+Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](/es/privacidad/).
 
 ## ¿Seguro de negocios, vida u otro tipo?
 

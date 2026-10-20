@@ -118,7 +118,7 @@ if (!checkDist) {
   const middleware = fs.readFileSync(path.join(root, "functions", "_middleware.js"), "utf8");
   const mcpFunction = fs.readFileSync(path.join(root, "functions", "mcp.js"), "utf8");
   const server = fs.readFileSync(path.join(root, "server.js"), "utf8");
-  const browserEntry = fs.readFileSync(path.join(root, "scripts", "generate-live-base.mjs"), "utf8");
+  const browserEntry = fs.readFileSync(path.join(root, "assets", "site.js"), "utf8");
   for (const marker of ["text/markdown", "x-markdown-tokens", "discoveryLinks"]) {
     if (!middleware.includes(marker)) failures.push(`Cloudflare middleware missing ${marker}`);
     if (!server.includes(marker)) failures.push(`Express server missing ${marker}`);

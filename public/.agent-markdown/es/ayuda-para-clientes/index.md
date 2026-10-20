@@ -45,7 +45,7 @@ Revise sus pólizas por lo menos una vez al año y después de cambios important
 
 Use solo el portal de la aseguradora u otro método seguro específicamente aprobado para declaraciones, identificación, reclamaciones, datos financieros, médicos o de suscripción.
 
-### Contactooe a la oficina
+### Contacte a la oficina
 
 Llame al 305-910-8850 para consultas sobre su póliza. Si tiene un plazo urgente de pago o reclamación, contacte directamente a la aseguradora usando el número de su póliza.
 

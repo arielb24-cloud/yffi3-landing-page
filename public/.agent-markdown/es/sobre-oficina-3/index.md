@@ -49,7 +49,7 @@ R
 
 Reseña de Google
 
-### Renovations Inicio
+### Renovations Home
 
 Registrado el 13 de julio de 2026
 

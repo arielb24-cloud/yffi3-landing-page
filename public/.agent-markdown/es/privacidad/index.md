@@ -55,6 +55,6 @@ ConsumerRateQuotes es un servicio independiente. Revise sus términos de privaci
 
 No envíe números de Seguro Social, fechas de nacimiento, licencias de conducir, VIN, tarjetas de pago, datos bancarios, documentos de reclamaciones, expedientes médicos, contraseñas ni credenciales de aseguradoras mediante formularios regulares o mensajes de texto.
 
-## Contactoo
+## Contacto
 
 Para preguntas de privacidad, llame al [305-910-8850](tel:13059108850).

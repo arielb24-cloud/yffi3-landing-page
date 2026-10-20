@@ -3303,6 +3303,14 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .carousel-progress { width: min(100%, 240px); }
 .carousel-arrow { top: 0; margin-top: calc(100cqw * 9 / 32); }
 .carousel-stage { container-type: inline-size; }
+/* Keep the glass gradients, borders and motion without re-blurring every
+   decoded frame through nested backdrop layers on pages containing video. */
+body:has([data-insurance-carousel]) *,
+body:has([data-insurance-carousel]) *::before,
+body:has([data-insurance-carousel]) *::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 .coverage-section { width: 100%; max-width: none; padding-inline: max(var(--page-gutter), calc((100% - var(--content-width)) / 2)); }
 .coverage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: center; gap: 16px; min-height: 140px; padding: 22px; color: var(--ink); text-decoration: none; border-radius: 14px; }

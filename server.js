@@ -213,7 +213,10 @@ app.use((req, res, next) => {
 app.use("/assets", express.static(path.join(distDir, "assets"), {
   maxAge: "7d",
   etag: true,
-  lastModified: true
+  lastModified: true,
+  setHeaders: (res) => {
+    if (/^[a-f0-9]{12}$/.test(String(res.req.query.v || ""))) res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+  }
 }));
 
 app.use(express.static(distDir, {
@@ -222,6 +225,7 @@ app.use(express.static(distDir, {
   redirect: true,
   setHeaders: (res, filePath) => {
     if (filePath.endsWith(".html")) res.setHeader("Cache-Control", "no-cache");
+    else if (/\.(mp4|webm)$/.test(filePath) && /^[a-f0-9]{12}$/.test(String(res.req.query.v || ""))) res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
   }
 }));
 

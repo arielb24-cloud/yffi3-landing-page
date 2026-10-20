@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@11.7.0",
-  "description": "GoDaddy Beta Apps Node.js site for Your Family First Insurance Office #3.",
+  "description": "Bilingual Cloudflare Pages site for Your Family First Insurance Office #3.",
   "scripts": {
     "generate:source": "node scripts/generate-site.mjs",
     "bundle": "node scripts/bundle-site.mjs",
@@ -36,24 +36,24 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "compression": "^1.8.1",
+    "compression": "^1.8.2",
     "embla-carousel": "^8.6.0",
     "embla-carousel-fade": "^8.6.0",
     "express": "^4.22.3",
     "gsap": "^3.15.0"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.12.1",
-    "@cspell/dict-es-es": "^3.0.8",
+    "@axe-core/playwright": "^4.14.0",
+    "@cspell/dict-es-es": "^3.0.9",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.61.1",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "cspell": "^10.0.1",
-    "esbuild": "^0.28.1",
-    "html-validate": "^11.5.6",
-    "sharp": "^0.35.3",
-    "svgo": "^4.0.2",
+    "cspell": "^10.4.0",
+    "esbuild": "^0.28.2",
+    "html-validate": "^11.16.4",
+    "sharp": "^0.35.5",
+    "svgo": "^4.1.0",
     "turndown": "^7.2.4"
   }
 }

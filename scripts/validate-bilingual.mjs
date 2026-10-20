@@ -54,6 +54,7 @@ const untranslatedInterface = [
 ];
 for (const spanishSlug of Object.values(englishToSpanish)) {
   const html = read(spanishSlug);
+  if (/Contactoo|Privacidad policy/.test(html)) failures.push(`${spanishSlug} contains a malformed Spanish contact or privacy label`);
   for (const phrase of untranslatedInterface) {
     if (html.includes(phrase)) failures.push(`${spanishSlug} contains untranslated interface text: ${phrase}`);
   }

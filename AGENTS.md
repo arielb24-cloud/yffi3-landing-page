@@ -1,6 +1,6 @@
 # Agent Rules for YFFI Office #3 Website
 
-This project is a GoDaddy Beta Apps Node.js website for Your Family First Insurance Office #3. The Node server serves the generated static `dist/` folder.
+This project is a Cloudflare Pages static website for Your Family First Insurance Office #3, with Pages Functions for public metadata and response handling. `server.js` serves `dist/` for local development and CI; it is not the deployed Pages runtime.
 
 ## Brand and Contract Rules
 
@@ -32,5 +32,6 @@ This project is a GoDaddy Beta Apps Node.js website for Your Family First Insura
 - Use real crawlable links and semantic HTML.
 - Run `pnpm run build` before finalizing.
 - Run `pnpm run qa` after visual or accessibility-sensitive changes when practical.
-- GoDaddy Beta Apps settings should use Node.js 22, `pnpm install --frozen-lockfile`, `pnpm run build`, `pnpm start`, output folder `dist`, and the selected GitHub branch.
+- Cloudflare Pages uses Node.js 22, `pnpm install --frozen-lockfile`, `pnpm run build`, and output folder `dist`. Production branch is `main`; feature branches produce noindex previews.
+- Give the user a tested preview and obtain explicit approval before releasing to production.
 - Do not commit `.env`, `node_modules`, screenshots, Playwright reports, test results, or ZIP deployment artifacts.

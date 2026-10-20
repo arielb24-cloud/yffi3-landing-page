@@ -1,6 +1,6 @@
 # Your Family First Insurance Office #3 Website
 
-Premium website for Your Family First Insurance Office #3 in Miami, built for GoDaddy Beta Apps as a Node.js 22 app serving the production `dist/` folder.
+Bilingual website for Your Family First Insurance Office #3 in Miami, built as static pages with Cloudflare Pages Functions. Node.js 22 builds the `dist/` output.
 
 ## Build
 
@@ -16,7 +16,7 @@ Production output:
 dist/
 ```
 
-The production server is `server.js` and uses `process.env.PORT || 3000`.
+The local/CI server is `server.js` and uses `process.env.PORT || 3000`. Cloudflare serves the deployed site directly.
 
 ## Pages
 
@@ -58,15 +58,17 @@ The public quote page contains no duplicate contact or underwriting form. Its qu
 
 Do not collect SSNs, dates of birth, driver license numbers, VINs, policy numbers, payment details, medical records, claim files, passwords, or carrier credentials through the public static form.
 
-## GoDaddy Beta Apps Deployment
+## Cloudflare Pages Deployment
 
-Use the GoDaddy Beta Apps `github-import` Node.js 22 app flow:
+The connected Pages project is `yffi3-landing-page`:
 
-1. Configure GitHub Repository.
-2. Select branch `main`.
+1. Use the connected GitHub repository.
+2. Push a feature branch for a noindex preview; production uses `main`.
 3. Install command: `pnpm install --frozen-lockfile`.
 4. Build command: `pnpm run build`.
-5. Start command: `pnpm start`.
+5. Pages Functions are discovered in `functions/`; no Node start command is used in production.
 6. Output folder: `dist`.
+
+Provide a tested preview and obtain explicit user approval before releasing to production.
 
 Do not commit or upload `node_modules`, `.env`, screenshots, Playwright reports, test results, or ZIP deployment artifacts.

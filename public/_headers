@@ -52,5 +52,77 @@ https://:project.pages.dev/*
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex, nofollow
 
+/assets/site.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/styles.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/miami-traffic-skyline-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/luxury-home-aerial-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/renters-unpacking-boxes-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/business-office-consultation-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/liability-industrial-checklist-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/family-beach-child-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/home/advisor-client-consult-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/auto/premium-car-city-drive-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/auto/night-dashboard-motion-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/auto/urban-traffic-drive-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/homeowners/sunlit-home-walkthrough-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/homeowners/luxury-pool-aerial-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/homeowners/modern-home-exterior-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/renters/moving-boxes-apartment-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/renters/couple-apartment-keys-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/renters/move-in-doorway-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/commercial/business-owner-conversation-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/commercial/contractor-work-motion-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/commercial/commercial-jobsite-team-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/carousel/life/life-family-beach-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/life/family-coming-home-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/media/premium-carousel/life/planning-documents-meeting-web.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
 /assets/*
   Cross-Origin-Resource-Policy: same-origin

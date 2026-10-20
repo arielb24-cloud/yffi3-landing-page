@@ -144,7 +144,7 @@ for (const viewport of viewports) {
         await expect(carousel.locator(".motion-slide")).toHaveCount(3);
         await expect(carousel.locator(".motion-video")).toHaveCount(3);
         await expect(carousel.locator(".motion-poster")).toHaveCount(3);
-        await expect(carousel.locator(".motion-video").first()).toHaveAttribute("data-mp4", /^\/media\/.*\.mp4$/);
+        await expect(carousel.locator(".motion-video").first()).toHaveAttribute("data-mp4", /^\/media\/.*\.mp4\?v=[a-f0-9]{12}$/);
         await expect(carousel.locator(".motion-poster").first()).toHaveAttribute("src", /^\/media\/.*-poster\.(?:png|jpg|webp)$/);
         await expect(carousel).toHaveAttribute("role", "region");
         await expect(carousel.locator("[data-carousel-dot]")).toHaveCount(3);
@@ -419,6 +419,46 @@ test("campaign attribution rejects email addresses and phone numbers", async ({ 
   expect(firstTouch.campaign_content).toBe("(not_set)");
 });
 
+test("campaign privacy rejects separated phones in URLs and cached attribution", async ({ page }) => {
+  await page.route("https://www.googletagmanager.com/**", route => route.abort());
+  await page.goto("/auto-insurance/?utm_campaign=202_555_0147&utm_content=202.555.0147&utm_source=spring-2026");
+  const attribution = () => page.evaluate(() => JSON.parse(sessionStorage.getItem("yffi_first_touch_v1")));
+  expect(await attribution()).toMatchObject({ campaign_name: "(not_set)", campaign_content: "(not_set)", traffic_source: "spring-2026" });
+  await page.evaluate(() => {
+    const cached = JSON.parse(sessionStorage.getItem("yffi_first_touch_v1"));
+    cached.campaign_name = "２０２＿５５５＿０１４７";
+    sessionStorage.setItem("yffi_first_touch_v1", JSON.stringify(cached));
+  });
+  await page.reload();
+  expect(await page.evaluate(() => firstTouchAttribution.campaign_name)).toBe("(not_set)");
+});
+
+test("Spanish contact, privacy and review attribution remain accurate", async ({ page }) => {
+  for (const route of ["/es/", "/es/solicitar-cotizacion/", "/es/sobre-oficina-3/", "/es/privacidad/", "/es/ayuda-para-clientes/"]) {
+    await page.goto(route);
+    await expect(page.locator('nav[aria-label="Contacto rápido"]')).toHaveCount(1);
+    await expect(page.locator("body")).not.toContainText("Privacidad policy");
+    await expect(page.locator("body")).not.toContainText("Contactoo");
+    if (route === "/es/" || route.includes("solicitar")) await expect(page.locator('.form-disclaimer a')).toHaveText("Política de privacidad");
+    if (route.includes("sobre-oficina")) {
+      await expect(page.locator('.real-review-head h3').first()).toHaveText("Renovations Home");
+      await expect(page.locator('.real-review-mini strong').first()).toHaveText("Renovations Home");
+      expect(await page.content()).not.toContain("Renovations Inicio");
+    }
+  }
+});
+
+test("carousel tab panels use valid HTML and ARIA roles", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.route("https://www.googletagmanager.com/**", route => route.abort());
+  for (const route of ["/", "/auto-insurance/", "/home-insurance/", "/renters-insurance/", "/commercial-insurance/", "/life-insurance/", "/es/"]) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    const result = await new AxeBuilder({ page }).withRules(["aria-allowed-role"]).analyze();
+    expect(result.violations).toEqual([]);
+    await expect(page.locator('.motion-slide[role="tabpanel"]').first()).toHaveJSProperty("tagName", "SECTION");
+  }
+});
+
 test("review dates stay anchored to the actual snapshot in both languages", async ({ request }) => {
   for (const [path, date] of [["/about-office-3/", "Recorded July 13, 2026"], ["/es/sobre-oficina-3/", "Registrado el 13 de julio de 2026"]]) {
     const html = await (await request.get(path)).text();
@@ -518,7 +558,7 @@ test("homepage Business video pauses on hover and resumes immediately after leav
   await expect(carousel).toHaveAttribute("data-active-slide", "home-business");
 
   const activeVideo = carousel.locator('.motion-slide[data-active="true"] .motion-video');
-  await expect(activeVideo).toHaveAttribute("data-mp4", "/media/premium-carousel/home/business-office-consultation-web.mp4");
+  await expect(activeVideo).toHaveAttribute("data-mp4", /^\/media\/premium-carousel\/home\/business-office-consultation-web\.mp4\?v=[a-f0-9]{12}$/);
   await expect(page.locator('[data-mp4*="storefront-open-sign"]')).toHaveCount(0);
   await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 8000 }).toBe(false);
 

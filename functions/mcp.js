@@ -68,10 +68,29 @@ export async function onRequestPost({ request }) {
   let text;
   let message;
   try {
-    text = await request.text();
-    if (new TextEncoder().encode(text).byteLength > MAX_BODY_BYTES) {
-      return jsonResponse(request, { error: "Request body is too large" }, 413);
+    const chunks = [];
+    let size = 0;
+    if (request.body) {
+      const reader = request.body.getReader();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          size += value.byteLength;
+          if (size > MAX_BODY_BYTES) {
+            await reader.cancel();
+            return jsonResponse(request, { error: "Request body is too large" }, 413);
+          }
+          chunks.push(value);
+        }
+      } finally {
+        reader.releaseLock();
+      }
     }
+    const body = new Uint8Array(size);
+    let offset = 0;
+    for (const chunk of chunks) { body.set(chunk, offset); offset += chunk.byteLength; }
+    text = new TextDecoder().decode(body);
     message = JSON.parse(text);
   } catch {
     return jsonResponse(request, { jsonrpc: "2.0", id: null, error: { code: -32700, message: "Parse error" } }, 400);

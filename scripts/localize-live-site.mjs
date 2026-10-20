@@ -47,6 +47,7 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Privacy policy", "Política de privacidad"],
   ["Office #3 Owner", "Dueño de la Oficina #3"],
   ["Breadcrumb", "Ruta de navegación"],
   ["On this page", "En esta página"],
@@ -809,7 +810,11 @@ const globalPairs = [
 function replaceEverywhere(source, from, to) {
   if (!from || from === to) return source;
   const escape = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-  return source.split(escape(from)).join(escape(to)).split(from).join(to);
+  const quoteRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const variants = [...new Set([escape(from), from])].sort((a, b) => b.length - a.length);
+  // Translate once, at word boundaries, so Contacto is never translated again.
+  const pattern = new RegExp(`(?<![\\p{L}\\p{N}])(?:${variants.map(quoteRegex).join("|")})(?![\\p{L}\\p{N}])`, "gu");
+  return source.replace(pattern, (match) => match === escape(from) ? escape(to) : to);
 }
 
 function addPair(pairs, english, spanish) {
@@ -870,7 +875,7 @@ function pagePairs(english, spanish) {
 
 function translateCarouselBlocks(html) {
   for (const [id, values] of Object.entries(carouselSpanish)) {
-    const articlePattern = new RegExp(`(<article class="motion-slide"[^>]*data-slide-id="${id}"[\\s\\S]*?<\\/article>)`);
+    const articlePattern = new RegExp(`(<section class="motion-slide"[^>]*data-slide-id="${id}"[\\s\\S]*?<\\/section>)`);
     const match = html.match(articlePattern);
     if (!match) continue;
     let block = match[1];
@@ -1059,6 +1064,9 @@ function protectSpanishSource(html) {
   };
   html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, stash);
   html = html.replace(/<!-- Google Tag Manager -->[\s\S]*?<!-- End Google Tag Manager -->/g, stash);
+  html = html.replace(/(aria-label="Show Google review from )([^"]+)(")/g, (_, open, name, close) => `${open}${stash(name)}${close}`);
+  html = html.replace(/(<div class="real-review-head">[\s\S]*?<h3>)([\s\S]*?)(<\/h3>)/g, (_, open, name, close) => `${open}${stash(name)}${close}`);
+  html = html.replace(/(<button type="button" class="real-review-mini[^"]*"[\s\S]*?<strong>)([\s\S]*?)(<\/strong>)/g, (_, open, name, close) => `${open}${stash(name)}${close}`);
   html = html.replace(/(<p class="real-review-excerpt">)([\s\S]*?)(<\/p>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);
   html = html.replace(/(<details class="review-details[^"]*">[\s\S]*?<p>)([\s\S]*?)(<\/p>[\s\S]*?<\/details>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);
   html = html.replace(/(<button type="button" class="real-review-mini[^"]*"[\s\S]*?<em>)([\s\S]*?)(<\/em>)/g, (_, open, content, close) => `${open}${stash(content)}${close}`);

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import TurndownService from "turndown";
 import { englishToSpanish } from "../content/spanish-content.mjs";
+import carouselMediaModule from "../src/data/carouselMedia.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const publicDir = path.join(root, "public");
@@ -207,6 +208,16 @@ const discoveryLinks = '</.well-known/api-catalog>; rel="api-catalog"; type="app
 write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  Origin-Agent-Cluster: ?1\n  X-Permitted-Cross-Domain-Policies: none\n  Content-Signal: search=yes, ai-input=yes, ai-train=no\n  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests\n\n/\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/index.html\n  Link: ${discoveryLinks}\n  Vary: Accept\n\n/.well-known/api-catalog\n  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"\n  Access-Control-Allow-Origin: *\n\n/.well-known/openapi.json\n  Content-Type: application/vnd.oai.openapi+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n\n/.well-known/agent-skills/*\n  Access-Control-Allow-Origin: *\n\n/.well-known/mcp/server-card.json\n  Content-Type: application/mcp-server-card+json; charset=utf-8\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Methods: GET\n  Access-Control-Allow-Headers: Content-Type, If-None-Match\n  Access-Control-Expose-Headers: ETag\n  Cache-Control: public, max-age=3600\n\n/api/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=300, must-revalidate\n\nhttps://:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n\nhttps://:version.:project.pages.dev/*\n  X-Robots-Tag: noindex, nofollow\n`);
 
 const headersFile = path.join(publicDir, "_headers");
+// Generated pages version these URLs by file content. Keep original footage and
+// unversioned images on their existing caching policy.
+const versionedAssetPaths = new Set(["/assets/site.js", "/assets/styles.css"]);
+for (const slides of Object.values(carouselMediaModule.carouselMediaByPage)) {
+  for (const slide of slides) {
+    if (slide.type !== "video") continue;
+    for (const src of [slide.src, slide.fallbackMp4]) if (src) versionedAssetPaths.add(src);
+  }
+}
+fs.appendFileSync(headersFile, [...versionedAssetPaths].map(src => `\n${src}\n  Cache-Control: public, max-age=31536000, immutable\n`).join(""));
 fs.writeFileSync(
   headersFile,
   `${fs.readFileSync(headersFile, "utf8")

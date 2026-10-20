@@ -231,7 +231,7 @@ Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combin
 
 Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 
-Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Privacidad policy](/es/privacidad/).
+Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](/es/privacidad/).
 
 FAQ
 
