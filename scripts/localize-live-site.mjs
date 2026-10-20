@@ -47,6 +47,9 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.", "Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado."],
+  ["Florida agency license", "Licencia de agencia de Florida"],
+  ["Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.", "Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
   ["Privacy policy", "Política de privacidad"],
   ["Office #3 Owner", "Dueño de la Oficina #3"],
   ["Breadcrumb", "Ruta de navegación"],

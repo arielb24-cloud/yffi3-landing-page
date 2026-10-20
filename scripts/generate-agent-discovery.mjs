@@ -82,7 +82,11 @@ const publicSiteMetadata = {
   contact: {
     phone: siteFacts.phone.display,
     telephone_uri: siteFacts.phone.tel,
-    address: siteFacts.address
+    address: siteFacts.address,
+    hours: siteFacts.officeHours,
+    time_zone: "America/New_York",
+    opening_hours: siteFacts.openingHoursSpecification,
+    agency_license: siteFacts.agencyLicense
   },
   service_areas: siteFacts.serviceAreas,
   insurance_types: siteFacts.insuranceTypes,

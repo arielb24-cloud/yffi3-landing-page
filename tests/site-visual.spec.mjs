@@ -1162,15 +1162,32 @@ test("video pause controls persist and resume in both languages", async ({ page 
 });
 
 
-test("business search markup omits unverified office hours and franchise identity links", async ({ page }) => {
+test("business search markup matches confirmed hours and the verified agency license", async ({ page, request }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
   const agency = schemas.map((text) => JSON.parse(text)).flatMap((schema) => schema["@graph"] || [schema]).find((schema) => schema["@type"] === "InsuranceAgency");
-  expect(agency.openingHoursSpecification).toBeUndefined();
+  expect(agency.openingHoursSpecification).toEqual([
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "15:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" }
+  ]);
+  expect(agency.legalName).toBe("APLUSATTITUDE INSURANCE LLC DBA YOUR FAMILY FIRST");
+  expect(agency.identifier).toContainEqual(expect.objectContaining({ value: "L134140", url: "https://licenseesearch.fldfs.com/Licensee/2757386" }));
+  const metadata = await (await request.get("/api/site.json")).json();
+  expect(metadata.contact.opening_hours).toEqual(agency.openingHoursSpecification);
+  expect(metadata.contact.agency_license.number).toBe("L134140");
   expect(agency.sameAs).toEqual([agency.hasMap]);
   const preload = await page.locator('link[rel="preload"][as="image"]').all().then(async (links) => Promise.all(links.map(link => link.getAttribute("href"))));
   const poster = await page.locator('.motion-slide[data-active="true"] .motion-poster').getAttribute("src");
   expect(preload).toContain(poster);
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const route of ["/", "/es/", "/about-office-3/", "/es/sobre-oficina-3/"]) {
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    const spanish = route.startsWith("/es/");
+    await expect(page.locator("footer .office-hours")).toContainText(spanish ? "Lunes a viernes" : "Monday–Friday");
+    await expect(page.locator('footer a[href="https://licenseesearch.fldfs.com/Licensee/2757386"]')).toContainText("L134140");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)).toBe(false);
+  }
 });
 
 

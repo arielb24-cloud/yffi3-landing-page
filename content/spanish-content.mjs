@@ -85,7 +85,7 @@ export const spanishPages = [
       ],
       [
         "¿Dónde está Your Family First Insurance Oficina #3 en Miami?",
-        "Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Llame antes de visitarnos para confirmar disponibilidad. También puede cotizar por internet o hablar con nosotros por teléfono.",
+        "Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado. También puede cotizar por internet o hablar con nosotros por teléfono.",
         [
           [
             "Cómo llegar a la Oficina #3",
@@ -551,7 +551,7 @@ export const spanishPages = [
     "faqs": [
       [
         "¿Dónde está la Oficina #3 y cómo llego?",
-        "Your Family First Insurance Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Use la ubicación de la oficina en Google Maps para llegar. Llame al 305-910-8850 antes de visitarnos para confirmar disponibilidad.",
+        "Your Family First Insurance Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado. Use la ubicación de la oficina en Google Maps para llegar.",
         [
           [
             "Cómo llegar a nuestra oficina en West Flagler",

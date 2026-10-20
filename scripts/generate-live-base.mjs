@@ -7,6 +7,7 @@ import googleReviewsModule from "../src/data/googleReviews.js";
 import retentionPagesModule from "../src/data/retentionPages.js";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const officeFacts = JSON.parse(fs.readFileSync(path.join(root, "content", "site-facts.json"), "utf8"));
 const { carouselMediaByPage } = carouselMediaModule;
 const carouselPosterSizes = new Map();
 const carouselVideoVersions = new Map();
@@ -316,7 +317,7 @@ const pages = [
       ],
       [
         "Where is Your Family First Insurance Office #3 in Miami?",
-        "Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability. You can also request a quote online or speak with us by phone.",
+        `Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. ${officeFacts.officeHours} You can also request a quote online or speak with us by phone.`,
         [
           [
             "Get directions to Office #3",
@@ -770,7 +771,7 @@ const pages = [
     "faqs": [
       [
         "Where is Office #3, and how do I get directions?",
-        "Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Use the office’s Google Maps listing for directions. Call 305-910-8850 before visiting to confirm availability.",
+        `Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. ${officeFacts.officeHours} Use the office’s Google Maps listing for directions.`,
         [
           [
             "Directions to our West Flagler office",
@@ -1197,9 +1198,10 @@ function footerHtml() {
         </div>
         <div>
           <h2>Local Office</h2>
+          <p class="office-hours">${officeFacts.officeHours}</p>
           <p>Visit our West Flagler office for insurance help in Miami, Sweetwater, Doral, Hialeah and Kendall. We speak English and Spanish.</p>
           <p><a href="${googleMapsUrl}" target="_blank" rel="noopener external">View the verified office listing on Google Maps</a></p>
-          <p><a href="https://licenseesearch.fldfs.com/" target="_blank" rel="noopener external">Verify insurance licenses with Florida DFS</a></p>
+          <p><a href="${officeFacts.agencyLicense.verificationUrl}" target="_blank" rel="noopener external">Florida agency license ${officeFacts.agencyLicense.number}</a></p>
           <p class="footer-note">Coverage options, availability, pricing, and eligibility vary by carrier, underwriting, location, and applicant information. Savings are not guaranteed.</p>
         </div>
       </div>
@@ -1217,8 +1219,10 @@ function organizationSchema() {
     "@type": "InsuranceAgency",
     "@id": `${siteUrl}/#insuranceagency`,
     name: businessName,
+    legalName: officeFacts.agencyLicense.legalName,
+    openingHoursSpecification: officeFacts.openingHoursSpecification,
     alternateName: "Your Family First Insurance Office 3",
-    identifier: "Office #3",
+    identifier: ["Office #3", { "@type": "PropertyValue", propertyID: "Florida agency license", value: officeFacts.agencyLicense.number, url: officeFacts.agencyLicense.verificationUrl }],
     slogan: "Where Your Family Comes First",
     url: siteUrl,
     telephone: "+13059108850",
@@ -1561,7 +1565,8 @@ function aboutPreview() {
         <p class="kicker">About Office #3</p>
         <h2>Visit Our West Flagler Office</h2>
         <p>${businessName} helps you compare insurance and understand what each option covers. Bring your questions, current policy or renewal notice.</p>
-        <p>Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability.</p>
+        <p>Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.</p>
+        <p class="office-hours">${officeFacts.officeHours}</p>
         <p id="seguros-en-espanol" lang="es">Hablamos español. <a href="/es/">Ver seguros y cotizaciones en español</a>.</p>
         <div class="cta-row compact"><a class="button warm" href="${googleMapsUrl}" target="_blank" rel="noopener">Get Directions ${iconSvg("arrow")}</a><a class="button light" href="${phoneHref}">Call ${phoneDisplay}</a></div>
       </div>
@@ -5640,6 +5645,8 @@ Official site: ${siteUrl}
 Business name: ${businessName}
 Phone: ${phoneDisplay}
 Address: ${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}
+Office hours (America/New_York): ${officeFacts.officeHours}
+Florida agency license: ${officeFacts.agencyLicense.number}. Verify: ${officeFacts.agencyLicense.verificationUrl}
 Primary local area: West Flagler Miami and Miami-Dade, Florida
 Read Google reviews: ${googleMapsUrl}
 Leave a Google review: ${googleReviewUrl}
@@ -5701,7 +5708,7 @@ Business: ${businessName}
 Office phone: ${phoneDisplay}
 Location: ${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}
 
-Build: Static HTML/CSS/JS generated into dist and served by a Node.js 22 Express server for GoDaddy Beta Apps.
+Build: Static HTML/CSS/JS generated into dist and deployed to Cloudflare Pages with Pages Functions. Node.js 22 and Express serve local development and CI.
 Brand note: Official franchise logo/sign must remain unchanged.
 Privacy note: The public page opens the verified ConsumerRateQuotes intake URL directly and does not collect duplicate contact or underwriting fields.
 Customer service note: Public policyholder guides do not accept policy numbers, documents, claim files, or service requests.

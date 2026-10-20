@@ -129,7 +129,9 @@ About Office #3
 
 Your Family First Insurance Office #3 helps you compare insurance and understand what each option covers. Bring your questions, current policy or renewal notice.
 
-Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability.
+Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
+
+Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.
 
 Hablamos español. [Ver seguros y cotizaciones en español](/es/).
 
@@ -265,7 +267,7 @@ Yes. Office #3 offers help in English and Spanish, from reviewing a quote to exp
 
 Where is Your Family First Insurance Office #3 in Miami?
 
-Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Call before visiting to confirm availability. You can also request a quote online or speak with us by phone.
+Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed. You can also request a quote online or speak with us by phone.
 
 [Get directions to Office #3](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
 

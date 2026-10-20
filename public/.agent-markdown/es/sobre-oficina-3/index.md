@@ -17,7 +17,9 @@ Sobre la Oficina #3
 
 Your Family First Insurance Office #3 le ayuda a comparar seguros y entender qué cubre cada opción. Traiga sus preguntas, póliza actual o aviso de renovación.
 
-Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Llame antes de venir para confirmar disponibilidad.
+Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
+
+Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado.
 
 Hablamos español. [Ver seguros y cotizaciones en español](/es/).
 
@@ -265,7 +267,7 @@ FAQ
 
 ¿Dónde está la Oficina #3 y cómo llego?
 
-Your Family First Insurance Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Use la ubicación de la oficina en Google Maps para llegar. Llame al 305-910-8850 antes de visitarnos para confirmar disponibilidad.
+Your Family First Insurance Oficina #3 está en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado. Use la ubicación de la oficina en Google Maps para llegar.
 
 [Cómo llegar a nuestra oficina en West Flagler](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
 
