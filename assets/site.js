@@ -395,7 +395,9 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       pauseButton.setAttribute("aria-label", label);
       pauseButton.setAttribute("title", label);
       pauseButton.setAttribute("aria-pressed", String(userPaused));
-      pauseButton.textContent = userPaused ? "↻" : "Ⅱ";
+      const symbol = userPaused ? "↻" : "Ⅱ";
+      // Preserve the pressed text node through pointerdown so WebKit delivers click.
+      if (pauseButton.textContent !== symbol) pauseButton.textContent = symbol;
     }
   };
   pauseButton?.addEventListener("click", () => {
@@ -416,8 +418,16 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   const fitActiveSlide = () => {
-    const height = slides[activeIndex]?.getBoundingClientRect().height;
-    if (track && height) track.style.height = Math.ceil(height) + "px";
+    const height = slides[activeIndex]?.offsetHeight;
+    if (track && height && track.style.height !== height + "px") track.style.height = height + "px";
+  };
+  let fitFrame = 0;
+  const scheduleSlideFit = () => {
+    if (fitFrame) return;
+    fitFrame = requestAnimationFrame(() => {
+      fitFrame = 0;
+      fitActiveSlide();
+    });
   };
 
   const setActive = (index, options = {}) => {
@@ -597,7 +607,8 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     carousel.setAttribute("data-in-view", "true");
   }
 
-  if ("ResizeObserver" in window) slideSizeObserver = new ResizeObserver(fitActiveSlide);
+  // ResizeObserver reports layout; defer writes until the next frame.
+  if ("ResizeObserver" in window) slideSizeObserver = new ResizeObserver(scheduleSlideFit);
   window.addEventListener("resize", fitActiveSlide, { passive: true });
   document.fonts?.ready.then(fitActiveSlide);
   setActive(activeIndex, { scroll: false });

@@ -33,7 +33,7 @@ Este sitio usa herramientas de medición de Google Analytics 4 y Google Ads para
 
 GA4 puede utilizar cookies propias, incluida `_ga`, y recopilar datos de páginas e interacciones, información del dispositivo y navegador, ubicación aproximada derivada de una dirección de Protocolo de Internet y un identificador aleatorio del navegador. Google indica que GA4 no registra ni almacena direcciones individuales de Protocolo de Internet. GTM administra las etiquetas; las etiquetas cargadas mediante GTM determinan qué datos se recopilan.
 
-Google Ads puede usar cookies u otros identificadores para medir interacciones y conversiones publicitarias. Puede administrar las cookies desde su navegador.
+Las cookies publicitarias y la publicidad personalizada están desactivadas en este sitio. Las etiquetas de Google Ads conectadas pueden enviar solicitudes de medición sin cookies publicitarias. Puede restringir otras cookies en la configuración de su navegador.
 
 El sitio registra visitas y acciones como clics en enlaces de cotización o teléfono, además de información general de campañas. Nuestros eventos de clic en enlaces de contacto no incluyen campos de cotización, direcciones completas de páginas de referencia ni parámetros completos de URL. Los nombres de campañas se filtran antes de incluirse en estos eventos. Las etiquetas de medición de Google también pueden recibir direcciones de páginas e información de referencia; no incluya datos personales en los enlaces que comparta.
 

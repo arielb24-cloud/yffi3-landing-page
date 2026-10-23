@@ -11,7 +11,6 @@ export default defineConfig({
   },
   use: {
     baseURL,
-    browserName: "chromium",
     trace: "retain-on-failure",
     screenshot: "only-on-failure"
   },

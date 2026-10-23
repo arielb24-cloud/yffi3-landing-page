@@ -2656,6 +2656,9 @@ h3 {
 }
 .service-cta {
   --lift: 0px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   gap: 18px;
   align-items: center;

@@ -171,5 +171,6 @@ test("Google tag startup waits for initial paint, keeps queued events and matche
   callbacks.keydown();
   expect(inserted).toHaveLength(1);
   expect(inserted[0].src).toBe("https://www.googletagmanager.com/gtm.js?id=GTM-5FZCMM3V");
-  expect(window.dataLayer.map((entry) => entry.event)).toEqual(["gtm.js", "quote_start"]);
+  expect(window.dataLayer.filter((entry) => entry.event).map((entry) => entry.event)).toEqual(["gtm.js", "quote_start"]);
+  expect(Array.from(window.dataLayer[0]).slice(0, 2)).toEqual(["consent", "default"]);
 });

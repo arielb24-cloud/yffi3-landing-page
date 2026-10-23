@@ -647,15 +647,15 @@ for (const pageInfo of pages) {
   });
 }
 
-test("expanded FAQs have no serious accessibility violations", async ({ page }) => {
-  for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]) {
+for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]) {
+  test(`expanded FAQs have no serious accessibility violations ${route}`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 920 });
     await page.goto(route, { waitUntil: "networkidle" });
     for (const summary of await page.locator(".faq summary").all()) await summary.click();
     const results = await new AxeBuilder({ page }).include(".faq").analyze();
     expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact)), route).toEqual([]);
-  }
-});
+  });
+}
 
 test("FAQ next steps have valid destinations and localized internal links", async ({ page, request }) => {
   test.setTimeout(90_000);
@@ -1400,4 +1400,48 @@ test("carousel poster dimensions match the original media files", async ({ page,
       expect([image.declaredWidth, image.declaredHeight]).toEqual([actual.width, actual.height]);
     }
   }
+});
+
+// A delayed runtime must not reposition decorative overlays across the viewport.
+test("coverage cards remain stable before motion initializes", async ({ page, browserName }) => {
+  test.skip(browserName !== "chromium", "Layout Shift API is Chromium-only");
+  await page.setViewportSize({ width: 1350, height: 940 });
+  await page.route("**/assets/site.js*", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    await route.continue();
+  });
+  await page.addInitScript(() => {
+    window.__layoutShiftTotal = 0;
+    new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (!entry.hadRecentInput) window.__layoutShiftTotal += entry.value;
+      }
+    }).observe({ type: "layout-shift", buffered: true });
+  });
+  for (const path of ["/auto-insurance/", "/es/seguro-de-auto/", "/es/seguro-de-vivienda/"]) {
+    await page.goto(path, { waitUntil: "networkidle" });
+    await expect(page.locator("html")).toHaveClass(/motion-ready/);
+    await page.waitForTimeout(1000);
+    expect(await page.evaluate(() => window.__layoutShiftTotal), path).toBeLessThanOrEqual(0.1);
+  }
+});
+
+test("project runs its named browser engine", async ({ browser }, testInfo) => {
+  expect(browser.browserType().name()).toBe(testInfo.project.name);
+});
+
+test("advertising privacy defaults run before Google Tag Manager", async ({ page }) => {
+  const violations = [];
+  page.on("console", (message) => {
+    if (/Content Security Policy|Refused to execute inline script/i.test(message.text())) violations.push(message.text());
+  });
+  await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
+  const queue = await page.evaluate(() => window.dataLayer.map((entry) => entry.event ? entry : Array.from(entry)));
+  const defaults = queue.findIndex((entry) => entry[0] === "consent" && entry[1] === "default");
+  const start = queue.findIndex((entry) => entry.event === "gtm.js");
+  expect(defaults).toBeGreaterThanOrEqual(0);
+  expect(start).toBeGreaterThan(defaults);
+  expect(queue[defaults][2]).toEqual({ ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+  expect(queue.find((entry) => entry[0] === "set")?.[1]).toEqual({ allow_google_signals: false, allow_ad_personalization_signals: false, ads_data_redaction: true });
+  expect(violations).toEqual([]);
 });

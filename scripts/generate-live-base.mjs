@@ -1363,7 +1363,11 @@ function jsonLd(data) {
 function googleTagManagerHead() {
   return `
 <!-- Google Tag Manager -->
-<script data-site-tracking="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<script data-site-tracking="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];
+function privacy(){w[l].push(arguments);}
+privacy('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+privacy('set',{allow_google_signals:false,allow_ad_personalization_signals:false,ads_data_redaction:true});
+w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var loaded=false;
 function load(){if(loaded)return;loaded=true;var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -1925,7 +1929,7 @@ function privacyBody() {
       <h2>Cookies and Tracking</h2>
       <p>This website uses Google Analytics 4 and Google Ads measurement tools to understand visits and interactions. Google Tag Manager loads these tools.</p>
       <p>GA4 may use first-party cookies, including <code>_ga</code>, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.</p>
-      <p>Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.</p>
+      <p>Advertising cookies and personalized advertising are disabled on this site. Connected Google Ads tags may send measurement requests without advertising cookies. You can restrict other cookies through your browser settings.</p>
       <p>The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings. Campaign labels are filtered before being included in these events. Google measurement tags may also receive page URLs and referring-page information; do not include personal information in links you share.</p>
       <p>General campaign information is kept in browser session storage for the current tab session. It is not sent with the quote link to ConsumerRateQuotes. A quote-link click does not tell us whether you completed an application.</p>
       <p>This website does not currently provide a cookie-preference panel. You can restrict cookies in your browser settings.</p>
@@ -4712,6 +4716,9 @@ h3 {
 }
 .service-cta {
   --lift: 0px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   gap: 18px;
   align-items: center;
@@ -5728,7 +5735,7 @@ function apacheHtaccess() {
   Header always set Cross-Origin-Resource-Policy "same-origin"
   Header always set Origin-Agent-Cluster "?1"
   Header always set X-Permitted-Cross-Domain-Policies "none"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-2JyBHXxlFw5e479qJ2HK7wNieUZO+hE/as4Bu1zw4As=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://secure.ConsumerRateQuotes.com; img-src 'self' data: https:; media-src 'self'; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'sha256-RFryGxRFAyL/5TPfqPOdHtTluY9SAE8gO4T+C1wP3eE=' https://www.googletagmanager.com https://tagmanager.google.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; frame-src https://www.googletagmanager.com https://tagmanager.google.com; connect-src 'self' https://google.com https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com/ccm/collect; upgrade-insecure-requests"
 </IfModule>
 
 Options -Indexes

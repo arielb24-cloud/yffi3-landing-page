@@ -33,7 +33,7 @@ This website uses Google Analytics 4 and Google Ads measurement tools to underst
 
 GA4 may use first-party cookies, including `_ga`, and collect page and interaction data, device and browser information, approximate location derived from an Internet Protocol address, and a randomly assigned browser identifier. Google states that GA4 does not log or store individual Internet Protocol addresses. GTM itself manages tags; the tags loaded through it determine what data is collected.
 
-Google Ads may use cookies or similar identifiers to measure advertising interactions and conversions. You can manage cookies through your browser settings.
+Advertising cookies and personalized advertising are disabled on this site. Connected Google Ads tags may send measurement requests without advertising cookies. You can restrict other cookies through your browser settings.
 
 The website records page visits and interactions such as quote-link and phone-link clicks, along with general campaign information. Our custom contact-click events exclude quote form fields, raw referrer URLs and full query strings. Campaign labels are filtered before being included in these events. Google measurement tags may also receive page URLs and referring-page information; do not include personal information in links you share.
 
