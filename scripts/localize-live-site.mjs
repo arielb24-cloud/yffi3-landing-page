@@ -47,6 +47,7 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Renewal Guide", "Guía de renovación"],
   ["Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.", "Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado."],
   ["Florida agency license", "Licencia de agencia de Florida"],
   ["Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.", "Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174."],
@@ -987,6 +988,7 @@ function localizedJsonLdBlock(whole, spanishPage) {
       data.description = spanishPage.description;
       data.inLanguage = "es-US";
       if (data.breadcrumb) data.breadcrumb["@id"] = `${canonical}#breadcrumb`;
+      if (data.mainEntity?.["@id"]?.endsWith("#service")) data.mainEntity["@id"] = `${canonical}#service`;
     }
     if (type === "InsuranceAgency") {
       data.inLanguage = "es-US";
@@ -1016,6 +1018,7 @@ function localizedJsonLdBlock(whole, spanishPage) {
       }
     }
     if (type === "Service") {
+      data["@id"] = `${canonical}#service`;
       data.name = spanishPage.service;
       data.serviceType = spanishPage.service;
       data.description = spanishPage.description;
@@ -1323,7 +1326,8 @@ function writeSitemap() {
     const englishUrl = english.slug ? `${siteUrl}/${english.slug}/` : `${siteUrl}/`;
     const spanishUrl = `${siteUrl}/${spanish.slug}/`;
     for (const [loc, lang] of [[englishUrl, "en-US"], [spanishUrl, "es-US"]]) {
-      urls.push(`  <url>\n    <loc>${loc}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${english.kind === "home" ? "1.0" : "0.8"}</priority>\n    <xhtml:link rel="alternate" hreflang="en-US" href="${englishUrl}"/>\n    <xhtml:link rel="alternate" hreflang="es-US" href="${spanishUrl}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${englishUrl}"/>\n  </url>`);
+      const modifiedDate = (lang === "es-US" ? spanish : english).modifiedDate;
+      urls.push(`  <url>\n    <loc>${loc}</loc>${modifiedDate ? `\n    <lastmod>${modifiedDate}</lastmod>` : ""}\n    <changefreq>monthly</changefreq>\n    <priority>${english.kind === "home" ? "1.0" : "0.8"}</priority>\n    <xhtml:link rel="alternate" hreflang="en-US" href="${englishUrl}"/>\n    <xhtml:link rel="alternate" hreflang="es-US" href="${spanishUrl}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${englishUrl}"/>\n  </url>`);
     }
   }
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join("\n")}\n</urlset>\n`;

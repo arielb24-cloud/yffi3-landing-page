@@ -1,6 +1,6 @@
 ---
-title: "Business Insurance in Miami | Free Quote | Office #3"
-description: "Review business insurance in Miami: general liability, property, work vehicles, employees and certificates. Call Office #3 for a free quote."
+title: "Business & General Liability Insurance Miami | Office #3"
+description: "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/commercial-insurance/"
 ---
@@ -9,7 +9,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/commercial-insurance/"
 
 # Business Insurance in Miami
 
-Tell us what your business does and what your contracts require. We can review liability, property, work vehicles and employee-related insurance needs.
+Get help comparing business insurance for your Miami operations, including restaurants and contractors. Bring your contract or lease requirements so we can review liability, property, work vehicles and employee-related needs.
 
 [Call for a Free Quote](tel:13059108850) [Compare Coverage](#coverage-details)
 
@@ -47,19 +47,19 @@ Coverage details
 
 ### General liability
 
-Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions and contract requirements, including any additional insured request.
+Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions, required limits and any additional insured request in your contracts.
 
-### Property and work vehicles
+### Restaurant and food business insurance
 
-Tell us about your premises, equipment and vehicle use. Personal policies may not cover business activities, and one business policy may not address every exposure.
+For a restaurant or café quote, describe cooking, delivery, alcohol service, employees and equipment. Discuss property, liability and business income needs; one policy may not cover every part of the operation.
 
-### Employees and operations
+### Contractor insurance
 
-Employee duties, payroll and the work your business performs can affect insurance requirements. Ask about workers compensation and any coverage specific to your industry.
+Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform.
 
 ### Contracts and certificates
 
-Bring the full insurance requirements and deadline. A certificate shows existing coverage; it does not add coverage or change policy terms.
+Bring the written insurance requirements and deadline for the job or lease. A certificate shows existing coverage; it cannot add an endorsement or change a policy to satisfy an uncovered requirement.
 
 Free quotes
 
@@ -104,6 +104,18 @@ Does my personal car insurance cover business driving?
 Do not assume it does. Tell us about deliveries, transporting customers, employee drivers and other business use. A personal auto policy may exclude some activities, and business driving may need commercial auto or other coverage.
 
 [Call 305-910-8850](tel:13059108850)
+
+What should I prepare for a restaurant insurance quote in Miami?
+
+Have your business address, estimated sales, payroll, equipment values and lease requirements ready. Describe cooking, alcohol service and delivery activities. Ask which coverages are included and which require separate policies or endorsements.
+
+[Call about business insurance](tel:13059108850)
+
+How do I get a general contractor insurance quote in Miami?
+
+Call Office #3 with your trade, types of jobs, estimated revenue, payroll and subcontractor use. Bring the insurance requirements from a customer or general contractor. Review required limits and endorsements before requesting a certificate.
+
+[Prepare a certificate request](/customer-resources/certificate-of-insurance/)
 
 Insurance resources
 

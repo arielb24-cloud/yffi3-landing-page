@@ -1,6 +1,6 @@
 ---
-title: "Seguro para negocios en Miami | Cotización gratis | Oficina #3"
-description: "Solicite ayuda con seguro comercial y responsabilidad civil general en Miami para operaciones, locales, equipos, contratos y certificados."
+title: "Seguro comercial y responsabilidad civil en Miami | Oficina #3"
+description: "Cotice seguro comercial en Miami para contratistas, restaurantes y pequeños negocios. Revise responsabilidad civil, vehículos de trabajo y certificados."
 language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"
 ---
@@ -9,7 +9,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"
 
 # Seguro para negocios en Miami
 
-Cuéntenos qué hace su negocio y qué seguros exigen sus contratos. Revisamos responsabilidad civil, propiedad, vehículos de trabajo y necesidades de sus empleados.
+Compare seguros para las operaciones de su negocio en Miami, incluidos restaurantes y contratistas. Traiga los requisitos del contrato o alquiler para revisar responsabilidad civil, propiedad, vehículos y necesidades de sus empleados.
 
 [Llame para cotizar gratis](tel:13059108850) [Comparar coberturas](#coverage-details)
 
@@ -45,21 +45,21 @@ Detalles de cobertura
 
 ## Qué revisar antes de elegir
 
-### Operaciones y propiedad del negocio
+### Responsabilidad civil general
 
-Consulte sobre cobertura para operaciones, locales, propiedad comercial, equipos y exposiciones diarias.
+Revise cobertura para ciertas reclamaciones por lesiones a terceros o daños a su propiedad. Compruebe exclusiones, límites y requisitos de asegurados adicionales en sus contratos.
+
+### Seguros para restaurantes y negocios de comida
+
+Para cotizar, describa la cocina, entregas, venta de alcohol, empleados y equipos. Revise propiedad, responsabilidad civil e ingresos del negocio; una sola póliza puede no cubrir toda la operación.
+
+### Seguros para contratistas
+
+Indique su oficio, trabajos habituales, uso de subcontratistas y vehículos. Revise por separado responsabilidad civil, herramientas y compensación laboral, junto con exclusiones que afecten el trabajo que realiza.
 
 ### Contratos y certificados
 
-Solicite ayuda cuando un cliente, propietario o contrato pida límites específicos o un certificado de seguro.
-
-### Responsabilidad civil general
-
-Puede responder a ciertas reclamaciones de terceros por lesiones corporales, daños a la propiedad y lesiones personales o publicitarias, sujeto a los términos y exclusiones.
-
-### Información que conviene preparar
-
-Tenga lista la actividad, dirección, ingresos estimados, número de empleados, equipos, cobertura previa y requisitos de contratos o certificados.
+Traiga los requisitos escritos y la fecha límite del trabajo o alquiler. Un certificado demuestra cobertura existente; no añade endosos ni cambia una póliza para cumplir un requisito sin cobertura.
 
 Cotizaciones gratis
 
@@ -104,6 +104,18 @@ Llame con los requisitos escritos, los datos de quien solicita el certificado y 
 No lo dé por hecho. Informe entregas, transporte de clientes, conductores empleados y otros usos comerciales. Una póliza personal puede excluir ciertas actividades; el uso para negocios puede necesitar seguro de auto comercial u otra cobertura.
 
 [Llame al 305-910-8850](tel:13059108850)
+
+¿Qué preparo para cotizar el seguro de un restaurante en Miami?
+
+Tenga dirección, ventas estimadas, nómina, valor de los equipos y requisitos del alquiler. Describa la cocina, venta de alcohol y entregas. Pregunte qué coberturas se incluyen y cuáles necesitan pólizas o endosos separados.
+
+[Llame para consultar sobre seguro comercial](tel:13059108850)
+
+¿Cómo cotizo un seguro para contratistas en Miami?
+
+Llame a la Oficina #3 con su oficio, tipos de trabajos, ingresos estimados, nómina y uso de subcontratistas. Traiga los requisitos de seguro del cliente o contratista general. Revise límites y endosos antes de solicitar un certificado.
+
+[Preparar una solicitud de certificado](/es/recursos-para-clientes/certificado-de-seguro/)
 
 Recursos sobre seguros
 

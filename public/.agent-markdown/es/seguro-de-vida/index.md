@@ -1,6 +1,6 @@
 ---
-title: "Seguro de vida en Miami | Cotización gratis | Oficina #3"
-description: "Solicite ayuda en Miami con cotizaciones de seguro de vida para necesidades familiares, reemplazo de ingresos, gastos finales y planificación."
+title: "Seguro de vida en Miami: temporal y permanente | Oficina #3"
+description: "Compare seguros de vida a término y permanentes en Miami. Revise primas, montos y beneficiarios con la Oficina #3. Atención en español e inglés."
 language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/"
 ---
@@ -9,7 +9,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/"
 
 # Seguro de vida en Miami
 
-Planifique el apoyo para las personas que dependen de usted. Consulte su presupuesto, ingresos, hipoteca y responsabilidades antes de elegir un monto de cobertura.
+Compare seguros de vida a término y permanentes con nuestra oficina de Miami. Considere los ingresos, hipoteca, deudas o gastos familiares que desea cubrir y una prima que pueda mantener.
 
 [Llame para cotizar gratis](tel:13059108850) [Comparar coberturas](#coverage-details)
 
@@ -45,21 +45,21 @@ Detalles de cobertura
 
 ## Qué revisar antes de elegir
 
-### Necesidades y metas familiares
+### Seguro de vida a término
 
-Converse sobre las personas y responsabilidades financieras que desea considerar, junto con su plazo y presupuesto.
+Cubre un período definido. Considere por cuánto tiempo su familia podría necesitar reemplazar ingresos o pagar la hipoteca. Pregunte qué ocurre con la cobertura y la prima cuando termina el plazo.
 
-### Cuándo revisar
+### Seguro de vida permanente
 
-Una revisión puede ser útil después de casarse, tener un hijo, comprar una vivienda, cambiar de empleo, modificar una deuda u otro cambio familiar.
+Está diseñado para cobertura de mayor duración si se cumplen las condiciones de la póliza. Algunas pólizas acumulan valor en efectivo. Compare garantías, costos y requisitos para mantener la cobertura vigente.
 
-### Conversaciones sobre seguro de vida
+### Monto de cobertura y beneficiarios
 
-Pregunte por seguro temporal, permanente, gastos finales, reemplazo de ingresos y opciones de planificación que puedan estar disponibles.
+Considere ingresos, deudas, educación y gastos finales, y reste los ahorros y seguros existentes. Revise quién recibirá el beneficio y actualice los beneficiarios después de cambios familiares.
 
-### Solicitud de seguro
+### Primas y solicitud
 
-La aseguradora puede pedir datos médicos y personales. Compártalos únicamente mediante el proceso de solicitud que le indique la oficina o aseguradora.
+Pregunte qué primas y beneficios están garantizados y cuáles dependen de proyecciones. Revise los requisitos y preguntas de salud mediante el proceso de solicitud de la oficina o aseguradora.
 
 Cotizaciones gratis
 
@@ -102,6 +102,12 @@ Revise el monto, los beneficiarios y qué ocurre si cambia de empleo o deja de t
 Llame a la Oficina #3 al 305-910-8850. Podemos conversar en español o inglés sobre su presupuesto, quién depende de usted, el monto que quiere evaluar y los pasos de solicitud. Mantenga vigente su póliza actual mientras se revisa cualquier reemplazo.
 
 [Llame al 305-910-8850](tel:13059108850) [Revisar cambios familiares y beneficiarios](/es/recursos-para-clientes/revision-anual/)
+
+¿Qué comparo al cotizar un seguro de vida permanente?
+
+Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son estimaciones ilustradas. Revise cargos, costos de rescate y qué ocurre si deja de pagar. Las pólizas difieren; pida una explicación de los términos antes de reemplazar su cobertura actual.
+
+[Guía de seguro de vida de NAIC](https://content.naic.org/consumer/life-insurance.htm)
 
 Recursos sobre seguros
 

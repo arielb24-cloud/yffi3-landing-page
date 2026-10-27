@@ -258,11 +258,12 @@ const tickerItems = [
 const pages = [
   {
     "slug": "",
+    "modifiedDate": "2026-10-27",
     "nav": "Home",
-    "title": "Miami Insurance & Free Quotes | Your Family First Office #3",
-    "description": "Get a free insurance quote in Miami. Visit Office #3 on West Flagler for auto, home, renters, business and life insurance, with English and Spanish service.",
-    "h1": "Compare Insurance in Miami",
-    "intro": "Get a free quote and help comparing coverage from our West Flagler office. Auto, home, renters, business and life insurance, with service in English and Spanish.",
+    "title": "Miami Insurance Agency | Your Family First Insurance Office #3",
+    "description": "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish.",
+    "h1": "Insurance Agency in Miami",
+    "intro": "Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3. Visit our West Flagler office in Miami or call for a free quote in English or Spanish.",
     "kind": "home",
     "keywords": "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     "faqTitle": "Insurance questions in Miami",
@@ -523,11 +524,12 @@ const pages = [
   },
   {
     "slug": "commercial-insurance",
+    "modifiedDate": "2026-10-27",
     "nav": "Commercial",
-    "title": "Business Insurance in Miami | Free Quote | Office #3",
-    "description": "Review business insurance in Miami: general liability, property, work vehicles, employees and certificates. Call Office #3 for a free quote.",
+    "title": "Business & General Liability Insurance Miami | Office #3",
+    "description": "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3.",
     "h1": "Business Insurance in Miami",
-    "intro": "Tell us what your business does and what your contracts require. We can review liability, property, work vehicles and employee-related insurance needs.",
+    "intro": "Get help comparing business insurance for your Miami operations, including restaurants and contractors. Bring your contract or lease requirements so we can review liability, property, work vehicles and employee-related needs.",
     "kind": "service",
     "service": "Commercial Insurance",
     "icon": "shield",
@@ -535,19 +537,19 @@ const pages = [
     "sections": [
       [
         "General liability",
-        "Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions and contract requirements, including any additional insured request."
+        "Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions, required limits and any additional insured request in your contracts."
       ],
       [
-        "Property and work vehicles",
-        "Tell us about your premises, equipment and vehicle use. Personal policies may not cover business activities, and one business policy may not address every exposure."
+        "Restaurant and food business insurance",
+        "For a restaurant or café quote, describe cooking, delivery, alcohol service, employees and equipment. Discuss property, liability and business income needs; one policy may not cover every part of the operation."
       ],
       [
-        "Employees and operations",
-        "Employee duties, payroll and the work your business performs can affect insurance requirements. Ask about workers compensation and any coverage specific to your industry."
+        "Contractor insurance",
+        "Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform."
       ],
       [
         "Contracts and certificates",
-        "Bring the full insurance requirements and deadline. A certificate shows existing coverage; it does not add coverage or change policy terms."
+        "Bring the written insurance requirements and deadline for the job or lease. A certificate shows existing coverage; it cannot add an endorsement or change a policy to satisfy an uncovered requirement."
       ]
     ],
     "searchTopics": [],
@@ -600,36 +602,57 @@ const pages = [
             "tel:13059108850"
           ]
         ]
+      ],
+      [
+        "What should I prepare for a restaurant insurance quote in Miami?",
+        "Have your business address, estimated sales, payroll, equipment values and lease requirements ready. Describe cooking, alcohol service and delivery activities. Ask which coverages are included and which require separate policies or endorsements.",
+        [
+          [
+            "Call about business insurance",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "How do I get a general contractor insurance quote in Miami?",
+        "Call Office #3 with your trade, types of jobs, estimated revenue, payroll and subcontractor use. Bring the insurance requirements from a customer or general contractor. Review required limits and endorsements before requesting a certificate.",
+        [
+          [
+            "Prepare a certificate request",
+            "/customer-resources/certificate-of-insurance/"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "life-insurance",
+    "modifiedDate": "2026-10-27",
     "nav": "Life",
-    "title": "Life Insurance in Miami | Free Quote | Office #3",
-    "description": "Discuss life insurance in Miami for income, debts and family expenses. Compare term and permanent options with English or Spanish service at Office #3.",
+    "title": "Life Insurance in Miami: Term & Permanent | Office #3",
+    "description": "Compare term and permanent life insurance in Miami. Review premiums, coverage amounts and beneficiaries with Office #3 in English or Spanish.",
     "h1": "Life Insurance in Miami",
-    "intro": "Plan for the people who depend on you. Talk with us about your budget, income, mortgage and family responsibilities before choosing a coverage amount.",
+    "intro": "Compare term and permanent life insurance with our Miami office. Discuss the income, mortgage, debts or family expenses you want to cover, and a premium you can maintain.",
     "kind": "service",
     "service": "Life Insurance",
     "icon": "heart",
     "keywords": "life insurance Miami, term life insurance Miami, final expense insurance Miami, family protection Miami, mortgage protection life insurance, bilingual life insurance help",
     "sections": [
       [
-        "Decide what you want to cover",
-        "Consider income your family would need, outstanding debts, education costs and final expenses. Include existing coverage in your review."
+        "Term life insurance",
+        "Term coverage lasts for a defined period. Consider how long your family may need income replacement or help with a mortgage. Ask what happens to coverage and premiums when the term ends."
       ],
       [
-        "Term or permanent insurance",
-        "Term insurance covers a defined period. Permanent policies can provide longer-lasting coverage when their requirements are met. Ask about costs, guarantees and conditions."
+        "Permanent life insurance",
+        "Permanent policies are designed for longer-lasting coverage when policy requirements are met. Some build cash value. Compare the guarantees, ongoing costs and conditions for keeping the policy active."
       ],
       [
-        "Choose and review beneficiaries",
-        "Review who should receive the benefit and update your instructions after major family changes. Ask how your insurer handles beneficiary changes."
+        "Coverage amount and beneficiaries",
+        "Consider income, debts, education and final expenses, then account for savings and existing insurance. Review who should receive the benefit and update beneficiary instructions after family changes."
       ],
       [
-        "Applying for coverage",
-        "The insurer may ask about health and other personal details. Share those only through the application process provided by the office or insurer."
+        "Premiums and application",
+        "Ask which premiums and benefits are guaranteed and which depend on projections. Review application requirements and any health questions through the office or insurer’s application process."
       ]
     ],
     "searchTopics": [],
@@ -680,36 +703,47 @@ const pages = [
             "/customer-resources/life-event-review/"
           ]
         ]
+      ],
+      [
+        "What should I compare in a permanent life insurance quote?",
+        "Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Review fees, surrender charges and what happens if premiums are missed. Policies differ; request an explanation of the actual terms before replacing existing coverage.",
+        [
+          [
+            "NAIC life insurance guide",
+            "https://content.naic.org/consumer/life-insurance.htm"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "renters-insurance",
+    "modifiedDate": "2026-10-27",
     "nav": "Renters",
-    "title": "Renters Insurance in Miami | Free Quote | Office #3",
-    "description": "Get a renters insurance quote in Miami. Review belongings, liability, lease requirements and proof of insurance with bilingual Office #3.",
+    "title": "Renters Insurance Quotes in Miami | Office #3",
+    "description": "Compare renters insurance quotes for a Miami apartment or rental home. Review lease limits, belongings, deductibles and move-in dates with Office #3.",
     "h1": "Renters Insurance in Miami",
-    "intro": "Moving into an apartment or renewing your lease? Compare coverage for your belongings and personal liability, and check what your landlord requires.",
+    "intro": "Get a renters insurance quote for your Miami apartment or rental home. Bring your lease requirements so we can compare coverage for your belongings and liability before your move-in or renewal date.",
     "kind": "service",
     "service": "Renters Insurance",
     "icon": "key",
     "keywords": "renters insurance Miami, apartment insurance Miami, Miami renters insurance quote, renters insurance West Flagler, lease insurance requirement, proof of renters coverage Miami",
     "sections": [
       [
-        "Your belongings",
-        "Estimate what it would cost to replace furniture, clothing and electronics. Ask about special limits for jewelry and other valuables."
+        "Your belongings and valuables",
+        "Estimate the cost to replace furniture, clothing and electronics. Compare replacement cost with actual cash value, and check separate limits for jewelry or other valuables."
       ],
       [
-        "Liability and living expenses",
-        "Review personal liability and additional living expenses after a covered loss. Check limits, exclusions and the deductible before choosing a policy."
+        "Liability and temporary housing",
+        "Review personal liability and additional living expenses after a covered loss. Check the limits, deductible and exclusions; the landlord’s building policy does not replace your renters coverage."
       ],
       [
-        "Lease requirements",
-        "Bring the insurance requirements from your lease or property manager, including the requested liability limit and move-in date."
+        "Your lease and move-in date",
+        "Have the rental address, move-in date and written lease requirements ready. Ask the property manager which liability limits and proof of insurance are required before buying a policy."
       ],
       [
-        "Proof of insurance",
-        "After coverage is issued, ask how to obtain the proof your landlord needs. A quote alone is not evidence of active insurance."
+        "Compare renters insurance quotes",
+        "Compare the same coverage amounts, deductibles and policy term. Check payment charges and limits as well as price. After a policy is issued, request the proof your landlord needs."
       ]
     ],
     "searchTopics": [],
@@ -753,6 +787,16 @@ const pages = [
         [
           [
             "Get a free quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
+      [
+        "How much does renters insurance cost in Miami?",
+        "Your rental address, coverage amounts, deductible and policy choices affect the quote. Ask for the total cost for the policy term and any installment charges. Compare the same limits and coverage types before choosing by price.",
+        [
+          [
+            "Get a renters insurance quote",
             "/get-a-quote/"
           ]
         ]
@@ -1177,8 +1221,8 @@ function navHtml(currentSlug) {
 
 function footerHtml() {
   const links = pages
-    .filter((page) => page.kind !== "resource")
-    .map((page) => `<li><a href="${page.slug ? `/${page.slug}/` : "/"}">${escapeHtml(page.nav)}</a></li>`)
+    .filter((page) => page.kind !== "resource" || page.slug === "customer-resources/renewal-review")
+    .map((page) => `<li><a href="${page.slug ? `/${page.slug}/` : "/"}">${escapeHtml(page.service || page.nav)}</a></li>`)
     .join("");
   return `
     <footer class="site-footer">
@@ -1274,8 +1318,11 @@ function webPageSchema(page) {
     name: pageName,
     description: page.description,
     inLanguage: "en-US",
+    ...(page.modifiedDate ? { dateModified: page.modifiedDate } : {}),
     isPartOf: { "@id": `${siteUrl}/#website` },
     about: { "@id": `${siteUrl}/#insuranceagency` },
+    publisher: { "@id": `${siteUrl}/#insuranceagency` },
+    ...(page.kind === "service" ? { mainEntity: { "@id": `${pageUrl(page.slug)}#service` } } : {}),
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: `${siteUrl}${familyPhotoSrc}`
@@ -1332,8 +1379,10 @@ function serviceSchema(page) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${pageUrl(page.slug)}#service`,
     name: page.service,
     serviceType: page.service,
+    description: page.description,
     provider: { "@id": `${siteUrl}/#insuranceagency` },
     areaServed: serviceAreas,
     url: pageUrl(page.slug)

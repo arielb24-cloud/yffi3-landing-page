@@ -1,13 +1,13 @@
 ---
-title: "Miami Insurance & Free Quotes | Your Family First Office #3"
-description: "Get a free insurance quote in Miami. Visit Office #3 on West Flagler for auto, home, renters, business and life insurance, with English and Spanish service."
+title: "Miami Insurance Agency | Your Family First Insurance Office #3"
+description: "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/"
 ---
 
-# Compare Insurance in Miami
+# Insurance Agency in Miami
 
-Get a free quote and help comparing coverage from our West Flagler office. Auto, home, renters, business and life insurance, with service in English and Spanish.
+Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3. Visit our West Flagler office in Miami or call for a free quote in English or Spanish.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 

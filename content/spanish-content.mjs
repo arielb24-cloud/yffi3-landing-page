@@ -25,14 +25,15 @@ export const spanishToEnglish = Object.fromEntries(
 export const spanishPages = [
   {
     "slug": "es",
+    "modifiedDate": "2026-10-27",
     "englishSlug": "",
     "nav": "Inicio",
     "locale": "es-US",
     "kind": "home",
-    "title": "Agencia de Seguros en Miami | Your Family First Office #3",
-    "description": "Cotizaciones gratis de seguros en Miami. Visite la Oficina #3 en West Flagler para seguros de auto, vivienda, inquilinos, negocios y vida. Hablamos español.",
-    "h1": "Compare seguros en Miami",
-    "intro": "Cotice gratis y compare coberturas con nuestra oficina de West Flagler. Seguros de auto, vivienda, inquilinos, negocios y vida, con atención en español e inglés.",
+    "title": "Seguros en Miami | Your Family First Insurance Oficina #3",
+    "description": "Cotice seguros de auto, vivienda, inquilinos, negocios y vida en Miami con Your Family First Insurance Oficina #3. Atención en español e inglés en West Flagler.",
+    "h1": "Agencia de seguros en Miami",
+    "intro": "Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3. Visítenos en West Flagler o llame para cotizar gratis en español o inglés.",
     "faqTitle": "Preguntas sobre seguros en Miami",
     "faqs": [
       [
@@ -295,6 +296,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-de-inquilinos",
+    "modifiedDate": "2026-10-27",
     "englishSlug": "renters-insurance",
     "mediaSlug": "renters-insurance",
     "nav": "Inquilinos",
@@ -302,26 +304,26 @@ export const spanishPages = [
     "kind": "service",
     "icon": "key",
     "service": "Seguro de inquilinos",
-    "title": "Seguro de inquilinos en Miami | Cotización gratis | Oficina #3",
-    "description": "Solicite ayuda en Miami con cotizaciones de seguro de inquilinos para pertenencias, responsabilidad civil y requisitos del contrato de alquiler.",
+    "title": "Seguro de inquilinos en Miami | Cotice su apartamento",
+    "description": "Cotice seguro de inquilinos para su apartamento o casa alquilada en Miami. Revise pertenencias, responsabilidad civil, deducibles y requisitos del contrato.",
     "h1": "Seguro de inquilinos en Miami",
-    "intro": "¿Se muda a un apartamento o renueva su contrato? Compare cobertura para sus pertenencias y responsabilidad civil, y revise los requisitos del propietario.",
+    "intro": "Cotice seguro de inquilinos para su apartamento o casa alquilada en Miami. Tenga los requisitos de su contrato para comparar cobertura de pertenencias y responsabilidad civil antes de mudarse o renovar.",
     "sections": [
       [
-        "Pertenencias y responsabilidad civil",
-        "Consulte sobre propiedad personal, responsabilidad civil, deducible y gastos adicionales de vivienda que puedan aplicar."
+        "Sus pertenencias y objetos de valor",
+        "Calcule cuánto costaría reemplazar muebles, ropa y electrónicos. Compare costo de reemplazo con valor real en efectivo y revise límites especiales para joyas u otros objetos de valor."
       ],
       [
-        "Requisitos del contrato",
-        "Tenga a mano cualquier requisito de seguro del propietario o administrador para solicitar una cotización adecuada."
+        "Responsabilidad civil y alojamiento temporal",
+        "Revise responsabilidad civil y gastos adicionales de vivienda después de una pérdida cubierta. Compruebe límites, deducible y exclusiones; el seguro del edificio no sustituye su póliza de inquilinos."
       ],
       [
-        "Cuándo conviene cotizar",
-        "Solicite una cotización antes de mudarse, al renovar el contrato, después de un cambio de compañero de vivienda o si cambia el valor de sus pertenencias."
+        "Su contrato y fecha de mudanza",
+        "Tenga la dirección, fecha de mudanza y requisitos escritos del alquiler. Pregunte al administrador qué límites de responsabilidad civil y comprobante exige antes de comprar la póliza."
       ],
       [
-        "Comprobante de seguro",
-        "Después de emitir la póliza, solicite el comprobante que exige el propietario. Una cotización no demuestra que ya tiene cobertura."
+        "Compare cotizaciones de seguro de inquilinos",
+        "Compare los mismos montos de cobertura, deducibles y duración de póliza. Revise cargos de pago y límites además del precio. Cuando se emita la póliza, solicite el comprobante que exige el propietario."
       ]
     ],
     "searchTopics": [],
@@ -368,11 +370,22 @@ export const spanishPages = [
             "/es/solicitar-cotizacion/"
           ]
         ]
+      ],
+      [
+        "¿Cuánto cuesta el seguro de inquilinos en Miami?",
+        "La dirección, los montos, el deducible y las coberturas elegidas influyen en la cotización. Pida el costo total del período y los cargos por cuotas. Compare los mismos límites y tipos de cobertura antes de decidir solo por el precio.",
+        [
+          [
+            "Cotizar seguro de inquilinos",
+            "/es/solicitar-cotizacion/"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "es/seguro-comercial",
+    "modifiedDate": "2026-10-27",
     "englishSlug": "commercial-insurance",
     "mediaSlug": "commercial-insurance",
     "nav": "Comercial",
@@ -380,26 +393,26 @@ export const spanishPages = [
     "kind": "service",
     "icon": "shield",
     "service": "Seguro comercial y para negocios",
-    "title": "Seguro para negocios en Miami | Cotización gratis | Oficina #3",
-    "description": "Solicite ayuda con seguro comercial y responsabilidad civil general en Miami para operaciones, locales, equipos, contratos y certificados.",
+    "title": "Seguro comercial y responsabilidad civil en Miami | Oficina #3",
+    "description": "Cotice seguro comercial en Miami para contratistas, restaurantes y pequeños negocios. Revise responsabilidad civil, vehículos de trabajo y certificados.",
     "h1": "Seguro para negocios en Miami",
-    "intro": "Cuéntenos qué hace su negocio y qué seguros exigen sus contratos. Revisamos responsabilidad civil, propiedad, vehículos de trabajo y necesidades de sus empleados.",
+    "intro": "Compare seguros para las operaciones de su negocio en Miami, incluidos restaurantes y contratistas. Traiga los requisitos del contrato o alquiler para revisar responsabilidad civil, propiedad, vehículos y necesidades de sus empleados.",
     "sections": [
       [
-        "Operaciones y propiedad del negocio",
-        "Consulte sobre cobertura para operaciones, locales, propiedad comercial, equipos y exposiciones diarias."
+        "Responsabilidad civil general",
+        "Revise cobertura para ciertas reclamaciones por lesiones a terceros o daños a su propiedad. Compruebe exclusiones, límites y requisitos de asegurados adicionales en sus contratos."
+      ],
+      [
+        "Seguros para restaurantes y negocios de comida",
+        "Para cotizar, describa la cocina, entregas, venta de alcohol, empleados y equipos. Revise propiedad, responsabilidad civil e ingresos del negocio; una sola póliza puede no cubrir toda la operación."
+      ],
+      [
+        "Seguros para contratistas",
+        "Indique su oficio, trabajos habituales, uso de subcontratistas y vehículos. Revise por separado responsabilidad civil, herramientas y compensación laboral, junto con exclusiones que afecten el trabajo que realiza."
       ],
       [
         "Contratos y certificados",
-        "Solicite ayuda cuando un cliente, propietario o contrato pida límites específicos o un certificado de seguro."
-      ],
-      [
-        "Responsabilidad civil general",
-        "Puede responder a ciertas reclamaciones de terceros por lesiones corporales, daños a la propiedad y lesiones personales o publicitarias, sujeto a los términos y exclusiones."
-      ],
-      [
-        "Información que conviene preparar",
-        "Tenga lista la actividad, dirección, ingresos estimados, número de empleados, equipos, cobertura previa y requisitos de contratos o certificados."
+        "Traiga los requisitos escritos y la fecha límite del trabajo o alquiler. Un certificado demuestra cobertura existente; no añade endosos ni cambia una póliza para cumplir un requisito sin cobertura."
       ]
     ],
     "searchTopics": [],
@@ -452,11 +465,32 @@ export const spanishPages = [
             "tel:13059108850"
           ]
         ]
+      ],
+      [
+        "¿Qué preparo para cotizar el seguro de un restaurante en Miami?",
+        "Tenga dirección, ventas estimadas, nómina, valor de los equipos y requisitos del alquiler. Describa la cocina, venta de alcohol y entregas. Pregunte qué coberturas se incluyen y cuáles necesitan pólizas o endosos separados.",
+        [
+          [
+            "Llame para consultar sobre seguro comercial",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "¿Cómo cotizo un seguro para contratistas en Miami?",
+        "Llame a la Oficina #3 con su oficio, tipos de trabajos, ingresos estimados, nómina y uso de subcontratistas. Traiga los requisitos de seguro del cliente o contratista general. Revise límites y endosos antes de solicitar un certificado.",
+        [
+          [
+            "Preparar una solicitud de certificado",
+            "/es/recursos-para-clientes/certificado-de-seguro/"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "es/seguro-de-vida",
+    "modifiedDate": "2026-10-27",
     "englishSlug": "life-insurance",
     "mediaSlug": "life-insurance",
     "nav": "Vida",
@@ -464,26 +498,26 @@ export const spanishPages = [
     "kind": "service",
     "icon": "heart",
     "service": "Seguro de vida",
-    "title": "Seguro de vida en Miami | Cotización gratis | Oficina #3",
-    "description": "Solicite ayuda en Miami con cotizaciones de seguro de vida para necesidades familiares, reemplazo de ingresos, gastos finales y planificación.",
+    "title": "Seguro de vida en Miami: temporal y permanente | Oficina #3",
+    "description": "Compare seguros de vida a término y permanentes en Miami. Revise primas, montos y beneficiarios con la Oficina #3. Atención en español e inglés.",
     "h1": "Seguro de vida en Miami",
-    "intro": "Planifique el apoyo para las personas que dependen de usted. Consulte su presupuesto, ingresos, hipoteca y responsabilidades antes de elegir un monto de cobertura.",
+    "intro": "Compare seguros de vida a término y permanentes con nuestra oficina de Miami. Considere los ingresos, hipoteca, deudas o gastos familiares que desea cubrir y una prima que pueda mantener.",
     "sections": [
       [
-        "Necesidades y metas familiares",
-        "Converse sobre las personas y responsabilidades financieras que desea considerar, junto con su plazo y presupuesto."
+        "Seguro de vida a término",
+        "Cubre un período definido. Considere por cuánto tiempo su familia podría necesitar reemplazar ingresos o pagar la hipoteca. Pregunte qué ocurre con la cobertura y la prima cuando termina el plazo."
       ],
       [
-        "Cuándo revisar",
-        "Una revisión puede ser útil después de casarse, tener un hijo, comprar una vivienda, cambiar de empleo, modificar una deuda u otro cambio familiar."
+        "Seguro de vida permanente",
+        "Está diseñado para cobertura de mayor duración si se cumplen las condiciones de la póliza. Algunas pólizas acumulan valor en efectivo. Compare garantías, costos y requisitos para mantener la cobertura vigente."
       ],
       [
-        "Conversaciones sobre seguro de vida",
-        "Pregunte por seguro temporal, permanente, gastos finales, reemplazo de ingresos y opciones de planificación que puedan estar disponibles."
+        "Monto de cobertura y beneficiarios",
+        "Considere ingresos, deudas, educación y gastos finales, y reste los ahorros y seguros existentes. Revise quién recibirá el beneficio y actualice los beneficiarios después de cambios familiares."
       ],
       [
-        "Solicitud de seguro",
-        "La aseguradora puede pedir datos médicos y personales. Compártalos únicamente mediante el proceso de solicitud que le indique la oficina o aseguradora."
+        "Primas y solicitud",
+        "Pregunte qué primas y beneficios están garantizados y cuáles dependen de proyecciones. Revise los requisitos y preguntas de salud mediante el proceso de solicitud de la oficina o aseguradora."
       ]
     ],
     "searchTopics": [],
@@ -532,6 +566,16 @@ export const spanishPages = [
           [
             "Revisar cambios familiares y beneficiarios",
             "/es/recursos-para-clientes/revision-anual/"
+          ]
+        ]
+      ],
+      [
+        "¿Qué comparo al cotizar un seguro de vida permanente?",
+        "Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son estimaciones ilustradas. Revise cargos, costos de rescate y qué ocurre si deja de pagar. Las pólizas difieren; pida una explicación de los términos antes de reemplazar su cobertura actual.",
+        [
+          [
+            "Guía de seguro de vida de NAIC",
+            "https://content.naic.org/consumer/life-insurance.htm"
           ]
         ]
       ]
