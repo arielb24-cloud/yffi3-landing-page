@@ -1032,7 +1032,7 @@ test("mobile Google reviews fit and expanded text stays in document flow", async
       await expect(card.locator("details").first()).toHaveAttribute("open", "");
       await expect(card.locator(".real-review-excerpt")).toBeHidden();
       await expect.poll(() => card.locator("summary").first().evaluate(el =>
-        el.getBoundingClientRect().top >= document.querySelector(".site-header").getBoundingClientRect().bottom
+        el.getBoundingClientRect().top >= Math.max(0, document.querySelector(".site-header").getBoundingClientRect().bottom)
       )).toBe(true);
       const fits = await panel.evaluate((element) => {
         const card = element.querySelector(".real-review-card.is-active");

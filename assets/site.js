@@ -671,13 +671,16 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
       if (!details.open) return;
       // Expanding replaces the excerpt above the toggle. Keep the reader's
       // place visible instead of losing it behind the sticky header.
-      requestAnimationFrame(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
         if (!details.open || details.closest("[data-review-card]")?.getAttribute("aria-hidden") === "true") return;
         const summary = details.querySelector("summary");
-        const top = (document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0) + 12;
-        const offset = summary.getBoundingClientRect().top - top;
-        if (offset < 0) window.scrollBy({ top: offset, behavior: "instant" });
-      });
+        const top = Math.max(0, document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0) + 12;
+        const bounds = summary.getBoundingClientRect();
+        if (bounds.top < top || bounds.bottom > window.innerHeight - 90) {
+          summary.style.scrollMarginTop = top + "px";
+          summary.scrollIntoView({ block: "start", behavior: "instant" });
+        }
+      }));
     });
   });
   setActive(0);
