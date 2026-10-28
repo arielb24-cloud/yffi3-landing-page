@@ -2053,7 +2053,7 @@ function pageHtml(page) {
   return `<!doctype html>
 <html lang="en">
 <head>${googleTagManagerHead()}${headHtml(page)}</head>
-<body>${googleTagManagerBody()}
+<body${["home", "service"].includes(page.kind) ? ' class="has-video"' : ""}>${googleTagManagerBody()}
   <a class="skip-link" href="#main">Skip to content</a>
   ${navHtml(page.slug)}
   <main id="main">
@@ -5364,6 +5364,8 @@ h3 {
 .review-dots { flex-wrap: wrap; min-width: 0; }
 @media (max-width: 767px) {
   .review-panel { grid-template-columns: minmax(0, 1fr); }
+  /* Fade reviews into view without moving tap targets under the reader. */
+  .motion-ready .review-panel[data-reveal] { transform: none; }
   .real-review-carousel, .real-review-track { min-height: 0; }
   .real-review-card { min-height: 0; max-height: none; overflow: visible; }
   .real-review-card.is-active { position: relative; inset: auto; }
@@ -5389,6 +5391,9 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .motion-showcase { width: 100%; max-width: 680px; margin-inline: auto; }
 .motion-carousel { width: 100%; padding: 12px; border-radius: 20px; background-color: #0c1d29; }
 .carousel-track { border: 0; background: none; box-shadow: none; border-radius: 12px; align-items: flex-start; }
+/* Reserve the first slide's natural height before the controller starts;
+   longer, inactive captions must not move the hero during initialization. */
+.carousel-track:not([data-ready]) .motion-slide[data-active="false"] { height: 0; min-height: 0; }
 .story-carousel .motion-slide, .focused-carousel .motion-slide { grid-template-rows: auto 1fr; padding: 0; gap: 0; background: transparent; min-width: 0; }
 .story-carousel .motion-media-link, .focused-carousel .motion-media-link { width: 100%; min-width: 0; min-height: 0; max-height: none; aspect-ratio: 16 / 9; border-radius: 12px; box-shadow: none; justify-self: stretch; }
 .story-carousel .motion-slide-copy, .focused-carousel .motion-slide-copy { padding: 20px 12px 12px; border-radius: 0; background: none; box-shadow: none; transform: none; text-align: center; }
@@ -5417,9 +5422,9 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .carousel-stage { container-type: inline-size; }
 /* Keep the glass gradients, borders and motion without re-blurring every
    decoded frame through nested backdrop layers on pages containing video. */
-body:has([data-insurance-carousel]) *,
-body:has([data-insurance-carousel]) *::before,
-body:has([data-insurance-carousel]) *::after {
+body.has-video *,
+body.has-video *::before,
+body.has-video *::after {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }

@@ -122,7 +122,7 @@ for (const slug of requiredSlugs) {
   if (!/^<!doctype html>\n<html/i.test(html) || !html.includes("<head>\n<!-- Google Tag Manager -->")) {
     failures.push(`${slug || "home"} must place Google Tag Manager immediately after <head>`);
   }
-  if (!html.includes("<body>\n<!-- Google Tag Manager (noscript) -->")) {
+  if (!/<body(?: class="has-video")?>\n<!-- Google Tag Manager \(noscript\) -->/.test(html)) {
     failures.push(`${slug || "home"} must place the Google Tag Manager fallback immediately after <body>`);
   }
   if (countMatches(html, /googletagmanager\.com\/gtm\.js\?id=/g) !== 1) failures.push(`${slug || "home"} must have exactly one GTM script installation`);
@@ -347,9 +347,10 @@ if (!fs.existsSync(js)) {
   if (!script.includes("IntersectionObserver")) failures.push("JS missing scroll reveal IntersectionObserver");
   if (!script.includes("data-in-view")) failures.push("JS missing offscreen animation pausing");
   if (!script.includes("data-insurance-carousel")) failures.push("JS missing accessible carousel controller");
-  if (!script.includes("syncVideos") || !script.includes("entry.intersectionRatio >= 0.15")) failures.push("JS missing visible-media playback handling");
-  if (!script.includes("video.autoplay = true")) failures.push("Visible videos must support muted autoplay");
-  if (!script.includes("hydrateVideo")) failures.push("JS missing lazy video hydration");
+  // Check runtime operations, not local identifiers removed by minification.
+  if (!script.includes("intersectionRatio") || !/(?:intersectionRatio\s*>=\s*0?\.15|0?\.15\s*<=\s*\w+\.intersectionRatio)/.test(script)) failures.push("JS missing visible-media playback handling");
+  if (!/\.autoplay\s*=\s*(?:true|!0)/.test(script)) failures.push("Visible videos must support muted autoplay");
+  if (!script.includes(".dataset.src") || !script.includes('"canplay"')) failures.push("JS missing lazy video hydration");
   if (!script.includes("ArrowRight")) failures.push("JS missing keyboard carousel navigation");
   if (!script.includes("visibilitychange")) failures.push("JS missing tab visibility media pausing");
   for (const eventName of ["phone_click", "sms_click", "email_click", "quote_start"]) {
@@ -358,7 +359,7 @@ if (!fs.existsSync(js)) {
   for (const fieldName of ["page_path", "page_language", "product_category", "cta_location", "landing_page", "referrer_category", "traffic_source", "traffic_medium", "campaign_name", "campaign_content"]) {
     if (!script.includes(`${fieldName}:`)) failures.push(`JS analytics payload missing approved field: ${fieldName}`);
   }
-  if (!script.includes('const attributionStorageKey = "yffi_first_touch_v1"')) failures.push("JS missing session-scoped first-touch attribution");
+  if (!script.includes('"yffi_first_touch_v1"') || !script.includes("sessionStorage")) failures.push("JS missing session-scoped first-touch attribution");
   if (script.includes('"form_submit"')) failures.push("JS must not claim a form submission before the quote vendor acknowledges a lead");
   if (script.includes('"quote_form_validated"')) failures.push("JS must not claim local form validation when no local form exists");
   if (script.includes('"generate_lead"')) failures.push("JS must not claim a generated lead without downstream acknowledgement");

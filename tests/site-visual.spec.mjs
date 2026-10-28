@@ -314,7 +314,7 @@ test("GTM is installed once per page with no hard-coded GA4 tag", async ({ reque
     expect(response.status()).toBe(200);
     const html = await response.text();
     expect(html).toContain("<head>\n<!-- Google Tag Manager -->");
-    expect(html).toContain("<body>\n<!-- Google Tag Manager (noscript) -->");
+    expect(html).toMatch(/<body(?: class="has-video")?>\n<!-- Google Tag Manager \(noscript\) -->/);
     expect(html.match(/googletagmanager\.com\/gtm\.js\?id=/g) || []).toHaveLength(1);
     expect(html.match(/googletagmanager\.com\/ns\.html\?id=GTM-5FZCMM3V/g) || []).toHaveLength(1);
     expect(html.match(/GTM-5FZCMM3V/g) || []).toHaveLength(2);
@@ -556,6 +556,39 @@ test("homepage Business video pauses on hover and resumes immediately after leav
   await expect.poll(() => activeVideo.evaluate((video) => video.paused), { timeout: 3000 }).toBe(true);
   await page.mouse.move(0, 0);
   await expect.poll(() => activeVideo.evaluate(video => !video.paused && video.readyState >= 2)).toBe(true);
+});
+
+test("carousel reserves its height before delayed JavaScript initializes", async ({ page }) => {
+  let releaseScript;
+  const scriptGate = new Promise(resolve => { releaseScript = resolve; });
+  await page.route("**/assets/site.js*", async route => {
+    await scriptGate;
+    await route.continue();
+  });
+  await page.setViewportSize({ width: 1366, height: 900 });
+  const navigation = page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator(".carousel-controls")).toBeVisible();
+  const before = await page.locator(".hero").evaluate(el => el.getBoundingClientRect().height);
+  releaseScript();
+  await navigation;
+  await expect(page.locator(".carousel-track")).toHaveAttribute("data-ready", "true");
+  const after = await page.locator(".hero").evaluate(el => el.getBoundingClientRect().height);
+  expect(Math.abs(after - before)).toBeLessThan(1);
+});
+
+test("desktop hover effects stay aligned after resizing and reset on exit", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/get-a-quote/", { waitUntil: "networkidle" });
+  const action = page.locator(".site-header .button.warm");
+  for (const width of [1440, 1200]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const bounds = await action.boundingBox();
+    await page.mouse.move(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    await expect.poll(() => action.evaluate(el => parseFloat(el.style.getPropertyValue("--glare-x")))).toBeGreaterThan(40);
+    expect(await action.evaluate(el => parseFloat(el.style.getPropertyValue("--glare-x")))).toBeLessThan(60);
+  }
+  await page.mouse.move(0, 0);
+  await expect.poll(() => action.evaluate(el => el.style.getPropertyValue("--glare-x"))).toBe("50%");
 });
 
 test("Save-Data keeps carousel video paused and unhydrated", async ({ page }) => {
@@ -915,8 +948,8 @@ test("homepage exposes complete social image metadata and an optimized logo prel
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
   await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute("content", "630");
-  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /Compare Insurance in Miami.*Office #3, Miami/);
-  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute("content", /Compare Insurance in Miami.*Office #3, Miami/);
+  await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute("content", /Insurance Agency in Miami.*Office #3, Miami/);
+  await expect(page.locator('meta[name="twitter:image:alt"]')).toHaveAttribute("content", /Insurance Agency in Miami.*Office #3, Miami/);
   await expect(page.locator('link[rel="preload"][as="image"][href$="yffi3-official-franchise-logo-240.webp"]')).toHaveCount(1);
 });
 
@@ -926,7 +959,7 @@ test("agents can negotiate Markdown while browsers keep HTML", async ({ request 
   expect(markdown.headers()["content-type"]).toContain("text/markdown");
   expect(markdown.headers().vary).toContain("Accept");
   expect(Number(markdown.headers()["x-markdown-tokens"])).toBeGreaterThan(100);
-  expect(await markdown.text()).toContain("# Compare Insurance in Miami");
+  expect(await markdown.text()).toContain("# Insurance Agency in Miami");
 
   const html = await request.get("/", { headers: { Accept: "text/html" } });
   expect(html.headers()["content-type"]).toContain("text/html");
@@ -998,6 +1031,9 @@ test("mobile Google reviews fit and expanded text stays in document flow", async
       await card.locator("details").first().locator("summary").click();
       await expect(card.locator("details").first()).toHaveAttribute("open", "");
       await expect(card.locator(".real-review-excerpt")).toBeHidden();
+      await expect.poll(() => card.locator("summary").first().evaluate(el =>
+        el.getBoundingClientRect().top >= document.querySelector(".site-header").getBoundingClientRect().bottom
+      )).toBe(true);
       const fits = await panel.evaluate((element) => {
         const card = element.querySelector(".real-review-card.is-active");
         const controls = element.querySelector(".review-carousel-controls");

@@ -418,8 +418,12 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   });
 
   const fitActiveSlide = () => {
-    const height = slides[activeIndex]?.offsetHeight;
-    if (track && height && track.style.height !== height + "px") track.style.height = height + "px";
+    const activeSlide = slides[activeIndex];
+    const height = activeSlide && parseFloat(getComputedStyle(activeSlide).height);
+    if (track && height) {
+      if (track.style.height !== height + "px") track.style.height = height + "px";
+      track.dataset.ready = "true";
+    }
   };
   let fitFrame = 0;
   const scheduleSlideFit = () => {
@@ -662,6 +666,20 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
       selected?.focus();
     });
   });
+  carousel.querySelectorAll('.review-details:not(.office-response)').forEach((details) => {
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      // Expanding replaces the excerpt above the toggle. Keep the reader's
+      // place visible instead of losing it behind the sticky header.
+      requestAnimationFrame(() => {
+        if (!details.open || details.closest("[data-review-card]")?.getAttribute("aria-hidden") === "true") return;
+        const summary = details.querySelector("summary");
+        const top = (document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0) + 12;
+        const offset = summary.getBoundingClientRect().top - top;
+        if (offset < 0) window.scrollBy({ top: offset, behavior: "instant" });
+      });
+    });
+  });
   setActive(0);
 });
 
@@ -738,13 +756,32 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     ".franchise-card"
   ].join(",");
 
+  // Reuse bounds between pointer frames; refresh after scrolling or resizing,
+  // including nested review rails, without forcing layout on every movement.
+  let hoverGeometryVersion = 0;
+  const invalidateHoverGeometry = () => { hoverGeometryVersion += 1; };
+  window.addEventListener("scroll", invalidateHoverGeometry, { passive: true, capture: true });
+  window.addEventListener("resize", invalidateHoverGeometry, { passive: true });
+  const hoverSizeObserver = "ResizeObserver" in window ? new ResizeObserver(invalidateHoverGeometry) : null;
+
   document.querySelectorAll(hoverSurfaceSelector).forEach((surface) => {
     let frame = 0;
     let lastEvent = null;
+    let surfaceRect = null;
+    let geometryVersion = -1;
+    const measureSurface = () => {
+      if (!surfaceRect || geometryVersion !== hoverGeometryVersion) {
+        surfaceRect = surface.getBoundingClientRect();
+        geometryVersion = hoverGeometryVersion;
+      }
+      return surfaceRect;
+    };
 
     surface.addEventListener("pointerenter", (event) => {
+      surfaceRect = null;
+      hoverSizeObserver?.observe(surface);
       const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card, .review-qr-card");
-      spawnLiquidParticles(event, stronger ? 10 : 5);
+      spawnLiquidParticles(event, stronger ? 10 : 5, "burst", measureSurface());
     }, { passive: true });
 
     surface.addEventListener("click", (event) => {
@@ -761,7 +798,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
       frame = window.requestAnimationFrame(() => {
         frame = 0;
         if (!lastEvent) return;
-        const rect = surface.getBoundingClientRect();
+        const rect = measureSurface();
         const x = (lastEvent.clientX - rect.left) / rect.width;
         const y = (lastEvent.clientY - rect.top) / rect.height;
         surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
@@ -790,6 +827,8 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
       window.cancelAnimationFrame(frame);
       frame = 0;
       lastEvent = null;
+      surfaceRect = null;
+      hoverSizeObserver?.unobserve(surface);
       surface.style.setProperty("--tilt-x", "0deg");
       surface.style.setProperty("--tilt-y", "0deg");
       surface.style.setProperty("--glare-x", "50%");

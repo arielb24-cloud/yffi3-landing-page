@@ -57,9 +57,11 @@ copyIfExists(path.join(root, "public"), path.join(dist));
 fs.mkdirSync(path.join(dist, "assets"), { recursive: true });
 fs.copyFileSync(path.join(root, "assets", "styles.css"), path.join(dist, "assets", "styles.css"));
 fs.copyFileSync(path.join(root, "assets", "site.js"), path.join(dist, "assets", "site.js"));
-// Keep editable source readable while shipping smaller, correctly versioned CSS.
+// Keep editable sources readable while shipping smaller, versioned assets.
 const deploymentStyles = transformSync(fs.readFileSync(path.join(dist, "assets", "styles.css"), "utf8"), { loader: "css", minify: true }).code;
 fs.writeFileSync(path.join(dist, "assets", "styles.css"), deploymentStyles);
+const deploymentScript = transformSync(fs.readFileSync(path.join(dist, "assets", "site.js"), "utf8"), { loader: "js", minify: true, target: "es2020", legalComments: "none" }).code;
+fs.writeFileSync(path.join(dist, "assets", "site.js"), deploymentScript);
 const deploymentVersion = createHash("sha256").update(deploymentStyles).update(fs.readFileSync(path.join(dist, "assets", "site.js"))).digest("hex").slice(0, 12);
 function versionDeploymentPages(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
