@@ -7,7 +7,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/"
 
 # Insurance Agency in Miami
 
-Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3. Visit our West Flagler office in Miami or call for a free quote in English or Spanish.
+Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3 in Miami. We help customers in Miami-Dade, Broward and throughout Florida, in English and Spanish.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 
@@ -21,7 +21,7 @@ Compare liability limits, deductibles and coverage for your car.
 
 [View Coverage](/auto-insurance/)
 
-[![Luxury home aerial video for Miami homeowners insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/home-insurance/)
+[![Luxury home aerial video for Miami homeowners insurance quote help](/media/premium-carousel/home/luxury-home-aerial-poster.webp)](/home-insurance/)
 
 ## Insurance for Your Miami Home
 
@@ -29,7 +29,7 @@ Review your home, roof and hurricane deductible. Ask about separate flood insura
 
 [View Coverage](/home-insurance/)
 
-[![Renters unpacking moving boxes video for Miami renters insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/renters-insurance/)
+[![Renters unpacking moving boxes video for Miami renters insurance quote help](/media/premium-carousel/home/renters-unpacking-boxes-poster.webp)](/renters-insurance/)
 
 ## Renters Insurance
 
@@ -37,7 +37,7 @@ Check coverage for your belongings and the liability limits your lease requires.
 
 [View Coverage](/renters-insurance/)
 
-[![Business professionals consulting in a modern office video for Miami business insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/commercial-insurance/)
+[![Business professionals consulting in a modern office video for Miami business insurance quote help](/media/premium-carousel/home/business-office-consultation-poster.webp)](/commercial-insurance/)
 
 ## Business Insurance
 
@@ -45,7 +45,7 @@ Tell us what your business does and what your lease or contracts require.
 
 [View Coverage](/commercial-insurance/)
 
-[![Contractor reviewing job documents video for general liability insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/commercial-insurance/#general-liability-insurance)
+[![Contractor reviewing job documents video for general liability insurance quote help](/media/premium-carousel/home/liability-industrial-checklist-poster.webp)](/commercial-insurance/#general-liability-insurance)
 
 ## General Liability Insurance
 
@@ -53,7 +53,7 @@ Bring your contract requirements so we can review liability limits and certifica
 
 [View Coverage](/commercial-insurance/#general-liability-insurance)
 
-[![Parent and child walking on the beach video for life insurance planning](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/life-insurance/)
+[![Parent and child walking on the beach video for life insurance planning](/media/premium-carousel/home/family-beach-child-poster.webp)](/life-insurance/)
 
 ## Life Insurance
 
@@ -61,7 +61,7 @@ Consider how much income your family would need and for how long.
 
 [View Coverage](/life-insurance/)
 
-[![Advisor meeting with a client video for bilingual Miami insurance office help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/about-office-3/)
+[![Advisor meeting with a client video for bilingual Miami insurance office help](/media/premium-carousel/home/advisor-client-consult-poster.webp)](/about-office-3/)
 
 ## Hablamos Español
 
@@ -276,3 +276,9 @@ Can I compare a new quote before my current policy renews?
 Yes. Start when your renewal notice arrives so there is time to compare limits, deductibles and total cost. Before cancelling your current policy, confirm the replacement policy and its start date in writing, including any required payment.
 
 [Review your renewal](/customer-resources/renewal-review/)
+
+Can I get an insurance quote outside Miami?
+
+Yes. Office #3 handles insurance quote inquiries throughout Florida, including Miami-Dade and Broward County. Our office is in Miami at 11200 W Flagler St. You can start online or call for English or Spanish help; available policies depend on your location and application.
+
+[Contact our Miami office](/about-office-3/)

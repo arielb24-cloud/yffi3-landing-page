@@ -25,7 +25,7 @@ Considere los ingresos, deudas y gastos que su familia necesitaría cubrir.
 
 [Llame para cotizar gratis](tel:13059108850)
 
-[![Video de una familia llegando a casa para preguntas sobre seguro de vida temporal](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Video de una familia llegando a casa para preguntas sobre seguro de vida temporal](/media/premium-carousel/life/family-coming-home-poster.webp)](tel:13059108850)
 
 ## ¿Por cuánto tiempo necesita cobertura?
 
@@ -33,7 +33,7 @@ El seguro temporal cubre un plazo definido. Piense en su hipoteca y los años ha
 
 [Llame para cotizar gratis](tel:13059108850)
 
-[![Video de una reunión de planificación familiar para preguntas sobre gastos finales](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Video de una reunión de planificación familiar para preguntas sobre gastos finales](/media/premium-carousel/life/planning-documents-meeting-poster.webp)](tel:13059108850)
 
 ## Planifique los gastos finales
 
@@ -41,17 +41,18 @@ Consulte los gastos funerarios, deudas y el apoyo que desea dejar a su familia.
 
 [Llame para cotizar gratis](tel:13059108850)
 
+## Compare seguros de vida a término y permanentes
+
+Compare las garantías por escrito y los costos continuos antes de elegir una póliza.
+
+| Tipo de póliza | Qué revisar |
+| --- | --- |
+| Vida temporal | Cobertura por un plazo definido. Revise primas durante el plazo, precio de renovación y fecha límite de cualquier opción de conversión. |
+| Vida permanente | Diseñada para cobertura a largo plazo cuando se cumplen las condiciones. Compare garantías, valor en efectivo, cargos y pagos necesarios para mantenerla vigente. |
+
 Detalles de cobertura
 
-## Qué revisar antes de elegir
-
-### Seguro de vida a término
-
-Cubre un período definido. Considere por cuánto tiempo su familia podría necesitar reemplazar ingresos o pagar la hipoteca. Pregunte qué ocurre con la cobertura y la prima cuando termina el plazo.
-
-### Seguro de vida permanente
-
-Está diseñado para cobertura de mayor duración si se cumplen las condiciones de la póliza. Algunas pólizas acumulan valor en efectivo. Compare garantías, costos y requisitos para mantener la cobertura vigente.
+## Prepare su cotización de vida
 
 ### Monto de cobertura y beneficiarios
 
@@ -73,9 +74,9 @@ FAQ
 
 ## Preguntas sobre el seguro de vida
 
-¿Qué diferencia hay entre seguro de vida a término y permanente?
+¿Puedo convertir un seguro de vida a término en una póliza permanente?
 
-El seguro a término cubre un período definido y generalmente no acumula valor en efectivo. El permanente está diseñado para cobertura de mayor duración y puede acumular valor, según la póliza. Compare primas, garantías y condiciones para mantenerlo vigente, no solo el nombre del producto.
+Algunas pólizas a término incluyen una opción de conversión. Confirme con la aseguradora la fecha límite, los productos permanentes permitidos y la nueva prima. No todas las pólizas la incluyen; revise las condiciones escritas antes de que termine el plazo.
 
 ¿Cuánto seguro de vida necesito?
 
@@ -108,6 +109,18 @@ Llame a la Oficina #3 al 305-910-8850. Podemos conversar en español o inglés s
 Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son estimaciones ilustradas. Revise cargos, costos de rescate y qué ocurre si deja de pagar. Las pólizas difieren; pida una explicación de los términos antes de reemplazar su cobertura actual.
 
 [Guía de seguro de vida de NAIC](https://content.naic.org/consumer/life-insurance.htm)
+
+¿Puede un seguro de vida incluir beneficios en vida?
+
+Algunas pólizas ofrecen un beneficio por fallecimiento anticipado ante una enfermedad que califique, sujeto a la póliza o cláusula adicional. Usarlo puede reducir lo que recibirán los beneficiarios. Pregunte por requisitos, límites y costos; no sustituye en general un seguro de salud.
+
+[Explicación de la NAIC sobre cláusulas adicionales de vida](https://content.naic.org/consumer/life-insurance.htm)
+
+¿Puedo cotizar un seguro de vida desde Broward u otra parte de Florida?
+
+Sí. Nuestra oficina en Miami atiende solicitudes de seguros de vida en toda Florida, incluido Broward. Llame al 305-910-8850 para recibir atención en español o inglés. La aseguradora determina disponibilidad, elegibilidad y condiciones finales.
+
+[Llame para consultar sobre seguros de vida](tel:13059108850)
 
 Recursos sobre seguros
 

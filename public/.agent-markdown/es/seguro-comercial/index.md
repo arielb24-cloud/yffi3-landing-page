@@ -15,7 +15,7 @@ Compare seguros para las operaciones de su negocio en Miami, incluidos restauran
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
 
-[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
+[Cobertura](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una conversación con un dueño de negocio para solicitar seguro comercial en Miami](/media/premium-carousel/commercial/business-owner-conversation-poster.webp)](tel:13059108850)
 
@@ -25,7 +25,7 @@ Cuéntenos sobre su trabajo, local, empleados y vehículos para revisar cobertur
 
 [Llame para cotizar gratis](tel:13059108850)
 
-[![Video de un contratista trabajando para solicitar seguro comercial y responsabilidad civil](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Video de un contratista trabajando para solicitar seguro comercial y responsabilidad civil](/media/premium-carousel/commercial/contractor-work-motion-poster.webp)](tel:13059108850)
 
 ## Revise sus contratos
 
@@ -33,7 +33,7 @@ Traiga los requisitos de seguro de propietarios o clientes antes de solicitar un
 
 [Llame para cotizar gratis](tel:13059108850)
 
-[![Video de un equipo en una obra para solicitudes de certificados y responsabilidad civil](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Video de un equipo en una obra para solicitudes de certificados y responsabilidad civil](/media/premium-carousel/commercial/commercial-jobsite-team-poster.webp)](tel:13059108850)
 
 ## ¿Necesita un certificado de seguro?
 
@@ -41,13 +41,23 @@ Tenga los datos del solicitante y el contrato a mano. Un certificado no modifica
 
 [Llame para cotizar gratis](tel:13059108850)
 
+## Coberturas según su negocio
+
+El trabajo que realiza, sus bienes, vehículos y contratos ayudan a determinar qué pólizas debe revisar.
+
+| Cobertura | Qué revisar |
+| --- | --- |
+| Responsabilidad civil general | Reclamaciones por lesiones y daños a propiedad derivados de operaciones cubiertas; revise trabajos excluidos y endosos exigidos. |
+| Bienes e ingresos del negocio | Equipos, inventario y pérdidas de ingresos que califiquen tras daños materiales cubiertos. Revise aparte inundación y otras exclusiones. |
+| Vehículos y empleados | Revise auto comercial y compensación laboral para vehículos del negocio y lesiones de empleados. La responsabilidad civil general no los sustituye. |
+
 Detalles de cobertura
 
-## Qué revisar antes de elegir
+## Prepare su cotización comercial
 
 ### Responsabilidad civil general
 
-Revise cobertura para ciertas reclamaciones por lesiones a terceros o daños a su propiedad. Compruebe exclusiones, límites y requisitos de asegurados adicionales en sus contratos.
+Traiga los requisitos de seguro de su cliente o arrendador. Revise operaciones cubiertas, exclusiones y cualquier endoso de asegurado adicional antes de depender de un certificado.
 
 ### Seguros para restaurantes y negocios de comida
 
@@ -56,10 +66,6 @@ Para cotizar, describa la cocina, entregas, venta de alcohol, empleados y equipo
 ### Seguros para contratistas
 
 Indique su oficio, trabajos habituales, uso de subcontratistas y vehículos. Revise por separado responsabilidad civil, herramientas y compensación laboral, junto con exclusiones que afecten el trabajo que realiza.
-
-### Contratos y certificados
-
-Traiga los requisitos escritos y la fecha límite del trabajo o alquiler. Un certificado demuestra cobertura existente; no añade endosos ni cambia una póliza para cumplir un requisito sin cobertura.
 
 Cotizaciones gratis
 
@@ -123,4 +129,4 @@ Recursos sobre seguros
 
 Consulte guías de Florida o verifique una licencia de seguros. Para dudas sobre su cobertura, revise su póliza o llámenos.
 
-[Biblioteca para consumidores de seguros de Florida DFS](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)
+[Guía de seguros para pequeños negocios de Florida DFS](https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/small-business-guide.pdf)[Biblioteca para consumidores de seguros de Florida DFS](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Búsqueda de licencias de Florida DFS](https://licenseesearch.fldfs.com/)

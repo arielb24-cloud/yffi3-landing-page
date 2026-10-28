@@ -40,6 +40,27 @@ function markdownForHtml(html, canonicalUrl) {
     headingStyle: "atx"
   });
   turndown.remove(["script", "style", "noscript", "svg", "video", "source", "form", "button"]);
+  turndown.addRule("coverageComparisons", {
+    filter: node => node.nodeName === "TABLE" && node.classList.contains("coverage-comparison"),
+    replacement: (_content, node) => {
+      const rows = Array.from(node.querySelectorAll("tr"), row =>
+        Array.from(row.querySelectorAll("th, td"), cell =>
+          turndown.turndown(cell.innerHTML).replace(/\n+/g, " ").replace(/\|/g, "\\|")
+        )
+      );
+      const caption = node.querySelector("caption");
+      const lines = rows.map(row => `| ${row.join(" | ")} |`);
+      lines.splice(1, 0, `| ${rows[0].map(() => "---").join(" | ")} |`);
+      return `\n\n${caption ? turndown.turndown(caption.innerHTML) + "\n\n" : ""}${lines.join("\n")}\n\n`;
+    }
+  });
+  turndown.addRule("lazyCarouselPosters", {
+    filter: node => node.nodeName === "IMG" && node.hasAttribute("data-poster-src"),
+    replacement: (_content, node) => {
+      const alt = (node.getAttribute("alt") || "").replace(/([\\\[\]])/g, "\\$1");
+      return `![${alt}](${node.getAttribute("data-poster-src")})`;
+    }
+  });
   const body = turndown.turndown(main)
     .replace(/[ \t]+$/gm, "")
     .replace(/\n{3,}/g, "\n\n")

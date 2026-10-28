@@ -7,7 +7,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/"
 
 # Agencia de seguros en Miami
 
-Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3. Visítenos en West Flagler o llame para cotizar gratis en español o inglés.
+Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3 en Miami. Atendemos a clientes en Miami-Dade, Broward y toda Florida, en español e inglés.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
 
@@ -21,7 +21,7 @@ Compare límites de responsabilidad civil, deducibles y coberturas para su vehí
 
 [Ver cobertura](/es/seguro-de-auto/)
 
-[![Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-vivienda/)
+[![Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami](/media/premium-carousel/home/luxury-home-aerial-poster.webp)](/es/seguro-de-vivienda/)
 
 ## Seguro para su vivienda
 
@@ -29,7 +29,7 @@ Revise su vivienda, techo y deducible por huracán. Pregunte por un seguro separ
 
 [Ver cobertura](/es/seguro-de-vivienda/)
 
-[![Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-inquilinos/)
+[![Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami](/media/premium-carousel/home/renters-unpacking-boxes-poster.webp)](/es/seguro-de-inquilinos/)
 
 ## Seguro de inquilinos
 
@@ -37,7 +37,7 @@ Revise la cobertura de sus pertenencias y el límite de responsabilidad civil qu
 
 [Ver cobertura](/es/seguro-de-inquilinos/)
 
-[![Video de un pequeño negocio para solicitar seguro comercial en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-comercial/)
+[![Video de un pequeño negocio para solicitar seguro comercial en Miami](/media/premium-carousel/home/business-office-consultation-poster.webp)](/es/seguro-comercial/)
 
 ## Seguro para negocios
 
@@ -45,7 +45,7 @@ Cuéntenos a qué se dedica su negocio y qué requisitos exigen sus contratos.
 
 [Ver cobertura](/es/seguro-comercial/)
 
-[![Video de un contratista revisando documentos para solicitar responsabilidad civil general](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-comercial/#general-liability-insurance)
+[![Video de un contratista revisando documentos para solicitar responsabilidad civil general](/media/premium-carousel/home/liability-industrial-checklist-poster.webp)](/es/seguro-comercial/#general-liability-insurance)
 
 ## Responsabilidad civil general
 
@@ -53,7 +53,7 @@ Traiga los requisitos de sus contratos para revisar límites y certificados de s
 
 [Ver cobertura](/es/seguro-comercial/#general-liability-insurance)
 
-[![Video de un padre y su hijo en la playa para la planificación de seguro de vida](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/seguro-de-vida/)
+[![Video de un padre y su hijo en la playa para la planificación de seguro de vida](/media/premium-carousel/home/family-beach-child-poster.webp)](/es/seguro-de-vida/)
 
 ## Seguro de vida
 
@@ -61,7 +61,7 @@ Considere cuánto ingreso necesitaría su familia y durante cuánto tiempo.
 
 [Ver cobertura](/es/seguro-de-vida/)
 
-[![Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](/es/sobre-oficina-3/)
+[![Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami](/media/premium-carousel/home/advisor-client-consult-poster.webp)](/es/sobre-oficina-3/)
 
 ## Hablamos español
 
@@ -278,3 +278,9 @@ Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Lunes a viernes d
 Sí. Comience cuando reciba el aviso de renovación para tener tiempo de comparar límites, deducibles y costo total. Antes de cancelar su póliza actual, confirme por escrito la nueva cobertura y su fecha de inicio, incluidos los pagos necesarios.
 
 [Revisar su renovación](/es/recursos-para-clientes/revision-de-renovacion/)
+
+¿Puedo cotizar un seguro si vivo fuera de Miami?
+
+Sí. La Oficina #3 atiende solicitudes de cotización en toda Florida, incluidos Miami-Dade y Broward. Nuestra oficina está en Miami, en 11200 W Flagler St. Puede comenzar por internet o llamar para recibir ayuda en español o inglés; las opciones dependen de su ubicación y solicitud.
+
+[Contacte nuestra oficina en Miami](/es/sobre-oficina-3/)

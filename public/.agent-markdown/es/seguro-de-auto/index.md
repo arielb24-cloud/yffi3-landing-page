@@ -15,7 +15,7 @@ Compare coberturas para su auto, los conductores de su hogar y el uso del vehíc
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
 
-[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
+[Cobertura](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de un automóvil en movimiento por la ciudad para solicitar seguro de auto en Miami](/media/premium-carousel/auto/premium-car-city-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
@@ -25,7 +25,7 @@ Tenga su póliza actual a mano para comparar los mismos límites y deducibles.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video de conducción nocturna para revisar una renovación de seguro de auto en Miami](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video de conducción nocturna para revisar una renovación de seguro de auto en Miami](/media/premium-carousel/auto/night-dashboard-motion-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Subió el precio de su renovación?
 
@@ -33,7 +33,7 @@ Revise la nueva prima, los conductores y las coberturas antes de renovar.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video de tráfico urbano para solicitar seguro de auto para conductores del hogar](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video de tráfico urbano para solicitar seguro de auto para conductores del hogar](/media/premium-carousel/auto/urban-traffic-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Añade un vehículo o conductor?
 
@@ -41,21 +41,23 @@ Díganos quién conduce, dónde guarda el vehículo y si está financiado o arre
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Compare coberturas de auto en Florida
+
+Compare las coberturas que aparecen en la cotización, no solo la etiqueta «cobertura completa».
+
+| Cobertura | Qué revisar |
+| --- | --- |
+| PIP y daños a la propiedad | Florida generalmente exige $10,000 de cada cobertura para vehículos particulares registrados. Estos mínimos no cubren todos los riesgos. |
+| Lesiones corporales y conductores sin seguro | Revise la protección ante reclamaciones por lesiones y lesiones causadas por conductores con seguro insuficiente. Son coberturas distintas. |
+| Colisión y cobertura amplia | Colisión contempla choques; la cobertura amplia puede contemplar robo, viento e inundación. Revise cada deducible y las exclusiones. |
+
 Detalles de cobertura
 
-## Qué revisar antes de elegir
-
-### Preguntas de cobertura para conductores de Miami
-
-Consulte sobre responsabilidad civil, cobertura integral, colisión, conductor sin seguro, deducibles y requisitos que puedan aplicar a su vehículo.
+## Antes de solicitar una cotización de auto
 
 ### Conductores, vehículos y renovaciones
 
 Una revisión puede ayudar al agregar un conductor, comprar o arrendar un vehículo, cambiar su recorrido diario o revisar una renovación.
-
-### Qué conviene preparar
-
-Tenga listo el año, marca y modelo del vehículo, el código postal donde se guarda, la cobertura actual si está disponible y los requisitos del prestamista o arrendador.
 
 ### Cambios en el uso del vehículo
 

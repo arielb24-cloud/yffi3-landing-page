@@ -52,12 +52,14 @@
     }
   },
   "service_areas": [
+    "Florida",
+    "Miami-Dade County",
+    "Broward County",
     "Miami",
     "Sweetwater",
     "Doral",
     "Hialeah",
-    "Kendall",
-    "Florida"
+    "Kendall"
   ],
   "insurance_types": [
     "Auto insurance",

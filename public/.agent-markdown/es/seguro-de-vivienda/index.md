@@ -15,7 +15,7 @@ Revise la cobertura de su vivienda y pertenencias, el deducible por huracán y e
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
 
-[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
+[Cobertura](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una vivienda terminada para solicitar seguro de propietarios en Miami](/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
@@ -25,7 +25,7 @@ Compruebe el costo de reconstrucción, los límites de pertenencias y el deducib
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre](/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Está comprando una vivienda?
 
@@ -33,7 +33,7 @@ Tenga la dirección, la fecha de cierre y los requisitos del prestamista a mano.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video del exterior de una vivienda moderna para revisar una renovación de seguro](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video del exterior de una vivienda moderna para revisar una renovación de seguro](/media/premium-carousel/homeowners/modern-home-exterior-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Antes de renovar su seguro
 
@@ -41,21 +41,23 @@ Revise la nueva prima, la información del techo, las inspecciones y los cambios
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Vivienda, viento e inundación
+
+Una cotización de vivienda requiere comparar más que el precio. Revise cómo se trata cada tipo de daño.
+
+| Cobertura | Qué revisar |
+| --- | --- |
+| Vivienda y pertenencias | Revise límites de reconstrucción y pertenencias, forma de pago y exclusiones. El saldo hipotecario no es un estimado de reconstrucción. |
+| Viento y huracán | Confirme la cobertura de viento y el deducible por huracán en dólares, además de cuándo se aplica. |
+| Inundación | Generalmente requiere una póliza aparte. El seguro de vivienda suele excluir inundaciones por agua que sube del exterior; revise estructura y pertenencias. |
+
 Detalles de cobertura
 
-## Qué revisar antes de elegir
+## Prepare su cotización de vivienda
 
 ### Su vivienda y sus pertenencias
 
 Consulte sobre vivienda, propiedad personal, responsabilidad civil, deducible y gastos adicionales de vivienda que puedan aplicar.
-
-### Cierre y renovación
-
-Solicite ayuda antes de un cierre de bienes raíces, después de mejoras a la propiedad o al revisar una renovación.
-
-### Los detalles de la propiedad importan
-
-La antigüedad, el techo, las mejoras, inspecciones, ocupación, protecciones y cobertura previa pueden influir en la suscripción.
 
 ### Viento e inundación
 

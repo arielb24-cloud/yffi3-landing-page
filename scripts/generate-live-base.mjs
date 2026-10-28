@@ -140,7 +140,7 @@ const address = {
   addressCountry: "US"
 };
 
-const serviceAreas = ["Miami", "Sweetwater", "Doral", "Hialeah", "Kendall", "Florida"];
+const serviceAreas = officeFacts.serviceAreas;
 const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
 const redFlagPhrases = [
   "guaranteed " + "cheapest",
@@ -258,12 +258,12 @@ const tickerItems = [
 const pages = [
   {
     "slug": "",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "nav": "Home",
     "title": "Miami Insurance Agency | Your Family First Insurance Office #3",
     "description": "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish.",
     "h1": "Insurance Agency in Miami",
-    "intro": "Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3. Visit our West Flagler office in Miami or call for a free quote in English or Spanish.",
+    "intro": "Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3 in Miami. We help customers in Miami-Dade, Broward and throughout Florida, in English and Spanish.",
     "kind": "home",
     "keywords": "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     "faqTitle": "Insurance questions in Miami",
@@ -335,10 +335,21 @@ const pages = [
             "/customer-resources/renewal-review/"
           ]
         ]
+      ],
+      [
+        "Can I get an insurance quote outside Miami?",
+        "Yes. Office #3 handles insurance quote inquiries throughout Florida, including Miami-Dade and Broward County. Our office is in Miami at 11200 W Flagler St. You can start online or call for English or Spanish help; available policies depend on your location and application.",
+        [
+          [
+            "Contact our Miami office",
+            "/about-office-3/"
+          ]
+        ]
       ]
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "auto-insurance",
     "nav": "Auto",
     "title": "Auto Insurance in Miami | Free Quote | Office #3",
@@ -351,22 +362,37 @@ const pages = [
     "keywords": "auto insurance Miami, car insurance Miami, Miami auto insurance quote, Florida car insurance, West Flagler auto insurance, Miami-Dade auto insurance, bilingual car insurance help",
     "sections": [
       [
-        "Coverage for your car",
-        "Ask about liability, personal injury protection, collision, comprehensive and uninsured motorist coverage. Compare limits and deductibles as well as the price."
-      ],
-      [
         "Buying or financing a vehicle",
         "Bring the lender or lease requirements and the date you need coverage. Confirm your policy is active before driving the vehicle."
-      ],
-      [
-        "What to have ready",
-        "Have your vehicle year, make and model, garaging ZIP code, current policy and household driver information ready. Provide identification details through the quote service when requested."
       ],
       [
         "Changes to how you drive",
         "Tell us about a new driver, a move, delivery work or rideshare driving. A change in use can affect the coverage you need."
       ]
     ],
+    "detailsHeading": "Before you request an auto quote",
+    "comparison": {
+      "title": "Compare Florida auto coverage",
+      "intro": "Compare the coverages listed in the quote, not a label such as “full coverage”.",
+      "columns": [
+        "Coverage",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "PIP and property damage liability",
+          "Florida generally requires $10,000 of each for registered private passenger vehicles. These do not cover every risk."
+        ],
+        [
+          "Bodily injury and uninsured motorist",
+          "Review protection for injury claims and injuries caused by drivers with inadequate insurance. These are different coverages."
+        ],
+        [
+          "Collision and comprehensive",
+          "Collision addresses crashes; comprehensive can address theft, wind and flood. Check each deductible and exclusions."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Auto insurance questions",
     "faqs": [
@@ -431,6 +457,7 @@ const pages = [
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "home-insurance",
     "nav": "Homeowners",
     "title": "Homeowners Insurance in Miami | Free Quote | Office #3",
@@ -447,18 +474,33 @@ const pages = [
         "Review the cost to rebuild your home, replace belongings and cover eligible temporary living expenses after a covered loss. The purchase price is not the same as rebuilding cost."
       ],
       [
-        "Wind and flood",
-        "Check how your policy treats wind damage and hurricane deductibles. Standard homeowners insurance generally excludes flood; ask about separate flood coverage."
-      ],
-      [
-        "Inspections and roof details",
-        "Have the roof age, updates, prior insurance and any inspection reports ready. The insurer may request additional documentation before offering coverage."
-      ],
-      [
         "Closing or renewing",
         "Share your closing date or renewal deadline and lender requirements. Review the effective date before replacing an existing policy."
       ]
     ],
+    "detailsHeading": "Prepare for your home quote",
+    "comparison": {
+      "title": "Home, wind and flood coverage",
+      "intro": "A home quote needs more than a price comparison. Check how each kind of damage is treated.",
+      "columns": [
+        "Coverage",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "Home and belongings",
+          "Review rebuilding and contents limits, loss settlement and exclusions. The mortgage balance is not a rebuilding estimate."
+        ],
+        [
+          "Wind and hurricane",
+          "Confirm wind coverage and the hurricane deductible in dollars, including when it applies."
+        ],
+        [
+          "Flood",
+          "Usually a separate policy. Standard home insurance generally excludes rising-water flooding; review building and contents coverage."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Home insurance questions",
     "faqs": [
@@ -524,7 +566,7 @@ const pages = [
   },
   {
     "slug": "commercial-insurance",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "nav": "Commercial",
     "title": "Business & General Liability Insurance Miami | Office #3",
     "description": "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3.",
@@ -537,7 +579,7 @@ const pages = [
     "sections": [
       [
         "General liability",
-        "Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions, required limits and any additional insured request in your contracts."
+        "Bring your client’s or landlord’s insurance requirements. Check covered operations, exclusions and any additional-insured endorsement before relying on a certificate."
       ],
       [
         "Restaurant and food business insurance",
@@ -546,12 +588,31 @@ const pages = [
       [
         "Contractor insurance",
         "Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform."
-      ],
-      [
-        "Contracts and certificates",
-        "Bring the written insurance requirements and deadline for the job or lease. A certificate shows existing coverage; it cannot add an endorsement or change a policy to satisfy an uncovered requirement."
       ]
     ],
+    "detailsHeading": "Prepare your business quote",
+    "comparison": {
+      "title": "Match coverage to your business",
+      "intro": "Your work, property, vehicles and contracts help determine which policies to review.",
+      "columns": [
+        "Coverage",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "General liability",
+          "Injury and property-damage claims arising from covered business operations; check excluded work and required endorsements."
+        ],
+        [
+          "Business property and income",
+          "Equipment, stock and qualifying income losses after covered property damage. Flood and other exclusions need separate review."
+        ],
+        [
+          "Work vehicles and employees",
+          "Review commercial auto and workers’ compensation for business vehicles and employee injuries. General liability is not a substitute."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Business insurance questions",
     "faqs": [
@@ -627,7 +688,7 @@ const pages = [
   },
   {
     "slug": "life-insurance",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "nav": "Life",
     "title": "Life Insurance in Miami: Term & Permanent | Office #3",
     "description": "Compare term and permanent life insurance in Miami. Review premiums, coverage amounts and beneficiaries with Office #3 in English or Spanish.",
@@ -639,14 +700,6 @@ const pages = [
     "keywords": "life insurance Miami, term life insurance Miami, final expense insurance Miami, family protection Miami, mortgage protection life insurance, bilingual life insurance help",
     "sections": [
       [
-        "Term life insurance",
-        "Term coverage lasts for a defined period. Consider how long your family may need income replacement or help with a mortgage. Ask what happens to coverage and premiums when the term ends."
-      ],
-      [
-        "Permanent life insurance",
-        "Permanent policies are designed for longer-lasting coverage when policy requirements are met. Some build cash value. Compare the guarantees, ongoing costs and conditions for keeping the policy active."
-      ],
-      [
         "Coverage amount and beneficiaries",
         "Consider income, debts, education and final expenses, then account for savings and existing insurance. Review who should receive the benefit and update beneficiary instructions after family changes."
       ],
@@ -655,12 +708,31 @@ const pages = [
         "Ask which premiums and benefits are guaranteed and which depend on projections. Review application requirements and any health questions through the office or insurer’s application process."
       ]
     ],
+    "detailsHeading": "Plan your life insurance quote",
+    "comparison": {
+      "title": "Compare term and permanent life insurance",
+      "intro": "Compare the written guarantees and ongoing costs before choosing a policy.",
+      "columns": [
+        "Policy type",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "Term life",
+          "Coverage for a set period. Check premiums during the term, renewal pricing and any conversion deadline."
+        ],
+        [
+          "Permanent life",
+          "Designed for long-term coverage when policy requirements are met. Compare guarantees, cash value, charges and the funding needed to keep it active."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Life insurance questions",
     "faqs": [
       [
-        "What is the difference between term and permanent life insurance?",
-        "Term life covers a set period and generally has no cash value. Permanent life is designed for longer-term coverage and may build cash value, depending on the policy. Compare premiums, guarantees and conditions for keeping coverage active, rather than choosing by the label alone."
+        "Can I convert term life insurance to a permanent policy?",
+        "Some term policies include a conversion option. Check the deadline, eligible permanent products and new premium with the insurer. A conversion right is not included in every policy; review the written conditions before your term ends."
       ],
       [
         "How much life insurance do I need?",
@@ -713,12 +785,32 @@ const pages = [
             "https://content.naic.org/consumer/life-insurance.htm"
           ]
         ]
+      ],
+      [
+        "Can life insurance include living benefits?",
+        "Some policies offer an accelerated death benefit for a qualifying illness, subject to the policy or rider. Using it can reduce the death benefit left for beneficiaries. Ask about eligibility, limits and costs; a living benefit is not a general substitute for health insurance.",
+        [
+          [
+            "NAIC explanation of life insurance riders",
+            "https://content.naic.org/consumer/life-insurance.htm"
+          ]
+        ]
+      ],
+      [
+        "Can I request life insurance from Broward or elsewhere in Florida?",
+        "Yes. Our Miami office handles life insurance quote inquiries across Florida, including Broward County. Call 305-910-8850 for English or Spanish help. The insurer determines product availability, eligibility and final terms.",
+        [
+          [
+            "Call about life insurance",
+            "tel:13059108850"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "renters-insurance",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "nav": "Renters",
     "title": "Renters Insurance Quotes in Miami | Office #3",
     "description": "Compare renters insurance quotes for a Miami apartment or rental home. Review lease limits, belongings, deductibles and move-in dates with Office #3.",
@@ -734,18 +826,33 @@ const pages = [
         "Estimate the cost to replace furniture, clothing and electronics. Compare replacement cost with actual cash value, and check separate limits for jewelry or other valuables."
       ],
       [
-        "Liability and temporary housing",
-        "Review personal liability and additional living expenses after a covered loss. Check the limits, deductible and exclusions; the landlord’s building policy does not replace your renters coverage."
-      ],
-      [
         "Your lease and move-in date",
         "Have the rental address, move-in date and written lease requirements ready. Ask the property manager which liability limits and proof of insurance are required before buying a policy."
-      ],
-      [
-        "Compare renters insurance quotes",
-        "Compare the same coverage amounts, deductibles and policy term. Check payment charges and limits as well as price. After a policy is issued, request the proof your landlord needs."
       ]
     ],
+    "detailsHeading": "Before your move-in date",
+    "comparison": {
+      "title": "Compare renters coverage",
+      "intro": "An apartment policy should match your belongings and lease requirements.",
+      "columns": [
+        "Coverage",
+        "What to check"
+      ],
+      "rows": [
+        [
+          "Your belongings",
+          "Compare replacement cost with depreciated value, deductibles and separate limits for valuables."
+        ],
+        [
+          "Personal liability",
+          "Check your lease’s required liability limit and the policy exclusions. The landlord’s property insurance is separate."
+        ],
+        [
+          "Temporary housing",
+          "Loss-of-use coverage may help after a covered loss makes the rental unlivable. It does not pay for every evacuation."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Renters insurance questions",
     "faqs": [
@@ -804,12 +911,13 @@ const pages = [
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "about-office-3",
     "nav": "About",
     "title": "About Office #3 | Your Family First Insurance Miami",
     "description": "Meet Your Family First Insurance Office #3, a local West Flagler Miami agency offering bilingual insurance quote help for families and businesses.",
     "h1": "Meet Your Miami Insurance Office",
-    "intro": "Ariel Busutil owns Your Family First Insurance Office #3 on West Flagler. Our office helps with insurance quotes and policy questions in English and Spanish.",
+    "intro": "Ariel Busutil owns Your Family First Insurance Office #3 on West Flagler in Miami. We help customers throughout Florida with insurance quotes and policy questions in English and Spanish.",
     "kind": "about",
     "faqTitle": "Visiting and contacting Office #3",
     "faqs": [
@@ -825,7 +933,7 @@ const pages = [
       ],
       [
         "Can I get a quote without visiting the office?",
-        "Yes. You can start online or call the office. For business, life, health or coverage not listed in the online form, call so we can discuss what you need. You do not need to visit just to ask for a quote.",
+        "Yes. Our Miami office handles quote inquiries throughout Florida. Start online or call us in English or Spanish. For business, life, health or coverage not listed in the form, call the office; you do not need to visit just to request a quote.",
         [
           [
             "Get a free quote",
@@ -1762,6 +1870,7 @@ const officialResourcesBySlug = {
     ["Florida DFS flood insurance guide", "https://myfloridacfo.com/division/ica/fullcoverage/flood"]
   ],
   "commercial-insurance": [
+    ["Florida DFS small business insurance guide", "https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/small-business-guide.pdf"],
     ["Florida DFS insurance consumer library", "https://www.myfloridacfo.com/division/consumers/understanding-insurance"],
     ["Florida DFS licensee search", "https://licenseesearch.fldfs.com/"]
   ],
@@ -1803,6 +1912,19 @@ function homeBody() {
   `;
 }
 
+function coverageComparison(page) {
+  const comparison = page.comparison;
+  if (!comparison) return "";
+  return `
+    <div class="section-heading"><h2>${escapeHtml(comparison.title)}</h2></div>
+    <table class="coverage-comparison">
+      <caption>${escapeHtml(comparison.intro)}</caption>
+      <thead><tr>${comparison.columns.map(label => `<th scope="col">${escapeHtml(label)}</th>`).join("")}</tr></thead>
+      <tbody>${comparison.rows.map(([label, copy]) => `<tr><th scope="row">${escapeHtml(label)}</th><td>${escapeHtml(copy)}</td></tr>`).join("")}</tbody>
+    </table>
+  `;
+}
+
 function serviceBody(page) {
   const quoteInstructions = {
     "auto-insurance": "Select Auto in the secure form. Have your current policy, driver and vehicle information ready so you can compare the same limits and deductibles.",
@@ -1813,9 +1935,10 @@ function serviceBody(page) {
   };
   return `
     <section class="section service-detail" id="coverage-details" data-reveal>
+      ${coverageComparison(page)}
       <div class="section-heading">
         <p class="kicker">Coverage details</p>
-        <h2>What to Review Before You Choose</h2>
+        <h2>${escapeHtml(page.detailsHeading || "What to Review Before You Choose")}</h2>
       </div>
       <div class="detail-grid">
         ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
@@ -5388,6 +5511,20 @@ h2 { font-size: 2.6rem; line-height: 1.12; }
 .section { width: min(var(--content-width), calc(100% - 2 * var(--page-gutter))); margin-inline: auto; padding-block: var(--section-space); }
 .section-heading { margin-inline: auto; margin-bottom: 28px; }
 .section-heading.center { text-align: center; }
+.coverage-comparison { width: 100%; table-layout: fixed; border-spacing: 0; margin-bottom: 32px; border: 1px solid var(--glass-line); border-radius: 14px; background: rgba(14, 31, 43, .7); overflow-wrap: anywhere; }
+.coverage-comparison caption { padding: 0 0 16px; color: var(--muted); text-align: left; }
+.coverage-comparison th, .coverage-comparison td { padding: 14px; text-align: left; vertical-align: top; }
+.coverage-comparison tr > :first-child { width: 34%; }
+.coverage-comparison thead th { color: var(--champagne); background: rgba(255, 255, 255, .04); }
+.coverage-comparison tbody th, .coverage-comparison td { border-top: 1px solid var(--line); }
+.coverage-comparison td { color: var(--ink-soft); }
+@media (max-width: 600px) {
+  .coverage-comparison thead { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .coverage-comparison tbody, .coverage-comparison tbody tr, .coverage-comparison tbody th, .coverage-comparison td { display: block; width: auto; }
+  .coverage-comparison tr > :first-child { width: auto; }
+  .coverage-comparison tbody th { padding-bottom: 6px; color: var(--champagne); }
+  .coverage-comparison td { border-top: 0; padding-top: 0; }
+}
 .motion-showcase { width: 100%; max-width: 680px; margin-inline: auto; }
 .motion-carousel { width: 100%; padding: 12px; border-radius: 20px; background-color: #0c1d29; }
 .carousel-track { border: 0; background: none; box-shadow: none; border-radius: 12px; align-items: flex-start; }
@@ -5708,7 +5845,8 @@ Phone: ${phoneDisplay}
 Address: ${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}
 Office hours (America/New_York): ${officeFacts.officeHours}
 Florida agency license: ${officeFacts.agencyLicense.number}. Verify: ${officeFacts.agencyLicense.verificationUrl}
-Primary local area: West Flagler Miami and Miami-Dade, Florida
+Miami office: West Flagler, Miami-Dade County, Florida
+Service area: Florida, including Miami-Dade and Broward County. Quote inquiries are handled by Office #3 in Miami.
 Read Google reviews: ${googleMapsUrl}
 Leave a Google review: ${googleReviewUrl}
 

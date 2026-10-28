@@ -15,7 +15,7 @@ Cotice seguro de inquilinos para su apartamento o casa alquilada en Miami. Tenga
 
 [11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
 
-[Coberturas](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
+[Cobertura](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
 
 [![Video de una mudanza a un apartamento para solicitar seguro de inquilinos](/media/premium-carousel/renters/moving-boxes-apartment-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
@@ -25,7 +25,7 @@ Traiga la fecha de mudanza, la dirección y los requisitos de seguro del propiet
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video de una pareja con llaves de apartamento para requisitos de seguro de inquilinos](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video de una pareja con llaves de apartamento para requisitos de seguro de inquilinos](/media/premium-carousel/renters/couple-apartment-keys-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Su contrato exige seguro?
 
@@ -33,7 +33,7 @@ Revise el límite de responsabilidad civil y el texto que debe aparecer en el co
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Video de inquilinos con cajas de mudanza para preguntas sobre cobertura de pertenencias](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video de inquilinos con cajas de mudanza para preguntas sobre cobertura de pertenencias](/media/premium-carousel/renters/move-in-doorway-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## ¿Cuánto costaría reemplazar sus pertenencias?
 
@@ -41,25 +41,27 @@ Incluya muebles, aparatos electrónicos y ropa al elegir su límite de propiedad
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Compare coberturas para inquilinos
+
+La póliza de su apartamento debe ajustarse a sus pertenencias y a los requisitos del contrato de alquiler.
+
+| Cobertura | Qué revisar |
+| --- | --- |
+| Sus pertenencias | Compare costo de reemplazo y valor depreciado, deducibles y límites separados para objetos valiosos. |
+| Responsabilidad civil | Revise el límite de responsabilidad exigido por su contrato y las exclusiones. El seguro del edificio del propietario es aparte. |
+| Alojamiento temporal | La cobertura por pérdida de uso puede ayudar si un daño cubierto deja inhabitable el alquiler. No paga por toda evacuación. |
+
 Detalles de cobertura
 
-## Qué revisar antes de elegir
+## Antes de la mudanza
 
 ### Sus pertenencias y objetos de valor
 
 Calcule cuánto costaría reemplazar muebles, ropa y electrónicos. Compare costo de reemplazo con valor real en efectivo y revise límites especiales para joyas u otros objetos de valor.
 
-### Responsabilidad civil y alojamiento temporal
-
-Revise responsabilidad civil y gastos adicionales de vivienda después de una pérdida cubierta. Compruebe límites, deducible y exclusiones; el seguro del edificio no sustituye su póliza de inquilinos.
-
 ### Su contrato y fecha de mudanza
 
 Tenga la dirección, fecha de mudanza y requisitos escritos del alquiler. Pregunte al administrador qué límites de responsabilidad civil y comprobante exige antes de comprar la póliza.
-
-### Compare cotizaciones de seguro de inquilinos
-
-Compare los mismos montos de cobertura, deducibles y duración de póliza. Revise cargos de pago y límites además del precio. Cuando se emita la póliza, solicite el comprobante que exige el propietario.
 
 Cotizaciones gratis
 

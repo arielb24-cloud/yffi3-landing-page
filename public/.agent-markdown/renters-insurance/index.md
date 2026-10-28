@@ -25,7 +25,7 @@ Bring your move-in date, rental address and your landlord’s insurance requirem
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Couple holding apartment keys video for renters insurance lease requirements](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Couple holding apartment keys video for renters insurance lease requirements](/media/premium-carousel/renters/couple-apartment-keys-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Does Your Lease Require Insurance?
 
@@ -33,7 +33,7 @@ Check the liability limit and any wording your landlord needs on proof of insura
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Renters carrying moving boxes through a doorway video for apartment belongings coverage questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Renters carrying moving boxes through a doorway video for apartment belongings coverage questions](/media/premium-carousel/renters/move-in-doorway-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## What Would Your Belongings Cost to Replace?
 
@@ -41,25 +41,27 @@ Include furniture, electronics and clothing when choosing your personal property
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Compare renters coverage
+
+An apartment policy should match your belongings and lease requirements.
+
+| Coverage | What to check |
+| --- | --- |
+| Your belongings | Compare replacement cost with depreciated value, deductibles and separate limits for valuables. |
+| Personal liability | Check your lease’s required liability limit and the policy exclusions. The landlord’s property insurance is separate. |
+| Temporary housing | Loss-of-use coverage may help after a covered loss makes the rental unlivable. It does not pay for every evacuation. |
+
 Coverage details
 
-## What to Review Before You Choose
+## Before your move-in date
 
 ### Your belongings and valuables
 
 Estimate the cost to replace furniture, clothing and electronics. Compare replacement cost with actual cash value, and check separate limits for jewelry or other valuables.
 
-### Liability and temporary housing
-
-Review personal liability and additional living expenses after a covered loss. Check the limits, deductible and exclusions; the landlord’s building policy does not replace your renters coverage.
-
 ### Your lease and move-in date
 
 Have the rental address, move-in date and written lease requirements ready. Ask the property manager which liability limits and proof of insurance are required before buying a policy.
-
-### Compare renters insurance quotes
-
-Compare the same coverage amounts, deductibles and policy term. Check payment charges and limits as well as price. After a policy is issued, request the proof your landlord needs.
 
 Free quotes
 

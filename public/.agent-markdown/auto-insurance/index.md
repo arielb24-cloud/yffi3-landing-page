@@ -25,7 +25,7 @@ Have your current policy handy to compare the same limits and deductibles.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Night dashboard driving video for Miami auto insurance renewal quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Night dashboard driving video for Miami auto insurance renewal quote help](/media/premium-carousel/auto/night-dashboard-motion-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Is Your Auto Renewal Going Up?
 
@@ -33,7 +33,7 @@ Review the new premium, driver list and coverage before your renewal date.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Moving urban traffic video for household auto insurance quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Moving urban traffic video for household auto insurance quote help](/media/premium-carousel/auto/urban-traffic-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Adding a Car or Driver?
 
@@ -41,21 +41,23 @@ Tell us who drives, where the car is kept and whether it is financed or leased.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Compare Florida auto coverage
+
+Compare the coverages listed in the quote, not a label such as “full coverage”.
+
+| Coverage | What to check |
+| --- | --- |
+| PIP and property damage liability | Florida generally requires $10,000 of each for registered private passenger vehicles. These do not cover every risk. |
+| Bodily injury and uninsured motorist | Review protection for injury claims and injuries caused by drivers with inadequate insurance. These are different coverages. |
+| Collision and comprehensive | Collision addresses crashes; comprehensive can address theft, wind and flood. Check each deductible and exclusions. |
+
 Coverage details
 
-## What to Review Before You Choose
-
-### Coverage for your car
-
-Ask about liability, personal injury protection, collision, comprehensive and uninsured motorist coverage. Compare limits and deductibles as well as the price.
+## Before you request an auto quote
 
 ### Buying or financing a vehicle
 
 Bring the lender or lease requirements and the date you need coverage. Confirm your policy is active before driving the vehicle.
-
-### What to have ready
-
-Have your vehicle year, make and model, garaging ZIP code, current policy and household driver information ready. Provide identification details through the quote service when requested.
 
 ### Changes to how you drive
 

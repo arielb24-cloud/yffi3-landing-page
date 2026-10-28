@@ -9,7 +9,7 @@ About
 
 # Meet Your Miami Insurance Office
 
-Ariel Busutil owns Your Family First Insurance Office #3 on West Flagler. Our office helps with insurance quotes and policy questions in English and Spanish.
+Ariel Busutil owns Your Family First Insurance Office #3 on West Flagler in Miami. We help customers throughout Florida with insurance quotes and policy questions in English and Spanish.
 
 About Office #3
 
@@ -271,7 +271,7 @@ Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, M
 
 Can I get a quote without visiting the office?
 
-Yes. You can start online or call the office. For business, life, health or coverage not listed in the online form, call so we can discuss what you need. You do not need to visit just to ask for a quote.
+Yes. Our Miami office handles quote inquiries throughout Florida. Start online or call us in English or Spanish. For business, life, health or coverage not listed in the form, call the office; you do not need to visit just to request a quote.
 
 [Get a free quote](/get-a-quote/) [Call 305-910-8850](tel:13059108850)
 

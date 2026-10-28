@@ -25,7 +25,7 @@ Tell us about your work, premises, employees and vehicles to discuss coverage.
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Contractor worksite video for commercial insurance and liability quote help](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Contractor worksite video for commercial insurance and liability quote help](/media/premium-carousel/commercial/contractor-work-motion-poster.webp)](tel:13059108850)
 
 ## Check Your Contracts and Lease
 
@@ -33,7 +33,7 @@ Bring any insurance requirements from landlords or customers before requesting a
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Commercial jobsite team video for certificate of insurance and liability quote requests](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Commercial jobsite team video for certificate of insurance and liability quote requests](/media/premium-carousel/commercial/commercial-jobsite-team-poster.webp)](tel:13059108850)
 
 ## Need a Certificate of Insurance?
 
@@ -41,13 +41,23 @@ Have the certificate holder’s details and contract ready. A certificate does n
 
 [Call for a Free Quote](tel:13059108850)
 
+## Match coverage to your business
+
+Your work, property, vehicles and contracts help determine which policies to review.
+
+| Coverage | What to check |
+| --- | --- |
+| General liability | Injury and property-damage claims arising from covered business operations; check excluded work and required endorsements. |
+| Business property and income | Equipment, stock and qualifying income losses after covered property damage. Flood and other exclusions need separate review. |
+| Work vehicles and employees | Review commercial auto and workers’ compensation for business vehicles and employee injuries. General liability is not a substitute. |
+
 Coverage details
 
-## What to Review Before You Choose
+## Prepare your business quote
 
 ### General liability
 
-Review coverage for certain claims involving injuries to others or damage to their property. Check exclusions, required limits and any additional insured request in your contracts.
+Bring your client’s or landlord’s insurance requirements. Check covered operations, exclusions and any additional-insured endorsement before relying on a certificate.
 
 ### Restaurant and food business insurance
 
@@ -56,10 +66,6 @@ For a restaurant or café quote, describe cooking, delivery, alcohol service, em
 ### Contractor insurance
 
 Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform.
-
-### Contracts and certificates
-
-Bring the written insurance requirements and deadline for the job or lease. A certificate shows existing coverage; it cannot add an endorsement or change a policy to satisfy an uncovered requirement.
 
 Free quotes
 
@@ -123,4 +129,4 @@ Insurance resources
 
 Read Florida consumer guides or look up an insurance license. For questions about your own coverage, check your policy or call us.
 
-[Florida DFS insurance consumer library](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
+[Florida DFS small business insurance guide](https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/small-business-guide.pdf)[Florida DFS insurance consumer library](https://www.myfloridacfo.com/division/consumers/understanding-insurance)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)

@@ -25,7 +25,7 @@ Consider income, debts and the expenses your family would need help paying.
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Family coming home video for term life insurance planning questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Family coming home video for term life insurance planning questions](/media/premium-carousel/life/family-coming-home-poster.webp)](tel:13059108850)
 
 ## How Long Do You Need Coverage?
 
@@ -33,7 +33,7 @@ Term life covers a set period. Think about your mortgage and years until your ch
 
 [Call for a Free Quote](tel:13059108850)
 
-[![Family planning documents meeting video for final expense life insurance questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](tel:13059108850)
+[![Family planning documents meeting video for final expense life insurance questions](/media/premium-carousel/life/planning-documents-meeting-poster.webp)](tel:13059108850)
 
 ## Plan for Final Expenses
 
@@ -41,17 +41,18 @@ Discuss funeral costs, outstanding bills and the support you want to leave your 
 
 [Call for a Free Quote](tel:13059108850)
 
+## Compare term and permanent life insurance
+
+Compare the written guarantees and ongoing costs before choosing a policy.
+
+| Policy type | What to check |
+| --- | --- |
+| Term life | Coverage for a set period. Check premiums during the term, renewal pricing and any conversion deadline. |
+| Permanent life | Designed for long-term coverage when policy requirements are met. Compare guarantees, cash value, charges and the funding needed to keep it active. |
+
 Coverage details
 
-## What to Review Before You Choose
-
-### Term life insurance
-
-Term coverage lasts for a defined period. Consider how long your family may need income replacement or help with a mortgage. Ask what happens to coverage and premiums when the term ends.
-
-### Permanent life insurance
-
-Permanent policies are designed for longer-lasting coverage when policy requirements are met. Some build cash value. Compare the guarantees, ongoing costs and conditions for keeping the policy active.
+## Plan your life insurance quote
 
 ### Coverage amount and beneficiaries
 
@@ -73,9 +74,9 @@ FAQ
 
 ## Life insurance questions
 
-What is the difference between term and permanent life insurance?
+Can I convert term life insurance to a permanent policy?
 
-Term life covers a set period and generally has no cash value. Permanent life is designed for longer-term coverage and may build cash value, depending on the policy. Compare premiums, guarantees and conditions for keeping coverage active, rather than choosing by the label alone.
+Some term policies include a conversion option. Check the deadline, eligible permanent products and new premium with the insurer. A conversion right is not included in every policy; review the written conditions before your term ends.
 
 How much life insurance do I need?
 
@@ -108,6 +109,18 @@ What should I compare in a permanent life insurance quote?
 Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Review fees, surrender charges and what happens if premiums are missed. Policies differ; request an explanation of the actual terms before replacing existing coverage.
 
 [NAIC life insurance guide](https://content.naic.org/consumer/life-insurance.htm)
+
+Can life insurance include living benefits?
+
+Some policies offer an accelerated death benefit for a qualifying illness, subject to the policy or rider. Using it can reduce the death benefit left for beneficiaries. Ask about eligibility, limits and costs; a living benefit is not a general substitute for health insurance.
+
+[NAIC explanation of life insurance riders](https://content.naic.org/consumer/life-insurance.htm)
+
+Can I request life insurance from Broward or elsewhere in Florida?
+
+Yes. Our Miami office handles life insurance quote inquiries across Florida, including Broward County. Call 305-910-8850 for English or Spanish help. The insurer determines product availability, eligibility and final terms.
+
+[Call about life insurance](tel:13059108850)
 
 Insurance resources
 

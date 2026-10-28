@@ -25,7 +25,7 @@ Check the amount to rebuild, personal property limits and hurricane deductible.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Luxury home pool aerial video for homeowners insurance before closing](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Luxury home pool aerial video for homeowners insurance before closing](/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Buying a Home?
 
@@ -33,7 +33,7 @@ Have the property address, closing date and lender requirements ready.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
-[![Modern home exterior video for homeowners insurance renewal questions](data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Modern home exterior video for homeowners insurance renewal questions](/media/premium-carousel/homeowners/modern-home-exterior-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
 ## Before Your Home Policy Renews
 
@@ -41,21 +41,23 @@ Review the new premium, roof information, inspections and any coverage changes.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
 
+## Home, wind and flood coverage
+
+A home quote needs more than a price comparison. Check how each kind of damage is treated.
+
+| Coverage | What to check |
+| --- | --- |
+| Home and belongings | Review rebuilding and contents limits, loss settlement and exclusions. The mortgage balance is not a rebuilding estimate. |
+| Wind and hurricane | Confirm wind coverage and the hurricane deductible in dollars, including when it applies. |
+| Flood | Usually a separate policy. Standard home insurance generally excludes rising-water flooding; review building and contents coverage. |
+
 Coverage details
 
-## What to Review Before You Choose
+## Prepare for your home quote
 
 ### Your home and belongings
 
 Review the cost to rebuild your home, replace belongings and cover eligible temporary living expenses after a covered loss. The purchase price is not the same as rebuilding cost.
-
-### Wind and flood
-
-Check how your policy treats wind damage and hurricane deductibles. Standard homeowners insurance generally excludes flood; ask about separate flood coverage.
-
-### Inspections and roof details
-
-Have the roof age, updates, prior insurance and any inspection reports ready. The insurer may request additional documentation before offering coverage.
 
 ### Closing or renewing
 

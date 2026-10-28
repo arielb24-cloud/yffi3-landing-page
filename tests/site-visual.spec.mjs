@@ -1327,6 +1327,9 @@ test("social previews are localized, correctly sized and lightweight on every pa
 });
 
 test("business and life quote actions agree and service navigation reaches useful sections", async ({ page }) => {
+  // Four page loads and twelve smooth-scroll journeys; keep each assertion's
+  // normal deadline while allowing the full batch to complete in Firefox.
+  test.setTimeout(60_000);
   for (const route of ["/commercial-insurance/", "/life-insurance/", "/es/seguro-comercial/", "/es/seguro-de-vida/"]) {
     await page.goto(route, { waitUntil: "networkidle" });
     await expect(page.locator(".header-actions .button.warm")).toHaveAttribute("href", "tel:13059108850");

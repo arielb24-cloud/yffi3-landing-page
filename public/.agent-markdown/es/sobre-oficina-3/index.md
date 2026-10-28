@@ -9,7 +9,7 @@ Nosotros
 
 # Conozca nuestra oficina en Miami
 
-Ariel Busutil es el propietario de Your Family First Insurance Office #3 en West Flagler. Le ayudamos con cotizaciones y preguntas sobre su póliza en inglés y español.
+Ariel Busutil es el dueño de Your Family First Insurance Oficina #3 en West Flagler, Miami. Ayudamos a clientes en toda Florida con cotizaciones y preguntas sobre sus pólizas, en español e inglés.
 
 Sobre la Oficina #3
 
@@ -273,7 +273,7 @@ Your Family First Insurance Oficina #3 está en 11200 W Flagler St, Suite 108-10
 
 ¿Puedo pedir una cotización sin ir a la oficina?
 
-Sí. Puede comenzar por internet o llamar. Para negocios, vida, salud u otra cobertura que no aparezca en el formulario, llame para conversar sobre lo que necesita. No tiene que visitarnos solo para pedir una cotización.
+Sí. Nuestra oficina en Miami atiende solicitudes de cotización en toda Florida. Comience por internet o llame en español o inglés. Para negocios, vida, salud u otra cobertura que no aparezca en el formulario, llame a la oficina; no tiene que visitarnos para pedir una cotización.
 
 [Solicitar cotización gratis](/es/solicitar-cotizacion/) [Llame al 305-910-8850](tel:13059108850)
 

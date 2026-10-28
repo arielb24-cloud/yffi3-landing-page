@@ -47,6 +47,7 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Florida DFS small business insurance guide", "Guía de seguros para pequeños negocios de Florida DFS"],
   ["Renewal Guide", "Guía de renovación"],
   ["Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.", "Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado."],
   ["Florida agency license", "Licencia de agencia de Florida"],
@@ -828,7 +829,12 @@ function addPair(pairs, english, spanish) {
 
 function pagePairs(english, spanish) {
   const pairs = [...globalPairs];
-  ["title", "description", "h1", "intro", "service", "nav"].forEach((key) => addPair(pairs, english[key], spanish[key]));
+  ["title", "description", "h1", "intro", "service", "nav", "detailsHeading"].forEach((key) => addPair(pairs, english[key], spanish[key]));
+  if (english.comparison && spanish.comparison) {
+    for (const key of ["title", "intro"]) addPair(pairs, english.comparison[key], spanish.comparison[key]);
+    english.comparison.columns.forEach((value, index) => addPair(pairs, value, spanish.comparison.columns[index]));
+    english.comparison.rows.forEach((row, index) => row.forEach((value, column) => addPair(pairs, value, spanish.comparison.rows[index]?.[column])));
+  }
   for (const key of ["sections", "searchTopics", "faqs"]) {
     const englishRows = english[key] || [];
     const spanishRows = spanish[key] || [];

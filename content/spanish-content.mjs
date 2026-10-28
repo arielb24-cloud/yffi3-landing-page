@@ -25,7 +25,7 @@ export const spanishToEnglish = Object.fromEntries(
 export const spanishPages = [
   {
     "slug": "es",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "englishSlug": "",
     "nav": "Inicio",
     "locale": "es-US",
@@ -33,7 +33,7 @@ export const spanishPages = [
     "title": "Seguros en Miami | Your Family First Insurance Oficina #3",
     "description": "Cotice seguros de auto, vivienda, inquilinos, negocios y vida en Miami con Your Family First Insurance Oficina #3. Atención en español e inglés en West Flagler.",
     "h1": "Agencia de seguros en Miami",
-    "intro": "Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3. Visítenos en West Flagler o llame para cotizar gratis en español o inglés.",
+    "intro": "Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3 en Miami. Atendemos a clientes en Miami-Dade, Broward y toda Florida, en español e inglés.",
     "faqTitle": "Preguntas sobre seguros en Miami",
     "faqs": [
       [
@@ -103,10 +103,21 @@ export const spanishPages = [
             "/es/recursos-para-clientes/revision-de-renovacion/"
           ]
         ]
+      ],
+      [
+        "¿Puedo cotizar un seguro si vivo fuera de Miami?",
+        "Sí. La Oficina #3 atiende solicitudes de cotización en toda Florida, incluidos Miami-Dade y Broward. Nuestra oficina está en Miami, en 11200 W Flagler St. Puede comenzar por internet o llamar para recibir ayuda en español o inglés; las opciones dependen de su ubicación y solicitud.",
+        [
+          [
+            "Contacte nuestra oficina en Miami",
+            "/about-office-3/"
+          ]
+        ]
       ]
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "es/seguro-de-auto",
     "englishSlug": "auto-insurance",
     "mediaSlug": "auto-insurance",
@@ -121,22 +132,37 @@ export const spanishPages = [
     "intro": "Compare coberturas para su auto, los conductores de su hogar y el uso del vehículo. Revisamos compras, mudanzas y renovaciones.",
     "sections": [
       [
-        "Preguntas de cobertura para conductores de Miami",
-        "Consulte sobre responsabilidad civil, cobertura integral, colisión, conductor sin seguro, deducibles y requisitos que puedan aplicar a su vehículo."
-      ],
-      [
         "Conductores, vehículos y renovaciones",
         "Una revisión puede ayudar al agregar un conductor, comprar o arrendar un vehículo, cambiar su recorrido diario o revisar una renovación."
-      ],
-      [
-        "Qué conviene preparar",
-        "Tenga listo el año, marca y modelo del vehículo, el código postal donde se guarda, la cobertura actual si está disponible y los requisitos del prestamista o arrendador."
       ],
       [
         "Cambios en el uso del vehículo",
         "Avísenos si comienza a hacer entregas, conducir para una aplicación o cambia de domicilio. El uso del auto puede afectar la cobertura que necesita."
       ]
     ],
+    "detailsHeading": "Antes de solicitar una cotización de auto",
+    "comparison": {
+      "title": "Compare coberturas de auto en Florida",
+      "intro": "Compare las coberturas que aparecen en la cotización, no solo la etiqueta «cobertura completa».",
+      "columns": [
+        "Cobertura",
+        "Qué revisar"
+      ],
+      "rows": [
+        [
+          "PIP y daños a la propiedad",
+          "Florida generalmente exige $10,000 de cada cobertura para vehículos particulares registrados. Estos mínimos no cubren todos los riesgos."
+        ],
+        [
+          "Lesiones corporales y conductores sin seguro",
+          "Revise la protección ante reclamaciones por lesiones y lesiones causadas por conductores con seguro insuficiente. Son coberturas distintas."
+        ],
+        [
+          "Colisión y cobertura amplia",
+          "Colisión contempla choques; la cobertura amplia puede contemplar robo, viento e inundación. Revise cada deducible y las exclusiones."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Preguntas sobre el seguro de auto",
     "faqs": [
@@ -201,6 +227,7 @@ export const spanishPages = [
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "es/seguro-de-vivienda",
     "englishSlug": "home-insurance",
     "mediaSlug": "home-insurance",
@@ -219,18 +246,33 @@ export const spanishPages = [
         "Consulte sobre vivienda, propiedad personal, responsabilidad civil, deducible y gastos adicionales de vivienda que puedan aplicar."
       ],
       [
-        "Cierre y renovación",
-        "Solicite ayuda antes de un cierre de bienes raíces, después de mejoras a la propiedad o al revisar una renovación."
-      ],
-      [
-        "Los detalles de la propiedad importan",
-        "La antigüedad, el techo, las mejoras, inspecciones, ocupación, protecciones y cobertura previa pueden influir en la suscripción."
-      ],
-      [
         "Viento e inundación",
         "Revise el deducible por huracán y pregunte por cobertura de inundación. Una póliza estándar de vivienda generalmente no cubre daños por inundación."
       ]
     ],
+    "detailsHeading": "Prepare su cotización de vivienda",
+    "comparison": {
+      "title": "Vivienda, viento e inundación",
+      "intro": "Una cotización de vivienda requiere comparar más que el precio. Revise cómo se trata cada tipo de daño.",
+      "columns": [
+        "Cobertura",
+        "Qué revisar"
+      ],
+      "rows": [
+        [
+          "Vivienda y pertenencias",
+          "Revise límites de reconstrucción y pertenencias, forma de pago y exclusiones. El saldo hipotecario no es un estimado de reconstrucción."
+        ],
+        [
+          "Viento y huracán",
+          "Confirme la cobertura de viento y el deducible por huracán en dólares, además de cuándo se aplica."
+        ],
+        [
+          "Inundación",
+          "Generalmente requiere una póliza aparte. El seguro de vivienda suele excluir inundaciones por agua que sube del exterior; revise estructura y pertenencias."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Preguntas sobre el seguro de vivienda",
     "faqs": [
@@ -296,7 +338,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-de-inquilinos",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "englishSlug": "renters-insurance",
     "mediaSlug": "renters-insurance",
     "nav": "Inquilinos",
@@ -314,18 +356,33 @@ export const spanishPages = [
         "Calcule cuánto costaría reemplazar muebles, ropa y electrónicos. Compare costo de reemplazo con valor real en efectivo y revise límites especiales para joyas u otros objetos de valor."
       ],
       [
-        "Responsabilidad civil y alojamiento temporal",
-        "Revise responsabilidad civil y gastos adicionales de vivienda después de una pérdida cubierta. Compruebe límites, deducible y exclusiones; el seguro del edificio no sustituye su póliza de inquilinos."
-      ],
-      [
         "Su contrato y fecha de mudanza",
         "Tenga la dirección, fecha de mudanza y requisitos escritos del alquiler. Pregunte al administrador qué límites de responsabilidad civil y comprobante exige antes de comprar la póliza."
-      ],
-      [
-        "Compare cotizaciones de seguro de inquilinos",
-        "Compare los mismos montos de cobertura, deducibles y duración de póliza. Revise cargos de pago y límites además del precio. Cuando se emita la póliza, solicite el comprobante que exige el propietario."
       ]
     ],
+    "detailsHeading": "Antes de la mudanza",
+    "comparison": {
+      "title": "Compare coberturas para inquilinos",
+      "intro": "La póliza de su apartamento debe ajustarse a sus pertenencias y a los requisitos del contrato de alquiler.",
+      "columns": [
+        "Cobertura",
+        "Qué revisar"
+      ],
+      "rows": [
+        [
+          "Sus pertenencias",
+          "Compare costo de reemplazo y valor depreciado, deducibles y límites separados para objetos valiosos."
+        ],
+        [
+          "Responsabilidad civil",
+          "Revise el límite de responsabilidad exigido por su contrato y las exclusiones. El seguro del edificio del propietario es aparte."
+        ],
+        [
+          "Alojamiento temporal",
+          "La cobertura por pérdida de uso puede ayudar si un daño cubierto deja inhabitable el alquiler. No paga por toda evacuación."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Preguntas sobre el seguro de inquilinos",
     "faqs": [
@@ -385,7 +442,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-comercial",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "englishSlug": "commercial-insurance",
     "mediaSlug": "commercial-insurance",
     "nav": "Comercial",
@@ -400,7 +457,7 @@ export const spanishPages = [
     "sections": [
       [
         "Responsabilidad civil general",
-        "Revise cobertura para ciertas reclamaciones por lesiones a terceros o daños a su propiedad. Compruebe exclusiones, límites y requisitos de asegurados adicionales en sus contratos."
+        "Traiga los requisitos de seguro de su cliente o arrendador. Revise operaciones cubiertas, exclusiones y cualquier endoso de asegurado adicional antes de depender de un certificado."
       ],
       [
         "Seguros para restaurantes y negocios de comida",
@@ -409,12 +466,31 @@ export const spanishPages = [
       [
         "Seguros para contratistas",
         "Indique su oficio, trabajos habituales, uso de subcontratistas y vehículos. Revise por separado responsabilidad civil, herramientas y compensación laboral, junto con exclusiones que afecten el trabajo que realiza."
-      ],
-      [
-        "Contratos y certificados",
-        "Traiga los requisitos escritos y la fecha límite del trabajo o alquiler. Un certificado demuestra cobertura existente; no añade endosos ni cambia una póliza para cumplir un requisito sin cobertura."
       ]
     ],
+    "detailsHeading": "Prepare su cotización comercial",
+    "comparison": {
+      "title": "Coberturas según su negocio",
+      "intro": "El trabajo que realiza, sus bienes, vehículos y contratos ayudan a determinar qué pólizas debe revisar.",
+      "columns": [
+        "Cobertura",
+        "Qué revisar"
+      ],
+      "rows": [
+        [
+          "Responsabilidad civil general",
+          "Reclamaciones por lesiones y daños a propiedad derivados de operaciones cubiertas; revise trabajos excluidos y endosos exigidos."
+        ],
+        [
+          "Bienes e ingresos del negocio",
+          "Equipos, inventario y pérdidas de ingresos que califiquen tras daños materiales cubiertos. Revise aparte inundación y otras exclusiones."
+        ],
+        [
+          "Vehículos y empleados",
+          "Revise auto comercial y compensación laboral para vehículos del negocio y lesiones de empleados. La responsabilidad civil general no los sustituye."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Preguntas sobre el seguro para negocios",
     "faqs": [
@@ -490,7 +566,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-de-vida",
-    "modifiedDate": "2026-10-27",
+    "modifiedDate": "2026-10-28",
     "englishSlug": "life-insurance",
     "mediaSlug": "life-insurance",
     "nav": "Vida",
@@ -504,14 +580,6 @@ export const spanishPages = [
     "intro": "Compare seguros de vida a término y permanentes con nuestra oficina de Miami. Considere los ingresos, hipoteca, deudas o gastos familiares que desea cubrir y una prima que pueda mantener.",
     "sections": [
       [
-        "Seguro de vida a término",
-        "Cubre un período definido. Considere por cuánto tiempo su familia podría necesitar reemplazar ingresos o pagar la hipoteca. Pregunte qué ocurre con la cobertura y la prima cuando termina el plazo."
-      ],
-      [
-        "Seguro de vida permanente",
-        "Está diseñado para cobertura de mayor duración si se cumplen las condiciones de la póliza. Algunas pólizas acumulan valor en efectivo. Compare garantías, costos y requisitos para mantener la cobertura vigente."
-      ],
-      [
         "Monto de cobertura y beneficiarios",
         "Considere ingresos, deudas, educación y gastos finales, y reste los ahorros y seguros existentes. Revise quién recibirá el beneficio y actualice los beneficiarios después de cambios familiares."
       ],
@@ -520,12 +588,31 @@ export const spanishPages = [
         "Pregunte qué primas y beneficios están garantizados y cuáles dependen de proyecciones. Revise los requisitos y preguntas de salud mediante el proceso de solicitud de la oficina o aseguradora."
       ]
     ],
+    "detailsHeading": "Prepare su cotización de vida",
+    "comparison": {
+      "title": "Compare seguros de vida a término y permanentes",
+      "intro": "Compare las garantías por escrito y los costos continuos antes de elegir una póliza.",
+      "columns": [
+        "Tipo de póliza",
+        "Qué revisar"
+      ],
+      "rows": [
+        [
+          "Vida a término",
+          "Cobertura por un plazo definido. Revise primas durante el plazo, precio de renovación y fecha límite de cualquier opción de conversión."
+        ],
+        [
+          "Vida permanente",
+          "Diseñada para cobertura a largo plazo cuando se cumplen las condiciones. Compare garantías, valor en efectivo, cargos y pagos necesarios para mantenerla vigente."
+        ]
+      ]
+    },
     "searchTopics": [],
     "faqTitle": "Preguntas sobre el seguro de vida",
     "faqs": [
       [
-        "¿Qué diferencia hay entre seguro de vida a término y permanente?",
-        "El seguro a término cubre un período definido y generalmente no acumula valor en efectivo. El permanente está diseñado para cobertura de mayor duración y puede acumular valor, según la póliza. Compare primas, garantías y condiciones para mantenerlo vigente, no solo el nombre del producto."
+        "¿Puedo convertir un seguro de vida a término en una póliza permanente?",
+        "Algunas pólizas a término incluyen una opción de conversión. Confirme con la aseguradora la fecha límite, los productos permanentes permitidos y la nueva prima. No todas las pólizas la incluyen; revise las condiciones escritas antes de que termine el plazo."
       ],
       [
         "¿Cuánto seguro de vida necesito?",
@@ -578,10 +665,31 @@ export const spanishPages = [
             "https://content.naic.org/consumer/life-insurance.htm"
           ]
         ]
+      ],
+      [
+        "¿Puede un seguro de vida incluir beneficios en vida?",
+        "Algunas pólizas ofrecen un beneficio por fallecimiento anticipado ante una enfermedad que califique, sujeto a la póliza o cláusula adicional. Usarlo puede reducir lo que recibirán los beneficiarios. Pregunte por requisitos, límites y costos; no sustituye en general un seguro de salud.",
+        [
+          [
+            "Explicación de la NAIC sobre cláusulas adicionales de vida",
+            "https://content.naic.org/consumer/life-insurance.htm"
+          ]
+        ]
+      ],
+      [
+        "¿Puedo cotizar un seguro de vida desde Broward u otra parte de Florida?",
+        "Sí. Nuestra oficina en Miami atiende solicitudes de seguros de vida en toda Florida, incluido Broward. Llame al 305-910-8850 para recibir atención en español o inglés. La aseguradora determina disponibilidad, elegibilidad y condiciones finales.",
+        [
+          [
+            "Llame para consultar sobre seguros de vida",
+            "tel:13059108850"
+          ]
+        ]
       ]
     ]
   },
   {
+    "modifiedDate": "2026-10-28",
     "slug": "es/sobre-oficina-3",
     "englishSlug": "about-office-3",
     "nav": "Nosotros",
@@ -590,7 +698,7 @@ export const spanishPages = [
     "title": "Sobre la Oficina #3 | Your Family First Insurance Miami",
     "description": "Conozca Your Family First Insurance Office #3, una oficina local de West Flagler que ofrece ayuda bilingüe con cotizaciones de seguros.",
     "h1": "Conozca nuestra oficina en Miami",
-    "intro": "Ariel Busutil es el propietario de Your Family First Insurance Office #3 en West Flagler. Le ayudamos con cotizaciones y preguntas sobre su póliza en inglés y español.",
+    "intro": "Ariel Busutil es el dueño de Your Family First Insurance Oficina #3 en West Flagler, Miami. Ayudamos a clientes en toda Florida con cotizaciones y preguntas sobre sus pólizas, en español e inglés.",
     "faqTitle": "Visitas y contacto con la Oficina #3",
     "faqs": [
       [
@@ -605,7 +713,7 @@ export const spanishPages = [
       ],
       [
         "¿Puedo pedir una cotización sin ir a la oficina?",
-        "Sí. Puede comenzar por internet o llamar. Para negocios, vida, salud u otra cobertura que no aparezca en el formulario, llame para conversar sobre lo que necesita. No tiene que visitarnos solo para pedir una cotización.",
+        "Sí. Nuestra oficina en Miami atiende solicitudes de cotización en toda Florida. Comience por internet o llame en español o inglés. Para negocios, vida, salud u otra cobertura que no aparezca en el formulario, llame a la oficina; no tiene que visitarnos para pedir una cotización.",
         [
           [
             "Solicitar cotización gratis",
