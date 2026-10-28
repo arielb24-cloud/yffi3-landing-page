@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import TurndownService from 'turndown';
 const routes=['/auto-insurance/','/home-insurance/','/renters-insurance/','/commercial-insurance/','/life-insurance/','/es/seguro-de-auto/','/es/seguro-de-vivienda/','/es/seguro-de-inquilinos/','/es/seguro-comercial/','/es/seguro-de-vida/'];
 test.beforeEach(async ({page})=>{await page.route('https://www.googletagmanager.com/gtm.js**',route=>route.fulfill({body:''}));});
 for(const route of routes) test(`coverage comparison is readable and localized ${route}`,async({page},info)=>{
@@ -50,5 +51,22 @@ test('AI-readable Markdown preserves comparison rows and real poster URLs',async
     expect(text).toContain('| --- | --- |');
     expect(text).toContain('/media/carousel/life/');
     expect(text).not.toContain('data:image');
+  }
+});
+
+test('visible FAQ answers and links match schema on every page',async({request},info)=>{
+  test.skip(info.project.name!=='chromium','HTTP content check is independent of browser engine.');
+  const converter=new TurndownService();
+  const plain=value=>converter.turndown(value).replace(/\s+/g,' ').trim();
+  const sitemap=await(await request.get('/sitemap.xml')).text();
+  for(const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)){
+    const route=new URL(match[1]).pathname;
+    const html=await(await request.get(route)).text();
+    const main=plain(html.match(/<main[^>]*>([\s\S]*?)<\/main>/)[1]);
+    const nodes=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const x=JSON.parse(m[1]);return x['@graph']||[x]});
+    for(const question of nodes.find(x=>x['@type']==='FAQPage')?.mainEntity||[]){
+      expect(main,route+' '+question.name).toContain(plain(question.name));
+      expect(main,route+' '+question.name).toContain(plain(question.acceptedAnswer.text));
+    }
   }
 });

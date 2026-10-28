@@ -110,7 +110,7 @@ export const spanishPages = [
         [
           [
             "Contacte nuestra oficina en Miami",
-            "/about-office-3/"
+            "/es/sobre-oficina-3/"
           ]
         ]
       ]
