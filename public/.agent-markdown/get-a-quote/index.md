@@ -55,7 +55,7 @@ Have your current coverage summary, the details of what you want to insure and y
 
 Can I request business, life or health insurance here?
 
-Call Office #3 for business, life, health or an insurance type not shown in the online form. We can discuss your needs and explain the next application steps in English or Spanish.
+Call Office #3 for business, commercial auto, trucking, life, health or an insurance type not shown in the online form. The personal auto form is not the trucking quote path. We can discuss your needs and explain the next application steps in English or Spanish.
 
 [Call 305-910-8850](tel:13059108850)
 

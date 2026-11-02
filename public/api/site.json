@@ -74,7 +74,11 @@
     "General liability insurance",
     "Workers' compensation insurance",
     "Life insurance",
-    "Health insurance"
+    "Health insurance",
+    "Commercial auto insurance",
+    "Trucking insurance",
+    "Individual and family health insurance",
+    "Employer group health insurance"
   ],
   "pages": {
     "home": "https://yourfamilyfirstinsurance3.com/",
@@ -82,6 +86,7 @@
     "homeowners": "https://yourfamilyfirstinsurance3.com/home-insurance/",
     "renters": "https://yourfamilyfirstinsurance3.com/renters-insurance/",
     "commercial": "https://yourfamilyfirstinsurance3.com/commercial-insurance/",
+    "trucking": "https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance",
     "life": "https://yourfamilyfirstinsurance3.com/life-insurance/",
     "about": "https://yourfamilyfirstinsurance3.com/about-office-3/",
     "quote_help": "https://yourfamilyfirstinsurance3.com/get-a-quote/",

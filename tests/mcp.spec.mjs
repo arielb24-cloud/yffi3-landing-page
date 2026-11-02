@@ -174,3 +174,26 @@ test("Google tag startup waits for initial paint, keeps queued events and matche
   expect(window.dataLayer.filter((entry) => entry.event).map((entry) => entry.event)).toEqual(["gtm.js", "quote_start"]);
   expect(Array.from(window.dataLayer[0]).slice(0, 2)).toEqual(["consent", "default"]);
 });
+
+test("commercial truck lookups reach business guidance and the phone quote path", async ({ request }, testInfo) => {
+  test.skip(testInfo.project.name !== "chromium", "The public lookup contract is transport-independent.");
+  for (const category of ["trucking", "truck", "CDL", "commercial auto"]) {
+    const response = await request.post("/mcp", {
+      headers: { Accept: "application/json, text/event-stream", "Content-Type": "application/json" },
+      data: { jsonrpc: "2.0", id: 10, method: "tools/call", params: { name: "find_insurance_service", arguments: { category } } }
+    });
+    expect(response.status()).toBe(200);
+    const result = (await response.json()).result;
+    expect(result.isError).toBe(false);
+    expect(result.structuredContent.url).toBe("https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance");
+  }
+  for (const [route, title] of [["/commercial-insurance/", "Commercial auto and trucking"], ["/es/seguro-comercial/", "Auto comercial y seguro de camiones"]]) {
+    const html = await (await request.get(route)).text();
+    expect(html).toContain('id="trucking-insurance"');
+    expect(html).toContain(title);
+    expect(html).toContain('href="tel:13059108850"');
+  }
+  const facts = await (await request.get("/api/site.json")).json();
+  expect(facts.insurance_types).toEqual(expect.arrayContaining(["Trucking insurance", "Commercial auto insurance", "Individual and family health insurance"]));
+  expect(facts.pages.trucking).toBe("https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance");
+});

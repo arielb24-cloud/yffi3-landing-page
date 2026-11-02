@@ -55,7 +55,7 @@ Tenga a mano el resumen de sus coberturas, los detalles de lo que quiere asegura
 
 ¿Puedo solicitar aquí seguro de negocios, vida o salud?
 
-Llame a la Oficina #3 para negocios, vida, salud u otro tipo de seguro que no aparezca en el formulario. Podemos conversar sobre lo que necesita y explicar los pasos de solicitud en español o inglés.
+Llame a la Oficina #3 para seguros de negocios, auto comercial, camiones, vida, salud u otro tipo que no aparezca en el formulario. El formulario de auto particular no es la vía para cotizar camiones. Podemos conversar sobre sus necesidades y explicar los próximos pasos en español o inglés.
 
 [Llame al 305-910-8850](tel:13059108850)
 

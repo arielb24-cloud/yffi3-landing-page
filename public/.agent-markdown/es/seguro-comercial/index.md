@@ -1,6 +1,6 @@
 ---
 title: "Seguro comercial y responsabilidad civil en Miami | Oficina #3"
-description: "Cotice seguro comercial en Miami para contratistas, restaurantes y pequeños negocios. Revise responsabilidad civil, vehículos de trabajo y certificados."
+description: "Cotice seguros comerciales, responsabilidad civil y camiones en Miami. Llame a la Oficina #3 sobre contratistas, restaurantes, vehículos comerciales y conductores con CDL."
 language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"
 ---
@@ -9,7 +9,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-comercial/"
 
 # Seguro para negocios en Miami
 
-Compare seguros para las operaciones de su negocio en Miami, incluidos restaurantes y contratistas. Traiga los requisitos del contrato o alquiler para revisar responsabilidad civil, propiedad, vehículos y necesidades de sus empleados.
+Compare seguros comerciales y responsabilidad civil para su negocio en Miami, además de auto comercial y camiones para propietarios-operadores y empresas de transporte. Cuéntenos sobre su trabajo, vehículos, conductores y requisitos de contratos. Atendemos en español e inglés en toda Florida.
 
 [Llame para cotizar gratis](tel:13059108850) [Comparar coberturas](#coverage-details)
 
@@ -57,15 +57,15 @@ Detalles de cobertura
 
 ### Responsabilidad civil general
 
-Traiga los requisitos de seguro de su cliente o arrendador. Revise operaciones cubiertas, exclusiones y cualquier endoso de asegurado adicional antes de depender de un certificado.
+Para contratistas, restaurantes y otros negocios, revise operaciones cubiertas, exclusiones, límites y requisitos de asegurado adicional. Traiga los requisitos escritos de su cliente o arrendador; un certificado no agrega cobertura.
 
 ### Seguros para restaurantes y negocios de comida
 
-Para cotizar, describa la cocina, entregas, venta de alcohol, empleados y equipos. Revise propiedad, responsabilidad civil e ingresos del negocio; una sola póliza puede no cubrir toda la operación.
+Para cotizar un restaurante o café, describa cocina, entregas, servicio de alcohol, empleados y equipos. Revise propiedad, responsabilidad civil e ingresos del negocio; una póliza puede no cubrir todas las operaciones.
 
-### Seguros para contratistas
+### Auto comercial y seguro de camiones
 
-Indique su oficio, trabajos habituales, uso de subcontratistas y vehículos. Revise por separado responsabilidad civil, herramientas y compensación laboral, junto con exclusiones que afecten el trabajo que realiza.
+Llámenos sobre vehículos de trabajo, propietarios-operadores y negocios de transporte de Florida con conductores CDL. Describa quién conduce el camión, rutas y carga, y si trabaja con autoridad operativa propia o de otra empresa. Las coberturas y los trámites dependen de la operación.
 
 Cotizaciones gratis
 
@@ -128,6 +128,22 @@ Llame a la Oficina #3 con su oficio, tipos de trabajos, ingresos estimados, nóm
 No. La responsabilidad civil general y la compensación laboral cubren riesgos distintos. La compensación laboral puede pagar gastos médicos y parte de los salarios por lesiones laborales cubiertas de empleados. Los requisitos de Florida dependen de la actividad, el número de empleados y las exenciones aplicables. Revise su personal y el uso de subcontratistas; no suponga que la responsabilidad civil cumple esos requisitos.
 
 [Guía de compensación laboral de Florida](https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage)
+
+¿Qué necesito para cotizar seguro de camiones en Miami?
+
+Llame con el nombre del negocio, números USDOT y MC si corresponden, camiones, conductores, dirección donde guarda los vehículos, rutas y tipo de carga. Indique si opera con autoridad propia o bajo otra empresa. Tenga los requisitos del intermediario de carga, cliente o contrato de arrendamiento; pregunte cómo compartir documentos de forma segura.
+
+[Consultar sobre seguro de camiones](tel:13059108850)
+
+¿Tener una CDL determina qué seguro de camión necesito?
+
+La licencia CDL por sí sola no determina el seguro necesario. Un conductor empleado, un propietario-operador contratado por una empresa y un negocio con autoridad operativa propia pueden tener responsabilidades distintas. Revise el vehículo, trabajo, contratos y cualquier cobertura de la empresa de transporte antes de suponer que necesita la misma póliza que otro conductor.
+
+¿La responsabilidad civil general cubre mi camión comercial y la carga?
+
+La responsabilidad civil general no sustituye el seguro de responsabilidad del vehículo comercial, daños a su propio camión ni seguro de carga transportada. Cubren riesgos distintos y tienen condiciones propias. Los trámites exigidos dependen de la operación; una cotización por sí sola no activa seguro ni autoridad operativa.
+
+[Requisitos de seguros y trámites de FMCSA](https://www.fmcsa.dot.gov/registration/insurance-filing-requirements)
 
 Recursos sobre seguros
 

@@ -7,7 +7,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/"
 
 # Agencia de seguros en Miami
 
-Compare seguros de auto, vivienda, inquilinos, negocios y vida con Your Family First Insurance Oficina #3 en Miami. Atendemos a clientes en Miami-Dade, Broward y toda Florida, en español e inglés.
+Your Family First Insurance Oficina #3 en Miami ayuda a negocios y conductores a comparar seguros comerciales, responsabilidad civil, auto y camiones. También atendemos consultas sobre vivienda, inquilinos, vida y salud en toda Florida, en español e inglés.
 
 [Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
 
@@ -77,11 +77,29 @@ Elija lo que necesita asegurar. Vea las opciones de cobertura y cómo solicitar 
 
 [
 
+### Seguro para negocios
+
+Revise su local, equipos y los riesgos de su actividad.
+
+](/es/seguro-comercial/)[
+
 ### Seguro de auto
 
 Compare límites y deducibles para su vehículo, conductores y uso diario.
 
 ](/es/seguro-de-auto/)[
+
+### Seguro de responsabilidad civil general
+
+Revise protección ante ciertos reclamos de terceros por lesiones y daños a la propiedad.
+
+](/es/seguro-comercial/#general-liability-insurance)[
+
+### Seguro de camiones
+
+Consulte sobre camiones comerciales, conductores CDL, carga y requisitos de propietarios-operadores.
+
+](/es/seguro-comercial/#trucking-insurance)[
 
 ### Seguro para propietarios
 
@@ -95,27 +113,15 @@ Revise cobertura para pérdidas cubiertas de sus pertenencias, responsabilidad c
 
 ](/es/seguro-de-inquilinos/)[
 
-### Seguro comercial
-
-Revise responsabilidad civil, propiedad, vehículos de trabajo, empleados y requisitos de contratos.
-
-](/es/seguro-comercial/)[
-
 ### Seguro de vida
 
 Planifique los ingresos, deudas y gastos que su familia podría afrontar sin usted.
 
 ](/es/seguro-de-vida/)[
 
-### Seguro de responsabilidad civil general
-
-Revise protección ante ciertos reclamos de terceros por lesiones y daños a la propiedad.
-
-](/es/seguro-comercial/#general-liability-insurance)[
-
 ### Seguro de salud
 
-Llame para consultar planes disponibles, fechas de inscripción y datos necesarios para solicitar cobertura.
+Consulte sobre planes de salud individuales, familiares y para empleados, y las fechas de inscripción.
 
 ](tel:13059108850)
 
@@ -257,7 +263,7 @@ Tenga a mano el resumen de su póliza actual, la fecha de renovación y las cobe
 
 ¿Qué tipos de seguro puedo consultar?
 
-Consulte sobre seguros de auto, vivienda, inquilinos, negocios, responsabilidad civil general, vida o salud. La póliza adecuada depende de sus bienes, de quién depende de usted y de los requisitos de sus contratos. Cuéntenos qué necesita para revisar las opciones disponibles.
+Nuestra oficina se enfoca en consultas de seguros para negocios, auto comercial, auto particular, responsabilidad civil general y camiones. También puede preguntar por vivienda, inquilinos, vida y salud. Díganos qué necesita asegurar, dónde está ubicado y qué exigen sus contratos para revisar las opciones disponibles.
 
 [Comparar tipos de seguro](/es/#coverage-title)
 
@@ -284,3 +290,9 @@ Sí. Comience cuando reciba el aviso de renovación para tener tiempo de compara
 Sí. Atendemos consultas de cotización en toda Florida, incluidos Doral, Hialeah, Kendall y Sweetwater en Miami-Dade, además de Broward. Nuestra oficina está en 11200 W Flagler St, Miami. Puede cotizar por internet o llamar para recibir ayuda en español o inglés; las pólizas disponibles dependen de su ubicación y solicitud.
 
 [Contacte nuestra oficina en Miami](/es/sobre-oficina-3/)
+
+¿Puedo consultar sobre seguro de salud individual, familiar o para empleados?
+
+Sí. Llame a la Oficina #3 al 305-910-8850 sobre seguro de salud individual, familiar o de grupo para empleados, en español o inglés. La disponibilidad y las oportunidades de inscripción varían. Revise la red de proveedores, medicamentos cubiertos y costos totales antes de elegir; comparta datos de la solicitud o médicos solo por un medio seguro aprobado.
+
+[Consultar sobre seguro de salud](tel:13059108850) [Guía de HealthCare.gov para comparar planes](https://www.healthcare.gov/choose-a-plan/comparing-plans/)

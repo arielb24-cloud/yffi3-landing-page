@@ -16,6 +16,11 @@ const SERVICE_PAGES = Object.freeze({
   renters: "/renters-insurance/",
   renter: "/renters-insurance/",
   commercial: "/commercial-insurance/",
+  "commercial auto": "/commercial-insurance/#trucking-insurance",
+  trucking: "/commercial-insurance/#trucking-insurance",
+  truck: "/commercial-insurance/#trucking-insurance",
+  cdl: "/commercial-insurance/#trucking-insurance",
+  health: "/#health-insurance",
   business: "/commercial-insurance/",
   liability: "/commercial-insurance/",
   life: "/life-insurance/"
@@ -31,7 +36,7 @@ export const TOOLS = Object.freeze([
       properties: {
         category: {
           type: "string",
-          description: "Insurance category such as auto, homeowners, renters, commercial, business, liability, or life."
+          description: "Insurance category such as auto, homeowners, renters, commercial, trucking, CDL, business, liability, health, or life."
         }
       },
       required: ["category"],
@@ -108,7 +113,7 @@ function callTool(name, args) {
       return {
         content: [{
           type: "text",
-          text: "Unsupported category. Use auto, homeowners, renters, commercial, business, liability, or life."
+          text: "Unsupported category. Use auto, homeowners, renters, commercial, trucking, CDL, business, liability, health, or life."
         }],
         isError: true
       };

@@ -141,7 +141,7 @@ const address = {
 };
 
 const serviceAreas = officeFacts.serviceAreas;
-const insuranceTypes = ["Auto insurance", "Home insurance", "Homeowners insurance", "Renters insurance", "Flood insurance", "Motorcycle insurance", "Boat insurance", "RV insurance", "Commercial insurance", "General liability insurance", "Business insurance", "Workers compensation", "Life insurance", "Health insurance"];
+const insuranceTypes = [...new Set([...officeFacts.insuranceTypes, "Home insurance", "Workers compensation"])];
 const redFlagPhrases = [
   "guaranteed " + "cheapest",
   "official " + "cheapest " + "insurance",
@@ -157,36 +157,6 @@ const redFlagPhrases = [
 
 const serviceCards = [
   {
-    id: "auto-insurance",
-    title: "Auto Insurance",
-    short: "Auto",
-    icon: "car",
-    href: "/auto-insurance/",
-    copy: "Compare limits and deductibles for your vehicle, drivers and daily use.",
-    tags: ["Car insurance Miami", "Family vehicles", "Renewal review"],
-    accent: "rgba(154, 220, 247, 0.30)"
-  },
-  {
-    id: "home-insurance",
-    title: "Homeowners Insurance",
-    short: "Homeowners",
-    icon: "home",
-    href: "/home-insurance/",
-    copy: "Review protection for your home and belongings, plus wind, flood and lender requirements.",
-    tags: ["Miami-Dade homes", "Roof details", "Lender needs"],
-    accent: "rgba(134, 207, 160, 0.30)"
-  },
-  {
-    id: "life-insurance",
-    title: "Life Insurance",
-    short: "Life",
-    icon: "heart",
-    href: "/life-insurance/",
-    copy: "Plan for income, debts and expenses your family may face without you.",
-    tags: ["Term life", "Income needs", "Final expense"],
-    accent: "rgba(255, 161, 132, 0.30)"
-  },
-  {
     id: "business-insurance",
     title: "Business Insurance",
     short: "Business",
@@ -197,14 +167,14 @@ const serviceCards = [
     accent: "rgba(244, 201, 107, 0.30)"
   },
   {
-    id: "renters-insurance",
-    title: "Renters Insurance",
-    short: "Renters",
-    icon: "key",
-    href: "/renters-insurance/",
-    copy: "Cover eligible losses to belongings and review personal liability and lease requirements.",
-    tags: ["Miami apartments", "Belongings", "Lease proof"],
-    accent: "rgba(119, 231, 220, 0.26)"
+    id: "auto-insurance",
+    title: "Auto Insurance",
+    short: "Auto",
+    icon: "car",
+    href: "/auto-insurance/",
+    copy: "Compare limits and deductibles for your vehicle, drivers and daily use.",
+    tags: ["Car insurance Miami", "Family vehicles", "Renewal review"],
+    accent: "rgba(154, 220, 247, 0.30)"
   },
   {
     id: "general-liability-insurance",
@@ -218,13 +188,43 @@ const serviceCards = [
   },
   {
     id: "commercial-insurance",
-    title: "Commercial Insurance",
-    short: "Commercial",
+    title: "Trucking Insurance",
+    short: "Trucking",
     icon: "shield",
-    href: "/commercial-insurance/",
-    copy: "Review liability, property, work vehicles, employees and contract requirements.",
-    tags: ["Contractors", "Fleets", "Small business"],
+    href: "/commercial-insurance/#trucking-insurance",
+    copy: "Discuss commercial trucks, CDL drivers, cargo and owner-operator requirements.",
+    tags: ["CDL drivers", "Owner-operators", "Motor carriers"],
     accent: "rgba(244, 201, 107, 0.28)"
+  },
+  {
+    id: "home-insurance",
+    title: "Homeowners Insurance",
+    short: "Homeowners",
+    icon: "home",
+    href: "/home-insurance/",
+    copy: "Review protection for your home and belongings, plus wind, flood and lender requirements.",
+    tags: ["Miami-Dade homes", "Roof details", "Lender needs"],
+    accent: "rgba(134, 207, 160, 0.30)"
+  },
+  {
+    id: "renters-insurance",
+    title: "Renters Insurance",
+    short: "Renters",
+    icon: "key",
+    href: "/renters-insurance/",
+    copy: "Cover eligible losses to belongings and review personal liability and lease requirements.",
+    tags: ["Miami apartments", "Belongings", "Lease proof"],
+    accent: "rgba(119, 231, 220, 0.26)"
+  },
+  {
+    id: "life-insurance",
+    title: "Life Insurance",
+    short: "Life",
+    icon: "heart",
+    href: "/life-insurance/",
+    copy: "Plan for income, debts and expenses your family may face without you.",
+    tags: ["Term life", "Income needs", "Final expense"],
+    accent: "rgba(255, 161, 132, 0.30)"
   },
   {
     id: "health-insurance",
@@ -232,8 +232,8 @@ const serviceCards = [
     short: "Health",
     icon: "health",
     href: phoneHref,
-    copy: "Call to ask about available plans, enrollment timing and information needed to apply.",
-    tags: ["Families", "Self-employed", "Benefit questions"],
+    copy: "Ask about individual, family and employer health plans and enrollment timing.",
+    tags: ["Individuals", "Families", "Employers"],
     accent: "rgba(134, 207, 160, 0.30)"
   }
 ];
@@ -263,7 +263,7 @@ const pages = [
     "title": "Miami Insurance Agency | Your Family First Insurance Office #3",
     "description": "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish.",
     "h1": "Insurance Agency in Miami",
-    "intro": "Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3 in Miami. We help customers in Miami-Dade, Broward and throughout Florida, in English and Spanish.",
+    "intro": "Your Family First Insurance Office #3 in Miami helps businesses and drivers compare commercial, general liability, auto and trucking insurance. We also handle home, renters, life and health insurance inquiries across Florida, in English and Spanish.",
     "kind": "home",
     "keywords": "Miami insurance agency, Your Family First Insurance Office #3, West Flagler insurance office, auto insurance Miami, homeowners insurance Miami, renters insurance Miami, general liability insurance Miami, life insurance Miami, health insurance Miami, commercial insurance Miami, bilingual insurance Miami",
     "faqTitle": "Insurance questions in Miami",
@@ -298,7 +298,7 @@ const pages = [
       ],
       [
         "What types of insurance can I ask about?",
-        "Ask about auto, home, renters, business, general liability, life or health insurance. The right policy depends on what you own, who depends on you and any coverage your contracts require. Tell us your needs so we can check available options.",
+        "Our office focuses on business, commercial auto, personal auto, general liability and trucking insurance inquiries. You can also ask about home, renters, life and health coverage. Tell us what you need to insure, where it is located and any contract requirements so we can check available options.",
         [
           [
             "Compare insurance types",
@@ -343,6 +343,20 @@ const pages = [
           [
             "Contact our Miami office",
             "/about-office-3/"
+          ]
+        ]
+      ],
+      [
+        "Can I ask about individual, family or employer health insurance?",
+        "Yes. Call Office #3 at 305-910-8850 about individual, family or employer/group health coverage in English or Spanish. Plan availability and enrollment opportunities vary. Review the provider network, prescription coverage and total costs before choosing a plan; share application or medical details only through an approved secure process.",
+        [
+          [
+            "Call about health insurance",
+            "tel:13059108850"
+          ],
+          [
+            "HealthCare.gov plan comparison guidance",
+            "https://www.healthcare.gov/choose-a-plan/comparing-plans/"
           ]
         ]
       ]
@@ -435,9 +449,13 @@ const pages = [
         "Comprehensive coverage generally addresses damage from flooding, theft, fire and wind, subject to your policy and deductible. PIP and property damage liability alone do not pay to repair your own car after a flood. Check whether comprehensive is included before a storm threatens."
       ],
       [
-        "Do I need to disclose delivery driving or rideshare work?",
-        "Yes. Tell us if you deliver goods, carry paying passengers or use the car for business. A personal auto policy may exclude that use or leave gaps. Review the actual work you do before choosing a policy or starting a new driving job.",
+        "Does personal car insurance cover deliveries, rideshare or commercial truck driving?",
+        "Tell us how the vehicle is used before choosing insurance. Deliveries, carrying paying passengers and commercial trucking can need different coverage from personal driving. A CDL does not make a personal auto policy suitable for trucking. Call to review your actual work and any coverage supplied by an employer or motor carrier.",
         [
+          [
+            "Review commercial auto and trucking",
+            "/commercial-insurance/#trucking-insurance"
+          ],
           [
             "Call 305-910-8850",
             "tel:13059108850"
@@ -587,9 +605,9 @@ const pages = [
     "modifiedDate": "2026-11-02",
     "nav": "Commercial",
     "title": "Business & General Liability Insurance Miami | Office #3",
-    "description": "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3.",
+    "description": "Business, general liability and trucking insurance quote help in Miami. Call Office #3 about contractors, restaurants, commercial vehicles and CDL owner-operators.",
     "h1": "Business Insurance in Miami",
-    "intro": "Get help comparing business insurance for your Miami operations, including restaurants and contractors. Bring your contract or lease requirements so we can review liability, property, work vehicles and employee-related needs.",
+    "intro": "Compare commercial and general liability insurance for your Miami business, plus commercial auto and trucking coverage for owner-operators and motor carriers. Tell us about your work, vehicles, drivers and contract requirements. We help in English and Spanish throughout Florida.",
     "kind": "service",
     "service": "Commercial Insurance",
     "icon": "shield",
@@ -597,15 +615,15 @@ const pages = [
     "sections": [
       [
         "General liability",
-        "Bring your client’s or landlord’s insurance requirements. Check covered operations, exclusions and any additional-insured endorsement before relying on a certificate."
+        "For contractors, restaurants and other businesses, review covered operations, exclusions, limits and any additional-insured requirement. Bring your client’s or landlord’s written requirements; a certificate cannot add coverage."
       ],
       [
         "Restaurant and food business insurance",
         "For a restaurant or café quote, describe cooking, delivery, alcohol service, employees and equipment. Discuss property, liability and business income needs; one policy may not cover every part of the operation."
       ],
       [
-        "Contractor insurance",
-        "Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform."
+        "Commercial auto and trucking",
+        "Call about work vehicles, owner-operators and Florida-based trucking businesses with CDL drivers. Describe who operates the truck, its routes and cargo, and whether you work under your own authority or another carrier’s. Coverage and filings depend on the operation."
       ]
     ],
     "detailsHeading": "Prepare your business quote",
@@ -709,6 +727,30 @@ const pages = [
           [
             "Florida workers’ compensation guidance",
             "https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage"
+          ]
+        ]
+      ],
+      [
+        "What do I need for a trucking insurance quote in Miami?",
+        "Call with your business name, USDOT and MC numbers if applicable, trucks, drivers, garaging address, routes and cargo type. Tell us whether you operate under your own authority or are leased to another carrier. Have insurance requirements from brokers, shippers or your lease ready; ask how to share documents securely.",
+        [
+          [
+            "Call about trucking insurance",
+            "tel:13059108850"
+          ]
+        ]
+      ],
+      [
+        "Does having a CDL determine which truck insurance I need?",
+        "A CDL alone does not determine the insurance needed. An employee driver, an owner-operator leased to a carrier and a business operating under its own authority can have different responsibilities. Review the vehicle, actual work, contracts and any coverage provided by the motor carrier before assuming you need the same policy as another driver."
+      ],
+      [
+        "Does general liability cover my commercial truck and cargo?",
+        "General liability does not replace commercial auto liability, coverage for damage to your own truck, or motor truck cargo coverage. These address different risks and policy terms. Filing requirements also depend on the type of operation; a quote alone does not activate insurance or operating authority.",
+        [
+          [
+            "FMCSA insurance filing requirements",
+            "https://www.fmcsa.dot.gov/registration/insurance-filing-requirements"
           ]
         ]
       ]
@@ -1038,7 +1080,7 @@ const pages = [
       ],
       [
         "Can I request business, life or health insurance here?",
-        "Call Office #3 for business, life, health or an insurance type not shown in the online form. We can discuss your needs and explain the next application steps in English or Spanish.",
+        "Call Office #3 for business, commercial auto, trucking, life, health or an insurance type not shown in the online form. The personal auto form is not the trucking quote path. We can discuss your needs and explain the next application steps in English or Spanish.",
         [
           [
             "Call 305-910-8850",
@@ -1777,7 +1819,7 @@ function aboutPreview() {
 }
 
 function homeServiceCards() {
-  const order = ["auto-insurance", "home-insurance", "renters-insurance", "commercial-insurance", "life-insurance", "general-liability-insurance", "health-insurance"];
+  const order = ["business-insurance", "auto-insurance", "general-liability-insurance", "commercial-insurance", "home-insurance", "renters-insurance", "life-insurance", "health-insurance"];
   return serviceCards.filter((card) => order.includes(card.id)).sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
 }
 
@@ -1793,7 +1835,7 @@ function coverageCards() {
         ${homeServiceCards().map((card) => `
           <a class="coverage-card" id="${card.id}" href="${card.href}" style="--card-accent: ${card.accent || "rgba(154, 220, 247, 0.26)"}" data-reveal>
             <span class="soft-icon">${iconSvg(card.icon)}</span>
-            <div>${card.id === "commercial-insurance" ? '<span id="business-insurance"></span>' : ""}<h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.copy)}</p></div>
+            <div><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.copy)}</p></div>
             ${iconSvg("arrow")}
           </a>
         `).join("")}
@@ -1974,7 +2016,7 @@ function serviceBody(page) {
         <h2>${escapeHtml(page.detailsHeading || "What to Review Before You Choose")}</h2>
       </div>
       <div class="detail-grid">
-        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : page.slug === "commercial-insurance" && title === "Commercial auto and trucking" ? ' id="trucking-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
     <section class="section service-cta" id="quote-next" data-reveal>
@@ -2088,7 +2130,7 @@ function policyholderBody(page) {
         <p>Call us for help with the items below. Report new claims directly to your insurer.</p>
       </div>
       <div class="detail-grid">
-        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : page.slug === "commercial-insurance" && title === "Commercial auto and trucking" ? ' id="trucking-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
     ${policyholderResourceCards(page)}
@@ -2106,7 +2148,7 @@ function customerResourceBody(page) {
         <p>Use these steps to prepare your questions and documents. Your policy and insurer determine what is covered.</p>
       </div>
       <div class="detail-grid">
-        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : page.slug === "commercial-insurance" && title === "Commercial auto and trucking" ? ' id="trucking-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg("shield")}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
     ${policyholderSourcePanel(page)}

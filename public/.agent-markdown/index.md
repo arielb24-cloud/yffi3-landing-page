@@ -7,7 +7,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/"
 
 # Insurance Agency in Miami
 
-Compare auto, home, renters, business and life insurance with Your Family First Insurance Office #3 in Miami. We help customers in Miami-Dade, Broward and throughout Florida, in English and Spanish.
+Your Family First Insurance Office #3 in Miami helps businesses and drivers compare commercial, general liability, auto and trucking insurance. We also handle home, renters, life and health insurance inquiries across Florida, in English and Spanish.
 
 [Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 
@@ -77,11 +77,29 @@ Choose what you need to insure. See coverage options and how to request a quote.
 
 [
 
+### Business Insurance
+
+Review your premises, equipment and daily business risks.
+
+](/commercial-insurance/)[
+
 ### Auto Insurance
 
 Compare limits and deductibles for your vehicle, drivers and daily use.
 
 ](/auto-insurance/)[
+
+### General Liability Insurance
+
+Review protection against certain injury and property damage claims from others.
+
+](/commercial-insurance/#general-liability-insurance)[
+
+### Trucking Insurance
+
+Discuss commercial trucks, CDL drivers, cargo and owner-operator requirements.
+
+](/commercial-insurance/#trucking-insurance)[
 
 ### Homeowners Insurance
 
@@ -95,27 +113,15 @@ Cover eligible losses to belongings and review personal liability and lease requ
 
 ](/renters-insurance/)[
 
-### Commercial Insurance
-
-Review liability, property, work vehicles, employees and contract requirements.
-
-](/commercial-insurance/)[
-
 ### Life Insurance
 
 Plan for income, debts and expenses your family may face without you.
 
 ](/life-insurance/)[
 
-### General Liability Insurance
-
-Review protection against certain injury and property damage claims from others.
-
-](/commercial-insurance/#general-liability-insurance)[
-
 ### Health Insurance
 
-Call to ask about available plans, enrollment timing and information needed to apply.
+Ask about individual, family and employer health plans and enrollment timing.
 
 ](tel:13059108850)
 
@@ -255,7 +261,7 @@ Have your current policy summary, renewal date and the coverage you want to comp
 
 What types of insurance can I ask about?
 
-Ask about auto, home, renters, business, general liability, life or health insurance. The right policy depends on what you own, who depends on you and any coverage your contracts require. Tell us your needs so we can check available options.
+Our office focuses on business, commercial auto, personal auto, general liability and trucking insurance inquiries. You can also ask about home, renters, life and health coverage. Tell us what you need to insure, where it is located and any contract requirements so we can check available options.
 
 [Compare insurance types](/#coverage-title)
 
@@ -282,3 +288,9 @@ Do you serve Miami-Dade, Broward and the rest of Florida?
 Yes. We handle insurance quote inquiries throughout Florida. That includes Doral, Hialeah, Kendall and Sweetwater in Miami-Dade, as well as Broward County. Our office is at 11200 W Flagler St in Miami. Request a quote online or call for English or Spanish help; policy availability depends on your location and application.
 
 [Contact our Miami office](/about-office-3/)
+
+Can I ask about individual, family or employer health insurance?
+
+Yes. Call Office #3 at 305-910-8850 about individual, family or employer/group health coverage in English or Spanish. Plan availability and enrollment opportunities vary. Review the provider network, prescription coverage and total costs before choosing a plan; share application or medical details only through an approved secure process.
+
+[Call about health insurance](tel:13059108850) [HealthCare.gov plan comparison guidance](https://www.healthcare.gov/choose-a-plan/comparing-plans/)

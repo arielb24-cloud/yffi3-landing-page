@@ -101,11 +101,11 @@ Para la mayoría de los vehículos particulares registrados en Florida, los requ
 
 La cobertura integral generalmente contempla daños por inundación, robo, incendio y viento, según la póliza y el deducible. PIP y responsabilidad por daños a la propiedad, por sí solos, no pagan la reparación de su propio auto tras una inundación. Revise si tiene cobertura integral antes de una tormenta.
 
-¿Debo informar si hago entregas o trabajo en transporte por aplicación?
+¿El seguro particular cubre entregas, pasajeros de pago o un camión comercial?
 
-Sí. Avise si hace entregas, transporta pasajeros por pago o utiliza el auto para trabajar. Una póliza personal puede excluir ese uso o dejar vacíos de cobertura. Revise el trabajo que realiza antes de elegir una póliza o comenzar una nueva actividad.
+Explique cómo usa el vehículo antes de elegir seguro. Las entregas, el transporte de pasajeros que pagan y los camiones comerciales pueden requerir coberturas distintas al uso particular. Tener CDL no convierte una póliza particular en seguro de camiones. Llame para revisar su trabajo y cualquier cobertura de su empleador o empresa de transporte.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Revisar auto comercial y seguro de camiones](/es/seguro-comercial/#trucking-insurance) [Llame al 305-910-8850](tel:13059108850)
 
 ¿Puedo cambiar de seguro de auto sin quedarme sin cobertura?
 

@@ -117,6 +117,7 @@ const publicSiteMetadata = {
     homeowners: `${siteUrl}/home-insurance/`,
     renters: `${siteUrl}/renters-insurance/`,
     commercial: `${siteUrl}/commercial-insurance/`,
+    trucking: `${siteUrl}/commercial-insurance/#trucking-insurance`,
     life: `${siteUrl}/life-insurance/`,
     about: `${siteUrl}/about-office-3/`,
     quote_help: `${siteUrl}/get-a-quote/`,

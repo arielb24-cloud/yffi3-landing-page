@@ -101,11 +101,11 @@ Does car insurance cover flood or hurricane damage to my car?
 
 Comprehensive coverage generally addresses damage from flooding, theft, fire and wind, subject to your policy and deductible. PIP and property damage liability alone do not pay to repair your own car after a flood. Check whether comprehensive is included before a storm threatens.
 
-Do I need to disclose delivery driving or rideshare work?
+Does personal car insurance cover deliveries, rideshare or commercial truck driving?
 
-Yes. Tell us if you deliver goods, carry paying passengers or use the car for business. A personal auto policy may exclude that use or leave gaps. Review the actual work you do before choosing a policy or starting a new driving job.
+Tell us how the vehicle is used before choosing insurance. Deliveries, carrying paying passengers and commercial trucking can need different coverage from personal driving. A CDL does not make a personal auto policy suitable for trucking. Call to review your actual work and any coverage supplied by an employer or motor carrier.
 
-[Call 305-910-8850](tel:13059108850)
+[Review commercial auto and trucking](/commercial-insurance/#trucking-insurance) [Call 305-910-8850](tel:13059108850)
 
 Can I switch car insurance without a gap in coverage?
 

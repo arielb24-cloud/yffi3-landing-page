@@ -1,6 +1,6 @@
 ---
 title: "Business & General Liability Insurance Miami | Office #3"
-description: "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3."
+description: "Business, general liability and trucking insurance quote help in Miami. Call Office #3 about contractors, restaurants, commercial vehicles and CDL owner-operators."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/commercial-insurance/"
 ---
@@ -9,7 +9,7 @@ canonical: "https://yourfamilyfirstinsurance3.com/commercial-insurance/"
 
 # Business Insurance in Miami
 
-Get help comparing business insurance for your Miami operations, including restaurants and contractors. Bring your contract or lease requirements so we can review liability, property, work vehicles and employee-related needs.
+Compare commercial and general liability insurance for your Miami business, plus commercial auto and trucking coverage for owner-operators and motor carriers. Tell us about your work, vehicles, drivers and contract requirements. We help in English and Spanish throughout Florida.
 
 [Call for a Free Quote](tel:13059108850) [Compare Coverage](#coverage-details)
 
@@ -57,15 +57,15 @@ Coverage details
 
 ### General liability
 
-Bring your client’s or landlord’s insurance requirements. Check covered operations, exclusions and any additional-insured endorsement before relying on a certificate.
+For contractors, restaurants and other businesses, review covered operations, exclusions, limits and any additional-insured requirement. Bring your client’s or landlord’s written requirements; a certificate cannot add coverage.
 
 ### Restaurant and food business insurance
 
 For a restaurant or café quote, describe cooking, delivery, alcohol service, employees and equipment. Discuss property, liability and business income needs; one policy may not cover every part of the operation.
 
-### Contractor insurance
+### Commercial auto and trucking
 
-Tell us your trade, typical jobs, subcontractor use and work-vehicle needs. Review general liability, tools and workers’ compensation separately, along with any exclusions affecting the work you actually perform.
+Call about work vehicles, owner-operators and Florida-based trucking businesses with CDL drivers. Describe who operates the truck, its routes and cargo, and whether you work under your own authority or another carrier’s. Coverage and filings depend on the operation.
 
 Free quotes
 
@@ -128,6 +128,22 @@ Does general liability include workers’ compensation?
 No. General liability and workers’ compensation address different risks. Workers’ compensation can provide medical and wage-loss benefits for covered work-related employee injuries. Florida requirements depend on the industry, employee count and applicable exemptions. Review your actual workforce and subcontractor arrangements rather than assuming a general liability policy meets those requirements.
 
 [Florida workers’ compensation guidance](https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage)
+
+What do I need for a trucking insurance quote in Miami?
+
+Call with your business name, USDOT and MC numbers if applicable, trucks, drivers, garaging address, routes and cargo type. Tell us whether you operate under your own authority or are leased to another carrier. Have insurance requirements from brokers, shippers or your lease ready; ask how to share documents securely.
+
+[Call about trucking insurance](tel:13059108850)
+
+Does having a CDL determine which truck insurance I need?
+
+A CDL alone does not determine the insurance needed. An employee driver, an owner-operator leased to a carrier and a business operating under its own authority can have different responsibilities. Review the vehicle, actual work, contracts and any coverage provided by the motor carrier before assuming you need the same policy as another driver.
+
+Does general liability cover my commercial truck and cargo?
+
+General liability does not replace commercial auto liability, coverage for damage to your own truck, or motor truck cargo coverage. These address different risks and policy terms. Filing requirements also depend on the type of operation; a quote alone does not activate insurance or operating authority.
+
+[FMCSA insurance filing requirements](https://www.fmcsa.dot.gov/registration/insurance-filing-requirements)
 
 Insurance resources
 

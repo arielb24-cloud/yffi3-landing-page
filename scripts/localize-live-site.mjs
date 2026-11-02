@@ -47,6 +47,15 @@ const carouselSpanish = {
 };
 
 const globalPairs = [
+  ["Trucking Insurance", "Seguro de camiones"],
+  ["Discuss commercial trucks, CDL drivers, cargo and owner-operator requirements.", "Consulte sobre camiones comerciales, conductores CDL, carga y requisitos de propietarios-operadores."],
+  ["Ask about individual, family and employer health plans and enrollment timing.", "Consulte sobre planes de salud individuales, familiares y para empleados, y las fechas de inscripción."],
+  ["CDL drivers", "Conductores CDL"],
+  ["Owner-operators", "Propietarios-operadores"],
+  ["Motor carriers", "Empresas de transporte"],
+  ["Individuals", "Personas"],
+  ["Employers", "Empleadores"],
+
   ["Florida DFS small business insurance guide", "Guía de seguros para pequeños negocios de Florida DFS"],
   ["Renewal Guide", "Guía de renovación"],
   ["Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.", "Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado."],
@@ -1012,6 +1021,7 @@ function localizedJsonLdBlock(whole, spanishPage) {
         "Commercial Insurance": "Seguro comercial",
         "Life Insurance": "Seguro de vida",
         "Health Insurance": "Seguro de salud",
+        "Trucking Insurance": "Seguro de camiones",
         "Flood Insurance": "Seguro contra inundaciones",
         "Motorcycle Insurance": "Seguro de motocicleta",
         "Boat Insurance": "Seguro para embarcaciones",
@@ -1049,7 +1059,8 @@ function localizedJsonLdBlock(whole, spanishPage) {
         const names = {
           "Auto Insurance": "Seguro de auto", "Homeowners Insurance": "Seguro para propietarios", "Renters Insurance": "Seguro de inquilinos",
           "General Liability Insurance": "Seguro de responsabilidad civil general", "Business Insurance": "Seguro para negocios", "Commercial Insurance": "Seguro comercial",
-          "Life Insurance": "Seguro de vida", "Health Insurance": "Seguro de salud", "Flood Insurance": "Seguro contra inundaciones",
+          "Life Insurance": "Seguro de vida", "Health Insurance": "Seguro de salud",
+        "Trucking Insurance": "Seguro de camiones", "Flood Insurance": "Seguro contra inundaciones",
           "Motorcycle Insurance": "Seguro de motocicleta", "Boat Insurance": "Seguro para embarcaciones", "RV Insurance": "Seguro para vehículos recreativos",
           "Workers' Compensation": "Compensación laboral"
         };

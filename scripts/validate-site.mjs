@@ -152,9 +152,11 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes("mobile-call")) failures.push("home missing mobile phone call chip");
   if (slug === "" && !html.includes("Get My Free Quote")) failures.push("home missing quote CTA");
   if (slug === "" && !html.includes("trust-ticker")) failures.push("home missing header trust ticker");
-  if (slug === "" && countMatches(html, /class="coverage-card"/g) !== 7) failures.push("home must show seven distinct insurance services");
+  if (slug === "" && countMatches(html, /class="coverage-card"/g) !== 8) failures.push("home must show eight distinct insurance services");
   if (slug === "" && !html.includes('id="general-liability-insurance"')) failures.push("home missing General Liability coverage card");
   if (slug === "" && !html.includes('id="health-insurance"')) failures.push("home missing Health Insurance coverage card");
+  if (slug === "" && !html.includes('id="business-insurance"')) failures.push("home missing Business Insurance coverage card");
+  if (slug === "" && !html.includes('id="commercial-insurance" href="/commercial-insurance/#trucking-insurance"')) failures.push("home trucking card must link to the commercial trucking section");
   if (slug === "" && !html.includes('id="google-reviews"')) failures.push("home missing Google reviews trust section");
   if (slug === "" && !html.includes(googleReviewUrl)) failures.push("home Google review CTA must use the Office #3 URL");
   if (slug === "about-office-3" && !html.includes("/assets/yffi3/google-review-qr.png")) failures.push("office page missing Google review QR asset");
