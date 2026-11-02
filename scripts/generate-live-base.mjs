@@ -2015,7 +2015,7 @@ function serviceBody(page) {
         <p class="kicker">Coverage details</p>
         <h2>${escapeHtml(page.detailsHeading || "What to Review Before You Choose")}</h2>
       </div>
-      <div class="detail-grid">
+      <div class="detail-grid${page.slug === "commercial-insurance" ? " business-coverage" : ""}">
         ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : page.slug === "commercial-insurance" && title === "Commercial auto and trucking" ? ' id="trucking-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
@@ -5783,6 +5783,12 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
 .trust-line a { display: inline; color: inherit; text-decoration: none; text-underline-offset: 4px; }
 .trust-line a:hover, .trust-line a:focus-visible { text-decoration: underline; }
 .trust-line .icon { display: inline-block; width: 15px; height: 15px; margin-left: 4px; vertical-align: middle; }
+@media (min-width: 700px) and (max-width: 1099px) {
+  .business-coverage #trucking-insurance { grid-column: 1 / -1; }
+}
+@media (min-width: 1100px) {
+  .business-coverage { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 #coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 160px; }
 .quote-handoff-card > p { margin: 0; line-height: 1.55; }
 .quote-handoff-card .quote-destination-note { font-size: .86rem; color: var(--ink-soft); }
