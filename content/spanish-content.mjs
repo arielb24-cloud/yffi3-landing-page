@@ -25,7 +25,7 @@ export const spanishToEnglish = Object.fromEntries(
 export const spanishPages = [
   {
     "slug": "es",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "englishSlug": "",
     "nav": "Inicio",
     "locale": "es-US",
@@ -105,8 +105,8 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Puedo cotizar un seguro si vivo fuera de Miami?",
-        "Sí. La Oficina #3 atiende solicitudes de cotización en toda Florida, incluidos Miami-Dade y Broward. Nuestra oficina está en Miami, en 11200 W Flagler St. Puede comenzar por internet o llamar para recibir ayuda en español o inglés; las opciones dependen de su ubicación y solicitud.",
+        "¿Atienden en Miami-Dade, Broward y el resto de Florida?",
+        "Sí. Atendemos consultas de cotización en toda Florida, incluidos Doral, Hialeah, Kendall y Sweetwater en Miami-Dade, además de Broward. Nuestra oficina está en 11200 W Flagler St, Miami. Puede cotizar por internet o llamar para recibir ayuda en español o inglés; las pólizas disponibles dependen de su ubicación y solicitud.",
         [
           [
             "Contacte nuestra oficina en Miami",
@@ -117,7 +117,7 @@ export const spanishPages = [
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "es/seguro-de-auto",
     "englishSlug": "auto-insurance",
     "mediaSlug": "auto-insurance",
@@ -164,10 +164,20 @@ export const spanishPages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Preguntas sobre el seguro de auto",
+    "faqTitle": "Preguntas sobre seguros de carro en Miami",
     "faqs": [
       [
-        "¿Cuánto cuesta el seguro de auto en Miami?",
+        "¿Cómo pido una cotización de seguro de carro en Miami?",
+        "Your Family First Insurance Oficina #3 ofrece cotizaciones gratis de seguro de auto por internet o al 305-910-8850, en español e inglés. Seleccione Auto en el formulario seguro. Tenga a mano su cobertura actual, los datos de conductores y vehículos, el uso del carro y la fecha de inicio deseada. Ingrese los datos personales solo en la solicitud segura.",
+        [
+          [
+            "Cotizar seguro de carro",
+            "/es/solicitar-cotizacion/"
+          ]
+        ]
+      ],
+      [
+        "¿Cuánto cuesta el seguro de carro en Miami?",
         "No hay un precio único para todos los conductores de Miami. El vehículo, los conductores, el historial de manejo, la dirección, el uso del auto y las coberturas influyen en la cotización. Compare el costo total para el mismo período, los límites, deducibles, pago inicial y cargos por cuotas.",
         [
           [
@@ -195,16 +205,6 @@ export const spanishPages = [
         "La cobertura integral generalmente contempla daños por inundación, robo, incendio y viento, según la póliza y el deducible. PIP y responsabilidad por daños a la propiedad, por sí solos, no pagan la reparación de su propio auto tras una inundación. Revise si tiene cobertura integral antes de una tormenta."
       ],
       [
-        "¿Qué información necesito para cotizar el seguro de auto?",
-        "Le preguntarán por sus vehículos, conductores del hogar, historial de manejo, dirección, uso del auto y seguro actual. Tenga a mano el resumen de sus coberturas para comparar. Complete los datos personales en la solicitud segura; este sitio no recopila licencias ni números de identificación del vehículo.",
-        [
-          [
-            "Solicitar cotización gratis",
-            "/es/solicitar-cotizacion/"
-          ]
-        ]
-      ],
-      [
         "¿Debo informar si hago entregas o trabajo en transporte por aplicación?",
         "Sí. Avise si hace entregas, transporta pasajeros por pago o utiliza el auto para trabajar. Una póliza personal puede excluir ese uso o dejar vacíos de cobertura. Revise el trabajo que realiza antes de elegir una póliza o comenzar una nueva actividad.",
         [
@@ -223,11 +223,15 @@ export const spanishPages = [
             "/es/recursos-para-clientes/revision-de-renovacion/"
           ]
         ]
+      ],
+      [
+        "¿Cómo comparo seguros de carro baratos en Miami?",
+        "Compare los mismos límites de responsabilidad civil, deducibles de colisión y cobertura amplia, plazo de la póliza y conductores. Revise la prima total, el pago inicial y los cargos por cuotas; pregunte por descuentos para los que califique. Una cuota menor puede significar menos cobertura o un deducible mayor. El precio más bajo varía según el conductor."
       ]
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "es/seguro-de-vivienda",
     "englishSlug": "home-insurance",
     "mediaSlug": "home-insurance",
@@ -274,7 +278,7 @@ export const spanishPages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Preguntas sobre el seguro de vivienda",
+    "faqTitle": "Preguntas sobre seguros de casa y condominio en Miami",
     "faqs": [
       [
         "¿Cuánto cuesta el seguro de vivienda en Miami?",
@@ -307,11 +311,11 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Qué documentos preparo para cotizar el seguro de vivienda?",
-        "Tenga a mano la dirección, la antigüedad del techo, el uso de la vivienda y la página de declaraciones de su póliza actual. Si los tiene, prepare los informes de mitigación de viento e inspección de cuatro puntos. Informe renovaciones, alquiler o un negocio en casa; esos detalles pueden afectar las opciones.",
+        "¿Cómo cotizo seguro de casa o condominio en Miami?",
+        "Solicite una cotización gratis con Your Family First Insurance Oficina #3 por internet o al 305-910-8850. Seleccione Homeowners o Condo Owners en el formulario seguro. Prepare la dirección, su cobertura actual, la antigüedad del techo, las inspecciones disponibles y la fecha límite del prestamista. Informe sobre remodelaciones, alquileres o negocios en casa para describir correctamente la propiedad.",
         [
           [
-            "Solicitar cotización gratis",
+            "Cotizar casa o condominio",
             "/es/solicitar-cotizacion/"
           ]
         ]
@@ -333,12 +337,26 @@ export const spanishPages = [
             "/es/recursos-para-clientes/preparacion-para-huracanes/"
           ]
         ]
+      ],
+      [
+        "¿Necesito seguro de condominio si la asociación tiene una póliza maestra?",
+        "La póliza maestra de la asociación no reemplaza toda la protección que puede necesitar el dueño de una unidad. Una póliza HO-6 puede cubrir pertenencias, responsabilidad civil y ciertas partes de la unidad. Revise las responsabilidades de la asociación, las mejoras de su unidad y los requisitos del prestamista antes de elegir límites.",
+        [
+          [
+            "Guía de Florida DFS para viviendas y condominios",
+            "https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/"
+          ]
+        ]
+      ],
+      [
+        "¿La inspección de cuatro puntos es igual a la de mitigación de viento?",
+        "No. La inspección de cuatro puntos revisa techo, electricidad, plomería y calefacción o aire acondicionado; la aseguradora puede exigirla para evaluar la vivienda. La inspección de mitigación de viento documenta características que podrían calificar para descuentos en la prima por viento. Pregunte qué informes necesita y acepta la aseguradora; una inspección no garantiza aprobación ni descuento."
       ]
     ]
   },
   {
     "slug": "es/seguro-de-inquilinos",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "englishSlug": "renters-insurance",
     "mediaSlug": "renters-insurance",
     "nav": "Inquilinos",
@@ -384,8 +402,18 @@ export const spanishPages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Preguntas sobre el seguro de inquilinos",
+    "faqTitle": "Preguntas sobre seguros de inquilinos en Miami",
     "faqs": [
+      [
+        "¿Cómo cotizo seguro de inquilinos para un apartamento en Miami?",
+        "Solicite una cotización gratis de seguro de inquilinos con Your Family First Insurance Oficina #3 por internet o al 305-910-8850. Seleccione Renters en el formulario seguro. Prepare la dirección, la fecha de mudanza, el valor aproximado de sus pertenencias y los requisitos del contrato. Confirme quién queda asegurado, cuándo comienza la cobertura y qué comprobante exige el propietario.",
+        [
+          [
+            "Cotizar seguro de inquilinos",
+            "/es/solicitar-cotizacion/"
+          ]
+        ]
+      ],
       [
         "¿Qué cubre el seguro de inquilinos?",
         "Puede cubrir sus pertenencias, responsabilidad civil personal y gastos adicionales de alojamiento después de un daño cubierto. No asegura el edificio del arrendador. Revise las causas de daño cubiertas, el deducible y los límites, especialmente para joyas, equipos electrónicos y otros objetos de valor."
@@ -419,16 +447,6 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Qué necesito para cotizar el seguro de inquilinos?",
-        "Prepare la dirección, la fecha de mudanza, el valor estimado de sus pertenencias y los requisitos del contrato. Indique quién necesita estar asegurado; no suponga que un compañero de apartamento está incluido. Confirme la fecha de inicio y el comprobante que exige el arrendador antes de mudarse.",
-        [
-          [
-            "Solicitar cotización gratis",
-            "/es/solicitar-cotizacion/"
-          ]
-        ]
-      ],
-      [
         "¿Cuánto cuesta el seguro de inquilinos en Miami?",
         "La dirección, los montos, el deducible y las coberturas elegidas influyen en la cotización. Pida el costo total del período y los cargos por cuotas. Compare los mismos límites y tipos de cobertura antes de decidir solo por el precio.",
         [
@@ -437,12 +455,16 @@ export const spanishPages = [
             "/es/solicitar-cotizacion/"
           ]
         ]
+      ],
+      [
+        "¿Mi seguro de inquilinos cubre a mi compañero de apartamento?",
+        "No lo dé por hecho. Depende de quién cumple la definición de asegurado en la póliza. Pregunte si pueden incluir compañeros de apartamento o si necesitan pólizas separadas, y cómo funcionarían los límites compartidos y las reclamaciones. Figurar en el contrato de alquiler no establece por sí solo cobertura de seguro."
       ]
     ]
   },
   {
     "slug": "es/seguro-comercial",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "englishSlug": "commercial-insurance",
     "mediaSlug": "commercial-insurance",
     "nav": "Comercial",
@@ -492,11 +514,11 @@ export const spanishPages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Preguntas sobre el seguro para negocios",
+    "faqTitle": "Preguntas sobre seguros comerciales en Miami",
     "faqs": [
       [
-        "¿Qué seguros necesita un pequeño negocio en Miami?",
-        "Comience por la actividad del negocio, sus ubicaciones, empleados, vehículos y requisitos de contratos. Responsabilidad civil general, propiedad comercial, auto comercial y compensación laboral cubren riesgos distintos. Llame a la Oficina #3 para revisar qué necesita y qué opciones están disponibles.",
+        "¿Cómo cotizo seguro para un pequeño negocio en Miami?",
+        "Llame a Your Family First Insurance Oficina #3 al 305-910-8850 para cotizar seguro comercial en español o inglés. Describa su trabajo, local, empleados, vehículos y requisitos de contratos. Responsabilidad civil general, propiedad, auto comercial y compensación laboral cubren riesgos distintos; podemos revisar las opciones disponibles para sus operaciones.",
         [
           [
             "Llame al 305-910-8850",
@@ -505,7 +527,7 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Cuánto cuesta el seguro para negocios?",
+        "¿Cuánto cuesta el seguro para negocios en Miami?",
         "Depende de la actividad, ingresos, nómina, ubicación, historial de reclamaciones y coberturas solicitadas. Un contratista y un negocio de oficina pueden necesitar pólizas muy distintas. Prepare una descripción del negocio y los requisitos de sus contratos para cotizar el trabajo que realmente realiza.",
         [
           [
@@ -561,12 +583,22 @@ export const spanishPages = [
             "/es/recursos-para-clientes/certificado-de-seguro/"
           ]
         ]
+      ],
+      [
+        "¿La responsabilidad civil general incluye compensación laboral?",
+        "No. La responsabilidad civil general y la compensación laboral cubren riesgos distintos. La compensación laboral puede pagar gastos médicos y parte de los salarios por lesiones laborales cubiertas de empleados. Los requisitos de Florida dependen de la actividad, el número de empleados y las exenciones aplicables. Revise su personal y el uso de subcontratistas; no suponga que la responsabilidad civil cumple esos requisitos.",
+        [
+          [
+            "Guía de compensación laboral de Florida",
+            "https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "es/seguro-de-vida",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "englishSlug": "life-insurance",
     "mediaSlug": "life-insurance",
     "nav": "Vida",
@@ -608,8 +640,22 @@ export const spanishPages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Preguntas sobre el seguro de vida",
+    "faqTitle": "Preguntas para cotizar y comparar seguros de vida en Miami",
     "faqs": [
+      [
+        "¿Cómo solicito una cotización de seguro de vida en Miami?",
+        "Llame a Your Family First Insurance Oficina #3 al 305-910-8850 para cotizar seguro de vida en español o inglés. Hablemos de quién depende de usted, su presupuesto y por cuánto tiempo necesita protección. Podemos explicar los pasos de la solicitud y las opciones disponibles. Mantenga su póliza actual mientras se evalúa cualquier reemplazo.",
+        [
+          [
+            "Llame al 305-910-8850",
+            "tel:13059108850"
+          ],
+          [
+            "Revisar cambios familiares y beneficiarios",
+            "/es/recursos-para-clientes/revision-anual/"
+          ]
+        ]
+      ],
       [
         "¿Puedo convertir un seguro de vida a término en una póliza permanente?",
         "Algunas pólizas a término incluyen una opción de conversión. Confirme con la aseguradora la fecha límite, los productos permanentes permitidos y la nueva prima. No todas las pólizas la incluyen; revise las condiciones escritas antes de que termine el plazo."
@@ -625,8 +671,8 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Qué influye en el costo del seguro de vida?",
-        "La edad, salud, uso de tabaco, monto, tipo de póliza y duración pueden influir en la prima. La aseguradora revisa la solicitud antes de ofrecer cobertura. Una cotización inicial es una estimación; no garantiza aprobación ni el precio final."
+        "¿Cuánto cuesta el seguro de vida en Miami?",
+        "El precio depende de la edad, salud, uso de tabaco, monto de cobertura, tipo de póliza y plazo. Compare cotizaciones para el mismo beneficio por fallecimiento y duración; pregunte si las primas pueden cambiar. Elija un pago que pueda mantener. Una cotización preliminar no es la oferta final de la aseguradora ni garantiza aprobación."
       ],
       [
         "¿Necesito un examen médico para solicitar seguro de vida?",
@@ -643,22 +689,8 @@ export const spanishPages = [
         "Revise el monto, los beneficiarios y qué ocurre si cambia de empleo o deja de trabajar. Puede ser útil, pero quizá no cubra todos los gastos familiares ni continúe al terminar el empleo. Inclúyalo al revisar las necesidades de su familia."
       ],
       [
-        "¿Cómo solicito una cotización de seguro de vida en Miami?",
-        "Llame a la Oficina #3 al 305-910-8850. Podemos conversar en español o inglés sobre su presupuesto, quién depende de usted, el monto que quiere evaluar y los pasos de solicitud. Mantenga vigente su póliza actual mientras se revisa cualquier reemplazo.",
-        [
-          [
-            "Llame al 305-910-8850",
-            "tel:13059108850"
-          ],
-          [
-            "Revisar cambios familiares y beneficiarios",
-            "/es/recursos-para-clientes/revision-anual/"
-          ]
-        ]
-      ],
-      [
-        "¿Qué comparo al cotizar un seguro de vida permanente?",
-        "Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son estimaciones ilustradas. Revise cargos, costos de rescate y qué ocurre si deja de pagar. Las pólizas difieren; pida una explicación de los términos antes de reemplazar su cobertura actual.",
+        "¿Qué comparo entre un seguro de vida entera y uno universal?",
+        "Vida entera y vida universal son seguros permanentes, pero sus primas, garantías y flexibilidad difieren. Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son proyecciones. Compare cargos, penalidades por rescate y el efecto de pagos omitidos o insuficientes antes de elegir o reemplazar una póliza.",
         [
           [
             "Guía de seguro de vida de NAIC",
@@ -689,7 +721,7 @@ export const spanishPages = [
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "es/sobre-oficina-3",
     "englishSlug": "about-office-3",
     "nav": "Nosotros",
@@ -712,8 +744,8 @@ export const spanishPages = [
         ]
       ],
       [
-        "¿Puedo pedir una cotización sin ir a la oficina?",
-        "Sí. Nuestra oficina en Miami atiende solicitudes de cotización en toda Florida. Comience por internet o llame en español o inglés. Para negocios, vida, salud u otra cobertura que no aparezca en el formulario, llame a la oficina; no tiene que visitarnos para pedir una cotización.",
+        "¿Puedo cotizar desde Broward u otra parte de Florida?",
+        "Sí. Your Family First Insurance Oficina #3 atiende consultas de cotización en toda Florida desde nuestra oficina en Miami. Comience por internet o llame al 305-910-8850 para recibir ayuda en español o inglés. Para negocios, vida, salud o coberturas que no aparezcan en el formulario, llame. No necesita visitarnos para pedir una cotización.",
         [
           [
             "Solicitar cotización gratis",
@@ -753,6 +785,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/solicitar-cotizacion",
+    "modifiedDate": "2026-11-02",
     "englishSlug": "get-a-quote",
     "nav": "Cotización",
     "locale": "es-US",
@@ -765,7 +798,7 @@ export const spanishPages = [
     "faqs": [
       [
         "¿Cómo comienzo mi cotización gratis?",
-        "Seleccione el botón de cotización para abrir ConsumerRateQuotes, el servicio que utiliza la Oficina #3. Complete la solicitud allí. Si su tipo de seguro no aparece o prefiere hablar con alguien, llame al 305-910-8850.",
+        "El botón de cotización abre ConsumerRateQuotes, el servicio de solicitudes que utiliza Your Family First Insurance Oficina #3 en Miami. Elija auto, vivienda, inquilinos, condominio o una combinación de auto y propiedad. Su solicitud llega a la Oficina #3. Para otro seguro o ayuda en español o inglés, llame al 305-910-8850.",
         [
           [
             "Comenzar la cotización por internet",

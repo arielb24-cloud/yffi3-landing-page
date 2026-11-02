@@ -217,6 +217,7 @@ const retentionPages = [
   },
   {
     slug: "customer-resources/certificate-of-insurance",
+    "modifiedDate": "2026-11-02",
     nav: "COI Guide",
     title: "Certificate of Insurance Guidance for Miami Businesses | Office #3",
     description: "Understand certificate of insurance requests, contract requirements, proof of coverage, additional insured questions, and why a certificate cannot change the policy.",
@@ -238,18 +239,18 @@ const retentionPages = [
     "faqTitle": "Certificate of insurance questions",
     "faqs": [
       [
-        "What is a certificate of insurance, or COI?",
-        "A COI summarizes evidence of insurance, such as the named insured, insurer, policy dates and limits. Businesses often request one before a job or lease. The policy and endorsements determine the coverage; the certificate itself does not change them."
-      ],
-      [
-        "What information do I need to request a certificate?",
-        "Prepare the certificate holder’s exact name and address, the written insurance requirements, project or contract reference and deadline. Include any requested additional insured or other endorsement wording. Call for instructions on securely sharing the contract and policy details.",
+        "How do I request a certificate of insurance in Florida?",
+        "Call Your Family First Insurance Office #3 at 305-910-8850 with the certificate holder’s exact name and address, written insurance requirements, project reference and deadline. Include requested additional insured or other endorsement wording. We must review the requirements against the policy. Ask how to share contracts and policy details securely.",
         [
           [
             "Call 305-910-8850",
             "tel:13059108850"
           ]
         ]
+      ],
+      [
+        "What is a certificate of insurance, or COI?",
+        "A COI summarizes evidence of insurance, such as the named insured, insurer, policy dates and limits. Businesses often request one before a job or lease. The policy and endorsements determine the coverage; the certificate itself does not change them."
       ],
       [
         "Is a certificate holder the same as an additional insured?",
@@ -266,8 +267,8 @@ const retentionPages = [
         ]
       ],
       [
-        "How long does a certificate request take?",
-        "Timing depends on whether the request matches existing coverage or needs insurer approval or an endorsement. Send complete requirements before the job or lease deadline. Call to confirm the request’s status; do not assume coverage or a certificate is ready until confirmed.",
+        "Can I get a certificate of insurance the same day?",
+        "Same-day delivery cannot be promised. A request that matches existing coverage may take less time than one needing insurer approval or an endorsement. Call with complete written requirements and your deadline so the office can check what is needed. Confirm the certificate’s status before starting the job or signing the lease.",
         [
           [
             "Call 305-910-8850",

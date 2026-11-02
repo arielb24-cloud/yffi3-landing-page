@@ -258,7 +258,7 @@ const tickerItems = [
 const pages = [
   {
     "slug": "",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "nav": "Home",
     "title": "Miami Insurance Agency | Your Family First Insurance Office #3",
     "description": "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish.",
@@ -337,8 +337,8 @@ const pages = [
         ]
       ],
       [
-        "Can I get an insurance quote outside Miami?",
-        "Yes. Office #3 handles insurance quote inquiries throughout Florida, including Miami-Dade and Broward County. Our office is in Miami at 11200 W Flagler St. You can start online or call for English or Spanish help; available policies depend on your location and application.",
+        "Do you serve Miami-Dade, Broward and the rest of Florida?",
+        "Yes. We handle insurance quote inquiries throughout Florida. That includes Doral, Hialeah, Kendall and Sweetwater in Miami-Dade, as well as Broward County. Our office is at 11200 W Flagler St in Miami. Request a quote online or call for English or Spanish help; policy availability depends on your location and application.",
         [
           [
             "Contact our Miami office",
@@ -349,7 +349,7 @@ const pages = [
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "auto-insurance",
     "nav": "Auto",
     "title": "Auto Insurance in Miami | Free Quote | Office #3",
@@ -394,8 +394,18 @@ const pages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Auto insurance questions",
+    "faqTitle": "Questions about car insurance in Miami",
     "faqs": [
+      [
+        "How do I get a car insurance quote in Miami?",
+        "Your Family First Insurance Office #3 offers free auto insurance quotes online or by phone at 305-910-8850, in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle information, vehicle use and desired start date ready. Enter personal application details only in the secure application.",
+        [
+          [
+            "Get an auto insurance quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
       [
         "How much does car insurance cost in Miami?",
         "There is no single price for Miami drivers. Your vehicles, drivers, driving history, address, vehicle use and coverage choices affect the quote. Compare the total cost for the same policy term, along with limits, deductibles, the initial payment and installment charges.",
@@ -425,16 +435,6 @@ const pages = [
         "Comprehensive coverage generally addresses damage from flooding, theft, fire and wind, subject to your policy and deductible. PIP and property damage liability alone do not pay to repair your own car after a flood. Check whether comprehensive is included before a storm threatens."
       ],
       [
-        "What information is needed for an auto insurance quote?",
-        "Expect questions about your vehicles, household drivers, driving history, address, vehicle use and current insurance. Have your current coverage summary ready for a fair comparison. Complete personal details in the secure application; this website does not collect driver licenses or vehicle identification numbers.",
-        [
-          [
-            "Get a free quote",
-            "/get-a-quote/"
-          ]
-        ]
-      ],
-      [
         "Do I need to disclose delivery driving or rideshare work?",
         "Yes. Tell us if you deliver goods, carry paying passengers or use the car for business. A personal auto policy may exclude that use or leave gaps. Review the actual work you do before choosing a policy or starting a new driving job.",
         [
@@ -453,11 +453,15 @@ const pages = [
             "/customer-resources/renewal-review/"
           ]
         ]
+      ],
+      [
+        "How do I compare affordable car insurance in Miami?",
+        "Compare the same liability limits, collision and comprehensive deductibles, policy term and drivers. Check the total premium, initial payment and installment charges, then ask which discounts you qualify for. A lower monthly payment can reflect less coverage or a larger deductible; the lowest price is not the same for every driver."
       ]
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "home-insurance",
     "nav": "Homeowners",
     "title": "Homeowners Insurance in Miami | Free Quote | Office #3",
@@ -502,7 +506,7 @@ const pages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Home insurance questions",
+    "faqTitle": "Home and condo insurance questions in Miami",
     "faqs": [
       [
         "How much does homeowners insurance cost in Miami?",
@@ -535,11 +539,11 @@ const pages = [
         ]
       ],
       [
-        "What documents should I prepare for a home insurance quote?",
-        "Have the property address, roof age, occupancy details and current declarations page ready. If available, include your wind mitigation and four-point inspection reports. Tell us about renovations, rental use or a home business; those details can affect the options offered.",
+        "How do I request a home or condo insurance quote in Miami?",
+        "Request a free quote through Your Family First Insurance Office #3 online or at 305-910-8850. Select Homeowners or Condo Owners in the secure form. Prepare the property address, current coverage, roof age, available inspections and any lender deadline. Tell us about renovations, rental use or a home business so the application describes the property accurately.",
         [
           [
-            "Get a free quote",
+            "Get a home or condo quote",
             "/get-a-quote/"
           ]
         ]
@@ -561,12 +565,26 @@ const pages = [
             "/customer-resources/hurricane-preparation/"
           ]
         ]
+      ],
+      [
+        "Do I need condo insurance if my association has a master policy?",
+        "A condo association’s master policy does not replace all the protection a unit owner may need. An HO-6 policy can address belongings, personal liability and certain parts of the unit. Review the association’s insurance responsibilities, your unit’s improvements and any lender requirements before choosing limits.",
+        [
+          [
+            "Florida DFS home and condo insurance guidance",
+            "https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/"
+          ]
+        ]
+      ],
+      [
+        "Is a four-point inspection the same as a wind mitigation inspection?",
+        "No. A four-point inspection reviews the roof, electrical, plumbing and heating or cooling systems; an insurer may require it when evaluating a home. A wind mitigation inspection documents features that may qualify for windstorm premium credits. Ask which reports the insurer needs and accepts; an inspection does not guarantee approval or a discount."
       ]
     ]
   },
   {
     "slug": "commercial-insurance",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "nav": "Commercial",
     "title": "Business & General Liability Insurance Miami | Office #3",
     "description": "Business insurance quotes in Miami for contractors, restaurants and small businesses. Review general liability, work vehicles and certificates with Office #3.",
@@ -614,11 +632,11 @@ const pages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Business insurance questions",
+    "faqTitle": "Business insurance questions in Miami",
     "faqs": [
       [
-        "What insurance does a small business in Miami need?",
-        "Start with what the business does, where it operates, its employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation address different risks. Call Office #3 with your business details so we can review what to ask for and what is available.",
+        "How do I get small business insurance in Miami?",
+        "Call Your Family First Insurance Office #3 at 305-910-8850 for a business insurance quote in English or Spanish. Describe your work, location, employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation cover different risks; we can review the available options for your operations.",
         [
           [
             "Call 305-910-8850",
@@ -627,7 +645,7 @@ const pages = [
         ]
       ],
       [
-        "How much does business insurance cost?",
+        "How much does business insurance cost in Miami?",
         "Cost depends on your operations, revenue, payroll, location, claims history and requested coverage. A contractor and an office-based business may need very different policies. Prepare your business description and contract requirements so the quote reflects the work you actually do.",
         [
           [
@@ -683,12 +701,22 @@ const pages = [
             "/customer-resources/certificate-of-insurance/"
           ]
         ]
+      ],
+      [
+        "Does general liability include workers’ compensation?",
+        "No. General liability and workers’ compensation address different risks. Workers’ compensation can provide medical and wage-loss benefits for covered work-related employee injuries. Florida requirements depend on the industry, employee count and applicable exemptions. Review your actual workforce and subcontractor arrangements rather than assuming a general liability policy meets those requirements.",
+        [
+          [
+            "Florida workers’ compensation guidance",
+            "https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage"
+          ]
+        ]
       ]
     ]
   },
   {
     "slug": "life-insurance",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "nav": "Life",
     "title": "Life Insurance in Miami: Term & Permanent | Office #3",
     "description": "Compare term and permanent life insurance in Miami. Review premiums, coverage amounts and beneficiaries with Office #3 in English or Spanish.",
@@ -728,8 +756,22 @@ const pages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Life insurance questions",
+    "faqTitle": "Life insurance quotes and policy questions in Miami",
     "faqs": [
+      [
+        "How do I request a life insurance quote in Miami?",
+        "Call Your Family First Insurance Office #3 at 305-910-8850 for a life insurance quote in English or Spanish. Discuss who depends on you, your budget and how long you need protection. We can explain the application steps and available options. Keep an existing policy active while any replacement is being reviewed.",
+        [
+          [
+            "Call 305-910-8850",
+            "tel:13059108850"
+          ],
+          [
+            "Review family and beneficiary changes",
+            "/customer-resources/life-event-review/"
+          ]
+        ]
+      ],
       [
         "Can I convert term life insurance to a permanent policy?",
         "Some term policies include a conversion option. Check the deadline, eligible permanent products and new premium with the insurer. A conversion right is not included in every policy; review the written conditions before your term ends."
@@ -745,8 +787,8 @@ const pages = [
         ]
       ],
       [
-        "What affects the cost of life insurance?",
-        "Age, health, tobacco use, coverage amount, policy type and term length can affect the premium. The insurer reviews the application before making an offer. A preliminary quote is an estimate, not a promise of approval or the final rate."
+        "How much does life insurance cost in Miami?",
+        "Life insurance pricing depends on age, health, tobacco use, coverage amount, policy type and term length. Compare quotes for the same death benefit and duration, and ask whether premiums can change. Choose a payment you can sustain; a preliminary quote is not the insurer’s final offer or a guarantee of approval."
       ],
       [
         "Do I need a medical exam to apply for life insurance?",
@@ -763,22 +805,8 @@ const pages = [
         "Check the benefit amount, who receives it and what happens if you change jobs or stop working. Employer coverage may help, but it may not meet every household expense or remain available after employment ends. Include it when reviewing your family’s overall needs."
       ],
       [
-        "How do I request a life insurance quote in Miami?",
-        "Call Office #3 at 305-910-8850. We can discuss your budget, who depends on you, the amount you want to consider and the application steps in English or Spanish. Keep an existing policy active while any replacement is being reviewed.",
-        [
-          [
-            "Call 305-910-8850",
-            "tel:13059108850"
-          ],
-          [
-            "Review family and beneficiary changes",
-            "/customer-resources/life-event-review/"
-          ]
-        ]
-      ],
-      [
-        "What should I compare in a permanent life insurance quote?",
-        "Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Review fees, surrender charges and what happens if premiums are missed. Policies differ; request an explanation of the actual terms before replacing existing coverage.",
+        "What should I compare in whole life or universal life insurance?",
+        "Whole life and universal life are types of permanent insurance, but their premiums, guarantees and flexibility differ. Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Compare fees, surrender charges and the effect of missed or insufficient payments before choosing or replacing a policy.",
         [
           [
             "NAIC life insurance guide",
@@ -810,7 +838,7 @@ const pages = [
   },
   {
     "slug": "renters-insurance",
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "nav": "Renters",
     "title": "Renters Insurance Quotes in Miami | Office #3",
     "description": "Compare renters insurance quotes for a Miami apartment or rental home. Review lease limits, belongings, deductibles and move-in dates with Office #3.",
@@ -854,8 +882,18 @@ const pages = [
       ]
     },
     "searchTopics": [],
-    "faqTitle": "Renters insurance questions",
+    "faqTitle": "Apartment and renters insurance questions in Miami",
     "faqs": [
+      [
+        "How do I get renters insurance for an apartment in Miami?",
+        "Request a free renters insurance quote from Your Family First Insurance Office #3 online or at 305-910-8850. Select Renters in the secure form. Have the rental address, move-in date, estimated value of belongings and lease insurance requirements ready. Confirm who is insured, the coverage start date and the proof your landlord needs.",
+        [
+          [
+            "Get a renters insurance quote",
+            "/get-a-quote/"
+          ]
+        ]
+      ],
       [
         "What does renters insurance cover?",
         "Renters insurance can cover your belongings, personal liability and additional living expenses after a covered loss. It does not insure the landlord’s building. Review the covered causes of loss, deductible and limits, especially for jewelry, electronics or other valuable items."
@@ -889,16 +927,6 @@ const pages = [
         ]
       ],
       [
-        "What do I need to get a renters insurance quote?",
-        "Have your rental address, move-in date, estimated value of belongings and lease insurance requirements ready. Tell us who needs to be insured; do not assume a roommate is included. Confirm the coverage start date and any proof your landlord needs before move-in.",
-        [
-          [
-            "Get a free quote",
-            "/get-a-quote/"
-          ]
-        ]
-      ],
-      [
         "How much does renters insurance cost in Miami?",
         "Your rental address, coverage amounts, deductible and policy choices affect the quote. Ask for the total cost for the policy term and any installment charges. Compare the same limits and coverage types before choosing by price.",
         [
@@ -907,11 +935,15 @@ const pages = [
             "/get-a-quote/"
           ]
         ]
+      ],
+      [
+        "Does renters insurance cover my roommate?",
+        "Do not assume it does. Coverage depends on who qualifies as an insured under the policy. Ask whether roommates can be included or need separate policies, and how shared limits and claims would work. Listing someone on a lease does not by itself establish insurance coverage."
       ]
     ]
   },
   {
-    "modifiedDate": "2026-10-28",
+    "modifiedDate": "2026-11-02",
     "slug": "about-office-3",
     "nav": "About",
     "title": "About Office #3 | Your Family First Insurance Miami",
@@ -932,8 +964,8 @@ const pages = [
         ]
       ],
       [
-        "Can I get a quote without visiting the office?",
-        "Yes. Our Miami office handles quote inquiries throughout Florida. Start online or call us in English or Spanish. For business, life, health or coverage not listed in the form, call the office; you do not need to visit just to request a quote.",
+        "Can I get a quote from Broward or elsewhere in Florida?",
+        "Yes. Your Family First Insurance Office #3 handles quote inquiries throughout Florida from our Miami office. Start online or call 305-910-8850 for English or Spanish help. For business, life, health or coverage not listed in the form, call the office. You do not need to visit to request a quote.",
         [
           [
             "Get a free quote",
@@ -973,6 +1005,7 @@ const pages = [
   },
   {
     "slug": "get-a-quote",
+    "modifiedDate": "2026-11-02",
     "nav": "Get Quote",
     "title": "Get My Free Quote | Your Family First Insurance Office #3",
     "description": "Get a free insurance quote from Your Family First Office #3 in Miami. Start online or call 305-910-8850 for help in English or Spanish.",
@@ -983,7 +1016,7 @@ const pages = [
     "faqs": [
       [
         "How do I start my free insurance quote?",
-        "Select the online quote button to open ConsumerRateQuotes, the quote service used by Office #3. Complete the application there. If your insurance type is not listed or you would rather speak with someone, call 305-910-8850.",
+        "Use the online quote button to open ConsumerRateQuotes, the application service used by Your Family First Insurance Office #3 in Miami. Choose auto, homeowners, renters, condo, or an auto and property combination. Your request goes to Office #3. For another insurance type or help in English or Spanish, call 305-910-8850.",
         [
           [
             "Start the online quote",

@@ -77,15 +77,15 @@ Llámenos o envíenos un texto sobre su negocio, empleados, vehículos y los req
 
 FAQ
 
-## Preguntas sobre el seguro para negocios
+## Preguntas sobre seguros comerciales en Miami
 
-¿Qué seguros necesita un pequeño negocio en Miami?
+¿Cómo cotizo seguro para un pequeño negocio en Miami?
 
-Comience por la actividad del negocio, sus ubicaciones, empleados, vehículos y requisitos de contratos. Responsabilidad civil general, propiedad comercial, auto comercial y compensación laboral cubren riesgos distintos. Llame a la Oficina #3 para revisar qué necesita y qué opciones están disponibles.
+Llame a Your Family First Insurance Oficina #3 al 305-910-8850 para cotizar seguro comercial en español o inglés. Describa su trabajo, local, empleados, vehículos y requisitos de contratos. Responsabilidad civil general, propiedad, auto comercial y compensación laboral cubren riesgos distintos; podemos revisar las opciones disponibles para sus operaciones.
 
 [Llame al 305-910-8850](tel:13059108850)
 
-¿Cuánto cuesta el seguro para negocios?
+¿Cuánto cuesta el seguro para negocios en Miami?
 
 Depende de la actividad, ingresos, nómina, ubicación, historial de reclamaciones y coberturas solicitadas. Un contratista y un negocio de oficina pueden necesitar pólizas muy distintas. Prepare una descripción del negocio y los requisitos de sus contratos para cotizar el trabajo que realmente realiza.
 
@@ -122,6 +122,12 @@ Tenga dirección, ventas estimadas, nómina, valor de los equipos y requisitos d
 Llame a la Oficina #3 con su oficio, tipos de trabajos, ingresos estimados, nómina y uso de subcontratistas. Traiga los requisitos de seguro del cliente o contratista general. Revise límites y endosos antes de solicitar un certificado.
 
 [Preparar una solicitud de certificado](/es/recursos-para-clientes/certificado-de-seguro/)
+
+¿La responsabilidad civil general incluye compensación laboral?
+
+No. La responsabilidad civil general y la compensación laboral cubren riesgos distintos. La compensación laboral puede pagar gastos médicos y parte de los salarios por lesiones laborales cubiertas de empleados. Los requisitos de Florida dependen de la actividad, el número de empleados y las exenciones aplicables. Revise su personal y el uso de subcontratistas; no suponga que la responsabilidad civil cumple esos requisitos.
+
+[Guía de compensación laboral de Florida](https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage)
 
 Recursos sobre seguros
 

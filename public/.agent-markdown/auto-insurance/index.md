@@ -73,7 +73,13 @@ Select Auto in the secure form. Have your current policy, driver and vehicle inf
 
 FAQ
 
-## Auto insurance questions
+## Questions about car insurance in Miami
+
+How do I get a car insurance quote in Miami?
+
+Your Family First Insurance Office #3 offers free auto insurance quotes online or by phone at 305-910-8850, in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle information, vehicle use and desired start date ready. Enter personal application details only in the secure application.
+
+[Get an auto insurance quote](/get-a-quote/)
 
 How much does car insurance cost in Miami?
 
@@ -95,12 +101,6 @@ Does car insurance cover flood or hurricane damage to my car?
 
 Comprehensive coverage generally addresses damage from flooding, theft, fire and wind, subject to your policy and deductible. PIP and property damage liability alone do not pay to repair your own car after a flood. Check whether comprehensive is included before a storm threatens.
 
-What information is needed for an auto insurance quote?
-
-Expect questions about your vehicles, household drivers, driving history, address, vehicle use and current insurance. Have your current coverage summary ready for a fair comparison. Complete personal details in the secure application; this website does not collect driver licenses or vehicle identification numbers.
-
-[Get a free quote](/get-a-quote/)
-
 Do I need to disclose delivery driving or rideshare work?
 
 Yes. Tell us if you deliver goods, carry paying passengers or use the car for business. A personal auto policy may exclude that use or leave gaps. Review the actual work you do before choosing a policy or starting a new driving job.
@@ -112,6 +112,10 @@ Can I switch car insurance without a gap in coverage?
 You can compare options before your current policy ends. Confirm the new policy’s effective date and time, required payment and written proof of coverage before cancelling the old policy. Keep the insurance required for your Florida registration in force.
 
 [Plan a renewal review](/customer-resources/renewal-review/)
+
+How do I compare affordable car insurance in Miami?
+
+Compare the same liability limits, collision and comprehensive deductibles, policy term and drivers. Check the total premium, initial payment and installment charges, then ask which discounts you qualify for. A lower monthly payment can reflect less coverage or a larger deductible; the lowest price is not the same for every driver.
 
 Insurance resources
 

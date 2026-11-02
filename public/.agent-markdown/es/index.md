@@ -279,8 +279,8 @@ Sí. Comience cuando reciba el aviso de renovación para tener tiempo de compara
 
 [Revisar su renovación](/es/recursos-para-clientes/revision-de-renovacion/)
 
-¿Puedo cotizar un seguro si vivo fuera de Miami?
+¿Atienden en Miami-Dade, Broward y el resto de Florida?
 
-Sí. La Oficina #3 atiende solicitudes de cotización en toda Florida, incluidos Miami-Dade y Broward. Nuestra oficina está en Miami, en 11200 W Flagler St. Puede comenzar por internet o llamar para recibir ayuda en español o inglés; las opciones dependen de su ubicación y solicitud.
+Sí. Atendemos consultas de cotización en toda Florida, incluidos Doral, Hialeah, Kendall y Sweetwater en Miami-Dade, además de Broward. Nuestra oficina está en 11200 W Flagler St, Miami. Puede cotizar por internet o llamar para recibir ayuda en español o inglés; las pólizas disponibles dependen de su ubicación y solicitud.
 
 [Contacte nuestra oficina en Miami](/es/sobre-oficina-3/)

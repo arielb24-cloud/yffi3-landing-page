@@ -269,9 +269,9 @@ Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, M
 
 [Directions to our West Flagler office](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
 
-Can I get a quote without visiting the office?
+Can I get a quote from Broward or elsewhere in Florida?
 
-Yes. Our Miami office handles quote inquiries throughout Florida. Start online or call us in English or Spanish. For business, life, health or coverage not listed in the form, call the office; you do not need to visit just to request a quote.
+Yes. Your Family First Insurance Office #3 handles quote inquiries throughout Florida from our Miami office. Start online or call 305-910-8850 for English or Spanish help. For business, life, health or coverage not listed in the form, call the office. You do not need to visit to request a quote.
 
 [Get a free quote](/get-a-quote/) [Call 305-910-8850](tel:13059108850)
 

@@ -41,7 +41,7 @@ FAQ
 
 How do I start my free insurance quote?
 
-Select the online quote button to open ConsumerRateQuotes, the quote service used by Office #3. Complete the application there. If your insurance type is not listed or you would rather speak with someone, call 305-910-8850.
+Use the online quote button to open ConsumerRateQuotes, the application service used by Your Family First Insurance Office #3 in Miami. Choose auto, homeowners, renters, condo, or an auto and property combination. Your request goes to Office #3. For another insurance type or help in English or Spanish, call 305-910-8850.
 
 [Start the online quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
 

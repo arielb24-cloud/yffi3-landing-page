@@ -73,7 +73,7 @@ Seleccione Vivienda o Condo Owners en el formulario seguro. Tenga a mano la dire
 
 FAQ
 
-## Preguntas sobre el seguro de vivienda
+## Preguntas sobre seguros de casa y condominio en Miami
 
 ¿Cuánto cuesta el seguro de vivienda en Miami?
 
@@ -93,11 +93,11 @@ Puede ser una cantidad fija o un porcentaje del límite asegurado de la vivienda
 
 [Guía de deducibles por huracán de Florida](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
 
-¿Qué documentos preparo para cotizar el seguro de vivienda?
+¿Cómo cotizo seguro de casa o condominio en Miami?
 
-Tenga a mano la dirección, la antigüedad del techo, el uso de la vivienda y la página de declaraciones de su póliza actual. Si los tiene, prepare los informes de mitigación de viento e inspección de cuatro puntos. Informe renovaciones, alquiler o un negocio en casa; esos detalles pueden afectar las opciones.
+Solicite una cotización gratis con Your Family First Insurance Oficina #3 por internet o al 305-910-8850. Seleccione Homeowners o Condo Owners en el formulario seguro. Prepare la dirección, su cobertura actual, la antigüedad del techo, las inspecciones disponibles y la fecha límite del prestamista. Informe sobre remodelaciones, alquileres o negocios en casa para describir correctamente la propiedad.
 
-[Solicitar cotización gratis](/es/solicitar-cotizacion/)
+[Cotizar casa o condominio](/es/solicitar-cotizacion/)
 
 ¿Un techo nuevo o una inspección de mitigación puede reducir la prima?
 
@@ -112,6 +112,16 @@ El límite de la vivienda debe reflejar el costo de reconstruir la estructura cu
 Las aseguradoras pueden restringir nuevas pólizas o cambios cuando una tormenta amenaza la zona. Revise las coberturas de vivienda, viento e inundación con anticipación. La nueva cobertura debe tener fecha de inicio confirmada, y algunas pólizas contra inundaciones tienen períodos de espera.
 
 [Prepararse antes de la temporada de huracanes](/es/recursos-para-clientes/preparacion-para-huracanes/)
+
+¿Necesito seguro de condominio si la asociación tiene una póliza maestra?
+
+La póliza maestra de la asociación no reemplaza toda la protección que puede necesitar el dueño de una unidad. Una póliza HO-6 puede cubrir pertenencias, responsabilidad civil y ciertas partes de la unidad. Revise las responsabilidades de la asociación, las mejoras de su unidad y los requisitos del prestamista antes de elegir límites.
+
+[Guía de Florida DFS para viviendas y condominios](https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/)
+
+¿La inspección de cuatro puntos es igual a la de mitigación de viento?
+
+No. La inspección de cuatro puntos revisa techo, electricidad, plomería y calefacción o aire acondicionado; la aseguradora puede exigirla para evaluar la vivienda. La inspección de mitigación de viento documenta características que podrían calificar para descuentos en la prima por viento. Pregunte qué informes necesita y acepta la aseguradora; una inspección no garantiza aprobación ni descuento.
 
 Recursos sobre seguros
 

@@ -67,15 +67,15 @@ FAQ
 
 ## Certificate of insurance questions
 
+How do I request a certificate of insurance in Florida?
+
+Call Your Family First Insurance Office #3 at 305-910-8850 with the certificate holder’s exact name and address, written insurance requirements, project reference and deadline. Include requested additional insured or other endorsement wording. We must review the requirements against the policy. Ask how to share contracts and policy details securely.
+
+[Call 305-910-8850](tel:13059108850)
+
 What is a certificate of insurance, or COI?
 
 A COI summarizes evidence of insurance, such as the named insured, insurer, policy dates and limits. Businesses often request one before a job or lease. The policy and endorsements determine the coverage; the certificate itself does not change them.
-
-What information do I need to request a certificate?
-
-Prepare the certificate holder’s exact name and address, the written insurance requirements, project or contract reference and deadline. Include any requested additional insured or other endorsement wording. Call for instructions on securely sharing the contract and policy details.
-
-[Call 305-910-8850](tel:13059108850)
 
 Is a certificate holder the same as an additional insured?
 
@@ -87,8 +87,8 @@ No. A certificate cannot increase limits, remove exclusions or certify coverage 
 
 [Review business coverage](/commercial-insurance/)
 
-How long does a certificate request take?
+Can I get a certificate of insurance the same day?
 
-Timing depends on whether the request matches existing coverage or needs insurer approval or an endorsement. Send complete requirements before the job or lease deadline. Call to confirm the request’s status; do not assume coverage or a certificate is ready until confirmed.
+Same-day delivery cannot be promised. A request that matches existing coverage may take less time than one needing insurer approval or an endorsement. Call with complete written requirements and your deadline so the office can check what is needed. Confirm the certificate’s status before starting the job or signing the lease.
 
 [Call 305-910-8850](tel:13059108850)

@@ -224,6 +224,7 @@ export const spanishRetentionPages = [
   {
     slug: "es/recursos-para-clientes/certificado-de-seguro",
     englishSlug: "customer-resources/certificate-of-insurance",
+    "modifiedDate": "2026-11-02",
     nav: "Certificado",
     locale: "es-US",
     kind: "resource",
@@ -246,18 +247,18 @@ export const spanishRetentionPages = [
     "faqTitle": "Preguntas sobre certificados de seguro",
     "faqs": [
       [
-        "¿Qué es un certificado de seguro o COI?",
-        "Resume datos que demuestran seguro, como el asegurado, la aseguradora, fechas y límites. Se suele pedir antes de un trabajo o alquiler comercial. La póliza y sus endosos determinan la cobertura; el certificado por sí solo no la cambia."
-      ],
-      [
-        "¿Qué necesito para solicitar un certificado?",
-        "Prepare el nombre y dirección exactos del titular del certificado, los requisitos escritos, la referencia del proyecto o contrato y la fecha límite. Incluya el texto de cualquier endoso solicitado, como asegurado adicional. Llame para compartir de forma segura el contrato y los datos de la póliza.",
+        "¿Cómo solicito un certificado de seguro comercial en Florida?",
+        "Llame a Your Family First Insurance Oficina #3 al 305-910-8850 con el nombre y dirección exactos del titular del certificado, los requisitos escritos del seguro, la referencia del proyecto y la fecha límite. Incluya cualquier solicitud de asegurado adicional u otro endoso. Debemos revisar los requisitos frente a la póliza. Pregunte cómo compartir contratos y datos de la póliza de forma segura.",
         [
           [
             "Llame al 305-910-8850",
             "tel:13059108850"
           ]
         ]
+      ],
+      [
+        "¿Qué es un certificado de seguro o COI?",
+        "Resume datos que demuestran seguro, como el asegurado, la aseguradora, fechas y límites. Se suele pedir antes de un trabajo o alquiler comercial. La póliza y sus endosos determinan la cobertura; el certificado por sí solo no la cambia."
       ],
       [
         "¿El titular del certificado es lo mismo que un asegurado adicional?",
@@ -274,8 +275,8 @@ export const spanishRetentionPages = [
         ]
       ],
       [
-        "¿Cuánto tarda una solicitud de certificado?",
-        "Depende de si corresponde a la cobertura actual o requiere aprobación o un endoso. Envíe los requisitos completos antes de la fecha límite del trabajo o alquiler. Llame para confirmar el estado; no dé por lista la cobertura ni el certificado sin confirmación.",
+        "¿Puedo obtener un certificado de seguro el mismo día?",
+        "No podemos prometer entrega el mismo día. Una solicitud que coincide con la cobertura existente puede tomar menos tiempo que otra que requiere aprobación de la aseguradora o un endoso. Llame con los requisitos escritos completos y su fecha límite para revisar qué hace falta. Confirme el estado del certificado antes de comenzar el trabajo o firmar el alquiler.",
         [
           [
             "Llame al 305-910-8850",

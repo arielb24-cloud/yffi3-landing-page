@@ -77,15 +77,15 @@ Call or text us about your business, employees, vehicles and any insurance requi
 
 FAQ
 
-## Business insurance questions
+## Business insurance questions in Miami
 
-What insurance does a small business in Miami need?
+How do I get small business insurance in Miami?
 
-Start with what the business does, where it operates, its employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation address different risks. Call Office #3 with your business details so we can review what to ask for and what is available.
+Call Your Family First Insurance Office #3 at 305-910-8850 for a business insurance quote in English or Spanish. Describe your work, location, employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation cover different risks; we can review the available options for your operations.
 
 [Call 305-910-8850](tel:13059108850)
 
-How much does business insurance cost?
+How much does business insurance cost in Miami?
 
 Cost depends on your operations, revenue, payroll, location, claims history and requested coverage. A contractor and an office-based business may need very different policies. Prepare your business description and contract requirements so the quote reflects the work you actually do.
 
@@ -122,6 +122,12 @@ How do I get a general contractor insurance quote in Miami?
 Call Office #3 with your trade, types of jobs, estimated revenue, payroll and subcontractor use. Bring the insurance requirements from a customer or general contractor. Review required limits and endorsements before requesting a certificate.
 
 [Prepare a certificate request](/customer-resources/certificate-of-insurance/)
+
+Does general liability include workers’ compensation?
+
+No. General liability and workers’ compensation address different risks. Workers’ compensation can provide medical and wage-loss benefits for covered work-related employee injuries. Florida requirements depend on the industry, employee count and applicable exemptions. Review your actual workforce and subcontractor arrangements rather than assuming a general liability policy meets those requirements.
+
+[Florida workers’ compensation guidance](https://www.myfloridacfo.com/division/wc/employer/obtaining-insurance-coverage)
 
 Insurance resources
 

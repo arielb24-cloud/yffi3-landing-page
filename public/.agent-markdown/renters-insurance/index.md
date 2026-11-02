@@ -73,7 +73,13 @@ Select Renters in the secure form. Have your rental address and any insurance re
 
 FAQ
 
-## Renters insurance questions
+## Apartment and renters insurance questions in Miami
+
+How do I get renters insurance for an apartment in Miami?
+
+Request a free renters insurance quote from Your Family First Insurance Office #3 online or at 305-910-8850. Select Renters in the secure form. Have the rental address, move-in date, estimated value of belongings and lease insurance requirements ready. Confirm who is insured, the coverage start date and the proof your landlord needs.
+
+[Get a renters insurance quote](/get-a-quote/)
 
 What does renters insurance cover?
 
@@ -99,17 +105,15 @@ Standard renters insurance generally excludes flooding from rising water. Renter
 
 [Ask about flood insurance for belongings](tel:13059108850)
 
-What do I need to get a renters insurance quote?
-
-Have your rental address, move-in date, estimated value of belongings and lease insurance requirements ready. Tell us who needs to be insured; do not assume a roommate is included. Confirm the coverage start date and any proof your landlord needs before move-in.
-
-[Get a free quote](/get-a-quote/)
-
 How much does renters insurance cost in Miami?
 
 Your rental address, coverage amounts, deductible and policy choices affect the quote. Ask for the total cost for the policy term and any installment charges. Compare the same limits and coverage types before choosing by price.
 
 [Get a renters insurance quote](/get-a-quote/)
+
+Does renters insurance cover my roommate?
+
+Do not assume it does. Coverage depends on who qualifies as an insured under the policy. Ask whether roommates can be included or need separate policies, and how shared limits and claims would work. Listing someone on a lease does not by itself establish insurance coverage.
 
 Insurance resources
 

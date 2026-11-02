@@ -72,7 +72,13 @@ Llámenos o envíenos un texto para hablar de quién depende de sus ingresos, cu
 
 FAQ
 
-## Preguntas sobre el seguro de vida
+## Preguntas para cotizar y comparar seguros de vida en Miami
+
+¿Cómo solicito una cotización de seguro de vida en Miami?
+
+Llame a Your Family First Insurance Oficina #3 al 305-910-8850 para cotizar seguro de vida en español o inglés. Hablemos de quién depende de usted, su presupuesto y por cuánto tiempo necesita protección. Podemos explicar los pasos de la solicitud y las opciones disponibles. Mantenga su póliza actual mientras se evalúa cualquier reemplazo.
+
+[Llame al 305-910-8850](tel:13059108850) [Revisar cambios familiares y beneficiarios](/es/recursos-para-clientes/revision-anual/)
 
 ¿Puedo convertir un seguro de vida a término en una póliza permanente?
 
@@ -84,9 +90,9 @@ Considere el ingreso que su familia tendría que reemplazar, deudas, vivienda, c
 
 [Llame al 305-910-8850](tel:13059108850)
 
-¿Qué influye en el costo del seguro de vida?
+¿Cuánto cuesta el seguro de vida en Miami?
 
-La edad, salud, uso de tabaco, monto, tipo de póliza y duración pueden influir en la prima. La aseguradora revisa la solicitud antes de ofrecer cobertura. Una cotización inicial es una estimación; no garantiza aprobación ni el precio final.
+El precio depende de la edad, salud, uso de tabaco, monto de cobertura, tipo de póliza y plazo. Compare cotizaciones para el mismo beneficio por fallecimiento y duración; pregunte si las primas pueden cambiar. Elija un pago que pueda mantener. Una cotización preliminar no es la oferta final de la aseguradora ni garantiza aprobación.
 
 ¿Necesito un examen médico para solicitar seguro de vida?
 
@@ -98,15 +104,9 @@ Depende de la aseguradora, el producto y su solicitud. Algunas opciones pueden u
 
 Revise el monto, los beneficiarios y qué ocurre si cambia de empleo o deja de trabajar. Puede ser útil, pero quizá no cubra todos los gastos familiares ni continúe al terminar el empleo. Inclúyalo al revisar las necesidades de su familia.
 
-¿Cómo solicito una cotización de seguro de vida en Miami?
+¿Qué comparo entre un seguro de vida entera y uno universal?
 
-Llame a la Oficina #3 al 305-910-8850. Podemos conversar en español o inglés sobre su presupuesto, quién depende de usted, el monto que quiere evaluar y los pasos de solicitud. Mantenga vigente su póliza actual mientras se revisa cualquier reemplazo.
-
-[Llame al 305-910-8850](tel:13059108850) [Revisar cambios familiares y beneficiarios](/es/recursos-para-clientes/revision-anual/)
-
-¿Qué comparo al cotizar un seguro de vida permanente?
-
-Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son estimaciones ilustradas. Revise cargos, costos de rescate y qué ocurre si deja de pagar. Las pólizas difieren; pida una explicación de los términos antes de reemplazar su cobertura actual.
+Vida entera y vida universal son seguros permanentes, pero sus primas, garantías y flexibilidad difieren. Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son proyecciones. Compare cargos, penalidades por rescate y el efecto de pagos omitidos o insuficientes antes de elegir o reemplazar una póliza.
 
 [Guía de seguro de vida de NAIC](https://content.naic.org/consumer/life-insurance.htm)
 

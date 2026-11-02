@@ -277,8 +277,8 @@ Yes. Start when your renewal notice arrives so there is time to compare limits, 
 
 [Review your renewal](/customer-resources/renewal-review/)
 
-Can I get an insurance quote outside Miami?
+Do you serve Miami-Dade, Broward and the rest of Florida?
 
-Yes. Office #3 handles insurance quote inquiries throughout Florida, including Miami-Dade and Broward County. Our office is in Miami at 11200 W Flagler St. You can start online or call for English or Spanish help; available policies depend on your location and application.
+Yes. We handle insurance quote inquiries throughout Florida. That includes Doral, Hialeah, Kendall and Sweetwater in Miami-Dade, as well as Broward County. Our office is at 11200 W Flagler St in Miami. Request a quote online or call for English or Spanish help; policy availability depends on your location and application.
 
 [Contact our Miami office](/about-office-3/)

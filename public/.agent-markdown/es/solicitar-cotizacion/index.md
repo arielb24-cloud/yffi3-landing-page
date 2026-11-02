@@ -41,7 +41,7 @@ FAQ
 
 ¿Cómo comienzo mi cotización gratis?
 
-Seleccione el botón de cotización para abrir ConsumerRateQuotes, el servicio que utiliza la Oficina #3. Complete la solicitud allí. Si su tipo de seguro no aparece o prefiere hablar con alguien, llame al 305-910-8850.
+El botón de cotización abre ConsumerRateQuotes, el servicio de solicitudes que utiliza Your Family First Insurance Oficina #3 en Miami. Elija auto, vivienda, inquilinos, condominio o una combinación de auto y propiedad. Su solicitud llega a la Oficina #3. Para otro seguro o ayuda en español o inglés, llame al 305-910-8850.
 
 [Comenzar la cotización por internet](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llame al 305-910-8850](tel:13059108850)
 

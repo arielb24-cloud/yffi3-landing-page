@@ -73,7 +73,7 @@ Select Homeowners or Condo Owners in the secure form. Have the property address,
 
 FAQ
 
-## Home insurance questions
+## Home and condo insurance questions in Miami
 
 How much does homeowners insurance cost in Miami?
 
@@ -93,11 +93,11 @@ A hurricane deductible may be a dollar amount or a percentage of the insured dwe
 
 [Florida hurricane deductible guide](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
 
-What documents should I prepare for a home insurance quote?
+How do I request a home or condo insurance quote in Miami?
 
-Have the property address, roof age, occupancy details and current declarations page ready. If available, include your wind mitigation and four-point inspection reports. Tell us about renovations, rental use or a home business; those details can affect the options offered.
+Request a free quote through Your Family First Insurance Office #3 online or at 305-910-8850. Select Homeowners or Condo Owners in the secure form. Prepare the property address, current coverage, roof age, available inspections and any lender deadline. Tell us about renovations, rental use or a home business so the application describes the property accurately.
 
-[Get a free quote](/get-a-quote/)
+[Get a home or condo quote](/get-a-quote/)
 
 Can a new roof or wind mitigation inspection lower my premium?
 
@@ -112,6 +112,16 @@ Can I buy or change home insurance when a hurricane is approaching?
 Insurers may restrict new policies or changes when a storm threatens. Review your home, wind and flood coverage early; do not wait for a warning. Any new coverage must have a confirmed effective date, and some flood policies have waiting periods.
 
 [Prepare before hurricane season](/customer-resources/hurricane-preparation/)
+
+Do I need condo insurance if my association has a master policy?
+
+A condo association’s master policy does not replace all the protection a unit owner may need. An HO-6 policy can address belongings, personal liability and certain parts of the unit. Review the association’s insurance responsibilities, your unit’s improvements and any lender requirements before choosing limits.
+
+[Florida DFS home and condo insurance guidance](https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/)
+
+Is a four-point inspection the same as a wind mitigation inspection?
+
+No. A four-point inspection reviews the roof, electrical, plumbing and heating or cooling systems; an insurer may require it when evaluating a home. A wind mitigation inspection documents features that may qualify for windstorm premium credits. Ask which reports the insurer needs and accepts; an inspection does not guarantee approval or a discount.
 
 Insurance resources
 

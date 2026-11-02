@@ -72,7 +72,13 @@ Call or text us to discuss who depends on your income, the amount of coverage yo
 
 FAQ
 
-## Life insurance questions
+## Life insurance quotes and policy questions in Miami
+
+How do I request a life insurance quote in Miami?
+
+Call Your Family First Insurance Office #3 at 305-910-8850 for a life insurance quote in English or Spanish. Discuss who depends on you, your budget and how long you need protection. We can explain the application steps and available options. Keep an existing policy active while any replacement is being reviewed.
+
+[Call 305-910-8850](tel:13059108850) [Review family and beneficiary changes](/customer-resources/life-event-review/)
 
 Can I convert term life insurance to a permanent policy?
 
@@ -84,9 +90,9 @@ Start with the income your family would need to replace, debts, housing costs, c
 
 [Call 305-910-8850](tel:13059108850)
 
-What affects the cost of life insurance?
+How much does life insurance cost in Miami?
 
-Age, health, tobacco use, coverage amount, policy type and term length can affect the premium. The insurer reviews the application before making an offer. A preliminary quote is an estimate, not a promise of approval or the final rate.
+Life insurance pricing depends on age, health, tobacco use, coverage amount, policy type and term length. Compare quotes for the same death benefit and duration, and ask whether premiums can change. Choose a payment you can sustain; a preliminary quote is not the insurer’s final offer or a guarantee of approval.
 
 Do I need a medical exam to apply for life insurance?
 
@@ -98,15 +104,9 @@ Is life insurance through my employer enough?
 
 Check the benefit amount, who receives it and what happens if you change jobs or stop working. Employer coverage may help, but it may not meet every household expense or remain available after employment ends. Include it when reviewing your family’s overall needs.
 
-How do I request a life insurance quote in Miami?
+What should I compare in whole life or universal life insurance?
 
-Call Office #3 at 305-910-8850. We can discuss your budget, who depends on you, the amount you want to consider and the application steps in English or Spanish. Keep an existing policy active while any replacement is being reviewed.
-
-[Call 305-910-8850](tel:13059108850) [Review family and beneficiary changes](/customer-resources/life-event-review/)
-
-What should I compare in a permanent life insurance quote?
-
-Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Review fees, surrender charges and what happens if premiums are missed. Policies differ; request an explanation of the actual terms before replacing existing coverage.
+Whole life and universal life are types of permanent insurance, but their premiums, guarantees and flexibility differ. Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Compare fees, surrender charges and the effect of missed or insufficient payments before choosing or replacing a policy.
 
 [NAIC life insurance guide](https://content.naic.org/consumer/life-insurance.htm)
 
