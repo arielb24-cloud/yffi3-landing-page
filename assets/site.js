@@ -198,6 +198,15 @@ function openLinkedFaq() {
 window.addEventListener("hashchange", openLinkedFaq);
 openLinkedFaq();
 
+// Focusing during a pointer click must not scroll the answer away before release.
+document.querySelectorAll(".faq summary, .review-details summary").forEach((summary) => {
+  summary.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    window.scrollTo({ left: window.scrollX, top: window.scrollY, behavior: "instant" });
+    summary.focus({ preventScroll: true });
+  });
+});
+
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 const motionDisabled = reducedMotion || saveData;
@@ -667,20 +676,26 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
     });
   });
   carousel.querySelectorAll('.review-details:not(.office-response)').forEach((details) => {
+    const keepSummaryVisible = () => {
+      if (!details.open || details.closest("[data-review-card]")?.getAttribute("aria-hidden") === "true") return;
+      const summary = details.querySelector("summary");
+      const top = Math.max(0, document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0) + 12;
+      const bounds = summary.getBoundingClientRect();
+      if (bounds.top < top || bounds.bottom > window.innerHeight - 90) {
+        summary.style.scrollMarginTop = top + "px";
+        summary.scrollIntoView({ block: "start", behavior: "instant" });
+      }
+    };
     details.addEventListener("toggle", () => {
       if (!details.open) return;
       // Expanding replaces the excerpt above the toggle. Keep the reader's
       // place visible instead of losing it behind the sticky header.
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        if (!details.open || details.closest("[data-review-card]")?.getAttribute("aria-hidden") === "true") return;
-        const summary = details.querySelector("summary");
-        const top = Math.max(0, document.querySelector(".site-header")?.getBoundingClientRect().bottom || 0) + 12;
-        const bounds = summary.getBoundingClientRect();
-        if (bounds.top < top || bounds.bottom > window.innerHeight - 90) {
-          summary.style.scrollMarginTop = top + "px";
-          summary.scrollIntoView({ block: "start", behavior: "instant" });
-        }
-      }));
+      requestAnimationFrame(() => requestAnimationFrame(keepSummaryVisible));
+    });
+    const card = details.closest("[data-review-card]");
+    card?.addEventListener("transitionend", (event) => {
+      // The card's entrance can still be moving when its answer is opened.
+      if (event.target === card && event.propertyName === "transform") keepSummaryVisible();
     });
   });
   setActive(0);
