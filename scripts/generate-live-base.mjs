@@ -5647,7 +5647,7 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
 .coverage-card p { margin: 8px 0 0; font-size: 0.95rem; line-height: 1.5; }
 .coverage-card > .icon { width: 20px; height: 20px; }
 .coverage-card .soft-icon { width: 48px; height: 48px; }
-.coverage-card:last-child { grid-column: 1 / -1; }
+.coverage-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .about-panel, .quote-panel { gap: 40px; }
 .about-panel > *, .quote-panel > *, .review-panel > *, .detail-grid > *, .intent-grid > * { min-width: 0; max-width: 100%; }
 .about-copy, .quote-copy { width: 100%; }
@@ -5668,6 +5668,7 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
 .qr-card { grid-template-columns: 104px minmax(0, 1fr); }
 .qr-card img { width: 104px; height: 104px; }
 .quote-form { width: 100%; min-width: 0; }
+.quote-panel .quote-handoff-card { align-self: stretch; align-content: start; }
 .quote-page-panel { align-items: center; }
 .quote-page-panel .quote-form { order: -1; }
 .specialty-intro { color: var(--muted); text-align: center; margin: 24px 0 0; }
@@ -5787,7 +5788,7 @@ a.coverage-card { grid-template-columns: 48px minmax(0, 1fr) 20px; align-items: 
   .business-coverage #trucking-insurance { grid-column: 1 / -1; }
 }
 @media (min-width: 1100px) {
-  .business-coverage { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .service-detail:not(.policyholder-detail) .detail-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 }
 #coverage-details, #quote-next, #faqs, .faq summary { scroll-margin-top: 160px; }
 .quote-handoff-card > p { margin: 0; line-height: 1.55; }

@@ -13,7 +13,39 @@ for(const route of routes) test(`coverage comparison is readable and localized $
     await expect(table.locator('thead th').last()).toHaveText(route.startsWith('/es/')?'Qué revisar':'What to check');
     const fits=await table.evaluate(el=>({page:document.documentElement.scrollWidth<=innerWidth+1,table:el.getBoundingClientRect().right<=innerWidth+1&&el.getBoundingClientRect().left>=0}));
     expect(fits,{message:route+' '+width}).toEqual({page:true,table:true});
+    if (width >= 1100) {
+      const grid = page.locator('.service-detail .detail-grid').first();
+      const layout = await grid.evaluate(el => ({
+        width: el.clientWidth,
+        gap: parseFloat(getComputedStyle(el).columnGap),
+        cards: [...el.children].map(card => ({left: card.offsetLeft, top: card.offsetTop, width: card.offsetWidth}))
+      }));
+      expect(new Set(layout.cards.map(card => card.top)).size, route).toBe(1);
+      expect(Math.abs(layout.cards.reduce((sum, card) => sum + card.width, 0) + layout.gap * (layout.cards.length - 1) - layout.width), route).toBeLessThan(3);
+    }
     await expect(page.locator('h1')).toHaveCount(1);
+  }
+});
+for (const route of ['/', '/es/']) test(`coverage cards form complete aligned rows ${route}`, async ({page}) => {
+  test.setTimeout(60_000);
+  for (const width of [320, 768, 1096, 1440, 1920]) {
+    await page.setViewportSize({width, height: 1000});
+    await page.goto(route, {waitUntil: 'domcontentloaded'});
+    const cards = page.locator('.coverage-grid > .coverage-card');
+    await expect(cards).toHaveCount(8);
+    const sizes = await cards.evaluateAll(nodes => nodes.map(el => ({left: el.offsetLeft, top: el.offsetTop, width: el.offsetWidth, height: el.offsetHeight})));
+    if (width >= 700) {
+      for (let i = 0; i < sizes.length; i += 2) {
+        expect(sizes[i].top).toBe(sizes[i + 1].top);
+        expect(Math.abs(sizes[i].width - sizes[i + 1].width)).toBeLessThan(2);
+        expect(Math.abs(sizes[i].height - sizes[i + 1].height)).toBeLessThan(2);
+      }
+    } else expect(new Set(sizes.map(card => card.left)).size).toBe(1);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+    if (width >= 900) {
+      const heights = await page.locator('#quote > *').evaluateAll(nodes => nodes.map(el => el.offsetHeight));
+      expect(Math.abs(heights[0] - heights[1])).toBeLessThan(2);
+    }
   }
 });
 test('new life content has no serious accessibility issues and matches FAQ schema',async({page})=>{
