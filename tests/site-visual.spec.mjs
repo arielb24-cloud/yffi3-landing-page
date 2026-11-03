@@ -142,7 +142,7 @@ for (const viewport of viewports) {
         const searchIntentPanel = page.locator(".service-detail");
         await searchIntentPanel.scrollIntoViewIfNeeded();
         await expect(searchIntentPanel).toBeVisible();
-        await expect(page.locator(".service-detail .detail-card")).toHaveCount(4);
+        await expect(page.locator(".service-detail .detail-card")).toHaveCount(pageInfo.name.startsWith("commercial") ? 3 : 2);
         expect(await page.locator(".faq-list details").count()).toBeGreaterThanOrEqual(4);
       }
 
@@ -200,7 +200,7 @@ test("mobile homeowners page scroll content stays usable", async ({ page }) => {
   await page.goto("/home-insurance/", { waitUntil: "networkidle" });
 
   await page.locator(".service-detail").scrollIntoViewIfNeeded();
-  await expect(page.locator(".service-detail h2")).toContainText("What to Review");
+  await expect(page.getByRole("heading", { name: "Prepare for your home quote", exact: true })).toBeVisible();
   await expect(page.locator(".detail-card").first()).toBeVisible();
 
   await page.locator(".faq-list").scrollIntoViewIfNeeded();
@@ -715,9 +715,8 @@ test("FAQ next steps have valid destinations and localized internal links", asyn
 });
 
 for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]) {
-  test(`FAQ keyboard controls and expanded layout ${route}`, async ({ page }) => {
+  for (const width of [320, 390, 768, 1440]) test(`FAQ keyboard controls and expanded layout ${route} at ${width}px`, async ({ page }) => {
     test.setTimeout(60_000);
-    for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 920 });
       await page.goto(route, { waitUntil: "networkidle" });
       const details = page.locator(".faq-list details");
@@ -747,7 +746,6 @@ for (const route of ["/", "/es/", "/home-insurance/", "/es/seguro-de-vivienda/"]
       expect(geometry.targets).toBe(true);
       // Scroll offsets round to device pixels; DOM rectangles retain fractional pixels.
       expect(geometry.lastBottom).toBeLessThanOrEqual(geometry.barTop + 1);
-    }
   });
 }
 
