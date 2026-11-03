@@ -11,7 +11,12 @@ permissions:
 
 jobs:
   build-and-browser-qa:
+    name: Browser QA (${{ matrix.browser }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     timeout-minutes: 30
     steps:
       - name: Check out repository
@@ -33,7 +38,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install browser engines and system dependencies
-        run: pnpm exec playwright install --with-deps chromium firefox webkit
+        run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
 
       - name: Generate and validate source
         run: pnpm check
@@ -42,21 +47,23 @@ jobs:
         run: pnpm build
 
       - name: Expose bundled Chromium to Lighthouse
+        if: matrix.browser == 'chromium'
         run: >-
           node -e 'require("fs").appendFileSync(process.env.GITHUB_ENV,
           "CHROME_PATH=" + require("@playwright/test").chromium.executablePath() + "\n")'
 
       - name: Run cross-browser and accessibility QA
-        run: pnpm qa
+        run: pnpm qa --project=${{ matrix.browser }} --workers=2 --reporter=line
 
       - name: Run Lighthouse budgets
+        if: matrix.browser == 'chromium'
         run: pnpm qa:lighthouse
 
       - name: Upload browser diagnostics on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: browser-diagnostics
+          name: browser-diagnostics-${{ matrix.browser }}
           path: |
             playwright-report/
             test-results/
