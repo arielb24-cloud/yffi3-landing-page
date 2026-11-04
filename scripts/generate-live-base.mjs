@@ -258,7 +258,7 @@ const tickerItems = [
 const pages = [
   {
     "slug": "",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-03",
     "nav": "Home",
     "title": "Miami Insurance Agency | Your Family First Insurance Office #3",
     "description": "Free insurance quotes in Miami from Your Family First Insurance Office #3. Auto, home, renters, business and life insurance on West Flagler. English and Spanish.",
@@ -358,6 +358,14 @@ const pages = [
             "HealthCare.gov plan comparison guidance",
             "https://www.healthcare.gov/choose-a-plan/comparing-plans/"
           ]
+        ]
+      ],
+      [
+        "How do I choose an insurance agency near me in Miami?",
+        "Check the agency's Florida license, recent customer reviews and how it handles questions after a policy is issued. Compare prices alongside coverage limits, deductibles and exclusions. Our West Flagler office offers help in English and Spanish with quotes, renewals and policy changes.",
+        [
+          ["Visit our Miami office", "/about-office-3/"],
+          ["Check our Florida agency license", officeFacts.agencyLicense.verificationUrl]
         ]
       ]
     ]
@@ -1455,13 +1463,12 @@ function organizationSchema() {
     telephone: "+13059108850",
     image: `${siteUrl}${familyPhotoSrc}`,
     logo: `${siteUrl}${logoSrc}`,
-    sameAs: [googleMapsUrl],
+    sameAs: [googleMapsUrl, facebookUrl],
     hasMap: googleMapsUrl,
     brand: {
       "@type": "Organization",
       name: brandName,
-      url: brandUrl,
-      sameAs: [facebookUrl]
+      url: brandUrl
     },
     address: { "@type": "PostalAddress", ...address },
     areaServed: serviceAreas,

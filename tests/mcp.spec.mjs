@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 test("MCP Server Card and read-only tool discovery stay aligned", async ({ request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium", "The protocol contract needs one transport-independent run.");
 
   const cardResponse = await request.get("/.well-known/mcp/server-card.json", {
     headers: { Accept: "application/mcp-server-card+json" }
@@ -58,7 +57,6 @@ test("MCP Server Card and read-only tool discovery stay aligned", async ({ reque
 });
 
 test("MCP endpoint rejects unsupported methods, protocol versions, and browser origins", async ({ request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium", "The protocol contract needs one transport-independent run.");
 
   const getResponse = await request.get("/mcp");
   expect(getResponse.status()).toBe(405);
@@ -85,7 +83,6 @@ test("MCP endpoint rejects unsupported methods, protocol versions, and browser o
 
 
 test("all public pages negotiate Markdown without mixing cache variants", async ({ request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium");
   const xml = await (await request.get("/sitemap.xml")).text();
   const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
   expect(paths).toHaveLength(30);
@@ -107,7 +104,6 @@ test("all public pages negotiate Markdown without mixing cache variants", async 
 });
 
 test("Cloudflare negotiation preserves cache headers and honors HTTP methods and preferences", async ({}, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium");
   const { onRequest } = await import("../functions/_middleware.js");
   for (const [method, accept, type] of [
     ["GET", "text/markdown", "text/markdown"],
@@ -138,7 +134,6 @@ test("Cloudflare negotiation preserves cache headers and honors HTTP methods and
 
 
 test("Google tag startup waits for initial paint, keeps queued events and matches CSP", async ({ request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium");
   const { createHash } = await import("node:crypto");
   const { runInNewContext } = await import("node:vm");
   const response = await request.get("/");
@@ -176,7 +171,6 @@ test("Google tag startup waits for initial paint, keeps queued events and matche
 });
 
 test("commercial truck lookups reach business guidance and the phone quote path", async ({ request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium", "The public lookup contract is transport-independent.");
   for (const category of ["trucking", "truck", "CDL", "commercial auto"]) {
     const response = await request.post("/mcp", {
       headers: { Accept: "application/json, text/event-stream", "Content-Type": "application/json" },
@@ -196,4 +190,15 @@ test("commercial truck lookups reach business guidance and the phone quote path"
   const facts = await (await request.get("/api/site.json")).json();
   expect(facts.insurance_types).toEqual(expect.arrayContaining(["Trucking insurance", "Commercial auto insurance", "Individual and family health insurance"]));
   expect(facts.pages.trucking).toBe("https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance");
+});
+
+
+test("public HTML, styles and runtime support compressed delivery", async ({ request }) => {
+  for (const path of ["/", "/es/", "/assets/styles.css", "/assets/site.js"]) {
+    const response = await request.get(path, { headers: { "Accept-Encoding": "gzip" } });
+    expect(response.status(), path).toBe(200);
+    expect(response.headers()["content-encoding"], path).toBe("gzip");
+    expect(response.headers().vary, path).toMatch(/\bAccept-Encoding\b/i);
+    expect((await response.body()).length, path).toBeGreaterThan(1000);
+  }
 });

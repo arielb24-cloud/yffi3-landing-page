@@ -3,9 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import TurndownService from 'turndown';
 const routes=['/auto-insurance/','/home-insurance/','/renters-insurance/','/commercial-insurance/','/life-insurance/','/es/seguro-de-auto/','/es/seguro-de-vivienda/','/es/seguro-de-inquilinos/','/es/seguro-comercial/','/es/seguro-de-vida/'];
 test.beforeEach(async ({page})=>{await page.route('https://www.googletagmanager.com/gtm.js**',route=>route.fulfill({body:''}));});
-for(const route of routes) test(`coverage comparison is readable and localized ${route}`,async({page},info)=>{
-  test.skip(info.project.name!=='chromium','All routes and sizes once; representative cross-engine checks below.');
-  for(const width of [320,390,768,1440]){
+for(const route of routes) for(const width of [320,390,768,1440]) test(`coverage comparison is readable and localized ${route} at ${width}px`,async({page})=>{
     await page.setViewportSize({width,height:1000});await page.goto(route,{waitUntil:'networkidle'});
     const table=page.locator('.coverage-comparison');await table.scrollIntoViewIfNeeded();
     await expect(table.locator('caption')).not.toBeEmpty();await expect(table.locator('th[scope="col"]')).toHaveCount(2);
@@ -24,7 +22,6 @@ for(const route of routes) test(`coverage comparison is readable and localized $
       expect(Math.abs(layout.cards.reduce((sum, card) => sum + card.width, 0) + layout.gap * (layout.cards.length - 1) - layout.width), route).toBeLessThan(3);
     }
     await expect(page.locator('h1')).toHaveCount(1);
-  }
 });
 for (const route of ['/', '/es/']) test(`coverage cards form complete aligned rows ${route}`, async ({page}) => {
   test.setTimeout(60_000);
@@ -87,7 +84,6 @@ test('AI-readable Markdown preserves comparison rows and real poster URLs',async
 });
 
 test('visible FAQ answers and links match schema on every page',async({request},info)=>{
-  test.skip(info.project.name!=='chromium','HTTP content check is independent of browser engine.');
   const converter=new TurndownService();
   const plain=value=>converter.turndown(value).replace(/\s+/g,' ').trim();
   const sitemap=await(await request.get('/sitemap.xml')).text();

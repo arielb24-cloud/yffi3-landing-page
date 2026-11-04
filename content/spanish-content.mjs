@@ -127,6 +127,14 @@ export const spanishPages = [
             "https://www.healthcare.gov/choose-a-plan/comparing-plans/"
           ]
         ]
+      ],
+      [
+        "¿Cómo elijo una agencia de seguros cerca de mí en Miami?",
+        "Revise la licencia de Florida de la agencia, las opiniones recientes de clientes y cómo atiende las consultas después de emitir una póliza. Compare el precio junto con los límites, deducibles y exclusiones. Nuestra oficina de West Flagler ofrece ayuda en español e inglés con cotizaciones, renovaciones y cambios de póliza.",
+        [
+          ["Visite nuestra oficina en Miami", "/es/sobre-oficina-3/"],
+          ["Verifique nuestra licencia de agencia en Florida", "https://licenseesearch.fldfs.com/Licensee/2757386"]
+        ]
       ]
     ]
   },

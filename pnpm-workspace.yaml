@@ -1,5 +1,8 @@
 allowBuilds:
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@lhci/cli@0.16.0'
+  - '@lhci/utils@0.16.0'
 overrides:
   qs: 6.16.1
   body-parser: 1.20.9
@@ -7,3 +10,6 @@ overrides:
   uuid: 11.1.1
   "get-uri>basic-ftp": 6.2.3
   "ajv>fast-uri": 3.1.9
+  "@lhci/cli>chrome-launcher": 1.2.2
+  "@lhci/cli>proxy-agent": 8.0.2
+  "@sentry/bundler-plugins>glob": 14.0.2

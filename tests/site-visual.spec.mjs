@@ -92,7 +92,6 @@ async function revealWholePage(page) {
 for (const viewport of viewports) {
   for (const pageInfo of pages) {
     test(`${pageInfo.name} renders at ${viewport.name}`, async ({ page }, testInfo) => {
-      test.skip(testInfo.project.name !== "chromium", "Visual evidence is captured once in Chromium; cross-browser behavior is covered by the remaining suite.");
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.goto(pageInfo.path, { waitUntil: "networkidle" });
 
@@ -156,7 +155,7 @@ for (const viewport of viewports) {
       await revealWholePage(page);
 
       await page.screenshot({
-        path: path.join(screenshotDir, `${pageInfo.name}-${viewport.name}.png`),
+        path: path.join(screenshotDir, `${testInfo.project.name}-${pageInfo.name}-${viewport.name}.png`),
         fullPage: true
       });
     });
@@ -1202,7 +1201,9 @@ test("business search markup matches confirmed hours and the verified agency lic
   const metadata = await (await request.get("/api/site.json")).json();
   expect(metadata.contact.opening_hours).toEqual(agency.openingHoursSpecification);
   expect(metadata.contact.agency_license.number).toBe("L134140");
-  expect(agency.sameAs).toEqual([agency.hasMap]);
+  expect(agency.sameAs).toEqual([agency.hasMap, "https://www.facebook.com/YourFamilyFirstInsurance"]);
+  expect(agency.brand.url).toBe("https://yourfamilyfirstinsurance.com/");
+  expect(agency.brand.sameAs).toBeUndefined();
   const preload = await page.locator('link[rel="preload"][as="image"]').all().then(async (links) => Promise.all(links.map(link => link.getAttribute("href"))));
   const poster = await page.locator('.motion-slide[data-active="true"] .motion-poster').getAttribute("src");
   expect(preload).toContain(poster);
@@ -1232,7 +1233,6 @@ test("mobile visitors download only the active optimized carousel poster", async
 
 
 test("reviewable growth preview at desktop and phone sizes", async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium");
   test.setTimeout(60_000);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/", { waitUntil: "networkidle" });
@@ -1422,7 +1422,6 @@ test("coverage tabs support arrows, Home and End while visible videos autoplay",
 });
 
 test("carousel poster dimensions match the original media files", async ({ page, request }, testInfo) => {
-  test.skip(testInfo.project.name !== "chromium");
   const checked = new Map();
   for (const route of ["/", "/auto-insurance/", "/home-insurance/", "/commercial-insurance/", "/life-insurance/", "/renters-insurance/"]) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
@@ -1441,25 +1440,38 @@ test("carousel poster dimensions match the original media files", async ({ page,
 
 // A delayed runtime must not reposition decorative overlays across the viewport.
 test("coverage cards remain stable before motion initializes", async ({ page, browserName }) => {
-  test.skip(browserName !== "chromium", "Layout Shift API is Chromium-only");
   await page.setViewportSize({ width: 1350, height: 940 });
   await page.route("**/assets/site.js*", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 800));
     await route.continue();
   });
   await page.addInitScript(() => {
-    window.__layoutShiftTotal = 0;
-    new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        if (!entry.hadRecentInput) window.__layoutShiftTotal += entry.value;
-      }
-    }).observe({ type: "layout-shift", buffered: true });
+    window.__layoutShiftTotal = null;
+    if (PerformanceObserver.supportedEntryTypes.includes("layout-shift")) {
+      window.__layoutShiftTotal = 0;
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (!entry.hadRecentInput) window.__layoutShiftTotal += entry.value;
+        }
+      }).observe({ type: "layout-shift", buffered: true });
+    }
   });
   for (const path of ["/auto-insurance/", "/es/seguro-de-auto/", "/es/seguro-de-vivienda/"]) {
     await page.goto(path, { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(/motion-ready/);
     await page.waitForTimeout(1000);
-    expect(await page.evaluate(() => window.__layoutShiftTotal), path).toBeLessThanOrEqual(0.1);
+    const containment = await page.locator(".detail-card").evaluateAll(cards => cards.map(card => ({
+      position: getComputedStyle(card).position,
+      overlayPosition: getComputedStyle(card, "::before").position,
+      fits: card.getBoundingClientRect().left >= 0 && card.getBoundingClientRect().right <= innerWidth + 1
+    })));
+    expect(containment.length, path).toBeGreaterThan(0);
+    for (const card of containment) expect(card, path).toEqual({ position: "relative", overlayPosition: "absolute", fits: true });
+    if (browserName === "chromium") {
+      const layoutShift = await page.evaluate(() => window.__layoutShiftTotal);
+      expect(typeof layoutShift).toBe("number");
+      expect(layoutShift, path).toBeLessThanOrEqual(0.1);
+    }
   }
 });
 
