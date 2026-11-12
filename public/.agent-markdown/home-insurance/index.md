@@ -5,41 +5,41 @@ language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/home-insurance/"
 ---
 
-[Home](/)/Homeowners
+[Home](<https://yourfamilyfirstinsurance3.com/>)/Homeowners
 
 # Homeowners Insurance in Miami
 
 Review coverage for your home and belongings, along with hurricane deductibles, flood insurance and lender requirements. Start early if you have a closing or renewal deadline.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Call 305-910-8850](<tel:13059108850>)
 
-[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Get directions to Office #3 on Google Maps")
+[11200 W Flagler St · Suite 108–109 · Miami](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
-[Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
+[Coverage](<https://yourfamilyfirstinsurance3.com/home-insurance/#coverage-details>)[What You Need](<https://yourfamilyfirstinsurance3.com/home-insurance/#quote-next>)[Questions](<https://yourfamilyfirstinsurance3.com/home-insurance/#faqs>)
 
-[![Sunlit finished home walkthrough video for Miami homeowners insurance quote help](/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Sunlit finished home walkthrough video for Miami homeowners insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Review Your Home Coverage
 
 Check the amount to rebuild, personal property limits and hurricane deductible.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Luxury home pool aerial video for homeowners insurance before closing](/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Luxury home pool aerial video for homeowners insurance before closing](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Buying a Home?
 
 Have the property address, closing date and lender requirements ready.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Modern home exterior video for homeowners insurance renewal questions](/media/premium-carousel/homeowners/modern-home-exterior-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Modern home exterior video for homeowners insurance renewal questions](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/modern-home-exterior-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Before Your Home Policy Renews
 
 Review the new premium, roof information, inspections and any coverage changes.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Home, wind and flood coverage
 
@@ -69,7 +69,7 @@ Free quotes
 
 Select Homeowners or Condo Owners in the secure form. Have the property address, current policy and any roof information available.
 
-[Start My Quote Request](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Start My Quote Request](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 FAQ
 
@@ -79,25 +79,25 @@ How much does homeowners insurance cost in Miami?
 
 The quote depends on the home’s location, rebuilding cost, roof, construction, occupancy, claims history and coverage choices. Two homes on the same street can have different prices. Compare dwelling limits, hurricane and other deductibles, exclusions and total premium together.
 
-[Get a free quote](/get-a-quote/)
+[Get a free quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>)
 
 Does homeowners insurance include flood coverage?
 
 Standard homeowners insurance generally excludes flooding from rising water. Flood insurance is separate from wind or hurricane coverage. Ask about flood protection for both the building and your belongings, even if your lender has not required it.
 
-[Ask about flood coverage](tel:13059108850)
+[Ask about flood coverage](<tel:13059108850>)
 
 How does a hurricane deductible work in Florida?
 
 A hurricane deductible may be a dollar amount or a percentage of the insured dwelling limit. For example, a 2% deductible on a $300,000 dwelling limit is $6,000. It is not 2% of your claim. Check your declarations page for the amount and policy rules.
 
-[Florida hurricane deductible guide](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
+[Florida hurricane deductible guide](<https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible>)
 
 How do I request a home or condo insurance quote in Miami?
 
 Request a free quote through Your Family First Insurance Office #3 online or at 305-910-8850. Select Homeowners or Condo Owners in the secure form. Prepare the property address, current coverage, roof age, available inspections and any lender deadline. Tell us about renovations, rental use or a home business so the application describes the property accurately.
 
-[Get a home or condo quote](/get-a-quote/)
+[Get a home or condo quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>)
 
 Can a new roof or wind mitigation inspection lower my premium?
 
@@ -111,13 +111,13 @@ Can I buy or change home insurance when a hurricane is approaching?
 
 Insurers may restrict new policies or changes when a storm threatens. Review your home, wind and flood coverage early; do not wait for a warning. Any new coverage must have a confirmed effective date, and some flood policies have waiting periods.
 
-[Prepare before hurricane season](/customer-resources/hurricane-preparation/)
+[Prepare before hurricane season](<https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/>)
 
 Do I need condo insurance if my association has a master policy?
 
 A condo association’s master policy does not replace all the protection a unit owner may need. An HO-6 policy can address belongings, personal liability and certain parts of the unit. Review the association’s insurance responsibilities, your unit’s improvements and any lender requirements before choosing limits.
 
-[Florida DFS home and condo insurance guidance](https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/)
+[Florida DFS home and condo insurance guidance](<https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/>)
 
 Is a four-point inspection the same as a wind mitigation inspection?
 
@@ -129,4 +129,4 @@ Insurance resources
 
 Read Florida consumer guides or look up an insurance license. For questions about your own coverage, check your policy or call us.
 
-[Florida DFS homeowners insurance overview](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Florida DFS flood insurance guide](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Florida Statute 627.7011 roof-age provisions](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
+[Florida DFS homeowners insurance overview](<https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview>)[Florida DFS flood insurance guide](<https://myfloridacfo.com/division/ica/fullcoverage/flood>)[Florida Statute 627.7011 roof-age provisions](<https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html>)

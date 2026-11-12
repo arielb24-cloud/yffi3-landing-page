@@ -104,7 +104,7 @@ export const spanishRetentionPages = [
     sourceLinks: [
       ["Lista de preparación para desastres de Florida DFS", "https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf"],
       ["Guía de Florida DFS sobre reclamaciones después de un desastre", "https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf"],
-      ["Lista de daños por huracán de FEMA", "https://www.fema.gov/pdf/plan/prevent/nhp/hurdam.pdf"],
+      ["Lista de recuperación tras un desastre de Florida DFS", "https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-recovery-checklist-spanish.pdf?sfvrsn=6e6b9806_3"],
       ["Ayuda para consumidores de Florida DFS", "https://myfloridacfo.com/division/consumers/needourhelp"]
     ],
     "faqTitle": "Preguntas sobre seguros y huracanes",
@@ -157,16 +157,17 @@ export const spanishRetentionPages = [
   },
   {
     slug: "es/recursos-para-clientes/revision-de-renovacion",
+    modifiedDate: "2026-11-12",
     englishSlug: "customer-resources/renewal-review",
     nav: "Renovación",
     locale: "es-US",
     kind: "resource",
-    title: "Revisión de Renovación y Prevención de Cancelación | Oficina #3",
-    description: "Prepárese para renovar seguro de auto, vivienda, inquilinos, vida o negocio y responda temprano a avisos de facturación, cancelación o no renovación.",
+    title: "Guía de Renovación de Seguros en Florida | Oficina #3",
+    description: "Revise su aviso de renovación, cancelación o no renovación en Florida. Confirme la fecha de vigencia, compare el costo total y consulte a su aseguradora.",
     h1: "Revisión de Renovación y Prevención de Cancelación",
     intro: "Revise el aviso de renovación cuando llegue. Compare la nueva prima, cobertura y deducibles, e infórmenos de cualquier cambio antes de que venza la póliza.",
     sections: [
-      ["Lea cada aviso", "Confirme aseguradora, período, fecha límite, prima, plan de pagos, documentos solicitados, motivo de no renovación o cancelación y el método de contacto del aviso."],
+      ["Identifique el aviso y la fecha límite", "Una oferta de renovación corresponde a un nuevo período de la póliza. La no renovación termina la cobertura al vencer el período actual. Una cancelación puede terminarla antes. Revise la fecha, hora y motivo del aviso y confirme con su aseguradora cuándo termina la cobertura."],
       ["Verifique la facturación", "Confirme monto, fecha, método, pagos devueltos y datos de pago automático directamente con la aseguradora o parte autorizada."],
       ["Revise cambios", "Identifique conductores o vehículos nuevos, cambios de dirección u ocupación, techo o propiedad, equipo, nómina, operaciones, beneficiarios y contactos."],
       ["Pregunte antes del vencimiento", "Comuníquese pronto con la aseguradora y la Oficina #3. Inspecciones, firmas, suscripción u opciones de reemplazo pueden requerir tiempo."],
@@ -224,14 +225,14 @@ export const spanishRetentionPages = [
   {
     slug: "es/recursos-para-clientes/certificado-de-seguro",
     englishSlug: "customer-resources/certificate-of-insurance",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     nav: "Certificado",
     locale: "es-US",
     kind: "resource",
     title: "Orientación sobre Certificados de Seguro para Negocios | Oficina #3",
-    description: "Comprenda solicitudes de certificados, requisitos contractuales, comprobantes, asegurado adicional y por qué el certificado no puede cambiar la póliza.",
+    description: "Solicite un certificado de seguro comercial para un trabajo o alquiler en Florida. Prepare los requisitos escritos y consulte si aún necesita cobertura.",
     h1: "Orientación para Solicitar un Certificado de Seguro",
-    intro: "Un certificado generalmente evidencia cobertura. No sustituye la póliza ni crea términos que el contrato de seguro no proporciona.",
+    intro: "¿Le piden un comprobante de seguro para un trabajo o un alquiler comercial? Prepare los requisitos escritos y la fecha límite. Si ya tiene cobertura, pregunte por el certificado a la agencia o aseguradora que maneja su póliza. Si necesita cobertura, llame a nuestra oficina en Miami para revisar una cotización de seguro comercial.",
     sections: [
       ["Obtenga la solicitud por escrito", "Pida el nombre y dirección exactos del titular, proyecto o contrato, límites requeridos y endosos solicitados."],
       ["Envíe documentos de forma segura", "No publique números de póliza ni contratos aquí. Use un canal aprobado de la oficina, aseguradora o documentos seguros."],
@@ -254,6 +255,13 @@ export const spanishRetentionPages = [
             "Llame al 305-910-8850",
             "tel:13059108850"
           ]
+        ]
+      ],
+      [
+        "¿Necesito un certificado o una cotización de seguro comercial?",
+        "Un certificado comprueba que existe una póliza. Si ya tiene seguro, pida a la agencia o aseguradora que maneja su póliza que revise los requisitos escritos. Si no tiene seguro o su contrato exige una cobertura que la póliza no incluye, revise primero la cobertura necesaria.",
+        [
+          ["Comparar coberturas para negocios y responsabilidad civil", "/es/seguro-comercial/#general-liability-insurance"]
         ]
       ],
       [
@@ -289,6 +297,7 @@ export const spanishRetentionPages = [
   {
     slug: "es/recursos-para-clientes/revision-anual",
     englishSlug: "customer-resources/life-event-review",
+    modifiedDate: "2026-11-12",
     nav: "Revisión anual",
     locale: "es-US",
     kind: "resource",
@@ -340,8 +349,8 @@ export const spanishRetentionPages = [
         "Revise después de matrimonio, divorcio, nacimiento, adopción o fallecimiento, y periódicamente al revisar la póliza. Confirme los cambios mediante el proceso de la aseguradora. Pida orientación antes de nombrar a un menor o tomar decisiones con consecuencias legales o patrimoniales.",
         [
           [
-            "Preguntas sobre seguro de vida",
-            "/es/seguro-de-vida/"
+            "Compare seguros de vida a término y permanentes",
+            "/es/seguro-de-vida/#coverage-details"
           ]
         ]
       ],
@@ -350,8 +359,8 @@ export const spanishRetentionPages = [
         "Pueden cambiar los riesgos y requisitos de la póliza. Revise empleados, nómina, ubicaciones, vehículos, equipos y servicios nuevos con la oficina. Hágalo antes de aceptar trabajos que su póliza actual quizá no cubra.",
         [
           [
-            "Consultar seguro para negocios",
-            "/es/seguro-comercial/"
+            "Revise las coberturas para su negocio",
+            "/es/seguro-comercial/#coverage-details"
           ]
         ]
       ],

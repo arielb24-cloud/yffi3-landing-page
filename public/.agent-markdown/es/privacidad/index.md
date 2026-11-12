@@ -45,7 +45,7 @@ Este sitio no tiene actualmente un panel de preferencias de cookies. Puede restr
 
 Contáctenos para preguntas sobre conservación de datos o solicitudes de privacidad. Puede restringir cookies o instalar el complemento de inhabilitación de Google Analytics. La información pública sobre seguros sigue disponible si bloquea cookies.
 
-La información de privacidad de Google está disponible en [policies.google.com/privacy](https://policies.google.com/privacy), y el complemento de inhabilitación está disponible en [tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
+La información de privacidad de Google está disponible en [policies.google.com/privacy](<https://policies.google.com/privacy>), y el complemento de inhabilitación está disponible en [tools.google.com/dlpage/gaoptout](<https://tools.google.com/dlpage/gaoptout>).
 
 ## Recepción de cotizaciones por un tercero
 
@@ -57,4 +57,4 @@ No envíe números de Seguro Social, fechas de nacimiento, licencias de conducir
 
 ## Contacto
 
-Para preguntas de privacidad, llame al [305-910-8850](tel:13059108850).
+Para preguntas de privacidad, llame al [305-910-8850](<tel:13059108850>).

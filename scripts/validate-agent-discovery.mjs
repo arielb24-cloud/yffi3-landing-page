@@ -87,12 +87,16 @@ if (TOOLS.some((tool) => tool.annotations?.readOnlyHint !== true || tool.annotat
 for (const route of routes) {
   const markdownPath = route ? path.join(".agent-markdown", route, "index.md") : path.join(".agent-markdown", "index.md");
   const markdown = read(markdownPath);
+  const canonical = route ? `${siteUrl}/${route}/` : `${siteUrl}/`;
   if (markdown && (!markdown.startsWith("---\n") || !markdown.includes("\ncanonical: ") || !markdown.includes("\n# "))) {
     failures.push(`${markdownPath} is missing Markdown frontmatter or a primary heading`);
   }
+  if (markdown && !markdown.includes(`\ncanonical: "${canonical}"\n`)) failures.push(`${markdownPath} must name its canonical HTML page`);
+  if (markdown && /\]\(<?[\/#]/.test(markdown)) failures.push(`${markdownPath} contains a relative reference`);
 }
 
 const headers = read("_headers");
+if (!headers.includes("/.agent-markdown/*\n  X-Robots-Tag: noindex, follow")) failures.push("Direct Markdown assets must not be indexed as duplicate pages");
 for (const expected of ["rel=\"api-catalog\"", "application/mcp-server-card+json", "rel=\"service-desc\"", "rel=\"service-doc\"", "Vary: Accept", "Content-Signal: search=yes, ai-input=yes, ai-train=no"]) {
   if (!headers.includes(expected)) failures.push(`Cloudflare headers missing ${expected}`);
 }

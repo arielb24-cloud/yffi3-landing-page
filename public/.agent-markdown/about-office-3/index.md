@@ -21,15 +21,15 @@ Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.
 
-Hablamos español. [Ver seguros y cotizaciones en español](/es/).
+Hablamos español. [Ver seguros y cotizaciones en español](<https://yourfamilyfirstinsurance3.com/es/>).
 
-[Get Directions](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Call 305-910-8850](tel:13059108850)
+[Get Directions](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [Call 305-910-8850](<tel:13059108850>)
 
-![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, owner of Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg>)
 
 **Ariel Busutil, Office #3 Owner**Miami, Florida
 
- ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
+ ![Real family and office photo for Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-family-office-photo.jpg>)
 
 **Our family at Office #3**Miami, Florida
 
@@ -39,11 +39,11 @@ Google reviews for Office #3
 
 Read what people have shared about Office #3. Visit Google for the latest reviews.
 
-[Read Google Reviews](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Leave a Google Review](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Read Google Reviews](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [Leave a Google Review](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 Reviews describe individual experiences.
 
- [![QR code linking to the Your Family First Insurance Office #3 Google review page](/assets/yffi3/google-review-qr.png) **Scan to review Office #3**_Opens the live Google review page._](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+ [![QR code linking to the Your Family First Insurance Office #3 Google review page](<https://yourfamilyfirstinsurance3.com/assets/yffi3/google-review-qr.png>) **Scan to review Office #3**_Opens the live Google review page._](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 R
 
@@ -63,7 +63,7 @@ Office response on Google Recorded July 13, 2026
 
 Muchas gracias por tomarse el tiempo de dejarnos una reseña. Nos sentimos orgullosos de servir a Miami, Westchester, Sweetwater, Doral, Kendall y comunidades cercanas con atención bilingüe, cotizaciones personalizadas y orientación honesta sobre seguros.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 M
 
@@ -83,7 +83,7 @@ Office response on Google Recorded July 13, 2026
 
 ¡Muchísimas gracias por su reseña y por confiar en nosotros! Nuestro equipo de seguros en Miami siempre está disponible para ayudar con cotizaciones, renovaciones, preguntas de cobertura y opciones para proteger su carro, casa, familia, negocio y mas con servicio personal, claro, barato, y en español y ingles! .
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 M
 
@@ -103,7 +103,7 @@ Office response on Google Recorded July 13, 2026
 
 ¡Gracias por confiar en Your Family First Insurance 3! Nos encanta poder ayudar a nuestra comunidad hispana en Miami a comparar opciones de seguro y entender mejor su cobertura. Siempre estamos aquí para ayudarle con cotizaciones, pólizas y cualquier pregunta sobre seguros.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 M
 
@@ -123,7 +123,7 @@ Office response on Google Recorded July 13, 2026
 
 ¡Muchísimas gracias por su reseña! Nos alegra saber que tuvo una buena experiencia con Your Family First Insurance Office #3 aquí en Miami. Nuestro objetivo siempre es ayudar a familias de Miami-Dade con seguros de auto, casa, renta, negocio y más, de una manera clara, amable y con buen precio.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 B
 
@@ -143,7 +143,7 @@ Office response on Google Recorded July 13, 2026
 
 Thank you for the kind words! It means a lot to our local Miami insurance team. Whether it’s car insurance, homeowners insurance, renters insurance, commercial insurance, or general liability coverage, we’re always here to put your family first!
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 L
 
@@ -163,7 +163,7 @@ Office response on Google Recorded July 13, 2026
 
 We appreciate the support, Leeor ! We are pleased to have been able to help you find a trustworthy and affordable homeowners insurance coverage option after comparing different trusted carriers for you!
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 N
 
@@ -183,7 +183,7 @@ Office response on Google Recorded July 13, 2026
 
 Thank you for the review Nouras! We're happy we were able to provide reliable and affordablele insurance coverage for you :)
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 C
 
@@ -203,7 +203,7 @@ Office response on Google Recorded July 13, 2026
 
 Thank you for your review! We’re glad our team could help. As a local, bilingual insurance agency in Miami, we focus on making the process clear, friendly, affordable, and helpful from quote to coverage.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 B
 
@@ -223,7 +223,7 @@ Office response on Google Recorded July 13, 2026
 
 We greatly appreciate your review and satisfaction with our agency's customer service Bryan!
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 Y
 
@@ -237,7 +237,7 @@ Yojarny Rodriguez left a 5-star Google rating for Your Family First Insurance Of
 
 Rating only; no written comment.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 G
 
@@ -257,7 +257,7 @@ Office response on Google Recorded July 13, 2026
 
 Thank you for your kind review! We greatly appreciate it and are happy we made your insurance experience a good one. ¡Muchas gracias por su amable reseña! La apreciamos enormemente y nos alegra saber que hicimos su experiencia con el seguro una buena experiencia.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 FAQ
 
@@ -267,19 +267,19 @@ Where is Office #3, and how do I get directions?
 
 Your Family First Insurance Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed. Use the office’s Google Maps listing for directions.
 
-[Directions to our West Flagler office](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+[Directions to our West Flagler office](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
 Can I get a quote from Broward or elsewhere in Florida?
 
 Yes. Your Family First Insurance Office #3 handles quote inquiries throughout Florida from our Miami office. Start online or call 305-910-8850 for English or Spanish help. For business, life, health or coverage not listed in the form, call the office. You do not need to visit to request a quote.
 
-[Get a free quote](/get-a-quote/) [Call 305-910-8850](tel:13059108850)
+[Get a free quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>) [Call 305-910-8850](<tel:13059108850>)
 
 Can someone explain my insurance quote in Spanish?
 
 Yes. Ask for English or Spanish service when you call. We can go over the quoted coverage, deductibles, payment terms and questions you want answered before you decide.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 What should I bring when comparing insurance?
 
@@ -289,4 +289,4 @@ Can Office #3 help after I buy a policy?
 
 Call us about renewals, proof of insurance, billing questions or requested policy changes. For a new claim, report the loss through your insurer’s official claims channel and keep the claim number. The insurer makes the coverage decision.
 
-[Existing customer help](/policyholder-help/)
+[Existing customer help](<https://yourfamilyfirstinsurance3.com/policyholder-help/>)

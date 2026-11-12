@@ -653,7 +653,7 @@ const globalPairs = [
   ["Florida DFS insurance consumer resources", "Recursos para consumidores de seguros de Florida DFS"],
   ["Florida DFS personal auto insurance overview", "Resumen de seguro de auto personal de Florida DFS"],
   ["Florida DFS homeowners insurance overview", "Resumen de seguro para propietarios de Florida DFS"],
-  ["Florida DFS homeowners and renters overview", "Resumen para propietarios e inquilinos de Florida DFS"],
+  ["Florida DFS renters insurance overview", "Guía de seguro para inquilinos de Florida DFS"],
   ["Florida DFS flood insurance guide", "Guía de seguro contra inundaciones de Florida DFS"],
   ["Florida DFS insurance consumer library", "Biblioteca para consumidores de seguros de Florida DFS"],
   ["Florida DFS licensee search", "Búsqueda de licencias de Florida DFS"],
@@ -855,6 +855,7 @@ function pagePairs(english, spanish) {
     englishRows.forEach((row, index) => {
       addPair(pairs, row[0], spanishRows[index]?.[0]);
       if (key === "resources") addPair(pairs, row[2], spanishRows[index]?.[2]);
+      if (key === "sourceLinks") addPair(pairs, row[1], spanishRows[index]?.[1]);
     });
   }
   const navigationPairs = [
@@ -992,10 +993,6 @@ function localizedJsonLdBlock(whole, spanishPage) {
     let data;
     try { data = JSON.parse(raw); } catch { return whole; }
     const type = data["@type"];
-    if (type === "WebSite") {
-      data.url = `${siteUrl}/es/`;
-      data.inLanguage = "es-US";
-    }
     if (["WebPage", "AboutPage", "ContactPage"].includes(type)) {
       data["@id"] = `${canonical}#webpage`;
       data.url = canonical;
@@ -1005,56 +1002,27 @@ function localizedJsonLdBlock(whole, spanishPage) {
       if (data.breadcrumb) data.breadcrumb["@id"] = `${canonical}#breadcrumb`;
       if (data.mainEntity?.["@id"]?.endsWith("#service")) data.mainEntity["@id"] = `${canonical}#service`;
     }
-    if (type === "InsuranceAgency") {
-      data.inLanguage = "es-US";
-      data.description = "Agencia de seguros local y bilingüe en West Flagler, Miami, que ayuda a familias y negocios a comparar opciones de cobertura con orientación personalizada.";
-      data.availableLanguage = ["English", "Spanish"];
-      data.slogan = "Donde su familia es lo primero";
-      if (data.contactPoint?.[0]) data.contactPoint[0].contactType = "servicio al cliente";
-      if (data.hasOfferCatalog) data.hasOfferCatalog.name = "Ayuda con cotizaciones de seguros";
-      const serviceNames = {
-        "Auto Insurance": "Seguro de auto",
-        "Homeowners Insurance": "Seguro para propietarios",
-        "Renters Insurance": "Seguro de inquilinos",
-        "General Liability Insurance": "Seguro de responsabilidad civil general",
-        "Business Insurance": "Seguro para negocios",
-        "Commercial Insurance": "Seguro comercial",
-        "Life Insurance": "Seguro de vida",
-        "Health Insurance": "Seguro de salud",
-        "Trucking Insurance": "Seguro de camiones",
-        "Flood Insurance": "Seguro contra inundaciones",
-        "Motorcycle Insurance": "Seguro de motocicleta",
-        "Boat Insurance": "Seguro para embarcaciones",
-        "RV Insurance": "Seguro para vehículos recreativos",
-        "Workers' Compensation": "Compensación laboral"
-      };
-      for (const offer of data.hasOfferCatalog?.itemListElement || []) {
-        const name = offer?.itemOffered?.name;
-        if (serviceNames[name]) offer.itemOffered.name = serviceNames[name];
-      }
-    }
     if (type === "Service") {
       data["@id"] = `${canonical}#service`;
       data.name = spanishPage.service;
       data.serviceType = spanishPage.service;
       data.description = spanishPage.description;
       data.url = canonical;
-      data.inLanguage = "es-US";
     }
     if (type === "BreadcrumbList") {
       data["@id"] = `${canonical}#breadcrumb`;
-      if (data.itemListElement?.[0]) data.itemListElement[0].item = `${siteUrl}/es/`;
-      if (data.itemListElement?.[0]) data.itemListElement[0].name = "Inicio";
-      if (data.itemListElement?.[1]) {
-        data.itemListElement[1].item = canonical;
-        data.itemListElement[1].name = spanishPage.h1;
+      for (const crumb of data.itemListElement) {
+        const englishSlug = new URL(crumb.item).pathname.replace(/^\/+|\/+$/g, "");
+        const localized = spanishPages.find((page) => page.englishSlug === englishSlug);
+        if (!localized) throw new Error(`Missing Spanish breadcrumb destination for ${crumb.item}`);
+        crumb.item = `${siteUrl}/${localized.slug}/`;
+        crumb.name = crumb.position === 1 ? "Inicio" : crumb.position === data.itemListElement.length ? spanishPage.h1 : localized.nav;
       }
     }
     if (type === "FAQPage") {
       data = faqSchema(spanishPage);
     }
     if (type === "ItemList") {
-      data.inLanguage = "es-US";
       for (const item of data.itemListElement || []) {
         const names = {
           "Auto Insurance": "Seguro de auto", "Homeowners Insurance": "Seguro para propietarios", "Renters Insurance": "Seguro de inquilinos",

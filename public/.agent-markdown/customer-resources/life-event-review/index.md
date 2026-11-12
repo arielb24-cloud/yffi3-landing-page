@@ -47,7 +47,7 @@ Insurance resources
 
 Find more detail in these consumer guides. Follow your insurer’s instructions for your policy or claim.
 
-[NAIC Life Insurance Buyer's Guide](https://content.naic.org/sites/default/files/publication-lig-lp-consumer-life.pdf)[NAIC annual insurance checklist](https://content.naic.org/article/consumer-insight-insurance-checklist-new-year)[Florida DFS insurance consumer resources](https://www.myfloridacfo.com/division/consumers/understanding-insurance)
+[NAIC Life Insurance Buyer's Guide](<https://content.naic.org/sites/default/files/publication-lig-lp-consumer-life.pdf>)[NAIC annual insurance checklist](<https://content.naic.org/article/consumer-insight-insurance-checklist-new-year>)[Florida DFS insurance consumer resources](<https://www.myfloridacfo.com/division/consumers/understanding-insurance>)
 
 Existing customer service
 
@@ -55,13 +55,13 @@ Existing customer service
 
 Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 More customer help
 
 ## Return to the Policyholder Resource Center
 
-[View all customer service guides](/policyholder-help/)
+[View all customer service guides](<https://yourfamilyfirstinsurance3.com/policyholder-help/>)
 
 FAQ
 
@@ -71,25 +71,25 @@ When should I review my insurance policies?
 
 Review at renewal and after a move, marriage, new child, new driver, major purchase or business change. A policy that fit last year may need updating. Make a list of what changed and the questions you want answered.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 Does a move or renovation affect home and renters insurance?
 
 It can. Tell the insurer about a new address, major renovation, rental use, vacancy or a home business before assuming your policy still fits. Updated belongings, building details or occupancy may change the coverage needed.
 
-[Home insurance questions](/home-insurance/) [Renters insurance questions](/renters-insurance/)
+[Home insurance questions](<https://yourfamilyfirstinsurance3.com/home-insurance/>) [Renters insurance questions](<https://yourfamilyfirstinsurance3.com/renters-insurance/>)
 
 When should I review life insurance beneficiaries?
 
 Review them after marriage, divorce, a birth, adoption or a death, and periodically with your overall policy review. Confirm changes through the insurer’s process. Ask for guidance before naming a minor or making a decision with legal or estate implications.
 
-[Life insurance questions](/life-insurance/)
+[Compare term and permanent life insurance](<https://yourfamilyfirstinsurance3.com/life-insurance/#coverage-details>)
 
 Do new employees or new services affect business insurance?
 
 They can change your risks and policy requirements. Review new employees, payroll, locations, vehicles, equipment and services with the office. Do this before taking on work that your current policy may not cover.
 
-[Discuss business insurance](/commercial-insurance/)
+[Review small business coverage](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#coverage-details>)
 
 Will an insurance review automatically change my policy?
 

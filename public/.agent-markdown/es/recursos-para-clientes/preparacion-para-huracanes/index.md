@@ -47,7 +47,7 @@ Recursos sobre seguros
 
 Consulte estas guías para más información. Siga las instrucciones de su aseguradora para su póliza o reclamación.
 
-[Lista de preparación para desastres de Florida DFS](https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf)[Guía de Florida DFS sobre reclamaciones después de un desastre](https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf)[Lista de daños por huracán de FEMA](https://www.fema.gov/pdf/plan/prevent/nhp/hurdam.pdf)[Ayuda para consumidores de Florida DFS](https://myfloridacfo.com/division/consumers/needourhelp)
+[Lista de preparación para desastres de Florida DFS](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf>)[Guía de Florida DFS sobre reclamaciones después de un desastre](<https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf>)[Lista de recuperación tras un desastre de Florida DFS](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-recovery-checklist-spanish.pdf?sfvrsn=6e6b9806_3>)[Ayuda para consumidores de Florida DFS](<https://myfloridacfo.com/division/consumers/needourhelp>)
 
 Servicio para clientes existentes
 
@@ -55,13 +55,13 @@ Servicio para clientes existentes
 
 No coloque números de póliza, identificación, datos de pago, información médica, archivos de reclamaciones ni documentos de póliza en este sitio público ni en un mensaje de texto común.
 
-[Llamar al 305-910-8850](tel:13059108850)
+[Llamar al 305-910-8850](<tel:13059108850>)
 
 Más ayuda para clientes
 
 ## Regrese al centro de recursos para asegurados
 
-[Ver todas las guías de servicio para clientes](/es/ayuda-para-clientes/)
+[Ver todas las guías de servicio para clientes](<https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/>)
 
 FAQ
 
@@ -71,13 +71,13 @@ FAQ
 
 Los daños por viento y por inundación son riesgos distintos. El seguro de vivienda estándar generalmente excluye inundaciones por agua que sube desde el exterior, incluso durante un huracán. Revise su póliza de vivienda y cualquier seguro contra inundaciones antes de la temporada, incluidos estructura y pertenencias.
 
-[Revisar dudas sobre vivienda e inundaciones](/es/seguro-de-vivienda/)
+[Revisar dudas sobre vivienda e inundaciones](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/>)
 
 ¿Cuánto tendría que pagar antes de que responda el seguro por huracán?
 
 Revise el deducible por huracán en la página de declaraciones. Si es un porcentaje, generalmente se calcula sobre el límite asegurado de la vivienda, no sobre la reclamación. Revise el monto en dólares, límites y exclusiones para conocer el posible gasto.
 
-[Reglas de deducibles por huracán de Florida](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
+[Reglas de deducibles por huracán de Florida](<https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible>)
 
 ¿Qué documentos del seguro guardo antes de un huracán?
 
@@ -87,10 +87,10 @@ Guarde las declaraciones de pólizas, contactos de reclamaciones y pagos, un inv
 
 No espere. Algunas pólizas tienen períodos de espera y las aseguradoras pueden restringir nuevas coberturas al acercarse una tormenta. Confirme la fecha efectiva y cualquier período de espera antes de contar con el seguro.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Qué hago primero después de daños por huracán?
 
 Priorice su seguridad y siga las instrucciones de emergencia. Cuando sea seguro, documente los daños y repórtelos por el canal oficial de su aseguradora. Guarde el número de reclamación y recibos, y consulte sus instrucciones para documentos y reparaciones antes de comprometerse.
 
-[Ayuda con su póliza actual](/es/ayuda-para-clientes/)
+[Ayuda con su póliza actual](<https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/>)

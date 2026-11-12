@@ -1,6 +1,6 @@
 ---
 title: "Certificate of Insurance Guidance for Miami Businesses | Office #3"
-description: "Understand certificate of insurance requests, contract requirements, proof of coverage, additional insured questions, and why a certificate cannot change the policy."
+description: "Request a certificate of insurance for a Florida job or lease. See which details to gather and what to do if you still need business coverage."
 language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/"
 ---
@@ -9,7 +9,7 @@ COI Guide
 
 # Certificate of Insurance Request Guidance
 
-A certificate generally provides evidence of coverage. It does not replace the policy or create terms that the underlying contract does not provide.
+Need to show proof of insurance for a job or commercial lease? Have the written requirements and deadline ready. If you already have coverage, ask the agency or insurer that handles your policy about issuing the certificate. If you still need coverage, call our Miami office to review a business insurance quote.
 
 Customer checklist
 
@@ -47,7 +47,7 @@ Insurance resources
 
 Find more detail in these consumer guides. Follow your insurer’s instructions for your policy or claim.
 
-[Florida DFS agent compliance guidance for certificates](https://myfloridacfo.com/division/agents/compliance/general-lines-agents-customer-reps)[Florida DFS contractor documentation tips](https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/demolish-contractor-fraud-consumer-tips.pdf)
+[Florida DFS agent compliance guidance for certificates](<https://myfloridacfo.com/division/agents/compliance/general-lines-agents-customer-reps>)[Florida DFS contractor documentation tips](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/demolish-contractor-fraud-consumer-tips.pdf>)
 
 Existing customer service
 
@@ -55,13 +55,13 @@ Existing customer service
 
 Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 More customer help
 
 ## Return to the Policyholder Resource Center
 
-[View all customer service guides](/policyholder-help/)
+[View all customer service guides](<https://yourfamilyfirstinsurance3.com/policyholder-help/>)
 
 FAQ
 
@@ -71,7 +71,13 @@ How do I request a certificate of insurance in Florida?
 
 Call Your Family First Insurance Office #3 at 305-910-8850 with the certificate holder’s exact name and address, written insurance requirements, project reference and deadline. Include requested additional insured or other endorsement wording. We must review the requirements against the policy. Ask how to share contracts and policy details securely.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
+
+Do I need a certificate or a new business insurance quote?
+
+A certificate shows evidence of an existing policy. If you have a policy, contact the agency or insurer that handles it and ask them to review the written requirements. If you are uninsured or the contract asks for coverage your policy lacks, discuss the needed coverage before promising a certificate.
+
+[Compare business and general liability coverage](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#general-liability-insurance>)
 
 What is a certificate of insurance, or COI?
 
@@ -85,10 +91,10 @@ Can a certificate add coverage or raise my liability limit?
 
 No. A certificate cannot increase limits, remove exclusions or certify coverage the policy does not provide. If the contract asks for something different, the policy may need an approved change before the certificate can reflect it.
 
-[Review business coverage](/commercial-insurance/)
+[Review business coverage](<https://yourfamilyfirstinsurance3.com/commercial-insurance/>)
 
 Can I get a certificate of insurance the same day?
 
 Same-day delivery cannot be promised. A request that matches existing coverage may take less time than one needing insurer approval or an endorsement. Call with complete written requirements and your deadline so the office can check what is needed. Confirm the certificate’s status before starting the job or signing the lease.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)

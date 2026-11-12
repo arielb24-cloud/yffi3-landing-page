@@ -5,6 +5,7 @@ const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 3000;
+const previewMode = process.env.SITE_PREVIEW === "1";
 const distDir = path.join(__dirname, "dist");
 const canonicalHostname = "yourfamilyfirstinsurance3.com";
 const canonicalOrigin = `https://${canonicalHostname}`;
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
   }
 
   res.setHeader("X-Content-Type-Options", "nosniff");
+  if (previewMode) res.setHeader("X-Robots-Tag", "noindex, nofollow");
   res.setHeader("X-Frame-Options", "SAMEORIGIN");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
@@ -207,12 +209,28 @@ app.use((req, res, next) => {
   const markdown = fs.readFileSync(markdownPath, "utf8");
   const originalHtml = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, "utf8") : "";
   res.setHeader("Content-Type", "text/markdown; charset=utf-8");
+  res.append("Link", `<${canonicalOrigin}${slug ? `/${slug}/` : "/"}>; rel="canonical"`);
   res.vary("Accept");
   res.setHeader("x-markdown-tokens", String(estimatedTokens(markdown)));
   res.setHeader("x-original-tokens", String(estimatedTokens(originalHtml)));
   res.setHeader("Cache-Control", "public, max-age=300, must-revalidate");
   res.send(markdown);
 });
+
+if (previewMode) {
+  app.use((req, res, next) => {
+    const slug = routeSlug(req.path);
+    if (!["GET", "HEAD"].includes(req.method) || !markdownRoutes.has(slug)) return next();
+    const file = path.join(distDir, slug, "index.html");
+    if (!fs.existsSync(file)) return next();
+    const html = fs.readFileSync(file, "utf8").replace(
+      /<(script|noscript) data-site-tracking="gtm">[\s\S]*?<\/\1>/g,
+      ""
+    );
+    res.setHeader("Cache-Control", "no-store");
+    res.type("html").send(html);
+  });
+}
 
 app.use("/assets", express.static(path.join(distDir, "assets"), {
   maxAge: "7d",
@@ -248,6 +266,6 @@ app.use((req, res) => {
   res.status(404).type("text/plain").send("Not found");
 });
 
-app.listen(port, () => {
+app.listen(port, previewMode ? "127.0.0.1" : undefined, () => {
   console.log(`YFFI3 website server listening on port ${port}`);
 });

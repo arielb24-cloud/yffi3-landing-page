@@ -47,7 +47,7 @@ Insurance resources
 
 Find more detail in these consumer guides. Follow your insurer’s instructions for your policy or claim.
 
-[Florida DFS disaster preparation checklist](https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf)[Florida DFS post-disaster insurance claims guide](https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf)[FEMA hurricane damage checklist](https://www.fema.gov/pdf/plan/prevent/nhp/hurdam.pdf)[Florida DFS insurance consumer help](https://myfloridacfo.com/division/consumers/needourhelp)
+[Florida DFS disaster preparation checklist](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf>)[Florida DFS post-disaster insurance claims guide](<https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf>)[Florida DFS disaster recovery checklist](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-recovery-checklist.pdf?sfvrsn=58940ae7_24>)[Florida DFS insurance consumer help](<https://myfloridacfo.com/division/consumers/needourhelp>)
 
 Existing customer service
 
@@ -55,13 +55,13 @@ Existing customer service
 
 Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 More customer help
 
 ## Return to the Policyholder Resource Center
 
-[View all customer service guides](/policyholder-help/)
+[View all customer service guides](<https://yourfamilyfirstinsurance3.com/policyholder-help/>)
 
 FAQ
 
@@ -71,13 +71,13 @@ Does hurricane coverage also cover flooding?
 
 Wind damage and flooding are different insurance risks. Standard homeowners insurance generally excludes rising-water flooding, even when a hurricane causes it. Review your home policy and any separate flood policy before storm season, including coverage for the building and belongings.
 
-[Review home and flood questions](/home-insurance/)
+[Review home and flood questions](<https://yourfamilyfirstinsurance3.com/home-insurance/>)
 
 How much would I pay before hurricane insurance responds?
 
 Check the hurricane deductible on your declarations page. If it is a percentage, it is generally based on the insured dwelling limit rather than the claim amount. Review the dollar amount, coverage limits and exclusions so you understand the potential expense.
 
-[Florida hurricane deductible rules](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
+[Florida hurricane deductible rules](<https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible>)
 
 What insurance documents should I save before a hurricane?
 
@@ -87,10 +87,10 @@ Can I wait until a storm warning to buy flood insurance?
 
 Do not wait. Some flood policies have waiting periods, and insurers may restrict new coverage as a storm approaches. Ask about the actual effective date and any waiting period before relying on a new policy.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 What should I do first after hurricane damage?
 
 Put safety first and follow emergency instructions. When it is safe, document the damage and report it through your insurer’s official claims channel. Keep the claim number and receipts, and ask the insurer about its documentation and repair instructions before making commitments.
 
-[Help with an existing policy](/policyholder-help/)
+[Help with an existing policy](<https://yourfamilyfirstinsurance3.com/policyholder-help/>)

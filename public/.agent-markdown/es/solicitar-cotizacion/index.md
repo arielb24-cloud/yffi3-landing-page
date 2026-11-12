@@ -15,7 +15,7 @@ Comience su cotización en línea con la Oficina #3 o llámenos para recibir ayu
 
 Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combinar auto y propiedad.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 
@@ -25,15 +25,15 @@ Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 2.  Tenga su póliza actual a mano, si ya tiene una.
 3.  Revise la cobertura y el precio con la Oficina #3 antes de comprar.
 
-Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](/es/privacidad/).
+Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](<https://yourfamilyfirstinsurance3.com/es/privacidad/>).
 
 ## ¿Seguro de negocios, vida u otro tipo?
 
-[![Ariel Busutil, propietario de Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)**Ariel Busutil**Dueño de la Oficina #3](/es/sobre-oficina-3/)
+[![Ariel Busutil, propietario de Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg>)**Ariel Busutil**Dueño de la Oficina #3](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/>)
 
 Llame o envíe un texto a la Oficina #3. Díganos qué necesita asegurar y para cuándo necesita cobertura. Hablamos español e inglés.
 
-[Llamar al 305-910-8850](tel:13059108850)[Enviar un mensaje](sms:+13059108850)
+[Llamar al 305-910-8850](<tel:13059108850>)[Enviar un mensaje](<sms:+13059108850>)
 
 FAQ
 
@@ -43,7 +43,7 @@ FAQ
 
 El botón de cotización abre ConsumerRateQuotes, el servicio de solicitudes que utiliza Your Family First Insurance Oficina #3 en Miami. Elija auto, vivienda, inquilinos, condominio o una combinación de auto y propiedad. Su solicitud llega a la Oficina #3. Para otro seguro o ayuda en español o inglés, llame al 305-910-8850.
 
-[Comenzar la cotización por internet](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llame al 305-910-8850](tel:13059108850)
+[Comenzar la cotización por internet](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Por qué la cotización abre en otro sitio?
 
@@ -57,13 +57,13 @@ Tenga a mano el resumen de sus coberturas, los detalles de lo que quiere asegura
 
 Llame a la Oficina #3 para seguros de negocios, auto comercial, camiones, vida, salud u otro tipo que no aparezca en el formulario. El formulario de auto particular no es la vía para cotizar camiones. Podemos conversar sobre sus necesidades y explicar los próximos pasos en español o inglés.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Prepare su cotización de seguro comercial](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#coverage-details>) [Compare seguros de vida a término y permanentes](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/#coverage-details>) [Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Qué pasa después de pedir la cotización?
 
 La información que proporcione se usa para revisar las opciones disponibles. La aseguradora puede necesitar más detalles antes de ofrecer cobertura. Si tiene una fecha límite o preguntas sobre su solicitud, llame a la oficina. El plazo y la aprobación dependen de cada caso.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Cuándo empieza la cobertura?
 

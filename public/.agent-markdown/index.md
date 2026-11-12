@@ -9,65 +9,65 @@ canonical: "https://yourfamilyfirstinsurance3.com/"
 
 Your Family First Insurance Office #3 in Miami helps businesses and drivers compare commercial, general liability, auto and trucking insurance. We also handle home, renters, life and health insurance inquiries across Florida, in English and Spanish.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Call 305-910-8850](<tel:13059108850>)
 
-[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Get directions to Office #3 on Google Maps")
+[11200 W Flagler St · Suite 108–109 · Miami](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
-[![Miami traffic and skyline video for local auto insurance quote help](/media/premium-carousel/home/miami-traffic-skyline-poster.webp)](/auto-insurance/)
+[![Miami traffic and skyline video for local auto insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/miami-traffic-skyline-poster.webp>)](<https://yourfamilyfirstinsurance3.com/auto-insurance/>)
 
 ## Auto Insurance in Miami
 
 Compare liability limits, deductibles and coverage for your car.
 
-[View Coverage](/auto-insurance/)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/auto-insurance/>)
 
-[![Luxury home aerial video for Miami homeowners insurance quote help](/media/premium-carousel/home/luxury-home-aerial-poster.webp)](/home-insurance/)
+[![Luxury home aerial video for Miami homeowners insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/luxury-home-aerial-poster.webp>)](<https://yourfamilyfirstinsurance3.com/home-insurance/>)
 
 ## Insurance for Your Miami Home
 
 Review your home, roof and hurricane deductible. Ask about separate flood insurance.
 
-[View Coverage](/home-insurance/)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/home-insurance/>)
 
-[![Renters unpacking moving boxes video for Miami renters insurance quote help](/media/premium-carousel/home/renters-unpacking-boxes-poster.webp)](/renters-insurance/)
+[![Renters unpacking moving boxes video for Miami renters insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/renters-unpacking-boxes-poster.webp>)](<https://yourfamilyfirstinsurance3.com/renters-insurance/>)
 
 ## Renters Insurance
 
 Check coverage for your belongings and the liability limits your lease requires.
 
-[View Coverage](/renters-insurance/)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/renters-insurance/>)
 
-[![Business professionals consulting in a modern office video for Miami business insurance quote help](/media/premium-carousel/home/business-office-consultation-poster.webp)](/commercial-insurance/)
+[![Business professionals consulting in a modern office video for Miami business insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/business-office-consultation-poster.webp>)](<https://yourfamilyfirstinsurance3.com/commercial-insurance/>)
 
 ## Business Insurance
 
 Tell us what your business does and what your lease or contracts require.
 
-[View Coverage](/commercial-insurance/)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/commercial-insurance/>)
 
-[![Contractor reviewing job documents video for general liability insurance quote help](/media/premium-carousel/home/liability-industrial-checklist-poster.webp)](/commercial-insurance/#general-liability-insurance)
+[![Contractor reviewing job documents video for general liability insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/liability-industrial-checklist-poster.webp>)](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#general-liability-insurance>)
 
 ## General Liability Insurance
 
 Bring your contract requirements so we can review liability limits and certificates.
 
-[View Coverage](/commercial-insurance/#general-liability-insurance)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#general-liability-insurance>)
 
-[![Parent and child walking on the beach video for life insurance planning](/media/premium-carousel/home/family-beach-child-poster.webp)](/life-insurance/)
+[![Parent and child walking on the beach video for life insurance planning](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/family-beach-child-poster.webp>)](<https://yourfamilyfirstinsurance3.com/life-insurance/>)
 
 ## Life Insurance
 
 Consider how much income your family would need and for how long.
 
-[View Coverage](/life-insurance/)
+[View Coverage](<https://yourfamilyfirstinsurance3.com/life-insurance/>)
 
-[![Advisor meeting with a client video for bilingual Miami insurance office help](/media/premium-carousel/home/advisor-client-consult-poster.webp)](/about-office-3/)
+[![Advisor meeting with a client video for bilingual Miami insurance office help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/advisor-client-consult-poster.webp>)](<https://yourfamilyfirstinsurance3.com/about-office-3/>)
 
 ## Hablamos Español
 
 Llame a nuestra oficina en West Flagler para cotizar o hacer preguntas sobre su seguro.
 
-[Visit Our Office](/about-office-3/)
+[Visit Our Office](<https://yourfamilyfirstinsurance3.com/about-office-3/>)
 
 Our services
 
@@ -81,53 +81,53 @@ Choose what you need to insure. See coverage options and how to request a quote.
 
 Review your premises, equipment and daily business risks.
 
-](/commercial-insurance/)[
+](<https://yourfamilyfirstinsurance3.com/commercial-insurance/>)[
 
 ### Auto Insurance
 
 Compare limits and deductibles for your vehicle, drivers and daily use.
 
-](/auto-insurance/)[
+](<https://yourfamilyfirstinsurance3.com/auto-insurance/>)[
 
 ### General Liability Insurance
 
 Review protection against certain injury and property damage claims from others.
 
-](/commercial-insurance/#general-liability-insurance)[
+](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#general-liability-insurance>)[
 
 ### Trucking Insurance
 
 Discuss commercial trucks, CDL drivers, cargo and owner-operator requirements.
 
-](/commercial-insurance/#trucking-insurance)[
+](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance>)[
 
 ### Homeowners Insurance
 
 Review protection for your home and belongings, plus wind, flood and lender requirements.
 
-](/home-insurance/)[
+](<https://yourfamilyfirstinsurance3.com/home-insurance/>)[
 
 ### Renters Insurance
 
 Cover eligible losses to belongings and review personal liability and lease requirements.
 
-](/renters-insurance/)[
+](<https://yourfamilyfirstinsurance3.com/renters-insurance/>)[
 
 ### Life Insurance
 
 Plan for income, debts and expenses your family may face without you.
 
-](/life-insurance/)[
+](<https://yourfamilyfirstinsurance3.com/life-insurance/>)[
 
 ### Health Insurance
 
 Ask about individual, family and employer health plans and enrollment timing.
 
-](tel:13059108850)
+](<tel:13059108850>)
 
 Other insurance: call us to discuss these options.
 
-[Flood Insurance](tel:13059108850)[Motorcycle Insurance](tel:13059108850)[Boat Insurance](tel:13059108850)[RV Insurance](tel:13059108850)[Workers' Compensation](/commercial-insurance/)
+[Flood Insurance](<tel:13059108850>)[Motorcycle Insurance](<tel:13059108850>)[Boat Insurance](<tel:13059108850>)[RV Insurance](<tel:13059108850>)[Workers' Compensation](<https://yourfamilyfirstinsurance3.com/commercial-insurance/>)
 
 About Office #3
 
@@ -139,15 +139,15 @@ Find us at 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed.
 
-Hablamos español. [Ver seguros y cotizaciones en español](/es/).
+Hablamos español. [Ver seguros y cotizaciones en español](<https://yourfamilyfirstinsurance3.com/es/>).
 
-[Get Directions](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Call 305-910-8850](tel:13059108850)
+[Get Directions](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [Call 305-910-8850](<tel:13059108850>)
 
-![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, owner of Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg>)
 
 **Ariel Busutil, Office #3 Owner**Miami, Florida
 
- ![Real family and office photo for Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
+ ![Real family and office photo for Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-family-office-photo.jpg>)
 
 **Our family at Office #3**Miami, Florida
 
@@ -157,7 +157,7 @@ Google reviews for Office #3
 
 Read what people have shared about Office #3. Visit Google for the latest reviews.
 
-[Read Google Reviews](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [More Customer Reviews](/about-office-3/#google-reviews)
+[Read Google Reviews](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [More Customer Reviews](<https://yourfamilyfirstinsurance3.com/about-office-3/#google-reviews>)
 
 Reviews describe individual experiences.
 
@@ -177,7 +177,7 @@ Office response on Google Recorded July 13, 2026
 
 ¡Gracias por confiar en Your Family First Insurance 3! Nos encanta poder ayudar a nuestra comunidad hispana en Miami a comparar opciones de seguro y entender mejor su cobertura. Siempre estamos aquí para ayudarle con cotizaciones, pólizas y cualquier pregunta sobre seguros.
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 B
 
@@ -195,7 +195,7 @@ Office response on Google Recorded July 13, 2026
 
 Thank you for the kind words! It means a lot to our local Miami insurance team. Whether it’s car insurance, homeowners insurance, renters insurance, commercial insurance, or general liability coverage, we’re always here to put your family first!
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 L
 
@@ -213,7 +213,7 @@ Office response on Google Recorded July 13, 2026
 
 We appreciate the support, Leeor ! We are pleased to have been able to help you find a trustworthy and affordable homeowners insurance coverage option after comparing different trusted carriers for you!
 
-[Open Google review page](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Open Google review page](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 Free insurance quotes
 
@@ -222,9 +222,9 @@ Free insurance quotes
 Request auto, home, renters or condo insurance online. For business, life, health or another insurance type, call or text us.
 
 **Prefer to talk now?**
-[Call 305-910-8850](tel:13059108850) or [text the office](sms:+13059108850).
+[Call 305-910-8850](<tel:13059108850>) or [text the office](<sms:+13059108850>).
 
-![QR code to request a quote from Office #3](/assets/yffi3/yffi3-quote-qr-240.webp)
+![QR code to request a quote from Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-quote-qr-240.webp>)
 
 **Quote from your phone**
 Scan to open the online quote form.
@@ -233,11 +233,11 @@ Scan to open the online quote form.
 
 Get a quote for auto, home, renters or condo insurance. You can also combine auto and property.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.
 
-Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. [Privacy policy](/privacy-policy/).
+Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. [Privacy policy](<https://yourfamilyfirstinsurance3.com/privacy-policy/>).
 
 FAQ
 
@@ -247,7 +247,7 @@ How do I get a free insurance quote in Miami?
 
 Start your quote online or call Your Family First Insurance Office #3 at 305-910-8850. Tell us what you want to insure and when you need coverage. For business, life, health or a type of insurance missing from the online form, call the office.
 
-[Get a free quote](/get-a-quote/) [Call 305-910-8850](tel:13059108850)
+[Get a free quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>) [Call 305-910-8850](<tel:13059108850>)
 
 Is the insurance quote free, and do I have to buy a policy?
 
@@ -257,46 +257,46 @@ What should I have ready before asking for a quote?
 
 Have your current policy summary, renewal date and the coverage you want to compare ready. If you are buying insurance for the first time, start with what you need to insure and any lender, landlord or contract requirements. Enter personal application details only in the secure quote form.
 
-[See the quote steps](/get-a-quote/)
+[See the quote steps](<https://yourfamilyfirstinsurance3.com/get-a-quote/>)
 
 What types of insurance can I ask about?
 
 Our office focuses on business, commercial auto, personal auto, general liability and trucking insurance inquiries. You can also ask about home, renters, life and health coverage. Tell us what you need to insure, where it is located and any contract requirements so we can check available options.
 
-[Compare insurance types](/#coverage-title)
+[Compare insurance types](<https://yourfamilyfirstinsurance3.com/#coverage-title>)
 
 Can I get help in Spanish?
 
 Yes. Office #3 offers help in English and Spanish, from reviewing a quote to explaining deductibles and renewal questions. Call 305-910-8850 and tell us which language you prefer.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 Where is Your Family First Insurance Office #3 in Miami?
 
 Office #3 is at 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Monday–Friday 9 a.m.–6 p.m.; Saturday 9 a.m.–3 p.m.; Sunday closed. You can also request a quote online or speak with us by phone.
 
-[Get directions to Office #3](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+[Get directions to Office #3](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
 Can I compare a new quote before my current policy renews?
 
 Yes. Start when your renewal notice arrives so there is time to compare limits, deductibles and total cost. Before cancelling your current policy, confirm the replacement policy and its start date in writing, including any required payment.
 
-[Review your renewal](/customer-resources/renewal-review/)
+[Review your renewal](<https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/>)
 
 Do you serve Miami-Dade, Broward and the rest of Florida?
 
 Yes. We handle insurance quote inquiries throughout Florida. That includes Doral, Hialeah, Kendall and Sweetwater in Miami-Dade, as well as Broward County. Our office is at 11200 W Flagler St in Miami. Request a quote online or call for English or Spanish help; policy availability depends on your location and application.
 
-[Contact our Miami office](/about-office-3/)
+[Contact our Miami office](<https://yourfamilyfirstinsurance3.com/about-office-3/>)
 
 Can I ask about individual, family or employer health insurance?
 
 Yes. Call Office #3 at 305-910-8850 about individual, family or employer/group health coverage in English or Spanish. Plan availability and enrollment opportunities vary. Review the provider network, prescription coverage and total costs before choosing a plan; share application or medical details only through an approved secure process.
 
-[Call about health insurance](tel:13059108850) [HealthCare.gov plan comparison guidance](https://www.healthcare.gov/choose-a-plan/comparing-plans/)
+[Call about health insurance](<tel:13059108850>) [HealthCare.gov plan comparison guidance](<https://www.healthcare.gov/choose-a-plan/comparing-plans/>)
 
 How do I choose an insurance agency near me in Miami?
 
 Check the agency's Florida license, recent customer reviews and how it handles questions after a policy is issued. Compare prices alongside coverage limits, deductibles and exclusions. Our West Flagler office offers help in English and Spanish with quotes, renewals and policy changes.
 
-[Visit our Miami office](/about-office-3/) [Check our Florida agency license](https://licenseesearch.fldfs.com/Licensee/2757386)
+[Visit our Miami office](<https://yourfamilyfirstinsurance3.com/about-office-3/>) [Check our Florida agency license](<https://licenseesearch.fldfs.com/Licensee/2757386>)

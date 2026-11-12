@@ -1,6 +1,6 @@
 ---
-title: "Revisión de Renovación y Prevención de Cancelación | Oficina #3"
-description: "Prepárese para renovar seguro de auto, vivienda, inquilinos, vida o negocio y responda temprano a avisos de facturación, cancelación o no renovación."
+title: "Guía de Renovación de Seguros en Florida | Oficina #3"
+description: "Revise su aviso de renovación, cancelación o no renovación en Florida. Confirme la fecha de vigencia, compare el costo total y consulte a su aseguradora."
 language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/"
 ---
@@ -17,9 +17,9 @@ Lista para clientes
 
 Use estos pasos para preparar sus preguntas y documentos. Su póliza y aseguradora determinan qué está cubierto.
 
-### Lea cada aviso
+### Identifique el aviso y la fecha límite
 
-Confirme aseguradora, período, fecha límite, prima, plan de pagos, documentos solicitados, motivo de no renovación o cancelación y el método de contacto del aviso.
+Una oferta de renovación corresponde a un nuevo período de la póliza. La no renovación termina la cobertura al vencer el período actual. Una cancelación puede terminarla antes. Revise la fecha, hora y motivo del aviso y confirme con su aseguradora cuándo termina la cobertura.
 
 ### Verifique la facturación
 
@@ -47,7 +47,7 @@ Recursos sobre seguros
 
 Consulte estas guías para más información. Siga las instrucciones de su aseguradora para su póliza o reclamación.
 
-[Resumen de seguro de auto personal de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview)[Resumen de seguro para propietarios de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Guía de seguro para inquilinos de Florida DFS](https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english---renters-insurance-toolkit.pdf)[Lista anual de seguros de NAIC](https://content.naic.org/article/consumer-insight-insurance-checklist-new-year)
+[Resumen de seguro de auto personal de Florida DFS](<https://myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview>)[Resumen de seguro para propietarios de Florida DFS](<https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview>)[Guía de seguro para inquilinos de Florida DFS](<https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english---renters-insurance-toolkit.pdf>)[Lista anual de seguros de NAIC](<https://content.naic.org/article/consumer-insight-insurance-checklist-new-year>)
 
 Servicio para clientes existentes
 
@@ -55,13 +55,13 @@ Servicio para clientes existentes
 
 No coloque números de póliza, identificación, datos de pago, información médica, archivos de reclamaciones ni documentos de póliza en este sitio público ni en un mensaje de texto común.
 
-[Llamar al 305-910-8850](tel:13059108850)
+[Llamar al 305-910-8850](<tel:13059108850>)
 
 Más ayuda para clientes
 
 ## Regrese al centro de recursos para asegurados
 
-[Ver todas las guías de servicio para clientes](/es/ayuda-para-clientes/)
+[Ver todas las guías de servicio para clientes](<https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/>)
 
 FAQ
 
@@ -71,7 +71,7 @@ FAQ
 
 Puede cambiar por tarifas de la aseguradora, reclamaciones, cambios de cobertura, datos actualizados de la vivienda o conductores, o descuentos que ya no aplican. Pregunte qué cambió en su póliza. Compare coberturas equivalentes y el costo del período completo antes de cambiar.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Qué comparo en la cotización de renovación?
 
@@ -81,7 +81,7 @@ Compare límites, deducibles, exclusiones, conductores o bienes cubiertos, condi
 
 No. Pregunte a la aseguradora si puede rehabilitar la póliza y si existe un período sin cobertura. Obtenga por escrito el estado y la fecha efectiva. Un recibo de pago por sí solo no prueba que la cobertura esté restablecida.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Debo atender un aviso de pago si tengo pago automático?
 
@@ -91,4 +91,4 @@ Sí. Verifique el aviso y el estado del pago con la aseguradora. Tarjetas vencid
 
 Primero confirme la nueva cobertura, fecha y hora de inicio, pago necesario y documentos escritos. Después consulte cómo cancelar la póliza anterior y si hay cargos o reglas de reembolso. Coordine las fechas para evitar un período sin seguro.
 
-[Comparar una cotización nueva](/es/solicitar-cotizacion/)
+[Comparar una cotización nueva](<https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/>)

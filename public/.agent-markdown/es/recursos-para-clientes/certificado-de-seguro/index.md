@@ -1,6 +1,6 @@
 ---
 title: "Orientación sobre Certificados de Seguro para Negocios | Oficina #3"
-description: "Comprenda solicitudes de certificados, requisitos contractuales, comprobantes, asegurado adicional y por qué el certificado no puede cambiar la póliza."
+description: "Solicite un certificado de seguro comercial para un trabajo o alquiler en Florida. Prepare los requisitos escritos y consulte si aún necesita cobertura."
 language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/"
 ---
@@ -9,7 +9,7 @@ Certificado
 
 # Orientación para Solicitar un Certificado de Seguro
 
-Un certificado generalmente evidencia cobertura. No sustituye la póliza ni crea términos que el contrato de seguro no proporciona.
+¿Le piden un comprobante de seguro para un trabajo o un alquiler comercial? Prepare los requisitos escritos y la fecha límite. Si ya tiene cobertura, pregunte por el certificado a la agencia o aseguradora que maneja su póliza. Si necesita cobertura, llame a nuestra oficina en Miami para revisar una cotización de seguro comercial.
 
 Lista para clientes
 
@@ -47,7 +47,7 @@ Recursos sobre seguros
 
 Consulte estas guías para más información. Siga las instrucciones de su aseguradora para su póliza o reclamación.
 
-[Guía de cumplimiento de Florida DFS sobre certificados](https://myfloridacfo.com/division/agents/compliance/general-lines-agents-customer-reps)[Consejos de Florida DFS sobre documentos de contratistas](https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/demolish-contractor-fraud-consumer-tips.pdf)
+[Guía de cumplimiento de Florida DFS sobre certificados](<https://myfloridacfo.com/division/agents/compliance/general-lines-agents-customer-reps>)[Consejos de Florida DFS sobre documentos de contratistas](<https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/demolish-contractor-fraud-consumer-tips.pdf>)
 
 Servicio para clientes existentes
 
@@ -55,13 +55,13 @@ Servicio para clientes existentes
 
 No coloque números de póliza, identificación, datos de pago, información médica, archivos de reclamaciones ni documentos de póliza en este sitio público ni en un mensaje de texto común.
 
-[Llamar al 305-910-8850](tel:13059108850)
+[Llamar al 305-910-8850](<tel:13059108850>)
 
 Más ayuda para clientes
 
 ## Regrese al centro de recursos para asegurados
 
-[Ver todas las guías de servicio para clientes](/es/ayuda-para-clientes/)
+[Ver todas las guías de servicio para clientes](<https://yourfamilyfirstinsurance3.com/es/ayuda-para-clientes/>)
 
 FAQ
 
@@ -71,7 +71,13 @@ FAQ
 
 Llame a Your Family First Insurance Oficina #3 al 305-910-8850 con el nombre y dirección exactos del titular del certificado, los requisitos escritos del seguro, la referencia del proyecto y la fecha límite. Incluya cualquier solicitud de asegurado adicional u otro endoso. Debemos revisar los requisitos frente a la póliza. Pregunte cómo compartir contratos y datos de la póliza de forma segura.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
+
+¿Necesito un certificado o una cotización de seguro comercial?
+
+Un certificado comprueba que existe una póliza. Si ya tiene seguro, pida a la agencia o aseguradora que maneja su póliza que revise los requisitos escritos. Si no tiene seguro o su contrato exige una cobertura que la póliza no incluye, revise primero la cobertura necesaria.
+
+[Comparar coberturas para negocios y responsabilidad civil](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#general-liability-insurance>)
 
 ¿Qué es un certificado de seguro o COI?
 
@@ -85,10 +91,10 @@ No. Figurar como titular del certificado no convierte automáticamente a alguien
 
 No. No puede subir límites, quitar exclusiones ni certificar una cobertura inexistente. Si el contrato exige algo distinto, la póliza puede necesitar un cambio aprobado antes de que el certificado lo refleje.
 
-[Revisar coberturas para negocios](/es/seguro-comercial/)
+[Revisar coberturas para negocios](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/>)
 
 ¿Puedo obtener un certificado de seguro el mismo día?
 
 No podemos prometer entrega el mismo día. Una solicitud que coincide con la cobertura existente puede tomar menos tiempo que otra que requiere aprobación de la aseguradora o un endoso. Llame con los requisitos escritos completos y su fecha límite para revisar qué hace falta. Confirme el estado del certificado antes de comenzar el trabajo o firmar el alquiler.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)

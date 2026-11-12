@@ -15,7 +15,7 @@ Start your quote online with Office #3, or call us for help in English or Spanis
 
 Get a quote for auto, home, renters or condo insurance. You can also combine auto and property.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 Opens ConsumerRateQuotes. Your request goes to Office #3 in Miami.
 
@@ -25,15 +25,15 @@ What happens next?
 2.  Have your current policy handy, if you have one.
 3.  Review coverage and pricing with Office #3 before buying.
 
-Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. [Privacy policy](/privacy-policy/).
+Quotes are estimates, not bound coverage. Coverage requires underwriting and carrier approval. [Privacy policy](<https://yourfamilyfirstinsurance3.com/privacy-policy/>).
 
 ## Business, Life or Other Insurance?
 
-[![Ariel Busutil, owner of Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)**Ariel Busutil**Office #3 Owner](/about-office-3/)
+[![Ariel Busutil, owner of Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg>)**Ariel Busutil**Office #3 Owner](<https://yourfamilyfirstinsurance3.com/about-office-3/>)
 
 Call or text Office #3. Tell us what you need to insure and when you need coverage. We speak English and Spanish.
 
-[Call 305-910-8850](tel:13059108850)[Text the Office](sms:+13059108850)
+[Call 305-910-8850](<tel:13059108850>)[Text the Office](<sms:+13059108850>)
 
 FAQ
 
@@ -43,7 +43,7 @@ How do I start my free insurance quote?
 
 Use the online quote button to open ConsumerRateQuotes, the application service used by Your Family First Insurance Office #3 in Miami. Choose auto, homeowners, renters, condo, or an auto and property combination. Your request goes to Office #3. For another insurance type or help in English or Spanish, call 305-910-8850.
 
-[Start the online quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
+[Start the online quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Call 305-910-8850](<tel:13059108850>)
 
 Why does the quote open on another website?
 
@@ -57,13 +57,13 @@ Can I request business, life or health insurance here?
 
 Call Office #3 for business, commercial auto, trucking, life, health or an insurance type not shown in the online form. The personal auto form is not the trucking quote path. We can discuss your needs and explain the next application steps in English or Spanish.
 
-[Call 305-910-8850](tel:13059108850)
+[Prepare a business insurance quote](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#coverage-details>) [Compare term and permanent life insurance](<https://yourfamilyfirstinsurance3.com/life-insurance/#coverage-details>) [Call 305-910-8850](<tel:13059108850>)
 
 What happens after I request a quote?
 
 The information you provide is used to review available options. Additional details may be needed before an insurer offers coverage. If you have a deadline or a question about your request, call the office. Timing depends on the application and the insurer’s review.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 When does my insurance coverage start?
 

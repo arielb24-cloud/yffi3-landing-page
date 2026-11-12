@@ -45,7 +45,7 @@ This website does not currently provide a cookie-preference panel. You can restr
 
 Contact us with questions about data retention or privacy requests. You can restrict cookies in your browser or install the Google Analytics Opt-out Browser Add-on. The public insurance information remains available if you block cookies.
 
-Google's privacy information is available at [policies.google.com/privacy](https://policies.google.com/privacy), and the opt-out add-on is available at [tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
+Google's privacy information is available at [policies.google.com/privacy](<https://policies.google.com/privacy>), and the opt-out add-on is available at [tools.google.com/dlpage/gaoptout](<https://tools.google.com/dlpage/gaoptout>).
 
 ## Third-Party Quote Intake
 
@@ -57,4 +57,4 @@ Do not send Social Security numbers, dates of birth, driver license numbers, VIN
 
 ## Contact
 
-For privacy questions, call [305-910-8850](tel:13059108850).
+For privacy questions, call [305-910-8850](<tel:13059108850>).

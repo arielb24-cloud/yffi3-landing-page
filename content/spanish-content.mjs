@@ -139,7 +139,7 @@ export const spanishPages = [
     ]
   },
   {
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "slug": "es/seguro-de-auto",
     "englishSlug": "auto-insurance",
     "mediaSlug": "auto-insurance",
@@ -149,7 +149,7 @@ export const spanishPages = [
     "icon": "car",
     "service": "Seguro de auto",
     "title": "Seguro de auto en Miami | Cotización gratis | Oficina #3",
-    "description": "Solicite ayuda local en Miami con cotizaciones de seguro de auto para conductores, vehículos familiares, autos nuevos y renovaciones.",
+    "description": "Cotice gratis su seguro de carro en Miami por internet, por teléfono o en nuestra oficina de West Flagler. Compare límites, deducibles y el costo total.",
     "h1": "Seguro de auto en Miami",
     "intro": "Compare coberturas para su auto, los conductores de su hogar y el uso del vehículo. Revisamos compras, mudanzas y renovaciones.",
     "sections": [
@@ -190,17 +190,21 @@ export const spanishPages = [
     "faqs": [
       [
         "¿Cómo pido una cotización de seguro de carro en Miami?",
-        "Your Family First Insurance Oficina #3 ofrece cotizaciones gratis de seguro de auto por internet o al 305-910-8850, en español e inglés. Seleccione Auto en el formulario seguro. Tenga a mano su cobertura actual, los datos de conductores y vehículos, el uso del carro y la fecha de inicio deseada. Ingrese los datos personales solo en la solicitud segura.",
+        "Cotice gratis por internet, llame al 305-910-8850 o visite nuestra oficina de West Flagler en Miami. Atendemos en español e inglés. Seleccione Auto en el formulario seguro. Tenga a mano su cobertura actual, los datos de conductores y vehículos, y la fecha en que necesita el seguro. Ingrese sus datos personales solo en la solicitud segura.",
         [
           [
             "Cotizar seguro de carro",
             "/es/solicitar-cotizacion/"
+          ],
+          [
+            "Horario y cómo llegar a la oficina de West Flagler",
+            "/es/sobre-oficina-3/"
           ]
         ]
       ],
       [
         "¿Cuánto cuesta el seguro de carro en Miami?",
-        "No hay un precio único para todos los conductores de Miami. El vehículo, los conductores, el historial de manejo, la dirección, el uso del auto y las coberturas influyen en la cotización. Compare el costo total para el mismo período, los límites, deducibles, pago inicial y cargos por cuotas.",
+        "El precio depende del carro, los conductores, el historial de manejo, la dirección, el uso y las coberturas. Pida el costo total para el mismo período, incluidos los cargos por cuotas. Un pago inicial más bajo puede salir más caro al final. Confirme que las dos cotizaciones tengan los mismos límites y deducibles, y revise qué cubre los daños a su propio carro.",
         [
           [
             "Solicitar cotización gratis",
@@ -382,6 +386,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-de-inquilinos",
+    "modifiedDate": "2026-11-12",
     "modifiedDate": "2026-11-02",
     "englishSlug": "renters-insurance",
     "mediaSlug": "renters-insurance",
@@ -391,7 +396,7 @@ export const spanishPages = [
     "icon": "key",
     "service": "Seguro de inquilinos",
     "title": "Seguro de inquilinos en Miami | Cotice su apartamento",
-    "description": "Cotice seguro de inquilinos para su apartamento o casa alquilada en Miami. Revise pertenencias, responsabilidad civil, deducibles y requisitos del contrato.",
+    "description": "Cotice gratis por internet su seguro de inquilinos en Miami. Prepare la dirección, fecha de mudanza y requisitos del contrato. Atención en español.",
     "h1": "Seguro de inquilinos en Miami",
     "intro": "Cotice seguro de inquilinos para su apartamento o casa alquilada en Miami. Tenga los requisitos de su contrato para comparar cobertura de pertenencias y responsabilidad civil antes de mudarse o renovar.",
     "sections": [
@@ -401,7 +406,7 @@ export const spanishPages = [
       ],
       [
         "Su contrato y fecha de mudanza",
-        "Tenga la dirección, fecha de mudanza y requisitos escritos del alquiler. Pregunte al administrador qué límites de responsabilidad civil y comprobante exige antes de comprar la póliza."
+        "Busque la sección de seguros en su contrato. Confirme el límite de responsabilidad civil, la fecha de inicio y quién debe recibir el comprobante. Si el administrador pide figurar como parte interesada, consiga el nombre y la dirección exactos. Confirme la vigencia y el comprobante aceptado antes de recoger las llaves."
       ]
     ],
     "detailsHeading": "Antes de la mudanza",
@@ -483,6 +488,10 @@ export const spanishPages = [
         ]
       ],
       [
+        "¿Qué comprobante de seguro necesita el administrador de mi apartamento?",
+        "Pregunte qué documento acepta. La página de declaraciones suele mostrar el nombre del asegurado, la dirección del alquiler, las fechas y los límites de la póliza. Confirme si el administrador pide figurar como parte interesada o con otra designación. Consulte con su aseguradora qué significa ese requisito para su póliza."
+      ],
+      [
         "¿Mi seguro de inquilinos cubre a mi compañero de apartamento?",
         "No lo dé por hecho. Depende de quién cumple la definición de asegurado en la póliza. Pregunte si pueden incluir compañeros de apartamento o si necesitan pólizas separadas, y cómo funcionarían los límites compartidos y las reclamaciones. Figurar en el contrato de alquiler no establece por sí solo cobertura de seguro."
       ]
@@ -490,6 +499,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-comercial",
+    "modifiedDate": "2026-11-12",
     "modifiedDate": "2026-11-02",
     "englishSlug": "commercial-insurance",
     "mediaSlug": "commercial-insurance",
@@ -499,21 +509,21 @@ export const spanishPages = [
     "icon": "shield",
     "service": "Seguro comercial y para negocios",
     "title": "Seguro comercial y responsabilidad civil en Miami | Oficina #3",
-    "description": "Cotice seguros comerciales, responsabilidad civil y camiones en Miami. Llame a la Oficina #3 sobre contratistas, restaurantes, vehículos comerciales y conductores con CDL.",
+    "description": "Llame a la Oficina #3 para cotizar seguro comercial en Miami. Consulte responsabilidad civil, seguros para restaurantes, auto comercial y camiones.",
     "h1": "Seguro para negocios en Miami",
-    "intro": "Compare seguros comerciales y responsabilidad civil para su negocio en Miami, además de auto comercial y camiones para propietarios-operadores y empresas de transporte. Cuéntenos sobre su trabajo, vehículos, conductores y requisitos de contratos. Atendemos en español e inglés en toda Florida.",
+    "intro": "¿Va a abrir un negocio, renovar su póliza o aceptar un nuevo contrato? En nuestra oficina de Miami le ayudamos a comparar responsabilidad civil, seguro de bienes del negocio, auto comercial y camiones. Tenga a mano los requisitos de seguro que le dio su cliente o arrendador. Atendemos en español e inglés en toda Florida.",
     "sections": [
       [
         "Responsabilidad civil general",
-        "Para contratistas, restaurantes y otros negocios, revise operaciones cubiertas, exclusiones, límites y requisitos de asegurado adicional. Traiga los requisitos escritos de su cliente o arrendador; un certificado no agrega cobertura."
+        "Para un trabajo o alquiler comercial, compare los requisitos escritos con la póliza. Revise los trabajos cubiertos, exclusiones, límites y lo que se pide sobre asegurados adicionales. Si contrata subcontratistas o le exigen cobertura para trabajos ya terminados, tráiganos esos detalles antes de firmar. La póliza y sus endosos determinan qué cobertura aplica."
       ],
       [
-        "Seguros para restaurantes y negocios de comida",
-        "Para cotizar un restaurante o café, describa cocina, entregas, servicio de alcohol, empleados y equipos. Revise propiedad, responsabilidad civil e ingresos del negocio; una póliza puede no cubrir todas las operaciones."
+        "Seguro para restaurantes en Miami",
+        "Piense en lo que podría interrumpir el servicio o dar lugar a una reclamación. Revise la responsabilidad civil por lesiones de clientes o reclamos relacionados con alimentos, la cobertura de equipos e inventario y cuándo aplicaría el seguro de ingresos del negocio. Pregunte por averías de equipos, pérdida de alimentos refrigerados, responsabilidad por servir alcohol y vehículos de reparto. La disponibilidad y las exclusiones varían."
       ],
       [
         "Auto comercial y seguro de camiones",
-        "Llámenos sobre vehículos de trabajo, propietarios-operadores y negocios de transporte de Florida con conductores CDL. Describa quién conduce el camión, rutas y carga, y si trabaja con autoridad operativa propia o de otra empresa. Las coberturas y los trámites dependen de la operación."
+        "Para cotizar un camión comercial, prepare los tipos de camión y remolque, las rutas habituales, la carga y los datos de los conductores. Explique si opera con autoridad propia o bajo la autoridad de una empresa de transporte. Pregunte qué póliza cubriría el vehículo, la carga y la responsabilidad civil de su operación, y quién se encarga de los trámites exigidos."
       ]
     ],
     "detailsHeading": "Prepare su cotización comercial",
@@ -544,7 +554,7 @@ export const spanishPages = [
     "faqs": [
       [
         "¿Cómo cotizo seguro para un pequeño negocio en Miami?",
-        "Llame a Your Family First Insurance Oficina #3 al 305-910-8850 para cotizar seguro comercial en español o inglés. Describa su trabajo, local, empleados, vehículos y requisitos de contratos. Responsabilidad civil general, propiedad, auto comercial y compensación laboral cubren riesgos distintos; podemos revisar las opciones disponibles para sus operaciones.",
+        "Llame al 305-910-8850 para cotizar seguro comercial en español o inglés. Tenga a mano el nombre del negocio, sus ubicaciones, el trabajo que realiza y las ventas y nómina estimadas. Cuéntenos si tiene empleados, subcontratistas o vehículos. Si ya tiene seguro, prepare el resumen de cobertura y la fecha de renovación. Traiga los requisitos de su contrato de trabajo o de alquiler.",
         [
           [
             "Llame al 305-910-8850",
@@ -554,7 +564,7 @@ export const spanishPages = [
       ],
       [
         "¿Cuánto cuesta el seguro para negocios en Miami?",
-        "Depende de la actividad, ingresos, nómina, ubicación, historial de reclamaciones y coberturas solicitadas. Un contratista y un negocio de oficina pueden necesitar pólizas muy distintas. Prepare una descripción del negocio y los requisitos de sus contratos para cotizar el trabajo que realmente realiza.",
+        "El costo depende de la actividad, las ventas, la nómina, la ubicación, las reclamaciones anteriores y la cobertura. Al comparar cotizaciones, revise que describan los mismos trabajos y tengan los mismos límites y deducibles. Si una cuesta menos, pregunte si excluye alguna actividad que realiza o si le falta un endoso exigido por su contrato.",
         [
           [
             "Llame al 305-910-8850",
@@ -592,10 +602,10 @@ export const spanishPages = [
       ],
       [
         "¿Qué preparo para cotizar el seguro de un restaurante en Miami?",
-        "Tenga dirección, ventas estimadas, nómina, valor de los equipos y requisitos del alquiler. Describa la cocina, venta de alcohol y entregas. Pregunte qué coberturas se incluyen y cuáles necesitan pólizas o endosos separados.",
+        "Tenga a mano la dirección, la fecha de apertura, las ventas y nómina estimadas y el valor de los equipos de cocina y el inventario. Traiga la sección de seguros del contrato de alquiler. Indique si sirve alcohol, ofrece catering fuera del local o usa personal propio o un tercero para las entregas. Así podemos identificar qué coberturas revisar.",
         [
           [
-            "Llame para consultar sobre seguro comercial",
+            "Llame para cotizar el seguro de su restaurante",
             "tel:13059108850"
           ]
         ]
@@ -648,6 +658,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/seguro-de-vida",
+    "modifiedDate": "2026-11-12",
     "modifiedDate": "2026-11-02",
     "englishSlug": "life-insurance",
     "mediaSlug": "life-insurance",
@@ -656,18 +667,18 @@ export const spanishPages = [
     "kind": "service",
     "icon": "heart",
     "service": "Seguro de vida",
-    "title": "Seguro de vida en Miami: temporal y permanente | Oficina #3",
-    "description": "Compare seguros de vida a término y permanentes en Miami. Revise primas, montos y beneficiarios con la Oficina #3. Atención en español e inglés.",
+    "title": "Seguro de vida en Miami | A término y permanente",
+    "description": "Compare seguro de vida a término y seguro de vida permanente en Miami. Revise primas, garantías y valor en efectivo con la Oficina #3 en español.",
     "h1": "Seguro de vida en Miami",
-    "intro": "Compare seguros de vida a término y permanentes con nuestra oficina de Miami. Considere los ingresos, hipoteca, deudas o gastos familiares que desea cubrir y una prima que pueda mantener.",
+    "intro": "Compare el seguro de vida a término y permanente en español con nuestra oficina de Miami. Empiece por quién depende de usted, cuánto tiempo podría necesitar apoyo y cuánto puede pagar. Le ayudamos a revisar el costo y las garantías por escrito antes de solicitar la póliza.",
     "sections": [
       [
-        "Monto de cobertura y beneficiarios",
-        "Considere ingresos, deudas, educación y gastos finales, y reste los ahorros y seguros existentes. Revise quién recibirá el beneficio y actualice los beneficiarios después de cambios familiares."
+        "Empiece por lo que necesitaría su familia",
+        "Anote los ingresos, deudas y gastos para los que su familia necesitaría ayuda. Distinga entre necesidades con fecha de fin, como los años que faltan para pagar la hipoteca, y otras que pueden durar más, como mantener a una persona que depende de usted. Tenga en cuenta sus ahorros y el seguro que ya tiene antes de elegir un monto y revisar los beneficiarios."
       ],
       [
-        "Primas y solicitud",
-        "Pregunte qué primas y beneficios están garantizados y cuáles dependen de proyecciones. Revise los requisitos y preguntas de salud mediante el proceso de solicitud de la oficina o aseguradora."
+        "Compare el mismo beneficio y los costos",
+        "Parta del mismo beneficio por fallecimiento en cada cotización. Para un seguro a término, compare el plazo inicial y qué ocurre cuando vence. Para uno permanente, pregunte cuánto tiempo tendría que pagar, qué está garantizado y qué pasaría si paga menos o deja de pagar. Comparta sus datos de salud solo en la solicitud segura de la aseguradora."
       ]
     ],
     "detailsHeading": "Prepare su cotización de vida",
@@ -685,7 +696,7 @@ export const spanishPages = [
         ],
         [
           "Vida permanente",
-          "Diseñada para cobertura a largo plazo cuando se cumplen las condiciones. Compare garantías, valor en efectivo, cargos y pagos necesarios para mantenerla vigente."
+          "Diseñada para cobertura a largo plazo cuando se cumplen las condiciones. Pida los valores garantizados y proyectados lado a lado para los mismos años de póliza. Revise la prima necesaria para mantenerla vigente, los cargos por rescate y cómo un préstamo o retiro podría afectar el valor en efectivo o el beneficio por fallecimiento."
         ]
       ]
     },
@@ -740,11 +751,11 @@ export const spanishPages = [
       ],
       [
         "¿Qué comparo entre un seguro de vida entera y uno universal?",
-        "Vida entera y vida universal son seguros permanentes, pero sus primas, garantías y flexibilidad difieren. Pregunte qué primas, beneficios y valores en efectivo están garantizados y cuáles son proyecciones. Compare cargos, penalidades por rescate y el efecto de pagos omitidos o insuficientes antes de elegir o reemplazar una póliza.",
+        "Los seguros de vida entera y universal son permanentes y tienen distintas garantías y condiciones de pago. Si la cotización incluye una ilustración, compare los valores garantizados y proyectados para los mismos años de póliza. Pregunte cuánto tiempo pagaría, cuánto recibiría si cancela y cómo afectaría a la póliza dejar de pagar o pedir un préstamo.",
         [
           [
-            "Guía de seguro de vida de NAIC",
-            "https://content.naic.org/consumer/life-insurance.htm"
+            "Guía de NAIC sobre ilustraciones de seguro de vida (en inglés)",
+            "https://content.naic.org/insurance-topics/life-insurance-illustrations"
           ]
         ]
       ],
@@ -835,7 +846,7 @@ export const spanishPages = [
   },
   {
     "slug": "es/solicitar-cotizacion",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "englishSlug": "get-a-quote",
     "nav": "Cotización",
     "locale": "es-US",
@@ -872,6 +883,8 @@ export const spanishPages = [
         "¿Puedo solicitar aquí seguro de negocios, vida o salud?",
         "Llame a la Oficina #3 para seguros de negocios, auto comercial, camiones, vida, salud u otro tipo que no aparezca en el formulario. El formulario de auto particular no es la vía para cotizar camiones. Podemos conversar sobre sus necesidades y explicar los próximos pasos en español o inglés.",
         [
+          ["Prepare su cotización de seguro comercial", "/es/seguro-comercial/#coverage-details"],
+          ["Compare seguros de vida a término y permanentes", "/es/seguro-de-vida/#coverage-details"],
           [
             "Llame al 305-910-8850",
             "tel:13059108850"

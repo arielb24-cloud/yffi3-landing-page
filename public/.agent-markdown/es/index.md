@@ -9,65 +9,65 @@ canonical: "https://yourfamilyfirstinsurance3.com/es/"
 
 Your Family First Insurance Oficina #3 en Miami ayuda a negocios y conductores a comparar seguros comerciales, responsabilidad civil, auto y camiones. También atendemos consultas sobre vivienda, inquilinos, vida y salud en toda Florida, en español e inglés.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Llamar al 305-910-8850](<tel:13059108850>)
 
-[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
+[11200 W Flagler St · Suite 108–109 · Miami](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
-[![Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto](/media/premium-carousel/home/miami-traffic-skyline-poster.webp)](/es/seguro-de-auto/)
+[![Video del tráfico y el panorama urbano de Miami para solicitar una cotización de seguro de auto](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/miami-traffic-skyline-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/>)
 
 ## Seguro de auto en Miami
 
 Compare límites de responsabilidad civil, deducibles y coberturas para su vehículo.
 
-[Ver cobertura](/es/seguro-de-auto/)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/>)
 
-[![Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami](/media/premium-carousel/home/luxury-home-aerial-poster.webp)](/es/seguro-de-vivienda/)
+[![Video aéreo de una vivienda para solicitar una cotización de seguro para propietarios en Miami](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/luxury-home-aerial-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/>)
 
 ## Seguro para su vivienda
 
 Revise su vivienda, techo y deducible por huracán. Pregunte por un seguro separado contra inundaciones.
 
-[Ver cobertura](/es/seguro-de-vivienda/)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/>)
 
-[![Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami](/media/premium-carousel/home/renters-unpacking-boxes-poster.webp)](/es/seguro-de-inquilinos/)
+[![Video de una mudanza para solicitar una cotización de seguro de inquilinos en Miami](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/renters-unpacking-boxes-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/>)
 
 ## Seguro de inquilinos
 
 Revise la cobertura de sus pertenencias y el límite de responsabilidad civil que exige su contrato.
 
-[Ver cobertura](/es/seguro-de-inquilinos/)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/>)
 
-[![Video de un pequeño negocio para solicitar seguro comercial en Miami](/media/premium-carousel/home/business-office-consultation-poster.webp)](/es/seguro-comercial/)
+[![Video de un pequeño negocio para solicitar seguro comercial en Miami](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/business-office-consultation-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/>)
 
 ## Seguro para negocios
 
 Cuéntenos a qué se dedica su negocio y qué requisitos exigen sus contratos.
 
-[Ver cobertura](/es/seguro-comercial/)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/>)
 
-[![Video de un contratista revisando documentos para solicitar responsabilidad civil general](/media/premium-carousel/home/liability-industrial-checklist-poster.webp)](/es/seguro-comercial/#general-liability-insurance)
+[![Video de un contratista revisando documentos para solicitar responsabilidad civil general](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/liability-industrial-checklist-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#general-liability-insurance>)
 
 ## Responsabilidad civil general
 
 Traiga los requisitos de sus contratos para revisar límites y certificados de seguro.
 
-[Ver cobertura](/es/seguro-comercial/#general-liability-insurance)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#general-liability-insurance>)
 
-[![Video de un padre y su hijo en la playa para la planificación de seguro de vida](/media/premium-carousel/home/family-beach-child-poster.webp)](/es/seguro-de-vida/)
+[![Video de un padre y su hijo en la playa para la planificación de seguro de vida](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/family-beach-child-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/>)
 
 ## Seguro de vida
 
 Considere cuánto ingreso necesitaría su familia y durante cuánto tiempo.
 
-[Ver cobertura](/es/seguro-de-vida/)
+[Ver cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/>)
 
-[![Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami](/media/premium-carousel/home/advisor-client-consult-poster.webp)](/es/sobre-oficina-3/)
+[![Video de una consulta con un asesor para recibir ayuda bilingüe con seguros en Miami](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/home/advisor-client-consult-poster.webp>)](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/>)
 
 ## Hablamos español
 
 Llame a nuestra oficina en West Flagler para cotizar o hacer preguntas sobre su seguro.
 
-[Conozca la oficina](/es/sobre-oficina-3/)
+[Conozca la oficina](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/>)
 
 Nuestros servicios
 
@@ -81,53 +81,53 @@ Elija lo que necesita asegurar. Vea las opciones de cobertura y cómo solicitar 
 
 Revise su local, equipos y los riesgos de su actividad.
 
-](/es/seguro-comercial/)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/>)[
 
 ### Seguro de auto
 
 Compare límites y deducibles para su vehículo, conductores y uso diario.
 
-](/es/seguro-de-auto/)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-de-auto/>)[
 
 ### Seguro de responsabilidad civil general
 
 Revise protección ante ciertos reclamos de terceros por lesiones y daños a la propiedad.
 
-](/es/seguro-comercial/#general-liability-insurance)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#general-liability-insurance>)[
 
 ### Seguro de camiones
 
 Consulte sobre camiones comerciales, conductores CDL, carga y requisitos de propietarios-operadores.
 
-](/es/seguro-comercial/#trucking-insurance)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/#trucking-insurance>)[
 
 ### Seguro para propietarios
 
 Revise la protección de su vivienda y pertenencias, además de viento, inundación y requisitos del prestamista.
 
-](/es/seguro-de-vivienda/)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/>)[
 
 ### Seguro de inquilinos
 
 Revise cobertura para pérdidas cubiertas de sus pertenencias, responsabilidad civil y requisitos del alquiler.
 
-](/es/seguro-de-inquilinos/)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-de-inquilinos/>)[
 
 ### Seguro de vida
 
 Planifique los ingresos, deudas y gastos que su familia podría afrontar sin usted.
 
-](/es/seguro-de-vida/)[
+](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vida/>)[
 
 ### Seguro de salud
 
 Consulte sobre planes de salud individuales, familiares y para empleados, y las fechas de inscripción.
 
-](tel:13059108850)
+](<tel:13059108850>)
 
 Otros seguros: llámenos para consultar estas opciones.
 
-[Seguro contra inundaciones](tel:13059108850)[Seguro de motocicleta](tel:13059108850)[Seguro para embarcaciones](tel:13059108850)[Seguro para vehículos recreativos](tel:13059108850)[Compensación laboral](/es/seguro-comercial/)
+[Seguro contra inundaciones](<tel:13059108850>)[Seguro de motocicleta](<tel:13059108850>)[Seguro para embarcaciones](<tel:13059108850>)[Seguro para vehículos recreativos](<tel:13059108850>)[Compensación laboral](<https://yourfamilyfirstinsurance3.com/es/seguro-comercial/>)
 
 Sobre la Oficina #3
 
@@ -139,15 +139,15 @@ Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174.
 
 Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado.
 
-Hablamos español. [Ver seguros y cotizaciones en español](/es/).
+Hablamos español. [Ver seguros y cotizaciones en español](<https://yourfamilyfirstinsurance3.com/es/>).
 
-[Cómo llegar](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Llamar al 305-910-8850](tel:13059108850)
+[Cómo llegar](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [Llamar al 305-910-8850](<tel:13059108850>)
 
-![Ariel Busutil, propietario de Your Family First Insurance Office #3](/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg)
+![Ariel Busutil, propietario de Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-principal-agent-ariel-busutil.jpg>)
 
 **Ariel Busutil, propietario de la Oficina #3**Miami, Florida
 
- ![Foto real de la familia y la oficina de Your Family First Insurance Office #3](/assets/yffi3/yffi3-family-office-photo.jpg)
+ ![Foto real de la familia y la oficina de Your Family First Insurance Office #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-family-office-photo.jpg>)
 
 **Nuestra familia en la Oficina #3**Miami, Florida
 
@@ -157,7 +157,7 @@ Reseñas de Google de la Oficina #3
 
 Lea las experiencias compartidas sobre la Oficina #3. Visite Google para ver las reseñas más recientes.
 
-[Leer reseñas en Google](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0) [Más reseñas de clientes](/es/sobre-oficina-3/#google-reviews)
+[Leer reseñas en Google](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>) [Más reseñas de clientes](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/#google-reviews>)
 
 Las reseñas describen experiencias individuales.
 
@@ -179,7 +179,7 @@ Respuesta de la oficina en Google Registrado el 13 de julio de 2026
 
 ¡Gracias por confiar en Your Family First Insurance 3! Nos encanta poder ayudar a nuestra comunidad hispana en Miami a comparar opciones de seguro y entender mejor su cobertura. Siempre estamos aquí para ayudarle con cotizaciones, pólizas y cualquier pregunta sobre seguros.
 
-[Abrir la página de reseñas en Google](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Abrir la página de reseñas en Google](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 B
 
@@ -197,7 +197,7 @@ Respuesta de la oficina en Google Registrado el 13 de julio de 2026
 
 Thank you for the kind words! It means a lot to our local Miami insurance team. Whether it’s car insurance, homeowners insurance, renters insurance, commercial insurance, or general liability coverage, we’re always here to put your family first!
 
-[Abrir la página de reseñas en Google](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Abrir la página de reseñas en Google](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 L
 
@@ -215,7 +215,7 @@ Respuesta de la oficina en Google Registrado el 13 de julio de 2026
 
 We appreciate the support, Leeor ! We are pleased to have been able to help you find a trustworthy and affordable homeowners insurance coverage option after comparing different trusted carriers for you!
 
-[Abrir la página de reseñas en Google](https://g.page/r/CfCEW-Ye4vpMEAE/review)
+[Abrir la página de reseñas en Google](<https://g.page/r/CfCEW-Ye4vpMEAE/review>)
 
 Cotizaciones gratis de seguros
 
@@ -224,9 +224,9 @@ Cotizaciones gratis de seguros
 Cotice seguros de auto, vivienda, inquilinos o condominio por internet. Para negocios, vida, salud u otro seguro, llame o envíenos un texto.
 
 **¿Prefiere hablar ahora?**
-[Llamar al 305-910-8850](tel:13059108850) o [envíe un mensaje a la oficina](sms:+13059108850).
+[Llamar al 305-910-8850](<tel:13059108850>) o [envíe un mensaje a la oficina](<sms:+13059108850>).
 
-![Código QR para solicitar una cotización con la Oficina #3](/assets/yffi3/yffi3-quote-qr-240.webp)
+![Código QR para solicitar una cotización con la Oficina #3](<https://yourfamilyfirstinsurance3.com/assets/yffi3/yffi3-quote-qr-240.webp>)
 
 **Cotice desde su teléfono**
 Escanee para abrir el formulario de cotización.
@@ -235,11 +235,11 @@ Escanee para abrir el formulario de cotización.
 
 Cotice seguros de auto, vivienda, inquilinos o condominio. También puede combinar auto y propiedad.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 Abre ConsumerRateQuotes. Su solicitud llega a la Oficina #3 en Miami.
 
-Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](/es/privacidad/).
+Las cotizaciones son estimados y no activan cobertura. La cobertura está sujeta a evaluación y aprobación de la aseguradora. [Política de privacidad](<https://yourfamilyfirstinsurance3.com/es/privacidad/>).
 
 FAQ
 
@@ -249,7 +249,7 @@ FAQ
 
 Comience por internet o llame a Your Family First Insurance Oficina #3 al 305-910-8850. Díganos qué quiere asegurar y para cuándo necesita cobertura. Para negocios, vida, salud u otro seguro que no aparezca en el formulario, llame a la oficina.
 
-[Solicitar cotización gratis](/es/solicitar-cotizacion/) [Llame al 305-910-8850](tel:13059108850)
+[Solicitar cotización gratis](<https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/>) [Llame al 305-910-8850](<tel:13059108850>)
 
 ¿La cotización es gratis y tengo que comprar una póliza?
 
@@ -259,46 +259,46 @@ La cotización es gratis y no le obliga a comprar una póliza. Revise el precio,
 
 Tenga a mano el resumen de su póliza actual, la fecha de renovación y las coberturas que quiere comparar. Si es su primer seguro, indique qué necesita asegurar y los requisitos de su prestamista, arrendador o contrato. Ingrese datos personales de la solicitud solo en el formulario seguro.
 
-[Ver los pasos para cotizar](/es/solicitar-cotizacion/)
+[Ver los pasos para cotizar](<https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/>)
 
 ¿Qué tipos de seguro puedo consultar?
 
 Nuestra oficina se enfoca en consultas de seguros para negocios, auto comercial, auto particular, responsabilidad civil general y camiones. También puede preguntar por vivienda, inquilinos, vida y salud. Díganos qué necesita asegurar, dónde está ubicado y qué exigen sus contratos para revisar las opciones disponibles.
 
-[Comparar tipos de seguro](/es/#coverage-title)
+[Comparar tipos de seguro](<https://yourfamilyfirstinsurance3.com/es/#coverage-title>)
 
 ¿Me pueden atender en español?
 
 Sí. La Oficina #3 atiende en español e inglés para revisar cotizaciones, explicar deducibles y responder preguntas sobre renovaciones. Llame al 305-910-8850 e indique el idioma que prefiere.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Dónde está Your Family First Insurance Oficina #3 en Miami?
 
 Estamos en 11200 W Flagler St, Suite 108-109, Miami, FL 33174. Lunes a viernes de 9 a. m. a 6 p. m.; sábados de 9 a. m. a 3 p. m.; domingos cerrado. También puede cotizar por internet o hablar con nosotros por teléfono.
 
-[Cómo llegar a la Oficina #3](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0)
+[Cómo llegar a la Oficina #3](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
 ¿Puedo comparar una cotización antes de renovar mi póliza?
 
 Sí. Comience cuando reciba el aviso de renovación para tener tiempo de comparar límites, deducibles y costo total. Antes de cancelar su póliza actual, confirme por escrito la nueva cobertura y su fecha de inicio, incluidos los pagos necesarios.
 
-[Revisar su renovación](/es/recursos-para-clientes/revision-de-renovacion/)
+[Revisar su renovación](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/>)
 
 ¿Atienden en Miami-Dade, Broward y el resto de Florida?
 
 Sí. Atendemos consultas de cotización en toda Florida, incluidos Doral, Hialeah, Kendall y Sweetwater en Miami-Dade, además de Broward. Nuestra oficina está en 11200 W Flagler St, Miami. Puede cotizar por internet o llamar para recibir ayuda en español o inglés; las pólizas disponibles dependen de su ubicación y solicitud.
 
-[Contacte nuestra oficina en Miami](/es/sobre-oficina-3/)
+[Contacte nuestra oficina en Miami](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/>)
 
 ¿Puedo consultar sobre seguro de salud individual, familiar o para empleados?
 
 Sí. Llame a la Oficina #3 al 305-910-8850 sobre seguro de salud individual, familiar o de grupo para empleados, en español o inglés. La disponibilidad y las oportunidades de inscripción varían. Revise la red de proveedores, medicamentos cubiertos y costos totales antes de elegir; comparta datos de la solicitud o médicos solo por un medio seguro aprobado.
 
-[Consultar sobre seguro de salud](tel:13059108850) [Guía de HealthCare.gov para comparar planes](https://www.healthcare.gov/choose-a-plan/comparing-plans/)
+[Consultar sobre seguro de salud](<tel:13059108850>) [Guía de HealthCare.gov para comparar planes](<https://www.healthcare.gov/choose-a-plan/comparing-plans/>)
 
 ¿Cómo elijo una agencia de seguros cerca de mí en Miami?
 
 Revise la licencia de Florida de la agencia, las opiniones recientes de clientes y cómo atiende las consultas después de emitir una póliza. Compare el precio junto con los límites, deducibles y exclusiones. Nuestra oficina de West Flagler ofrece ayuda en español e inglés con cotizaciones, renovaciones y cambios de póliza.
 
-[Visite nuestra oficina en Miami](/es/sobre-oficina-3/) [Verifique nuestra licencia de agencia en Florida](https://licenseesearch.fldfs.com/Licensee/2757386)
+[Visite nuestra oficina en Miami](<https://yourfamilyfirstinsurance3.com/es/sobre-oficina-3/>) [Verifique nuestra licencia de agencia en Florida](<https://licenseesearch.fldfs.com/Licensee/2757386>)

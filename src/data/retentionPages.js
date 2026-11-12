@@ -100,7 +100,7 @@ const retentionPages = [
     sourceLinks: [
       ["Florida DFS disaster preparation checklist", "https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-preparation-checklist.pdf"],
       ["Florida DFS post-disaster insurance claims guide", "https://www.myfloridacfo.com/docs-sf/consumer-services-libraries/consumerservices-documents/understanding-coverage/consumer-guides/english-post-disaster-claims-trifold.pdf"],
-      ["FEMA hurricane damage checklist", "https://www.fema.gov/pdf/plan/prevent/nhp/hurdam.pdf"],
+      ["Florida DFS disaster recovery checklist", "https://www.myfloridacfo.com/docs-sf/insurance-consumer-advocate-libraries/ica-documents/disaster-recovery-checklist.pdf?sfvrsn=58940ae7_24"],
       ["Florida DFS insurance consumer help", "https://myfloridacfo.com/division/consumers/needourhelp"]
     ],
     "faqTitle": "Hurricane insurance questions",
@@ -153,14 +153,15 @@ const retentionPages = [
   },
   {
     slug: "customer-resources/renewal-review",
+    modifiedDate: "2026-11-12",
     nav: "Renewal Guide",
-    title: "Insurance Renewal and Cancellation-Prevention Checklist | Office #3",
-    description: "Prepare for an auto, homeowners, renters, life, or business insurance renewal and respond early to billing, underwriting, cancellation, or nonrenewal notices.",
+    title: "Florida Insurance Renewal Checklist | Office #3",
+    description: "Review a Florida insurance renewal, cancellation or nonrenewal notice. Check the effective date, compare the full term cost and know when to call your insurer.",
     h1: "Renewal and Cancellation-Prevention Review",
     intro: "Review your renewal notice as soon as it arrives. Check the new premium, coverage and deductibles, and tell us about any changes before your policy expires.",
     kind: "resource",
     sections: [
-      ["Read every notice", "Confirm the carrier, policy term, due date, premium, installment plan, requested documents, reason for any nonrenewal or cancellation, and the contact method shown on the notice."],
+      ["Identify the notice and deadline", "A renewal offer covers a new policy term. A nonrenewal ends coverage when the current term expires. A cancellation can end coverage sooner. Check the date, time and reason on the notice, and confirm with your insurer when coverage ends."],
       ["Verify billing", "Confirm the amount, due date, payment method, returned-payment history, and whether autopay information is current directly with the carrier or authorized billing party."],
       ["Review changes", "Identify new drivers or vehicles, address or occupancy changes, roof or property updates, new equipment, payroll or operations changes, beneficiary changes, and contact updates."],
       ["Ask before expiration", "Contact the carrier and Office #3 promptly. Some underwriting items, inspections, signatures, or replacement options require time."],
@@ -217,12 +218,12 @@ const retentionPages = [
   },
   {
     slug: "customer-resources/certificate-of-insurance",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     nav: "COI Guide",
     title: "Certificate of Insurance Guidance for Miami Businesses | Office #3",
-    description: "Understand certificate of insurance requests, contract requirements, proof of coverage, additional insured questions, and why a certificate cannot change the policy.",
+    description: "Request a certificate of insurance for a Florida job or lease. See which details to gather and what to do if you still need business coverage.",
     h1: "Certificate of Insurance Request Guidance",
-    intro: "A certificate generally provides evidence of coverage. It does not replace the policy or create terms that the underlying contract does not provide.",
+    intro: "Need to show proof of insurance for a job or commercial lease? Have the written requirements and deadline ready. If you already have coverage, ask the agency or insurer that handles your policy about issuing the certificate. If you still need coverage, call our Miami office to review a business insurance quote.",
     kind: "resource",
     sections: [
       ["Get the request in writing", "Ask the requester for the exact certificate holder name, address, project or contract reference, required limits, and any requested endorsements."],
@@ -246,6 +247,13 @@ const retentionPages = [
             "Call 305-910-8850",
             "tel:13059108850"
           ]
+        ]
+      ],
+      [
+        "Do I need a certificate or a new business insurance quote?",
+        "A certificate shows evidence of an existing policy. If you have a policy, contact the agency or insurer that handles it and ask them to review the written requirements. If you are uninsured or the contract asks for coverage your policy lacks, discuss the needed coverage before promising a certificate.",
+        [
+          ["Compare business and general liability coverage", "/commercial-insurance/#general-liability-insurance"]
         ]
       ],
       [
@@ -280,6 +288,7 @@ const retentionPages = [
   },
   {
     slug: "customer-resources/life-event-review",
+    modifiedDate: "2026-11-12",
     nav: "Annual Review",
     title: "Annual Insurance and Life-Event Coverage Review | Office #3",
     description: "Use an annual review and major life, household, vehicle, property, or business changes to identify insurance questions before renewal.",
@@ -330,8 +339,8 @@ const retentionPages = [
         "Review them after marriage, divorce, a birth, adoption or a death, and periodically with your overall policy review. Confirm changes through the insurer’s process. Ask for guidance before naming a minor or making a decision with legal or estate implications.",
         [
           [
-            "Life insurance questions",
-            "/life-insurance/"
+            "Compare term and permanent life insurance",
+            "/life-insurance/#coverage-details"
           ]
         ]
       ],
@@ -340,8 +349,8 @@ const retentionPages = [
         "They can change your risks and policy requirements. Review new employees, payroll, locations, vehicles, equipment and services with the office. Do this before taking on work that your current policy may not cover.",
         [
           [
-            "Discuss business insurance",
-            "/commercial-insurance/"
+            "Review small business coverage",
+            "/commercial-insurance/#coverage-details"
           ]
         ]
       ],

@@ -55,29 +55,29 @@ Centro de recursos para clientes
 
 Use estas listas para preparar una renovación, reclamación o revisión. Llámenos si tiene dudas sobre su póliza.
 
-### [Preparación para huracanes y reclamaciones](/es/recursos-para-clientes/preparacion-para-huracanes/)
+### [Preparación para huracanes y reclamaciones](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/>)
 
 Prepare documentos antes de una tormenta y conozca los primeros pasos después de un daño.
 
-[Abrir la guía](/es/recursos-para-clientes/preparacion-para-huracanes/)
+[Abrir la guía](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/>)
 
-### [Revisión de renovación y prevención de cancelación](/es/recursos-para-clientes/revision-de-renovacion/)
+### [Revisión de renovación y prevención de cancelación](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/>)
 
 Revise avisos, facturación, cambios del hogar o propiedad y preguntas de cobertura con anticipación.
 
-[Abrir la guía](/es/recursos-para-clientes/revision-de-renovacion/)
+[Abrir la guía](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/>)
 
-### [Orientación sobre certificados de seguro](/es/recursos-para-clientes/certificado-de-seguro/)
+### [Orientación sobre certificados de seguro](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/>)
 
 Entienda qué demuestra un certificado y qué no puede cambiar.
 
-[Abrir la guía](/es/recursos-para-clientes/certificado-de-seguro/)
+[Abrir la guía](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/>)
 
-### [Revisión anual y por cambios de vida](/es/recursos-para-clientes/revision-anual/)
+### [Revisión anual y por cambios de vida](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-anual/>)
 
 Use cambios importantes del hogar, vehículo, propiedad o negocio como motivo para una revisión.
 
-[Abrir la guía](/es/recursos-para-clientes/revision-anual/)
+[Abrir la guía](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-anual/>)
 
 Servicio para clientes existentes
 
@@ -85,7 +85,7 @@ Servicio para clientes existentes
 
 No coloque números de póliza, identificación, datos de pago, información médica, archivos de reclamaciones ni documentos de póliza en este sitio público ni en un mensaje de texto común.
 
-[Llamar al 305-910-8850](tel:13059108850)
+[Llamar al 305-910-8850](<tel:13059108850>)
 
 FAQ
 
@@ -95,7 +95,7 @@ FAQ
 
 Revise de inmediato el motivo, la fecha límite y la fecha efectiva. Contacte a la aseguradora al número del aviso y llame a la Oficina #3 con el documento a mano. No suponga que el pago automático, un pago atrasado o una conversación mantuvo vigente la póliza.
 
-[Llame al 305-910-8850](tel:13059108850) [Lista para renovación y facturación](/es/recursos-para-clientes/revision-de-renovacion/)
+[Llame al 305-910-8850](<tel:13059108850>) [Lista para renovación y facturación](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/revision-de-renovacion/>)
 
 ¿Cómo reporto una reclamación al seguro?
 
@@ -105,13 +105,13 @@ Use el número o portal oficial de reclamaciones que aparece en su póliza. Guar
 
 Llame antes del cambio siempre que sea posible. Explique qué cambia y desde qué fecha lo necesita. La solicitud por sí sola no actualiza la cobertura; obtenga confirmación escrita del cambio, su fecha efectiva y cualquier ajuste de prima.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)
 
 ¿Cómo obtengo un comprobante o certificado de seguro?
 
 Revise los documentos disponibles en el portal de su aseguradora o llame a la Oficina #3. Para un certificado comercial, prepare los requisitos escritos de quien lo solicita y la fecha límite. El certificado debe reflejar la cobertura realmente vigente.
 
-[Solicitudes de certificados comerciales](/es/recursos-para-clientes/certificado-de-seguro/)
+[Solicitudes de certificados comerciales](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/certificado-de-seguro/>)
 
 ¿Puedo enviar documentos de mi póliza por este sitio?
 
@@ -121,4 +121,4 @@ Este sitio no acepta números de póliza, pagos, archivos de reclamaciones ni do
 
 Sí. Llame al 305-910-8850 e indique si prefiere español o inglés. Tenga a mano su pregunta y cualquier aviso para revisar el asunto con claridad.
 
-[Llame al 305-910-8850](tel:13059108850)
+[Llame al 305-910-8850](<tel:13059108850>)

@@ -120,6 +120,8 @@ export async function onRequest(context) {
 
   const [markdown, originalHtml] = await Promise.all([markdownResponse.text(), response.clone().text()]);
   headers.set("Content-Type", "text/markdown; charset=utf-8");
+  const canonicalPath = slug ? `/${slug}/` : "/";
+  headers.append("Link", `<https://${canonicalHostname}${canonicalPath}>; rel="canonical"`);
   headers.set("Cache-Control", "public, max-age=300, must-revalidate");
   headers.set("x-markdown-tokens", String(estimatedTokens(markdown)));
   headers.set("x-original-tokens", String(estimatedTokens(originalHtml)));

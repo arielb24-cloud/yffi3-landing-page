@@ -55,29 +55,29 @@ Customer resource center
 
 Use these checklists to prepare for a renewal, claim or policy review. Call us with questions about your policy.
 
-### [Hurricane and claim preparation](/customer-resources/hurricane-preparation/)
+### [Hurricane and claim preparation](<https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/>)
 
 Prepare documents before a storm and understand the first steps after damage.
 
-[Open the guide](/customer-resources/hurricane-preparation/)
+[Open the guide](<https://yourfamilyfirstinsurance3.com/customer-resources/hurricane-preparation/>)
 
-### [Renewal and cancellation-prevention review](/customer-resources/renewal-review/)
+### [Renewal and cancellation-prevention review](<https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/>)
 
 Review notices, billing, household or property changes, and coverage questions early.
 
-[Open the guide](/customer-resources/renewal-review/)
+[Open the guide](<https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/>)
 
-### [Certificate of insurance guidance](/customer-resources/certificate-of-insurance/)
+### [Certificate of insurance guidance](<https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/>)
 
 Understand what a certificate shows and what it cannot change.
 
-[Open the guide](/customer-resources/certificate-of-insurance/)
+[Open the guide](<https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/>)
 
-### [Annual and life-event coverage review](/customer-resources/life-event-review/)
+### [Annual and life-event coverage review](<https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/>)
 
 Use major household, vehicle, property, or business changes to review your insurance.
 
-[Open the guide](/customer-resources/life-event-review/)
+[Open the guide](<https://yourfamilyfirstinsurance3.com/customer-resources/life-event-review/>)
 
 Existing customer service
 
@@ -85,7 +85,7 @@ Existing customer service
 
 Do not place policy numbers, identification, payment details, medical information, claim files, or policy documents on this public site or in an ordinary text message.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 FAQ
 
@@ -95,7 +95,7 @@ What should I do if I receive a cancellation or nonrenewal notice?
 
 Read the reason, deadline and effective date right away. Contact the insurer using the number on the notice, then call Office #3 with the notice ready. Do not assume autopay, a late payment or a phone conversation has kept the policy active.
 
-[Call 305-910-8850](tel:13059108850) [Renewal and billing checklist](/customer-resources/renewal-review/)
+[Call 305-910-8850](<tel:13059108850>) [Renewal and billing checklist](<https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/>)
 
 How do I report an insurance claim?
 
@@ -105,13 +105,13 @@ How do I add a car, driver or address change to my policy?
 
 Call before the change takes place whenever possible. Tell us what is changing and the date you need it to apply. A request alone does not update your coverage; obtain written confirmation of the change, effective date and any premium adjustment.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)
 
 How can I get proof of insurance or a certificate?
 
 Check your insurer’s portal for available policy documents or call Office #3. For a business certificate, have the requester’s written requirements and deadline ready. A certificate must reflect the coverage actually in force.
 
-[Business certificate requests](/customer-resources/certificate-of-insurance/)
+[Business certificate requests](<https://yourfamilyfirstinsurance3.com/customer-resources/certificate-of-insurance/>)
 
 Can I send policy documents through this website?
 
@@ -121,4 +121,4 @@ Can I get policy service in Spanish?
 
 Yes. Call 305-910-8850 and ask for English or Spanish service. Have your question and any notice ready so we can discuss the issue clearly.
 
-[Call 305-910-8850](tel:13059108850)
+[Call 305-910-8850](<tel:13059108850>)

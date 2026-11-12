@@ -75,6 +75,7 @@ test('AI-readable Markdown preserves comparison rows and real poster URLs',async
     const response=await request.get(route,{headers:{Accept:'text/markdown'}});
     expect(response.status()).toBe(200);
     expect(response.headers()['content-type']).toContain('text/markdown');
+    expect(response.headers().link).toContain(`<https://yourfamilyfirstinsurance3.com${route}>; rel="canonical"`);
     const text=await response.text();
     expect(text).toContain(heading);
     expect(text).toContain('| --- | --- |');

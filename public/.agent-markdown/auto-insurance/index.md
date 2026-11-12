@@ -5,41 +5,41 @@ language: "en-US"
 canonical: "https://yourfamilyfirstinsurance3.com/auto-insurance/"
 ---
 
-[Home](/)/Auto
+[Home](<https://yourfamilyfirstinsurance3.com/>)/Auto
 
 # Auto Insurance in Miami
 
 Compare coverage for your car, your drivers and the way you use your vehicle. We can review a new purchase, a move or an upcoming renewal.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Call 305-910-8850](tel:13059108850)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Call 305-910-8850](<tel:13059108850>)
 
-[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Get directions to Office #3 on Google Maps")
+[11200 W Flagler St · Suite 108–109 · Miami](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
-[Coverage](#coverage-details)[What You Need](#quote-next)[Questions](#faqs)
+[Coverage](<https://yourfamilyfirstinsurance3.com/auto-insurance/#coverage-details>)[What You Need](<https://yourfamilyfirstinsurance3.com/auto-insurance/#quote-next>)[Questions](<https://yourfamilyfirstinsurance3.com/auto-insurance/#faqs>)
 
-[![Premium car moving through city traffic video for Miami auto insurance quote help](/media/premium-carousel/auto/premium-car-city-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Premium car moving through city traffic video for Miami auto insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/auto/premium-car-city-drive-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Compare Your Auto Insurance
 
 Have your current policy handy to compare the same limits and deductibles.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Night dashboard driving video for Miami auto insurance renewal quote help](/media/premium-carousel/auto/night-dashboard-motion-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Night dashboard driving video for Miami auto insurance renewal quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/auto/night-dashboard-motion-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Is Your Auto Renewal Going Up?
 
 Review the new premium, driver list and coverage before your renewal date.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Moving urban traffic video for household auto insurance quote help](/media/premium-carousel/auto/urban-traffic-drive-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Moving urban traffic video for household auto insurance quote help](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/auto/urban-traffic-drive-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Adding a Car or Driver?
 
 Tell us who drives, where the car is kept and whether it is financed or leased.
 
-[Get My Free Quote](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Get My Free Quote](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Compare Florida auto coverage
 
@@ -69,7 +69,7 @@ Free quotes
 
 Select Auto in the secure form. Have your current policy, driver and vehicle information ready so you can compare the same limits and deductibles.
 
-[Start My Quote Request](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Start My Quote Request](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 FAQ
 
@@ -77,21 +77,21 @@ FAQ
 
 How do I get a car insurance quote in Miami?
 
-Your Family First Insurance Office #3 offers free auto insurance quotes online or by phone at 305-910-8850, in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle information, vehicle use and desired start date ready. Enter personal application details only in the secure application.
+Get a free car insurance quote online, call 305-910-8850, or visit our West Flagler office in Miami for help in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle details, and desired start date ready. Enter personal details only in the secure application.
 
-[Get an auto insurance quote](/get-a-quote/)
+[Get an auto insurance quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>) [West Flagler office hours and directions](<https://yourfamilyfirstinsurance3.com/about-office-3/>)
 
 How much does car insurance cost in Miami?
 
-There is no single price for Miami drivers. Your vehicles, drivers, driving history, address, vehicle use and coverage choices affect the quote. Compare the total cost for the same policy term, along with limits, deductibles, the initial payment and installment charges.
+Price depends on the vehicle, drivers, driving history, address, use and coverage. Ask for the total cost for the same policy term, including installment charges. A lower first payment can still cost more over the term. Check that both quotes use the same liability limits and deductibles and show which coverage applies to damage to your own car.
 
-[Get a free quote](/get-a-quote/)
+[Get a free quote](<https://yourfamilyfirstinsurance3.com/get-a-quote/>)
 
 What car insurance does Florida require?
 
 For most private passenger vehicles registered in Florida, the basic requirements are $10,000 in Personal Injury Protection (PIP) and $10,000 in Property Damage Liability (PDL). These minimums do not cover every risk. Different requirements can apply to certain drivers and vehicles, and a lender may require additional coverage.
 
-[Florida vehicle insurance requirements](https://www.flhsmv.gov/insurance/)
+[Florida vehicle insurance requirements](<https://www.flhsmv.gov/insurance/>)
 
 What does “full coverage” car insurance actually mean?
 
@@ -105,13 +105,13 @@ Does personal car insurance cover deliveries, rideshare or commercial truck driv
 
 Tell us how the vehicle is used before choosing insurance. Deliveries, carrying paying passengers and commercial trucking can need different coverage from personal driving. A CDL does not make a personal auto policy suitable for trucking. Call to review your actual work and any coverage supplied by an employer or motor carrier.
 
-[Review commercial auto and trucking](/commercial-insurance/#trucking-insurance) [Call 305-910-8850](tel:13059108850)
+[Review commercial auto and trucking](<https://yourfamilyfirstinsurance3.com/commercial-insurance/#trucking-insurance>) [Call 305-910-8850](<tel:13059108850>)
 
 Can I switch car insurance without a gap in coverage?
 
 You can compare options before your current policy ends. Confirm the new policy’s effective date and time, required payment and written proof of coverage before cancelling the old policy. Keep the insurance required for your Florida registration in force.
 
-[Plan a renewal review](/customer-resources/renewal-review/)
+[Plan a renewal review](<https://yourfamilyfirstinsurance3.com/customer-resources/renewal-review/>)
 
 How do I compare affordable car insurance in Miami?
 
@@ -123,4 +123,4 @@ Insurance resources
 
 Read Florida consumer guides or look up an insurance license. For questions about your own coverage, check your policy or call us.
 
-[Florida DFS personal auto insurance overview](https://www.myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview)[Florida DFS licensee search](https://licenseesearch.fldfs.com/)
+[Florida DFS personal auto insurance overview](<https://www.myfloridacfo.com/division/consumers/understanding-insurance/personal-automobile-insurance-overview>)[Florida DFS licensee search](<https://licenseesearch.fldfs.com/>)

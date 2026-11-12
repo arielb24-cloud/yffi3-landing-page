@@ -5,41 +5,41 @@ language: "es-US"
 canonical: "https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/"
 ---
 
-[Inicio](/es/)/Vivienda
+[Inicio](<https://yourfamilyfirstinsurance3.com/es/>)/Vivienda
 
 # Seguro de vivienda en Miami
 
 Revise la cobertura de su vivienda y pertenencias, el deducible por huracán y el seguro de inundación. Avísenos si tiene una fecha de cierre o renovación.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868) [Llamar al 305-910-8850](tel:13059108850)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>) [Llamar al 305-910-8850](<tel:13059108850>)
 
-[11200 W Flagler St · Suite 108–109 · Miami](https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0 "Cómo llegar a la Oficina #3 en Google Maps")
+[11200 W Flagler St · Suite 108–109 · Miami](<https://www.google.com/maps/place/Your+Family+First+Insurance/data=!4m2!3m1!1s0x0:0x4cfae21ee65b84f0>)
 
-[Cobertura](#coverage-details)[Qué necesita](#quote-next)[Preguntas](#faqs)
+[Cobertura](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/#coverage-details>)[Qué necesita](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/#quote-next>)[Preguntas](<https://yourfamilyfirstinsurance3.com/es/seguro-de-vivienda/#faqs>)
 
-[![Video de una vivienda terminada para solicitar seguro de propietarios en Miami](/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video de una vivienda terminada para solicitar seguro de propietarios en Miami](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/sunlit-home-walkthrough-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Revise la cobertura de su vivienda
 
 Compruebe el costo de reconstrucción, los límites de pertenencias y el deducible por huracán.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre](/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video aéreo de una vivienda con piscina para solicitar seguro antes del cierre](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/luxury-pool-aerial-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## ¿Está comprando una vivienda?
 
 Tenga la dirección, la fecha de cierre y los requisitos del prestamista a mano.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
-[![Video del exterior de una vivienda moderna para revisar una renovación de seguro](/media/premium-carousel/homeowners/modern-home-exterior-poster.webp)](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[![Video del exterior de una vivienda moderna para revisar una renovación de seguro](<https://yourfamilyfirstinsurance3.com/media/premium-carousel/homeowners/modern-home-exterior-poster.webp>)](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Antes de renovar su seguro
 
 Revise la nueva prima, la información del techo, las inspecciones y los cambios de cobertura.
 
-[Solicitar cotización](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Solicitar cotización](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 ## Vivienda, viento e inundación
 
@@ -69,7 +69,7 @@ Cotizaciones gratis
 
 Seleccione Vivienda o Condo Owners en el formulario seguro. Tenga a mano la dirección de la propiedad, su póliza actual y los datos del techo que tenga.
 
-[Iniciar mi solicitud](https://secure.ConsumerRateQuotes.com/ConsumerV2?id=64868)
+[Iniciar mi solicitud](<https://secure.consumerratequotes.com/ConsumerV2?id=64868>)
 
 FAQ
 
@@ -79,25 +79,25 @@ FAQ
 
 Depende de la ubicación, el costo de reconstrucción, el techo, la construcción, el uso de la vivienda, el historial de reclamaciones y las coberturas. Dos casas en la misma calle pueden tener precios distintos. Compare los límites de la vivienda, deducibles por huracán y otros daños, exclusiones y prima total.
 
-[Solicitar cotización gratis](/es/solicitar-cotizacion/)
+[Solicitar cotización gratis](<https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/>)
 
 ¿El seguro de vivienda incluye inundaciones?
 
 El seguro de vivienda estándar generalmente excluye inundaciones por agua que sube desde el exterior. El seguro contra inundaciones es distinto de la cobertura por viento o huracán. Pregunte por protección para la estructura y sus pertenencias, aunque su prestamista no la exija.
 
-[Consultar cobertura contra inundaciones](tel:13059108850)
+[Consultar cobertura contra inundaciones](<tel:13059108850>)
 
 ¿Cómo funciona el deducible por huracán en Florida?
 
 Puede ser una cantidad fija o un porcentaje del límite asegurado de la vivienda. Por ejemplo, un deducible del 2% sobre un límite de $300,000 equivale a $6,000. No es el 2% de la reclamación. Revise el monto y las condiciones en su póliza.
 
-[Guía de deducibles por huracán de Florida](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible)
+[Guía de deducibles por huracán de Florida](<https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible>)
 
 ¿Cómo cotizo seguro de casa o condominio en Miami?
 
 Solicite una cotización gratis con Your Family First Insurance Oficina #3 por internet o al 305-910-8850. Seleccione Homeowners o Condo Owners en el formulario seguro. Prepare la dirección, su cobertura actual, la antigüedad del techo, las inspecciones disponibles y la fecha límite del prestamista. Informe sobre remodelaciones, alquileres o negocios en casa para describir correctamente la propiedad.
 
-[Cotizar casa o condominio](/es/solicitar-cotizacion/)
+[Cotizar casa o condominio](<https://yourfamilyfirstinsurance3.com/es/solicitar-cotizacion/>)
 
 ¿Un techo nuevo o una inspección de mitigación puede reducir la prima?
 
@@ -111,13 +111,13 @@ El límite de la vivienda debe reflejar el costo de reconstruir la estructura cu
 
 Las aseguradoras pueden restringir nuevas pólizas o cambios cuando una tormenta amenaza la zona. Revise las coberturas de vivienda, viento e inundación con anticipación. La nueva cobertura debe tener fecha de inicio confirmada, y algunas pólizas contra inundaciones tienen períodos de espera.
 
-[Prepararse antes de la temporada de huracanes](/es/recursos-para-clientes/preparacion-para-huracanes/)
+[Prepararse antes de la temporada de huracanes](<https://yourfamilyfirstinsurance3.com/es/recursos-para-clientes/preparacion-para-huracanes/>)
 
 ¿Necesito seguro de condominio si la asociación tiene una póliza maestra?
 
 La póliza maestra de la asociación no reemplaza toda la protección que puede necesitar el dueño de una unidad. Una póliza HO-6 puede cubrir pertenencias, responsabilidad civil y ciertas partes de la unidad. Revise las responsabilidades de la asociación, las mejoras de su unidad y los requisitos del prestamista antes de elegir límites.
 
-[Guía de Florida DFS para viviendas y condominios](https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/)
+[Guía de Florida DFS para viviendas y condominios](<https://www.myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview/>)
 
 ¿La inspección de cuatro puntos es igual a la de mitigación de viento?
 
@@ -129,4 +129,4 @@ Recursos sobre seguros
 
 Consulte guías de Florida o verifique una licencia de seguros. Para dudas sobre su cobertura, revise su póliza o llámenos.
 
-[Resumen de seguro para propietarios de Florida DFS](https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview)[Guía de seguro contra inundaciones de Florida DFS](https://myfloridacfo.com/division/ica/fullcoverage/flood)[Disposiciones sobre la antigüedad del techo del Estatuto de Florida 627.7011](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html)
+[Resumen de seguro para propietarios de Florida DFS](<https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview>)[Guía de seguro contra inundaciones de Florida DFS](<https://myfloridacfo.com/division/ica/fullcoverage/flood>)[Disposiciones sobre la antigüedad del techo del Estatuto de Florida 627.7011](<https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html>)

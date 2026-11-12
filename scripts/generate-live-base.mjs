@@ -371,7 +371,7 @@ const pages = [
     ]
   },
   {
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "slug": "auto-insurance",
     "nav": "Auto",
     "title": "Auto Insurance in Miami | Free Quote | Office #3",
@@ -420,17 +420,21 @@ const pages = [
     "faqs": [
       [
         "How do I get a car insurance quote in Miami?",
-        "Your Family First Insurance Office #3 offers free auto insurance quotes online or by phone at 305-910-8850, in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle information, vehicle use and desired start date ready. Enter personal application details only in the secure application.",
+        "Get a free car insurance quote online, call 305-910-8850, or visit our West Flagler office in Miami for help in English or Spanish. Select Auto in the secure form. Have your current coverage summary, driver and vehicle details, and desired start date ready. Enter personal details only in the secure application.",
         [
           [
             "Get an auto insurance quote",
             "/get-a-quote/"
+          ],
+          [
+            "West Flagler office hours and directions",
+            "/about-office-3/"
           ]
         ]
       ],
       [
         "How much does car insurance cost in Miami?",
-        "There is no single price for Miami drivers. Your vehicles, drivers, driving history, address, vehicle use and coverage choices affect the quote. Compare the total cost for the same policy term, along with limits, deductibles, the initial payment and installment charges.",
+        "Price depends on the vehicle, drivers, driving history, address, use and coverage. Ask for the total cost for the same policy term, including installment charges. A lower first payment can still cost more over the term. Check that both quotes use the same liability limits and deductibles and show which coverage applies to damage to your own car.",
         [
           [
             "Get a free quote",
@@ -610,12 +614,12 @@ const pages = [
   },
   {
     "slug": "commercial-insurance",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "nav": "Commercial",
-    "title": "Business & General Liability Insurance Miami | Office #3",
-    "description": "Business, general liability and trucking insurance quote help in Miami. Call Office #3 about contractors, restaurants, commercial vehicles and CDL owner-operators.",
+    "title": "Miami Business Insurance & General Liability | Office #3",
+    "description": "Call Office #3 for a Miami business insurance quote. Review general liability, restaurant coverage, commercial auto and trucking in English or Spanish.",
     "h1": "Business Insurance in Miami",
-    "intro": "Compare commercial and general liability insurance for your Miami business, plus commercial auto and trucking coverage for owner-operators and motor carriers. Tell us about your work, vehicles, drivers and contract requirements. We help in English and Spanish throughout Florida.",
+    "intro": "Opening a business, renewing your policy or taking on a new contract? Our Miami office can help you compare general liability, business property, commercial auto and trucking insurance. Bring the written insurance requirements from your client or landlord. We help in English and Spanish throughout Florida.",
     "kind": "service",
     "service": "Commercial Insurance",
     "icon": "shield",
@@ -623,15 +627,18 @@ const pages = [
     "sections": [
       [
         "General liability",
-        "For contractors, restaurants and other businesses, review covered operations, exclusions, limits and any additional-insured requirement. Bring your client’s or landlord’s written requirements; a certificate cannot add coverage."
+        "For a job or lease, compare the written requirements with the policy. Check the work the policy covers, exclusions, limits and any additional insured wording. If you hire subcontractors or your client requires coverage for completed work, bring those details before you sign. The policy and endorsements determine what coverage applies.",
+        "general-liability-insurance"
       ],
       [
-        "Restaurant and food business insurance",
-        "For a restaurant or café quote, describe cooking, delivery, alcohol service, employees and equipment. Discuss property, liability and business income needs; one policy may not cover every part of the operation."
+        "Restaurant insurance in Miami",
+        "Start with what could interrupt service or lead to a claim. Review customer injuries and food-related claims under liability, kitchen equipment and stock under property, and when business income coverage would apply. Ask separately about equipment breakdown, refrigerated food spoilage, liquor liability if you serve alcohol, and vehicles used for delivery. Availability and exclusions vary.",
+        "restaurant-insurance"
       ],
       [
         "Commercial auto and trucking",
-        "Call about work vehicles, owner-operators and Florida-based trucking businesses with CDL drivers. Describe who operates the truck, its routes and cargo, and whether you work under your own authority or another carrier’s. Coverage and filings depend on the operation."
+        "For a commercial truck quote, have the truck and trailer types, regular routes, cargo and driver details ready. Explain whether you operate under your own authority or lease on to a carrier. Ask which policy would cover the truck, cargo and liability for your operation, and who handles any required filings.",
+        "trucking-insurance"
       ]
     ],
     "detailsHeading": "Prepare your business quote",
@@ -662,7 +669,7 @@ const pages = [
     "faqs": [
       [
         "How do I get small business insurance in Miami?",
-        "Call Your Family First Insurance Office #3 at 305-910-8850 for a business insurance quote in English or Spanish. Describe your work, location, employees, vehicles and contract requirements. General liability, property, commercial auto and workers’ compensation cover different risks; we can review the available options for your operations.",
+        "Call 305-910-8850 for a business insurance quote in English or Spanish. Have your business name, locations, work you perform, estimated sales and payroll ready. Tell us about employees, subcontractors and vehicles. If you already have insurance, bring your current coverage summary and renewal date. Bring any written lease or contract requirements so we can compare the right coverage.",
         [
           [
             "Call 305-910-8850",
@@ -672,7 +679,7 @@ const pages = [
       ],
       [
         "How much does business insurance cost in Miami?",
-        "Cost depends on your operations, revenue, payroll, location, claims history and requested coverage. A contractor and an office-based business may need very different policies. Prepare your business description and contract requirements so the quote reflects the work you actually do.",
+        "Cost depends on your operations, sales, payroll, location, claims history and coverage. When comparing quotes, check that they describe the same work and use the same limits and deductibles. Ask whether a lower price reflects an exclusion for work you perform or a missing endorsement your contract requires.",
         [
           [
             "Call 305-910-8850",
@@ -710,10 +717,10 @@ const pages = [
       ],
       [
         "What should I prepare for a restaurant insurance quote in Miami?",
-        "Have your business address, estimated sales, payroll, equipment values and lease requirements ready. Describe cooking, alcohol service and delivery activities. Ask which coverages are included and which require separate policies or endorsements.",
+        "Have the location, opening date, estimated sales and payroll, and the value of kitchen equipment and stock ready. Bring the insurance section of your lease. Tell us whether you serve alcohol, cater off-site, or use staff or a third party for deliveries. Those details help identify which coverages to review.",
         [
           [
-            "Call about business insurance",
+            "Call for a restaurant insurance quote",
             "tel:13059108850"
           ]
         ]
@@ -766,24 +773,24 @@ const pages = [
   },
   {
     "slug": "life-insurance",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "nav": "Life",
     "title": "Life Insurance in Miami: Term & Permanent | Office #3",
     "description": "Compare term and permanent life insurance in Miami. Review premiums, coverage amounts and beneficiaries with Office #3 in English or Spanish.",
     "h1": "Life Insurance in Miami",
-    "intro": "Compare term and permanent life insurance with our Miami office. Discuss the income, mortgage, debts or family expenses you want to cover, and a premium you can maintain.",
+    "intro": "Compare term and permanent life insurance with our Miami office in English or Spanish. Start with who depends on you, how long they may need support and what you can afford to pay. We can help you review the costs and written guarantees before you apply.",
     "kind": "service",
     "service": "Life Insurance",
     "icon": "heart",
     "keywords": "life insurance Miami, term life insurance Miami, final expense insurance Miami, family protection Miami, mortgage protection life insurance, bilingual life insurance help",
     "sections": [
       [
-        "Coverage amount and beneficiaries",
-        "Consider income, debts, education and final expenses, then account for savings and existing insurance. Review who should receive the benefit and update beneficiary instructions after family changes."
+        "Start with what your family would need",
+        "List the income, debts and expenses your family would need help with. Note which needs have an end date, such as the years left on a mortgage, and which could last longer, such as support for a dependent. Account for savings and existing insurance before choosing an amount and reviewing beneficiaries."
       ],
       [
-        "Premiums and application",
-        "Ask which premiums and benefits are guaranteed and which depend on projections. Review application requirements and any health questions through the office or insurer’s application process."
+        "Compare the same benefit and costs",
+        "Start with the same death benefit on each quote. For term life, compare the initial term and what happens when it ends. For permanent life, ask how long you would pay, what is guaranteed, and what could happen if you pay less or miss a payment. Use the insurer’s secure application for health details."
       ]
     ],
     "detailsHeading": "Plan your life insurance quote",
@@ -801,7 +808,7 @@ const pages = [
         ],
         [
           "Permanent life",
-          "Designed for long-term coverage when policy requirements are met. Compare guarantees, cash value, charges and the funding needed to keep it active."
+          "Designed for long-term coverage when policy requirements are met. Ask for the guaranteed and projected values side by side at the same policy years. Check the premium needed to keep it active, surrender charges, and how a loan or withdrawal could affect cash value or the death benefit."
         ]
       ]
     },
@@ -856,11 +863,11 @@ const pages = [
       ],
       [
         "What should I compare in whole life or universal life insurance?",
-        "Whole life and universal life are types of permanent insurance, but their premiums, guarantees and flexibility differ. Ask which premiums, benefits and cash values are guaranteed and which are illustrated estimates. Compare fees, surrender charges and the effect of missed or insufficient payments before choosing or replacing a policy.",
+        "Whole life and universal life are types of permanent insurance with different guarantees and payment terms. When a quote includes an illustration, compare the guaranteed and projected values in the same policy years. Ask how long you would pay, what you could receive if you cancel, and how missed payments or a loan could affect the policy.",
         [
           [
-            "NAIC life insurance guide",
-            "https://content.naic.org/consumer/life-insurance.htm"
+            "NAIC guide to life insurance illustrations",
+            "https://content.naic.org/insurance-topics/life-insurance-illustrations"
           ]
         ]
       ],
@@ -888,10 +895,10 @@ const pages = [
   },
   {
     "slug": "renters-insurance",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "nav": "Renters",
     "title": "Renters Insurance Quotes in Miami | Office #3",
-    "description": "Compare renters insurance quotes for a Miami apartment or rental home. Review lease limits, belongings, deductibles and move-in dates with Office #3.",
+    "description": "Get a free Miami renters insurance quote online. Have your rental address, move-in date and lease requirements ready. English and Spanish help.",
     "h1": "Renters Insurance in Miami",
     "intro": "Get a renters insurance quote for your Miami apartment or rental home. Bring your lease requirements so we can compare coverage for your belongings and liability before your move-in or renewal date.",
     "kind": "service",
@@ -905,7 +912,8 @@ const pages = [
       ],
       [
         "Your lease and move-in date",
-        "Have the rental address, move-in date and written lease requirements ready. Ask the property manager which liability limits and proof of insurance are required before buying a policy."
+        "Find the insurance section of your lease. Confirm the liability limit, required start date and who needs to receive proof. If the manager asks to be listed as an interested party, get the exact name and address. Confirm the effective date and accepted proof before you pick up the keys.",
+        "rental-lease-requirements"
       ]
     ],
     "detailsHeading": "Before your move-in date",
@@ -987,6 +995,10 @@ const pages = [
         ]
       ],
       [
+        "What proof of renters insurance should I give my apartment manager?",
+        "Ask the property manager which document they accept. A declarations page usually shows the insured name, rental address, policy dates and limits. Confirm whether the manager needs to be listed as an interested party or asks for a different policy designation. Ask your insurer how to handle that request before assuming the terms mean the same thing."
+      ],
+      [
         "Does renters insurance cover my roommate?",
         "Do not assume it does. Coverage depends on who qualifies as an insured under the policy. Ask whether roommates can be included or need separate policies, and how shared limits and claims would work. Listing someone on a lease does not by itself establish insurance coverage."
       ]
@@ -1055,7 +1067,7 @@ const pages = [
   },
   {
     "slug": "get-a-quote",
-    "modifiedDate": "2026-11-02",
+    "modifiedDate": "2026-11-12",
     "nav": "Get Quote",
     "title": "Get My Free Quote | Your Family First Insurance Office #3",
     "description": "Get a free insurance quote from Your Family First Office #3 in Miami. Start online or call 305-910-8850 for help in English or Spanish.",
@@ -1090,6 +1102,8 @@ const pages = [
         "Can I request business, life or health insurance here?",
         "Call Office #3 for business, commercial auto, trucking, life, health or an insurance type not shown in the online form. The personal auto form is not the trucking quote path. We can discuss your needs and explain the next application steps in English or Spanish.",
         [
+          ["Prepare a business insurance quote", "/commercial-insurance/#coverage-details"],
+          ["Compare term and permanent life insurance", "/life-insurance/#coverage-details"],
           [
             "Call 305-910-8850",
             "tel:13059108850"
@@ -1473,20 +1487,18 @@ function organizationSchema() {
     address: { "@type": "PostalAddress", ...address },
     areaServed: serviceAreas,
     knowsAbout: insuranceTypes,
-    availableLanguage: ["English", "Spanish"],
     contactPoint: [{
       "@type": "ContactPoint",
       telephone: "+13059108850",
       contactType: "customer service",
       areaServed: "US-FL",
-      availableLanguage: ["English", "Spanish"]
+      availableLanguage: ["en", "es"]
     }],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Insurance quote help",
-      itemListElement: offerNames.map((name, index) => ({
+      itemListElement: offerNames.map((name) => ({
         "@type": "Offer",
-        position: index + 1,
         itemOffered: {
           "@type": "Service",
           name,
@@ -1528,7 +1540,7 @@ function websiteSchema() {
     "@id": `${siteUrl}/#website`,
     url: siteUrl,
     name: businessName,
-    inLanguage: "en-US",
+    inLanguage: ["en-US", "es-US"],
     publisher: { "@id": `${siteUrl}/#insuranceagency` }
   };
 }
@@ -1553,14 +1565,16 @@ function serviceItemListSchema() {
 
 function breadcrumbSchema(page) {
   if (!page.slug) return null;
+  const trail = [["Home", pageUrl("")]];
+  if (page.kind === "resource") trail.push(["Policyholder Help", pageUrl("policyholder-help")]);
+  trail.push([page.h1, pageUrl(page.slug)]);
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": `${pageUrl(page.slug)}#breadcrumb`,
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
-      { "@type": "ListItem", position: 2, name: page.h1, item: pageUrl(page.slug) }
-    ]
+    itemListElement: trail.map(([name, item], index) => ({
+      "@type": "ListItem", position: index + 1, name, item
+    }))
   };
 }
 
@@ -1948,7 +1962,7 @@ const officialResourcesBySlug = {
     ["Florida Statute 627.7011 roof-age provisions", "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.7011.html"]
   ],
   "renters-insurance": [
-    ["Florida DFS homeowners and renters overview", "https://myfloridacfo.com/division/consumers/understanding-insurance/homeownersinsuranceoverview"],
+    ["Florida DFS renters insurance overview", "https://www.myfloridacfo.com/division/consumers/understanding-insurance/renters-insurance"],
     ["Florida DFS flood insurance guide", "https://myfloridacfo.com/division/ica/fullcoverage/flood"]
   ],
   "commercial-insurance": [
@@ -2023,7 +2037,7 @@ function serviceBody(page) {
         <h2>${escapeHtml(page.detailsHeading || "What to Review Before You Choose")}</h2>
       </div>
       <div class="detail-grid${page.slug === "commercial-insurance" ? " business-coverage" : ""}">
-        ${page.sections.map(([title, copy]) => `<article class="detail-card"${page.slug === "commercial-insurance" && title === "General liability" ? ' id="general-liability-insurance"' : page.slug === "commercial-insurance" && title === "Commercial auto and trucking" ? ' id="trucking-insurance"' : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
+        ${page.sections.map(([title, copy, id]) => `<article class="detail-card"${id ? ` id="${escapeHtml(id)}"` : ""} data-reveal="card"><span class="soft-icon">${iconSvg(page.icon)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p></article>`).join("")}
       </div>
     </section>
     <section class="section service-cta" id="quote-next" data-reveal>

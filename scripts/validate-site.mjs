@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import carouselMediaModule from "../src/data/carouselMedia.js";
 import googleReviewsModule from "../src/data/googleReviews.js";
 
@@ -89,6 +90,7 @@ const motionExpectations = Object.fromEntries(englishServiceSlugs.map((slug) => 
 }));
 
 const failures = [];
+const sharedEntities = new Map();
 
 function htmlPath(slug) {
   return slug ? path.join(siteRoot, slug, "index.html") : path.join(siteRoot, "index.html");
@@ -141,6 +143,39 @@ for (const slug of requiredSlugs) {
   if (slug === "" && !html.includes('"@type":"InsuranceAgency"')) failures.push("home missing InsuranceAgency schema");
   if (slug !== "" && slug !== "es" && !html.includes('"@type":"BreadcrumbList"')) failures.push(`${slug} missing BreadcrumbList schema`);
   if (html.includes("<details") && !html.includes('"@type":"FAQPage"')) failures.push(`${slug || "home"} has FAQ markup without FAQPage schema`);
+  try {
+    const schemas = Array.from(
+      html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+      ([, json]) => JSON.parse(json)
+    );
+    for (const type of ["WebSite", "InsuranceAgency"]) {
+      const entity = schemas.find((node) => node["@type"] === type);
+      if (!entity) {
+        failures.push(`${slug || "home"} missing shared ${type} entity`);
+        continue;
+      }
+      const serialized = JSON.stringify(entity);
+      if (!sharedEntities.has(type)) sharedEntities.set(type, serialized);
+      if (serialized !== sharedEntities.get(type)) failures.push(`${slug || "home"} changes the shared ${type} entity`);
+    }
+    const site = schemas.find((node) => node["@type"] === "WebSite");
+    const agency = schemas.find((node) => node["@type"] === "InsuranceAgency");
+    if (agency?.hasOfferCatalog?.itemListElement?.some((offer) => offer["@type"] === "Offer" && Object.hasOwn(offer, "position"))) {
+      failures.push(`${slug || "home"} must omit position on Offer nodes`);
+    }
+    if (site?.url !== siteUrl || JSON.stringify(site?.inLanguage) !== '["en-US","es-US"]') {
+      failures.push(`${slug || "home"} must describe one bilingual website at ${siteUrl}`);
+    }
+    if (customerResourceSlugs.includes(slug)) {
+      const hub = slug.startsWith("es/") ? "es/ayuda-para-clientes" : "policyholder-help";
+      const trail = schemas.find((node) => node["@type"] === "BreadcrumbList")?.itemListElement;
+      if (trail?.length !== 3 || trail[1].item !== `${siteUrl}/${hub}/` || trail[2].item !== `${siteUrl}/${slug}/`) {
+        failures.push(`${slug} must place its policyholder hub between home and the guide in the breadcrumb`);
+      }
+    }
+  } catch {
+    failures.push(`${slug || "home"} contains invalid JSON-LD`);
+  }
 
   for (const phrase of bannedPhrases) {
     if (lower.includes(phrase)) failures.push(`${slug || "home"} contains banned phrase: ${phrase}`);
@@ -315,6 +350,14 @@ if (!fs.existsSync(htaccess)) {
   }
   if (/script-src[^;]*'unsafe-inline'/.test(htaccessText)) failures.push(".htaccess CSP must not allow unsafe inline scripts");
   if (!htaccessText.includes('Strict-Transport-Security "max-age=31536000')) failures.push(".htaccess missing bounded HSTS header");
+}
+
+const homeFile = htmlPath("");
+const inlineTracking = fs.existsSync(homeFile) && read(homeFile).match(/<script data-site-tracking="gtm">([\s\S]*?)<\/script>/)?.[1];
+const pagesHeaders = path.join(checkDist ? siteRoot : path.join(root, "public"), "_headers");
+if (inlineTracking && fs.existsSync(pagesHeaders)) {
+  const hash = createHash("sha256").update(inlineTracking).digest("base64");
+  if (!read(pagesHeaders).includes(`'sha256-${hash}'`)) failures.push("Cloudflare static CSP hash must match the generated GTM bootstrap");
 }
 
 const styles = path.join(siteRoot, "assets", "styles.css");

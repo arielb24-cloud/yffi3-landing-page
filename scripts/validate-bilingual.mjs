@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { englishToSpanish } from "../content/spanish-content.mjs";
+import { spanishRetentionPages } from "../content/spanish-retention-pages.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const useDist = process.argv.includes("--dist");
@@ -60,6 +61,16 @@ for (const spanishSlug of Object.values(englishToSpanish)) {
   }
   if (!html.includes('<meta property="og:locale" content="es_US">')) failures.push(`${spanishSlug} missing Spanish OG locale`);
   if (!html.includes('"inLanguage":"es-US"') && !["es/privacidad", "es/terminos"].includes(spanishSlug)) failures.push(`${spanishSlug} missing Spanish structured-data language`);
+}
+
+for (const { slug, sourceLinks } of spanishRetentionPages) {
+  if (!fs.existsSync(fileFor(slug))) continue;
+  const html = read(slug);
+  for (const [, url] of sourceLinks ?? []) {
+    if (!html.includes(`href="${url.replaceAll("&", "&amp;")}"`)) {
+      failures.push(`${slug} missing localized source link: ${url}`);
+    }
+  }
 }
 
 const spanish404 = path.join(siteRoot, "es", "404.html");
