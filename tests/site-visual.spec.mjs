@@ -266,6 +266,36 @@ test("mobile carousel autoplays visible videos and selection does not move the p
   expect(Math.abs(afterY - beforeY)).toBeLessThanOrEqual(1);
 });
 
+test("a visible video recovers from blocked autoplay on the first ordinary tap", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 920 });
+  await page.addInitScript(() => {
+    // Model a browser that allows media only after a completed user gesture.
+    const media = HTMLMediaElement.prototype;
+    const nativePlay = media.play;
+    const autoplay = Object.getOwnPropertyDescriptor(media, "autoplay");
+    let activated = false;
+    window.addEventListener("pointerup", event => {
+      if (event.isTrusted) activated = true;
+    }, true);
+    Object.defineProperty(media, "autoplay", {
+      ...autoplay,
+      set(value) { autoplay.set.call(this, activated && value); }
+    });
+    media.play = function () {
+      if (activated) return nativePlay.call(this);
+      return Promise.reject(new DOMException("User gesture required", "NotAllowedError"));
+    };
+  });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const carousel = page.locator("[data-insurance-carousel]");
+  const video = carousel.locator('.motion-slide[data-active="true"] video');
+  await expect(carousel).toHaveAttribute("data-playback-blocked", "");
+  expect(await video.evaluate(element => element.paused)).toBe(true);
+  await page.getByRole("heading", { level: 1 }).click();
+  await expect.poll(() => video.evaluate(element => !element.paused && element.currentTime > 0.1)).toBe(true);
+  await expect(carousel).not.toHaveAttribute("data-playback-blocked", "");
+});
+
 test("quote page avoids duplicate data entry and continues to the secure vendor", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 920 });
   await page.route("https://secure.consumerratequotes.com/**", async (route) => {
