@@ -36,7 +36,7 @@ The local/CI server is `server.js` and uses `process.env.PORT || 3000`. Cloudfla
 - Official franchise logo/sign: `public/assets/yffi3/yffi3-official-franchise-logo.png`
 - Real family/office photo: `public/assets/yffi3/yffi3-family-office-photo.jpg`
 - Do not redesign, recolor, distort, crop, trace, or replace the official franchise logo/sign.
-- Do not use fake AI people, fake reviews, fake awards, guaranteed savings claims, instant approval claims, or unauthorized carrier relationship claims.
+- Use real photographs and genuine reviews and awards. Never promise savings or immediate policy approval. Mention carrier relationships only with authorization.
 
 ## SEO and AI Findability
 
