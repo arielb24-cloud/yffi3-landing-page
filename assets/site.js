@@ -210,11 +210,12 @@ document.querySelectorAll(".faq summary, .review-details summary").forEach((summ
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 const motionDisabled = reducedMotion || saveData;
+const desktopMotion = !motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches;
 const spanishUi = document.documentElement.lang.toLowerCase().startsWith("es");
 document.documentElement.classList.toggle("save-data", saveData);
 const revealItems = Array.from(document.querySelectorAll("[data-reveal]")).filter((item) => !item.closest(".hero"));
 
-if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
+if (desktopMotion) {
   const cursorOrb = document.createElement("span");
   cursorOrb.className = "cursor-orb";
   cursorOrb.setAttribute("aria-hidden", "true");
@@ -229,18 +230,17 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     cursorOrb.style.setProperty("--cursor-y", (cursorY - 11) + "px");
   };
 
+  const interactive = "a, button, input, select, textarea, summary, .coverage-card, .detail-card, .intent-card";
   window.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
     cursorX = event.clientX;
     cursorY = event.clientY;
     cursorOrb.classList.add("is-visible");
+    cursorOrb.classList.toggle("is-active", Boolean(event.target.closest?.(interactive)));
     if (!cursorFrame) cursorFrame = window.requestAnimationFrame(syncCursor);
   }, { passive: true });
   window.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-visible", "is-active"));
 
-  document.querySelectorAll("a, button, input, select, textarea, summary, .motion-media-link, .coverage-card, .detail-card, .intent-card").forEach((target) => {
-    target.addEventListener("pointerenter", () => cursorOrb.classList.add("is-active"));
-    target.addEventListener("pointerleave", () => cursorOrb.classList.remove("is-active"));
-  });
 }
 
 if (revealItems.length) {
@@ -255,11 +255,8 @@ if (revealItems.length) {
           observer.unobserve(entry.target);
         }
       });
-    }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = Math.min(index * 35, 160) + "ms";
-      observer.observe(item);
-    });
+    }, { rootMargin: "0px 0px 12% 0px", threshold: 0 });
+    revealItems.forEach((item) => observer.observe(item));
   }
 }
 
@@ -281,7 +278,7 @@ if (animatedItems.length) {
   }
 }
 
-if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches && "IntersectionObserver" in window) {
+if (desktopMotion && "IntersectionObserver" in window) {
   const depthSurfaces = Array.from(document.querySelectorAll("[data-insurance-carousel]"));
   const visibleDepthSurfaces = new Set();
   let depthFrame = 0;
@@ -293,11 +290,10 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
       const rect = surface.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
       const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / viewportHeight));
-      const scrollDepth = normalized * -18;
-      surface.style.setProperty("--scroll-depth", scrollDepth.toFixed(2) + "px");
-      surface.style.setProperty("--media-scroll-y", (scrollDepth * -0.26).toFixed(2) + "px");
-      surface.style.setProperty("--depth-y", (scrollDepth * -0.18).toFixed(2) + "px");
-      surface.style.setProperty("--media-rotate-x", (normalized * -1.35).toFixed(2) + "deg");
+      const offset = Math.round(normalized * -24) / 2 + "px";
+      if (surface.style.getPropertyValue("--scroll-depth") !== offset) {
+        surface.style.setProperty("--scroll-depth", offset);
+      }
     });
   };
 
@@ -310,10 +306,7 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
       if (entry.isIntersecting) visibleDepthSurfaces.add(entry.target);
       else {
         visibleDepthSurfaces.delete(entry.target);
-        entry.target.style.setProperty("--scroll-depth", "0px");
-        entry.target.style.setProperty("--media-scroll-y", "0px");
-        entry.target.style.setProperty("--depth-y", "0px");
-        entry.target.style.setProperty("--media-rotate-x", "0deg");
+        entry.target.style.removeProperty("--scroll-depth");
       }
     });
     requestDepthSync();
@@ -333,6 +326,7 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   const next = carousel.querySelector("[data-carousel-next]");
   const pauseButton = carousel.querySelector("[data-carousel-pause]");
   const pendingPlay = new WeakSet();
+  const blockedPlayback = new WeakSet();
   let userPaused = motionDisabled;
   let hoveredMedia = null;
   let mediaObserver = null;
@@ -352,6 +346,10 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     if (!video || video.dataset.loaded === "true" || video.dataset.failed === "true" || !inView || userPaused) return video;
     const webm = video.dataset.src;
     const mp4 = video.dataset.mp4;
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.autoplay = true;
     if (webm) {
       const source = document.createElement("source");
       source.src = webm;
@@ -364,13 +362,13 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
       source.type = "video/mp4";
       video.append(source);
     }
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.autoplay = true;
     video.dataset.loaded = "true";
-    video.addEventListener("playing", () => video.classList.add("is-ready"), { once: true });
-    video.addEventListener("canplay", syncVideos);
+    video.addEventListener("playing", () => {
+      video.classList.add("is-ready");
+      blockedPlayback.delete(video);
+      if (slide === slides[activeIndex]) carousel.removeAttribute("data-playback-blocked");
+    });
+    video.addEventListener("canplay", () => syncVideos());
     video.addEventListener("error", () => {
       video.dataset.failed = "true";
       video.classList.remove("is-ready");
@@ -379,24 +377,32 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     return video;
   };
 
-  const syncVideos = () => {
+  const syncVideos = (fromGesture = false) => {
     const activeMedia = slides[activeIndex]?.querySelector(".motion-media-link");
+    const activeVideo = activeMedia?.querySelector(".motion-video");
     const stopped = !inView || userPaused || hoveredMedia === activeMedia || document.hidden;
     slides.forEach((slide, index) => {
       const video = slide.querySelector(".motion-video");
       if (!video) return;
       if (index === activeIndex && !stopped && video.dataset.failed !== "true") {
         hydrateVideo(slide);
-        if (video.paused && !pendingPlay.has(video)) {
+        video.autoplay = true;
+        if (video.paused && !pendingPlay.has(video) && (fromGesture || !blockedPlayback.has(video))) {
           pendingPlay.add(video);
-          let interrupted = false;
-          video.play().catch((error) => { interrupted = error.name === "AbortError"; }).finally(() => {
+          video.play().catch((error) => {
+            if (error.name !== "NotAllowedError") return;
+            blockedPlayback.add(video);
+            if (slide === slides[activeIndex]) carousel.setAttribute("data-playback-blocked", "");
+          }).finally(() => {
             pendingPlay.delete(video);
-            if (interrupted && inView && !userPaused && !document.hidden) requestAnimationFrame(syncVideos);
           });
         }
-      } else video.pause();
+      } else {
+        video.autoplay = false;
+        if (!video.paused) video.pause();
+      }
     });
+    carousel.toggleAttribute("data-playback-blocked", Boolean(activeVideo && blockedPlayback.has(activeVideo)));
     carousel.setAttribute("data-motion-stopped", String(stopped));
     carousel.setAttribute("data-paused", String(stopped));
     if (pauseButton) {
@@ -411,17 +417,18 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
   };
   pauseButton?.addEventListener("click", () => {
     userPaused = !userPaused;
-    syncVideos();
+    syncVideos(true);
   });
   slides.forEach((slide) => {
     const media = slide.querySelector(".motion-media-link");
-    media?.addEventListener("pointerenter", (event) => {
-      if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    media?.addEventListener("pointermove", (event) => {
+      if (hoveredMedia === media || event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
       hoveredMedia = media;
       syncVideos();
-    });
+    }, { passive: true });
     media?.addEventListener("pointerleave", () => {
-      if (hoveredMedia === media) hoveredMedia = null;
+      if (hoveredMedia !== media) return;
+      hoveredMedia = null;
       syncVideos();
     });
   });
@@ -600,10 +607,14 @@ document.querySelectorAll("[data-insurance-carousel]").forEach((carousel) => {
     }
   }, true);
 
-  document.addEventListener("visibilitychange", syncVideos);
-  // Browsers that initially reject autoplay can retry after the first gesture.
-  document.addEventListener("pointerdown", syncVideos, { passive: true });
-  document.addEventListener("keydown", syncVideos);
+  document.addEventListener("visibilitychange", () => syncVideos());
+  // A tap's pointerdown is not a trusted playback activation on touch browsers.
+  const retryBlockedPlayback = (event) => {
+    if (event.isTrusted && carousel.hasAttribute("data-playback-blocked")) syncVideos(true);
+  };
+  document.addEventListener("pointerup", retryBlockedPlayback, { capture: true, passive: true });
+  document.addEventListener("click", retryBlockedPlayback, true);
+  document.addEventListener("keydown", retryBlockedPlayback, true);
 
   if ("IntersectionObserver" in window) {
     mediaObserver = new IntersectionObserver((entries) => {
@@ -701,7 +712,7 @@ document.querySelectorAll("[data-google-review-carousel]").forEach((carousel) =>
   setActive(0);
 });
 
-if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 768px)").matches) {
+if (desktopMotion) {
   const particleColors = [
     "rgba(154, 220, 247, 0.88)",
     "rgba(255, 224, 161, 0.82)",
@@ -709,24 +720,23 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     "rgba(119, 231, 220, 0.78)"
   ];
   let liveParticles = 0;
-  const spawnLiquidParticles = (event, count = 5, mode = "burst", bounds = null) => {
-    if (!event?.currentTarget || document.hidden || liveParticles >= 32) return;
+  const maxParticles = 12;
+  const spawnLiquidParticles = (event, count, bounds = null) => {
+    if (!event?.currentTarget || document.hidden || liveParticles >= maxParticles) return;
     const surface = event.currentTarget;
     const now = Date.now();
-    const stampKey = mode === "trail" ? "particleTrailAt" : "particleAt";
-    const last = Number(surface.dataset[stampKey] || 0);
-    const cooldown = mode === "trail" ? 160 : 175;
-    if (now - last < cooldown) return;
-    surface.dataset[stampKey] = String(now);
+    if (now - Number(surface.dataset.particleAt || 0) < 180) return;
+    surface.dataset.particleAt = String(now);
     const rect = bounds || surface.getBoundingClientRect();
     const baseX = Math.max(rect.left, Math.min(event.clientX || rect.left + rect.width / 2, rect.right));
     const baseY = Math.max(rect.top, Math.min(event.clientY || rect.top + rect.height / 2, rect.bottom));
-    const particleCount = Math.min(count, 32 - liveParticles);
+    const particleCount = Math.min(count, maxParticles - liveParticles);
+    const burst = document.createDocumentFragment();
     for (let index = 0; index < particleCount; index += 1) {
       const particle = document.createElement("span");
       const angle = (Math.PI * 2 * index) / Math.max(1, count) + Math.random() * 0.74;
-      const distance = (mode === "trail" ? 12 : 20) + Math.random() * (mode === "trail" ? 18 : 42);
-      const size = (mode === "trail" ? 2.4 : 3.4) + Math.random() * (mode === "trail" ? 3.1 : 5.8);
+      const distance = 18 + Math.random() * 30;
+      const size = 3.4 + Math.random() * 4;
       const color = particleColors[Math.floor(Math.random() * particleColors.length)];
       particle.className = "liquid-particle";
       particle.style.setProperty("--particle-x", (baseX + (Math.random() - 0.5) * 20).toFixed(1) + "px");
@@ -738,14 +748,15 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
       particle.style.setProperty("--particle-angle", ((angle * 180) / Math.PI).toFixed(1) + "deg");
       particle.style.setProperty("--particle-spin", (40 + Math.random() * 120).toFixed(1) + "deg");
       particle.style.setProperty("--particle-tail", (12 + distance * 0.38).toFixed(1) + "px");
-      particle.style.setProperty("--particle-duration", (mode === "trail" ? 660 + Math.random() * 220 : 820 + Math.random() * 300).toFixed(0) + "ms");
+      particle.style.setProperty("--particle-duration", (620 + Math.random() * 200).toFixed(0) + "ms");
       liveParticles += 1;
-      document.body.append(particle);
+      burst.append(particle);
       particle.addEventListener("animationend", () => {
         liveParticles = Math.max(0, liveParticles - 1);
         particle.remove();
       }, { once: true });
     }
+    document.body.append(burst);
   };
 
   const hoverSurfaceSelector = [
@@ -796,21 +807,22 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
     };
 
     surface.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "mouse") return;
       surfaceRect = null;
       hoverSizeObserver?.observe(surface);
       const stronger = surface.matches(".button, .motion-carousel, .real-review-card, .coverage-card, .review-qr-card");
-      spawnLiquidParticles(event, stronger ? 10 : 5, "burst", measureSurface());
+      spawnLiquidParticles(event, stronger ? 4 : 2, measureSurface());
     }, { passive: true });
 
     surface.addEventListener("click", (event) => {
       if (event.target.closest(hoverSurfaceSelector) !== surface) return;
       if (surface.matches("a, button, .button, .carousel-chip, .real-review-mini")) {
-        spawnLiquidParticles(event, 13);
+        spawnLiquidParticles(event, 6);
       }
     });
 
     surface.addEventListener("pointermove", (event) => {
-      if (event.target.closest(hoverSurfaceSelector) !== surface) return;
+      if (event.pointerType !== "mouse" || event.target.closest(hoverSurfaceSelector) !== surface) return;
       lastEvent = event;
       if (frame) return;
       frame = window.requestAnimationFrame(() => {
@@ -821,9 +833,6 @@ if (!motionDisabled && window.matchMedia("(hover: hover) and (pointer: fine) and
         const y = (lastEvent.clientY - rect.top) / rect.height;
         surface.style.setProperty("--glare-x", Math.round(x * 100) + "%");
         surface.style.setProperty("--glare-y", Math.round(y * 100) + "%");
-        if (surface.matches(".button, .motion-carousel, .coverage-card, .review-source-card, .review-qr-card") && liveParticles < 38) {
-          spawnLiquidParticles(lastEvent, 1, "trail", rect);
-        }
         if (surface.classList.contains("liquid-tilt")) {
           surface.style.setProperty("--tilt-x", ((x - 0.5) * 7).toFixed(2) + "deg");
           surface.style.setProperty("--tilt-y", ((0.5 - y) * 6).toFixed(2) + "deg");
